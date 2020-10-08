@@ -1,0 +1,57 @@
+! BG !
+! theme0  #181d24
+! theme1  #20252c
+! theme2  #222c36
+! theme3  #222f3c
+! FG !
+! theme4  #cfd8dc
+! theme5  #d8f5e9
+! theme6  #f0f9fb
+! primary (dark to light)
+! theme7  #52abab
+! theme8  #359cb9
+! theme9  #7171af
+! theme10 #90568f
+! Error !
+! theme11 #5e3a7b
+! theme12 #c5b8da
+! Other !
+! theme13 #929BCC
+! theme14 #55bfab
+! theme15 #5e6896
+
+! Theme 1, 4
+*background: #20252C
+*foreground: #CFD8DC
+
+! Black, 0, 3
+*color0: #181D24
+*color8: #222F3C
+
+! Red, 11, 12
+*color1: #5E3A7B
+*color9: #C5B8DA
+
+! Green, 14, 14
+*color2: #55BFAB
+*color10: #55BFAB
+
+! Yellow, 13, 13
+*color3: #929BCC
+*color11: #929BCC
+
+! Blue, 15, 15
+*color4: #5E6896
+*color12: #5E6896
+
+! Magenta, 9, 10
+*color5: #7171AF
+*color13: #90568F
+
+! Cyan, 7, 8
+*color6: #52ABAB
+*color14: #359CB9
+
+! White, 5, 6
+*color7: #D8F5E9
+*color15: #F0F9FB

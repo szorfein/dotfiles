@@ -24,17 +24,6 @@ URxvt*cursorColor:                  #737077
 URxvt*scrollColor:                  #151515
 URxvt*underlineURLs:                true
 
-URxvt*font: -*-dina-medium-r-*-*-*-90-*-*-*-*-*-*
-URxvt*italic: -*-dina-medium-*-*-*-*-90-*-*-*-*-*-*
-URxvt*boldFont: -*-dina-bold-r-*-*-*-90-*-*-*-*-*-*
- 
-!--------------------------------------------
-! URxvt Colors
-
-URxvt.colorIT:                       #b291af
-URxvt.colorBD:                       #6f6776
-URxvt.colorUL:                       #e9cfd3
-
 !-------------------------------------------
 ! Man pages colors
 
@@ -43,15 +32,6 @@ URxvt.colorUL:                       #e9cfd3
 *VT100.colorULMode:                  true
 *VT100.colorUL:                      cyan   
 *VT100.veryBoldColors:               6
-
-!-------------------------------------------
-! xclock
-
-xclock*majorColor:                  #9a875f
-xclock*minorColor:                  #9a875f
-xclock*minuteColor:                 #9a875f
-xclock*hourColor:                   #9a875f
-xclock*secondColor:                 #9a875f
 
 !-------------------------------------------
 ! rofi
@@ -70,7 +50,6 @@ rofi.columns:                       2
 ! ref: https://github.com/gnotclub/xst/blob/master/doc/Xresources
 st.termname:     st-256color
 st.shell:        /bin/zsh
-st.font:         Iosevka Term:style=Regular:pixelsize=14:antialias=true:autohint=true;
 ! Available cursor values: 2 4 6 7 = █ _ | ☃ ( 1 3 5 are blinking versions)
 st.cursorshape:   2
 st.bold_font:     1
@@ -78,41 +57,7 @@ st.chscale:       1.0
 st.cwscale:       1.0
 
 !--------------------------------------------
-! General Colors
+! General Colors & Fonts
 
-#include ".colors/color"
-
-*background: theme1
-*foreground: theme4
-
-! Black
-*color0: theme0
-*color8: theme3
-
-! Red
-*color1: theme11
-*color9: theme12
-
-! Green
-*color2: theme14
-*color10: theme14
-
-! Yellow
-*color3: theme13
-*color11: theme13
-
-! Blue
-*color4: theme15
-*color12: theme15
-
-! Magenta
-*color5: theme9
-*color13: theme10
-
-! Cyan
-*color6: theme7
-*color14: theme8
-
-! White
-*color7: theme5
-*color15: theme6
+#include ".Xresources.d/colors"
+#include ".Xresources.d/fonts"

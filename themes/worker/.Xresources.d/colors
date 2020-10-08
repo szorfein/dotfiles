@@ -1,0 +1,64 @@
+! Material theme
+! material color: https://material.io/inline-tools/color/
+! material: https://material.io/tools/color 
+! theme maker: https://coolors.co
+! colors: https://mycolor.space/
+! contrast: https://contrast-ratio.com/
+
+!! BG !!
+! theme0  #16171C
+! theme1  #18191e
+! theme2  #24262D
+! theme3  #2D3039
+!! FG !!
+! theme4  #d3e4e2
+! theme5  #dbecea
+! theme6  #f6f9ff
+!! Primary, Secondary !!
+! theme7  #98CC70
+! theme8  #ADD681
+! theme9  #3ade95
+! theme10 #00b9a2
+!! Alert !!
+! theme11 #A360D6
+! theme12 #BD90E1
+!! Others !! (yellow, green, blue)
+! theme13 #d8d679
+! theme14 #82D681
+! theme15 #00899e
+
+! Theme 1, 4
+*background: #18191E
+*foreground: #D3E4E2
+
+! Black, 0, 3
+*color0: #16171C
+*color8: #2D3039
+
+! Red, 11, 12
+*color1: #A360D6
+*color9: #BD90E1
+
+! Green, 14, 14
+*color2: #82D681
+*color10: #82D681
+
+! Yellow, 13, 13
+*color3: #D8D679
+*color11: #D8D679
+
+! Blue, 15, 15
+*color4: #00899E
+*color12: #00899E
+
+! Magenta, 9, 10
+*color5: #3ADE95
+*color13: #00B9A2
+
+! Cyan, 7, 8
+*color6: #98CC70
+*color14: #ADD681
+
+! White, 5, 6
+*color7: #DBECEA
+*color15: #F6F9FF

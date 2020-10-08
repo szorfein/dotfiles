@@ -123,7 +123,6 @@ grab_fonts() {
   echo "Nerd Fonts..."
   (cd $DIR_FONT \
     && check_fonts Iosevka "Iosevka-$PV.zip" "https://github.com/ryanoasis/nerd-fonts/releases/download/v$PV/Iosevka.zip" \
-    && check_fonts RobotoMono "RobotoMono-$PV.zip" "https://github.com/ryanoasis/nerd-fonts/releases/download/v$PV/RobotoMono.zip" \
     && check_fonts SpaceMono "SpaceMono-$PV.zip" "https://github.com/ryanoasis/nerd-fonts/releases/download/v$PV/SpaceMono.zip" \
   )
 

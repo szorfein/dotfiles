@@ -1,0 +1,63 @@
+! Material theme
+
+! theme https://www.colorspire.com/
+! material color: https://material.io/inline-tools/color/
+! material: https://material.io/tools/color 
+
+! BG !
+! theme0  #171529
+! theme1  #1A172E
+! theme2  #272244
+! theme3  #2E2951
+! FG !
+! theme4  #D6E1FF
+! theme5  #EBF0FF
+! theme6  #FAFFFF
+!! Primary, Secondary !!
+! theme7  #937DB5
+! theme8  #A997C8
+! theme9  #7a91c7
+! theme10 #8ca0cf
+!! Alert !!
+! theme11 #C3C5AA
+! theme12 #CDCFBA
+!! Others !!
+! theme13 #E7D6FF
+! theme14 #7E8AA0
+! theme15 #7a91c7
+
+! Theme 1, 4
+*background: #1A172E
+*foreground: #D6E1FF
+
+! Black, 0, 3
+*color0: #171529
+*color8: #2E2951
+
+! Red, 11, 12
+*color1: #C3C5AA
+*color9: #CDCFBA
+
+! Green, 14, 14
+*color2: #7E8AA0
+*color10: #7E8AA0
+
+! Yellow, 13, 13
+*color3: #E7D6FF
+*color11: #E7D6FF
+
+! Blue, 15, 15
+*color4: #7A91C7
+*color12: #7A91C7
+
+! Magenta, 9, 10
+*color5: #7A91C7
+*color13: #8CA0CF
+
+! Cyan, 7, 8
+*color6: #937DB5
+*color14: #A997C8
+
+! White, 5, 6
+*color7: #EBF0FF
+*color15: #FAFFFF
