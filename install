@@ -3,7 +3,6 @@
 set -o errexit -o nounset
 
 WORKDIR="$HOME"
-DIR_FONT="$WORKDIR"/.local/share/fonts
 PV="2.1.0"
 
 ###############################################################
@@ -115,6 +114,7 @@ install_font() {
 }
 
 grab_fonts() {
+  DIR_FONT="$WORKDIR"/.local/share/fonts
   [ -d "$DIR_FONT" ] || mkdir -p "$DIR_FONT"
 
   echo "Nerd Fonts..."
