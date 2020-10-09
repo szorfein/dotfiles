@@ -27,6 +27,7 @@ local poweroff = button({
   icon = font.h1(icons.widget.poweroff),
   text = font.button("Poweroff"),
   width = 110,
+  spacing = 8,
   command = poweroff_command,
 })
 
@@ -40,6 +41,7 @@ local reboot = button({
   icon = font.h1(icons.widget.reboot),
   text = font.button("Reboot"),
   width = 110,
+  spacing = 8,
   command = reboot_command,
 })
 
@@ -53,6 +55,7 @@ local exit = button({
   icon = font.h1(icons.widget.exit),
   text = font.button("Exit"),
   width = 110,
+  spacing = 8,
   command = exit_command,
 })
 
@@ -64,9 +67,10 @@ end
 -- button lock
 local lock = button({
   fg_icon = M.x.secondary,
-  icon = font.h1(icons.widget.lock),
+  icon = font.h1(icons.layout.lock),
   text = font.button("Lock"),
   width = 110,
+  spacing = 8,
   command = lock_command,
 })
 
@@ -106,10 +110,10 @@ function exit_root:init(s)
   local w = wibox.widget {
     {
       {
-        poweroff,
-        reboot,
-        exit,
-        lock,
+        { nil, poweroff, nil, expand = "none", layout = wibox.layout.align.vertical },
+        { nil, reboot, nil, expand = "none", layout = wibox.layout.align.vertical },
+        { nil, exit, nil, expand = "none", layout = wibox.layout.align.vertical },
+        { nil, lock, nil, expand = "none", layout = wibox.layout.align.vertical },
         spacing = 12,
         layout = wibox.layout.fixed.horizontal
       },

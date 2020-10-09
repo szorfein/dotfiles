@@ -3,11 +3,12 @@ local beautiful = require("beautiful")
 local widget = require("util.widgets")
 local font = require("utils.font")
 local mat_text = require("utils.material.text")
+local icons = require("config.icons")
 
 local wifi_root = class()
 
 function wifi_root:init(args)
-  self.icon = args.icon or beautiful.wifi_icon or { "", M.x.on_surface }
+  self.icon = args.icon or beautiful.wifi_icon or { icons.widget.wifi, M.x.on_surface }
   self.mode = args.mode or 'progressbar'
   self.bar_size = args.bar_size or 200
   self.bar_color = args.bar_color or beautiful.bar_color or M.x.primary

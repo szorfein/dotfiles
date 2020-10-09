@@ -5,6 +5,7 @@ local wibox = require("wibox")
 local aspawn = require("awful.spawn")
 local font = require("util.font")
 local ufont = require("utils.font")
+local icons = require("config.icons")
 
 -- beautiful vars
 local spacing = beautiful.widget_spacing or 1
@@ -15,7 +16,7 @@ local brightness_root = class()
 function brightness_root:init(args)
   -- options
   self.fg = args.fg or beautiful.widget_brightness_fg or M.x.on_surface
-  self.icon = args.icon or beautiful.widget_brightness_icon or { "", M.x.on_surface }
+  self.icon = args.icon or beautiful.widget_brightness_icon or { icons.widget.bright, M.x.on_surface }
   self.mode = args.mode or 'text' -- possible values: text, progressbar, slider
   self.layout = args.layout or beautiful.widget_brightness_layout or 'horizontal' -- possible values: horizontal , vertical
   self.bar_size = args.bar_size or 200

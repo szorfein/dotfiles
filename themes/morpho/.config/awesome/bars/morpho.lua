@@ -34,7 +34,7 @@ function mybar:init(s)
     {
       require("widgets.change_theme"),
       require("widgets.settings")(),
-      require("widgets.scrot"),
+      require("widgets.layoutbox")(),
       spacing = dpi(8),
       layout = wibox.layout.fixed.horizontal
     },

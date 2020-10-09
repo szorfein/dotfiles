@@ -5,8 +5,6 @@ local widget = require('util.widgets')
 
 -- widgets load
 local tor = require("widgets.button_tor")
-local scrot = require("widgets.scrot")
-local wifi_str = require("widgets.wifi_str")
 local tagslist = require("taglists.anonymous")
 
 -- {{{ Redefine widgets with a background
@@ -68,7 +66,6 @@ s.mywibox:setup {
       s.mytaglist,
       --s.mypromptbox,
       --distrib_icon,
-      --wifi_str_widget,
       wibox.widget.systray(),
     },
     { -- middle
@@ -85,8 +82,7 @@ s.mywibox:setup {
       my_ram,
       my_battery,
       my_date,
-      require("widgets.change_theme"),
-      scrot
+      require("widgets.change_theme")
     }
   }
 end

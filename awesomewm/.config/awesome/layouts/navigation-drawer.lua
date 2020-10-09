@@ -8,6 +8,7 @@ local ufont = require("utils.font")
 local mat_fg = require("utils.material.foreground")
 local mat_bg = require("utils.material.background")
 local beautiful = require("beautiful")
+local icons = require("config.icons")
 
 function nav_drawer_hide()
   local s = awful.screen.focused()
@@ -37,21 +38,21 @@ local function gen_menu(elements)
 end
 
 local layout = gen_menu({
-  { "", "Start", function()
+  { icons.layout.dashboard, "Start", function()
     local s = awful.screen.focused()
     s.start_screen.visible = not s.start_screen.visible
     nav_drawer_hide()
   end },
-  { "", "Monitor", function()
+  { icons.layout.monitoring, "Monitor", function()
     local s = awful.screen.focused()
     s.monitor_bar.visible = not s.monitor_bar.visible
     nav_drawer_hide()
   end },
-  { "", "Lock", function()
+  { icons.layout.lock, "Lock", function()
     lock_screen_show()
     nav_drawer_hide()
   end },
-  { "", "Shot", function()
+  { icons.app.scrot, "Shot", function()
     awful.spawn.with_shell("scrot -d 5 -q 100")
     nav_drawer_hide()
   end },
@@ -59,7 +60,7 @@ local layout = gen_menu({
 
 local logout = button({
   fg_icon = M.x.error,
-  icon = ufont.h5(""),
+  icon = ufont.h5(icons.layout.logout),
   command = function()
     exit_screen_show()
     nav_drawer_hide()
@@ -69,7 +70,7 @@ local logout = button({
 
 local header = wibox.widget {
   button({
-    icon = ufont.body_2(""),
+    icon = ufont.icon(icons.misc.close),
     command = nav_drawer_hide
   }),
   nil,

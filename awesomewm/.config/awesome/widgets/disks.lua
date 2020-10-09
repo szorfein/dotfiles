@@ -6,6 +6,7 @@ local sep = require("util.separators")
 local font = require("util.font")
 local ufont = require("utils.font")
 local mat_text = require("utils.material.text")
+local icons = require("config.icons")
 
 local hdds = disks or { "home" }
 
@@ -15,7 +16,7 @@ local disks_root = class()
 function disks_root:init(args)
   -- options
   self.fg = args.fg or M.x.on_background
-  self.icon = args.icon or beautiful.widget_fs_icon or { "", M.x.on_surface }
+  self.icon = args.icon or beautiful.widget_fs_icon or { icons.widget.disk, M.x.on_surface }
   self.title = args.title or beautiful.widget_fs_title or { "FS", M.x.on_background }
   self.mode = args.mode or 'text' -- possible values: text, arcchart, block
   self.want_layout = args.layout or beautiful.widget_cpu_layout or 'horizontal' -- possible values: horizontal , vertical

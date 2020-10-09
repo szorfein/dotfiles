@@ -4,6 +4,7 @@ local widget = require("util.widgets")
 local helpers = require("helpers")
 local font = require("util.font")
 local ufont = require("utils.font")
+local icons = require("config.icons")
 
 -- beautiful vars
 local spacing = beautiful.widget_spacing or 1
@@ -15,7 +16,7 @@ function battery_root:init(args)
   -- options
   self.fg = args.fg or beautiful.widget_battery_fg or M.x.on_surface
   self.bg = args.bg or beautiful.widget_battery_bg or M.x.surface
-  self.icon = args.icon or beautiful.widget_battery_icon or { "", M.x.on_surface }
+  self.icon = args.icon or beautiful.widget_battery_icon or { icons.widget.bat, M.x.on_surface }
   self.title = args.title or beautiful.widget_battery_title or { "BAT", M.x.on_background }
   self.mode = args.mode or 'text' -- possible values: text, progressbar, slider
   self.want_layout = args.layout or beautiful.widget_battery_layout or 'horizontal' -- possible values: horizontal , vertical

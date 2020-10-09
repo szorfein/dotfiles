@@ -2,6 +2,7 @@ local wibox = require("wibox")
 local spawn = require("awful.spawn")
 local button = require("utils.button")
 local font = require("utils.font")
+local icons = require("config.icons")
 
 local mpc_root = class()
 
@@ -38,9 +39,10 @@ end
 
 function mpc_root:prev()
   local cmd = function() spawn("mpc prev", false) end
+  local prev_icon = icons.widget.prev
   return button({
     fg_icon = M.x.primary,
-    icon = self.mode == "text" and font.icon("ｅ") or font.h5("ｅ"),
+    icon = self.mode == "text" and font.icon(prev_icon) or font.h5(prev_icon),
     command = cmd,
     layout = "horizontal"
   })
@@ -48,9 +50,10 @@ end
 
 function mpc_root:toggle()
   local cmd = function() spawn("mpc toggle", false) end
+  local toggle_icon = icons.widget.toggle
   return button({
     fg_icon = M.x.primary,
-    icon = self.mode == "text" and font.icon("Ｘ") or font.h5("Ｘ"),
+    icon = self.mode == "text" and font.icon(toggle_icon) or font.h5(toggle_icon),
     command = cmd,
     layout = "horizontal"
   })
@@ -58,9 +61,10 @@ end
 
 function mpc_root:next()
   local cmd = function() spawn("mpc next", false) end
+  local next_icon = icons.widget.next
   return button({
     fg_icon = M.x.primary,
-    icon = self.mode == "text" and font.icon("ｄ") or font.h5("ｄ"),
+    icon = self.mode == "text" and font.icon(next_icon) or font.h5(next_icon),
     command = cmd,
     layout = "horizontal"
   })

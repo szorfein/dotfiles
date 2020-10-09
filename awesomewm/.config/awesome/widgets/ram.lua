@@ -5,6 +5,7 @@ local wibox = require("wibox")
 local font = require("util.font")
 local ufont = require("utils.font")
 local mat_text = require("utils.material.text")
+local icons = require("config.icons")
 
 -- beautiful vars
 local spacing = beautiful.widget_spacing or 1
@@ -14,7 +15,7 @@ local ram_root = class()
 
 function ram_root:init(args)
   -- options
-  self.icon = args.icon or beautiful.widget_ram_icon or { "", M.x.on_surface }
+  self.icon = args.icon or beautiful.widget_ram_icon or { icons.widget.ram, M.x.on_surface }
   self.fg = args.fg or beautiful.widget_ram_fg or M.x.on_surface
   self.title = args.title or beautiful.widget_ram_title or { "RAM", beautiful.on_background }
   self.mode = args.mode or 'text' -- possible values: text, progressbar, arcchart

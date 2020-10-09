@@ -3,12 +3,13 @@ local wibox = require("wibox")
 local table = require("gears.table")
 local font = require("utils.font")
 local tooltip = require("utils.tooltip")
+local icons = require("config.icons")
 
 local layoutbox_root = class()
 
 function layoutbox_root:init(s)
   self.s = s
-  self.icon = font.icon("") -- default float
+  self.icon = font.icon(icons.widget.float) -- default float
   self.current_mode = "floating" -- default float
   self.color = M.x.secondary_variant_2
   self.background = wibox.widget {
@@ -47,14 +48,14 @@ function layoutbox_root:updates()
   local curr_layout = awful.layout.get(mouse.screen)
 
   if curr_layout == awful.layout.suit.floating then
-    self.icon.text = ""
+    self.icon.text = icons.widget.float
     self.current_mode = "floating"
     self:update_background(M.x.secondary_variant_2)
   elseif curr_layout == awful.layout.suit.tile 
     or curr_layout == awful.layout.suit.tile.left 
     or curr_layout == awful.layout.suit.tile.bottom 
     or curr_layout == awful.layout.suit.tile.top then
-    self.icon.text = ""
+    self.icon.text = icons.widget.tile
     self.current_mode = "tile"
     self:update_background(M.x.primary)
   elseif curr_layout == awful.layout.suit.fair 
@@ -63,7 +64,7 @@ function layoutbox_root:updates()
     self.current_mode = "fair"
     self:update_background(M.x.primary_variant_1)
   elseif curr_layout == awful.layout.suit.max then
-    self.icon.text = ""
+    self.icon.text = icons.widget.max
     self.current_mode = "max"
     self:update_background(M.x.primary_variant_2)
   else

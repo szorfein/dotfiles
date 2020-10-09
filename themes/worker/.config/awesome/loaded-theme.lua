@@ -37,13 +37,13 @@ mytheme.x = {
 mytheme.f = {
   h1 = "Iosevka Light 60", -- used rarely on big icon or big title
   h4 = "Iosevka Regular 32",
-  h5 = (height >= 1024 and "Material Design Icons Regular 20" or "Material Design Icons Regular 18"), -- icon for h6
+  h5 = (height >= 1024 and "Material Design Icons Desktop Regular 20" or "Material Design Icons Desktop Regular 18"), -- icon for h6
   h6 = "Iosevka Regular 20",
   subtile_1 = "Iosevka Regular 12", -- used on text list
   subtile_2 = (height >= 1024 and "Iosevka Light 10" or "Iosevka Light 9"), -- used tasklist
   body_1 = "Iosevka Term Regular 15", -- used on text body title
   body_2 = (height >= 1024 and "Iosevka Regular 14" or "Iosevka Medium 12"), -- used on text body
-  icon = "Material Design Icons Regular 15", -- used for icon
+  icon = "Material Design Icons Desktop Regular 15", -- used for icon
   button = (height >= 1024 and "Iosevka Regular 15" or "Iosevka Regular 13"), -- used on text with icon
   caption = "Iosevka Bold 12", -- used on annotation
   overline = "Iosevka Regular 10",

@@ -9,6 +9,7 @@ local modal = require("utils.modal")
 local button = require("utils.button")
 local ufont = require("utils.font")
 local mat_text = require("utils.material.text")
+local icons = require("config.icons")
 local io = {
   open = io.open,
   lines = io.lines
@@ -106,7 +107,7 @@ local quotes = {
   "I'm living like there's no tomorrow, cause there isn't one."
 }
 local quote_title = wibox.widget {
-  ufont.h4(""),
+  ufont.h5(icons.misc.quote),
   widget = mat_text({ lv = "disabled" })
 }
 local quote = wibox.widget {

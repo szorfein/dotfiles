@@ -106,39 +106,53 @@ download_images() {
   done < hidden-stuff/wallpapers-list.txt
 }
 
-check_fonts() {
-  [ -f "$2" ] || {
-    rm -rf "$1"
-    mkdir "$1"
-    curl -s -L -o "$2" "$3"
-    (cd "$1" \
-      && unzip ../"$2"
-    )
-  }
+check_font() {
+  my_font=$(fc-match -a | grep -i "$1" | tail -1)
+  if [ "$my_font" == '' ]; then
+    return 1
+  else
+    return 0
+  fi
+}
+
+install_font() {
+  if ! check_font "$1"; then
+    echo "Font \"$1\" not installed yet"
+    [ -f "$2" ] || {
+      rm -rf "$1"
+      mkdir "$1"
+      curl -s -L -o "$2" "$3"
+      (cd "$1" \
+        && unzip ../"$2"
+      )
+    }
+  else
+    echo "Font \"$1\" alrealy installed, skip..."
+  fi
 }
 
 grab_fonts() {
   [ -d $DIR_FONT ] || mkdir -p $DIR_FONT
 
   echo "Nerd Fonts..."
-  (cd $DIR_FONT \
-    && check_fonts Iosevka "Iosevka-$PV.zip" "https://github.com/ryanoasis/nerd-fonts/releases/download/v$PV/Iosevka.zip" \
-    && check_fonts SpaceMono "SpaceMono-$PV.zip" "https://github.com/ryanoasis/nerd-fonts/releases/download/v$PV/SpaceMono.zip" \
+  (cd "$DIR_FONT" \
+    && install_font "Iosevka Nerd Font" "Iosevka-$PV.zip" "https://github.com/ryanoasis/nerd-fonts/releases/download/v$PV/Iosevka.zip" \
+    && install_font "SpaceMono Nerd Font" "SpaceMono-$PV.zip" "https://github.com/ryanoasis/nerd-fonts/releases/download/v$PV/SpaceMono.zip" \
   )
 
   echo "The Material font..."
-  (cd $DIR_FONT \
-    && rm -rf font-mat*.tar.gz \
-    && rm -rf $PN_MATERIAL* \
-    && curl -s -L -o font-material.tar.gz "https://github.com/Templarian/$PN_MATERIAL/archive/v$PV_MATERIAL.tar.gz" \
-    && tar xvf font-material.tar.gz \
-    && mv $PN_MATERIAL-$PV_MATERIAL/fonts/materialdesignicons-webfont.ttf $DIR_FONT \
-    && rm -rf $PN_MATERIAL*
+  (cd "$DIR_FONT" \
+    && rm -rf font-material* \
+    && rm -rf MaterialDesign* \
+    && rm -rf materialdesign* \
+    && curl -s -L -o font-material.zip "https://github.com/Templarian/MaterialDesign-Font/archive/master.zip" \
+    && unzip font-material.zip \
+    && rm MaterialDesign-Font-master/{README.md,LICENSE}
   )
 
   echo "Dafont"
   (cd $DIR_FONT \
-    && check_fonts cyberpunk "cyberpunk.zip" "https://dl.dafont.com/dl/?f=cyberpunks") 
+    && install_font cyberpunk "cyberpunk.zip" "https://dl.dafont.com/dl/?f=cyberpunks") 
 
   fc-cache -vf $DIR_FONT
 }

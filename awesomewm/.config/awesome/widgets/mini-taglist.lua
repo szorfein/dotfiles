@@ -3,8 +3,9 @@ local table = require("gears.table")
 local wibox = require("wibox")
 local beautiful = require("beautiful")
 local font = require("utils.font")
+local icons = require("config.icons")
 
-local tags = beautiful.tags or { "", "", "", "ﻝ", "", "", "", "", ""}
+local tags = beautiful.tags or { icons.app.xst, icons.app.spior, icons.app.default, icons.app.duck, icons.app.cava, icons.app.neomutt, icons.app.zathura, icons.app.scrot, icons.app.virtualbox}
 
 local taglist_root = class()
 

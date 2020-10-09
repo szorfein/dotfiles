@@ -38,12 +38,12 @@ local padding = wibox.widget {
   {
     button({
       fg_icon = M.x.on_surface,
-      icon = font.icon(""),
+      icon = font.icon(icons.misc.minus),
       command = function() screen_padding(-10) end,
     }),
     button({
       fg_icon = M.x.on_surface,
-      icon = font.icon(""),
+      icon = font.icon(icons.misc.plus),
       command = function() screen_padding(10) end,
     }),
     layout = wibox.layout.fixed.horizontal
@@ -57,12 +57,12 @@ local gapping = wibox.widget {
   {
     button({
       fg_icon = M.x.on_surface,
-      icon = font.icon(""),
+      icon = font.icon(icons.misc.minus),
       command = function() awful.tag.incgap(-2, nil) end,
     }),
     button({
       fg_icon = M.x.on_surface,
-      icon = font.icon(""),
+      icon = font.icon(icons.misc.plus),
       command = function() awful.tag.incgap(2, nil) end,
     }),
     layout = wibox.layout.fixed.horizontal

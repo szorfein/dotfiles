@@ -4,6 +4,7 @@ local helpers = require("helpers")
 local wibox = require("wibox")
 local font = require("util.font")
 local ufont = require("utils.font")
+local icons = require("config.icons")
 
 local net_dev = network or "lo"
 
@@ -17,8 +18,8 @@ function network_root:init(args)
   -- options
   self.fg = args.fg or beautiful.widget_network_fg or M.x.on_surface
   --self.bg = args.bg or beautiful.widget_network_bg or M.x.surface
-  self.icon = args.icon or beautiful.widget_network_icon or { "", M.x.on_surface }
-  self.icon_ip = args.icon_ip or beautiful.widget_network_icon_ip or { "", M.x.on_background }
+  self.icon = args.icon or beautiful.widget_network_icon or { icons.widget.net, M.x.on_surface }
+  self.icon_ip = args.icon_ip or beautiful.widget_network_icon_ip or { icons.widget.ip, M.x.on_background }
   self.title = args.title or beautiful.widget_network_title or { "NET", M.x.on_background }
   self.mode = args.mode or 'text' -- possible values: ip, text
   self.want_layout = args.layout or beautiful.widget_network_layout or 'horizontal' -- possible values: horizontal , vertical

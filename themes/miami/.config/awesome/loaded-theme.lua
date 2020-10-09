@@ -1,5 +1,9 @@
+local screen = require("awful.screen")
 local beautiful = require("beautiful")
 local xrdb = beautiful.xresources.get_current_theme()
+
+local width = screen.focused().geometry.width
+local height = screen.focused().geometry.height
 
 local mytheme = {}
 
@@ -32,14 +36,14 @@ mytheme.x = {
 
 -- fonts
 mytheme.f = {
-  h1 = "SpaceMono Nerd Font Mono 58", -- used rarely on big icon or big title
+  h1 = (height >= 1024 and "SpaceMono Nerd Font Mono 50" or "SpaceMono Nerd Font Regular 38"), -- used rarely on big icon or big title
   h4 = "SpaceMono Nerd Font 32",
-  h5 = "Material Design Icons Regular 20", -- icon for h6
+  h5 = "Material Design Icons Desktop Regular 20", -- icon for h6
   h6 = "SpaceMono Nerd Font Mono Regular 20",
   subtile_1 = "SpaceMono Nerd Font Mono 12", -- used on text list
   body_1 = "SpaceMono Nerd Font Mono Regular 14", -- used on text body title
   body_2 = "SpaceMono Nerd Font Regular 12", -- used on text body
-  icon = "Material Design Icons Regular 15", -- used for icon
+  icon = "Material Design Icons Desktop Regular 15", -- used for icon
   button = "SpaceMono Nerd Font Bold 12", -- used on text button
   caption = "SpaceMono Nerd Font Mono Bold 12", -- used on annotation
   overline = "SpaceMono Nerd Font Mono 10",

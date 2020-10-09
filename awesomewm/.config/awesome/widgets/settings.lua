@@ -1,12 +1,13 @@
 local button = require("utils.button")
 local font = require("utils.font")
+local icons = require("config.icons")
 
 local settings_root = class()
 
 function settings_root:init()
   self.w = button({
     fg_icon = M.x.secondary_variant_2,
-    icon = font.icon(""),
+    icon = font.icon(icons.widget.settings),
     command = settings_toggle,
     layout = "horizontal",
     margins = dpi(4),
