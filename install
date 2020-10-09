@@ -1,22 +1,23 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
-set -ue
+set -o errexit -o nounset
 
-GIT=$(which git)
-
-DIR_FONT=~/.local/share/fonts
+WORKDIR="$HOME"
+DIR_FONT="$WORKDIR"/.local/share/fonts
 PV="2.1.0"
-PN_MATERIAL="MaterialDesign-Webfont"
-PV_MATERIAL="3.8.95"
 
 ###############################################################
 # Check deps
 
-[[ -z $GIT ]] && echo "You have to install git plz" && exit 1
+if ! hash git 2>/dev/null ; then
+  echo "You have to install git plz"
+  exit 1
+fi
 
 ###############################################################
 # Local functions
 
+die() { echo "[-] $1"; exit 1; }
 anim() {
   i=0
   sp='/-\|'
@@ -32,78 +33,60 @@ dl() {
   local pid
   echo -n "dl $1..."
   anim &
-  pid=$!
-  $($GIT clone $1 $2 2>/dev/null || exit 1)
+  pid="$!"
+  $(git clone "$1" "$2" 2>/dev/null || exit 1)
   echo "[ok]"
-  kill $pid # kill anim()
+  kill "$pid" # kill anim()
 }
 
 # Check if file exist else download ( arg1 = url | arg2 = path )
 chk() {
-  [ -d $2 ] || dl $1 $2
+  [ -d "$2" ] || dl "$1" "$2"
 }
 
 forZsh() {
-  OH_MY_ZSH=~/.oh-my-zsh
-  SPACESHIP=$OH_MY_ZSH/themes/spaceship-prompt
-  [ -s $OH_MY_ZSH/themes/spaceship.zsh-theme ] && unlink $OH_MY_ZSH/themes/spaceship.zsh-theme
-  [ -d $SPACESHIP ] && rm -rf $SPACESHIP
-  [ -d $OH_MY_ZSH ] && {
+  OH_MY_ZSH="$WORKDIR"/.oh-my-zsh
+  SPACESHIP="$OH_MY_ZSH"/themes/spaceship-prompt
+  [ -s "$OH_MY_ZSH"/themes/spaceship.zsh-theme ] && unlink "$OH_MY_ZSH"/themes/spaceship.zsh-theme
+  [ -d "$SPACESHIP" ] && rm -rf "$SPACESHIP"
+  [ -d "$OH_MY_ZSH" ] && {
     read -p "Clearing oh-my-zsh for updates? [y/n] "
-    if [[ $REPLY =~ ^y|^Y ]] ; then
-      rm -rf $OH_MY_ZSH
+    if [[ "$REPLY" =~ ^y|^Y ]] ; then
+      rm -rf "$OH_MY_ZSH"
     else
       echo "Ok, we keep your directory..."
     fi
   }
-  chk https://github.com/robbyrussell/oh-my-zsh.git $OH_MY_ZSH
-  chk https://github.com/denysdovhan/spaceship-prompt.git $SPACESHIP
+  chk https://github.com/robbyrussell/oh-my-zsh.git "$OH_MY_ZSH"
+  chk https://github.com/denysdovhan/spaceship-prompt.git "$SPACESHIP"
   # create symbolic link
-  ln -s  $SPACESHIP/spaceship.zsh-theme $OH_MY_ZSH/themes/spaceship.zsh-theme
+  ln -s "$SPACESHIP"/spaceship.zsh-theme "$OH_MY_ZSH"/themes/spaceship.zsh-theme
 }
 
 vimcolors() {
-  vim_dir=$HOME/.vim/pack/my-plugins/start
+  vim_dir="$WORKDIR"/.vim/pack/my-plugins/start
 
-  [ -d $vim_dir ] || mkdir -p $vim_dir
-  chk https://github.com/szorfein/fromthehell.vim $vim_dir/fromthehell.vim
-  chk https://github.com/szorfein/lightline.vim $vim_dir/lightline.vim
-  chk https://github.com/edkolev/tmuxline.vim $vim_dir/tmuxline.vim
-  chk https://github.com/szorfein/sci.vim $vim_dir/sci
-  chk https://github.com/szorfein/vamp.vim $vim_dir/vamp
-}
-
-get_image() {
-  img_name="$1"
-  url="$2"
-  wget -O /tmp/image "https://api.pcloud.com/getpubthumb?code=${url#*=}&linkpassword=undefined&size=2048x2048&crop=0&type=auto"
-  if file /tmp/image | grep -iE jpeg\|jpg >/dev/null ; then
-    echo "copying $DEST/$1.jpg..."
-    mv /tmp/image $DEST/$1.jpg
-  elif file /tmp/image | grep -i png >/dev/null ; then
-    echo "copying $DEST/$1.png..."
-    mv /tmp/image $DEST/$1.png
-  else
-    echo "extension for $1 is no found :("
-    exit 1
-  fi
-  img_name= url=
+  [ -d "$vim_dir" ] || mkdir -p "$vim_dir"
+  chk https://github.com/szorfein/fromthehell.vim "$vim_dir"/fromthehell.vim
+  chk https://github.com/szorfein/lightline.vim "$vim_dir"/lightline.vim
+  chk https://github.com/edkolev/tmuxline.vim "$vim_dir"/tmuxline.vim
+  chk https://github.com/szorfein/sci.vim "$vim_dir"/sci
+  chk https://github.com/szorfein/vamp.vim "$vim_dir"/vamp
 }
 
 download_images() {
-  DEST=~/images
+  DEST="$WORKDIR"/images
 
-  [ -d ~/images ] || mkdir ~/images
-  while read -r line; do
-    filename=$(echo "${line%-*}" | tr -d " ")
-    link=$(echo "${line#*-}" | tr -d " ")
-    if [ -f "${DEST}/${filename}.png" ] || [ -f "${DEST}/${filename}.jpg" ] ; then
-      :
-    else
-      echo "file: $filename no exist, download..."
-      get_image $filename $link
-    fi
-  done < hidden-stuff/wallpapers-list.txt
+  if ! hash unzip 2>/dev/null ; then
+    die "You need to install unzip"
+  fi
+  [ -d "$DEST" ] || mkdir -p "$DEST"
+  (cd "$DEST" \
+    && curl -L -o walls.zip https://github.com/szorfein/walls/archive/main.zip \
+    && unzip walls.zip \
+    && mv -f walls-main/*.jpg "$DEST"/ \
+    && rm -rf walls*
+  )
 }
 
 check_font() {
@@ -132,7 +115,7 @@ install_font() {
 }
 
 grab_fonts() {
-  [ -d $DIR_FONT ] || mkdir -p $DIR_FONT
+  [ -d "$DIR_FONT" ] || mkdir -p "$DIR_FONT"
 
   echo "Nerd Fonts..."
   (cd "$DIR_FONT" \
@@ -166,23 +149,26 @@ banner() {
    !!:  !!! !!:  !!!   !!:   !!:      !!: !!:      !!:          !:!
    :: :  :   : :. :     :     :       :   : ::.: : : :: ::: ::.: : 
       '
-    }
+}
 
-  usage() {
+usage() {
     printf "%s\n" \
-      "-z, --zsh    Download and install dependencies of zsh"
-
-    printf "%s\n" \
-      "-i, --images    Download all the wallpapers."
+      "-z, --zsh     Download and install dependencies of zsh"
 
     printf "%s\n" \
-      "-v, --vim    Download and install all the vim colorscheme"
+      "-i, --images  Download all the wallpapers."
 
     printf "%s\n" \
-      "-f, --fonts  Download and install all the fonts"
+      "-v, --vim     Download and install all the vim colorscheme"
 
     printf "%s\n" \
-      "-h, --help   Display this help"
+      "-f, --fonts   Download and install all the fonts"
+
+    printf "%s\n" \
+      "-d, --dest    Use a directory different than $HOME"
+
+    printf "%s\n" \
+      "-h, --help    Display this help"
     }
 
 ###############################################################
@@ -194,29 +180,38 @@ if [ "$#" -eq 0 ]; then
   exit 1
 fi
 
-banner
+# Options
+ZSH=false
+VIM=false
+IMG=false
+FONT=false
 
 while [ "$#" -gt 0 ] ; do
   case "$1" in
+    -d | --dest)
+      WORKDIR="$2"
+      shift
+      shift
+      ;;
     -z | --zsh)
-      forZsh
+      ZSH=true
       shift
       ;;
     -v | --vim)
-      vimcolors
+      VIM=true
       shift
       ;;
     -i | --images)
-      download_images
+      IMG=true
       shift
       ;;
     -f | --fonts)
-      grab_fonts
+      FONT=true
       shift
       ;;
     -h | --help)
       usage
-      shift
+      exit 0
       ;;
     *)
       usage
@@ -225,3 +220,13 @@ while [ "$#" -gt 0 ] ; do
       ;;
   esac
 done
+
+main() {
+  banner
+  "$ZSH" && forZsh
+  "$VIM" && vimcolors
+  "$IMG" && download_images
+  "$FONT" && grab_fonts
+}
+
+main "$@"
