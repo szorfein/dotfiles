@@ -217,7 +217,7 @@ keys.globalkeys = gtable.join(
     if sound_system == "alsa" then
       awful.spawn.with_shell("amixer -D "..sound_card.." sset Master 1%+")
     else
-      awful.spawn.with_shell("pactl set-sink-mute @DEFAULT_SINK@ 0 && pactl set-sink-volume @DEFAULT_SINK@ +1%")
+      awful.spawn.with_shell("~/bin/volume.sh up")
     end
   end,
   { description = "increase volume", group = "music" }),
@@ -226,7 +226,7 @@ keys.globalkeys = gtable.join(
     if sound_system == "alsa" then
       awful.spawn.with_shell("amixer -D "..sound_card.." sset Master 1%-")
     else
-      awful.spawn.with_shell("pactl set-sink-mute @DEFAULT_SINK@ 0 && pactl set-sink-volume @DEFAULT_SINK@ -1%")
+      awful.spawn.with_shell("~/bin/volume.sh down")
     end
   end,
   { description = "Lower volume", group = "music" }),
