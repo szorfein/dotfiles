@@ -134,6 +134,10 @@ set rulerformat=
 " You can also add %CLEAR if you want to clear screen before running FUSE
 " program.
 
+" Source file
+fileviewer *.sh,*.rb,*.conf,*.service,*rc
+  \ less %c
+
 " CSV/Excel
 filetype *.csv,*.xlsx libreoffice %c %i
 fileviewer *.csv sed "s/,,,,/,,-,,/g;s/,,/ /g" %c | column -t | sed "s/ - /  /g" | cut -c -%pw
@@ -145,22 +149,20 @@ filextype *.html,*.htm vim %f 2>/dev/null &
 " PDFs
 filextype *.pdf zathura %c %i &
 fileviewer *.pdf
-        \ vifmimg pdf %px %py %pw %ph %c
-        \ %pc
-        \ vifmimg clear
+  \ pdftotext %c -
 
 " ePUBs
 filextype *.epub zathura %c %i &
 fileviewer *.epub
-        \ vifmimg epub %px %py %pw %ph %c
-        \ %pc
-        \ vifmimg clear
+  \ vifmimg epubpreview %px %py %pw %ph %c
+  \ %pc
+  \ vifmimg clear
 
 " Fonts
-fileviewer *.otf,*.ttf,*.woff
-        \ vifmimg font %px %py %pw %ph %c
-        \ %pc
-        \ vifmimg clear
+fileviewer <font/*>
+  \ vifmimg fontpreview %px %py %pw %ph %c
+  \ %pc
+  \ vifmimg clear
 
 " Audios
 filetype <audio/*> mpv %c %i </dev/null &>/dev/null &
@@ -170,18 +172,41 @@ fileviewer <audio/*>
         \ vifmimg clear
 
 " Videos
-filetype <video/*> mpv %c %i </dev/null &>/dev/null &
-fileviewer <video/*>
-        \ vifmimg video %px %py %pw %ph %c
-        \ %pc
-        \ vifmimg clear
+filextype {*.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
+  \*.fl[icv],*.m2v,*.mov,*.webm,*.ts,*.mts,*.m4v,*.r[am],*.qt,*.divx,
+  \*.as[fx]},
+  \<video/*>
+  \ mpv %f,
+fileviewer *.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
+  \*.fl[icv],*.m2v,*.mov,*.webm,*.ts,*.mts,*.m4v,*.r[am],*.qt,*.divx,
+  \ vifmimg videopreview %px %py %pw %ph %c
+  \ %pc
+  \ vifmimg clear
+
+" Object
+filetype {*.o},<application/x-object> nm %f | less
+
+" Man page
+filetype {*.[1-8]},<text/troff> man ./%c
+fileviewer {*.[1-8]},<text/troff> man ./%c | col -b
 
 " Images
-filextype <image/*> feh %c %i </dev/null &>/dev/null &
-fileviewer <image/*>
-        \ vifmimg draw %px %py %pw %ph %c
-        \ %pc
-        \ vifmimg clear
+filextype {*.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm},<image/*>
+  \ feh -. -B black %f
+fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.xpm
+  \ vifmimg draw %px %py %pw %ph %c
+  \ %pc
+  \ vifmimg clear
+
+fileviewer *.gif
+  \ vifmimg gifpreview %px %py %pw %ph %c
+  \ %pc
+  \ vifmimg clear
+
+fileviewer *.ico
+  \ vifmimg magickpreview %px %py %pw %ph %c
+  \ %pc
+  \ vifmimg clear
 
 " Archives
 fileviewer *.zip,*.jar,*.war,*.ear,*.oxt zip -sf %c

@@ -1,18 +1,21 @@
 #!/usr/bin/env bash
-
-set -o errexit -o nounset -o pipefail
-
 export FIFO_UEBERZUG="/tmp/vifm-ueberzug-${PPID}"
 
-cleanup() {
-  [ -p $FIFO_UEBERZUG ] && rm "$FIFO_UEBERZUG" 2>/dev/null
-  pkill -P $$ 2>/dev/null
-}
+# this should work with both local and global ueberzug install
+if [ ! -x $(command -v ueberzug >/dev/null 2>&1) ]; then
+	vifm
+	exit
+fi
 
-[ -p $FIFO_UEBERZUG ] && rm "$FIFO_UEBERZUG"
-mkfifo "$FIFO_UEBERZUG"
-trap cleanup EXIT
-tail --follow "$FIFO_UEBERZUG" | ueberzug layer --silent --parser bash &
+function cleanup {
+    rm "$FIFO_UEBERZUG" 2>/dev/null
+    pkill -P $$ 2>/dev/null
+}
+pkill -P $$ 2>/dev/null
+rm "$FIFO_UEBERZUG" 2>/dev/null
+mkfifo "$FIFO_UEBERZUG" >/dev/null
+trap cleanup EXIT 2>/dev/null
+tail --follow "$FIFO_UEBERZUG" | ueberzug layer --silent --parser bash 2>&1 >/dev/null &
 
 vifm "$@"
 cleanup

@@ -1,63 +1,76 @@
 #!/usr/bin/env bash
-
-# source: https://raw.githubusercontent.com/sdushantha/dotfiles/master/vifm/.config/vifm/scripts/vifmimg
-
 readonly ID_PREVIEW="preview"
 
-# Preview an image file directly
-function draw() {
-  declare -p -A cmd=([action]=add [identifier]="$ID_PREVIEW"
-                     [x]="$2" [y]="$3" [width]="$4" [height]="$5" \
-                     [path]="${PWD}/$6") \
-    > "$FIFO_UEBERZUG"
+#PLAY_GIF="yes"
+# By enabling this option the GIF will be animated, by leaving it commented like it
+# is now will make the gif previews behave the same way as video previews.
+
+#AUTO_REMOVE="yes"
+# By enabling this option the script will remove the preview file after it is drawn
+# and by doing so the preview will always be up-to-date with the file.
+# This however, requires more CPU and therefore affects the overall performance.
+
+# The messy code below is for moving pages in pdf files in the vifm file preview by
+# utilizing the < and > keys which will be bound to `vifmimg inc` or `vifmimg dec`.
+PDF_PAGE_CONFIG="$HOME/.config/vifm/vifmimgpdfpage"
+PDF_FILE_CONFIG="$HOME/.config/vifm/vifmimgpdffile"
+PDF_PAGE=1
+PDF_FILE=""
+# Initialize the variables and required files
+[[ -f "$PDF_PAGE_CONFIG" ]] && PDF_PAGE=$(cat $PDF_PAGE_CONFIG) || touch $PDF_PAGE_CONFIG
+[[ -f "$PDF_FILE_CONFIG" ]] && PDF_FILE=$(cat $PDF_FILE_CONFIG) || touch $PDF_FILE_CONFIG
+
+
+# Create temporary working directory if the directory structure doesn't exist
+if [[ ! -d "/tmp$PWD/" ]]; then
+    mkdir -p "/tmp$PWD/"
+fi
+
+function inc() {
+	VAL="$(cat $PDF_PAGE_CONFIG)"
+	echo "$(expr $VAL + 1)" > $PDF_PAGE_CONFIG
 }
 
-function font_preview() {
-  # if no preview found, generate one
-  if [ ! -f "/tmp${PWD}/$6.png" ]; then
-    fontpreview -i "$6" -o "/tmp${PWD}/$6.png"
-  fi
-  declare -p -A cmd=([action]=add [identifier]="$ID_PREVIEW"
-                     [x]="$2" [y]="$3" [width]="$4" [height]="$5" \
-                     [path]="/tmp${PWD}/$6.png") \
-    > "$FIFO_UEBERZUG"
+function dec() {
+	VAL="$(cat $PDF_PAGE_CONFIG)"
+	echo "$(expr $VAL - 1)" > $PDF_PAGE_CONFIG
+	if [[ $VAL -le 0 ]]; then
+		echo 0 > $PDF_PAGE_CONFIG
+	fi
 }
 
-function pdf_preview() {
-  # if no preview found, generate one
-  if [ ! -f "/tmp${PWD}/$6.png" ]; then
-    pdftoppm -png -singlefile "$6" "/tmp${PWD}/$6"
-  fi
-  declare -p -A cmd=([action]=add [identifier]="$ID_PREVIEW"
-                     [x]="$2" [y]="$3" [width]="$4" [height]="$5" \
-                     [path]="/tmp${PWD}/$6.png") \
-    > "$FIFO_UEBERZUG"
+function previewclear() {
+    declare -p -A cmd=([action]=remove [identifier]="$ID_PREVIEW") \
+        > "$FIFO_UEBERZUG"
 }
 
-function audio_preview() {
-  # if no preview found, generate one
-  if [ ! -f "/tmp${PWD}/$6.png" ]; then
-    ffmpeg -i "$6" "/tmp${PWD}/$6.png" -y &> /dev/null
-  fi
-  declare -p -A cmd=([action]=add [identifier]="$ID_PREVIEW"
-                     [x]="$2" [y]="$3" [width]="$4" [height]="$5" \
-                     [path]="/tmp${PWD}/$6.png") \
-    > "$FIFO_UEBERZUG"
+function fileclean() {
+    if [[ -f "/tmp$PWD/$6.png" ]]; then
+        rm -f "/tmp$PWD/$6.png"
+    elif  [[ -d "/tmp$PWD/$6/" ]]; then
+        rm -rf "/tmp$PWD/$6/"
+    fi
 }
 
-function video_preview() {
-  # if no preview found, generate one
-  if [ ! -f "/tmp${PWD}/$6.png" ]; then
-    ffmpegthumbnailer -i "${PWD}/$6" -o "/tmp${PWD}/$6.png" -s 0 -q 10
-  fi
-  declare -p -A cmd=([action]=add [identifier]="$ID_PREVIEW"
-                     [x]="$2" [y]="$3" [width]="$4" [height]="$5" \
-                     [path]="/tmp${PWD}/$6.png") \
-    > "$FIFO_UEBERZUG"
+function preview() {
+    declare -p -A cmd=([action]=add [identifier]="$ID_PREVIEW"
+        [x]="$2" [y]="$3" [width]="$4" [height]="$5" \
+        [path]="$PWD/$6") \
+        > "$FIFO_UEBERZUG"
 }
 
-function epub_preview() {
-    if [ ! -f "/tmp$PWD/$6.png" ]; then
+function previewvideo() {
+    if [[ ! -f "/tmp$PWD/$6.png" ]]; then
+        ffmpegthumbnailer -i "$PWD/$6" -o "/tmp$PWD/$6.png" -s 0 -q 10
+    fi
+    declare -p -A cmd=([action]=add [identifier]="$ID_PREVIEW"
+        [x]="$2" [y]="$3" [width]="$4" [height]="$5" \
+        [path]="/tmp$PWD/$6.png") \
+        > "$FIFO_UEBERZUG"
+}
+
+function previewepub() {
+    if [[ ! -f "/tmp$PWD/$6.png" ]]; then
         epub-thumbnailer "$6" "/tmp$PWD/$6.png" 1024
     fi
     declare -p -A cmd=([action]=add [identifier]="$ID_PREVIEW"
@@ -66,35 +79,98 @@ function epub_preview() {
         > "$FIFO_UEBERZUG"
 }
 
-# clear preview image
-function clear_preview() {
-  declare -p -A cmd=([action]=remove [identifier]="$ID_PREVIEW") \
+function  previewaudio() {
+  if [[ ! -f "/tmp${PWD}/$6.png" ]]; then
+    ffmpeg -i "$6" "/tmp${PWD}/$6.png" -y &> /dev/null
+  fi
+  declare -p -A cmd=([action]=add [identifier]="$ID_PREVIEW"
+                     [x]="$2" [y]="$3" [width]="$4" [height]="$5" \
+                     [path]="/tmp${PWD}/$6.png") \
     > "$FIFO_UEBERZUG"
 }
 
-# Check all the dependencies that are needed to show all the file previews.
-# The reason why we are sending a notification incase a dependency does not
-# exist is because that is the easiest way to get the user's attention.
-#dependencies=(ffmpeg ffmpegthumbnailer fontpreview pdftoppm epub-thumbnailer)
-#for dependency in "${dependencies[@]}"; do
-#    type -p "$dependency" &>/dev/null || {
-#        notify-send "vifm" "Could not find '${dependency}', is it installed?"
-#        exit 1
-#    }
-#done
+function previewfont() {
+  if [[ ! -f "/tmp${PWD}/$6.png" ]]; then
+    fontpreview -i "$6" -o "/tmp${PWD}/$6.png"
+  fi
+  declare -p -A cmd=([action]=add [identifier]="$ID_PREVIEW"
+                     [x]="$2" [y]="$3" [width]="$4" [height]="$5" \
+                     [path]="/tmp${PWD}/$6.png") \
+    > "$FIFO_UEBERZUG"
+}
+
+function previewgif() {
+    if [[ ! -d "/tmp$PWD/$6/" ]]; then
+        mkdir -p "/tmp$PWD/$6/"
+        convert -coalesce "$PWD/$6" "/tmp$PWD/$6/$6.png"
+    fi
+    if [[ ! -z "$PLAY_GIF" ]]; then
+        for frame in $(ls -1 /tmp$PWD/$6/$6*.png | sort -V); do
+            declare -p -A cmd=([action]=add [identifier]="$ID_PREVIEW"
+                [x]="$2" [y]="$3" [width]="$4" [height]="$5" \
+                [path]="$frame") \
+                > "$FIFO_UEBERZUG"
+            # Sleep between frames to make the animation smooth.
+            sleep .07
+        done
+    else
+            declare -p -A cmd=([action]=add [identifier]="$ID_PREVIEW"
+                [x]="$2" [y]="$3" [width]="$4" [height]="$5" \
+                [path]="/tmp$PWD/$6/$6-0.png") \
+                > "$FIFO_UEBERZUG"
+    fi
+}
+
+function previewpdf() {
+    if [[ ! "$6" == "$PDF_FILE" ]]; then
+        PDF_PAGE=1
+        echo 1 > $PDF_PAGE_CONFIG
+        rm -f "/tmp$PWD/$6.png"
+    fi
+
+    if [[ ! "$PDF_PAGE" == "1" ]] && [[ -f "/tmp$PWD/$6.png" ]]; then
+        rm -f "/tmp$PWD/$6.png"
+    fi
+
+    if [[ ! -f "/tmp$PWD/$6.png" ]]; then
+        pdftoppm -png -f $PDF_PAGE -singlefile "$6" "/tmp$PWD/$6"
+    fi
+    echo "$6" > $PDF_FILE_CONFIG
+
+    declare -p -A cmd=([action]=add [identifier]="$ID_PREVIEW"
+        [x]="$2" [y]="$3" [width]="$4" [height]="$5" \
+        [path]="/tmp$PWD/$6.png") \
+        > "$FIFO_UEBERZUG"
+}
 
 
-# Make sure ueberzug's fifo exists
-if [ -e "$FIFO_UEBERZUG" ]; then
-  # Make a temp dir for rendering if not exists
-  [ ! -d "/tmp${PWD}/" ] && mkdir -p "/tmp${PWD}/"
-  case "$1" in
-    draw) draw "$@" ;;
-    font) font_preview "$@" ;;
-    pdf) pdf_preview "$@" ;;
-    video) video_preview "$@" ;;
-    clear) clear_preview ;;
-    audio) audio_preview "$@" ;;
-    epub) epub_preview "$@" ;;
-  esac
-fi
+function previewmagick() {
+    if [[ ! -f "/tmp$PWD/$6.png" ]]; then
+        convert -thumbnail $(identify -format "%wx%h" "$6") "$PWD/$6" "/tmp$PWD/$6.png"
+    fi
+    declare -p -A cmd=([action]=add [identifier]="$ID_PREVIEW"
+        [x]="$2" [y]="$3" [width]="$4" [height]="$5" \
+        [path]="/tmp$PWD/$6.png") \
+        > "$FIFO_UEBERZUG"
+}
+
+
+
+function main() {
+    case "$1" in
+        "inc") inc "$@" ;;
+        "dec") dec "$@" ;;
+        "clear") previewclear "$@" ;;
+        "clean") fileclean "$@" ;;
+        "draw") preview "$@" ;;
+        "videopreview") previewvideo "$@" ;;
+        "epubpreview") previewepub "$@" ;;
+        "gifpreview") previewgif "$@" ;;
+        "pdfpreview") previewpdf "$@" ;;
+        "magickpreview") previewmagick "$@" ;;
+        "audiopreview") previewaudio "$@" ;;
+        "fontpreview") previewfont "$@" ;;
+        *) echo "Unknown command: '$@'" ;;
+    esac
+}
+main "$@"
