@@ -47,6 +47,7 @@ function taglist_root:update_text(item, tag, index)
   end
 end
 
+-- https://material.io/components/navigation-rail#theming
 function taglist_root:update_bg(item, tag, index)
   if tag.selected then
     item.fg = M.x.on_background .. "FF" -- 100%
@@ -58,7 +59,7 @@ function taglist_root:update_bg(item, tag, index)
     item.fg = M.x.on_background .. "B3" -- 70%
     item.bg = M.x.on_background .. "0A" -- 4%
   else
-    item.fg = M.x.on_background .. "80" -- 50%
+    item.fg = M.x.on_background .. "66" -- 40%
     item.bg = M.x.on_background .. "00" -- 0%
   end
 end

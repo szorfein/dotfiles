@@ -68,12 +68,12 @@ local popup_widget = wibox.widget {
         widget = wibox.container.margin
       },
       {
-        make_element("anonymous"),
         make_element("miami"),
         make_element("morpho"),
         make_element("worker"),
         make_element("sci"),
         make_element("lines"),
+        make_element("astronaut"),
         forced_num_rows = 2,
         forced_num_cols = 3,
         spacing = 10,

@@ -40,6 +40,9 @@ require("module.menu")
 -- Start daemons
 require("daemons")
 
+-- Start compositor
+require("module.autostart")
+
 -- {{{ For each screen
 awful.screen.connect_for_each_screen(function(s)
   -- Wallpaper
@@ -62,7 +65,6 @@ end)
 require("module.rules")
 require("titlebars")
 require("module.signals")
-require("module.autostart")
 
 awful.spawn.easy_async_with_shell("sh -c 'echo "..M.name.." >/tmp/awesome-theme'", function()
   local icon = "<span foreground='" .. M.x.primary .. "'> ※ </span>"
