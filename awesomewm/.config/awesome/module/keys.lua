@@ -213,21 +213,13 @@ keys.globalkeys = gtable.join(
   { description = "app launcher", group = "app launcher" }),
 
   -- Music Control (volume)
-  awful.key({ altkey, "Control" }, "Up", function() 
-    if sound_system == "alsa" then
-      awful.spawn.with_shell("amixer -D "..sound_card.." sset Master 1%+")
-    else
-      awful.spawn.with_shell("~/bin/volume.sh up")
-    end
+  awful.key({ }, "XF86AudioRaiseVolume", function()
+    awful.spawn.with_shell("~/bin/volume.sh up")
   end,
   { description = "increase volume", group = "music" }),
 
-  awful.key({ altkey, "Control" }, "Down", function() 
-    if sound_system == "alsa" then
-      awful.spawn.with_shell("amixer -D "..sound_card.." sset Master 1%-")
-    else
-      awful.spawn.with_shell("~/bin/volume.sh down")
-    end
+  awful.key({ }, "XF86AudioLowerVolume", function()
+    awful.spawn.with_shell("~/bin/volume.sh down")
   end,
   { description = "Lower volume", group = "music" }),
 
@@ -242,10 +234,14 @@ keys.globalkeys = gtable.join(
   { description = "delete current playlist", group = "music" }),
 
   -- Brightness
-  awful.key({ altgrkey }, "F9", function() awful.spawn.with_shell("light -A 1") end,
+  awful.key({ }, "XF86MonBrightnessUp", function()
+    awful.spawn.with_shell("light -A 1")
+  end,
   { description = "light mode", group = "brightness" }),
 
-  awful.key({ altgrkey }, "F8", function() awful.spawn.with_shell("light -U 1") end,
+  awful.key({ }, "XF86MonBrightnessDown", function()
+    awful.spawn.with_shell("light -U 1")
+  end,
   { description = "dark mode", group = "brightness" })
 
   -- Gap

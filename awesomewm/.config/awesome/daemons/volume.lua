@@ -22,7 +22,10 @@ local function emit_volume_info_alsa()
 
     if volume ~= volume_old then
       local is_muted = volume == 0 and 1 or 0
-      if not start then noti.info("vol ".. volume .."%") end
+      if not start then
+        local icon = "<span foreground='" .. M.x.primary .. "'> 墳 </span>"
+        noti.info(icon .. volume .."%")
+      end
       awesome.emit_signal("daemon::volume", tonumber(volume), is_muted)
     end
     volume_old = volume
@@ -45,7 +48,10 @@ local function emit_volume_info_pulse()
     end
 
     if volume ~= volume_old then
-      if not start then noti.info("vol ".. volume .."%") end
+      if not start then
+        local icon = "<span foreground='" .. M.x.primary .. "'> 墳 </span>"
+        noti.info(icon .. volume .."%")
+      end
       awesome.emit_signal("daemon::volume", tonumber(volume), is_muted)
     end
     volume_old = volume

@@ -1,10 +1,14 @@
 -- Create a signal: daemon::brightness 
 -- return value: brightness
 local spawn = require("awful.spawn")
+local noti = require("utils.noti")
+
+local val = 1
+local start = true
 
 local brightness_subscribe_script = [[
   sh -c "
-    while (inotifywait -e modify /sys/class/backlight/?**/brightness -qq) ; do echo; done
+    while (inotifywait -e modify /sys/class/backlight/?**/brightness -qq) ; do echo ; done
   "
 ]]
 
@@ -17,8 +21,14 @@ local brightness_script = [[
 local emit_brightness_info = function()
   spawn.with_line_callback(brightness_script, {
     stdout = function(line)
-      percentage = math.floor(tonumber(line))
+      local percentage = math.floor(tonumber(line))
       awesome.emit_signal("daemon::brightness", percentage)
+      if val ~= percentage and not start then
+        local icon = "<span foreground='" .. M.x.primary .. "'>  </span>"
+        noti.info(icon .. tostring(percentage) .. "%")
+      end
+      start = false
+      val = percentage
     end
   })
 end

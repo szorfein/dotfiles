@@ -40,9 +40,6 @@ require("module.menu")
 -- Start daemons
 require("daemons")
 
--- Start compositor
-require("module.autostart")
-
 -- {{{ For each screen
 awful.screen.connect_for_each_screen(function(s)
   -- Wallpaper
@@ -56,11 +53,14 @@ awful.screen.connect_for_each_screen(function(s)
 
   -- Load extra layouts
   require("layouts")(s)
-  
+
   -- Create the wibox
   require("bars."..M.name)(s)
 end)
 -- }}}
+
+-- Start compositor
+require("module.autostart")
 
 require("module.rules")
 require("titlebars")

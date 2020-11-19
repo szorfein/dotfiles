@@ -86,10 +86,8 @@ local mpd_event_listener = [[
 ]]
 
 local kill_mpd_event_listener = [[
-  if pids=$(pgrep -fx "mpc idleloop player") ; then
-    for pid in $pids ; do
-      kill -9 "$pid" >/dev/null
-    done
+  for pid in $(pgrep -fx "mpc idleloop player") ; do
+    kill "$pid" >/dev/null
   end
 ]]
 
