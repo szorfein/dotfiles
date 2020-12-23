@@ -20,7 +20,7 @@ die() { echo "[-] $1"; exit 1; }
 anim() {
   i=0
   sp='/-\|'
-  n=${#sp}
+  n="${#sp}"
   printf ' '
   while sleep 0.1; do
     printf "%s\b" "${sp:i++%n:1}"
@@ -33,9 +33,10 @@ dl() {
   echo -n "dl $1..."
   anim &
   pid="$!"
-  $(git clone "$1" "$2" 2>/dev/null || exit 1)
+  git clone "$1" "$2" 2>/dev/null || exit 1
   echo "[ok]"
-  kill "$pid" # kill anim()
+  # kill anim()
+  kill "$pid"
 }
 
 # Check if file exist else download ( arg1 = url | arg2 = path )
