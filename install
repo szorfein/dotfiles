@@ -117,7 +117,7 @@ download_images() {
 
 check_font() {
   my_font=$(fc-match -a | grep -i "$1" | tail -1)
-  if [ "$my_font" == '' ]; then
+  if [ "$my_font" = '' ]; then
     return 1
   else
     return 0
