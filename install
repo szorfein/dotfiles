@@ -33,7 +33,7 @@ dl() {
   echo -n "dl $1..."
   anim &
   pid="$!"
-  git clone "$1" "$2" 2>/dev/null || exit 1
+  git clone "$1" "$2" || exit 1
   echo "[ok]"
   # kill anim()
   kill "$pid"
