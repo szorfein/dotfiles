@@ -146,7 +146,7 @@ fileviewer *.csv sed "s/,,,,/,,-,,/g;s/,,/ /g" %c | column -t | sed "s/ - /  /g"
 fileviewer *.html w3m -dump %c
 filextype *.html,*.htm vim %f 2>/dev/null &
 
-" PDFs | ePUBs
+" PDFs
 filextype *.pdf
   \ {View in zathura}
   \ zathura %c %i &
@@ -163,6 +163,12 @@ fileviewer *.epub
   \ vifmimg epub %px %py %pw %ph %c
   \ %pc
   \ vifmimg clear
+
+" PostScript
+filextype {*.ps,*.eps,*.ps.gz},
+  \<application/postscript>
+  \ {View in zathura}
+  \ zathura %f
 
 " Fonts
 fileviewer <font/*>

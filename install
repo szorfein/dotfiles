@@ -18,25 +18,28 @@ fi
 
 die() { echo "[-] $1"; exit 1; }
 anim() {
-  i=0
-  sp='/-\|'
-  n="${#sp}"
-  printf ' '
-  while sleep 0.1; do
-    printf "%s\b" "${sp:i++%n:1}"
+  while :; do
+    printf "%s\b" '/'
+    sleep 0.1
+    printf "%s\b" '-'
+    sleep 0.1
+    printf "%s\b" '\'
+    sleep 0.1
+    printf "%s\b" '|'
+    sleep 0.1
   done
 }
 
 # Download with git ( arg1 = url | arg2 = path )
 dl() {
   local pid
-  echo -n "dl $1..."
+  printf "%s " "dll $1..."
   anim &
   pid="$!"
-  git clone "$1" "$2" || exit 1
-  echo "[ok]"
-  # kill anim()
-  kill "$pid"
+  git clone "$1" "$2" 2>/dev/null || exit 1
+  printf "%s\n" "[Ok]"
+  # Kill anim()
+  kill -9 "$pid"
 }
 
 # Check if file exist else download ( arg1 = url | arg2 = path )
