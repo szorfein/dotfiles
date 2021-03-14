@@ -149,7 +149,8 @@ awful.rules.rules = {
         "shellweb", -- rss popup
       },
       name = {
-        "Save File"
+        "Save File",
+        "Page Unresponsive",
       },
     }, properties = helpers.like_subtle({25, 25, 50, 50}), -- center66
     callback = function(c)

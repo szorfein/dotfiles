@@ -146,40 +146,52 @@ fileviewer *.csv sed "s/,,,,/,,-,,/g;s/,,/ /g" %c | column -t | sed "s/ - /  /g"
 fileviewer *.html w3m -dump %c
 filextype *.html,*.htm vim %f 2>/dev/null &
 
-" PDFs
-filextype *.pdf zathura %c %i &
+" PDFs | ePUBs
+filextype *.pdf
+  \ {View in zathura}
+  \ zathura %c %i &
 fileviewer *.pdf
-  \ pdftotext %c -
+  \ vifmimg pdf %px %py %pw %ph %c
+  \ %pc
+  \ vifmimg clear
 
 " ePUBs
-filextype *.epub zathura %c %i &
+filextype *.epub
+  \ {View in zathura}
+  \ zathura %c %i &
 fileviewer *.epub
-  \ vifmimg epubpreview %px %py %pw %ph %c
+  \ vifmimg epub %px %py %pw %ph %c
   \ %pc
   \ vifmimg clear
 
 " Fonts
 fileviewer <font/*>
-  \ vifmimg fontpreview %px %py %pw %ph %c
+  \ vifmimg font %px %py %pw %ph %c
   \ %pc
   \ vifmimg clear
 
 " Audios
-filetype <audio/*> mpv %c %i </dev/null &>/dev/null &
-fileviewer <audio/*>
-        \ vifmimg audio %px %py %pw %ph %c
-        \ %pc
-        \ vifmimg clear
+filetype <audio/*>
+  \ {Play using mpv}
+  \ mpv --no-video %f,
+filetype {*.wav,*.mp3,*.flac,*.m4a,*.wma,*.ape,*.ac3,*.og[agx],*.spx,*.opus},
+  \<audio/*>
+  \ vifmimg audio %px %py %pw %ph %c
+  \ %pc
+  \ vifmimg clear
 
 " Videos
 filextype {*.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
   \*.fl[icv],*.m2v,*.mov,*.webm,*.ts,*.mts,*.m4v,*.r[am],*.qt,*.divx,
   \*.as[fx]},
   \<video/*>
+  \ {Play using mpv}
   \ mpv %f,
-fileviewer *.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
+fileviewer {*.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
   \*.fl[icv],*.m2v,*.mov,*.webm,*.ts,*.mts,*.m4v,*.r[am],*.qt,*.divx,
-  \ vifmimg videopreview %px %py %pw %ph %c
+  \*.as[fx]},
+  \<video/*>
+  \ vifmimg video %px %py %pw %ph %c
   \ %pc
   \ vifmimg clear
 
@@ -191,15 +203,11 @@ filetype {*.[1-8]},<text/troff> man ./%c
 fileviewer {*.[1-8]},<text/troff> man ./%c | col -b
 
 " Images
-filextype {*.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm},<image/*>
-  \ feh -. -B black %f
-fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.xpm
+filetype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
+  \ {View in feh}
+  \ feh -. --hide-pointer --theme black --image-bg black %f 2>/dev/null &
+fileviewer <image/*>
   \ vifmimg draw %px %py %pw %ph %c
-  \ %pc
-  \ vifmimg clear
-
-fileviewer *.gif
-  \ vifmimg gifpreview %px %py %pw %ph %c
   \ %pc
   \ vifmimg clear
 
@@ -207,6 +215,15 @@ fileviewer *.ico
   \ vifmimg magickpreview %px %py %pw %ph %c
   \ %pc
   \ vifmimg clear
+
+" -----------------------------
+" FILESYSTEM
+" -----------------------------
+
+" Directories
+filextype */
+  \ {View in Vifm}
+  \ Vifm %f &
 
 " Archives
 fileviewer *.zip,*.jar,*.war,*.ear,*.oxt zip -sf %c
@@ -217,20 +234,42 @@ fileviewer *.tar tar -tf %c
 fileviewer *.rar unrar v %c
 fileviewer *.7z 7z l %c
 
-" Dont show preview on ../ as this confuses me at times
-fileview ../ echo >/dev/null
+" -----------------------------
+" ENCRYPTION
+" -----------------------------
 
-" Show ls in the preview window, it creates a similar look as ranger.
-" The default directory tree thing is really messy
-fileviewer */ ls --color --group-directories-first
-fileviewer .*/ ls --color --group-directories-first
+" MD5
+filetype *.md5
+  \ { Check MD5 hash sum}
+  \ md5sum -c %f %S,
 
-" Other files
-" Using xdg-open to open the highlighted file with a compatible program and
-" the reason why I am using "file" to preview other files is so that "vifm" 
-" does not lag when trying "cat" the file
-filetype * xdg-open %c
-fileviewer * file -b %c
+" SHA1
+filetype *.sha1
+  \ {Check SHA1 hash sum}
+  \ sha1sum -c %f %S,
+
+" SHA256
+filetype *.sha256
+  \ {Check SHA256 hash sum}
+  \ sha256sum -c %f %S,
+
+" SHA512
+filetype *.sha512
+  \ {Check SHA512 hash sum}
+  \ sha512sum -c %f %S,
+
+" GPG signature
+filetype {*.asc},<application/pgp-signature>
+  \ {Check signature}
+  \ !!gpg --verify %c,
+
+" -----------------------------
+" PREVIEW
+" -----------------------------
+
+" All other files
+filetype * xdg-open
+
 " }}}
 
 "{{{ Key mappings 
