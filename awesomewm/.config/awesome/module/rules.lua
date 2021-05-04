@@ -151,6 +151,7 @@ awful.rules.rules = {
       name = {
         "Save File",
         "Page Unresponsive",
+        "Pages Unresponsive",
       },
     }, properties = helpers.like_subtle({25, 25, 50, 50}), -- center66
     callback = function(c)

@@ -9,7 +9,6 @@
 #      ░ ░          ░   ░  ░  ░   ░     ░ ░      
 #    ░                                  ░        
 
-
 set -o vi
 
 # Themes are into ~/.oh-my-zsh/themes/
@@ -26,14 +25,10 @@ DISABLE_AUTO_UPDATE=true
 source $ZSH/oh-my-zsh.sh
 
 # Load .aliases.zsh
-if [ -r $HOME/.aliases.zsh ] ; then
-    source $HOME/.aliases.zsh
-fi
+[ -r $HOME/.aliases.zsh ] && source $HOME/.aliases.zsh
 
 # Load .zshenv
-if [ -r $HOME/.zshenv ] ; then
-    source $HOME/.zshenv
-fi
+[ -r $HOME/.zshenv ] && source $HOME/.zshenv
 
 # With Zsh and Termite
 if [[ $TERM == xterm-termite ]] ; then
@@ -41,20 +36,29 @@ if [[ $TERM == xterm-termite ]] ; then
     __vte_osc7
 fi
 
+# History
+HISTSIZE=1000
+SAVEHIST=1000
+HISTFILE=~/.history
+
+# Completion
+autoload -Uz compinit
+compinit
+
 #unset GREP_OPTIONS
 test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || \
-    eval "$(dircolors -b)" 
+  eval "$(dircolors -b)"
 
 # man page with less
 man() {
-    LESS_TERMCAP_mb=$'\e[0;31m' \
-        LESS_TERMCAP_md=$'\e[01;35m' \
-        LESS_TERMCAP_me=$'\e[0m' \
-        LESS_TERMCAP_se=$'\e[0m' \
-        LESS_TERMCAP_so=$'\e[01;31;31m' \
-        LESS_TERMCAP_ue=$'\e[0m' \
-        LESS_TERMCAP_us=$'\e[0;36m' \
-        command man "$@"
+  LESS_TERMCAP_mb=$'\e[0;31m' \
+    LESS_TERMCAP_md=$'\e[01;35m' \
+    LESS_TERMCAP_me=$'\e[0m' \
+    LESS_TERMCAP_se=$'\e[0m' \
+    LESS_TERMCAP_so=$'\e[01;31;31m' \
+    LESS_TERMCAP_ue=$'\e[0m' \
+    LESS_TERMCAP_us=$'\e[0;36m' \
+    command man "$@"
 }
 
 # Function for upload file -> https://transfer.sh/

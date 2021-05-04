@@ -21,7 +21,7 @@ function mybar:init(s)
 
   -- Create the wibox
   s.mywibox = awful.wibar({ position = "top", height = dpi(36), screen = s })
-  s.mywibox.bg = M.x.background .. "00"
+  s.mywibox.bg = M.x.surface .. "00"
 
   s.mywibox_vert:setup {
     nil, -- Left widgets
@@ -62,7 +62,9 @@ function mybar:init(s)
     {
       {
         require("widgets.launcher")(),
+        require("widgets.rofi")({}),
         s.mytasklist, -- Middle widget
+        spacing = dpi(6),
         layout = wibox.layout.fixed.horizontal
       },
       bg = M.x.background,
@@ -70,7 +72,6 @@ function mybar:init(s)
     },
     {
       {
-        require("widgets.wifi")({ layout = "horizontal", mode = "progressbar" }),
         require("widgets.battery")({ layout = "horizontal", mode = "progressbar" }),
         require("widgets.brightness")({ layout = "horizontal", mode = "progressbar" }),
         layout = wibox.layout.fixed.horizontal

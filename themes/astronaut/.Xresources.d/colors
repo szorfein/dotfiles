@@ -29,37 +29,37 @@
 ! theme15 #8669dd
 
 ! Theme 1, 4
-*background: #0C141F
-*foreground: #DBE7F7
+*.background: #0C141F
+*.foreground: #DBE7F7
 
 ! Black, 0, 3
-*color0: #0A121D
-*color8: #0F1927
+*.color0: #0A121D
+*.color8: #0F1927
 
 ! Red, 11, 12
-*color1: #90C882
-*color9: #90D0BA
+*.color1: #90C882
+*.color9: #90D0BA
 
 ! Green, 14, 14
-*color2: #DD55BB
-*color10: #DD55BB
+*.color2: #DD55BB
+*.color10: #DD55BB
 
 ! Yellow, 13, 13
-*color3: #DD5376
-*color11: #DD5376
+*.color3: #DD5376
+*.color11: #DD5376
 
 ! Blue, 15, 15
-*color4: #8669DD
-*color12: #8669DD
+*.color4: #8669DD
+*.color12: #8669DD
 
 ! Magenta, 9, 10
-*color5: #CC57BE
-*color13: #AC389C
+*.color5: #CC57BE
+*.color13: #AC389C
 
 ! Cyan, 7, 8
-*color6: #B051DD
-*color14: #9234BF
+*.color6: #B051DD
+*.color14: #9234BF
 
 ! White, 5, 6
-*color7: #E5EEF9
-*color15: #E9F2FF
+*.color7: #E5EEF9
+*.color15: #E9F2FF

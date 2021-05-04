@@ -1,7 +1,17 @@
-export PATH=$HOME/bin:$PATH
+# PATH
+PATH="$HOME/bin:$PATH"
+
 if hash ruby 2>/dev/null ; then
-  export PATH="$PATH:$(ruby -e 'puts Gem.user_dir')/bin"
+  PATH="$PATH:$(ruby -e 'puts Gem.user_dir')/bin"
 fi
+
+if hash yarn 2>/dev/null ; then
+  PATH="$PATH:${HOME}/.yarn/bin"
+fi
+
+[ -d $HOME/.emacs.d/bin ] && PATH="$HOME/.emacs.d/bin:$PATH"
+
+export PATH
 
 export TERMINAL=xst
 
