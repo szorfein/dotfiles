@@ -27,9 +27,6 @@ source $ZSH/oh-my-zsh.sh
 # Load .aliases.zsh
 [ -r $HOME/.aliases.zsh ] && source $HOME/.aliases.zsh
 
-# Load .zshenv
-[ -r $HOME/.zshenv ] && source $HOME/.zshenv
-
 # With Zsh and Termite
 if [[ $TERM == xterm-termite ]] ; then
     . /etc/profile.d/vte-2.91.sh

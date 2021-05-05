@@ -119,12 +119,41 @@ puts \"$PROJ_CAP v.\" + $PROJ_CAP::VERSION
     chmod 744 "$PROJ/bin/$PROJ_LOW"
 }
 
+gen_rakefile() {
+    content="require 'rake/testtask'
+require File.dirname(__FILE__) + '/lib/$PROJ_LOW/version'
+
+# run rake
+Rake::TestTask.new(:test) do |t|
+  t.libs << 'test'
+  t.libs << 'lib'
+  t.test_files = FileList['test/**/test_*.rb']
+end
+
+task :default => :test
+"
+    cat_file "$content" Rakefile
+}
+
+gen_test() {
+    content="require 'minitest/autorun'
+require '$PROJ_LOW'
+
+class Test$PROJ_CAP < Minitest::Test
+  def test_version
+    assert_equal '0.0.1', $PROJ_CAP::VERSION
+  end
+end
+"
+    cat_file "$content" "test/test_$PROJ_LOW.rb"
+}
+
 gen_MIT_license() {
     content="MIT License
 
 Copyright (c) $(date '+%Y') $USERNAME
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
@@ -153,15 +182,16 @@ git_init() {
             && git init \
             && git add . \
             && git commit -a -S -m "initial commit" \
+            && git branch -M main \
             && git remote add origin "https://github.com/$USERNAME/$PROJ.git"
     )
     echo "===> Git initialized, you can push this gem with:"
-    echo "cd $PROJ && git push -u origin master"
+    echo "cd $PROJ && git push -u origin main"
 }
 
 create_project() {
     echo "===> Building your gem project $PROJ"
-    mkdir -p "$PROJ"/{bin,lib,certs}
+    mkdir -p "$PROJ"/{bin,lib,certs,test}
     mkdir -p "$PROJ"/lib/"$PROJ_LOW"
     gen_changelog
     gen_readme
@@ -169,6 +199,8 @@ create_project() {
     gen_lib
     gen_version
     gen_bin
+    gen_rakefile
+    gen_test
     gen_MIT_license
     copy_pubkey
     git_init
