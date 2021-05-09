@@ -32,7 +32,6 @@ anim() {
 
 # Download with git ( arg1 = url | arg2 = path )
 dl() {
-  local pid
   printf "%s " "dll $1..."
   anim &
   pid="$!"
@@ -64,43 +63,6 @@ forZsh() {
   chk https://github.com/denysdovhan/spaceship-prompt.git "$SPACESHIP"
   # create symbolic link
   ln -s "$SPACESHIP"/spaceship.zsh-theme "$OH_MY_ZSH"/themes/spaceship.zsh-theme
-}
-
-dll_vim() {
-  [ -d "$2" ] && rm -rf "$2"
-  f="${2##*/}"
-  p="${2%/*}"
-  (cd "$p" \
-    && curl -L -o "$f".zip https://github.com/"$1"/archive/master.zip \
-    && unzip "$f".zip \
-    && mv "$f"-master "$f" \
-    && rm -f "$f".zip
-  )
-}
-
-vimcolors() {
-  vim_dir="$WORKDIR"/.vim/pack/my-plugins/start
-
-  [ -d "$vim_dir" ] || mkdir -p "$vim_dir"
-  chk https://github.com/szorfein/fromthehell.vim "$vim_dir"/fromthehell.vim
-  chk https://github.com/szorfein/lightline.vim "$vim_dir"/lightline.vim
-  chk https://github.com/edkolev/tmuxline.vim "$vim_dir"/tmuxline.vim
-  chk https://github.com/szorfein/sci.vim "$vim_dir"/sci
-  chk https://github.com/szorfein/vamp.vim "$vim_dir"/vamp
-}
-
-vimplugins() {
-  vim_dir="$WORKDIR"/.vim/pack/my-plugins/start
-  [ -d "$vim_dir" ] || mkdir -p "$vim_dir"
-
-  dll_vim dense-analysis/ale "$vim_dir"/ale
-  dll_vim ryanoasis/vim-devicons "$vim_dir"/vim-devicons
-  dll_vim lilydjwg/colorizer "$vim_dir"/colorizer
-  dll_vim Yggdroot/indentLine "$vim_dir"/indentLine
-  dll_vim itchyny/lightline.vim "$vim_dir"/lightline.vim
-  dll_vim mengelbrecht/lightline-bufferline "$vim_dir"/lightline-bufferline
-  dll_vim airblade/vim-gitgutter "$vim_dir"/vim-gitgutter
-  dll_vim christoomey/vim-tmux-navigator "$vim_dir"/vim-tmux-navigator
 }
 
 download_images() {
@@ -170,6 +132,12 @@ grab_fonts() {
   fc-cache -vf $DIR_FONT
 }
 
+vim() {
+  DEST="$WORKDIR/.vim/autoload"
+  curl -fLo "$DEST"/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+}
+
 banner() {
   printf "%s\n" \
     '
@@ -189,7 +157,7 @@ usage() {
       "-i, --images  Download all the wallpapers."
 
     printf "%s\n" \
-      "-v, --vim     Download and install all the vim colorscheme"
+      "-v, --vim     Download and install vim.plug"
 
     printf "%s\n" \
       "-f, --fonts   Download and install all the fonts"
@@ -213,7 +181,6 @@ fi
 # Options
 ZSH=false
 VIM=false
-PLUGINS=false
 IMG=false
 FONT=false
 
@@ -230,10 +197,6 @@ while [ "$#" -gt 0 ] ; do
       ;;
     -v | --vim)
       VIM=true
-      shift
-      ;;
-    -p | --vimplugins)
-      PLUGINS=true
       shift
       ;;
     -i | --images)
@@ -259,8 +222,7 @@ done
 main() {
   banner
   "$ZSH" && forZsh
-  "$VIM" && vimcolors
-  "$PLUGINS" && vimplugins
+  "$VIM" && vim
   "$IMG" && download_images
   "$FONT" && grab_fonts
 }

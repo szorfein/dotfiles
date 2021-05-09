@@ -1,6 +1,6 @@
 local awful = require("awful")
 local beautiful = require("beautiful")
-local keys = require("module.keys")
+local keys = require("config.keys") -- TODO: remove soon
 local helpers = require("helpers")
 
 -- Rules
@@ -14,8 +14,8 @@ awful.rules.rules = {
       border_color = beautiful.border_normal,
       focus = awful.client.focus.filter,
       raise = true,
-      keys = keys.clientkeys,
-      buttons = keys.clientbuttons,
+      keys = keys.clientkeys, -- TODO: remove soon
+      buttons = keys.clientbuttons, -- TODO: remove soon
       screen = awful.screen.preferred,
       size_hints_honor = false,
       honor_workarea = true,

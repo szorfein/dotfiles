@@ -47,11 +47,13 @@ Here all the vim plugins i use:
 |[lightline](https://github.com/itchyny/lightline.vim) | top, bottom bar |[vim-gitgutter](https://github.com/airblade/vim-gitgutter) | git diff in sign column |[nerdtree](https://github.com/scrooloose/nerdtree) | tree explorer |
 |[lightline-bufferline](https://github.com/mengelbrecht/lightline-bufferline) | extend lightline | | |
 
-#### On gentoo (with [ninjatools](https://github.com/szorfein/ninjatools)):
-    sudo emerge -av app-vim/lightline gitgutter nerdtree pathogen app-vim/ale vim-devicons app-vim/colorizer vim-tmux-navigator indentline lightline-bufferline
+#### To install vim.plug, you can use
 
-#### And for all the vim colorscheme i use, with pathogen
     ./install --vim
+
+To install all vim plugins, use this:
+  
+    $ vim -c PlugUpdate -c qa
 
 ## Shell
 For the shell, i use `zsh` with plugins [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh) with [spaceship-prompt](https://github.com/denysdovhan/spaceship-prompt).  

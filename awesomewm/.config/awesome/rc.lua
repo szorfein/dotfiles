@@ -62,6 +62,7 @@ end)
 -- Start compositor
 require("module.autostart")
 
+--require("config.keys")
 require("module.rules")
 require("titlebars")
 require("module.signals")

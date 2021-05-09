@@ -1,6 +1,5 @@
-local gtable = require("gears.table")
 local awful = require("awful")
-local helpers = require("helpers")
+local gtable = require("gears.table")
 local mymainmenu = require("module.menu")
 
 local keys = {}
@@ -8,7 +7,6 @@ local keys = {}
 -- Mod keys
 modkey = "Mod4"
 altkey = "Mod1"
-altgrkey = "Mod5"
 shiftkey = "Shift"
 ctrlkey = "Control"
 
@@ -142,10 +140,10 @@ keys.globalkeys = gtable.join(
   awful.key({ modkey, "Shift" }, "k", function() awful.client.swap.byidx(-1) end,
   { description = "swap with previous client by index", group = "client" }),
 
-  awful.key({ modkey, "Control" }, "j", function() awful.screen.focus_relative(1) end,
+  awful.key({ modkey, ctrlkey }, "j", function() awful.screen.focus_relative(1) end,
   { description = "focus the next screen", group = "screen" }),
 
-  awful.key({ modkey, "Control" }, "k", function() awful.screen.focus_relative(-1) end,
+  awful.key({ modkey, ctrlkey }, "k", function() awful.screen.focus_relative(-1) end,
   { description = "focus the previous screen", group = "screen" }),
 
   awful.key({ modkey, }, "u", awful.client.urgent.jumpto,
@@ -155,7 +153,7 @@ keys.globalkeys = gtable.join(
   awful.key({ modkey, }, "Return", function() awful.spawn(terminal) end,
   { description = "open a terminal", group = "launcher" }),
 
-  awful.key({ modkey, "Control" }, "r", awesome.restart,
+  awful.key({ modkey, ctrlkey }, "r", awesome.restart,
   { description = "reload awesome", group = "awesome" }),
 
   awful.key({ modkey, "Shift" }, "q", awesome.quit,
@@ -167,10 +165,10 @@ keys.globalkeys = gtable.join(
   awful.key({ modkey, "Shift" }, "l", function() awful.tag.incnmaster(-1, nil, true) end,
   { description = "decrease the number of master clients", group = "layout" }),
 
-  awful.key({ modkey, "Control" }, "h", function() awful.tag.incncol(1, nil, true) end,
+  awful.key({ modkey, ctrlkey }, "h", function() awful.tag.incncol(1, nil, true) end,
   { description = "increase the number of columns", group = "layout" }),
 
-  awful.key({ modkey, "Control" }, "l", function() awful.tag.incncol(-1, nil, true) end,
+  awful.key({ modkey, ctrlkey }, "l", function() awful.tag.incncol(-1, nil, true) end,
   { description = "decrease the number of columns", group = "layout" }),
 
   awful.key({ modkey, }, "space", function() awful.layout.inc(1) end,
@@ -179,7 +177,7 @@ keys.globalkeys = gtable.join(
   awful.key({ modkey, "Shift" }, "space", function() awful.layout.inc(-1) end,
   { description = "select previous", group = "layout" }),
 
-  awful.key({ modkey, "Control" }, "n", function()
+  awful.key({ modkey, ctrlkey }, "n", function()
     local c = awful.client.restore()
     -- Focus restored client
     if c then
@@ -190,9 +188,6 @@ keys.globalkeys = gtable.join(
   { description = "restore minimized", group = "client" }),
 
   -- Prompt
-  awful.key({ modkey }, "r", function() awful.screen.focused().mypromptbox:run() end,
-  { description = "run prompt", group = "launcher" }),
-
   awful.key({ modkey }, "x", function()
     awful.prompt.run {
       prompt       = "Run Lua code: ",
@@ -224,13 +219,13 @@ keys.globalkeys = gtable.join(
   { description = "Lower volume", group = "music" }),
 
   -- Music Control (mpc)
-  awful.key({ altkey, "Control" }, "Right", function() awful.spawn.with_shell("mpc next") end,
+  awful.key({ altkey, ctrlkey }, "Right", function() awful.spawn.with_shell("mpc next") end,
   { description = "music next", group = "music" }),
 
-  awful.key({ altkey, "Control" }, "Left", function() awful.spawn.with_shell("mpc prev") end,
+  awful.key({ altkey, ctrlkey }, "Left", function() awful.spawn.with_shell("mpc prev") end,
   { description = "music prev", group = "music" }),
 
-  awful.key({ altkey, "Control" }, "d", function() awful.spawn.with_shell("mpc del 0") end,
+  awful.key({ altkey, ctrlkey }, "d", function() awful.spawn.with_shell("mpc del 0") end,
   { description = "delete current playlist", group = "music" }),
 
   -- Brightness
@@ -242,14 +237,12 @@ keys.globalkeys = gtable.join(
   awful.key({ }, "XF86MonBrightnessDown", function()
     awful.spawn.with_shell("light -U 1")
   end,
-  { description = "dark mode", group = "brightness" })
+  { description = "dark mode", group = "brightness" }),
 
-  -- Gap
-  --awful.key({ altkey }, "y",
-  --function() 
-  --   awful.key({ superkey, shiftkey   }, "Down",   function (c) c:relative_move(  0,  40,   0,   0) end)
-  --end
-  --)
+  awful.key({ modkey }, "r", function()
+    awful.spawn.with_shell("rofi -matching fuzzy -show combi")
+  end,
+  { description = "rofi", group = "launcher" })
 )
 
 keys.clientkeys = gtable.join(
@@ -284,7 +277,7 @@ keys.clientkeys = gtable.join(
   awful.key({ modkey }, "z", function(c) c:kill() end,
   { description = "close", group = "client" }),
 
-  awful.key({ modkey, "Control" }, "Return", function(c) c:swap(awful.client.getmaster()) end,
+  awful.key({ modkey, ctrlkey }, "Return", function(c) c:swap(awful.client.getmaster()) end,
   { description = "move to master", group = "client" }),
 
   awful.key({ modkey, }, "o", function(c) c:move_to_screen() end,
@@ -306,7 +299,7 @@ keys.clientkeys = gtable.join(
   end,
   { description = "(un)maximize", group = "client" }),
 
-  awful.key({ modkey, "Control" }, "m", function(c)
+  awful.key({ modkey, ctrlkey }, "m", function(c)
     c.maximized_vertical = not c.maximized_vertical
     c:raise()
   end,
@@ -336,7 +329,7 @@ for i = 1, 9 do
     { description = "view tag #"..i, group = "tag"} ),
 
     -- Toggle tag display.
-    awful.key({ modkey, "Control" }, "#" .. i + 9, function()
+    awful.key({ modkey, ctrlkey }, "#" .. i + 9, function()
       local screen = awful.screen.focused()
       local tag = screen.tags[i]
       if tag then
@@ -357,7 +350,7 @@ for i = 1, 9 do
     { description = "move focused client to tag #"..i, group = "tag"} ),
 
     -- Toggle tag on focused client.
-    awful.key({ modkey, "Control", "Shift" }, "#" .. i + 9, function()
+    awful.key({ modkey, ctrlkey, "Shift" }, "#" .. i + 9, function()
       if client.focus then
         local tag = client.focus.screen.tags[i]
         if tag then
