@@ -1,16 +1,25 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
-if [ -z "$(whereis ueberzug | awk '{print $2}')" ]; then
-	exec vifm "$@" && exit
-else
-	cleanup() {
-	    rm "$FIFO_UEBERZUG"
-	    pkill -P $$ >/dev/null
-	}
-  [ -d "$HOME"/.cache/vifm ] || mkdir -p "$HOME"/.cache/vifm
-	export FIFO_UEBERZUG="$HOME/.cache/vifm/ueberzug-${PPID}"
-	mkfifo "$FIFO_UEBERZUG"
-	tail --follow "$FIFO_UEBERZUG" | ueberzug layer --silent --parser bash 2>&1 >/dev/null &
-	trap cleanup EXIT
-	vifm "$@"
+set -o errexit -o nounset
+
+cleanup() {
+  rm "$FIFO_UEBERZUG"
+  pkill -P $$ >/dev/null
+}
+
+if ! hash ueberzug 2>/dev/null || [ -z "$DISPLAY" ] ; then
+  vifm "$@" && exit
 fi
+
+[ -d "$HOME"/.cache/vifm ] || mkdir -p "$HOME"/.cache/vifm
+
+export FIFO_UEBERZUG="$HOME/.cache/vifm/ueberzug-${PPID}"
+
+mkfifo "$FIFO_UEBERZUG"
+
+tail --follow "$FIFO_UEBERZUG" \
+  | ueberzug layer --silent --parser bash >/dev/null 2>&1 &
+
+trap cleanup EXIT
+
+vifm "$@"
