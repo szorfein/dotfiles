@@ -15,11 +15,16 @@ fi
 
 export FIFO_UEBERZUG="$HOME/.cache/vifm/ueberzug-${PPID}"
 
-mkfifo "$FIFO_UEBERZUG"
+[ -p "$FIFO_UEBERZUG" ] || mkfifo "$FIFO_UEBERZUG"
+
+trap cleanup EXIT
+
+[ -p "$FIFO_UEBERZUG" ] || {
+  echo "No fifo exist - $FIFO_UEBERZUG..."
+  exit 1
+}
 
 tail --follow "$FIFO_UEBERZUG" \
   | ueberzug layer --silent --parser bash >/dev/null 2>&1 &
-
-trap cleanup EXIT
 
 vifm "$@"

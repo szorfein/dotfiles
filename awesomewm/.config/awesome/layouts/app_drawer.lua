@@ -38,6 +38,9 @@ local function exe_web(link)
   app_drawer_hide()
 end 
 
+local papyrus = "/usr/share/icons/Papirus/64x64/apps"
+local emacs_icon = papyrus .. "/emacs.svg"
+
 -- About the code  (bold), you can use <u></u> (underline) or even
 -- <i></i> (italic) if you prefer
 my_apps[1] = {
@@ -46,11 +49,13 @@ my_apps[1] = {
   { name = "Tmux", icon = icons["tilix"], exec = function() exe_shell("tmux") end },
   { name = "Vim", icon = icons["neovim"], exec = function() exe_shell("vim") end  },
   { name = "Nnn", icon = icons["filemanager"], exec = function() exe_shell("nnn") end  },
+  { name = "Emacs", icon = emacs_icon, exec = function() exe_app("emacs") end  },
   keybindings = {
     { {}, 'x', function() exe_app(terminal) end },
     { {}, 't', function() exe_shell("tmux") end },
     { {}, 'v', function() exe_shell("vim") end },
     { {}, 'n', function() exe_shell("nnn") end },
+    { {}, 'e', function() exe_app("emacs") end },
   },
 }
 

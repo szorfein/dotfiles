@@ -50,9 +50,11 @@ rofi.columns:                       2
 ! ref: https://github.com/gnotclub/xst/blob/master/doc/Xresources
 st.termname:     xst-256color
 st.shell:        /bin/zsh
-! Available cursor values: 2 4 6 7 = █ _ | ☃ ( 1 3 5 are blinking versions)
 st.cursorshape:   2
-st.bold_font:     1
+st.borderpx:      10
+st.disablebold:   0
+st.disableitalics:0
+st.disableroman:  0
 st.chscale:       1.0
 st.cwscale:       1.0
 
