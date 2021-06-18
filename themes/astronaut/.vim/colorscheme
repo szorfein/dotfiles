@@ -1,5 +1,4 @@
 " Color
-packadd! vamp
 colorscheme vamp
 
 " Reload colorscheme

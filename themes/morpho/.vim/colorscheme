@@ -1,5 +1,4 @@
 " Color
-packadd! darkest-space
 colorscheme darkest-space
 
 " Reload colorscheme
