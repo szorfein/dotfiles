@@ -1,2 +1,2 @@
-*.font: SpaceMono Nerd Font Mono:style=Regular:pixelsize=13
+st.font: SpaceMono Nerd Font Mono:pixelsize=13:antialias=true:autohint=true;
 st.opacity: 250
