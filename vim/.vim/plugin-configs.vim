@@ -58,6 +58,7 @@ let g:lightline = {
   \   'filename_active': 'LightlineFilenameActive',
   \   'filetype': 'LightLineFiletype',
   \   'fileformat': 'LightLineFileformat',
+  \   'lineinfo': 'LightlineLineinfo',
   \ },
   \ 'component_expand': {
   \   'linter_checking': 'WizChecking',
@@ -104,6 +105,17 @@ endfunction
 function! IsTree()
   let l:name = expand('%:t')
   return l:name =~ 'NetrwTreeListing\|undotree\|NERD' ? 1 : 0
+endfunction
+
+function! LightlineLineinfo() abort
+  if winwidth(0) < 86
+    return ''
+  endif
+
+  let l:current_line = printf('%-3s', line('.'))
+  let l:max_line = printf('%-3s', line('$'))
+  let l:lineinfo = ' ' . l:current_line . '/' . l:max_line
+  return l:lineinfo
 endfunction
 
 """"""""""""""""

@@ -6,60 +6,67 @@
 ! colors: https://mycolor.space/
 ! mix colors: https://colordesigner.io/color-mixer
 
-! BG !
-! theme0  #0a121d
-! theme1  #0c141f
-! theme2  #0e1724
-! theme3  #0f1927
-! FG !
-! theme4  #dbe7f7
-! theme5  #e5eef9
-! theme6  #e9f2ff
-! Primary, Secondary !
-! theme7  #b051dd
-! theme8  #9234bf
-! theme9  #cc57be
-! theme10 #ac389c
-! Alert !
-! theme11 #90c882
-! theme12 #90d0ba
-! Others ! (yellow, green, blue)
-! theme13 #dd5376
-! theme14 #dd55bb
-! theme15 #8669dd
+#define base00 #0a121d
+#define base01 #0D1726
+#define base02 #223248
+#define base03 #6959C1
+#define base04 #8992A5
+#define base05 #C4CCE3
+#define base06 #DEE7FF
+#define base08 #95cf72
+#define base09 #dab667
+#define base0A #FF9A67
+#define base0B #ef5d95
+#define base0C #6E5DEF
+#define base0D #ef5dde
+#define base0E #B65DEF
+#define base0F #966DFF
 
-! Theme 1, 4
-*background: #0C141F
-*foreground: #DBE7F7
+! Base
+*background: base00
+*foreground: base05
 
-! Black, 0, 3
-*color0: #0A121D
-*color8: #0F1927
+! Black
+*color0: base01
+*color8: base02
 
-! Red, 11, 12
-*color1: #90C882
-*color9: #90D0BA
+! Red
+*color1: base08
+*color9: base08
 
-! Green, 14, 14
-*color2: #DD55BB
-*color10: #DD55BB
+! Green
+*color2:  base0B
+*color10: base0B
 
-! Yellow, 13, 13
-*color3: #DD5376
-*color11: #DD5376
+! Yellow
+*color3:  base0A
+*color11: base09
 
-! Blue, 15, 15
-*color4: #8669DD
-*color12: #8669DD
+! Blue
+*color4:  base03
+*color12: base0C
 
-! Magenta, 9, 10
-*color5: #CC57BE
-*color13: #AC389C
+! Magenta
+*color5:  base0D
+*color13: base0D
 
-! Cyan, 7, 8
-*color6: #B051DD
-*color14: #9234BF
+! Cyan
+*color6:  base0E
+*color14: base0F
 
-! White, 5, 6
-*color7: #E5EEF9
-*color15: #E9F2FF
+! White
+*color7:  base05
+*color15: base06
+
+*color16: base09
+*color17: base0F
+
+! Grey
+*color18: base01
+*color19: base02
+
+! dark fg
+*color20: base04
+
+! light fg
+*color21: base06

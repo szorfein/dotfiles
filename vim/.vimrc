@@ -17,6 +17,7 @@ Plug 'szorfein/fromthehell.vim'
 Plug 'szorfein/lightline.vim'
 Plug 'szorfein/sci.vim'
 Plug 'szorfein/vamp.vim'
+Plug 'szorfein/ombre.vim'
 
 " Plugins
 Plug 'edkolev/tmuxline.vim'
@@ -37,13 +38,6 @@ set nocompatible
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
-
-" Switch syntax highlighting on, when the terminal has colors
-" Also switch on highlighting the last used search pattern.
-if &t_Co > 2 || has("gui_running")
-  syntax on
-  set hlsearch
-endif
 
 " Visual Setting
 set number
@@ -90,10 +84,18 @@ vmap <leader>y "+y
 
 " for vim 8
 if (has("termguicolors"))
-  set termguicolors
+  "set notermguicolors t_Co=16
+
   " This is only necessary if you use "set termguicolors".
-  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  "let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  "let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+endif
+
+" Switch syntax highlighting on, when the terminal has colors
+" Also switch on highlighting the last used search pattern.
+if &t_Co > 2 || has("gui_running")
+  syntax on
+  set hlsearch
 endif
 
 " Colors

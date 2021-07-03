@@ -1,4 +1,4 @@
-let g:lightline.colorscheme = "vamp"
+let g:lightline.colorscheme = "ombre"
 let g:lightline.tabline = {'left': [['buffers']], 'right': [['close']] }
 let g:lightline.component = { 'close':  ' X ' }
 let g:lightline.separator = { 'right': '', 'left': '' }
