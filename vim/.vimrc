@@ -10,7 +10,7 @@
 "         ░   ░         ░      ░     ░ ░      
 
 
-call plug#begin()
+call plug#begin('~/.vim/plugged')
 
 " Colors
 Plug 'szorfein/fromthehell.vim'
