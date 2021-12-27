@@ -1,0 +1,4 @@
+set from            = "work@gmail.com"
+set sendmail        = "/usr/bin/msmtp -a work"
+set mbox            = "+Work/archive"
+set postponed       = "+Work/drafts"

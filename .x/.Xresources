@@ -1,0 +1,65 @@
+!-------------------------------------------
+! XFT Settings gre
+     
+Xft.antialias:  true 
+Xft.autohint:   false 
+Xft.dpi:        96
+Xft.hinting:    true 
+Xft.hintstyle:  hintfull 
+Xft.lcdfilter:  lcddefault
+Xft.rgba:       rgb
+
+!-------------------------------------------
+! URXVT - Settings
+
+URxvt*depth:                        32
+URxvt*internalBorder:               3
+URxvt*dynamicColors:                on
+URxvt*urgentOnBell:                 true
+URxvt*borderLess:                   false
+URxvt*scrollBar:                    false
+URxvt*cursorBlink:                  true
+URxvt*cursorUnderline:              true
+URxvt*cursorColor:                  #737077
+URxvt*scrollColor:                  #151515
+URxvt*underlineURLs:                true
+
+!-------------------------------------------
+! Man pages colors
+
+*VT100.colorBDMode:                  true
+*VT100.colorBD:                      red
+*VT100.colorULMode:                  true
+*VT100.colorUL:                      cyan   
+*VT100.veryBoldColors:               6
+
+!-------------------------------------------
+! rofi
+
+rofi.lines:                         2
+rofi.color-enabled:                 true
+rofi.separator-style:               none 
+rofi.width:                         33
+rofi.line-padding:                  6
+rofi.hide-scrollbar:                True
+rofi.columns:                       2
+
+!-------------------------------------------
+! xst
+
+! ref: https://github.com/gnotclub/xst/blob/master/doc/Xresources
+st.termname:     xst-256color
+st.shell:        /bin/zsh
+st.cursorshape:   2
+st.borderpx:      10
+st.disablebold:   0
+st.disableitalics:0
+st.disableroman:  0
+st.chscale:       1.0
+st.cwscale:       1.0
+
+!--------------------------------------------
+! General Colors & Fonts
+
+#include ".Xresources.d/colors"
+#include ".Xresources.d/fonts"

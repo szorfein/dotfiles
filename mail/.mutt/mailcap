@@ -1,0 +1,7 @@
+application/octet-stream  ; echo %s "can be anything..."      ; copiousoutput;
+text/html                 ; w3m -I %{charset} -T text/html    ; copiousoutput;
+text/html                 ; w3m %s; nametemplate=%s.html
+text/html                 ; w3m -dump %s; nametemplate=%s.html; copiousoutput;
+application/pdf           ; /usr/bin/zathura %s                   ; copiousoutput;
+image/*                   ; /usr/bin/sxiv %s                  ; copiousoutput;
+video/*                   ; /usr/bin/mpv %s                   ; copiousoutput;

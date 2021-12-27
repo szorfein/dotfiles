@@ -1,0 +1,164 @@
+######################
+#  General Options  #
+######################
+
+set editor="vim -c 'set syntax=mail ft=mail enc=utf-8'"
+
+ignore *
+unignore from: to: cc: date: subject:
+hdr_order from: to: cc: date: subject:
+set index_format="%4C %Z %{%b %d} %-16.16L  %s"
+
+set pager_stop
+set pager_index_lines = 4
+set pager_context = 2
+set markers = no           # Don't mark wrapper lines
+set delete = yes           # Don't ask
+
+unset wait_key
+
+set mail_check = 0
+
+# Disable features
+unset confirmappend
+unset copy
+unset metoo                # Remove me from CC headers.
+set move = no              # Don't use mbox
+set nohelp                 # No help line.
+set pager_index_lines = 0
+unset mark_old
+unset sort_re
+unset use_from
+unset use_domain
+unset user_agent
+unset record
+set nobeep      # Shup up. ;-)
+
+##################
+#  Key Bindings  #
+##################
+
+# Vi Key Bindings 
+bind attach,browser,index g noop
+bind attach,browser,index gg first-entry
+bind attach,browser,index G last-entry
+bind pager g noop
+bind pager gg top
+bind pager G bottom
+bind pager k previous-line
+bind pager j next-line
+
+bind attach,browser,pager,index \CF next-page
+bind attach,browser,pager,index \CB previous-page
+bind attach,browser,pager,index \Cu half-up
+bind attach,browser,pager,index \Cd half-down
+bind browser,pager \Ce next-line
+bind browser,pager \Cy previous-line
+bind index \Ce next-line
+bind index \Cy previous-line
+
+bind pager,index d noop
+bind pager,index dd delete-message
+
+# menu for encryp or not a mail when compose
+bind compose p pgp-menu
+
+#########
+#  GPG  #
+#########
+
+setenv PINENTRY_USER_DATA curses
+set crypt_use_gpgme = yes
+
+# Capability key [C]
+set pgp_default_key = 0x9CC9729A2E369CB3
+# sign key [S]
+set pgp_sign_as = 0xFD696BDDAA8FDC50
+# encrypt key [E]
+set pgp_self_encrypt_as = 0xE2ADD2080A6B28AE
+
+set pipe_decode # Decode messages I pipe to commands, typically to patch
+set crypt_autosign
+set crypt_replyencrypt
+set crypt_replysignencrypted
+set crypt_verify_sig
+
+# copy file from /usr/share/doc/mutt/samples/gpg.rc
+#source ~/.neomutt/gpg.rc
+
+# Status bar
+set status_chars=" *%A"
+#set status_format="───[ Folder: %f ]───[%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]───%>─%?p?( %p postponed )?───"
+
+# Index view
+set sort=threads
+set sort_aux=reverse-last-date-received
+set uncollapse_jump
+set strict_threads
+set thorough_search
+
+##########################
+#  Compose view options  #
+##########################
+
+set askcc         # Ask for CC:
+set edit_headers  # I want to edit the headers.
+set envelope_from
+set fast_reply
+set forward_format = "Fwd: %s"
+set forward_quote
+set include
+set hidden_host
+set menu_scroll
+set mime_forward = ask-no
+set reply_to
+set reverse_name
+set tilde
+
+# Colors
+source ~/.neomutt/colors
+
+##################
+#  Mutt Sidebar  #
+##################
+
+set sidebar_visible
+set sidebar_folder_indent
+set sidebar_short_path
+
+# Toggle sidebar visible with b
+macro index b '<enter-command>toggle sidebar_visible<enter><refresh>'
+macro pager b '<enter-command>toggle sidebar_visible<enter><redraw-screen>'
+
+# Uncomment these if sidebar patch is installed
+bind index,pager \CP sidebar-prev # Ctrl-n to select next folder
+bind index,pager \CN sidebar-next # Ctrl-p to select previous folder
+bind index,pager \CO sidebar-open # Ctrl-o to open selected folder
+
+#######################
+#  IMAP: offlineimap  #
+#######################
+
+set mbox_type = Maildir
+set folder    = ~/.mails/gmail
+set spoolfile = "+INBOX"
+set record    = ""
+set postponed = "+[Gmail].Drafts"
+set trash     = "+[Gmail].Trash"
+
+set mailcap_path = ~/.neomutt/mailcap # filetypes, w3m for html, etc
+
+# Mailboxes
+source ~/.neomutt/mailboxes
+
+#################
+#  SMTP: msmtp  #
+#################
+
+## Additional config set in ~/.msmtprc
+set sendmail_wait = -1
+set send_charset="utf-8"
+set sendmail="/usr/bin/msmtp"
+
+# Default account
+folder-hook gmail/* source ~/.neomutt/accounts/gmail

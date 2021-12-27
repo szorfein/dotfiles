@@ -1,0 +1,6 @@
+named-mailboxes "   Reçus" =INBOX
+named-mailboxes "   Envoyés" ="[Gmail].Sent Mail"
+named-mailboxes "   Brouillons" =[Gmail].Drafts
+named-mailboxes "   Junk" =[Gmail].Spam
+named-mailboxes "   Poubelle" =[Gmail].Trash
+#named-mailboxes " ---------   GMAIL ----------" ="."

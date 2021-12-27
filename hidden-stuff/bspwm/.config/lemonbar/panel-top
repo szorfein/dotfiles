@@ -1,0 +1,134 @@
+#! /bin/sh
+
+PANEL_WM=panel_top
+PANEL_FIFO=/tmp/panel_top_fifo
+
+if xdo id -a "$PANEL_WM" > /dev/null ; then
+    printf "%s\n" "The panel is already running." >&2
+    exit 1
+fi
+
+trap 'trap - TERM; kill 0' INT TERM QUIT EXIT
+
+[ -e "$PANEL_FIFO" ] && rm "$PANEL_FIFO"
+mkfifo "$PANEL_FIFO"
+
+source $(dirname $0)/config_bar
+
+getName() {
+    local icon=$(pIcon ${FG} ${GENTOO})
+    local cmd="$(uname -n)"
+    local cmdEnd=$(pText ${WHITE} "${cmd}")
+    echo "${icon} ${cmdEnd}"
+}
+
+# requiert permission from sudo with NOPASSWD !
+# example from /etc/sudoers : ADMINS ALL=(ALL) NOPASSWD: /bin/systemctl restart tor
+torButton() {
+    local cmd="sudo systemctl restart tor"
+    local _cmd=$(pAction ${WHITE2} ${RED} "${cmd}" ${TOR})
+    echo  "$_cmd"
+}
+
+getMyIp() {
+    local icon=$(pIcon ${MAGENTA2} ${CIP})
+    local cmd="$(curl -s https://ifcfg.me/)"
+    local cmdEnd=$(pText ${FG} "${cmd}")
+    echo "${icon} ${cmdEnd} ${icon}"
+}
+
+getDay() {
+    local icon=$(pIcon ${MAGENTA} ${CTIME})
+    local cmd=" $(date '+%A %d %b')" 
+    local cmdEnd=$(pText ${WHITE} "${cmd}")
+    echo "${icon}${cmdEnd}"
+}
+
+clock() {
+    local icon=$(pIcon ${MAGENTA} ${CCLOCK})
+    local cmd=$(date +%H:%M)
+    local cmdEnd=$(pText ${FG} ${cmd})
+    echo "${icon} ${cmdEnd}"
+}
+
+# Need path or your email directory
+mail() {
+    local gmaildir=/home/user/.mails/Gmail/\[Gmail\].All\ Mail/new
+    local cmd=$(pAction ${BLUE} ${BG} "i3 'exec termite -e mutt'" ${CMAIL})
+    local count=0
+    if [[ ! -n $(ls "${gmaildir}") ]]; then
+        count=0
+    else
+        count=$(ls -1 "${gmaildir}" | wc -l)
+    fi
+    echo "${cmd} ${count}"
+}
+
+energy() {
+    local ac=/sys/class/power_supply/AC/online
+    local bat=/sys/class/power_supply/BAT0/present
+    local icon=""
+    local batCap=""
+    if [[ -e $bat ]] && [[ $(cat $ac) -lt 1 ]]; then
+        batCap="$(cat ${bat%/*}/capacity)"
+        [ $batCap -gt 90 ] && icon=$BAT100
+        [ $batCap -gt 70 ] && [ $batCap -lt 90 ] && icon=$BAT70
+        [ $batCap -gt 50 ] && [ $batCap -lt 70 ] && icon=$BAT50
+        [ $batCap -gt 30 ] && [ $batCap -lt 50 ] && icon=$BAT30
+        [ $batCap -gt 15 ] && [ $batCap -lt 30 ] && icon=$BAT15
+        [ $batCap -lt 7 ] && icon=$BAT7
+    elif [[ -n $(cat $ac) ]]; then
+        batCap="AC"
+        icon=$CAC
+    else
+        batCap="wttf"
+    fi
+    echo "$(pIcon ${MAGENTA} $icon) $(pText ${WHITE} ${batCap})"
+}
+
+ws() {
+    local cmd=$(i3-msg -t get_outputs | sed 's/.*"current_workspace":"\([^"]*\)".*/\1/')
+    local icon=$(pIcon ${CYAN} " >* " )
+    local icon2=$(pIcon ${CYAN} " *< " )
+    local cmdEnd=$(pText ${FG} "${cmd}")
+    echo "${icon} ${cmdEnd} ${icon2}"
+}
+
+{
+    while :; do
+        echo "A$(ws)"
+        sleep 0.4 || break
+    done > "$PANEL_FIFO" &
+
+    while :; do
+        # Uncomment line bellow if you have TOR and delete other line start with 'W'.
+        # echo "W$(getName)  $(torButton) $(getMyIp)"
+        echo "W$(getName)  $(getMyIp)"
+        echo "R$(energy) $(mail) $(getDay) $(clock)"
+        sleep 1 || break
+    done > "$PANEL_FIFO" &
+}
+
+{
+    while read -r line ; do 
+        cmd=( $line )
+        case "${cmd[0]}" in
+            W*)
+                sysL="${line#?}"
+                ;;
+            A*)
+                sysC="${line#?}"
+                ;;
+            R*)
+                sysR="${line#?}"
+                ;;
+        esac
+        printf "%s\n" "%{l} ${sysL}%{c}${sysC}%{r}${sysR} "
+    done
+} < "$PANEL_FIFO" | lemonbar \
+    -n ${PANEL_WM} -g x${HEIGHT} -u 2 -B ${BG} -F ${FG} -f "${FONT}" -f "${FONT_ICON}" | sh &
+
+wid=$(xdo id -m -a "$PANEL_WM")
+xdo above -t "$(xdo id -N I3Top -n root | sort | head -n 1)" "$wid"
+
+wait

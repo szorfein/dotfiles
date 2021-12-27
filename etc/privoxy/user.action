@@ -1,0 +1,152 @@
+{{alias}}
+
++crunch-all-cookies = +crunch-incoming-cookies +crunch-outgoing-cookies
+-crunch-all-cookies = -crunch-incoming-cookies -crunch-outgoing-cookies
+ allow-all-cookies  = -crunch-all-cookies -session-cookies-only -filter{content-cookies}
+ allow-popups       = -filter{all-popups} -filter{unsolicited-popups}
++block-as-image     = +block{Blocked image request.} +handle-as-image
+-block-as-image     = -block
+fragile     = -block -crunch-all-cookies -filter -fast-redirects -hide-referer -prevent-compression
+shop        = -crunch-all-cookies allow-popups
+myfilters   = +filter{html-annoyances} +filter{js-annoyances} +filter{all-popups}\
+              +filter{webbugs} +filter{banners-by-size}
+allow-ads   = -block -filter{banners-by-size} -filter{banners-by-link}
+
+# 
+
+standardMedium = \
++change-x-forwarded-for{block} \
++deanimate-gifs{last} \
++filter{refresh-tags} \
++filter{img-reorder} \
++filter{banners-by-size} \
++filter{webbugs} \
++filter{jumping-windows} \
++filter{ie-exploits} \
++hide-from-header{block} \
++hide-referrer{conditional-block} \
++session-cookies-only \
++set-image-blocker{pattern}
+
+standardAdvanced = \
++change-x-forwarded-for{block} \
++client-header-tagger{css-requests} \
++client-header-tagger{image-requests} \
++crunch-if-none-match \
++crunch-outgoing-cookies \
++crunch-incoming-cookies \
++deanimate-gifs{last} \
++fast-redirects{check-decoded-url} \
++filter{html-annoyances} \
++filter{content-cookies} \
++filter{refresh-tags} \
++filter{img-reorder} \
++filter{banners-by-size} \
++filter{banners-by-link} \
++filter{webbugs} \
++filter{jumping-windows} \
++filter{frameset-borders} \
++filter{quicktime-kioskmode} \
++hide-if-modified-since{-60} \
++hide-from-header{block} \
++hide-referrer{conditional-block} \
++overwrite-last-modified{randomize} \
++set-image-blocker{pattern}
+
+{standardAdvanced}
+/
+
+#
+
+{ allow-all-cookies }
+
+{ -filter{all-popups} }
+
+{ -filter }
+
+{ +block{Nasty ads.} }
+www.example.com/nasty-ads/sponsor.gif
+
+{ +block{Pownded } }
+.oclaserver.
+.facebook.
+.mgid.
+.liveint*.
+.ebz.
+.trade*.
+.*exchang*.
+.dec*.science
+.ad[0-9]*.
+.pub[0-9]?*.
+.pagefair.
+.*teev*.
+.*cash*.
+.ad-*.
+.*promo*.
+.science.
+.*festival*.
+.*friend*.
+.*easy*.
+.oopt.
+.venturead.
+.*click*.
+.*taboo*.
+.amazonaws.
+.adobe.
+.snw.
+.snv.
+.filesdock.
+.*viral*.
+.bright*.
+.*exclus*.
+.downloat*.
+.*great*.
+.*work*.
+.wall*.
+.*atm.
+.xyz*.
+.adsb*.
+.millio*.
+.*dream*.
+.104.197.10.88.
+.*reward*.
+.*exper*.
+.*klnk*.
+.*option*.
+.*cops*.
+.*blis*.
+.*getbook.
+.xb11*.
+.fncnetl.
+
+{ +block-as-image }
+.friendly*.
+.doubleclick.net
+ar.atwola.com/
+
+{ fragile }
+.dotshare.it
+.deviantart.
+.codeschool.
+
+{ shop }
+192.168.1.1
+192.168.2.1
+.amazon.
+.ldlc.
+.materiel.
+
+{ +block{google fck.} }
+.googlesyndication.
+.googleadservices.
+.googletagservices.
+
+{ allow-ads }
+
+{ +set-image-blocker{blank} }
+
+{+fast-redirects{check-decoded-url}}
+news.google.com/news/url.*&url=http.*&
+
+{+block{Facebook "like" and similar tracking URLs.}}
+www.facebook.com/(extern|plugins)/(login_status|like(box)?|activity|fan)\.php

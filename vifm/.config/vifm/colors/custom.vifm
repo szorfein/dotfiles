@@ -1,0 +1,21 @@
+" colorscheme
+highlight clear
+
+highlight Win cterm=none ctermfg=15 ctermbg=none
+
+highlight Directory cterm=none ctermfg=6 ctermbg=none
+highlight Link cterm=none ctermfg=2 ctermbg=none
+highlight BrokenLink cterm=bold ctermfg=3 ctermbg=none
+highlight Socket cterm=bold ctermfg=4 ctermbg=none
+highlight Fifo cterm=none ctermfg=1 ctermbg=none
+highlight Selected cterm=none ctermfg=13 ctermbg=none
+
+highlight CurrLine cterm=none ctermfg=14 ctermbg=8
+highlight TopLine cterm=none ctermfg=7 ctermbg=none
+highlight TopLineSel cterm=none ctermfg=7 ctermbg=none
+highlight StatusLine cterm=none ctermfg=7 ctermbg=8
+
+highlight Border cterm=none ctermfg=8 ctermbg=none
+highlight JobLine cterm=none ctermfg=black ctermbg=14
+
+highlight Tabline cterm=none ctermfg=white ctermbg=none

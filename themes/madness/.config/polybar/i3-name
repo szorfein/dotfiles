@@ -1,0 +1,10 @@
+ws-icon-0 = default;
+ws-icon-1 = web;
+ws-icon-2 = dev;
+ws-icon-3 = music;
+ws-icon-4 = gimp;
+ws-icon-5 = vms;
+label-focused = "%icon%  %name%"
+label-unfocused = "%icon%  %name%"
+label-visible = "%icon%  %name"
+label-urgent = "%icon%  %name%"

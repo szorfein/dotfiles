@@ -1,0 +1,23 @@
+#! /bin/sh
+
+source $(dirname $0)/config
+
+sxhkd &
+
+bspc config border_width            2
+bspc config window_gap              7
+
+bspc config split_ratio             0.5
+bspc config borderless_monocle      true
+bspc config gapless_monocle         true
+bspc config focus_by_distance       true
+bspc config history_aware_focus     true
+bspc config focus_follows_pointer   true
+bspc config presel_feedback_color   "#12181d"
+
+bspc monitor -d i ii iii iv vi vii
+
+bspc rule -a sxiv follow=off state=floating 
+bspc rule -a mpv follow=off state=floating
+
+$(dirname $0)/panel &

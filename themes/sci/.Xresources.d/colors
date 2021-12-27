@@ -1,0 +1,66 @@
+! Links
+! material color: https://material.io/inline-tools/color/
+! theme maker: https://coolors.co
+! Contrast Ratio: https://contrast-ratio.com/
+! search triadic, complementary, etc: https://htmlcolorcodes.com/color-picker/
+! colors: https://mycolor.space/
+! mix colors: https://colordesigner.io/color-mixer
+
+! BG !
+! theme0  #12171E
+! theme1  #141A21
+! theme2  #161D23
+! theme3  #172028
+! FG !
+! theme4  #cbf7fe
+! theme5  #c2f5fc
+! theme6  #e3fafe
+! Primary, Secondary !
+! theme7  #00c9ea
+! theme8  #4EDAF3
+! theme9  #4E88F3
+! theme10 #5da6ff
+! Alert !
+! theme11 #f3674e
+! theme12 #f4826c
+! Others ! (yellow, green, blue)
+! theme13 #C1FA8A
+! theme14 #8BF8AB
+! theme15 #5AF1CC
+
+
+! Theme 1, 4
+*background: #141A21
+*foreground: #CBF7FE
+
+! Black, 0, 3
+*color0: #12171E
+*color8: #172028
+
+! Red, 11, 12
+*color1: #F3674E
+*color9: #F48E6C
+
+! Green, 14, 14
+*color2: #8BF8AB
+*color10: #8BF8AB
+
+! Yellow, 13, 13
+*color3: #C1FA8A
+*color11: #C1FA8A
+
+! Blue, 15, 15
+*color4: #5AFACC
+*color12: #5AF1CC
+
+! Magenta, 9, 10
+*color5: #4E88F3
+*color13: #5DA6FF
+
+! Cyan, 7, 8
+*color6: #00C9EA
+*color14: #4EDAF3
+
+! White, 5, 6
+*color7: #C2F5FC
+*color15: #E3FAFE

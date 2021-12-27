@@ -1,0 +1,21 @@
+# Erase default options
+
+# Colour
+COLOUR_BG="#16171C"
+PRIMARY="#98CC70"
+FG_PRIMARY="#111111"
+
+set-option -g status-position bottom
+setw -g window-status-format "#[fg=colour0,bg=$COLOUR_BG]#[fg=colour10,bg=colour0] #I #[fg=colour10,bg=colour0] #W #[fg=colour0,bg=$COLOUR_BG]"
+setw -g window-status-current-format "#[fg=$PRIMARY,bg=$COLOUR_BG]#[bg=$PRIMARY]#[fg=$FG_PRIMARY,bg=$PRIMARY] #I #[fg=$FG_PRIMARY,bg=$PRIMARY] #{pane_current_path} #[fg=$FG_PRIMARY,bg=$PRIMARY] #W #[fg=$PRIMARY,bg=$COLOUR_BG]"
+set -g status-left "#[fg=colour0,bg=default]#[fg=colour15,bg=colour0] #S #[fg=colour14,bg=colour0,nobold,nounderscore,noitalics]>> #[fg=colour0,bg=default]"
+set -g status-right '#[fg=colour14]  '
+set -g status-justify left
+set -g pane-active-border-style "fg=black,bg=default"
+set -g status-style "fg=default,bg=default"
+
+setw -g window-status-activity-style "fg=colour27,bg=colour234,none"
+setw -g window-status-separator " "
+setw -g window-status-style "fg=colour39,bg=colour234,none"
+set -g pane-active-border-style "fg=$COLOUR_BG" # hide border
+set -g pane-border-style "fg=$COLOUR_BG" # hide border

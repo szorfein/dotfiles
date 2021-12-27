@@ -1,0 +1,52 @@
+[options]
+audible_bell = false
+clickable_url = true
+dynamic_title = true
+font = Roboto Mono Regular 9
+fullscreen = true
+#mouse_autohide = true
+scrollback_lines = 1000
+browser = vivaldi
+size_hints = true
+filter_unmatched_urls = true
+
+[colors]
+cursor = #bd6a68
+cursor_foreground = #ffffff
+foreground = #f4d3bd
+background = #474039
+highlight = #111b22
+
+#: black
+color0 = #524a42
+color8 = #5e554c
+
+#: red
+color1 = #dc5757
+color9 = #f9807a
+
+#: green
+color2 = #7e755c
+color10 = #857d69
+
+#: yellow
+color3 = #fae0cf
+color11 = #fae0cf
+
+#: blue
+color4 = #6d6969
+color12 = #727171
+
+#: magenta
+color5 = #886466
+color13 = #a9797c
+
+#: cyan
+color6 = #9d988b
+color14 = #a09d95
+
+#: white
+color7 = #b7aa90
+color15 = #c4b69c
+
+[hints]

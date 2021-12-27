@@ -1,0 +1,58 @@
+! Material theme
+! material color: https://material.io/inline-tools/color/
+! material: https://material.io/tools/color 
+! theme maker: https://coolors.co
+! colors: https://mycolor.space/
+! contrast: https://contrast-ratio.com/
+
+#define base00 #16171C
+#define base01 #18191e
+#define base02 #24262D
+#define base03 #83976D
+#define base04 #d3e4e2
+#define base05 #dbecea
+#define base06 #f6f9ff
+#define base08 #A360D6
+#define base09 #BD90E1
+#define base0A #0072A7
+#define base0B #00899E
+#define base0C #009F91
+#define base0D #00B385
+#define base0E #ADD681
+#define base0F #d8d679
+
+*background: base00
+*foreground: base05
+*.cursorColor: base04
+
+! Black
+*color0: base01
+*color8: base02
+
+! Red
+*color1: base08
+*color9: base08
+
+! Green
+*color2:  base0B
+*color10: base0B
+
+! Yellow
+*color3:  base0A
+*color11: base09
+
+! Blue
+*color4:  base03
+*color12: base0C
+
+! Magenta
+*color5:  base0D
+*color13: base0D
+
+! Cyan
+*color6:  base0E
+*color14: base0F
+
+! White
+*color7:  base05
+*color15: base06

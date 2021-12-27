@@ -1,0 +1,12 @@
+#!/bin/sh
+
+set -e
+
+daemon=${1:?}
+state="%{F#ee6f3d}off%{F-}"
+cmd="$(systemctl status $daemon | grep -i run 2>/dev/null || echo '')"
+
+[[ "$cmd" ]] && state="%{F#faae52}on%{F-}"
+
+echo "%{F#d82b3e}${daemon}%{F-} ${state}"
+exit 0

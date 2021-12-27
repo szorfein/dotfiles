@@ -1,0 +1,23 @@
+#!/bin/sh
+
+# list http://useragentstring.com/pages/useragentstring.php/
+# list https://github.com/fengzhizi715/user-agent-list
+agentsList=(
+  "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:63.0) Gecko/20100101 Firefox/64.0"
+  "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36"
+  "Opera/9.80 (Macintosh; Intel Mac OS X 10.14.1) Presto/2.12.388 Version/12.16"
+)
+
+RANDOM=$$$(date +%s)
+rand=$[$RANDOM % ${#agentsList[@]}]
+agent="${agentsList[$rand]}"
+
+# Create the tmp
+
+# -no-sandbox is require to start chrome based browser with firejail --seccomp
+#  \/opt/brave/brave -no-sandbox --proxy-server="socks5://127.0.0.1:1080" \
+# -user-agent="${agent}" --disk-cache-dir=/tmp/brave-cache --incognito
+/usr/bin/firejail \
+  /opt/brave/brave -no-sandbox \
+    --incognito --disk-cache-dir=/tmp/brave-cache --incognito $@
+  #-user-agent="${agent}" --incognito --disk-cache-dir=/tmp/brave-cache --incognito $@

@@ -1,0 +1,36 @@
+set font                        "Iosevka Term Regular 9"
+
+set default-fg                  "#d3e4e2" # grey_fg
+set default-bg                  "#16171c" # grey
+
+set statusbar-fg                "#d3e4e2" # grey_fg
+set statusbar-bg                "#18191e" # grey_dark
+
+set inputbar-bg                 "#98cc70" # primary
+set inputbar-fg                 "#16171C" # primary_fg
+
+set notification-error-bg       "#a360D6" # error
+set notification-error-fg       "#16171C" # error_fg
+
+set notification-warning-bg     "#bd90e1" # error_light
+set notification-warning-fg     "#16171C" # error_fg
+
+set highlight-color             "#2a4f81" #0A
+set highlight-active-color      "#1f1b3f" #0D
+
+set completion-highlight-fg     "#1f1b3f"  #02
+set completion-highlight-bg     "#8b09a8" #0C
+
+set completion-bg               "#e0eaf9" #02
+set completion-fg               "#1f1b3f" #0C
+
+set notification-bg             "#A91164" # error_dark
+set notification-fg             "#121013" # error_fg
+
+set recolor-lightcolor          "#121013" # grey
+set recolor-darkcolor           "#AABFAA" # grey_fg
+set recolor                     "true"
+
+# setting recolor-keep true will keep any color your pdf has.
+# if it is false, itll just be black and white
+set recolor-keephue             "false"

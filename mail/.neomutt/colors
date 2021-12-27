@@ -1,0 +1,161 @@
+# NeoMutt color file
+# Maintainer: szorfein <szorfein@protonmail.com>
+# URL: https://github.com/szorfein/dotfiles
+# Last Change: 2019 June 02
+# Version: 0.1
+
+color normal            default default
+color indicator         white      black
+color status            brightgreen black
+color tree              brightred   default
+color signature         color102    default 
+color message           color253    default 
+color attachment        color117    default 
+color error             color240    default 
+color tilde             color130    default
+
+color search       color100     default
+color markers      color138     default
+
+color quoted        cyan default
+color quoted1       yellow black
+color quoted2       red black
+color quoted3       green black
+color quoted4       cyan black
+color quoted5       yellow black
+color quoted6       red black
+color quoted7       green black
+color quoted8       brightblack black
+color quoted9       brightred black
+
+# color body          cyan  default  "((ftp|http|https)://|news:)[^ >)\"\t]+"
+color body          cyan  default  "[-a-z_0-9.+]+@[-a-z_0-9.]+"
+# color body          red   default  "(^| )\\*[-a-z0-9*]+\\*[,.?]?[ \n]"
+# color body          green default  "(^| )_[-a-z0-9_]+_[,.?]?[\n]"
+# color body          red   default  "(^| )\\*[-a-z0-9*]+\\*[,.?]?[ \n]"
+# color body          green default  "(^| )_[-a-z0-9_]+_[,.?]?[ \n]"
+
+# Index
+color index color202 color8 ~F         # Flagged
+color index color39 color8 ~O
+color index color229 color22 ~T         # Tagged
+color index color240 color8 ~D         # Deleted
+#color index brightblue default "~N" # NEW  
+#color index magenta default "~U" # UNREAD
+#color index white default "~R" # READ
+ 
+# URL
+color body brightgreen black "(http|ftp|news|telnet|finger)://[^ \"\t\r\n]*"
+color body brightgreen black "mailto:[-a-z_0-9.]+@[-a-z_0-9.]+"
+mono body bold "(http|ftp|news|telnet|finger)://[^ \"\t\r\n]*"
+mono body bold "mailto:[-a-z_0-9.]+@[-a-z_0-9.]+"
+
+# Email address
+color body brightgreen black "[-a-z_0-9.%$]+@[-a-z_0-9.]+\\.[-a-z][-a-z]+"
+
+#mono body      reverse         '^(subject):.*'
+#color body     brightwhite magenta     '^(subject):.*'
+#mono body      reverse         '[[:alpha:]][[:alnum:]-]+:'
+#color body     black cyan      '[[:alpha:]][[:alnum:]-]+:'
+
+# --- header ---
+
+color hdrdefault        color30         black
+color header            magenta        black    '^date:'
+color header            color153        black    '^(to|cc|bcc):'
+color header cyan black '^from:'
+color header brightyellow black '^subject:'
+color header            color31         black    '^user-agent:'
+color header            color29         black    '^reply-to:'
+
+#color header   magenta default '^(status|lines|date|received|sender|references):'
+#color header   magenta default '^(pr|mime|x-|user|return|content-)[^:]*:'
+#color header   brightyellow default '^content-type:'
+#color header   magenta default '^content-type: *text/plain'
+# color header  brightgreen default '^list-[^:]*:'
+#mono  header    bold               '^(subject):.*$'
+#color header   brightcyan default      '^(disposition)'
+#color header   green default   '^(mail-)?followup'
+#color header   white default   '^reply'
+#color header   brightwhite default     '^(resent)'
+# color header  brightwhite default     '^from:'
+
+mono index     bold '~h "^content-type: *(multipart/(mixed|signed|encrypted)|application/)"'
+color index    red black '~h "^content-type: *multipart/(signed|encrypted)"'
+
+#color sidebar_new color39 color8
+
+# Credits to https://github.com/sheoak/neomutt-powerline-nerdfonts/
+set index_format=" %T %{!%d %b} %1M %-28.28L  %?X?&·? %s"
+set pager_format=" %n  %T %s%*  %{!%d %b · %H:%M} %?X?  %X ? %P  "
+set status_format = " %f%?r? %r?   %m %?n?  %n ?  %?d?  %d ?%?t?  %t ?%?F?  %F? %> %?p?   %p ?"
+#set vfolder_format = " %N %?n?%3n&   ?  %8m  · %f"
+set attach_format = "%u%D  %T%-75.75d %?T?%&   ? %5s · %m/%M"
+
+# no addressed to me, to me, group, cc, sent by me, mailing list
+# set to_chars=""
+# unchanged mailbox, changed, read only, attach mode
+set status_chars = " "
+
+set hidden_tags = "unread,draft,flagged,passed,replied,attachment,signed,encrypted"
+tag-transforms "replied" "↻ "  \
+    "encrytpted" "" \
+    "signed" "" \
+    "attachment" "" \
+
+# The formats must start with 'G' and the entire sequence is case sensitive.
+tag-formats "replied" "GR" \
+    "encrypted" "GE" \
+    "signed" "GS" \
+    "attachment" "GA" \
+
+# powerline status bar hack
+color status white black
+color status green black ''
+color status yellow black ''
+color status red black ''
+color status brightwhite blue '(.*)' 1 # bottom left
+color status blue black '.*()' 1
+color status brightwhite blue '\s* [0-9]+\s*' # bottom right
+color status blue black '().*$' 1
+color status yellow black '()\s*\s*[0-9]+\s*' 1
+color status black yellow '\s*\s*[0-9]+\s*'
+color status blue yellow '() ([0-9]+%|all|end) \s*' 1
+color status black blue ' ([0-9]+%|all|end) \s*'
+color status yellow black '()\s*' 1
+color status default black ''
+
+# Colors
+# cancel theme colors
+color index color13 color8 ~Q
+color index color13 color8 ~P
+color index color13 color8 ~T
+color index color13 color8 ~O
+color index color1 color8 ~F
+
+# add some nice custom coloring to the message list
+# thanks to new neomutt features
+# http://www.mutt.org/doc/manual/#patterns
+# https://neomutt.org/feature/index-color
+color index_subject color109 color8 "~P !~T !~D"
+color index_author color109 color8 "~P !~T !~D"
+color index_subject color243 color8 "~Q !~T !~D"
+color index_author color243 color8 "~Q !~T !~D"
+
+# new message
+color index cyan black ~N
+color index_subject cyan black "~N !~T !~D"
+color index_author  cyan black "~N !~T !~D"
+
+color index_subject color142 color8 "~O !~T !~D"
+color index_author color142 color8 "~O !~T !~D"
+color index_subject color214 color8 "~F !~T !~D"
+color index_author color214 color8 "~F !~T !~D"
+color index_subject brightcolor214 color8 "~F ~N !~T !~D"
+color index_author  brightcolor214 color8 "~F ~N !~T !~D"
+color index_subject color167 color8 "~= !~T !~D"
+color index_author color167 color8 "~= !~T !~D"
+color index_subject brightcolor109 color8 "~P ~N !~T !~D"
+color index_author brightcolor109 color8 "~P ~N !~T !~D"
+color index color8 color223 "~T"
+color index color229 color124 "~D"

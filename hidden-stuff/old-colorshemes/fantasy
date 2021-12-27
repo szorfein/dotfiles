@@ -1,0 +1,20 @@
+*color0: #2a2720
+*color1: #b47f6f
+*color2: #9f8270
+*color3: #fae0cf
+*color4: #989086
+*color5: #af8787
+*color6: #8c8078
+*color7: #a59887
+*color8: #2a2720
+*color9: #b47f6f
+*color10: #9f8270
+*color11: #fae0cf
+*color12: #989086
+*color13: #af8787
+*color14: #8c8078
+*color15: #a59887
+*background: #1a1512
+*foreground: #f4d3bd
+rofi.color-normal: argb:00000000, #fae0cf, argb:00000000, #2a2720, #fae0cf
+rofi.color-window: #1a1512, #000000, #832757

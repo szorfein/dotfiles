@@ -1,0 +1,41 @@
+! Special
+*background:    #0a050f
+*foreground:    #dcd1c0
+*.cursorColor:  #6a605c
+
+! black
+*color0: #141c23
+*color8: #1d2730
+
+! Red
+*color1: #994c42
+*color9: #af5245
+
+! Green
+*color2: #65835b
+*color10: #759769
+
+! Yellow
+*color3: #cfb881
+*color11: #e5ca8c
+
+! Blue
+*color4: #4b536b
+*color12: #596483
+
+! Magenta
+*color5:  #572557
+*color13: #6a2771
+
+! Cyan
+*color6: #509288
+*color14: #5f9890
+
+! White
+*color7:  #a79e88
+*color15: #bcb299
+
+! Rofi
+!                                   fg                    bgSelect fgSelect
+rofi.color-normal: argb:00000000, #a79e88, argb:00000000, #141c23,#bcd299
+rofi.color-window: argb:ee0a050f, #000000, #832757

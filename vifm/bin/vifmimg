@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+
+set -o errexit -o nounset
+
+CACHE="$HOME/.cache/vifm/thumbnail.$(stat --printf '%n\0%i\0%F\0%s\0%W\0%Y' -- "$(readlink -f "$PWD/$6")" | sha256sum | awk '{print $1}'))"
+
+pclear() {
+  declare -p -A cmd=([action]=remove [identifier]="vifm-preview") \
+    > "$FIFO_UEBERZUG"
+}
+
+image() {
+  declare -p -A cmd=([action]=add [identifier]="vifm-preview" \
+    [x]="$2" [y]="$3" [width]="$4" [height]="$5" \
+    [path]="$6") \
+    > "$FIFO_UEBERZUG"
+}
+
+main() {
+  case "$1" in
+    "clear") pclear "$@" ;;
+    "draw")
+			FILE="$PWD/$6"
+			image "$1" "$2" "$3" "$4" "$5" "$FILE"
+			;;
+    "video")
+      [ -f "$CACHE" ] || ffmpegthumbnailer -i "$6" -o "${CACHE}.jpg" -s 0 -q 5
+      image "$1" "$2" "$3" "$4" "$5" "${CACHE}.jpg"
+			;;
+    "pdf")
+			[ -f "${CACHE}.jpg" ] || pdftoppm -jpeg -f 1 -singlefile "$6" "$CACHE"
+      image "$1" "$2" "$3" "$4" "$5" "${CACHE}.jpg"
+			;;
+    "audio")
+      [ -f "${CACHE}.jpg" ] || ffmpeg -i "$6" "${CACHE}.jpg" -y &> /dev/null
+      image "$1" "$2" "$3" "$4" "$5" "${CACHE}.jpg"
+			;;
+    "font")
+      [ -f "${CACHE}.jpg" ] || fontpreview -i "$6" -o "${CACHE}.jpg"
+			image "$1" "$2" "$3" "$4" "$5" "${CACHE}.jpg"
+			;;
+    *)
+      echo "Unknown command: $@"
+			;;
+  esac
+}
+
+main "$@"

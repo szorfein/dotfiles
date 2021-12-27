@@ -1,0 +1,31 @@
+#! /bin/sh
+
+# Eg of script for redirect local connection over a SSH tunnel with autossh tools
+
+autosshBin="/usr/bin/autossh"
+host=$(uname -n)
+ssh="${USER:?}@${host:?}"
+
+AUTOSSH_GATETIME=0
+
+# choose random port between 45000-60000
+portWeb=45150
+portGmailImap=45200
+portGmailSmtp=45250
+tor=45300
+
+# host by <host>:<ip>
+proxy="127.0.0.1:3128" # squid, privoxy is 8118
+gmailImap="64.233.184.109:993" # imaps.gmail.com
+
+# Web: web browser must be configure for use proxy port localhost:39901
+# redirect to privoxy on port 8118
+${autosshBin} -M -0 -NL ${portWeb}:${proxy} -o TCPKeepAlive=yes ${ssh} &
+
+# Mail: use local port 39902
+# redirect to imaps.google:993
+${autosshBin} -M -0 -NL ${portGmailImap}:${gmailImap} -o TCPKeepAlive=yes ${ssh} &
+
+# Tor with gnupg keyserver 
+# gnupg search on default port 9050, if you use an another port, you must use a tunnel
+${autosshBin} -M 0 -NL 9050:localhost:${tor} -o TCPKeepAlive=yes ${ssh} &

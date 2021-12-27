@@ -1,0 +1,128 @@
+#!/usr/bin/env bash
+
+# this is a simple config for herbstluftwm
+
+source $(dirname $0)/config
+
+hc() {
+    herbstclient "$@"
+}
+
+hc emit_hook reload
+
+#xsetroot -solid '#5A8E3A'
+
+# remove all existing keybindings
+hc keyunbind --all
+
+# keybindings
+Mod=Mod4    # Use alt as the main modifier
+
+# sxhkd
+sxhkd_conf=~/.config/herbstluftwm/sxhkdrc 
+sxhkd -c ${sxhkd_conf} &
+
+# tags (fr...)
+tag_names=( {1..6} )
+tag_keys=( ampersand eacute quotedbl apostrophe parenleft minus )
+# tags (en)
+#tag_names=( {1..6} )
+#tag_keys=( {1..6} 0 )
+
+hc rename default "${tag_names[0]}" || true
+for i in ${!tag_names[@]} ; do
+    hc add "${tag_names[$i]}"
+    key="${tag_keys[$i]}"
+    if ! [ -z "$key" ] ; then
+        hc keybind "$Mod-$key" use_index "$i"
+        hc keybind "$Mod-Shift-$key" move_index "$i"
+    fi
+done
+
+# mouse
+hc mouseunbind --all
+hc mousebind $Mod-Button1 move
+hc mousebind $Mod-Button2 zoom
+hc mousebind $Mod-Button3 resize
+herbstclient set focus_follows_mouse 1
+
+# theme
+hc attr theme.tiling.reset 1
+hc attr theme.floating.reset 1
+
+hc set frame_border_active_color '#353535'
+hc set frame_border_normal_color '#101010'
+hc set frame_bg_normal_color '#202020'
+hc set frame_bg_active_color '#6c3b41'
+
+# border
+hc set always_show_frame 1
+hc set frame_bg_transparent 1
+hc set frame_border_width 0
+hc set gapless_grid 1
+hc set frame_gap -3
+hc set window_gap -3
+hc set frame_padding 16
+hc set smart_window_surroundings 0
+hc set smart_frame_surroundings 0
+
+hc set frame_transparent_width 0
+hc set frame_active_opacity 1
+hc set frame_normal_opacity 0
+
+hc attr theme.active.color '#353535'
+hc attr theme.normal.color '#252525'
+hc attr theme.urgent.color '#555555'
+hc attr theme.inner_width 0
+hc attr theme.inner_color '#202020'
+hc attr theme.outer_width 0
+hc attr theme.border_width 0
+hc attr theme.floating.border_width 0
+hc attr theme.floating.outer_width 0
+hc attr theme.floating.outer_color black
+hc attr theme.active.inner_color black
+hc attr theme.active.outer_color black
+hc attr theme.background_color '#ffffff'
+
+hc set mouse_recenter_gap 0
+
+# rules
+hc unrule -F
+hc rule focus=on # normally focus new clients
+
+# Gimp 
+hc load 5 '
+    (split horizontal:0.850000:0
+    (split horizontal:0.200000:1
+    (clients vertical:0)
+    (clients grid:0))
+    (clients vertical:0))
+'
+# center all other gimp windows on gimp tag
+hc rule class=Gimp tag=5 index=01 pseudotile=on
+hc rule class=Gimp windowrole~'gimp-(image-window|toolbox|dock)' pseudotile=off
+hc rule class=Gimp windowrole=gimp-toolbox focus=off index=00
+hc rule class=Gimp windowrole=gimp-dock focus=off index=1
+hc rule class=mpv focus=on
+hc rule class=sxiv focus=on 
+hc rule title="Open Image" pseudotile=on
+hc rule title="Save As" pseudotile=on
+hc rule title="Save file" pseudotile=on
+
+hc rule windowtype~'_NET_WM_WINDOW_TYPE_(DIALOG|UTILITY|SPLASH)' pseudotile=on
+hc rule windowtype='_NET_WM_WINDOW_TYPE_DIALOG' focus=on
+hc rule windowtype~'_NET_WM_WINDOW_TYPE_(NOTIFICATION|DOCK|DESKTOP)' manage=off
+
+hc unlock
+
+herbstclient set tree_style '╾│ ├└╼─┐'
+
+# do multi monitor setup here, e.g.:
+# hc set_monitors 1280x1024+0+0 1280x1024+1280+0
+# or simply:
+# hc detect_monitors
+
+for monitor in $(herbstclient list_monitors | cut -d: -f1) ; do
+    $(dirname $0)/panel.sh &
+    $(dirname $0)/panel-bottom.sh &
+done

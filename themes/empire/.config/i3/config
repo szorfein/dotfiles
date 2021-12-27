@@ -1,0 +1,192 @@
+# i3 config file (v4)
+
+set $mod Mod4
+
+gaps outer 64
+gaps inner 7
+
+for_window [class="^.*"] border pixel 1
+for_window [class=".*"] title_format " >_ %title "
+
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below.
+font -*-dina-medium-r-*-*-8-*-*-*-*-*-*-*
+
+# Window colors           border  background   text  indicator  child_border
+client.focused            #383838 #302f3e #BBBBBB #4F4F4F #302f3e
+client.focused_inactive   #1A1A1A #0f0a13 #424242 #121212 #201a28
+client.unfocused          #030706 #0f0a13 #4F4F4F #4F4F4F #201a28
+client.urgent             #1A1A1A #0f0a13 #a5a5a5 #1A1A1A #d34680
+client.background         #0f0a13
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# start a terminal, export TERMINAL=WhatYouUse in your bashrc | zshrc
+bindsym $mod+Return exec i3-sensible-terminal
+
+# kill focused window
+bindsym $mod+Z kill
+
+# Program Launcher
+bindsym $mod+d exec /usr/bin/rofi -show run
+
+# change focus ( vim style )
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+h focus left
+bindsym $mod+l focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+j move left
+bindsym $mod+Shift+k move down
+bindsym $mod+Shift+l move up
+bindsym $mod+Shift+M move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split in horizontal orientation
+bindsym $mod+m split h
+
+# split in vertical orientation
+bindsym $mod+n split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+#bindsym $mod+z layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+q focus parent
+
+# focus the child container
+#bindsym $mod+d focus child
+
+# Define names for default workspaces for which we configure key bindings later on.
+# We use variables to avoid repeating the names in multiple places.
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+bindsym $mod+Tab workspace back_and_forth
+
+# switch to workspace
+bindsym $mod+ampersand workspace $ws1
+bindsym $mod+eacute workspace $ws2
+bindsym $mod+quotedbl workspace $ws3
+bindsym $mod+apostrophe workspace $ws4
+bindsym $mod+parenleft workspace $ws5
+bindsym $mod+minus workspace $ws6
+bindsym $mod+egrave workspace $ws7
+bindsym $mod+underscore workspace $ws8
+bindsym $mod+ccedilla workspace $ws9
+bindsym $mod+agrave workspace $ws10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+eacute move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+egrave move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+ccedilla move container to workspace $ws9
+bindsym $mod+Shift+agrave move container to workspace $ws10
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym j resize shrink width 1 px or 1 ppt
+        bindsym k resize grow height 1 px or 1 ppt
+        bindsym l resize shrink height 1 px or 1 ppt
+        bindsym m resize grow width 1 px or 1 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 1 px or 1 ppt
+        bindsym Down resize grow height 1 px or 1 ppt
+        bindsym Up resize shrink height 1 px or 1 ppt
+        bindsym Right resize grow width 1 px or 1 ppt
+
+        # back to normal: Enter or Escape or $mod+r
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+#
+# my shortcut
+#
+
+bindsym Mod1+Ctrl+Up exec mpc volume +2
+bindsym Mod1+Ctrl+Down exec mpc volume -2
+bindsym Mod1+Ctrl+Left exec mpc prev
+bindsym Mod1+Ctrl+Right exec mpc next
+bindsym Mod1+Shift+d exec mpc del 0
+bindsym Mod5+F8 exec xbacklight -1
+bindsym Mod5+F9 exec xbacklight +1
+
+#
+# Wm Layout
+#
+
+for_window [class="Lxappearance"] floating enable
+for_window [class="Sxiv|feh"] floating enable
+for_window [class="mpv"] floating enable
+for_window [class="XFontSel"] floating enable
+for_window [class="Gimp"] floating enable
+for_window [class="Abiword"] floating enable
+for_window [class="Zathura"] floating enable
+for_window [class="Vivaldi-stable"] border pixel 1
+
+assign [class="Vivaldi-stable"] → $ws2
+assign [class="Gimp"] → $ws5
+
+#
+# Exec at startup
+#
+
+# Polybar
+exec_always --no-startup-id ~/.config/polybar/launch.sh i3
+exec --no-startup-id compton -b
+exec --no-startup-id feh --bg-scale images/empire.jpg

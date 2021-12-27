@@ -1,0 +1,10 @@
+ws-icon-0 = I;
+ws-icon-1 = II;
+ws-icon-2 = III;
+ws-icon-3 = IV;
+ws-icon-4 = V;
+ws-icon-5 = VI;
+label-focused = "%icon% %name%"
+label-unfocused = "%icon% %name%"
+label-visible = "%icon% %name"
+label-urgent = "%icon% %name%"

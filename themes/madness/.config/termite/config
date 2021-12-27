@@ -1,0 +1,52 @@
+[options]
+audible_bell = false
+clickable_url = true
+dynamic_title = true
+font = Dina Regular 10
+fullscreen = true
+#mouse_autohide = true
+scrollback_lines = 1000
+browser = vivaldi
+size_hints = false
+filter_unmatched_urls = true
+
+[colors]
+cursor = #553b7b
+cursor_foreground = #ffffff
+foreground = #afe1d2
+background = #151d22
+highlight = #116666
+
+#: black
+color0 = #1d282f
+color8 = #344048
+
+#: red
+color1 = #6b3659
+color9 = #874272
+
+#: green
+color2 = #396f5e
+color10 = #448773
+
+#: yellow
+color3 = #cbd59a
+color11 = #f0f8c9
+
+#: blue
+color4 = #364670
+color12 = #455a8e
+
+#: magenta
+color5 = #613a73
+color13 = #794b87
+
+#: cyan
+color6 = #1c6689
+color14 = #207ba2
+
+#: white
+color7 = #93cfbd
+color15 = #b8eadb
+
+[hints]

@@ -1,0 +1,4 @@
+colorscheme darkest-space
+
+" update colorscheme with F8
+map <F8> :update<CR>:colorscheme darkest-space<CR>

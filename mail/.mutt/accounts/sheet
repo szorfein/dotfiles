@@ -1,0 +1,4 @@
+set from            = "sheet@europe.com"
+set sendmail        = "/usr/bin/msmtp -a sheet"
+set mbox            = "+sheet/archive"
+set postponed       = "+sheet/drafts"

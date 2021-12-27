@@ -1,0 +1,23 @@
+unmy_hdr *
+unset use_from
+unset use_domain
+unset user_agent
+
+set sendmail        = "/usr/bin/msmtp -a gmail"
+set spoolfile       = "+gmail/INBOX"
+set from            = "username@gmail.com"
+set mbox            = "+gmail/archive"
+set postponed       = "+gmail/drafts"
+set record          = "+gmail/sent"
+set trash           = "+gmail/trash"
+
+# Personal infos
+set hostname=""
+set realname="..."
+set signature="+@ ..."
+
+my_hdr X-Info: .. .. ..
+#my_hdr X-Operating-System .. .. ..
+my_hdr User-Agent: .. .. ..
+my_hdr X-PGP-Key: https://anylink.com/key.asc
+my_hdr Organization: Github for now.

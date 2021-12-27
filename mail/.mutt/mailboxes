@@ -1,0 +1,4 @@
+mailboxes \
+    "+Sheet/INBOX" \
+    "+Gmail/INBOX" \
+    "+Work/INBOX"

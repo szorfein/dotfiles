@@ -1,0 +1,23 @@
+# Sample minimal config file.  Copy this to ~/.offlineimaprc and edit to
+# get started fast.
+
+[general]
+accounts = Gmail
+pythonfile = ~/.offlineimap.py
+
+[Account Gmail]
+localrepository = Local
+remoterepository = Remote
+
+[Repository Local]
+type = GmailMaildir
+localfolders = ~/.mails/gmail
+
+[Repository Remote]
+type = Gmail
+auth_mechanisms = LOGIN
+remoteuser = szorfein@gmail.com
+remotepasseval = get_pass()
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+ssl_version = tls1_2
+#transporttunnel = ssh yagdra@localhost openssl s_client -connect localhost -CApath /etc/ssl/certs -quiet

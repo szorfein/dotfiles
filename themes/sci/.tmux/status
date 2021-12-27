@@ -1,0 +1,7 @@
+# Status 
+set -g status-right '#[fg=cyan]  sci '
+set -g status-justify left
+
+# Window Status
+setw -g window-status-format '#[fg=blue]#[fg=black,bold,bg=blue] #I #[fg=blue,bg=black]#[fg=white,bg=black] #W '
+setw -g window-status-current-format '#[fg=cyan]#[fg=black,bold,bg=cyan] #I #[fg=cyan,bg=black]#[fg=cyan,bg=black] #W '

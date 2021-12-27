@@ -1,0 +1,72 @@
+! Links
+! material color: https://material.io/inline-tools/color/
+! theme maker: https://coolors.co
+! Contrast Ratio: https://contrast-ratio.com/
+! search triadic, complementary, etc: https://htmlcolorcodes.com/color-picker/
+! colors: https://mycolor.space/
+! mix colors: https://colordesigner.io/color-mixer
+
+#define base00 #0a121d
+#define base01 #0D1726
+#define base02 #223248
+#define base03 #6959C1
+#define base04 #8992A5
+#define base05 #C4CCE3
+#define base06 #DEE7FF
+#define base08 #95cf72
+#define base09 #dab667
+#define base0A #FF9A67
+#define base0B #F8649A
+#define base0C #958AF9
+#define base0D #ef5dde
+#define base0E #C872FD
+#define base0F #A785F2
+
+! Base
+*background: base00
+*foreground: base05
+
+! Black
+*color0: base01
+*color8: base02
+
+! Red
+*color1: base08
+*color9: base08
+
+! Green
+*color2:  base0B
+*color10: base0B
+
+! Yellow
+*color3:  base0A
+*color11: base09
+
+! Blue
+*color4:  base03
+*color12: base0C
+
+! Magenta
+*color5:  base0D
+*color13: base0D
+
+! Cyan
+*color6:  base0E
+*color14: base0F
+
+! White
+*color7:  base05
+*color15: base06
+
+*color16: base09
+*color17: base0F
+
+! Grey
+*color18: base01
+*color19: base02
+
+! dark fg
+*color20: base04
+
+! light fg
+*color21: base06

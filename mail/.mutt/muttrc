@@ -1,0 +1,96 @@
+# Basics
+set mbox_type=Maildir
+set folder=~/.mails
+set spoolfile="+gmail/INBOX"
+set editor="vim -c 'set syntax=mail ft=mail enc=utf-8'"
+ignore *
+unignore from: to: cc: date: subject:
+hdr_order from: to: cc: date: subject:
+set index_format="%4C %Z %{%b %d} %-16.16L  %s"
+
+# Shortcut vi like
+#bind pager j next-line
+#bind pager k previous-line
+bind attach,index,pager \CD next-page
+bind attach,index,pager \CU previous-page
+bind pager g top
+bind pager G bottom
+bind attach,index g first-entry
+bind attach,index G last-entry
+
+# menu for encryp of not mail
+bind compose p pgp-menu
+
+# GPG
+set crypt_use_gpgme = yes
+set pgp_use_gpg_agent = yes
+# sign key [S]
+set pgp_sign_as = 0xFD696BDDAA8FDC50
+# encrypt key [E]
+set pgp_self_encrypt_as = 0xE2ADD2080A6B28AE
+set pgp_good_sign="^\\[GNUPG:\\] GOODSIG"
+set pgp_timeout = 600
+set crypt_autosign = yes
+set crypt_replysignencrypted = yes
+set crypt_verify_sig = yes
+# copy file from /usr/share/doc/mutt/samples/gpg.rc
+source ~/.mutt/gpg.rc
+
+# Status bar
+set status_chars=" *%A"
+#set status_format="───[ Folder: %f ]───[%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]───%>─%?p?( %p postponed )?───"
+
+# Index view
+set mail_check = 0
+set sort=threads
+set sort_aux=reverse-last-date-received
+set uncollapse_jump
+set strict_threads
+set thorough_search
+
+# Enable features
+set askcc
+set delete
+set edit_headers
+set envelope_from
+set fast_reply
+set forward_format = "Fwd: %s"
+set forward_quote
+set include
+set hidden_host
+set menu_scroll
+set mime_forward = ask-no
+set pager_index_lines = 4
+set pager_context = 2
+set pager_stop
+set pipe_decode
+set reply_to
+set reverse_name
+set sendmail_wait = -1
+set send_charset="utf-8"
+set sendmail="/usr/bin/msmtp"
+set tilde
+
+# Disable features
+unset confirmappend
+unset copy
+unset move
+unset help
+unset mark_old
+unset markers
+unset sleep_time
+unset sort_re
+unset use_from
+unset use_domain
+unset user_agent
+unset wait_key
+unset record
+
+# Colors
+source ~/.mutt/colors
+
+# Mailboxes
+source ~/.mutt/mailboxes
+
+# Default account
+folder-hook gmail/* source ~/.mutt/accounts/gmail

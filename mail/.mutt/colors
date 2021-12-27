@@ -1,0 +1,49 @@
+color normal default default
+color indicator yellow black
+color tree brightred default
+color status brightgreen black
+
+mono bold bold 
+
+# Index
+color index blue default "~N" # NEW  
+color index magenta default "~U" # UNREAD
+color index cyan default "~R" # READ
+
+# URL 
+color body brightgreen black "(http|ftp|news|telnet|finger)://[^ \"\t\r\n]*"
+color body brightgreen black "mailto:[-a-z_0-9.]+@[-a-z_0-9.]+"
+mono body bold "(http|ftp|news|telnet|finger)://[^ \"\t\r\n]*"
+mono body bold "mailto:[-a-z_0-9.]+@[-a-z_0-9.]+"
+
+# Email address
+color body brightgreen black "[-a-z_0-9.%$]+@[-a-z_0-9.]+\\.[-a-z][-a-z]+"
+
+# Header ( press h in mutt for view )
+color hdrdefault blue default
+color header white default "^(From)"
+color header yellow default "^(Subject)"
+color header brightgreen default "^(User-*)"
+color header red default "^(Envelope-To)"
+color header red default "^(To)"
+color header white default "^(Return-Path)"
+color header brightmagenta default "^(Date)"
+
+# PGP
+color body red default "(BAD signature)"
+color body cyan default "(Good signature)"
+color body brightblack default "^gpg: Good signature .*"
+color body brightyellow default "^gpg: "
+color body brightyellow red "^gpg: BAD signature from.*"
+mono body bold "^gpg: Good signature"
+mono body bold "^gpg: BAD signature from.*"
+
+# Quoted text
+color quoted cyan default
+color quoted1 yellow black
+color quoted2 red black
+color quoted3 green black
+color quoted4 cyan black
+color quoted5 yellow black
+color quoted6 red black
+color quoted7 green black

@@ -1,0 +1,13 @@
+#!/bin/sh
+
+# Open weechat and mutt in the same terminal with tmux
+
+tmux new-session -s mc -d && \
+tmux send-keys "weechat" "C-m" && \
+tmux rename-window 'Weechat' && \
+tmux split-window -t mc:1 && \
+tmux break-pane && \
+tmux send-keys "mutt" "C-m" && \
+tmux rename-window 'Mutt' && \
+tmux -2 attach-session -t mc
+exit 0

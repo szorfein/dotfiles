@@ -1,0 +1,26 @@
+; modules
+modules-left = dns tor rldTor volume
+modules-center = wave mpd mpd-music wave
+modules-right = netstat wlan eth
+
+; others
+width = 90%
+height = 19
+offset-x = 5%
+offset-y = 3  
+background = ${colors.background-alt}
+foreground = ${colors.foreground-alt}
+font-0 = "Iosevka Term:style=Regular:size=6;2"
+font-1 = "Material Icons:antialias=false:size=8;4"
+border-top-size = 1
+border-top-color = ${colors.border}
+border-size = 0
+padding-left = 4
+padding-right = 4
+module-margin-left = 1
+module-margin-right = 1
+line-size = 0
+bottom = false
+cursor-click = pointer
+cursor-scroll = ns-resize
+separator = "  "

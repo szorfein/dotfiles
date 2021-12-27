@@ -1,0 +1,33 @@
+; modules
+modules-left = hostname ewmh
+modules-center = line-l date line-r
+modules-right = uptime mail memory battery powermenu
+
+; others
+width = 92% 
+heigth = 0
+offset-x = 4%
+offset-y = 6px
+border-top-size = 4
+border-bottom-size = 3
+border-bottom-color= #3c2841
+border-top-color = ${colors.background}
+radius = 0
+fixed-center = true
+background = ${colors.background}
+foreground = ${colors.foreground}
+line-size = 0
+line-color = #f00
+padding-left = 1
+padding-right = 1
+module-margin-left = 0
+module-margin-right = 0
+font-0 = Liberation Mono:style=Regular:pixelsize=7;1
+font-1 = RobotoMono Nerd Font Mono:style=Bold:pixelsize=8;2
+font-2 = Material Icons:antialias=false:size=7;2
+tray-position = right
+tray-padding = 2
+override-redirect = true
+cursor-click = pointer
+cursor-scroll = ns-resize
+separator = " "

@@ -1,0 +1,8 @@
+#! /bin/bash
+
+# Check if it's a pipe, otherwise create it
+[[ -p $PANEL_FIFO ]] && rm "$PANEL_FIFO"
+
+while true ; do
+   bspwm || break
+done
