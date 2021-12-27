@@ -47,13 +47,9 @@ Here all the vim plugins i use:
 |[lightline](https://github.com/itchyny/lightline.vim) | top, bottom bar |[vim-gitgutter](https://github.com/airblade/vim-gitgutter) | git diff in sign column |[nerdtree](https://github.com/scrooloose/nerdtree) | tree explorer |
 |[lightline-bufferline](https://github.com/mengelbrecht/lightline-bufferline) | extend lightline | | |
 
-#### To install vim.plug, you can use
+#### To install vim.plug and all plugins
 
     ./install --vim
-
-To install all vim plugins, use this:
-  
-    $ vim -c PlugUpdate -c qa
 
 ## Shell
 For the shell, i use `zsh` with plugins [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh) with [spaceship-prompt](https://github.com/denysdovhan/spaceship-prompt).  
