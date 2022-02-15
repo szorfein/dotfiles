@@ -18,6 +18,9 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
 
+-- Globally md (Material Design)
+md = require("material")
+
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -30,7 +33,7 @@ end
 -- Handle runtime errors after startup
 do
   local in_error = false
-  awesome.connect_signal("debug::error", function (err)
+  awesome.connect_signal("debug::error", function(err)
     -- Make sure we don't go into an endless error loop
     if in_error then return end
     in_error = true
@@ -45,7 +48,8 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
+local home = os.getenv("HOME")
+beautiful.init( home .. "/.config/awesome/theme.lua" )
 
 -- This is used later as the default terminal and editor to run.
 terminal = "xterm"
