@@ -4,6 +4,7 @@
 
 local theme_assets = require("beautiful.theme_assets")
 local xresources = require("beautiful.xresources")
+local gears = require('gears')
 local dpi = xresources.apply_dpi
 
 local gfs = require("gears.filesystem")
@@ -27,7 +28,7 @@ theme.fg_minimize   = md.sys.color.on_surface .. md.sys.state.disable_content_op
 theme.useless_gap   = dpi(0)
 theme.border_width  = dpi(1)
 theme.border_normal = md.sys.color.shadow
-theme.border_focus  = md.sys.color.on_background .. md.sys.state.hover_state_layer_opacity
+theme.border_focus  = md.sys.color.surface_variant
 theme.border_marked = md.sys.color.inverse_surface
 
 -- There are other variable sets
@@ -42,14 +43,17 @@ theme.border_marked = md.sys.color.inverse_surface
 -- hotkeys_[bg|fg|border_width|border_color|shape|opacity|modifiers_fg|label_bg|label_fg|group_margin|font|description_font]
 -- Example:
 --theme.taglist_bg_focus = "#ff0000"
+theme.taglist_shape_focus = function(cr, width, height)
+  gears.shape.rounded_rect(cr, width, height, dpi(28))
+end
 
 -- Generate taglist squares:
-local taglist_square_size = dpi(4)
+local taglist_square_size = dpi(8)
 theme.taglist_squares_sel = theme_assets.taglist_squares_sel(
-  taglist_square_size, theme.fg_normal
+  taglist_square_size, md.sys.color.error
 )
 theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
-  taglist_square_size, theme.fg_normal
+  taglist_square_size, md.sys.color.error
 )
 
 -- Variables set for theming notifications:

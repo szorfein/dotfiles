@@ -73,7 +73,7 @@ theme.sys = {
     body_large = {},
     body_medium = {
       font = 'Iosevka Medium',
-      size = 14
+      size = 12
     },
     body_small = {},
   },

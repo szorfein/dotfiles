@@ -20,6 +20,7 @@ require("awful.hotkeys_popup.keys")
 
 -- Globally md (Material Design)
 md = require("material")
+dpi = beautiful.xresources.apply_dpi
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -169,7 +170,7 @@ awful.screen.connect_for_each_screen(function(s)
   set_wallpaper(s)
 
   -- Each screen has its own tag table.
-  awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
+  awful.tag({ "󰆍", "󰖟", "󰈙", "󰎁", "󰆧" }, s, awful.layout.layouts[1])
 
   -- Create a promptbox for each screen
   s.mypromptbox = awful.widget.prompt()
@@ -177,16 +178,52 @@ awful.screen.connect_for_each_screen(function(s)
   -- We need one layoutbox per screen.
   s.mylayoutbox = awful.widget.layoutbox(s)
   s.mylayoutbox:buttons(gears.table.join(
-    awful.button({}, 1, function () awful.layout.inc( 1) end),
-    awful.button({}, 3, function () awful.layout.inc(-1) end),
-    awful.button({}, 4, function () awful.layout.inc( 1) end),
-    awful.button({}, 5, function () awful.layout.inc(-1) end)
+    awful.button({}, 1, function() awful.layout.inc( 1) end),
+    awful.button({}, 3, function() awful.layout.inc(-1) end),
+    awful.button({}, 4, function() awful.layout.inc( 1) end),
+    awful.button({}, 5, function() awful.layout.inc(-1) end)
   ))
   -- Create a taglist widget
   s.mytaglist = awful.widget.taglist {
     screen  = s,
     filter  = awful.widget.taglist.filter.all,
-    buttons = taglist_buttons
+    buttons = taglist_buttons,
+    style   = {
+      shape = function(cr, width, height)
+        gears.shape.rounded_rect(cr, width, height, dpi(16))
+      end,
+      fg_focus = md.sys.color.on_secondary_container,
+      bg_focus = md.sys.color.secondary_container,
+      fg_empty = md.sys.color.on_surface_variant,
+    },
+    layout = {
+      layout = wibox.layout.fixed.vertical
+    },
+    widget_template = {
+      {
+        {
+          id = 'text_role',
+          align = 'center',
+          widget = wibox.widget.textbox,
+        },
+        widget = wibox.container.margin
+      },
+      id = 'background_role',
+      forced_height = dpi(56),
+      forced_width = dpi(56),
+      widget = wibox.container.background,
+      create_callback = function(self, c3, index, objects) --luacheck: no unused args
+        self:get_children_by_id('text_role')[1].markup = '<b> '..index..' </b>'
+        self:connect_signal('mouse::enter', function()
+        end)
+        self:connect_signal('mouse::leave', function()
+        end)
+        self:connect_signal('mouse::press', function()
+        end)
+      end,
+      update_callback = function(self, c3, index, objects) --luacheck: no unused args
+      end,
+    },
   }
 
   -- Create a tasklist widget
@@ -205,7 +242,6 @@ awful.screen.connect_for_each_screen(function(s)
     { -- Left widgets
       layout = wibox.layout.fixed.horizontal,
       mylauncher,
-      s.mytaglist,
       s.mypromptbox,
     },
     s.mytasklist, -- Middle widget
@@ -217,12 +253,27 @@ awful.screen.connect_for_each_screen(function(s)
       s.mylayoutbox,
     },
   }
+
+  s.rail = awful.wibar({ position = 'left', width = dpi(80), screen = s })
+  s.rail:setup {
+    layout = wibox.layout.align.vertical,
+    {
+      nil,
+      {
+        nil,
+        s.mytaglist,
+        expand = 'none',
+        layout = wibox.layout.align.horizontal
+      },
+      layout = wibox.layout.fixed.vertical
+    },
+  }
 end)
 -- }}}
 
 -- {{{ Mouse bindings
 root.buttons(gears.table.join(
-  awful.button({}, 3, function () mymainmenu:toggle() end),
+  awful.button({}, 3, function() mymainmenu:toggle() end),
   awful.button({}, 4, awful.tag.viewnext),
   awful.button({}, 5, awful.tag.viewprev)
 ))
@@ -368,7 +419,8 @@ clientkeys = gears.table.join(
 -- Bind all key numbers to tags.
 -- Be careful: we use keycodes to make it work on any keyboard layout.
 -- This should map on the top row of your keyboard, usually 1 to 9.
-for i = 1, 9 do
+local ntag = 5
+for i = 1, ntag do
   globalkeys = gears.table.join(globalkeys,
     -- View tag only.
     awful.key({ modkey }, "#" .. i + 9, function()
@@ -415,7 +467,7 @@ for i = 1, 9 do
 end
 
 clientbuttons = gears.table.join(
-  awful.button({ }, 1, function(c)
+  awful.button({}, 1, function(c)
     c:emit_signal("request::activate", "mouse_click", { raise = true })
   end),
   awful.button({ modkey }, 1, function(c)
@@ -486,8 +538,9 @@ awful.rules.rules = {
   },
 
   -- Set Firefox to always map on the tag named "2" on screen 1.
-  -- { rule = { class = "Firefox" },
-  --   properties = { screen = 1, tag = "2" } },
+  { rule = { class = "Firefox" },
+    properties = { screen = 1, tag = "2" }
+  },
 }
 -- }}}
 
@@ -510,11 +563,11 @@ end)
 client.connect_signal("request::titlebars", function(c)
   -- buttons for the titlebar
   local buttons = gears.table.join(
-    awful.button({ }, 1, function()
+    awful.button({}, 1, function()
       c:emit_signal("request::activate", "titlebar", {raise = true})
       awful.mouse.client.move(c)
     end),
-    awful.button({ }, 3, function()
+    awful.button({}, 3, function()
       c:emit_signal("request::activate", "titlebar", {raise = true})
       awful.mouse.client.resize(c)
     end)
@@ -548,7 +601,7 @@ end)
 
 -- Enable sloppy focus, so that focus follows mouse.
 client.connect_signal("mouse::enter", function(c)
-  c:emit_signal("request::activate", "mouse_enter", {raise = false})
+  c:emit_signal("request::activate", "mouse_enter", { raise = false })
 end)
 
 client.connect_signal("focus", function(c)
