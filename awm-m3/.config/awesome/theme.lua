@@ -12,7 +12,8 @@ local themes_path = gfs.get_themes_dir()
 
 local theme = {}
 
-theme.font          = md.sys.typescale.body_medium.font .. ' ' .. md.sys.typescale.body_medium.size
+theme.font = md.sys.typescale.body_medium.font
+  .. ' ' .. md.sys.typescale.body_medium.size
 
 theme.bg_normal     = md.sys.color.background
 theme.bg_focus      = md.sys.color.on_background .. md.sys.elevation.level1

@@ -68,7 +68,10 @@ theme.sys = {
     title_medium = {},
     title_small = {},
     label_large = {},
-    label_medium = {},
+    label_medium = {
+      font = 'Iosevka Medium',
+      size = dpi(14)
+    },
     label_small = {},
     body_large = {},
     body_medium = {

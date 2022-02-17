@@ -18,9 +18,24 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
 
--- Globally md (Material Design)
-md = require("material")
+-- Function to create object in lua - used globally
+local function new(self, ...)
+  local instance = setmetatable({}, { __index = self })
+  return instance:init(...) or instance
+end
+
+-- Function to create object in lua - used globally
+function class(base)
+  return setmetatable({ new = new }, { __call = new, __index = base })
+end
+
+-- Globally
 dpi = beautiful.xresources.apply_dpi
+md = require("material") -- md for Material Design
+
+-- {{{ Variable definitions
+-- Themes define colours, icons, font and wallpapers.
+beautiful.init( os.getenv('HOME') .. "/.config/awesome/theme.lua" )
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -46,10 +61,6 @@ do
   end)
 end
 -- }}}
-
--- {{{ Variable definitions
--- Themes define colours, icons, font and wallpapers.
-beautiful.init( os.getenv('HOME') .. "/.config/awesome/theme.lua" )
 
 -- This is used later as the default terminal and editor to run.
 terminal = "xterm"
@@ -195,6 +206,8 @@ awful.screen.connect_for_each_screen(function(s)
       fg_focus = md.sys.color.on_secondary_container,
       bg_focus = md.sys.color.secondary_container,
       fg_empty = md.sys.color.on_surface_variant,
+      font = md.sys.typescale.label_medium.font
+        .. ' ' .. md.sys.typescale.label_medium.size
     },
     layout = {
       layout = wibox.layout.fixed.vertical
@@ -254,11 +267,17 @@ awful.screen.connect_for_each_screen(function(s)
     },
   }
 
+  local fab = require('lib.mat.fab')
+  local search_app = fab({
+    content = '',
+    cmd = menubar.show,
+  })
+
   s.rail = awful.wibar({ position = 'left', width = dpi(80), screen = s })
   s.rail:setup {
     layout = wibox.layout.align.vertical,
     {
-      nil,
+      search_app,
       {
         nil,
         s.mytaglist,
