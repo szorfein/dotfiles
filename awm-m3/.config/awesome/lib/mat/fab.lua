@@ -76,12 +76,19 @@ function fab:hover()
   end)
 end
 
+function fab:pressed()
+  self.w:connect_signal('mouse::press', function()
+    self.states.bg = md.sys.color.on_primary_container .. md.sys.elevation.level3
+  end)
+end
+
 local main = class(fab)
 
 function main:init(args)
   fab.init(self, args)
   fab.on_press(self)
   fab.hover(self)
+  fab.pressed(self)
   return self.w
 end
 

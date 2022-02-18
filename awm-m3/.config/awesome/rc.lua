@@ -176,6 +176,8 @@ end
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", set_wallpaper)
 
+local fab = require('lib.mat.fab')
+
 awful.screen.connect_for_each_screen(function(s)
   -- Wallpaper
   set_wallpaper(s)
@@ -243,7 +245,64 @@ awful.screen.connect_for_each_screen(function(s)
   s.mytasklist = awful.widget.tasklist {
     screen  = s,
     filter  = awful.widget.tasklist.filter.currenttags,
-    buttons = tasklist_buttons
+    buttons = tasklist_buttons,
+    style = {
+      bg = md.sys.color.on_surface .. md.sys.elevation.level1,
+      shape = function(cr, width, height)
+        gears.shape.rounded_rect(cr, width, height, dpi(20))
+      end,
+      fg = md.sys.color.on_surface,
+      fg_focus = md.sys.color.primary
+    },
+    layout = {
+      spacing = dpi(24),
+      layout = wibox.layout.fixed.horizontal
+    },
+    widget_template = {
+      {
+        {
+          {
+            id = 'icon',
+            font = md.sys.typescale.label_large.font .. ' ' .. dpi(18),
+            widget = wibox.widget.textbox
+          },
+          {
+            id = 'name',
+            widget = wibox.widget.textbox
+          },
+          spacing = dpi(8),
+          layout = wibox.layout.fixed.horizontal
+        },
+        left = dpi(12), right = dpi(16),
+        widget = wibox.container.margin
+      },
+      id = 'background_role',
+      widget = wibox.container.background,
+      create_callback = function(self, c, index, objects) --luacheck: no unused args
+        if c.class == 'Firefox' then
+          self:get_children_by_id('icon')[1].text = ''
+          self:get_children_by_id('name')[1].text = 'firefox'
+        elseif c.class == 'Emacs' then
+          self:get_children_by_id('icon')[1].text = ''
+          self:get_children_by_id('name')[1].text = 'emacs'
+        elseif c.name:match('vim') then
+          self:get_children_by_id('icon')[1].text = ''
+          self:get_children_by_id('name')[1].text = 'vim'
+        elseif c.class == 'xst-256color' then
+          self:get_children_by_id('icon')[1].text = ''
+          self:get_children_by_id('name')[1].text = 'xst'
+        else
+          self:get_children_by_id('name')[1].text = c.name .. ' | ' .. c.class
+        end
+      end,
+      update_callback = function(self, c, index, objects) --luacheck: no unused args
+        if client.focus == c then
+          self.fg = md.sys.color.primary
+        else
+          self.fg = md.sys.color.on_surface
+        end
+      end
+    }
   }
 
   -- Create the wibox
@@ -252,6 +311,7 @@ awful.screen.connect_for_each_screen(function(s)
   -- Add widgets to the wibox
   s.mywibox:setup {
     layout = wibox.layout.align.horizontal,
+    expand = 'none',
     { -- Left widgets
       layout = wibox.layout.fixed.horizontal,
       mylauncher,
@@ -267,8 +327,7 @@ awful.screen.connect_for_each_screen(function(s)
     },
   }
 
-  local fab = require('lib.mat.fab')
-  local search_app = fab({
+  s.search_app = fab({
     content = '',
     cmd = menubar.show,
   })
@@ -276,16 +335,17 @@ awful.screen.connect_for_each_screen(function(s)
   s.rail = awful.wibar({ position = 'left', width = dpi(80), screen = s })
   s.rail:setup {
     layout = wibox.layout.align.vertical,
+    expand = 'none',
     {
-      search_app,
-      {
-        nil,
-        s.mytaglist,
-        expand = 'none',
-        layout = wibox.layout.align.horizontal
-      },
+      s.search_app,
       layout = wibox.layout.fixed.vertical
     },
+    {
+      nil,
+      s.mytaglist,
+      expand = 'none',
+      layout = wibox.layout.align.horizontal
+    }
   }
 end)
 -- }}}
@@ -576,6 +636,20 @@ client.connect_signal("manage", function(c)
     -- Prevent clients from being unreachable after screen count changes.
     awful.placement.no_offscreen(c)
   end
+
+  naughty.notify({ preset = naughty.config.presets.debug,
+  title = "client " .. c.name,
+  text = tostring(c.name) })
+
+  naughty.notify({ preset = naughty.config.presets.debug,
+  title = "client " .. #client.get(),
+  text = tostring(#client.get()) })
+
+  --local t = c.screen.selected_tag
+  local t = c.first_tag
+  naughty.notify({ preset = naughty.config.presets.debug,
+  title = "tag " .. tostring(t.name),
+  text = tostring(t.name) })
 end)
 
 -- Add a titlebar if titlebars_enabled is set to true in the rules.
