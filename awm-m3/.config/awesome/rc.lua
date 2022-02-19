@@ -18,6 +18,8 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
 
+local helpers = require('lib.helpers')
+
 -- Function to create object in lua - used globally
 local function new(self, ...)
   local instance = setmetatable({}, { __index = self })
@@ -177,6 +179,13 @@ end
 screen.connect_signal("property::geometry", set_wallpaper)
 
 local fab = require('lib.mat.fab')
+local function tasklist_colors(item, c)
+  if client.focus == c then
+    item.fg = md.sys.color.primary
+  else
+    item.fg = md.sys.color.on_surface
+  end
+end
 
 awful.screen.connect_for_each_screen(function(s)
   -- Wallpaper
@@ -202,9 +211,7 @@ awful.screen.connect_for_each_screen(function(s)
     filter  = awful.widget.taglist.filter.all,
     buttons = taglist_buttons,
     style   = {
-      shape = function(cr, width, height)
-        gears.shape.rounded_rect(cr, width, height, dpi(16))
-      end,
+      shape = helpers.rrect(dpi(16)),
       fg_focus = md.sys.color.on_secondary_container,
       bg_focus = md.sys.color.secondary_container,
       fg_empty = md.sys.color.on_surface_variant,
@@ -248,15 +255,7 @@ awful.screen.connect_for_each_screen(function(s)
     buttons = tasklist_buttons,
     style = {
       bg = md.sys.color.on_surface .. md.sys.elevation.level1,
-      shape = function(cr, width, height)
-        gears.shape.rounded_rect(cr, width, height, dpi(20))
-      end,
-      fg = md.sys.color.on_surface,
-      fg_focus = md.sys.color.primary
-    },
-    layout = {
-      spacing = dpi(24),
-      layout = wibox.layout.fixed.horizontal
+      shape = helpers.rrect(dpi(20))
     },
     widget_template = {
       {
@@ -268,6 +267,8 @@ awful.screen.connect_for_each_screen(function(s)
           },
           {
             id = 'name',
+            font = md.sys.typescale.label_large.font
+              .. ' ' .. md.sys.typescale.label_large.size,
             widget = wibox.widget.textbox
           },
           spacing = dpi(8),
@@ -291,40 +292,18 @@ awful.screen.connect_for_each_screen(function(s)
         elseif c.class == 'xst-256color' then
           self:get_children_by_id('icon')[1].text = ''
           self:get_children_by_id('name')[1].text = 'xst'
+        elseif c.class == 'feh' then
+          self:get_children_by_id('icon')[1].text = ''
+          self:get_children_by_id('name')[1].text = 'feh'
         else
           self:get_children_by_id('name')[1].text = c.name .. ' | ' .. c.class
         end
+        tasklist_colors(self, c)
       end,
       update_callback = function(self, c, index, objects) --luacheck: no unused args
-        if client.focus == c then
-          self.fg = md.sys.color.primary
-        else
-          self.fg = md.sys.color.on_surface
-        end
+        tasklist_colors(self, c)
       end
     }
-  }
-
-  -- Create the wibox
-  s.mywibox = awful.wibar({ position = "top", screen = s })
-
-  -- Add widgets to the wibox
-  s.mywibox:setup {
-    layout = wibox.layout.align.horizontal,
-    expand = 'none',
-    { -- Left widgets
-      layout = wibox.layout.fixed.horizontal,
-      mylauncher,
-      s.mypromptbox,
-    },
-    s.mytasklist, -- Middle widget
-    { -- Right widgets
-      layout = wibox.layout.fixed.horizontal,
-      mykeyboardlayout,
-      wibox.widget.systray(),
-      mytextclock,
-      s.mylayoutbox,
-    },
   }
 
   s.search_app = fab({
@@ -337,6 +316,13 @@ awful.screen.connect_for_each_screen(function(s)
     layout = wibox.layout.align.vertical,
     expand = 'none',
     {
+      {
+        text = '',
+        align = 'center',
+        font = md.sys.typescale.label_large.font .. ' ' .. dpi(24),
+        forced_width = dpi(48),
+        widget = wibox.widget.textbox
+      },
       s.search_app,
       layout = wibox.layout.fixed.vertical
     },
@@ -346,6 +332,26 @@ awful.screen.connect_for_each_screen(function(s)
       expand = 'none',
       layout = wibox.layout.align.horizontal
     }
+  }
+  -- Create the wibox
+  s.mywibox = awful.wibar({ position = "top", screen = s, height = dpi(40) })
+
+  -- Add widgets to the wibox
+  s.mywibox:setup {
+    layout = wibox.layout.align.horizontal,
+    expand = 'none',
+    { -- Left widgets
+      layout = wibox.layout.fixed.horizontal,
+      s.mypromptbox,
+    },
+    s.mytasklist, -- Middle widget
+    { -- Right widgets
+      layout = wibox.layout.fixed.horizontal,
+      mykeyboardlayout,
+      wibox.widget.systray(),
+      mytextclock,
+      s.mylayoutbox,
+    },
   }
 end)
 -- }}}
@@ -650,45 +656,64 @@ client.connect_signal("manage", function(c)
   naughty.notify({ preset = naughty.config.presets.debug,
   title = "tag " .. tostring(t.name),
   text = tostring(t.name) })
+
+  if not c.fullscreen and not c.maximized then
+    c.shape = helpers.rrect(dpi(12))
+  end
 end)
+
+local function no_round_corners(c)
+  if c.fullscreen or c.maximized then
+    c.shape = gears.shape.rectangle
+  else
+    c.shape = helpers.rrect(dpi(12))
+  end
+end
+
+client.connect_signal("property::fullscreen", no_round_corners)
+client.connect_signal("property::maximized", no_round_corners)
 
 -- Add a titlebar if titlebars_enabled is set to true in the rules.
 client.connect_signal("request::titlebars", function(c)
   -- buttons for the titlebar
   local buttons = gears.table.join(
     awful.button({}, 1, function()
-      c:emit_signal("request::activate", "titlebar", {raise = true})
+      c:emit_signal("request::activate", "titlebar", { raise = true })
       awful.mouse.client.move(c)
     end),
     awful.button({}, 3, function()
-      c:emit_signal("request::activate", "titlebar", {raise = true})
+      c:emit_signal("request::activate", "titlebar", { raise = true })
       awful.mouse.client.resize(c)
     end)
   )
 
   awful.titlebar(c) : setup {
-    { -- Left
-      awful.titlebar.widget.iconwidget(c),
-      buttons = buttons,
-      layout  = wibox.layout.fixed.horizontal
-    },
-    { -- Middle
-      { -- Title
-        align  = "center",
-        widget = awful.titlebar.widget.titlewidget(c)
+    {
+      { -- Left
+        awful.titlebar.widget.iconwidget(c),
+        buttons = buttons,
+        layout  = wibox.layout.fixed.horizontal
       },
-      buttons = buttons,
-      layout  = wibox.layout.flex.horizontal
+      { -- Middle
+        { -- Title
+          align  = "center",
+          widget = awful.titlebar.widget.titlewidget(c)
+        },
+        buttons = buttons,
+        layout  = wibox.layout.flex.horizontal
+      },
+      { -- Right
+        awful.titlebar.widget.floatingbutton (c),
+        awful.titlebar.widget.maximizedbutton(c),
+        awful.titlebar.widget.stickybutton   (c),
+        awful.titlebar.widget.ontopbutton    (c),
+        awful.titlebar.widget.closebutton    (c),
+        layout = wibox.layout.fixed.horizontal()
+      },
+      layout = wibox.layout.align.horizontal
     },
-    { -- Right
-      awful.titlebar.widget.floatingbutton (c),
-      awful.titlebar.widget.maximizedbutton(c),
-      awful.titlebar.widget.stickybutton   (c),
-      awful.titlebar.widget.ontopbutton    (c),
-      awful.titlebar.widget.closebutton    (c),
-      layout = wibox.layout.fixed.horizontal()
-    },
-    layout = wibox.layout.align.horizontal
+    bg = md.sys.color.surface,
+    widget = wibox.container.background
   }
 end)
 

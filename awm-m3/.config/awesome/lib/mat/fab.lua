@@ -1,5 +1,6 @@
 local wibox = require('wibox')
 local gears = require('gears')
+local helpers = require('lib.helpers')
 
 -- https://m3.material.io/components/floating-action-button/specs
 
@@ -9,9 +10,7 @@ function fab:init(args)
   self.content = args.content or ''
   self.cmd = args.cmd or nil
 
-  self.shape = function(cr, width, height)
-    gears.shape.rounded_rect(cr, width, height, dpi(12))
-  end
+  self.shape = helpers.rrect(dpi(12))
 
   self.colors = wibox.widget {
     shape = self.shape,

@@ -41,7 +41,8 @@ theme.sys = {
     shadow = '#000000',
     inverse_surface = '#e4e2e6',
     inverse_on_surface = '#1b1b1e',
-    inverse_primary = '#005ac5'
+    inverse_primary = '#005ac5',
+    surface_tint_color = '#acc7ff' -- same primary
   },
   state = { -- https://m3.material.io/foundations/interaction-states
     hover_state_layer_opacity   = '14', -- 8%
@@ -69,7 +70,7 @@ theme.sys = {
     title_small = {},
     label_large = {
       font = 'Iosevka',
-      size = dpi(16)
+      size = dpi(14)
     },
     label_medium = {
       font = 'Iosevka Medium',
