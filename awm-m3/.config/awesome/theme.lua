@@ -26,7 +26,7 @@ theme.fg_focus      = md.sys.color.on_background
 theme.fg_urgent     = md.sys.color.on_tertiary
 theme.fg_minimize   = md.sys.color.on_surface .. md.sys.state.disable_content_opacity
 
-theme.useless_gap   = dpi(0)
+theme.useless_gap   = dpi(8)
 theme.border_width  = dpi(1)
 theme.border_normal = md.sys.color.shadow
 theme.border_focus  = md.sys.color.surface_variant

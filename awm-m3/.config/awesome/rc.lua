@@ -39,6 +39,8 @@ md = require("material") -- md for Material Design
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init( os.getenv('HOME') .. "/.config/awesome/theme.lua" )
 
+local text_button = require('lib.mat.text-button')
+
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -306,6 +308,11 @@ awful.screen.connect_for_each_screen(function(s)
     }
   }
 
+  local nav_button = text_button({
+    content = '',
+    fg = md.sys.color.on_surface
+  })
+
   s.search_app = fab({
     content = '',
     cmd = menubar.show,
@@ -317,11 +324,9 @@ awful.screen.connect_for_each_screen(function(s)
     expand = 'none',
     {
       {
-        text = '',
-        align = 'center',
-        font = md.sys.typescale.label_large.font .. ' ' .. dpi(24),
-        forced_width = dpi(48),
-        widget = wibox.widget.textbox
+        nav_button,
+        left = dpi(14), right = dpi(14),
+        widget = wibox.container.margin
       },
       s.search_app,
       layout = wibox.layout.fixed.vertical
@@ -333,6 +338,7 @@ awful.screen.connect_for_each_screen(function(s)
       layout = wibox.layout.align.horizontal
     }
   }
+
   -- Create the wibox
   s.mywibox = awful.wibar({ position = "top", screen = s, height = dpi(40) })
 
@@ -687,18 +693,21 @@ client.connect_signal("request::titlebars", function(c)
     end)
   )
 
+  local close_button = text_button({
+    content = '',
+    fg = md.sys.color.error,
+    cmd = function() c:kill() end
+  })
+
   awful.titlebar(c) : setup {
     {
       { -- Left
-        awful.titlebar.widget.iconwidget(c),
+        nil,
         buttons = buttons,
         layout  = wibox.layout.fixed.horizontal
       },
       { -- Middle
-        { -- Title
-          align  = "center",
-          widget = awful.titlebar.widget.titlewidget(c)
-        },
+        nil,
         buttons = buttons,
         layout  = wibox.layout.flex.horizontal
       },
@@ -707,7 +716,7 @@ client.connect_signal("request::titlebars", function(c)
         awful.titlebar.widget.maximizedbutton(c),
         awful.titlebar.widget.stickybutton   (c),
         awful.titlebar.widget.ontopbutton    (c),
-        awful.titlebar.widget.closebutton    (c),
+        close_button,
         layout = wibox.layout.fixed.horizontal()
       },
       layout = wibox.layout.align.horizontal
