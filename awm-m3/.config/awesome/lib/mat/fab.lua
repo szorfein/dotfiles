@@ -1,5 +1,4 @@
 local wibox = require('wibox')
-local gears = require('gears')
 local helpers = require('lib.helpers')
 
 -- https://m3.material.io/components/floating-action-button/specs

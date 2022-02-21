@@ -1,4 +1,5 @@
 local wibox = require('wibox')
+local helpers = require('lib.helpers')
 
 -- https://m3.material.io/m3/pages/common-buttons/specs/#899b9107-0127-4a01-8f4c-87f19323a1b4
 
@@ -10,6 +11,8 @@ function text_button:init(args)
   self.cmd = args.cmd or nil
   self.fg = args.fg or md.sys.color.primary
 
+  self.shape = helpers.rrect(dpi(20))
+
   self.colors = wibox.widget {
     bg = md.sys.color.surface,
     fg = self.fg,
@@ -17,6 +20,7 @@ function text_button:init(args)
   }
 
   self.states = wibox.widget {
+    shape = self.shape,
     bg = md.sys.color.surface .. md.sys.elevation.level0,
     fg = self.fg,
     widget = wibox.container.background

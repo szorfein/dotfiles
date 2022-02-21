@@ -18,8 +18,6 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
 
-local helpers = require('lib.helpers')
-
 -- Function to create object in lua - used globally
 local function new(self, ...)
   local instance = setmetatable({}, { __index = self })
@@ -38,8 +36,6 @@ md = require("material") -- md for Material Design
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init( os.getenv('HOME') .. "/.config/awesome/theme.lua" )
-
-local text_button = require('lib.mat.text-button')
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -66,6 +62,9 @@ do
 end
 -- }}}
 
+local helpers = require('lib.helpers')
+local text_button = require('lib.mat.text-button')
+
 -- This is used later as the default terminal and editor to run.
 terminal = "xterm"
 editor = os.getenv("EDITOR") or "nano"
@@ -79,6 +78,11 @@ editor_cmd = terminal .. " -e " .. editor
 modkey = "Mod4"
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
+local names = { "󰆍", "󰖟", "󰈙", "󰎁", "󰆧" }
+local l = awful.layout.suit
+local layouts = { l.tile, l.tile, l.floating, l.floating, l.floating,
+  l.floating, l.floating, l.floating, l.floating }
+
 awful.layout.layouts = {
   awful.layout.suit.floating,
   awful.layout.suit.tile,
@@ -126,7 +130,7 @@ mykeyboardlayout = awful.widget.keyboardlayout()
 
 -- {{{ Wibar
 -- Create a textclock widget
-mytextclock = wibox.widget.textclock()
+mytextclock = wibox.widget.textclock('%H:%M ')
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
@@ -194,7 +198,7 @@ awful.screen.connect_for_each_screen(function(s)
   set_wallpaper(s)
 
   -- Each screen has its own tag table.
-  awful.tag({ "󰆍", "󰖟", "󰈙", "󰎁", "󰆧" }, s, awful.layout.layouts[1])
+  awful.tag(names, s, layouts)
 
   -- Create a promptbox for each screen
   s.mypromptbox = awful.widget.prompt()
@@ -340,7 +344,7 @@ awful.screen.connect_for_each_screen(function(s)
   }
 
   -- Create the wibox
-  s.mywibox = awful.wibar({ position = "top", screen = s, height = dpi(40) })
+  s.mywibox = awful.wibar({ position = 'top', screen = s, height = dpi(40) })
 
   -- Add widgets to the wibox
   s.mywibox:setup {
@@ -359,6 +363,9 @@ awful.screen.connect_for_each_screen(function(s)
       s.mylayoutbox,
     },
   }
+
+  -- all other layouts
+  require('layout')(s)
 end)
 -- }}}
 
@@ -650,21 +657,22 @@ client.connect_signal("manage", function(c)
   end
 
   naughty.notify({ preset = naughty.config.presets.debug,
-  title = "client " .. c.name,
+  title = "client " .. tostring(c.name),
   text = tostring(c.name) })
 
   naughty.notify({ preset = naughty.config.presets.debug,
-  title = "client " .. #client.get(),
+  title = "client " .. tostring(#client.get()),
   text = tostring(#client.get()) })
-
-  --local t = c.screen.selected_tag
-  local t = c.first_tag
-  naughty.notify({ preset = naughty.config.presets.debug,
-  title = "tag " .. tostring(t.name),
-  text = tostring(t.name) })
 
   if not c.fullscreen and not c.maximized then
     c.shape = helpers.rrect(dpi(12))
+  end
+
+  -- if a client appear on first tag, hide the dashboard
+  local t = c.first_tag
+  if t.name == names[1] then
+    local sf = awful.screen.focused()
+    sf.dashboard.visible = false
   end
 end)
 
@@ -739,3 +747,7 @@ client.connect_signal("unfocus", function(c)
   c.border_color = beautiful.border_normal
 end)
 -- }}}
+
+-- Start dashboard if no client exist
+sf = awful.screen.focused()
+sf.dashboard.visible = true
