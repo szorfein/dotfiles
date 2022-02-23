@@ -85,7 +85,10 @@ theme.sys = {
       font = 'Iosevka Medium',
       size = 12
     },
-    body_small = {},
+    body_small = {
+      font = 'Iosevka Regular',
+      size = dpi(11)
+    }
   },
 }
 

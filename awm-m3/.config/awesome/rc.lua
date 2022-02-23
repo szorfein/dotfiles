@@ -343,6 +343,14 @@ awful.screen.connect_for_each_screen(function(s)
     }
   }
 
+  local dashboard = text_button({
+    content = '舘',
+    fg = md.sys.color.on_surface,
+    cmd = function()
+      s.dashboard.visible = true
+    end
+  })
+
   -- Create the wibox
   s.mywibox = awful.wibar({ position = 'top', screen = s, height = dpi(40) })
 
@@ -357,6 +365,7 @@ awful.screen.connect_for_each_screen(function(s)
     s.mytasklist, -- Middle widget
     { -- Right widgets
       layout = wibox.layout.fixed.horizontal,
+      dashboard,
       mykeyboardlayout,
       wibox.widget.systray(),
       mytextclock,

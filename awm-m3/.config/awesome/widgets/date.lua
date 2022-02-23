@@ -29,20 +29,24 @@ end
 
 function date:day()
   local w = wibox.widget.textclock('%d')
-  w.align = 'left'
+  w.align = 'right'
   w.font = md.sys.typescale.body_large.font
-    .. ' ' .. md.sys.typescale.body_large.size
-  
+    .. ' ' .. dpi(28)
+
   return w
 end
 
 function date:month()
   local w = wibox.widget.textclock('%B')
   w.text = w.text:sub(1,3)
-  w.align = 'right'
+  w.align = 'left'
   w.font = md.sys.typescale.body_large.font
     .. ' ' .. md.sys.typescale.body_large.size
-  
+
+  w:connect_signal("widget::redraw_needed", function()
+    w.text = w.text:sub(1,3)
+  end)
+
   return w
 end
 
