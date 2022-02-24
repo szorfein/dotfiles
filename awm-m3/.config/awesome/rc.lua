@@ -185,12 +185,29 @@ end
 screen.connect_signal("property::geometry", set_wallpaper)
 
 local fab = require('lib.mat.fab')
-local function tasklist_colors(item, c)
-  if client.focus == c then
-    item.fg = md.sys.color.primary
-  else
-    item.fg = md.sys.color.on_surface
-  end
+
+local function tasklist_normal(item)
+  local state = item:get_children_by_id('tasklist_state')[1]
+  item.fg = md.sys.color.on_surface_variant
+  state.shape = helpers.rrect(dpi(8))
+  state.bg = md.sys.color.surface_tint_color .. md.sys.elevation.level1
+end
+
+local function tasklist_focus(item, hovered)
+  local hover = hovered or false
+  local state = item:get_children_by_id('tasklist_state')[1]
+  item.fg = md.sys.color.on_secondary_container
+  state.shape = helpers.rrect(dpi(8))
+  state.bg = hover
+    and md.sys.color.on_secondary_container .. md.sys.state.hover_state_layer_opacity
+    or md.sys.color.on_secondary_container .. md.sys.state.focus_state_layer_opacity
+end
+
+local function tasklist_minimize(item)
+  local state = item:get_children_by_id('tasklist_state')[1]
+  item.fg = md.sys.color.on_surface .. md.sys.state.disable_content_opacity
+  state.shape = helpers.rrect(dpi(8))
+  state.bg = md.sys.color.on_surface .. md.sys.state.disable_container_opacity
 end
 
 awful.screen.connect_for_each_screen(function(s)
@@ -259,29 +276,37 @@ awful.screen.connect_for_each_screen(function(s)
     screen  = s,
     filter  = awful.widget.tasklist.filter.currenttags,
     buttons = tasklist_buttons,
+    layout = {
+      spacing = dpi(8),
+      layout = wibox.layout.fixed.horizontal
+    },
     style = {
-      bg = md.sys.color.on_surface .. md.sys.elevation.level1,
-      shape = helpers.rrect(dpi(20))
+      shape = helpers.rrect(dpi(8)),
+      bg = md.sys.color.surface
     },
     widget_template = {
       {
         {
           {
-            id = 'icon',
-            font = md.sys.typescale.label_large.font .. ' ' .. dpi(18),
-            widget = wibox.widget.textbox
+            {
+              id = 'icon',
+              font = md.sys.typescale.label_large.font .. ' ' .. dpi(18),
+              widget = wibox.widget.textbox
+            },
+            {
+              id = 'name',
+              font = md.sys.typescale.label_large.font
+                .. ' ' .. md.sys.typescale.label_large.size,
+              widget = wibox.widget.textbox
+            },
+            spacing = dpi(8),
+            layout = wibox.layout.fixed.horizontal
           },
-          {
-            id = 'name',
-            font = md.sys.typescale.label_large.font
-              .. ' ' .. md.sys.typescale.label_large.size,
-            widget = wibox.widget.textbox
-          },
-          spacing = dpi(8),
-          layout = wibox.layout.fixed.horizontal
+          left = dpi(8), right = dpi(16),
+          widget = wibox.container.margin
         },
-        left = dpi(12), right = dpi(16),
-        widget = wibox.container.margin
+        id = 'tasklist_state',
+        widget = wibox.container.background
       },
       id = 'background_role',
       widget = wibox.container.background,
@@ -304,10 +329,43 @@ awful.screen.connect_for_each_screen(function(s)
         else
           self:get_children_by_id('name')[1].text = c.name .. ' | ' .. c.class
         end
-        tasklist_colors(self, c)
+
+        self:connect_signal('mouse::enter', function()
+          if c.minimized then
+            tasklist_minimize(self)
+          elseif client.focus and c == client.focus then
+            tasklist_focus(self, true)
+          else
+            tasklist_normal(self)
+          end
+        end)
+
+        self:connect_signal('mouse::leave', function()
+          if c.minimized then
+            tasklist_minimize(self)
+          elseif client.focus and c == client.focus then
+            tasklist_focus(self)
+          else
+            tasklist_normal(self)
+          end
+        end)
+
+        if c.minimized then
+          tasklist_minimize(self)
+        elseif client.focus and c == client.focus then
+          tasklist_focus(self)
+        else
+          tasklist_normal(self)
+        end
       end,
       update_callback = function(self, c, index, objects) --luacheck: no unused args
-        tasklist_colors(self, c)
+        if c.minimized then
+          tasklist_minimize(self)
+        elseif client.focus and c == client.focus then
+          tasklist_focus(self)
+        else
+          tasklist_normal(self)
+        end
       end
     }
   }
@@ -362,7 +420,11 @@ awful.screen.connect_for_each_screen(function(s)
       layout = wibox.layout.fixed.horizontal,
       s.mypromptbox,
     },
-    s.mytasklist, -- Middle widget
+    {
+      s.mytasklist, -- Middle widget
+      bg = md.sys.color.surface,
+      widget = wibox.container.background
+    },
     { -- Right widgets
       layout = wibox.layout.fixed.horizontal,
       dashboard,

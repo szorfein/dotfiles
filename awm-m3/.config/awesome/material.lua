@@ -48,7 +48,7 @@ theme.sys = {
     hover_state_layer_opacity   = '14', -- 8%
     focus_state_layer_opacity   = '1F', -- 12%
     pressed_state_layer_opacity = '1F', -- 12%
-    dragged_state_layer_opacity = '24', -- 14%
+    dragged_state_layer_opacity = '24', -- 16%
     disable_content_opacity = '61',   -- 38% on color.on_*
     disable_container_opacity = '1F', -- 12% on color.on_*
   },
