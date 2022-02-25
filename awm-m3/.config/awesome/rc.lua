@@ -150,25 +150,6 @@ local taglist_buttons = gears.table.join(
   awful.button({}, 5, function(t) awful.tag.viewprev(t.screen) end)
 )
 
-local tasklist_buttons = gears.table.join(
-  awful.button({}, 1, function(c)
-    if c == client.focus then
-      c.minimized = true
-    else
-      c:emit_signal("request::activate", "tasklist", { raise = true })
-    end
-  end),
-  awful.button({}, 3, function()
-    awful.menu.client_list({ theme = { width = 250 } })
-  end),
-  awful.button({}, 4, function()
-    awful.client.focus.byidx(1)
-  end),
-  awful.button({}, 5, function()
-    awful.client.focus.byidx(-1)
-  end)
-)
-
 local function set_wallpaper(s)
   -- Wallpaper
   if beautiful.wallpaper then
@@ -185,30 +166,6 @@ end
 screen.connect_signal("property::geometry", set_wallpaper)
 
 local fab = require('lib.mat.fab')
-
-local function tasklist_normal(item)
-  local state = item:get_children_by_id('tasklist_state')[1]
-  item.fg = md.sys.color.on_surface_variant
-  state.shape = helpers.rrect(dpi(8))
-  state.bg = md.sys.color.surface_tint_color .. md.sys.elevation.level1
-end
-
-local function tasklist_focus(item, hovered)
-  local hover = hovered or false
-  local state = item:get_children_by_id('tasklist_state')[1]
-  item.fg = md.sys.color.on_secondary_container
-  state.shape = helpers.rrect(dpi(8))
-  state.bg = hover
-    and md.sys.color.on_secondary_container .. md.sys.state.hover_state_layer_opacity
-    or md.sys.color.on_secondary_container .. md.sys.state.focus_state_layer_opacity
-end
-
-local function tasklist_minimize(item)
-  local state = item:get_children_by_id('tasklist_state')[1]
-  item.fg = md.sys.color.on_surface .. md.sys.state.disable_content_opacity
-  state.shape = helpers.rrect(dpi(8))
-  state.bg = md.sys.color.on_surface .. md.sys.state.disable_container_opacity
-end
 
 awful.screen.connect_for_each_screen(function(s)
   -- Wallpaper
@@ -272,103 +229,7 @@ awful.screen.connect_for_each_screen(function(s)
   }
 
   -- Create a tasklist widget
-  s.mytasklist = awful.widget.tasklist {
-    screen  = s,
-    filter  = awful.widget.tasklist.filter.currenttags,
-    buttons = tasklist_buttons,
-    layout = {
-      spacing = dpi(8),
-      layout = wibox.layout.fixed.horizontal
-    },
-    style = {
-      shape = helpers.rrect(dpi(8)),
-      bg = md.sys.color.surface
-    },
-    widget_template = {
-      {
-        {
-          {
-            {
-              id = 'icon',
-              font = md.sys.typescale.label_large.font .. ' ' .. dpi(18),
-              widget = wibox.widget.textbox
-            },
-            {
-              id = 'name',
-              font = md.sys.typescale.label_large.font
-                .. ' ' .. md.sys.typescale.label_large.size,
-              widget = wibox.widget.textbox
-            },
-            spacing = dpi(8),
-            layout = wibox.layout.fixed.horizontal
-          },
-          left = dpi(8), right = dpi(16),
-          widget = wibox.container.margin
-        },
-        id = 'tasklist_state',
-        widget = wibox.container.background
-      },
-      id = 'background_role',
-      widget = wibox.container.background,
-      create_callback = function(self, c, index, objects) --luacheck: no unused args
-        if c.class == 'Firefox' then
-          self:get_children_by_id('icon')[1].text = ''
-          self:get_children_by_id('name')[1].text = 'firefox'
-        elseif c.class == 'Emacs' then
-          self:get_children_by_id('icon')[1].text = ''
-          self:get_children_by_id('name')[1].text = 'emacs'
-        elseif c.name:match('vim') then
-          self:get_children_by_id('icon')[1].text = ''
-          self:get_children_by_id('name')[1].text = 'vim'
-        elseif c.class == 'xst-256color' then
-          self:get_children_by_id('icon')[1].text = ''
-          self:get_children_by_id('name')[1].text = 'xst'
-        elseif c.class == 'feh' then
-          self:get_children_by_id('icon')[1].text = ''
-          self:get_children_by_id('name')[1].text = 'feh'
-        else
-          self:get_children_by_id('name')[1].text = c.name .. ' | ' .. c.class
-        end
-
-        self:connect_signal('mouse::enter', function()
-          if c.minimized then
-            tasklist_minimize(self)
-          elseif client.focus and c == client.focus then
-            tasklist_focus(self, true)
-          else
-            tasklist_normal(self)
-          end
-        end)
-
-        self:connect_signal('mouse::leave', function()
-          if c.minimized then
-            tasklist_minimize(self)
-          elseif client.focus and c == client.focus then
-            tasklist_focus(self)
-          else
-            tasklist_normal(self)
-          end
-        end)
-
-        if c.minimized then
-          tasklist_minimize(self)
-        elseif client.focus and c == client.focus then
-          tasklist_focus(self)
-        else
-          tasklist_normal(self)
-        end
-      end,
-      update_callback = function(self, c, index, objects) --luacheck: no unused args
-        if c.minimized then
-          tasklist_minimize(self)
-        elseif client.focus and c == client.focus then
-          tasklist_focus(self)
-        else
-          tasklist_normal(self)
-        end
-      end
-    }
-  }
+  s.mytasklist = require('mod.tasklist')({ screen = s })
 
   local nav_button = text_button({
     content = '',
