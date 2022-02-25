@@ -165,8 +165,6 @@ end
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", set_wallpaper)
 
-local fab = require('lib.mat.fab')
-
 awful.screen.connect_for_each_screen(function(s)
   -- Wallpaper
   set_wallpaper(s)
@@ -231,36 +229,10 @@ awful.screen.connect_for_each_screen(function(s)
   -- Create a tasklist widget
   s.mytasklist = require('mod.tasklist')({ screen = s })
 
-  local nav_button = text_button({
-    content = '',
-    fg = md.sys.color.on_surface
-  })
-
-  s.search_app = fab({
-    content = '',
-    cmd = menubar.show,
-  })
-
-  s.rail = awful.wibar({ position = 'left', width = dpi(80), screen = s })
-  s.rail:setup {
-    layout = wibox.layout.align.vertical,
-    expand = 'none',
-    {
-      {
-        nav_button,
-        left = dpi(14), right = dpi(14),
-        widget = wibox.container.margin
-      },
-      s.search_app,
-      layout = wibox.layout.fixed.vertical
-    },
-    {
-      nil,
-      s.mytaglist,
-      expand = 'none',
-      layout = wibox.layout.align.horizontal
-    }
-  }
+  s.rail = require('layout.navigation-rail')({
+    screen = s,
+    menubar = menubar,
+    taglist = s.mytaglist })
 
   local dashboard = text_button({
     content = '舘',
@@ -519,7 +491,8 @@ root.keys(globalkeys)
 awful.rules.rules = {
   -- All clients will match this rule.
   { rule = {},
-    properties = { border_width = beautiful.border_width,
+    properties = {
+      border_width = beautiful.border_width,
       border_color = beautiful.border_normal,
       focus = awful.client.focus.filter,
       raise = true,
