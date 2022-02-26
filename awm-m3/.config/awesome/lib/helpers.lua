@@ -8,4 +8,10 @@ function helpers:rrect(radius)
   end
 end
 
+function helpers:circle()
+  return function(cr, width, height)
+    gears.shape.circle(cr, width, height)
+  end
+end
+
 return helpers

@@ -88,6 +88,9 @@ theme.sys = {
     body_small = {
       font = 'Iosevka Regular',
       size = dpi(11)
+    },
+    icon = { -- https://github.com/Templarian/MaterialDesign-Font/
+      font = 'Material Design Icons Desktop Regular'
     }
   },
 }

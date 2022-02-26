@@ -132,24 +132,6 @@ mykeyboardlayout = awful.widget.keyboardlayout()
 -- Create a textclock widget
 mytextclock = wibox.widget.textclock('%H:%M ')
 
--- Create a wibox for each screen and add it
-local taglist_buttons = gears.table.join(
-  awful.button({}, 1, function(t) t:view_only() end),
-  awful.button({ modkey }, 1, function(t)
-    if client.focus then
-      client.focus:move_to_tag(t)
-    end
-  end),
-  awful.button({}, 3, awful.tag.viewtoggle),
-  awful.button({ modkey }, 3, function(t)
-    if client.focus then
-      client.focus:toggle_tag(t)
-    end
-  end),
-  awful.button({}, 4, function(t) awful.tag.viewnext(t.screen) end),
-  awful.button({}, 5, function(t) awful.tag.viewprev(t.screen) end)
-)
-
 local function set_wallpaper(s)
   -- Wallpaper
   if beautiful.wallpaper then
@@ -184,47 +166,7 @@ awful.screen.connect_for_each_screen(function(s)
     awful.button({}, 5, function() awful.layout.inc(-1) end)
   ))
   -- Create a taglist widget
-  s.mytaglist = awful.widget.taglist {
-    screen  = s,
-    filter  = awful.widget.taglist.filter.all,
-    buttons = taglist_buttons,
-    style   = {
-      shape = helpers.rrect(dpi(16)),
-      fg_focus = md.sys.color.on_secondary_container,
-      bg_focus = md.sys.color.secondary_container,
-      fg_empty = md.sys.color.on_surface_variant,
-      font = md.sys.typescale.label_medium.font
-        .. ' ' .. md.sys.typescale.label_medium.size
-    },
-    layout = {
-      layout = wibox.layout.fixed.vertical
-    },
-    widget_template = {
-      {
-        {
-          id = 'text_role',
-          align = 'center',
-          widget = wibox.widget.textbox,
-        },
-        widget = wibox.container.margin
-      },
-      id = 'background_role',
-      forced_height = dpi(56),
-      forced_width = dpi(56),
-      widget = wibox.container.background,
-      create_callback = function(self, c3, index, objects) --luacheck: no unused args
-        self:get_children_by_id('text_role')[1].markup = '<b> '..index..' </b>'
-        self:connect_signal('mouse::enter', function()
-        end)
-        self:connect_signal('mouse::leave', function()
-        end)
-        self:connect_signal('mouse::press', function()
-        end)
-      end,
-      update_callback = function(self, c3, index, objects) --luacheck: no unused args
-      end,
-    },
-  }
+  s.mytaglist = require('mod.taglist')({ screen = s })
 
   -- Create a tasklist widget
   s.mytasklist = require('mod.tasklist')({ screen = s })
@@ -351,7 +293,7 @@ globalkeys = gears.table.join(
     -- Focus restored client
     if c then
       c:emit_signal(
-      "request::activate", "key.unminimize", {raise = true}
+      "request::activate", "key.unminimize", { raise = true }
       )
     end
   end,
