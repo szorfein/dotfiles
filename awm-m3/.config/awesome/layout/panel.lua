@@ -44,6 +44,7 @@ function panel:setup()
       content = 'ﰸ',
       cmd = function() self:hide() end,
     }),
+    require('layout.panel-control')(),
     layout = wibox.layout.fixed.vertical
   }
 end

@@ -173,6 +173,7 @@ awful.screen.connect_for_each_screen(function(s)
   })
   local rail_button = text_button({
     content = '',
+    fg = md.sys.color.on_surface_variant,
     cmd = function() rail:show() end
   })
 
@@ -198,18 +199,26 @@ awful.screen.connect_for_each_screen(function(s)
     layout = wibox.layout.align.horizontal,
     expand = 'none',
     { -- Left widgets
-      layout = wibox.layout.fixed.horizontal,
-      rail_button,
-      s.mypromptbox,
+      {
+        layout = wibox.layout.fixed.horizontal,
+        rail_button,
+        s.mypromptbox,
+      },
+      left = dpi(20),
+      widget = wibox.container.margin
     },
     s.mytasklist, -- Middle widget
     { -- Right widgets
-      layout = wibox.layout.fixed.horizontal,
-      dashboard,
-      wibox.widget.systray(),
-      mytextclock,
-      s.mylayoutbox,
-      panel_button,
+      {
+        layout = wibox.layout.fixed.horizontal,
+        dashboard,
+        wibox.widget.systray(),
+        mytextclock,
+        s.mylayoutbox,
+        panel_button,
+      },
+      right = dpi(20),
+      widget = wibox.container.margin
     },
   }
 
