@@ -8,10 +8,10 @@ local nav_rail = class()
 
 function nav_rail:init(args)
   self.screen = args.screen or awful.screen.focused()
-  self.visible = args.visible or true
+  self.visible = args.visible or false
   self.menubar = args.menubar
-  self.taglist = args.taglist or {}
-  self.rail = wibox(self:wibox_args())
+  self.screen.rail = wibox(self:wibox_args())
+  self:setup()
 end
 
 function nav_rail:wibox_args()
@@ -19,7 +19,7 @@ function nav_rail:wibox_args()
     screen = self.screen,
     ontop = true,
     type = 'dock',
-    visible = self.visible,
+    visible = false,
     x = 0,
     y = 0,
     width = dpi(80),
@@ -27,21 +27,13 @@ function nav_rail:wibox_args()
   }
 end
 
-function nav_rail:screen_padding()
-  if self.visible then
-    self.screen.padding = { left = dpi(80) }
-  else
-    self.screen.padding = { left = 0 }
-  end
-end
-
 function nav_rail:placement()
-  awful.placement.top_left(self.rail)
-  awful.placement.maximize_vertically(self.rail, { honor_workarea = true })
+  awful.placement.top_left(self.screen.rail)
+  awful.placement.maximize_vertically(self.screen.rail)
 end
 
 function nav_rail:setup()
-  self.rail:setup {
+  self.screen.rail:setup {
     self:top_widget(),
     self:middle_widget(),
     expand = 'none',
@@ -54,7 +46,8 @@ function nav_rail:top_widget()
     {
       text_button({
         content = '',
-        fg = md.sys.color.on_surface
+        fg = md.sys.color.on_surface,
+        cmd = function() self:hide() end
       }),
       left = dpi(14), right = dpi(14),
       widget = wibox.container.margin
@@ -70,10 +63,21 @@ end
 function nav_rail:middle_widget()
   return wibox.widget {
     nil,
-    self.taglist,
+    require('mod.taglist')({ screen = self.screen }),
     expand = 'none',
     layout = wibox.layout.align.horizontal
   }
+end
+
+function nav_rail:show()
+  self.screen.padding = { left = dpi(80) }
+  self:placement()
+  self.screen.rail.visible = true
+end
+
+function nav_rail:hide()
+  self.screen.padding = { left = 0 }
+  self.screen.rail.visible = false
 end
 
 local main = class(nav_rail)
@@ -81,11 +85,9 @@ local main = class(nav_rail)
 function main:init(args)
   nav_rail.init(self, args)
 
-  self:placement()
-  self:screen_padding()
-  self:setup()
-
-  return self.rail
+  if self.visible then
+    self:show()
+  end
 end
 
 return main

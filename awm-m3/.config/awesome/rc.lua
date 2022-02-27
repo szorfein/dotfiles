@@ -125,9 +125,6 @@ mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
 -- }}}
 
--- Keyboard map indicator and switcher
-mykeyboardlayout = awful.widget.keyboardlayout()
-
 -- {{{ Wibar
 -- Create a textclock widget
 mytextclock = wibox.widget.textclock('%H:%M ')
@@ -165,16 +162,25 @@ awful.screen.connect_for_each_screen(function(s)
     awful.button({}, 4, function() awful.layout.inc( 1) end),
     awful.button({}, 5, function() awful.layout.inc(-1) end)
   ))
-  -- Create a taglist widget
-  s.mytaglist = require('mod.taglist')({ screen = s })
 
   -- Create a tasklist widget
   s.mytasklist = require('mod.tasklist')({ screen = s })
 
-  s.rail = require('layout.navigation-rail')({
+  local rail = require('layout.navigation-rail')({
     screen = s,
     menubar = menubar,
-    taglist = s.mytaglist })
+    visible = true
+  })
+  local rail_button = text_button({
+    content = '',
+    cmd = function() rail:show() end
+  })
+
+  local panel = require('layout.panel')({ screen = s })
+  local panel_button = text_button({
+    content = '',
+    cmd = function() panel:show() end
+  })
 
   local dashboard = text_button({
     content = '舘',
@@ -193,20 +199,17 @@ awful.screen.connect_for_each_screen(function(s)
     expand = 'none',
     { -- Left widgets
       layout = wibox.layout.fixed.horizontal,
+      rail_button,
       s.mypromptbox,
     },
-    {
-      s.mytasklist, -- Middle widget
-      bg = md.sys.color.surface,
-      widget = wibox.container.background
-    },
+    s.mytasklist, -- Middle widget
     { -- Right widgets
       layout = wibox.layout.fixed.horizontal,
       dashboard,
-      mykeyboardlayout,
       wibox.widget.systray(),
       mytextclock,
       s.mylayoutbox,
+      panel_button,
     },
   }
 
@@ -596,5 +599,6 @@ end)
 -- }}}
 
 -- Start dashboard if no client exist
+-- Dashboard is hidden by client.connect_signal("manage")
 sf = awful.screen.focused()
 sf.dashboard.visible = true
