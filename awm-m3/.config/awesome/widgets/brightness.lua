@@ -1,17 +1,17 @@
 local wibox = require('wibox')
 local helpers = require('lib.helpers')
-local slider = require('lib.slider')({ fg = md.sys.color.primary })
+local slider = require('lib.slider')()
 
-local volume = class()
+local brightness = class()
 
-function volume:init()
+function brightness:init()
   self.slider = slider:widget()
   self.widget = self:create()
-  slider:set(20)
+  slider:set(40)
   return self.widget
 end
 
-function volume:create()
+function brightness:create()
   return wibox.widget {
     self.slider,
     forced_height = 100,
@@ -21,4 +21,4 @@ function volume:create()
   }
 end
 
-return volume
+return brightness

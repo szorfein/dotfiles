@@ -7,7 +7,9 @@ function control:init()
     {
       nil,
       {
+        require('widgets.brightness')({}),
         require('widgets.volume')({}),
+        spacing = dpi(8),
         layout = wibox.layout.fixed.horizontal
       },
       expand = 'none',
