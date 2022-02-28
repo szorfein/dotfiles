@@ -1,8 +1,8 @@
 local wibox = require('wibox')
 
-local cpu = class()
+local mem = class()
 
-function cpu:init(args)
+function mem:init(args)
   self.radial = self:radial()
   self.value = '70'
   self.width = args.w or dpi(80)
@@ -12,7 +12,7 @@ function cpu:init(args)
     {
       {
         {
-          text = 'cpu',
+          text = 'mem',
           align = 'center',
           font = md.sys.typescale.label_medium.font
             .. ' ' .. md.sys.typescale.label_medium.size,
@@ -40,23 +40,23 @@ function cpu:init(args)
   }
 end
 
-function cpu:radial()
+function mem:radial()
   return wibox.widget {
     min_value = 1,
     max_value = 100,
     value = tonumber(self.value),
     border_width = dpi(4),
-    color = md.sys.color.primary,
+    color = md.sys.color.tertiary,
     border_color = md.sys.color.on_surface .. md.sys.elevation.level1,
     widget = wibox.container.radialprogressbar
   }
 end
 
-function cpu:signals()
+function mem:signals()
   self.radial.value = tonumber(self.value)
   self.radial:connect_signal('widget::redraw_needed', function()
     self.radial.value = tonumber(self.value)
   end)
 end
 
-return cpu
+return mem
