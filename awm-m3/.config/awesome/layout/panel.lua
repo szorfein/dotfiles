@@ -7,7 +7,7 @@ local panel = class()
 
 function panel:init(args)
   self.screen = args.screen or awful.screen.focused()
-  self.width = dpi(200)
+  self.width = dpi(256)
   self.screen.panel = wibox(self:wibox_args())
   self:setup()
 end

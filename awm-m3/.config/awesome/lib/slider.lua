@@ -16,6 +16,7 @@ end
 function slider:slider()
   return wibox.widget {
     value = self.value,
+    min_value = 1,
     max_value = 100,
     handle_color = self.fg,
     bar_color = self.bg .. md.sys.elevation.level1,
@@ -30,6 +31,7 @@ end
 function slider:progressbar()
   return wibox.widget {
     value = self.value,
+    min_value = 1,
     max_value = 100,
     color = self.fg,
     background_color = self.bg .. md.sys.elevation.level1,

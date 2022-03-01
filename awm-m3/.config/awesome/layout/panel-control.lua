@@ -4,28 +4,36 @@ local control = class()
 
 function control:init()
   return wibox.widget {
-    {
-      nil,
-      {
-        require('widgets.brightness')({}),
-        require('widgets.volume')({}),
-        spacing = dpi(8),
-        layout = wibox.layout.fixed.horizontal
-      },
-      expand = 'none',
-      layout = wibox.layout.align.horizontal
-    },
-    {
-      nil,
-      {
-        require('widgets.cpu')({ w = dpi(80), h = dpi(80) }),
-        require('widgets.mem')({ w = dpi(80), h = dpi(80) }),
-        layout = wibox.layout.fixed.horizontal
-      },
-      expand = 'none',
-      layout = wibox.layout.align.horizontal
-    },
+    self:centered({
+      require('widgets.brightness')({}),
+      require('widgets.volume')({})
+    }),
+    self:centered({
+      require('widgets.cpu')({ w = dpi(80), h = dpi(80) }),
+      require('widgets.mem')({ w = dpi(80), h = dpi(80) })
+    }),
+    self:centered({
+      require('widgets.quit')(),
+    }),
+    spacing = dpi(14),
     layout = wibox.layout.fixed.vertical
+  }
+end
+
+function control:centered(widgets)
+  local widget = wibox.widget {
+    spacing = dpi(8),
+    layout = wibox.layout.fixed.horizontal
+  }
+  for _,v in ipairs(widgets) do widget:add(v) end
+  return wibox.widget {
+    nil,
+    {
+      widget,
+      layout = wibox.layout.fixed.horizontal
+    },
+    expand = 'none',
+    layout = wibox.layout.align.horizontal
   }
 end
 

@@ -1,4 +1,5 @@
 local wibox = require('wibox')
+local card = require('lib.card-elevated')
 
 local mem = class()
 
@@ -8,6 +9,10 @@ function mem:init(args)
   self.width = args.w or dpi(80)
   self.height = args.h or dpi(80)
   self:signals()
+  return card:elevated(self:widget())
+end
+
+function mem:widget()
   return wibox.widget {
     {
       {
