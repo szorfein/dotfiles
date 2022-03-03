@@ -1,4 +1,5 @@
 local wibox = require('wibox')
+local helpers = require('lib.helpers')
 
 local control = class()
 
@@ -9,19 +10,50 @@ function control:init()
       self:right_side(),
       layout = wibox.layout.fixed.horizontal
     },
-    margins = dpi(10),
+    margins = dpi(12),
     widget = wibox.container.margin
   }
 end
 
 function control:left_side()
+  local day = os.date('%e')
   return wibox.widget {
-    self:monitoring(),
-    {
+    { -- top
+      {
+        {
+          {
+            text = day,
+            align = 'left',
+            font = md.sys.typescale.display_large.font
+              .. ' ' .. md.sys.typescale.display_large.size,
+            widget = wibox.widget.textbox
+          },
+          {
+            text = 'TH',
+            valign = 'top',
+            widget = wibox.widget.textbox
+          },
+          forced_height = md.sys.typescale.display_large.size,
+          layout = wibox.layout.fixed.horizontal
+        },
+        bottom = dpi(8),
+        widget = wibox.container.margin
+      },
+      self:centered({
+        self:monitoring(),
+      }),
+      layout = wibox.layout.fixed.vertical
+    },
+    { -- middle
+      nil,
       self:centered({
         require('widgets.brightness')({}),
         require('widgets.volume')({})
       }),
+      expand = 'none',
+      layout = wibox.layout.align.horizontal
+    },
+    { -- bottom
       self:centered({
         require('widgets.cpu')({ w = dpi(80), h = dpi(80) }),
       }),
@@ -31,6 +63,8 @@ function control:left_side()
       spacing = dpi(14),
       layout = wibox.layout.fixed.vertical
     },
+    expand = 'none',
+    forced_width = dpi(160),
     layout = wibox.layout.align.vertical
   }
 end
@@ -52,6 +86,24 @@ function control:centered(widgets)
   }
 end
 
+function control:progressbar(value)
+  return wibox.widget {
+    max_value     = 1,
+    value         = value,
+    max_value     = 100,
+    forced_height = 10,
+    forced_width  = 100,
+    paddings      = 1,
+    border_width  = 1,
+    border_color  = md.sys.color.shadow,
+    color = md.sys.color.primary,
+    background_color = md.sys.color.primary
+      .. md.sys.elevation.level1,
+    shape = helpers.rrect(dpi(20)),
+    widget        = wibox.widget.progressbar,
+  }
+end
+
 function control:monitoring()
   return wibox.widget {
     {
@@ -59,40 +111,41 @@ function control:monitoring()
       widget = wibox.widget.textbox
     },
     {
-      text = ' xxxxxx',
-      widget = wibox.widget.textbox
+      widget = self:progressbar(70),
     },
     {
       text = 'USEDRAM',
       widget = wibox.widget.textbox
     },
     {
-      text = ' xxxxxx',
-      widget = wibox.widget.textbox
+      widget = self:progressbar(30),
     },
     {
       text = 'USEDSTO',
       widget = wibox.widget.textbox
     },
     {
-      text = ' xxxxxx',
-      widget = wibox.widget.textbox
-    },
-    {
-      text = 'STOPPED',
-      widget = wibox.widget.textbox
-    },
-    {
-      text = ' xxxxxx',
-      widget = wibox.widget.textbox
+      widget = self:progressbar(10),
     },
     {
       text = 'USEDCPU',
       widget = wibox.widget.textbox
     },
     {
-      text = ' xxxxxx',
-      widget = wibox.widget.textbox
+      widget = self:progressbar(50),
+    },
+    {
+      {
+        text = '󱘈',
+        font = md.sys.typescale.icon.font .. ' ' .. dpi(16),
+        widget = wibox.widget.textbox
+      },
+      {
+        text = 'city, country',
+        widget = wibox.widget.textbox
+      },
+      spacing = dpi(8),
+      layout = wibox.layout.fixed.horizontal
     },
     spacing = dpi(8),
     layout = wibox.layout.fixed.vertical
@@ -135,17 +188,27 @@ function control:right_side()
     },
     {
       {
-        format = '%R.%p',
-        align = 'center',
-        font = md.sys.typescale.body_large.font
+        {
+          text = '󱑂',
+          font = md.sys.typescale.icon.font .. ' ' .. dpi(18),
+          widget = wibox.widget.textbox
+        },
+        {
+          format = '%R.%p',
+          align = 'center',
+          font = md.sys.typescale.body_large.font
           .. ' ' .. dpi(14),
-        widget = wibox.widget.textclock
+          widget = wibox.widget.textclock
+        },
+        spacing = dpi(8),
+        layout = wibox.layout.fixed.horizontal
       },
       direction = 'west',
       layout = wibox.container.rotate
     },
     require('widgets.quit')(),
     expand = 'none',
+    fixed_width = dpi(85),
     layout = wibox.layout.align.vertical
   }
 end
