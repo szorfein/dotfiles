@@ -125,30 +125,9 @@ mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
 -- }}}
 
--- Keyboard map indicator and switcher
-mykeyboardlayout = awful.widget.keyboardlayout()
-
 -- {{{ Wibar
 -- Create a textclock widget
 mytextclock = wibox.widget.textclock('%H:%M ')
-
--- Create a wibox for each screen and add it
-local taglist_buttons = gears.table.join(
-  awful.button({}, 1, function(t) t:view_only() end),
-  awful.button({ modkey }, 1, function(t)
-    if client.focus then
-      client.focus:move_to_tag(t)
-    end
-  end),
-  awful.button({}, 3, awful.tag.viewtoggle),
-  awful.button({ modkey }, 3, function(t)
-    if client.focus then
-      client.focus:toggle_tag(t)
-    end
-  end),
-  awful.button({}, 4, function(t) awful.tag.viewnext(t.screen) end),
-  awful.button({}, 5, function(t) awful.tag.viewprev(t.screen) end)
-)
 
 local function set_wallpaper(s)
   -- Wallpaper
@@ -164,8 +143,6 @@ end
 
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", set_wallpaper)
-
-local fab = require('lib.mat.fab')
 
 awful.screen.connect_for_each_screen(function(s)
   -- Wallpaper
@@ -185,82 +162,26 @@ awful.screen.connect_for_each_screen(function(s)
     awful.button({}, 4, function() awful.layout.inc( 1) end),
     awful.button({}, 5, function() awful.layout.inc(-1) end)
   ))
-  -- Create a taglist widget
-  s.mytaglist = awful.widget.taglist {
-    screen  = s,
-    filter  = awful.widget.taglist.filter.all,
-    buttons = taglist_buttons,
-    style   = {
-      shape = helpers.rrect(dpi(16)),
-      fg_focus = md.sys.color.on_secondary_container,
-      bg_focus = md.sys.color.secondary_container,
-      fg_empty = md.sys.color.on_surface_variant,
-      font = md.sys.typescale.label_medium.font
-        .. ' ' .. md.sys.typescale.label_medium.size
-    },
-    layout = {
-      layout = wibox.layout.fixed.vertical
-    },
-    widget_template = {
-      {
-        {
-          id = 'text_role',
-          align = 'center',
-          widget = wibox.widget.textbox,
-        },
-        widget = wibox.container.margin
-      },
-      id = 'background_role',
-      forced_height = dpi(56),
-      forced_width = dpi(56),
-      widget = wibox.container.background,
-      create_callback = function(self, c3, index, objects) --luacheck: no unused args
-        self:get_children_by_id('text_role')[1].markup = '<b> '..index..' </b>'
-        self:connect_signal('mouse::enter', function()
-        end)
-        self:connect_signal('mouse::leave', function()
-        end)
-        self:connect_signal('mouse::press', function()
-        end)
-      end,
-      update_callback = function(self, c3, index, objects) --luacheck: no unused args
-      end,
-    },
-  }
 
   -- Create a tasklist widget
   s.mytasklist = require('mod.tasklist')({ screen = s })
 
-  local nav_button = text_button({
+  local rail = require('layout.navigation-rail')({
+    screen = s,
+    menubar = menubar,
+    visible = true
+  })
+  local rail_button = text_button({
     content = '',
-    fg = md.sys.color.on_surface
+    fg = md.sys.color.on_surface_variant,
+    cmd = function() rail:show() end
   })
 
-  s.search_app = fab({
-    content = '',
-    cmd = menubar.show,
+  local panel = require('layout.panel')({ screen = s })
+  local panel_button = text_button({
+    content = '',
+    cmd = function() panel:show() end
   })
-
-  s.rail = awful.wibar({ position = 'left', width = dpi(80), screen = s })
-  s.rail:setup {
-    layout = wibox.layout.align.vertical,
-    expand = 'none',
-    {
-      {
-        nav_button,
-        left = dpi(14), right = dpi(14),
-        widget = wibox.container.margin
-      },
-      s.search_app,
-      layout = wibox.layout.fixed.vertical
-    },
-    {
-      nil,
-      s.mytaglist,
-      expand = 'none',
-      layout = wibox.layout.align.horizontal
-    }
-  }
 
   local dashboard = text_button({
     content = '舘',
@@ -278,21 +199,26 @@ awful.screen.connect_for_each_screen(function(s)
     layout = wibox.layout.align.horizontal,
     expand = 'none',
     { -- Left widgets
-      layout = wibox.layout.fixed.horizontal,
-      s.mypromptbox,
+      {
+        layout = wibox.layout.fixed.horizontal,
+        rail_button,
+        s.mypromptbox,
+      },
+      left = dpi(20),
+      widget = wibox.container.margin
     },
-    {
-      s.mytasklist, -- Middle widget
-      bg = md.sys.color.surface,
-      widget = wibox.container.background
-    },
+    s.mytasklist, -- Middle widget
     { -- Right widgets
-      layout = wibox.layout.fixed.horizontal,
-      dashboard,
-      mykeyboardlayout,
-      wibox.widget.systray(),
-      mytextclock,
-      s.mylayoutbox,
+      {
+        layout = wibox.layout.fixed.horizontal,
+        dashboard,
+        wibox.widget.systray(),
+        mytextclock,
+        s.mylayoutbox,
+        panel_button,
+      },
+      right = dpi(20),
+      widget = wibox.container.margin
     },
   }
 
@@ -379,7 +305,7 @@ globalkeys = gears.table.join(
     -- Focus restored client
     if c then
       c:emit_signal(
-      "request::activate", "key.unminimize", {raise = true}
+      "request::activate", "key.unminimize", { raise = true }
       )
     end
   end,
@@ -519,7 +445,8 @@ root.keys(globalkeys)
 awful.rules.rules = {
   -- All clients will match this rule.
   { rule = {},
-    properties = { border_width = beautiful.border_width,
+    properties = {
+      border_width = beautiful.border_width,
       border_color = beautiful.border_normal,
       focus = awful.client.focus.filter,
       raise = true,
@@ -681,5 +608,6 @@ end)
 -- }}}
 
 -- Start dashboard if no client exist
+-- Dashboard is hidden by client.connect_signal("manage")
 sf = awful.screen.focused()
 sf.dashboard.visible = true
