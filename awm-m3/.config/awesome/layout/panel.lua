@@ -45,7 +45,7 @@ function panel:setup()
       cmd = function() self:hide() end,
     }),
     require('layout.panel-control')(),
-    layout = wibox.layout.fixed.vertical
+    layout = wibox.layout.align.vertical
   }
 end
 

@@ -1,5 +1,6 @@
 local wibox = require('wibox')
 local button = require('lib.button-elevated')
+local button_filled = require('lib.button-filled')
 
 local quit = class()
 
@@ -8,8 +9,8 @@ function quit:init()
     self:restart(),
     self:lock(),
     self:poweroff(),
-    spacing = dpi(8),
-    widget = wibox.layout.fixed.horizontal
+    spacing = dpi(28),
+    widget = wibox.layout.fixed.vertical
   }
 end
 
@@ -28,9 +29,11 @@ function quit:lock()
 end
 
 function quit:poweroff()
-  return button({
+  return button_filled({
     icon = '󰤆',
-    color = md.sys.color.error
+    fg = md.sys.color.surface,
+    bg = md.sys.color.on_surface,
+    --color = md.sys.color.error
   })
 end
 

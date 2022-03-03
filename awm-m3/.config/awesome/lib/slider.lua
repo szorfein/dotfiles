@@ -19,7 +19,7 @@ function slider:slider()
     min_value = 1,
     max_value = 100,
     handle_color = self.fg,
-    bar_color = self.bg .. md.sys.elevation.level1,
+    bar_color = md.sys.color.surface,
     handle_shape = helpers:circle(),
     handle_border_width = 10,
     handle_width  = 10,

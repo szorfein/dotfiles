@@ -59,13 +59,16 @@ theme.sys = {
     },
     display_medium = {
       font = '',
-      size = 40,
+      size = 44,
     },
     display_small = {},
     headline_large = {},
     headline_medium = {},
     headline_small = {},
-    title_large = {},
+    title_large = {
+      font = 'Iosevka Heavy',
+      size = 36
+    },
     title_medium = {},
     title_small = {},
     label_large = {
