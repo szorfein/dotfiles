@@ -1,5 +1,7 @@
 local wibox = require('wibox')
 local helpers = require('lib.helpers')
+local button_outlined = require('lib.button-outlined')
+local button_text = require('lib.button-text')
 
 local music = class()
 
@@ -16,6 +18,7 @@ function music:init()
       layout = wibox.layout.align.vertical
     },
     left = dpi(12), right = dpi(12),
+    bottom = dpi(16), top = dpi(16),
     widget = wibox.container.margin
   }
 end
@@ -95,21 +98,15 @@ function music:middle()
         nil,
         {
           {
-            {
-              text = '󰼨',
-              font = md.sys.typescale.icon.font .. ' ' .. dpi(20),
-              widget = wibox.widget.textbox
-            },
-            {
-              text = '󰼛',
-              font = md.sys.typescale.icon.font .. ' ' .. dpi(20),
-              widget  = wibox.widget.textbox
-            },
-            {
-              text = '󰼧',
-              font = md.sys.typescale.icon.font .. ' ' .. dpi(20),
-              widget = wibox.widget.textbox
-            },
+            button_text({
+              icon = '󰼨',
+            }),
+            button_outlined({
+              icon = '󰼛',
+            }),
+            button_text({
+              icon = '󰼧',
+            }),
             spacing = dpi(8),
             layout = wibox.layout.fixed.horizontal
           },
@@ -134,6 +131,19 @@ function music:bottom()
     {
       text = 'Playlists',
       widget = wibox.widget.textbox
+    },
+    {
+      button_outlined({
+        text = 'EBSM'
+      }),
+      button_outlined({
+        text = 'CLAS'
+      }),
+      button_outlined({
+        text = 'SPAC'
+      }),
+      spacing = dpi(8),
+      layout = wibox.layout.fixed.horizontal
     },
     layout = wibox.layout.fixed.vertical
   }

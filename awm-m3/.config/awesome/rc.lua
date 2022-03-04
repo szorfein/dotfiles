@@ -611,3 +611,11 @@ end)
 -- Dashboard is hidden by client.connect_signal("manage")
 sf = awful.screen.focused()
 sf.dashboard.visible = true
+
+-- Run garbage collector regularly to prevent memory leaks
+-- https://wiki.archlinux.org/title/Awesome#Memory_leaks
+gears.timer {
+  timeout = 30,
+  autostart = true,
+  callback = function() collectgarbage() end
+}

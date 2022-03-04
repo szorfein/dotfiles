@@ -8,17 +8,17 @@ function button:init(args)
   self.args = args or {}
   self.icon = self.args.icon or nil
   self.text = self.args.text or nil
-  self.fg = self.args.fg or md.sys.color.on_primary
-  self.bg = self.args.bg or md.sys.color.primary
+  self.fg = self.args.fg or md.sys.color.on_secondary_container
+  self.bg = self.args.bg or md.sys.color.secondary_container
   self.cmd = self.args.cmd or nil
   self.state = self:state()
   self.surface = self:surface()
-  self.widget = self:filled()
+  self.widget = self:outlined()
   self:signals()
   return self.widget
 end
 
-function button:filled()
+function button:outlined()
   return wibox.widget {
     {
       {
@@ -65,8 +65,6 @@ function button:container()
     fg = self.fg,
     bg = self.bg,
     shape = helpers.rrect(dpi(20)),
-    shape_border_width = 1,
-    shape_border_color = md.sys.color.outlined,
     widget = wibox.container.background
   }
 end

@@ -8,17 +8,17 @@ function button:init(args)
   self.args = args or {}
   self.icon = self.args.icon or nil
   self.text = self.args.text or nil
-  self.fg = self.args.fg or md.sys.color.on_primary
-  self.bg = self.args.bg or md.sys.color.primary
+  self.fg = self.args.fg or md.sys.color.primary
+  self.bg = self.args.bg or md.sys.color.surface
   self.cmd = self.args.cmd or nil
   self.state = self:state()
   self.surface = self:surface()
-  self.widget = self:filled()
+  self.widget = self:textbutton()
   self:signals()
   return self.widget
 end
 
-function button:filled()
+function button:textbutton()
   return wibox.widget {
     {
       {
@@ -63,10 +63,8 @@ end
 function button:container()
   return wibox.widget {
     fg = self.fg,
-    bg = self.bg,
+    bg = self.bg .. md.sys.elevation.level0,
     shape = helpers.rrect(dpi(20)),
-    shape_border_width = 1,
-    shape_border_color = md.sys.color.outlined,
     widget = wibox.container.background
   }
 end
@@ -83,8 +81,8 @@ function button:layout()
   return wibox.widget {
     top = dpi(10),
     bottom = dpi(10),
-    left = dpi(16),
-    right = dpi(16),
+    left = dpi(12),
+    right = dpi(12),
     widget = wibox.container.margin
   }
 end
@@ -100,11 +98,9 @@ function button:signals()
   self.state:connect_signal('mouse::enter', function()
     self.state.bg = self.fg
       .. md.sys.state.hover_state_layer_opacity
-    self.surface.bg = self.fg .. md.sys.elevation.level1
   end)
   self.state:connect_signal('mouse::leave', function()
     self.state.bg = self.bg .. '00'
-    self.surface.bg = self.fg .. '00'
   end)
   self.widget:connect_signal('button::press', function()
     if self.cmd and type(self.cmd) == 'function' then
