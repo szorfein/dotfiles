@@ -1,6 +1,6 @@
 local awful = require('awful')
 local wibox = require('wibox')
-local text_button = require('lib.mat.text-button')
+local text_button = require('lib.button-text')
 
 -- https://m3.material.io/m3/pages/foldable-devices/compositions#1fe03735-f0ad-4721-9e00-253e6988beed
 local panel = class()
@@ -42,13 +42,13 @@ function panel:head_buttons()
   return wibox.widget {
     {
       text_button({
-        content = 'm',
+        text = 'm',
         cmd = function()
           self:music_panel()
         end
       }),
       text_button({
-        content = 'c',
+        text = 'c',
         cmd = function()
           self:control_panel()
         end
@@ -57,7 +57,7 @@ function panel:head_buttons()
     },
     nil, -- center
     text_button({ -- right
-      content = 'ﰸ',
+      icon = 'ﰸ',
       cmd = function() self:hide() end,
     }),
     layout = wibox.layout.align.horizontal

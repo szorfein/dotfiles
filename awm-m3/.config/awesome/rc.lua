@@ -63,7 +63,7 @@ end
 -- }}}
 
 local helpers = require('lib.helpers')
-local text_button = require('lib.mat.text-button')
+local text_button = require('lib.button-text')
 
 -- This is used later as the default terminal and editor to run.
 terminal = "xterm"
@@ -172,19 +172,19 @@ awful.screen.connect_for_each_screen(function(s)
     visible = true
   })
   local rail_button = text_button({
-    content = '',
+    icon = '',
     fg = md.sys.color.on_surface_variant,
     cmd = function() rail:show() end
   })
 
   local panel = require('layout.panel')({ screen = s })
   local panel_button = text_button({
-    content = '',
+    icon = '',
     cmd = function() panel:show() end
   })
 
   local dashboard = text_button({
-    content = '舘',
+    icon = '舘',
     fg = md.sys.color.on_surface,
     cmd = function()
       s.dashboard.visible = true
@@ -561,7 +561,7 @@ client.connect_signal("request::titlebars", function(c)
   )
 
   local close_button = text_button({
-    content = '',
+    icon = '',
     fg = md.sys.color.error,
     cmd = function() c:kill() end
   })

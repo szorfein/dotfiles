@@ -1,7 +1,7 @@
 local awful = require('awful')
 local wibox = require('wibox')
 local fab = require('lib.mat.fab')
-local text_button = require('lib.mat.text-button')
+local text_button = require('lib.button-text')
 
 -- https://m3.material.io/components/navigation-rail/specs
 local nav_rail = class()
@@ -45,7 +45,7 @@ function nav_rail:top_widget()
   return wibox.widget {
     {
       text_button({
-        content = '',
+        icon = '',
         fg = md.sys.color.on_surface,
         cmd = function() self:hide() end
       }),

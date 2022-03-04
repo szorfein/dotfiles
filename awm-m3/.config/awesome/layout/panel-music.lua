@@ -2,6 +2,8 @@ local wibox = require('wibox')
 local helpers = require('lib.helpers')
 local button_outlined = require('lib.button-outlined')
 local button_text = require('lib.button-text')
+local chip_suggestion = require('lib.chip-suggestion')
+local card = require('lib.card-elevated')
 
 local music = class()
 
@@ -47,23 +49,62 @@ function music:progressbar(value)
 end
 
 function music:top()
-  return wibox.widget {
+  local top = wibox.widget {
     {
-      text = 'MPD status:',
-      widget = wibox.widget.textbox
+      nil,
+      {
+        {
+          text = 'MPD',
+          font = md.sys.typescale.title_medium.font
+            .. ' ' .. md.sys.typescale.title_medium.size,
+          widget = wibox.widget.textbox
+        },
+        nil,
+        {
+          {
+            text = '󰽢',
+            font = md.sys.typescale.icon.font .. ' ' .. dpi(18),
+            widget = wibox.widget.textbox
+          },
+          fg = md.sys.color.error,
+          widget = wibox.container.background
+        },
+        expand = 'none',
+        layout = wibox.layout.align.horizontal
+      },
+      {
+        nil,
+        nil,
+        {
+          button_text({
+            text = 'Stop',
+            fg = md.sys.color.on_surface_variant
+          }),
+          button_outlined({
+            text = 'Start'
+          }),
+          spacing = dpi(8),
+          layout = wibox.layout.fixed.horizontal
+        },
+        layout = wibox.layout.align.horizontal
+      },
+      spacing = dpi(16),
+      layout = wibox.layout.fixed.vertical
     },
+    expand = 'none',
     layout = wibox.layout.fixed.vertical
   }
+  return card:elevated(top)
 end
 
 function music:title()
   return wibox.widget {
     {
       {
-        text = '> TITLE',
+        text = 'TITLE',
         align = 'center',
-        font = md.sys.typescale.body_medium.font
-          .. ' ' .. md.sys.typescale.body_medium.size,
+        font = md.sys.typescale.title_medium.font
+          .. ' ' .. md.sys.typescale.title_medium.size,
         widget = wibox.widget.textbox
       },
       {
@@ -129,22 +170,45 @@ end
 function music:bottom()
   return wibox.widget {
     {
-      text = 'Playlists',
-      widget = wibox.widget.textbox
+      nil,
+      {
+        chip_suggestion({
+          text = 'ebsm',
+          fg = md.sys.color.primary
+        }),
+        chip_suggestion({
+          text = 'clas'
+        }),
+        chip_suggestion({
+          text = 'rock',
+          fg = md.sys.color.tertiary
+        }),
+        spacing = dpi(8),
+        layout = wibox.layout.fixed.horizontal
+      },
+      expand = 'none',
+      layout = wibox.layout.align.horizontal
     },
     {
-      button_outlined({
-        text = 'EBSM'
-      }),
-      button_outlined({
-        text = 'CLAS'
-      }),
-      button_outlined({
-        text = 'SPAC'
-      }),
-      spacing = dpi(8),
-      layout = wibox.layout.fixed.horizontal
+      nil,
+      {
+        chip_suggestion({
+          text = 'chil'
+        }),
+        chip_suggestion({
+          text = 'lofi',
+          fg = md.sys.color.on_surface
+        }),
+        chip_suggestion({
+          text = 'folk'
+        }),
+        spacing = dpi(8),
+        layout = wibox.layout.fixed.horizontal
+      },
+      expand = 'none',
+      layout = wibox.layout.align.horizontal
     },
+    spacing = dpi(8),
     layout = wibox.layout.fixed.vertical
   }
 end

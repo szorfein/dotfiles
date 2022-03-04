@@ -12,7 +12,7 @@ function card:elevated(widget)
     {
       {
         widget,
-        left = dpi(10), right = dpi(10),
+        margins = dpi(16),
         widget = wibox.container.margin
       },
       bg = md.sys.color.surface_tint_color .. md.sys.elevation.level1,
