@@ -63,7 +63,7 @@ end
 -- }}}
 
 local helpers = require('lib.helpers')
-local text_button = require('lib.button-text')
+local button_text = require('lib.button-text')
 
 -- This is used later as the default terminal and editor to run.
 terminal = "xterm"
@@ -171,55 +171,59 @@ awful.screen.connect_for_each_screen(function(s)
     menubar = menubar,
     visible = true
   })
-  local rail_button = text_button({
-    icon = '',
+  local rail_button = button_text({
+    icon = '󰍜',
     fg = md.sys.color.on_surface_variant,
     cmd = function() rail:show() end
   })
 
   local panel = require('layout.panel')({ screen = s })
-  local panel_button = text_button({
-    icon = '',
+  local panel_button = button_text({
+    icon = '󰍝',
+    fg = md.sys.color.on_surface_variant,
     cmd = function() panel:show() end
   })
 
-  local dashboard = text_button({
-    icon = '舘',
-    fg = md.sys.color.on_surface,
+  local dashboard = button_text({
+    icon = '󰋜',
+    fg = md.sys.color.on_surface_variant,
     cmd = function()
       s.dashboard.visible = true
     end
   })
 
   -- Create the wibox
-  s.mywibox = awful.wibar({ position = 'top', screen = s, height = dpi(40) })
+  s.mywibox = awful.wibar({ position = 'top', screen = s, height = dpi(64) })
 
   -- Add widgets to the wibox
   s.mywibox:setup {
-    layout = wibox.layout.align.horizontal,
-    expand = 'none',
-    { -- Left widgets
+    {
+      nil,
       {
-        layout = wibox.layout.fixed.horizontal,
-        rail_button,
-        s.mypromptbox,
+        layout = wibox.layout.align.horizontal,
+        expand = 'none',
+        { -- Left widgets
+          layout = wibox.layout.fixed.horizontal,
+          spacing = dpi(14),
+          rail_button,
+          s.mypromptbox,
+        },
+        s.mytasklist, -- Middle widget
+        { -- Right widgets
+          layout = wibox.layout.fixed.horizontal,
+          spacing = dpi(14),
+          wibox.widget.systray(),
+          mytextclock,
+          s.mylayoutbox,
+          dashboard,
+          panel_button,
+        },
       },
-      left = dpi(20),
-      widget = wibox.container.margin
+      expand = 'none',
+      layout = wibox.layout.align.vertical
     },
-    s.mytasklist, -- Middle widget
-    { -- Right widgets
-      {
-        layout = wibox.layout.fixed.horizontal,
-        dashboard,
-        wibox.widget.systray(),
-        mytextclock,
-        s.mylayoutbox,
-        panel_button,
-      },
-      right = dpi(20),
-      widget = wibox.container.margin
-    },
+    left = dpi(16), right = dpi(16),
+    widget = wibox.container.margin
   }
 
   -- all other layouts
@@ -560,8 +564,24 @@ client.connect_signal("request::titlebars", function(c)
     end)
   )
 
-  local close_button = text_button({
-    icon = '',
+  local floating_button = button_text({
+    icon = '󰔶',
+    fg = md.sys.color.secondary,
+    cmd = function()
+      awful.client.floating.toggle(c)
+    end,
+  })
+
+  local maximize_button = button_text({
+    icon = '󱓻',
+    cmd = function()
+      c.maximized = not c.maximized
+      c:raise()
+    end
+  })
+
+  local close_button = button_text({
+    icon = '󰈸',
     fg = md.sys.color.error,
     cmd = function() c:kill() end
   })
@@ -579,11 +599,10 @@ client.connect_signal("request::titlebars", function(c)
         layout  = wibox.layout.flex.horizontal
       },
       { -- Right
-        awful.titlebar.widget.floatingbutton (c),
-        awful.titlebar.widget.maximizedbutton(c),
-        awful.titlebar.widget.stickybutton   (c),
-        awful.titlebar.widget.ontopbutton    (c),
+        floating_button,
+        maximize_button,
         close_button,
+        spacing = -8,
         layout = wibox.layout.fixed.horizontal()
       },
       layout = wibox.layout.align.horizontal

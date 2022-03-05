@@ -59,28 +59,46 @@ end
 function tasklist:normal(item, hovered)
   local hover = hovered or false
   local state = item:get_children_by_id('tasklist_state')[1]
-  item.fg = md.sys.color.on_surface_variant
+  local surface = item:get_children_by_id('tasklist_surface')[1]
   state.shape = helpers.rrect(dpi(8))
+  surface.shape = helpers.rrect(dpi(8))
+  item.fg = md.sys.color.on_surface_variant
+
   state.bg = hover
     and md.sys.color.on_surface_variant .. md.sys.state.hover_state_layer_opacity
+    or md.sys.color.surface .. md.sys.elevation.level0
+
+  surface.bg = hover
+    and md.sys.color.surface_tint_color .. md.sys.elevation.level2
     or md.sys.color.surface_tint_color .. md.sys.elevation.level1
 end
 
 function tasklist:minimize(item)
   local state = item:get_children_by_id('tasklist_state')[1]
-  item.fg = md.sys.color.on_surface .. md.sys.state.disable_content_opacity
+  local surface = item:get_children_by_id('tasklist_surface')[1]
+
   state.shape = helpers.rrect(dpi(8))
-  state.bg = md.sys.color.on_surface .. md.sys.state.disable_container_opacity
+  surface.shape = helpers.rrect(dpi(8))
+
+  item.fg = md.sys.color.on_surface .. md.sys.state.disable_content_opacity
+  surface.bg = md.sys.color.on_surface .. md.sys.state.disable_container_opacity
+  state.bg = md.sys.color.on_surface .. md.sys.elevation.level0
 end
 
 function tasklist:focus(item, hovered)
   local hover = hovered or false
   local state = item:get_children_by_id('tasklist_state')[1]
+  local surface = item:get_children_by_id('tasklist_surface')[1]
   item.fg = md.sys.color.on_secondary_container
   state.shape = helpers.rrect(dpi(8))
+  surface.shape = helpers.rrect(dpi(8))
+
   state.bg = hover
     and md.sys.color.on_secondary_container .. md.sys.state.hover_state_layer_opacity
     or md.sys.color.on_secondary_container .. md.sys.state.focus_state_layer_opacity
+  surface.bg = hover
+    and md.sys.color.surface_tint_color .. md.sys.elevation.level2
+    or md.sys.color.surface_tint_color .. md.sys.elevation.level1
 end
 
 function tasklist:template()
@@ -89,23 +107,28 @@ function tasklist:template()
       {
         {
           {
-            id = 'icon',
-            font = md.sys.typescale.label_large.font .. ' ' .. dpi(18),
-            widget = wibox.widget.textbox
+            {
+              id = 'icon',
+              font = md.sys.typescale.label_large.font .. ' ' .. dpi(18),
+              widget = wibox.widget.textbox
+            },
+            {
+              id = 'name',
+              font = md.sys.typescale.label_large.font
+                .. ' ' .. md.sys.typescale.label_large.size,
+              widget = wibox.widget.textbox
+            },
+            spacing = dpi(8),
+            layout = wibox.layout.fixed.horizontal
           },
-          {
-            id = 'name',
-            font = md.sys.typescale.label_large.font
-              .. ' ' .. md.sys.typescale.label_large.size,
-            widget = wibox.widget.textbox
-          },
-          spacing = dpi(8),
-          layout = wibox.layout.fixed.horizontal
+          left = dpi(16), right = dpi(16),
+          top = dpi(6), bottom = dpi(6),
+          widget = wibox.container.margin
         },
-        left = dpi(8), right = dpi(16),
-        widget = wibox.container.margin
+        id = 'tasklist_state',
+        widget = wibox.container.background
       },
-      id = 'tasklist_state',
+      id = 'tasklist_surface',
       widget = wibox.container.background
     },
     id = 'background_role',

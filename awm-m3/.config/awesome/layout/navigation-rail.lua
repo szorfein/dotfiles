@@ -1,7 +1,7 @@
 local awful = require('awful')
 local wibox = require('wibox')
-local fab = require('lib.mat.fab')
-local text_button = require('lib.button-text')
+local fab = require('lib.fab')
+local button_text = require('lib.button-text')
 
 -- https://m3.material.io/components/navigation-rail/specs
 local nav_rail = class()
@@ -44,18 +44,23 @@ end
 function nav_rail:top_widget()
   return wibox.widget {
     {
-      text_button({
-        icon = '',
-        fg = md.sys.color.on_surface,
+      button_text({
+        icon = '󰍜',
+        fg = md.sys.color.on_surface_variant,
         cmd = function() self:hide() end
       }),
-      left = dpi(14), right = dpi(14),
+      left = dpi(16), top = dpi(10), right = dpi(16),
       widget = wibox.container.margin
     },
-    fab({
-      content = '',
-      cmd = self.menubar.show,
-    }),
+    {
+      fab({
+        icon = '',
+        cmd = self.menubar.show,
+      }),
+      left = dpi(16), right = dpi(16),
+      widget = wibox.container.margin
+    },
+    spacing = dpi(16),
     layout = wibox.layout.fixed.vertical
   }
 end
@@ -70,13 +75,21 @@ function nav_rail:middle_widget()
 end
 
 function nav_rail:show()
-  self.screen.padding = { left = dpi(80) }
+  local right_pad = 0
+  if self.screen.panel then
+    right_pad = self.screen.panel.visible and dpi(256) or 0
+  end
+  self.screen.padding = { left = dpi(80), right = right_pad }
   self:placement()
   self.screen.rail.visible = true
 end
 
 function nav_rail:hide()
-  self.screen.padding = { left = 0 }
+  local right_pad = 0
+  if self.screen.panel then
+    right_pad = self.screen.panel.visible and dpi(256) or 0
+  end
+  self.screen.padding = { left = 0, right = right_pad }
   self.screen.rail.visible = false
 end
 
