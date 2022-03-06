@@ -631,6 +631,8 @@ end)
 sf = awful.screen.focused()
 sf.dashboard.visible = true
 
+require('daemon')
+
 -- Run garbage collector regularly to prevent memory leaks
 -- https://wiki.archlinux.org/title/Awesome#Memory_leaks
 gears.timer {
