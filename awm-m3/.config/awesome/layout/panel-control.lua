@@ -5,6 +5,7 @@ local control = class()
 
 function control:init()
   self.mem = self:progressbar(5)
+  self.cpu = self:progressbar(5)
   self:signals()
   return wibox.widget {
     {
@@ -20,6 +21,9 @@ end
 function control:signals()
   awesome.connect_signal('daemon::mem', function(mem)
     self.mem.value = mem and tonumber(mem) or 0
+  end)
+  awesome.connect_signal('daemon::cpu', function(cpu)
+    self.cpu.value = cpu and tonumber(cpu) or 0
   end)
 end
 
@@ -134,12 +138,10 @@ function control:monitoring()
       widget = self:progressbar(10),
     },
     {
-      text = 'USEDCPU',
+      text = 'CPU',
       widget = wibox.widget.textbox
     },
-    {
-      widget = self:progressbar(50),
-    },
+    self.cpu,
     {
       {
         text = '󱘈',
