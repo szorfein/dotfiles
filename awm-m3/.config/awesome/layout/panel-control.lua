@@ -4,6 +4,8 @@ local helpers = require('lib.helpers')
 local control = class()
 
 function control:init()
+  self.mem = self:progressbar(5)
+  self:signals()
   return wibox.widget {
     {
       self:left_side(),
@@ -13,6 +15,12 @@ function control:init()
     margins = dpi(12),
     widget = wibox.container.margin
   }
+end
+
+function control:signals()
+  awesome.connect_signal('daemon::mem', function(mem)
+    self.mem.value = mem and tonumber(mem) or 0
+  end)
 end
 
 function control:left_side()
@@ -117,9 +125,7 @@ function control:monitoring()
       text = 'USEDRAM',
       widget = wibox.widget.textbox
     },
-    {
-      widget = self:progressbar(30),
-    },
+    self.mem,
     {
       text = 'USEDSTO',
       widget = wibox.widget.textbox
