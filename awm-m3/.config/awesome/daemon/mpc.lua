@@ -30,7 +30,7 @@ local function mpc_info()
   awful.spawn.easy_async_with_shell(script, function(stdout, _, _, exit_code)
     if exit_code ~= 0 then
       awesome.emit_signal("daemon::mpc",
-        '/home/daggoth/images/thumb-1920-609120.jpg', 'N/A', 'N/A', 'stopped')
+        '/home/daggoth/images/thumb-1920-609120.jpg', 'N/A', 'N/A', true)
     end
 
     local img = stdout:match('^IMG@(.*)@ARTIST')

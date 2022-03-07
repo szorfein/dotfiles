@@ -29,6 +29,10 @@ playlist_display_mode = "classic"
 song_list_format = "$7{%a}|{%D}$8 * $5%t$R $6%l"
 now_playing_prefix = "$5>> $1"
 
+main_window_color = "blue"
+current_item_prefix = "$(blue)$r"
+current_item_suffix = "$/r$(end)"
+
 # Progressbars to use.
 # This section works as
 # a clipboard so no need

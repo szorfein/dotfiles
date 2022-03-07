@@ -10,12 +10,16 @@ local card = require('lib.card-elevated')
 local music = class()
 
 function music:init()
+  self.mpd_toggle = button_outlined({
+    text = 'Start',
+    cmd = self.start
+  })
   self.title = self:title()
   self.artist = self:artist()
   self.image = self:image()
   self.progressbar = self:progressbar()
   self.mpd_status = self:mpd_status()
-  self.mpd_toggle = button_outlined({
+  self.mpc_toggle = button_outlined({
     icon = '󰼛',
     cmd = function()
       awful.spawn.with_shell("mpc -q toggle")
@@ -38,10 +42,13 @@ end
 
 function music:signals()
   awesome.connect_signal('daemon::mpd', function(status)
+    local toggle = self.mpd_toggle:get_all_children()[5]
     if status then
       self.mpd_status.fg = md.sys.color.primary
+      toggle.text = 'Stop'
     else
       self.mpd_status.fg = md.sys.color.error
+      toggle.text = 'Start'
     end
   end)
   awesome.connect_signal('daemon::mpc', function(img, artist, title, paused)
@@ -49,7 +56,7 @@ function music:signals()
     self.artist.text = artist and 'by ' .. artist or 'by N/A'
     self.image.image = img and img or '/home/daggoth/images/thumb-1920-609120.jpg'
 
-    local toggle = self.mpd_toggle:get_all_children()[5]
+    local toggle = self.mpc_toggle:get_all_children()[5]
     local pause = paused and paused or false
     toggle.text = pause and '󰼛' or '󰏤'
   end)
@@ -68,7 +75,7 @@ end
 function music:progressbar()
   return wibox.widget {
     max_value     = 1,
-    value         = value,
+    value         = 1,
     max_value     = 100,
     forced_height = 10,
     forced_width  = 100,
@@ -82,27 +89,21 @@ function music:progressbar()
 end
 
 function music:start()
-  local script = [[sh -c '
-    set -o errexit
-    [ -s ~/.config/mpd/pid ] || mpd
-  ']]
+  local script = [[
+#!/usr/bin/env sh
+
+set -o errexit -o nounset
+
+if [ -s "$HOME"/.config/mpd/pid ] ; then
+  pgrep -x mpd 2>/dev/null | xargs kill
+else
+  mpd
+  mpc idleloop player
+fi
+]]
+
   awful.spawn.easy_async_with_shell(script, function(_, _, _, exit_code)
     naughty.notify({ title = 'mpd', text = tostring(exit_code) })
-  end)
-end
-
-function music:stop()
-  local script = [[sh -c '
-    if pgrep -x mpd 2>/dev/null ; then
-      pgrep -x mpd 2>/dev/null | xargs kill
-    fi
-  ']]
-  awful.spawn.easy_async_with_shell(script, function(_, _, _, exit_code)
-    if exit_code == 0 then
-      naughty.notify({ title = 'mpd', text = 'mpd stopped' })
-    else
-      naughty.notify({ title = 'mpd stop', text = tostring(exit_code) })
-    end
   end)
 end
 
@@ -137,19 +138,7 @@ function music:top()
       {
         nil,
         nil,
-        {
-          button_text({
-            text = 'Stop',
-            fg = md.sys.color.on_surface_variant,
-            cmd = self.stop
-          }),
-          button_outlined({
-            text = 'Start',
-            cmd = self.start
-          }),
-          spacing = dpi(8),
-          layout = wibox.layout.fixed.horizontal
-        },
+        self.mpd_toggle,
         layout = wibox.layout.align.horizontal
       },
       spacing = dpi(16),
@@ -167,6 +156,7 @@ function music:title()
     align = 'center',
     font = md.sys.typescale.title_medium.font
       .. ' ' .. md.sys.typescale.title_medium.size,
+    forced_height = dpi(24),
     widget = wibox.widget.textbox
   }
 end
@@ -177,6 +167,7 @@ function music:artist()
     align = 'center',
     font = md.sys.typescale.body_small.font
     .. ' ' .. md.sys.typescale.body_small.size,
+    forced_height = dpi(24),
     widget = wibox.widget.textbox
   }
 end
@@ -218,7 +209,7 @@ function music:middle()
                 awful.spawn.with_shell("mpc -q prev")
               end
             }),
-            self.mpd_toggle,
+            self.mpc_toggle,
             button_text({
               icon = '󰼧',
               cmd = function()
