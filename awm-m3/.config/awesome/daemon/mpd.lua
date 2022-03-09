@@ -14,7 +14,7 @@ local function mpd_status()
 end
 
 timer {
-  timeout = 15,
+  timeout = 10,
   autostart = true,
   call_now = true,
   callback = function()

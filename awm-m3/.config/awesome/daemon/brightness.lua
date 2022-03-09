@@ -11,6 +11,11 @@ local script = [[ sh -c '
 light -G
 ']]
 
+-- To avoid a screen full black
+local function brightness_minimum_value()
+  spawn('light -N 1')
+end
+
 local function brightness_status()
   spawn.easy_async_with_shell(script, function(stdout)
     percentage = math.floor(tonumber(stdout))
@@ -18,6 +23,7 @@ local function brightness_status()
   end)
 end
 
+brightness_minimum_value()
 brightness_status()
 
 spawn.easy_async_with_shell('pgrep -i inotifywait | xargs kill', function()

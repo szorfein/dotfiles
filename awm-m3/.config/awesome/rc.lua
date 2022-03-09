@@ -70,6 +70,10 @@ terminal = "xterm"
 editor = os.getenv("EDITOR") or "nano"
 editor_cmd = terminal .. " -e " .. editor
 
+-- check if the system use PulseAudio or Alsa
+is_pulse = helpers:file_exist('/usr/bin/pactl')
+
+naughty.notify({ title = 'pulse', text = tostring(is_pulse) })
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
 -- If you do not like this or do not have such a key,

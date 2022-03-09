@@ -14,4 +14,13 @@ function helpers:circle()
   end
 end
 
+function helpers:file_exist(file)
+  local f = io.open(file, 'r')
+  if f then
+    f:close()
+    return true
+  end
+  return false
+end
+
 return helpers

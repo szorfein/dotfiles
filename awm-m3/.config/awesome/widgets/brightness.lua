@@ -9,7 +9,6 @@ local brightness = class()
 function brightness:init()
   self.slider = slider:widget()
   self.widget = self:create()
-  slider:set(4)
   self:buttons()
   self:signals()
   return self.widget
@@ -26,11 +25,11 @@ function brightness:create()
 end
 
 function brightness:signals()
-  slider.slider:connect_signal('property::value', function()
-    awful.spawn.with_shell('light -S ' .. slider.slider.value)
-  end)
   awesome.connect_signal('daemon::brightness', function(brightness)
     slider:set(brightness)
+  end)
+  slider.slider:connect_signal('property::value', function()
+    awful.spawn.with_shell('light -S ' .. slider.slider.value)
   end)
 end
 
@@ -39,11 +38,11 @@ function brightness:buttons()
     gears.table.join(
       -- Scroll up - Increase brightness
       awful.button({}, 4, function()
-        awful.spawn.with_shell("light -A 5")
+        awful.spawn.with_shell("light -A 4")
       end),
       -- Scroll down - Decrease brightness
       awful.button({}, 5, function()
-        awful.spawn.with_shell("light -U 5")
+        awful.spawn.with_shell("light -U 4")
       end)
     )
   )
