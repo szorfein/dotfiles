@@ -8,3 +8,4 @@ if is_pulse then
 else
   require('daemon.volume-alsa')
 end
+require('daemon.geoloc')

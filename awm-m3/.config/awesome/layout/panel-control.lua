@@ -6,6 +6,7 @@ local control = class()
 function control:init()
   self.mem = self:progressbar(5)
   self.cpu = self:progressbar(5)
+  self.geoloc = self:geoloc()
   self:signals()
   return wibox.widget {
     {
@@ -24,6 +25,11 @@ function control:signals()
   end)
   awesome.connect_signal('daemon::cpu', function(cpu)
     self.cpu.value = cpu and tonumber(cpu) or 0
+  end)
+  awesome.connect_signal('daemon::geoloc', function(country, city)
+    local country = country and tostring(country) or nil
+    local city = city and tostring(city) or 'Somewhere'
+    self.geoloc.text = city .. ', ' .. country
   end)
 end
 
@@ -148,15 +154,19 @@ function control:monitoring()
         font = md.sys.typescale.icon.font .. ' ' .. dpi(16),
         widget = wibox.widget.textbox
       },
-      {
-        text = 'city, country',
-        widget = wibox.widget.textbox
-      },
+      self.geoloc,
       spacing = dpi(8),
       layout = wibox.layout.fixed.horizontal
     },
     spacing = dpi(8),
     layout = wibox.layout.fixed.vertical
+  }
+end
+
+function control:geoloc()
+  return wibox.widget {
+    text = 'city, country',
+    widget = wibox.widget.textbox
   }
 end
 
