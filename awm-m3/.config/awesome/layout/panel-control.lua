@@ -7,6 +7,7 @@ function control:init()
   self.mem = self:progressbar(5)
   self.cpu = self:progressbar(5)
   self.geoloc = self:geoloc()
+  self.disk = self:progressbar(5)
   self:signals()
   return wibox.widget {
     {
@@ -30,6 +31,9 @@ function control:signals()
     local country = country and tostring(country) or nil
     local city = city and tostring(city) or 'Somewhere'
     self.geoloc.text = city .. ', ' .. country
+  end)
+  awesome.connect_signal('daemon::disk', function(used)
+    self.disk.value = used and used or 5
   end)
 end
 
@@ -137,12 +141,10 @@ function control:monitoring()
     },
     self.mem,
     {
-      text = 'USEDSTO',
+      text = 'USEDHDD',
       widget = wibox.widget.textbox
     },
-    {
-      widget = self:progressbar(10),
-    },
+    self.disk,
     {
       text = 'CPU',
       widget = wibox.widget.textbox

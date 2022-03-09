@@ -9,3 +9,4 @@ else
   require('daemon.volume-alsa')
 end
 require('daemon.geoloc')
+require('daemon.disk')
