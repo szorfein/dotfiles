@@ -8,6 +8,7 @@ function control:init()
   self.cpu = self:progressbar(5)
   self.geoloc = self:geoloc()
   self.disk = self:progressbar(5)
+  self.battery = self:progressbar(5)
   self:signals()
   return wibox.widget {
     {
@@ -35,6 +36,9 @@ function control:signals()
   awesome.connect_signal('daemon::disk', function(used)
     self.disk.value = used and used or 5
   end)
+  awesome.connect_signal('daemon::battery', function(value)
+    self.battery.value = value
+  end)
 end
 
 function control:left_side()
@@ -58,7 +62,8 @@ function control:left_side()
           forced_height = md.sys.typescale.display_large.size,
           layout = wibox.layout.fixed.horizontal
         },
-        bottom = dpi(8),
+        top = dpi(8),
+        bottom = dpi(12),
         widget = wibox.container.margin
       },
       self:centered({
@@ -132,9 +137,7 @@ function control:monitoring()
       text = 'BATTERY',
       widget = wibox.widget.textbox
     },
-    {
-      widget = self:progressbar(70),
-    },
+    self.battery,
     {
       text = 'USEDRAM',
       widget = wibox.widget.textbox
@@ -158,6 +161,7 @@ function control:monitoring()
       },
       self.geoloc,
       spacing = dpi(8),
+      forced_height = dpi(20),
       layout = wibox.layout.fixed.horizontal
     },
     spacing = dpi(8),

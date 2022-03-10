@@ -10,3 +10,4 @@ else
 end
 require('daemon.geoloc')
 require('daemon.disk')
+require('daemon.battery')
