@@ -8,6 +8,8 @@ local panel = class()
 function panel:init(args)
   self.screen = args.screen or awful.screen.focused()
   self.width = dpi(256)
+  self.music = require('layout.panel-music')()
+  self.control = require('layout.panel-control')()
   self.screen.panel = wibox(self:wibox_args())
   self:setup()
 end
@@ -67,7 +69,7 @@ end
 function panel:control_panel()
   self.screen.panel:setup {
     self:head_buttons(),
-    require('layout.panel-control')(),
+    self.control,
     layout = wibox.layout.align.vertical
   }
 end
@@ -75,7 +77,7 @@ end
 function panel:music_panel()
   self.screen.panel:setup {
     self:head_buttons(),
-    require('layout.panel-music')(),
+    self.music,
     layout = wibox.layout.align.vertical
   }
 end

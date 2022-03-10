@@ -62,7 +62,7 @@ function control:left_side()
       self:centered({
         require('widgets.cpu')({ w = dpi(80), h = dpi(80) }),
       }),
-      spacing = dpi(14),
+      spacing = dpi(18),
       layout = wibox.layout.fixed.vertical
     },
     expand = 'none',
