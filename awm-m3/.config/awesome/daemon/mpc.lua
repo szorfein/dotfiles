@@ -44,6 +44,8 @@ local function mpc_info()
     else
       paused = true
     end
+    local naughty = require('naughty')
+    naughty.notify({ title = 'MPD', text = 'change' })
 
     awesome.emit_signal("daemon::mpc", img, artist, title, paused)
   end)

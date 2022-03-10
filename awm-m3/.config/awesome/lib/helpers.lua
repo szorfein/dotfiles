@@ -9,6 +9,12 @@ function helpers:rrect(radius)
   end
 end
 
+function helpers:prect(radius)
+  return function(cr, width, height)
+    gears.shape.partially_rounded_rect(cr, width, height, false, false, true, true, radius)
+  end
+end
+
 function helpers:circle()
   return function(cr, width, height)
     gears.shape.circle(cr, width, height)

@@ -10,15 +10,15 @@ local card = require('lib.card-elevated')
 local music = class()
 
 function music:init()
-  self.mpd_toggle = button_outlined({
-    text = 'Start',
+  self.mpd_status = button_text({
+    icon = '󰽢',
+    fg = md.sys.color.error,
     cmd = self.start
   })
   self.title = self:title()
   self.artist = self:artist()
   self.image = self:image()
   self.progressbar = self:progressbar()
-  self.mpd_status = self:mpd_status()
   self.mpc_toggle = button_outlined({
     icon = '󰼛',
     cmd = function()
@@ -42,13 +42,24 @@ end
 
 function music:signals()
   awesome.connect_signal('daemon::mpd', function(status)
-    local toggle = self.mpd_toggle:get_all_children()[5]
     if status then
-      self.mpd_status.fg = md.sys.color.primary
-      toggle.text = 'Stop'
+      self.mpd_status:setup {
+        button_text({
+          icon = '󰽢',
+          fg = md.sys.color.primary,
+          cmd = self.start
+        }),
+        layout = wibox.layout.fixed.horizontal
+      }
     else
-      self.mpd_status.fg = md.sys.color.error
-      toggle.text = 'Start'
+      self.mpd_status:setup {
+        button_text({
+          icon = '󰽢',
+          fg = md.sys.color.error,
+          cmd = self.start
+        }),
+        layout = wibox.layout.fixed.horizontal
+      }
     end
   end)
   awesome.connect_signal('daemon::mpc', function(img, artist, title, paused)
@@ -98,7 +109,7 @@ if [ -s "$HOME"/.config/mpd/pid ] ; then
   pgrep -x mpd 2>/dev/null | xargs kill
 else
   mpd
-  mpc idleloop player
+  mpc idleloop player &
 fi
 ]]
 
@@ -107,52 +118,24 @@ fi
   end)
 end
 
-function music:mpd_status()
-  return wibox.widget {
-    {
-      text = '󰽢',
-      font = md.sys.typescale.icon.font .. ' ' .. dpi(18),
-      widget = wibox.widget.textbox
-    },
-    fg = md.sys.color.error,
-    widget = wibox.container.background
-  }
-end
-
 function music:top()
   local top = wibox.widget {
     {
-      nil,
-      {
-        {
-          text = 'MPD',
-          font = md.sys.typescale.title_medium.font
-            .. ' ' .. md.sys.typescale.title_medium.size,
-          widget = wibox.widget.textbox
-        },
-        nil,
-        self.mpd_status,
-        expand = 'none',
-        layout = wibox.layout.align.horizontal
-      },
-      {
-        nil,
-        nil,
-        self.mpd_toggle,
-        layout = wibox.layout.align.horizontal
-      },
-      spacing = dpi(16),
-      layout = wibox.layout.fixed.vertical
+      text = 'MPD',
+      font = md.sys.typescale.title_medium.font
+        .. ' ' .. md.sys.typescale.title_medium.size,
+      widget = wibox.widget.textbox
     },
+    nil,
+    self.mpd_status,
     expand = 'none',
-    layout = wibox.layout.fixed.vertical
+    layout = wibox.layout.align.horizontal
   }
   return card:elevated(top)
 end
 
 function music:title()
   return wibox.widget {
-    text = 'TITLE',
     align = 'center',
     font = md.sys.typescale.title_medium.font
       .. ' ' .. md.sys.typescale.title_medium.size,
@@ -163,10 +146,9 @@ end
 
 function music:artist()
   return wibox.widget {
-    text = 'by AUTHOR',
     align = 'center',
     font = md.sys.typescale.body_small.font
-    .. ' ' .. md.sys.typescale.body_small.size,
+      .. ' ' .. md.sys.typescale.body_small.size,
     forced_height = dpi(24),
     widget = wibox.widget.textbox
   }
@@ -188,11 +170,27 @@ end
 function music:middle()
   return wibox.widget {
     {
-      self:description(),
+      {
+        self.progressbar,
+        {
+          nil,
+          nil,
+          button_text({
+            icon = '󱐰',
+            fg = md.sys.color.error,
+            cmd = function()
+              awful.spawn.with_shell("mpc del 0")
+            end
+          }),
+          expand = 'none',
+          layout = wibox.layout.align.horizontal
+        },
+        layout = wibox.layout.fixed.vertical
+      },
       {
         self.image,
         {
-          self.progressbar,
+          self:description(),
           top = dpi(20),
           left = dpi(10), right = dpi(10),
           widget = wibox.container.margin
@@ -230,7 +228,7 @@ function music:middle()
     },
     bg = md.sys.color.primary .. md.sys.elevation.level1,
     forced_height = dpi(400),
-    shape = helpers.rrect(dpi(28)),
+    shape = helpers:prect(dpi(28)),
     widget = wibox.container.background
   }
 end
