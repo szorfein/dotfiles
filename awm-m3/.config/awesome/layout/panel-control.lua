@@ -4,6 +4,12 @@ local helpers = require('lib.helpers')
 local control = class()
 
 function control:init()
+  self.mem = self:progressbar(5)
+  self.cpu = self:progressbar(5)
+  self.geoloc = self:geoloc()
+  self.disk = self:progressbar(5)
+  self.battery = self:progressbar(5)
+  self:signals()
   return wibox.widget {
     {
       self:left_side(),
@@ -13,6 +19,26 @@ function control:init()
     margins = dpi(12),
     widget = wibox.container.margin
   }
+end
+
+function control:signals()
+  awesome.connect_signal('daemon::mem', function(mem)
+    self.mem.value = mem and tonumber(mem) or 0
+  end)
+  awesome.connect_signal('daemon::cpu', function(cpu)
+    self.cpu.value = cpu and tonumber(cpu) or 0
+  end)
+  awesome.connect_signal('daemon::geoloc', function(country, city)
+    local country = country and tostring(country) or nil
+    local city = city and tostring(city) or 'Somewhere'
+    self.geoloc.text = city .. ', ' .. country
+  end)
+  awesome.connect_signal('daemon::disk', function(used)
+    self.disk.value = used and used or 5
+  end)
+  awesome.connect_signal('daemon::battery', function(value)
+    self.battery.value = value
+  end)
 end
 
 function control:left_side()
@@ -36,7 +62,8 @@ function control:left_side()
           forced_height = md.sys.typescale.display_large.size,
           layout = wibox.layout.fixed.horizontal
         },
-        bottom = dpi(8),
+        top = dpi(8),
+        bottom = dpi(12),
         widget = wibox.container.margin
       },
       self:centered({
@@ -112,45 +139,42 @@ function control:monitoring()
       text = 'BATTERY',
       widget = wibox.widget.textbox
     },
-    {
-      widget = self:progressbar(70),
-    },
+    self.battery,
     {
       text = 'USEDRAM',
       widget = wibox.widget.textbox
     },
+    self.mem,
     {
-      widget = self:progressbar(30),
-    },
-    {
-      text = 'USEDSTO',
+      text = 'USEDHDD',
       widget = wibox.widget.textbox
     },
+    self.disk,
     {
-      widget = self:progressbar(10),
-    },
-    {
-      text = 'USEDCPU',
+      text = 'CPU',
       widget = wibox.widget.textbox
     },
-    {
-      widget = self:progressbar(50),
-    },
+    self.cpu,
     {
       {
         text = '󱘈',
         font = md.sys.typescale.icon.font .. ' ' .. dpi(16),
         widget = wibox.widget.textbox
       },
-      {
-        text = 'city, country',
-        widget = wibox.widget.textbox
-      },
+      self.geoloc,
       spacing = dpi(8),
+      forced_height = dpi(20),
       layout = wibox.layout.fixed.horizontal
     },
     spacing = dpi(8),
     layout = wibox.layout.fixed.vertical
+  }
+end
+
+function control:geoloc()
+  return wibox.widget {
+    text = 'city, country',
+    widget = wibox.widget.textbox
   }
 end
 

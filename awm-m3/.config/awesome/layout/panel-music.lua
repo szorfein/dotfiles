@@ -1,4 +1,6 @@
 local wibox = require('wibox')
+local awful = require('awful')
+local naughty = require('naughty')
 local helpers = require('lib.helpers')
 local button_outlined = require('lib.button-outlined')
 local button_text = require('lib.button-text')
@@ -8,9 +10,22 @@ local card = require('lib.card-elevated')
 local music = class()
 
 function music:init()
+  self.mpd_toggle = button_outlined({
+    text = 'Start',
+    cmd = self.start
+  })
   self.title = self:title()
+  self.artist = self:artist()
   self.image = self:image()
-  self.progressbar = self:progressbar(33)
+  self.progressbar = self:progressbar()
+  self.mpd_status = self:mpd_status()
+  self.mpc_toggle = button_outlined({
+    icon = '󰼛',
+    cmd = function()
+      awful.spawn.with_shell("mpc -q toggle")
+    end
+  }),
+  self:signals()
   return wibox.widget {
     {
       self:top(),
@@ -25,6 +40,31 @@ function music:init()
   }
 end
 
+function music:signals()
+  awesome.connect_signal('daemon::mpd', function(status)
+    local toggle = self.mpd_toggle:get_all_children()[5]
+    if status then
+      self.mpd_status.fg = md.sys.color.primary
+      toggle.text = 'Stop'
+    else
+      self.mpd_status.fg = md.sys.color.error
+      toggle.text = 'Start'
+    end
+  end)
+  awesome.connect_signal('daemon::mpc', function(img, artist, title, paused)
+    self.title.text = title and title or 'N/A'
+    self.artist.text = artist and 'by ' .. artist or 'by N/A'
+    self.image.image = img and img or '/home/daggoth/images/thumb-1920-609120.jpg'
+
+    local toggle = self.mpc_toggle:get_all_children()[5]
+    local pause = paused and paused or false
+    toggle.text = pause and '󰼛' or '󰏤'
+  end)
+  awesome.connect_signal('daemon::mpc_timer', function(time)
+    self.progressbar.value = time and tonumber(time) or 0
+  end)
+end
+
 function music:image()
   return wibox.widget {
     image = '/home/daggoth/images/thumb-1920-609120.jpg',
@@ -32,10 +72,10 @@ function music:image()
   }
 end
 
-function music:progressbar(value)
+function music:progressbar()
   return wibox.widget {
     max_value     = 1,
-    value         = value,
+    value         = 1,
     max_value     = 100,
     forced_height = 10,
     forced_width  = 100,
@@ -45,6 +85,37 @@ function music:progressbar(value)
       .. md.sys.elevation.level1,
     shape = helpers.rrect(dpi(20)),
     widget        = wibox.widget.progressbar,
+  }
+end
+
+function music:start()
+  local script = [[
+#!/usr/bin/env sh
+
+set -o errexit -o nounset
+
+if [ -s "$HOME"/.config/mpd/pid ] ; then
+  pgrep -x mpd 2>/dev/null | xargs kill
+else
+  mpd
+  mpc idleloop player
+fi
+]]
+
+  awful.spawn.easy_async_with_shell(script, function(_, _, _, exit_code)
+    naughty.notify({ title = 'mpd', text = tostring(exit_code) })
+  end)
+end
+
+function music:mpd_status()
+  return wibox.widget {
+    {
+      text = '󰽢',
+      font = md.sys.typescale.icon.font .. ' ' .. dpi(18),
+      widget = wibox.widget.textbox
+    },
+    fg = md.sys.color.error,
+    widget = wibox.container.background
   }
 end
 
@@ -60,32 +131,14 @@ function music:top()
           widget = wibox.widget.textbox
         },
         nil,
-        {
-          {
-            text = '󰽢',
-            font = md.sys.typescale.icon.font .. ' ' .. dpi(18),
-            widget = wibox.widget.textbox
-          },
-          fg = md.sys.color.error,
-          widget = wibox.container.background
-        },
+        self.mpd_status,
         expand = 'none',
         layout = wibox.layout.align.horizontal
       },
       {
         nil,
         nil,
-        {
-          button_text({
-            text = 'Stop',
-            fg = md.sys.color.on_surface_variant
-          }),
-          button_outlined({
-            text = 'Start'
-          }),
-          spacing = dpi(8),
-          layout = wibox.layout.fixed.horizontal
-        },
+        self.mpd_toggle,
         layout = wibox.layout.align.horizontal
       },
       spacing = dpi(16),
@@ -99,24 +152,35 @@ end
 
 function music:title()
   return wibox.widget {
+    text = 'TITLE',
+    align = 'center',
+    font = md.sys.typescale.title_medium.font
+      .. ' ' .. md.sys.typescale.title_medium.size,
+    forced_height = dpi(24),
+    widget = wibox.widget.textbox
+  }
+end
+
+function music:artist()
+  return wibox.widget {
+    text = 'by AUTHOR',
+    align = 'center',
+    font = md.sys.typescale.body_small.font
+    .. ' ' .. md.sys.typescale.body_small.size,
+    forced_height = dpi(24),
+    widget = wibox.widget.textbox
+  }
+end
+
+function music:description()
+  return wibox.widget {
     {
-      {
-        text = 'TITLE',
-        align = 'center',
-        font = md.sys.typescale.title_medium.font
-          .. ' ' .. md.sys.typescale.title_medium.size,
-        widget = wibox.widget.textbox
-      },
-      {
-        text = 'by AUTHOR',
-        align = 'center',
-        font = md.sys.typescale.body_small.font
-          .. ' ' .. md.sys.typescale.body_small.size,
-        widget = wibox.widget.textbox
-      },
+      self.title,
+      self.artist,
+      spacing = dpi(8),
       widget = wibox.layout.fixed.vertical
     },
-    top = dpi(20),
+    margins = dpi(20),
     widget = wibox.container.margin
   }
 end
@@ -124,7 +188,7 @@ end
 function music:middle()
   return wibox.widget {
     {
-      self.title,
+      self:description(),
       {
         self.image,
         {
@@ -141,12 +205,16 @@ function music:middle()
           {
             button_text({
               icon = '󰼨',
+              cmd = function()
+                awful.spawn.with_shell("mpc -q prev")
+              end
             }),
-            button_outlined({
-              icon = '󰼛',
-            }),
+            self.mpc_toggle,
             button_text({
               icon = '󰼧',
+              cmd = function()
+                awful.spawn.with_shell("mpc -q next")
+              end
             }),
             spacing = dpi(8),
             layout = wibox.layout.fixed.horizontal

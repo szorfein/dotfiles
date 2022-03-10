@@ -70,6 +70,9 @@ terminal = "xterm"
 editor = os.getenv("EDITOR") or "nano"
 editor_cmd = terminal .. " -e " .. editor
 
+-- check if the system use PulseAudio or Alsa
+is_pulse = helpers:file_exist('/usr/bin/pactl')
+
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
 -- If you do not like this or do not have such a key,
@@ -630,6 +633,8 @@ end)
 -- Dashboard is hidden by client.connect_signal("manage")
 sf = awful.screen.focused()
 sf.dashboard.visible = true
+
+require('daemon')
 
 -- Run garbage collector regularly to prevent memory leaks
 -- https://wiki.archlinux.org/title/Awesome#Memory_leaks
