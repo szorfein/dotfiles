@@ -55,10 +55,12 @@ function control:left_side()
     },
     { -- bottom
       self:centered({
-        require('widgets.cpu')({ w = dpi(80), h = dpi(80) }),
+        require('lib.card-elevated'):elevated(
+          require('widgets.sysfetch')()
+        ),
       }),
       self:centered({
-        require('widgets.mem')({ w = dpi(80), h = dpi(80) })
+        require('widgets.cpu')({ w = dpi(80), h = dpi(80) }),
       }),
       spacing = dpi(14),
       layout = wibox.layout.fixed.vertical
