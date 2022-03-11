@@ -1,3 +1,4 @@
+local awful = require('awful')
 local helpers = require('lib.helpers')
 
 local interval = 60 -- 1 min

@@ -4,8 +4,8 @@ local naughty = require('naughty')
 local helpers = require('lib.helpers')
 local button_outlined = require('lib.button-outlined')
 local button_text = require('lib.button-text')
-local chip_suggestion = require('lib.chip-suggestion')
 local card = require('lib.card-elevated')
+local dialog = require('lib.dialog')
 
 local music = class()
 
@@ -238,35 +238,13 @@ function music:bottom()
     {
       nil,
       {
-        chip_suggestion({
-          text = 'ebsm',
-          fg = md.sys.color.primary
-        }),
-        chip_suggestion({
-          text = 'clas'
-        }),
-        chip_suggestion({
-          text = 'rock',
-          fg = md.sys.color.tertiary
-        }),
-        spacing = dpi(8),
-        layout = wibox.layout.fixed.horizontal
-      },
-      expand = 'none',
-      layout = wibox.layout.align.horizontal
-    },
-    {
-      nil,
-      {
-        chip_suggestion({
-          text = 'chil'
-        }),
-        chip_suggestion({
-          text = 'lofi',
-          fg = md.sys.color.on_surface
-        }),
-        chip_suggestion({
-          text = 'folk'
+        button_text({
+          icon = '󰲹',
+          text = 'playlists',
+          cmd = function() dialog:centered(
+            'Playlist',
+            self:playlist()
+          ) end
         }),
         spacing = dpi(8),
         layout = wibox.layout.fixed.horizontal
@@ -277,6 +255,30 @@ function music:bottom()
     spacing = dpi(8),
     layout = wibox.layout.fixed.vertical
   }
+end
+
+function music:playlist()
+  local widget = wibox.widget {
+    layout = wibox.layout.fixed.vertical
+  }
+  awful.spawn.with_line_callback([[sh -c 'mpc lsplaylists']], {
+    stdout = function(line)
+      local w = button_text({
+        text = tostring(line),
+        cmd = function()
+          awful.spawn.easy_async_with_shell([[sh -c '
+          mpc clear
+          mpc load ]] .. tostring(line) .. [[ && mpc play
+          ']], function(_)
+            require('naughty').notify({ title = 'Playlist',
+            text = tostring(line) .. ' loaded' })
+          end)
+        end
+      })
+      widget:add(w)
+    end
+  })
+  return widget
 end
 
 return music
