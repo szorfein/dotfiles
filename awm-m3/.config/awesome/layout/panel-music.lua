@@ -4,7 +4,6 @@ local naughty = require('naughty')
 local helpers = require('lib.helpers')
 local button_outlined = require('lib.button-outlined')
 local button_text = require('lib.button-text')
-local card = require('lib.card-elevated')
 local dialog = require('lib.dialog')
 
 local music = class()
@@ -94,7 +93,6 @@ function music:progressbar()
     color = md.sys.color.secondary,
     background_color = md.sys.color.secondary
       .. md.sys.elevation.level1,
-    shape = helpers.rrect(dpi(20)),
     widget        = wibox.widget.progressbar,
   }
 end
@@ -121,17 +119,21 @@ end
 function music:top()
   local top = wibox.widget {
     {
-      text = 'MPD',
-      font = md.sys.typescale.title_medium.font
-        .. ' ' .. md.sys.typescale.title_medium.size,
-      widget = wibox.widget.textbox
+      {
+        text = 'MPD',
+        font = md.sys.typescale.title_medium.font
+          .. ' ' .. md.sys.typescale.title_medium.size,
+        widget = wibox.widget.textbox
+      },
+      nil,
+      self.mpd_status,
+      expand = 'none',
+      layout = wibox.layout.align.horizontal
     },
-    nil,
-    self.mpd_status,
-    expand = 'none',
-    layout = wibox.layout.align.horizontal
+    margins = dpi(16),
+    widget = wibox.container.margin
   }
-  return card:elevated(top)
+  return top
 end
 
 function music:title()
@@ -167,6 +169,87 @@ function music:description()
   }
 end
 
+function music:all_mpc_buttons()
+  return wibox.widget {
+    button_text({
+      icon = '󰐒',
+      fg = md.sys.color.on_surface,
+      cmd = function() dialog:centered(
+        'Save playlist to',
+        self:save_playlist()
+      ) end
+    }),
+    button_text({
+      icon = '󰒝',
+      fg = md.sys.color.on_surface,
+      cmd = function()
+        awful.spawn.with_shell('mpc shuffle')
+      end
+    }),
+    button_text({
+      icon = '󰑖',
+      fg = md.sys.color.on_surface,
+      cmd = function()
+        awful.spawn.with_shell('mpc repeat')
+      end
+    }),
+    button_text({
+      icon = '󱐰',
+      fg = md.sys.color.error,
+      cmd = function()
+        awful.spawn.with_shell("mpc del 0")
+      end
+    }),
+    layout = wibox.layout.fixed.horizontal
+  }
+end
+
+function music:save_playlist()
+  local textbox = wibox.widget {
+    font = md.sys.typescale.body_medium.font
+      .. ' ' .. md.sys.typescale.body_medium.size,
+    widget = wibox.widget.textbox
+  }
+  awful.prompt.run {
+    prompt       = '<b>Name: </b>',
+    textbox      = textbox,
+    font = md.sys.typescale.body_medium.font
+      .. ' ' .. md.sys.typescale.body_medium.size,
+    exe_callback = function(input)
+      if not input or #input == 0 then return end
+      awful.spawn.easy_async_with_shell([[sh -c '
+        mpc save ]] .. tostring(input) .. [[
+      ']], function(_, stderr, _, exit_code)
+
+        if exit_code == 0 then
+          naughty.notify{ title = 'Playlist',
+            text = 'Saved to :  '.. input }
+        else
+          naughty.notify{ text = stderr }
+        end
+      end)
+    end,
+    done_callback = function()
+      dialog:hide()
+    end
+  }
+  return wibox.widget {
+    {
+      {
+        textbox,
+        margins = dpi(8),
+        widget = wibox.container.margin
+      },
+      shape = helpers:rrect(dpi(12)),
+      bg = md.sys.color.primary .. md.sys.elevation.level1,
+      shape_border_width = 1,
+      shape_border_color = md.sys.color.outline,
+      widget = wibox.container.background
+    },
+    layout = wibox.layout.fixed.vertical
+  }
+end
+
 function music:middle()
   return wibox.widget {
     {
@@ -174,14 +257,11 @@ function music:middle()
         self.progressbar,
         {
           nil,
-          nil,
-          button_text({
-            icon = '󱐰',
-            fg = md.sys.color.error,
-            cmd = function()
-              awful.spawn.with_shell("mpc del 0")
-            end
-          }),
+          {
+            self:all_mpc_buttons(),
+            margins = dpi(12),
+            widget = wibox.container.margin
+          },
           expand = 'none',
           layout = wibox.layout.align.horizontal
         },
@@ -227,7 +307,7 @@ function music:middle()
       layout = wibox.layout.align.vertical
     },
     bg = md.sys.color.primary .. md.sys.elevation.level1,
-    forced_height = dpi(400),
+    forced_height = dpi(480),
     shape = helpers:prect(dpi(28)),
     widget = wibox.container.background
   }
@@ -270,8 +350,9 @@ function music:playlist()
           mpc clear
           mpc load ]] .. tostring(line) .. [[ && mpc play
           ']], function(_)
-            require('naughty').notify({ title = 'Playlist',
-            text = tostring(line) .. ' loaded' })
+            naughty.notify({ title = 'Playlist',
+              text = tostring(line) .. ' loaded'
+            })
           end)
         end
       })

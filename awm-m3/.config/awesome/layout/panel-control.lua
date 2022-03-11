@@ -29,7 +29,7 @@ function control:signals()
     self.cpu.value = cpu and tonumber(cpu) or 0
   end)
   awesome.connect_signal('daemon::geoloc', function(country, city)
-    local country = country and tostring(country) or nil
+    local country = country and tostring(country) or 'nil'
     local city = city and tostring(city) or 'Somewhere'
     self.geoloc.text = city .. ', ' .. country
   end)
