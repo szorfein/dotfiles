@@ -60,4 +60,25 @@ function helpers:remote_watch(command, interval, output_file, callback)
   }
 end
 
+function helpers.pathtotable(dir)
+  return setmetatable(
+    { _path = dir },
+    { __index = function(self, index)
+      local path = self._path .. '/' .. index
+      local f = io.open(path)
+      if f then
+        local s = f:read("*all")
+        f:close()
+        if s then
+          return s
+        else
+          local o = { _path = path }
+          setmetatable(o, getmetatable(self))
+          return o
+        end
+      end
+    end
+  })
+end
+
 return helpers

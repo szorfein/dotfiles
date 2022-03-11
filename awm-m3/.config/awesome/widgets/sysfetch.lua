@@ -56,10 +56,12 @@ function sysfetch:widget()
 end
 
 function sysfetch:signals()
-  self.os:set('OS:', '5.15.24_1', md.sys.color.primary)
-  self.up:set('UP:', '1H, 40M', md.sys.color.secondary)
-  self.pk:set('PK:', '679', md.sys.color.tertiary)
-  self.rd:set('RD:', '4096', md.sys.color.secondary)
+  awesome.connect_signal('daemon::os', function(release, uptime, pkgs, entropy)
+    self.os:set('OS:', release, md.sys.color.primary)
+    self.up:set('UP:', uptime, md.sys.color.secondary)
+    self.pk:set('PK:', pkgs, md.sys.color.tertiary)
+    self.rd:set('RD:', entropy, md.sys.color.secondary)
+  end)
 end
 
 return sysfetch
