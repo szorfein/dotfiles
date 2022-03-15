@@ -1,6 +1,6 @@
 !-------------------------------------------
 ! XFT Settings gre
-     
+
 Xft.antialias:  true 
 Xft.autohint:   false 
 Xft.dpi:        96
@@ -10,27 +10,12 @@ Xft.lcdfilter:  lcddefault
 Xft.rgba:       rgb
 
 !-------------------------------------------
-! URXVT - Settings
-
-URxvt*depth:                        32
-URxvt*internalBorder:               3
-URxvt*dynamicColors:                on
-URxvt*urgentOnBell:                 true
-URxvt*borderLess:                   false
-URxvt*scrollBar:                    false
-URxvt*cursorBlink:                  true
-URxvt*cursorUnderline:              true
-URxvt*cursorColor:                  #737077
-URxvt*scrollColor:                  #151515
-URxvt*underlineURLs:                true
-
-!-------------------------------------------
 ! Man pages colors
 
 *VT100.colorBDMode:                  true
 *VT100.colorBD:                      red
 *VT100.colorULMode:                  true
-*VT100.colorUL:                      cyan   
+*VT100.colorUL:                      cyan
 *VT100.veryBoldColors:               6
 
 !-------------------------------------------
@@ -61,5 +46,32 @@ st.cwscale:       1.0
 !--------------------------------------------
 ! General Colors & Fonts
 
-#include ".Xresources.d/colors"
+#include ".Xresources.d/base16"
 #include ".Xresources.d/fonts"
+
+*background: base00
+*foreground: base06
+! black
+*color0: base01
+*color8: base02
+! red
+*color1: base0C
+*color9: base0D
+! green
+*color2: base0E
+*color10: base0E
+! yellow
+*color3: base0F
+*color11: base0F
+! blue
+*color4: base09
+*color12: base09
+! magenta
+*color5: base0A
+*color13: base0A
+! cyan
+*color6: base0B
+*color14: base08
+! white
+*color7: base05
+*color15: base07
