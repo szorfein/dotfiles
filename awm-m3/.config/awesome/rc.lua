@@ -62,6 +62,9 @@ do
 end
 -- }}}
 
+-- load xrdb, compositor
+require('autostart')
+
 local helpers = require('lib.helpers')
 local button_text = require('lib.button-text')
 
