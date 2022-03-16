@@ -19,6 +19,7 @@ fi
 light -I
 
 if ! pgrep -i picom ; then picom -b ; fi
+if ! pgrep -i xss ; then xss-lock --transfer-sleep-lock -- i3lock --nofork & ; fi
 ]]
 
 awful.spawn.easy_async_with_shell(script, function(_, _, _, exit_code)
