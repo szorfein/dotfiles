@@ -64,7 +64,10 @@ theme.sys = {
     display_small = {},
     headline_large = {},
     headline_medium = {},
-    headline_small = {},
+    headline_small = {
+      font = 'Iosevka Regular',
+      size = 20,
+    },
     title_large = {
       font = 'Iosevka Heavy',
       size = 36
