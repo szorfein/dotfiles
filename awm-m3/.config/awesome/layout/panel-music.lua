@@ -135,7 +135,7 @@ fi
   awful.spawn.easy_async_with_shell(script, function(stdout, stderr, _, exit_code)
     if stdout:match('started') then
       awesome.restart() -- necessary to restart daemon.mpc
-    else
+    elseif exit_code ~= 0 then
       naughty.notify({ title = 'mpd', text = stderr })
     end
   end)

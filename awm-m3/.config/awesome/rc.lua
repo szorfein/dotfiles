@@ -253,7 +253,8 @@ globalkeys = gears.table.join(
     { description = "view previous", group = "tag" }),
   awful.key({ modkey,           }, "Right",  awful.tag.viewnext,
     { description = "view next", group = "tag" }),
-  awful.key({ modkey,           }, "Escape", awful.tag.history.restore,
+
+  awful.key({ modkey }, "Tab", awful.tag.history.restore,
     { description = "go back", group = "tag" }),
 
   awful.key({ modkey,           }, "j", function()
@@ -278,21 +279,16 @@ globalkeys = gears.table.join(
   { description = "focus the previous screen", group = "screen" }),
   awful.key({ modkey,           }, "u", awful.client.urgent.jumpto,
   { description = "jump to urgent client", group = "client" }),
-  awful.key({ modkey,           }, "Tab", function()
-    awful.client.focus.history.previous()
-    if client.focus then
-      client.focus:raise()
-    end
-  end,
-  { description = "go back", group = "client" }),
 
   -- Standard program
   awful.key({ modkey,           }, "Return", function() awful.spawn(terminal) end,
   { description = "open a terminal", group = "launcher" }),
   awful.key({ modkey, "Control" }, "r", awesome.restart,
   { description = "reload awesome", group = "awesome" }),
-  awful.key({ modkey, "Shift"   }, "q", awesome.quit,
+
+  awful.key({ modkey }, "Escape", function() logout_display() end,
   { description = "quit awesome", group = "awesome" }),
+
   awful.key({ modkey,           }, "l", function() awful.tag.incmwfact(0.05) end,
   { description = "increase master width factor", group = "layout" }),
   awful.key({ modkey,           }, "h", function() awful.tag.incmwfact(-0.05) end,

@@ -42,7 +42,10 @@ function logout:widget()
     }),
     button({
       icon = '󰌾',
-      cmd = app.lock,
+      cmd = function()
+        logout_hide()
+        app:lock()
+      end,
       size = dpi(55),
       color = md.sys.color.tertiary
     }),

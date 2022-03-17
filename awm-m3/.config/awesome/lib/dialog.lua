@@ -1,13 +1,12 @@
 local awful = require('awful')
-local wibox = require('wibox')
 local table = require('gears.table')
+local wibox = require('wibox')
 local helpers = require('lib.helpers')
 
 -- https://m3.material.io/components/dialogs/specs
-
 local dialog = class()
 
--- @name = string
+-- @args (table), can contain { name = 'something', s = awful.screen }
 function dialog:init(args)
   self.args = args or {}
   self.name = self.args.name or 'dialog'
