@@ -1,10 +1,10 @@
 local wibox = require('wibox')
 local awful = require('awful')
 local naughty = require('naughty')
+local gears = require('gears')
 local helpers = require('lib.helpers')
 local button_outlined = require('lib.button-outlined')
 local button_text = require('lib.button-text')
-local dialog = require('lib.dialog')
 
 local music = class()
 
@@ -23,8 +23,30 @@ function music:init()
     cmd = function()
       awful.spawn.with_shell("mpc -q toggle")
     end
-  }),
+  })
+
+  -- textbox_save for the save_playlist prompt
+  self.textbox_save = wibox.widget {
+    font = md.sys.typescale.body_medium.font
+      .. ' ' .. md.sys.typescale.body_medium.size,
+    forced_height = dpi(30),
+    widget = wibox.widget.textbox
+  }
+
+  self.dialog_open_playlist = require('lib.dialog')({ name = 'open_playlist' })
+  self.dialog_open_playlist:centered(
+    'Playlists',
+    self:playlist()
+  )
+
+  self.dialog_save_playlist = require('lib.dialog')({ name = 'save_playlist'})
+  self.dialog_save_playlist:centered(
+    'Save playlist to',
+    self:save_playlist()
+  )
+
   self:signals()
+
   return wibox.widget {
     {
       self:top(),
@@ -62,12 +84,12 @@ function music:signals()
     end
   end)
   awesome.connect_signal('daemon::mpc', function(img, artist, title, paused)
-    self.title.text = title and title or 'N/A'
+    self.title.text = title or 'N/A'
     self.artist.text = artist and 'by ' .. artist or 'by N/A'
-    self.image.image = img and img or '/home/daggoth/images/thumb-1920-609120.jpg'
+    self.image.image = img or '/home/daggoth/images/thumb-1920-609120.jpg'
 
     local toggle = self.mpc_toggle:get_all_children()[5]
-    local pause = paused and paused or false
+    local pause = paused or false
     toggle.text = pause and '󰼛' or '󰏤'
   end)
   awesome.connect_signal('daemon::mpc_timer', function(time)
@@ -106,13 +128,16 @@ set -o errexit -o nounset
 if [ -s "$HOME"/.config/mpd/pid ] ; then
   pgrep -x mpd 2>/dev/null | xargs kill
 else
-  mpd
-  mpc idleloop player &
+  mpd && echo 'started'
 fi
 ]]
 
-  awful.spawn.easy_async_with_shell(script, function(_, _, _, exit_code)
-    naughty.notify({ title = 'mpd', text = tostring(exit_code) })
+  awful.spawn.easy_async_with_shell(script, function(stdout, stderr, _, exit_code)
+    if stdout:match('started') then
+      awesome.restart() -- necessary to restart daemon.mpc
+    else
+      naughty.notify({ title = 'mpd', text = stderr })
+    end
   end)
 end
 
@@ -174,10 +199,14 @@ function music:all_mpc_buttons()
     button_text({
       icon = '󰐒',
       fg = md.sys.color.on_surface,
-      cmd = function() dialog:centered(
-        'Save playlist to',
-        self:save_playlist()
-      ) end
+      cmd = function()
+        self.dialog_save_playlist:display()
+        self.textbox_save:buttons(gears.table.join(
+        awful.button({}, 1, function()
+          self:playlist_prompt()
+        end)
+        ))
+      end
     }),
     button_text({
       icon = '󰒝',
@@ -204,19 +233,15 @@ function music:all_mpc_buttons()
   }
 end
 
-function music:save_playlist()
-  local textbox = wibox.widget {
-    font = md.sys.typescale.body_medium.font
-      .. ' ' .. md.sys.typescale.body_medium.size,
-    widget = wibox.widget.textbox
-  }
+function music:playlist_prompt()
   awful.prompt.run {
     prompt       = '<b>Name: </b>',
-    textbox      = textbox,
+    textbox      = self.textbox_save,
     font = md.sys.typescale.body_medium.font
       .. ' ' .. md.sys.typescale.body_medium.size,
     exe_callback = function(input)
       if not input or #input == 0 then return end
+
       awful.spawn.easy_async_with_shell([[sh -c '
         mpc save ]] .. tostring(input) .. [[
       ']], function(_, stderr, _, exit_code)
@@ -230,13 +255,16 @@ function music:save_playlist()
       end)
     end,
     done_callback = function()
-      dialog:hide()
+      self.dialog_save_playlist:hide()
     end
   }
+end
+
+function music:save_playlist()
   return wibox.widget {
     {
       {
-        textbox,
+        self.textbox_save,
         margins = dpi(8),
         widget = wibox.container.margin
       },
@@ -321,10 +349,7 @@ function music:bottom()
         button_text({
           icon = '󰲹',
           text = 'playlists',
-          cmd = function() dialog:centered(
-            'Playlist',
-            self:playlist()
-          ) end
+          cmd = function() self.dialog_open_playlist:display() end
         }),
         spacing = dpi(8),
         layout = wibox.layout.fixed.horizontal

@@ -35,7 +35,7 @@ function quit:poweroff()
     icon = '󰤆',
     fg = md.sys.color.surface,
     bg = md.sys.color.on_surface,
-    --color = md.sys.color.error
+    cmd = function() logout_display() end
   })
 end
 

@@ -10,6 +10,7 @@ function button:init(args)
   self.text = self.args.text or nil
   self.color = self.args.color or md.sys.color.primary
   self.cmd = self.args.cmd or nil
+  self.size = args.size or dpi(18)
   self.state = self:state()
   self.surface = self:surface()
   self.widget = self:elevated()
@@ -37,13 +38,12 @@ function button:elevated()
     widget = self:container()
   }
 end
-
 function button:make_icon()
   if not self.icon then return nil end
   return wibox.widget {
     text = self.icon,
     align = 'center',
-    font = md.sys.typescale.icon.font .. ' ' .. dpi(18),
+    font = md.sys.typescale.icon.font .. ' ' .. self.size,
     widget = wibox.widget.textbox
   }
 end
