@@ -10,7 +10,7 @@ local music = class()
 
 function music:init()
   self.mpd_status = button_text({
-    icon = '󰽢',
+    icon = '󰱯',
     fg = md.sys.color.error,
     cmd = self.start
   })
@@ -44,7 +44,7 @@ function music:signals()
     if status then
       self.mpd_status:setup {
         button_text({
-          icon = '󰽢',
+          icon = '󰱯',
           fg = md.sys.color.primary,
           cmd = self.start
         }),
@@ -268,10 +268,13 @@ function music:middle()
         layout = wibox.layout.fixed.vertical
       },
       {
-        self.image,
+        {
+          self.image,
+          forced_height = dpi(160),
+          widget = wibox.container.background
+        },
         {
           self:description(),
-          top = dpi(20),
           left = dpi(10), right = dpi(10),
           widget = wibox.container.margin
         },

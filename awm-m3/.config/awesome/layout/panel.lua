@@ -45,13 +45,15 @@ function panel:head_buttons()
   return wibox.widget {
     {
       text_button({
-        text = 'm',
+        icon = '󰋋',
+        fg = md.sys.color.on_surface_variant,
         cmd = function()
           self:music_panel()
         end
       }),
       text_button({
-        text = 'c',
+        icon = '󱎴',
+        fg = md.sys.color.on_surface_variant,
         cmd = function()
           self:control_panel()
         end
@@ -60,7 +62,8 @@ function panel:head_buttons()
     },
     nil, -- center
     text_button({ -- right
-      icon = 'ﰸ',
+      icon = '󰖭',
+      fg = md.sys.color.tertiary,
       cmd = function() self:hide() end,
     }),
     layout = wibox.layout.align.horizontal
@@ -92,9 +95,9 @@ end
 function panel:signals()
   self.screen.panel_activator = wibox({y = 0, width = 1, visible = true, ontop = false, opacity = 0, below = true, screen = self.screen})
 
-  self.screen.panel_activator.x = self.screen.geometry.width - 1
   self.screen.panel_activator.height = self.screen.geometry.height
-  awful.placement.right(panel_activator)
+  awful.placement.right(self.screen.panel_activator)
+
   self.screen.panel_activator:connect_signal('mouse::enter', function()
     self:show()
   end)

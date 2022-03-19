@@ -505,7 +505,7 @@ client.connect_signal("request::titlebars", function(c)
   )
 
   local floating_button = button_text({
-    icon = '󰔶',
+    icon = '󰑊',
     fg = md.sys.color.secondary,
     cmd = function()
       awful.client.floating.toggle(c)
@@ -513,7 +513,7 @@ client.connect_signal("request::titlebars", function(c)
   })
 
   local maximize_button = button_text({
-    icon = '󱓻',
+    icon = '󰑊',
     cmd = function()
       c.maximized = not c.maximized
       c:raise()
