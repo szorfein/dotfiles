@@ -86,7 +86,7 @@ modkey = "Mod4"
 -- Table of layouts to cover with awful.layout.inc, order matters.
 local names = { "󰆍", "󰖟", "󰈙", "󰎁", "󰆧" }
 local l = awful.layout.suit
-local layouts = { l.tile, l.tile, l.floating, l.floating, l.floating,
+local layouts = { l.max, l.max, l.max, l.floating, l.floating,
   l.floating, l.floating, l.floating, l.floating }
 
 awful.layout.layouts = {
@@ -159,78 +159,12 @@ awful.screen.connect_for_each_screen(function(s)
 
   -- Create a promptbox for each screen
   s.mypromptbox = awful.widget.prompt()
-  -- Create an imagebox widget which will contain an icon indicating which layout we're using.
-  -- We need one layoutbox per screen.
-  s.mylayoutbox = awful.widget.layoutbox(s)
-  s.mylayoutbox:buttons(gears.table.join(
-    awful.button({}, 1, function() awful.layout.inc( 1) end),
-    awful.button({}, 3, function() awful.layout.inc(-1) end),
-    awful.button({}, 4, function() awful.layout.inc( 1) end),
-    awful.button({}, 5, function() awful.layout.inc(-1) end)
-  ))
 
-  -- Create a tasklist widget
-  s.mytasklist = require('mod.tasklist')({ screen = s })
-
-  local rail = require('layout.navigation-rail')({
+  require('layout.navigation-rail')({
     screen = s,
     menubar = menubar,
     visible = true
   })
-  local rail_button = button_text({
-    icon = '󰍜',
-    fg = md.sys.color.on_surface_variant,
-    cmd = function() rail:show() end
-  })
-
-  local panel = require('layout.panel')({ screen = s })
-  local panel_button = button_text({
-    icon = '󰍝',
-    fg = md.sys.color.on_surface_variant,
-    cmd = function() panel:show() end
-  })
-
-  local dashboard = button_text({
-    icon = '󰋜',
-    fg = md.sys.color.on_surface_variant,
-    cmd = function()
-      s.dashboard.visible = true
-    end
-  })
-
-  -- Create the wibox
-  s.mywibox = awful.wibar({ position = 'top', screen = s, height = dpi(64) })
-
-  -- Add widgets to the wibox
-  s.mywibox:setup {
-    {
-      nil,
-      {
-        layout = wibox.layout.align.horizontal,
-        expand = 'none',
-        { -- Left widgets
-          layout = wibox.layout.fixed.horizontal,
-          spacing = dpi(14),
-          rail_button,
-          s.mypromptbox,
-        },
-        s.mytasklist, -- Middle widget
-        { -- Right widgets
-          layout = wibox.layout.fixed.horizontal,
-          spacing = dpi(14),
-          wibox.widget.systray(),
-          mytextclock,
-          s.mylayoutbox,
-          dashboard,
-          panel_button,
-        },
-      },
-      expand = 'none',
-      layout = wibox.layout.align.vertical
-    },
-    left = dpi(16), right = dpi(16),
-    widget = wibox.container.margin
-  }
 
   -- all other layouts
   require('layout')(s)
