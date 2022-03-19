@@ -71,11 +71,11 @@ st.cwscale:       1.0
 *color11: base0D
 
 ! blue
-*color4: base0A
+*color4: base09
 *color12: base0A
 
 ! magenta
-*color5: base09
+*color5: base0F
 *color13: base0F
 
 ! cyan

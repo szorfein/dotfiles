@@ -86,11 +86,7 @@ function taglist:hovered(item, tag)
 end
 
 function taglist:active_indicator_shape(tag)
-  local is_active = tag.selected or false
-  local shape = is_active
-    and helpers.circle()
-    or helpers.rrect(dpi(8))
-  return shape
+  return helpers.circle()
 end
 
 function taglist:active_indicator(tag)

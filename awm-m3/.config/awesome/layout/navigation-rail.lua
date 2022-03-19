@@ -49,7 +49,7 @@ function nav_rail:top_widget()
         icon = '󰍜',
         fg = md.sys.color.on_surface_variant,
         cmd = function() self:hide() end
-      }),
+      }).widget,
       left = dpi(16), top = dpi(10), right = dpi(16),
       widget = wibox.container.margin
     },

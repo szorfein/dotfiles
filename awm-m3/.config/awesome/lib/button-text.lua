@@ -12,10 +12,18 @@ function button:init(args)
   self.bg = self.args.bg or md.sys.color.surface
   self.cmd = self.args.cmd or nil
   self.state = self:state()
+  self.container = self:container()
   self.surface = self:surface()
   self.widget = self:textbutton()
   self:signals()
-  return self.widget
+end
+
+function button:set_color(color_name)
+  self.container.fg = color_name
+end
+
+function button:disable()
+  self.container.fg = self.fg .. md.sys.state.disable_content_opacity
 end
 
 function button:textbutton()
@@ -35,7 +43,7 @@ function button:textbutton()
       },
       widget = self.surface
     },
-    widget = self:container()
+    widget = self.container
   }
 end
 

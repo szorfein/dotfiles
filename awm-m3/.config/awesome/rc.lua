@@ -510,7 +510,7 @@ client.connect_signal("request::titlebars", function(c)
     cmd = function()
       awful.client.floating.toggle(c)
     end,
-  })
+  }).widget
 
   local maximize_button = button_text({
     icon = '󰑊',
@@ -518,13 +518,13 @@ client.connect_signal("request::titlebars", function(c)
       c.maximized = not c.maximized
       c:raise()
     end
-  })
+  }).widget
 
   local close_button = button_text({
     icon = '󰈸',
     fg = md.sys.color.error,
     cmd = function() c:kill() end
-  })
+  }).widget
 
   awful.titlebar(c) : setup {
     {
