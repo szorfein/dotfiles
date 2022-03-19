@@ -51,13 +51,9 @@ end
 
 mpc_info()
 
-local mpc_script = [[ sh -c '
-mpc idleloop player
-']]
-
 awful.spawn.easy_async_with_shell(
   "pgrep -f \"mpc idleloop player\" | xargs kill", function()
-  awful.spawn.with_line_callback(mpc_script, {
+  awful.spawn.with_line_callback("mpc idleloop player", {
     stdout = function()
       mpc_info()
     end

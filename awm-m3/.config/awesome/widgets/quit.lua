@@ -1,6 +1,7 @@
 local wibox = require('wibox')
 local button = require('lib.button-elevated')
 local button_filled = require('lib.button-filled')
+local app = require('lib.app')
 
 local quit = class()
 
@@ -25,6 +26,7 @@ end
 function quit:lock()
   return button({
     icon = '󰌾',
+    cmd = app.lock
   })
 end
 
@@ -33,7 +35,7 @@ function quit:poweroff()
     icon = '󰤆',
     fg = md.sys.color.surface,
     bg = md.sys.color.on_surface,
-    --color = md.sys.color.error
+    cmd = function() logout_display() end
   })
 end
 
