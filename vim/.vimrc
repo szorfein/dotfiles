@@ -30,6 +30,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'itchyny/lightline.vim'
 Plug 'itchyny/vim-gitbranch'
+Plug 'preservim/nerdtree'
 
 call plug#end()
 
@@ -46,6 +47,9 @@ set number
 " Encoding
 set ttyfast
 set binary
+
+" Cursorline
+set cursorline
 
 " Tabs, May be overwritten by autocmd rules
 " tips: https://codefaster.substack.com/p/fast-typing-vi

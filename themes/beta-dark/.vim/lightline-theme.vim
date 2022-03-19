@@ -10,7 +10,7 @@ let g:lightline.active = {
   \   [ 'gitbranch' ] ],
   \   'right': [ [ 'lineinfo' ],
   \              [ 'percent' ],
-  \              [ 'fileformat', 'fileencoding', 'filetype' ] ],
+  \              [ 'fileencoding', 'fileformat', 'filetype' ] ],
   \ }
 
 " https://github.com/ryanoasis/vim-devicons/wiki/usage#lightline-setup

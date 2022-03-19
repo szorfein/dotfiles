@@ -12,6 +12,7 @@ function panel:init(args)
   self.control = require('layout.panel-control')()
   self.screen.panel = wibox(self:wibox_args())
   self:setup()
+  self:signals()
 end
 
 function panel:show()
@@ -85,6 +86,18 @@ end
 -- default panel
 function panel:setup()
   self:music_panel()
+end
+
+-- Activate panel by moving the mouse at the edge of the screen
+function panel:signals()
+  self.screen.panel_activator = wibox({y = 0, width = 1, visible = true, ontop = false, opacity = 0, below = true, screen = self.screen})
+
+  self.screen.panel_activator.x = self.screen.geometry.width - 1
+  self.screen.panel_activator.height = self.screen.geometry.height
+  awful.placement.right(panel_activator)
+  self.screen.panel_activator:connect_signal('mouse::enter', function()
+    self:show()
+  end)
 end
 
 return panel
