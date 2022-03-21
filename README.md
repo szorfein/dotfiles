@@ -1,7 +1,13 @@
 <h2 align="center">x Custom Dotfiles x</h2>
 <p align="center">
-<img alt="" src="https://badges.pufler.dev/visits/szorfein/dotfiles?style=flat-square&color=9a74f2&logoColor=white&labelColor=373e4d" />
-<img alt="" src="https://img.shields.io/github/repo-size/szorfein/dotfiles?style=flat-square&label=Repo" />
+<a href="https://github.com/szorfein/dotfiles/stargazers">
+  <img src="https://img.shields.io/github/stars/szorfein/dotfiles?color=%23BB9AF7&labelColor=%231A1B26&style=for-the-badge">
+</a>
+<a href="https://github.com/szorfein/dotfiles/network/members/">
+  <img src="https://img.shields.io/github/forks/szorfein/dotfiles?color=%237AA2F7&labelColor=%231A1B26&style=for-the-badge">
+</a>
+<img src="https://badges.pufler.dev/visits/szorfein/dotfiles?style=for-the-badge&color=73daca&logoColor=white&labelColor=1A1B26" />
+<img alt="" src="https://img.shields.io/github/repo-size/szorfein/dotfiles?style=for-the-badge&label=Repo" />
 </p>
 
 <p align="center">
