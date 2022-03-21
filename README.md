@@ -70,7 +70,7 @@ To install all the fonts (in `~/.local/share/fonts`), you can use my script too,
 
     ./install --fonts
 
-## Screenshots
+## Other themes
 
 `themes/morpho` 
 
@@ -84,8 +84,10 @@ To install all the fonts (in `~/.local/share/fonts`), you can use my script too,
 | --- |
 | ![miami screenshot](https://github.com/szorfein/unix-portfolio/raw/master/miami/terms.png "Miami") |
 
+There are many themes under the folder `themes` but not all are compatible with `Awesome` yet.
+
 ### Other screenshots
-More screenshots are available at [unix-portfolio](https://github.com/szorfein/unix-portfolio).
+More screenshots are available at [unix-portfolio](https://github.com/szorfein/unix-portfolio) or [Gallery](https://github.com/szorfein/dotfiles/wiki/Gallery).
 
 #### Support
 Any support will be greatly appreciated, star the repo, a coffee, donation, thanks you !
