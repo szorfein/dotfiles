@@ -10,6 +10,8 @@
 <img alt="" src="https://img.shields.io/github/repo-size/szorfein/dotfiles?style=for-the-badge&label=Repo" />
 </p>
 
+###
+
 <p align="center">
 <a href="https://github.com/szorfein/dotfiles#setup">Setup</a>
 | <a href="https://github.com/szorfein/dotfiles/wiki">Wiki</a>
@@ -22,7 +24,20 @@
 ![lines screenshot](https://github.com/szorfein/unix-portfolio/raw/master/lines/full.png)
 ![lines 2](https://github.com/szorfein/unix-portfolio/raw/master/lines/start-screen.png)
 
-## Installation for the last theme
+###
+
+- **WM:** Awesome
+- **OS:** Void or Gentoo MUSL, installed with [Getch](https://github.com/szorfein/getch)
+- **SH:** ZSH with [ohmyzsh](https://github.com/ohmyzsh/ohmyzsh) and [spaceship-prompt](https://spaceship-prompt.sh/)
+- **Term:** xSt
+- **Editor:** Vim8 and Doom-Emacs
+- **Compositor:** Picom
+- **File Manager:** FFF, vifm
+- **Fonts:** [Nerd Font](https://www.nerdfonts.com/) (Iosevka) and (SpaceMono) + [Material Icons](https://github.com/Templarian/MaterialDesign-Font)
+
+ ## Setup
+
+### Installation for the last theme
 There are two way to install the last [themes/lines](#screens)
 + Fully scripted with [chezmoi](https://www.chezmoi.io/), (better on a new install),  follow the instruction [here](https://github.com/szorfein/dots).
 + Or manually by following the [wiki page](https://github.com/szorfein/dotfiles/wiki/theme-awesome).
@@ -30,48 +45,43 @@ There are two way to install the last [themes/lines](#screens)
 The method with `chezmoi` only work with supported distrib Gentoo, Archlinux, VoidLinux or Debian.  
 You can try on other distro variant like Centos, Ubuntu... at your own risk and peril :)
 
-## Stow
-If you are blocked with `stow` or need more explanations, see the [wiki page](https://github.com/szorfein/dotfiles/wiki/stow) before post an issue.  
-
-## Vim
+### Vim
 Here is a list of all the vim plugins i use: https://github.com/szorfein/dotfiles/wiki/Dependencies#vim
 
-To install vim.plug and all plugins
+To install `vim.plug` and all plugins
 
     ./install --vim
     stow vim
 
-## Shell
+### Shell
 For the shell, i use `zsh` with plugins [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh) with [spaceship-prompt](https://github.com/denysdovhan/spaceship-prompt).  
 You can install theses repos with:
 
     ./install --zsh
     stow zsh
 
-## Wallpapers
+### Wallpapers
 To recover all the wallpapers i use, you need to install `wget` and execute a:
 
     ./install --images
 
 Or search directly [here](https://github.com/szorfein/walls). You have to launch this each time a new theme come.  
 
-## Fonts
-For awesomewm, i use [Iosevka Nerd Font](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/Iosevka), [SpaceMono Nerd Font](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/SpaceMono) and [Material Design Icons Desktop](https://github.com/Templarian/MaterialDesign-Font).  
+### Fonts
+I use [Iosevka Nerd Font](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/Iosevka), [SpaceMono Nerd Font](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/SpaceMono) and [Material Design Icons Desktop](https://github.com/Templarian/MaterialDesign-Font).  
 To install all the fonts (in `~/.local/share/fonts`), you can use my script too, for archlinux, you may prefer the install with AUR instead.
 
     ./install --fonts
 
 ## Screenshots
 
-### Awm
-
-`themes/morpho` **term**: xst, **vim-color**: [darkest-space](https://github.com/szorfein/darkest-space), **font**: [Iosevka Term Nerd Font](http://nerdfonts.com/#downloads).
+`themes/morpho` 
 
 | clean |
 | --- |
 | ![clean](https://github.com/szorfein/unix-portfolio/raw/master/morpho/clean.png "morpho clean") |
 
-`themes/miami` **term**: xst, **vim-color**: [fromthehell](https://github.com/szorfein/fromthehell.vim), **font**: [Space Mono Nerd Font](http://nerdfonts.com/#downloads).
+`themes/miami` 
 
 | terms (xst) - lightline.vim - tmux |
 | --- |
