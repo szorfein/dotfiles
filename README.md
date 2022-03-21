@@ -1,19 +1,21 @@
-## Setup
+<h2 align="center">x Custom dotfiles x</h2>
+<p align="center">
+<img alt="" src="https://badges.pufler.dev/visits/szorfein/dotfiles?style=flat-square&color=9a74f2&logoColor=white&labelColor=373e4d" />
+<img alt="" src="https://img.shields.io/github/repo-size/szorfein/dotfiles?style=flat-square&label=Repo" />
+</p>
 
-```txt                              
-bar               > awesome
-compositor        > picom
-fonts             > iosevka nerd font,material-icons,ttf-anka-coder
-image viewer      > feh
-irc               > weechat
-multimedia        > mpv,ncmpcpp,mpc,alsa
-program launcher  > awesome
-PDF viewer        > zathura
-terms             > xst
-wm                > awesome
-mails             > offlineimap,msmtp and neomutt
-```
-A list of dependendies can be found [here](https://raw.githubusercontent.com/szorfein/dotfiles/master/hidden-stuff/dependencies-list.txt) if need. For an old wallpaper, search [here](https://raw.githubusercontent.com/szorfein/dotfiles/master/hidden-stuff/wallpapers-list.txt).
+<p align="center">
+<img alt="" src="https://badges.pufler.dev/visits/szorfein/dotfiles?style=flat-square&color=9a74f2&logoColor=white&labelColor=373e4d" />
+
+<img alt="" src="https://img.shields.io/github/repo-size/szorfein/dotfiles?style=flat-square&label=repo" />
+</p>
+
+<p align="center">
+<a href="https://github.com/szorfein/dotfiles#setup">Setup</a>
+| <a href="https://github.com/szorfein/dotfiles/wiki">Wiki</a> 
+| <a href="https://github.com/szorfein/dotfiles/wiki/Gallery">Gallery</a>
+| <a href="https://github.com/szorfein/dotfiles/wiki/Keybinds">Keybinds</a>
+</p>
 
 ## Table of contents
 - [installation](#installation-for-the-last-theme)
@@ -22,48 +24,41 @@ A list of dependendies can be found [here](https://raw.githubusercontent.com/szo
 - [shell](#shell)
 - [wallpapers](#wallpapers)
 - [fonts](#fonts)
-- [screenshots](#screens)
+- [screenshots](#screenshots)
 - [support](#support)
 
 ## Installation for the last theme
 There are two way to install the last [themes/lines](#screens)
-+ Fully scripted with [chezmoi](https://www.chezmoi.io/), follow the instruction [here](https://github.com/szorfein/dots).
++ Fully scripted with [chezmoi](https://www.chezmoi.io/), (better on a new install),  follow the instruction [here](https://github.com/szorfein/dots).
 + Or manually by following the [wiki page](https://github.com/szorfein/dotfiles/wiki/theme-awesome).
 
-The method with `chezmoi` only work with a theme for `awesomewm` and only for supported distrib Gentoo, Archlinux or Debian.  
-You can try on other distributions like Centos, Ubuntu... at your own risk and peril :)
+The method with `chezmoi` only work with supported distrib Gentoo, Archlinux, VoidLinux or Debian.  
+You can try on other distro variant like Centos, Ubuntu... at your own risk and peril :)
 
 ## Stow
 If you are blocked with `stow` or need more explanations, see the [wiki page](https://github.com/szorfein/dotfiles/wiki/stow) before post an issue.  
 
 ## Vim
-Here all the vim plugins i use:
+Here is a list of all the vim plugins i use: https://github.com/szorfein/dotfiles/wiki/Dependencies#vim
 
-| name | description | name | description
-| --- | --- | --- | --- |
-|[ale](https://github.com/w0rp/ale) | asynchronous check |[vim-devicons](https://github.com/ryanoasis/vim-devicons) | add icon to vim |
-|[colorizer](https://github.com/lilydjwg/colorizer) | colorize hexa code |[vim-tmux-navigator](https://github.com/christoomey/vim-tmux-navigator) | used with tmux |
-|[indentLine](https://github.com/Yggdroot/indentLine) | display indentation level |[nerdtree](https://github.com/scrooloose/nerdtree) | tree explorer |
-|[lightline](https://github.com/itchyny/lightline.vim) | top, bottom bar |[vim-gitgutter](https://github.com/airblade/vim-gitgutter) | git diff in sign column |[nerdtree](https://github.com/scrooloose/nerdtree) | tree explorer |
-|[lightline-bufferline](https://github.com/mengelbrecht/lightline-bufferline) | extend lightline | | |
-
-#### To install vim.plug and all plugins
+To install vim.plug and all plugins
 
     ./install --vim
+    stow vim
 
 ## Shell
 For the shell, i use `zsh` with plugins [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh) with [spaceship-prompt](https://github.com/denysdovhan/spaceship-prompt).  
 You can install theses repos with:
 
     ./install --zsh
+    stow zsh
 
 ## Wallpapers
-To recover all the wallpapers i used, you need to install `wget` and execute a:
+To recover all the wallpapers i use, you need to install `wget` and execute a:
 
     ./install --images
 
-You have to launch this each time a new theme come.  
-It's all for the setup :)
+Or search directly [here](https://github.com/szorfein/walls). You have to launch this each time a new theme come.  
 
 ## Fonts
 For awesomewm, i use [Iosevka Nerd Font](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/Iosevka), [SpaceMono Nerd Font](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/SpaceMono) and [Material Design Icons Desktop](https://github.com/Templarian/MaterialDesign-Font).  
@@ -71,15 +66,14 @@ To install all the fonts (in `~/.local/share/fonts`), you can use my script too,
 
     ./install --fonts
 
-## Screens
+## Screenshots
 
 ### Awm
 
 **Last**:`themes/lines` **term**: xst, **vim-color**: [vamp](https://github.com/szorfein/vamp.vim), **font**: [Iosevka Term Nerd Font](http://nerdfonts.com/#downloads).
 
-![lines screenshot](https://github.com/szorfein/unix-portfolio/raw/master/lines/monitor.png)
-![lines 2](https://github.com/szorfein/unix-portfolio/raw/master/lines/full.png)
-![lines 3](https://github.com/szorfein/unix-portfolio/raw/master/lines/start-screen.png)
+![lines screenshot](https://github.com/szorfein/unix-portfolio/raw/master/lines/full.png)
+![lines 2](https://github.com/szorfein/unix-portfolio/raw/master/lines/start-screen.png)
 
 `themes/morpho` **term**: xst, **vim-color**: [darkest-space](https://github.com/szorfein/darkest-space), **font**: [Iosevka Term Nerd Font](http://nerdfonts.com/#downloads).
 
@@ -96,15 +90,15 @@ To install all the fonts (in `~/.local/share/fonts`), you can use my script too,
 ### Subtlewm
 
 `themes/lost` [term]: *kitty* [vim-color] [OceanicNext](https://github.com/mhartington/oceanic-next), [font] [Nerd Roboto Mono](http://nerdfonts.com/#downloads).   
-![Lost screenshot](https://raw.githubusercontent.com/szorfein/dotfiles/master/screenshots/lost.jpg "lost")  
+![Lost screenshot](https://raw.githubusercontent.com/wiki/szorfein/dotfiles/assets/lost.jpg "lost")  
 
 `themes/sombra` [term]: *kitty* [vim-color] [material.vim](https://github.com/kaicataldo/material.vim.git), [font] [Anka/Coder](https://code.google.com/archive/p/anka-coder-fonts).   
-![Sombra screenshot](https://raw.githubusercontent.com/szorfein/dotfiles/master/screenshots/sombra.jpg "sombra")  
+![Sombra screenshot](https://raw.githubusercontent.com/wiki/szorfein/dotfiles/assets/sombra.jpg "sombra")  
 
 ### i3wm
 
 `themes/city`, [wm]: *i3* or *subtle*. [term]: *termite* or *kitty*. [vim-color] [darkest-space](https://github.com/szorfein/darkest-space)
-![City screenshot](https://raw.githubusercontent.com/szorfein/dotfiles/master/screenshots/city.jpg "city")
+![City screenshot](https://raw.githubusercontent.com/wiki/szorfein/dotfiles/assets/city.jpg "city")
 
 ### Other screenshots
 More screenshots are available at [unix-portfolio](https://github.com/szorfein/unix-portfolio).
