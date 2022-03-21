@@ -1,31 +1,20 @@
-<h2 align="center">x Custom dotfiles x</h2>
+<h2 align="center">x Custom Dotfiles x</h2>
 <p align="center">
 <img alt="" src="https://badges.pufler.dev/visits/szorfein/dotfiles?style=flat-square&color=9a74f2&logoColor=white&labelColor=373e4d" />
 <img alt="" src="https://img.shields.io/github/repo-size/szorfein/dotfiles?style=flat-square&label=Repo" />
 </p>
 
 <p align="center">
-<img alt="" src="https://badges.pufler.dev/visits/szorfein/dotfiles?style=flat-square&color=9a74f2&logoColor=white&labelColor=373e4d" />
-
-<img alt="" src="https://img.shields.io/github/repo-size/szorfein/dotfiles?style=flat-square&label=repo" />
-</p>
-
-<p align="center">
 <a href="https://github.com/szorfein/dotfiles#setup">Setup</a>
-| <a href="https://github.com/szorfein/dotfiles/wiki">Wiki</a> 
-| <a href="https://github.com/szorfein/dotfiles/wiki/Gallery">Gallery</a>
+| <a href="https://github.com/szorfein/dotfiles/wiki">Wiki</a>
 | <a href="https://github.com/szorfein/dotfiles/wiki/Keybinds">Keybinds</a>
+| <a href="https://github.com/szorfein/dotfiles/wiki/Gallery">Gallery</a>
 </p>
 
-## Table of contents
-- [installation](#installation-for-the-last-theme)
-- [use stow](#howto-stow)
-- [vim](#vim)
-- [shell](#shell)
-- [wallpapers](#wallpapers)
-- [fonts](#fonts)
-- [screenshots](#screenshots)
-- [support](#support)
+##
+
+![lines screenshot](https://github.com/szorfein/unix-portfolio/raw/master/lines/full.png)
+![lines 2](https://github.com/szorfein/unix-portfolio/raw/master/lines/start-screen.png)
 
 ## Installation for the last theme
 There are two way to install the last [themes/lines](#screens)
@@ -70,11 +59,6 @@ To install all the fonts (in `~/.local/share/fonts`), you can use my script too,
 
 ### Awm
 
-**Last**:`themes/lines` **term**: xst, **vim-color**: [vamp](https://github.com/szorfein/vamp.vim), **font**: [Iosevka Term Nerd Font](http://nerdfonts.com/#downloads).
-
-![lines screenshot](https://github.com/szorfein/unix-portfolio/raw/master/lines/full.png)
-![lines 2](https://github.com/szorfein/unix-portfolio/raw/master/lines/start-screen.png)
-
 `themes/morpho` **term**: xst, **vim-color**: [darkest-space](https://github.com/szorfein/darkest-space), **font**: [Iosevka Term Nerd Font](http://nerdfonts.com/#downloads).
 
 | clean |
@@ -86,19 +70,6 @@ To install all the fonts (in `~/.local/share/fonts`), you can use my script too,
 | terms (xst) - lightline.vim - tmux |
 | --- |
 | ![miami screenshot](https://github.com/szorfein/unix-portfolio/raw/master/miami/terms.png "Miami") |
-
-### Subtlewm
-
-`themes/lost` [term]: *kitty* [vim-color] [OceanicNext](https://github.com/mhartington/oceanic-next), [font] [Nerd Roboto Mono](http://nerdfonts.com/#downloads).   
-![Lost screenshot](https://raw.githubusercontent.com/wiki/szorfein/dotfiles/assets/lost.jpg "lost")  
-
-`themes/sombra` [term]: *kitty* [vim-color] [material.vim](https://github.com/kaicataldo/material.vim.git), [font] [Anka/Coder](https://code.google.com/archive/p/anka-coder-fonts).   
-![Sombra screenshot](https://raw.githubusercontent.com/wiki/szorfein/dotfiles/assets/sombra.jpg "sombra")  
-
-### i3wm
-
-`themes/city`, [wm]: *i3* or *subtle*. [term]: *termite* or *kitty*. [vim-color] [darkest-space](https://github.com/szorfein/darkest-space)
-![City screenshot](https://raw.githubusercontent.com/wiki/szorfein/dotfiles/assets/city.jpg "city")
 
 ### Other screenshots
 More screenshots are available at [unix-portfolio](https://github.com/szorfein/unix-portfolio).
