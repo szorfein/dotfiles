@@ -59,7 +59,7 @@ forZsh() {
       echo "Ok, we keep your directory..."
     fi
   }
-  chk https://github.com/robbyrussell/oh-my-zsh.git "$OH_MY_ZSH"
+  chk https://github.com/ohmyzsh/ohmyzsh "$OH_MY_ZSH"
   chk https://github.com/denysdovhan/spaceship-prompt.git "$SPACESHIP"
   # create symbolic link
   ln -s "$SPACESHIP"/spaceship.zsh-theme "$OH_MY_ZSH"/themes/spaceship.zsh-theme
