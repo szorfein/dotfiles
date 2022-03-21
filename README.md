@@ -26,14 +26,15 @@
 
 ###
 
-- **WM:** Awesome
-- **OS:** Void or Gentoo MUSL, installed with [Getch](https://github.com/szorfein/getch)
+- **WM:** [Awesome](https://github.com/awesomeWM/awesome)
+- **OS:** [Void](https://voidlinux.org/) or [Gentoo](https://www.gentoo.org/) with [Musl](https://musl.libc.org/), installed with [Getch](https://github.com/szorfein/getch)
 - **SH:** ZSH with [ohmyzsh](https://github.com/ohmyzsh/ohmyzsh) and [spaceship-prompt](https://spaceship-prompt.sh/)
-- **Term:** xSt
-- **Editor:** Vim8 and Doom-Emacs
-- **Compositor:** Picom
-- **File Manager:** FFF, vifm
+- **Term:** [xSt](https://github.com/gnotclub/xst)
+- **Editor:** [Vim](https://github.com/vim/vim) and [Doom-Emacs](https://github.com/hlissner/doom-emacs)
+- **Compositor:** [Picom](https://github.com/yshui/picom)
+- **File Manager:** [FFF](https://github.com/dylanaraps/fff), [Vifm](https://github.com/vifm/vifm)
 - **Fonts:** [Nerd Font](https://www.nerdfonts.com/) (Iosevka) and (SpaceMono) + [Material Icons](https://github.com/Templarian/MaterialDesign-Font)
+- **Dotfiles manager and theme switcher:** [GNU/Stow](https://www.gnu.org/software/stow/)
 
  ## Setup
 
@@ -46,30 +47,26 @@ The method with `chezmoi` only work with supported distrib Gentoo, Archlinux, Vo
 You can try on other distro variant like Centos, Ubuntu... at your own risk and peril :)
 
 ### Vim
-Here is a list of all the vim plugins i use: https://github.com/szorfein/dotfiles/wiki/Dependencies#vim
+To install `vim.plug` and all plugins (see: https://github.com/szorfein/dotfiles/blob/main/vim/.vimrc):
 
-To install `vim.plug` and all plugins
-
-    ./install --vim
     stow vim
+    ./install --vim
 
 ### Shell
-For the shell, i use `zsh` with plugins [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh) with [spaceship-prompt](https://github.com/denysdovhan/spaceship-prompt).  
-You can install theses repos with:
+You can install [ohmyzsh](https://github.com/ohmyzsh/ohmyzsh) and [spaceship-prompt](https://github.com/denysdovhan/spaceship-prompt) with:
 
     ./install --zsh
     stow zsh
 
 ### Wallpapers
-To recover all the wallpapers i use, you need to install `wget` and execute a:
+To recover all the wallpapers (the script will place them into `~/images`), you need to install `curl` and execute a:
 
     ./install --images
 
 Or search directly [here](https://github.com/szorfein/walls). You have to launch this each time a new theme come.  
 
-### Fonts
-I use [Iosevka Nerd Font](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/Iosevka), [SpaceMono Nerd Font](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/SpaceMono) and [Material Design Icons Desktop](https://github.com/Templarian/MaterialDesign-Font).  
-To install all the fonts (in `~/.local/share/fonts`), you can use my script too, for archlinux, you may prefer the install with AUR instead.
+### Fonts 
+To install all the fonts (in `~/.local/share/fonts`), you can use my script too, for Archlinux, you may prefer the install with AUR instead.
 
     ./install --fonts
 
