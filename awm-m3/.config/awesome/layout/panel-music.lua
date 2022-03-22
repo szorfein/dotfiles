@@ -185,10 +185,14 @@ function music:all_mpc_buttons()
     button_text({
       icon = '󰐒',
       fg = md.sys.color.on_surface,
-      cmd = function() dialog:centered(
-        'Save playlist to',
-        self:save_playlist()
-      ) end
+      cmd = function()
+        self.dialog_save_playlist:display()
+        self.textbox_save:buttons(gears.table.join(
+        awful.button({}, 1, function()
+          self:playlist_prompt()
+        end)
+        ))
+      end
     }).widget,
     button_text({
       icon = '󰒝',
@@ -334,10 +338,7 @@ function music:bottom()
         button_text({
           icon = '󰲹',
           text = 'playlists',
-          cmd = function() dialog:centered(
-            'Playlist',
-            self:playlist()
-          ) end
+          cmd = function() self.dialog_open_playlist:display() end
         }).widget,
         spacing = dpi(8),
         layout = wibox.layout.fixed.horizontal
