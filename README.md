@@ -31,7 +31,7 @@ There are two way to install the last [themes/lines](#screens)
 + Or manually by following the [wiki page](https://github.com/szorfein/dotfiles/wiki/theme-awesome).
 
 The method with `chezmoi` only work with a theme for `awesomewm` and only for supported distrib Gentoo, Archlinux or Debian.  
-You can try on other distributions like Centos, Ubuntu... at your own risk and peril :)
+You can try on other distributions like Ubuntu... at your own risk and peril :)
 
 ## Stow
 If you are blocked with `stow` or need more explanations, see the [wiki page](https://github.com/szorfein/dotfiles/wiki/stow) before post an issue.  

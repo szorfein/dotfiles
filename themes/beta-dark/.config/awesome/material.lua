@@ -16,7 +16,7 @@ theme.sys = {
   },
   color = { -- https://m3.material.io/styles/color/the-color-system/tokens
     primary = '#acc7ff',
-    primary_container = '#004397',
+    primary_container = '#08458e',
     secondary = '#bfc6dc',
     secondary_container = '#3f4759',
     tertiary = '#debbdf',

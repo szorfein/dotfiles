@@ -162,8 +162,7 @@ awful.screen.connect_for_each_screen(function(s)
 
   require('layout.navigation-rail')({
     screen = s,
-    menubar = menubar,
-    visible = true
+    menubar = menubar
   })
 
   -- all other layouts
@@ -442,6 +441,17 @@ awful.rules.rules = {
   { rule = { class = "Firefox" },
     properties = { screen = 1, tag = "2" }
   },
+
+   -- Titlebars OFF
+  {
+    rule_any = {
+      class = {
+        "Apostrophe"
+      },
+    }, callback = function(c)
+      awful.titlebar.hide(c, 'top')
+    end
+  }
 }
 -- }}}
 

@@ -1,7 +1,7 @@
 local wibox = require('wibox')
 local helpers = require('lib.helpers')
 
--- https://m3.material.io/m3/pages/common-buttons/specs/#0eea2a85-b4d7-4c74-b08e-98410b9412c7
+-- https://m3.material.io/components/extended-fab/specs
 local button = class()
 
 function button:init(args)
@@ -51,13 +51,14 @@ function button:container()
     fg = self.color,
     bg = self.bg,
     shape = helpers.rrect(dpi(16)),
+    forced_height = dpi(56),
     widget = wibox.container.background
   }
 end
 
 function button:surface()
   return wibox.widget {
-    bg = self.fg
+    bg = md.sys.color.surface_tint_color
       .. md.sys.elevation.level3,
     shape = helpers.rrect(dpi(16)),
     widget = wibox.container.background
@@ -83,12 +84,12 @@ function button:signals()
   self.state:connect_signal('mouse::enter', function()
     self.state.bg = self.fg
       .. md.sys.state.hover_state_layer_opacity
-    self.surface = self.fg
+    self.surface = md.sys.color.surface_tint_color
       .. md.sys.elevation.level4
   end)
   self.state:connect_signal('mouse::leave', function()
     self.state.bg = self.fg .. md.sys.elevation.level0
-    self.surface = self.fg
+    self.surface = md.sys.color.surface_tint_color
       .. md.sys.elevation.level3
   end)
   self.widget:connect_signal('button::press', function()

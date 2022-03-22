@@ -18,6 +18,8 @@ function taglist:styles()
   return {
     shape = helpers.circle(),
     bg_focus = md.sys.color.secondary_container,
+    fg_urgent = md.sys.color.tertiary,
+    bg_urgent = md.sys.color.surface .. 00,
     font = md.sys.typescale.icon.font
       .. ' ' .. dpi(16)
   }
