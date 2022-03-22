@@ -33,10 +33,12 @@
 - **Editor:** [Vim](https://github.com/vim/vim) and [Doom-Emacs](https://github.com/hlissner/doom-emacs)
 - **Compositor:** [Picom](https://github.com/yshui/picom)
 - **File Manager:** [FFF](https://github.com/dylanaraps/fff), [Vifm](https://github.com/vifm/vifm)
-- **Fonts:** [Nerd Font](https://www.nerdfonts.com/) (Iosevka) and (SpaceMono) + [Material Icons](https://github.com/Templarian/MaterialDesign-Font)
+- **Fonts:** [Nerd Font](https://www.nerdfonts.com/) Iosevka, SpaceMono + [Material Icons](https://github.com/Templarian/MaterialDesign-Font) + [Papirus](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme)
 - **Dotfiles manager and theme switcher:** [GNU/Stow](https://www.gnu.org/software/stow/)
 
- ## Setup
+###
+
+## Setup
 
 ### Installation for the last theme
 There are two way to install the last [themes/lines](#screens)
@@ -66,11 +68,11 @@ To recover all the wallpapers (the script will place them into `~/images`), you 
 Or search directly [here](https://github.com/szorfein/walls). You have to launch this each time a new theme come.  
 
 ### Fonts 
-To install all the fonts (in `~/.local/share/fonts`), you can use my script too, for Archlinux, you may prefer the install with AUR instead.
+To install all the fonts (in `~/.local/share/fonts`), you can use my script too.  
 
     ./install --fonts
 
-## Other themes
+### Other themes
 
 `themes/morpho` 
 

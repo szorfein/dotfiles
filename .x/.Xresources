@@ -46,42 +46,6 @@ st.cwscale:       1.0
 !--------------------------------------------
 ! General Colors & Fonts
 
-#include ".Xresources.d/base16"
+#include ".Xresources.d/colors"
 #include ".Xresources.d/fonts"
 
-*background: base00
-*foreground: base04
-*cursorColor: base04
-*fadeColor: base03
-
-! black
-*color0: base01
-*color8: base02
-
-! red
-*color1: base0B
-*color9: base0C
-
-! green
-*color2: base0E
-*color10: base0E
-
-! yellow
-*color3: base0D
-*color11: base0D
-
-! blue
-*color4: base09
-*color12: base0A
-
-! magenta
-*color5: base0F
-*color13: base0F
-
-! cyan
-*color6: base08
-*color14: base07
-
-! white
-*color7: base05
-*color15: base06

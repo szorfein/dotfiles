@@ -59,7 +59,7 @@ function app:lock_with_xss()
     --time-size=]]..md.sys.typescale.title_large.size..[[ \
     --date-font=]]..md.sys.typescale.title_medium.font..[[ \
     --date-size=]]..md.sys.typescale.title_medium.size..[[ \
-    --time-str=\"%H:%M\" --nofork
+    --time-str="%H:%M" --nofork
   ]])
 end
 
