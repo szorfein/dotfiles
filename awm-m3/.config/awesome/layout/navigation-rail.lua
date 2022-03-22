@@ -11,6 +11,13 @@ function nav_rail:init(args)
   self.visible = args.visible or false
   self.menubar = args.menubar
   self.screen.rail = wibox(self:wibox_args())
+
+  self.dialog_change_theme = require('lib.dialog')({ name = 'change_theme' })
+  self.dialog_change_theme:centered(
+    'Change theme',
+    self:change_theme()
+  )
+
   self:setup()
   self:signals()
 end
@@ -35,10 +42,15 @@ end
 
 function nav_rail:setup()
   self.screen.rail:setup {
-    self:top_widget(),
-    self:middle_widget(),
-    expand = 'none',
-    layout = wibox.layout.align.vertical
+    {
+      self:top_widget(),
+      self:middle_widget(),
+      self:bottom_widget(),
+      expand = 'none',
+      layout = wibox.layout.align.vertical
+    },
+    bottom = dpi(16),
+    widget = wibox.container.margin
   }
 end
 
@@ -75,6 +87,18 @@ function nav_rail:middle_widget()
   }
 end
 
+function nav_rail:bottom_widget()
+  return wibox.widget {
+    nil,
+    button_text({
+      icon = '󰌁',
+      cmd = function() self.dialog_change_theme:display() end
+    }).widget,
+    expand = 'none',
+    layout = wibox.layout.align.horizontal
+  }
+end
+
 function nav_rail:show()
   local right_pad = 0
   if self.screen.panel then
@@ -103,6 +127,20 @@ function nav_rail:signals()
   self.screen.rail_activator:connect_signal('mouse::enter', function()
     self:show()
   end)
+end
+
+function nav_rail:change_theme()
+  return wibox.widget {
+    {
+      text = 'BETA',
+      widget = wibox.widget.textbox
+    },
+    {
+      text = 'LINES',
+      widget = wibox.widget.textbox
+    },
+    layout = wibox.layout.fixed.horizontal
+  }
 end
 
 local main = class(nav_rail)
