@@ -1,4 +1,6 @@
 local wibox = require('wibox')
+local spawn = require('awful.spawn')
+local naughty = require('naughty')
 local button = require('lib.button-elevated')
 local button_filled = require('lib.button-filled')
 local app = require('lib.app')
@@ -25,8 +27,16 @@ end
 
 function quit:lock()
   return button({
-    icon = '󰌾',
-    cmd = app.lock
+    icon = '󰻛',
+    cmd = function()
+      spawn.easy_async_with_shell('maim ~/$(date +%s).png -d 1.0', function(_, stderr, _, exit_code)
+        if exit_code == 0 then
+          naughty.notify({ text = 'Screenshot taken' })
+        else
+          naughty.notify({ text = stderr })
+        end
+      end)
+    end
   })
 end
 
