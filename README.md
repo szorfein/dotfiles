@@ -43,8 +43,8 @@ There are two way to install the last [themes/lines](#screens)
 + Fully scripted with [chezmoi](https://www.chezmoi.io/), (better on a new install),  follow the instruction [here](https://github.com/szorfein/dots).
 + Or manually by following the [wiki page](https://github.com/szorfein/dotfiles/wiki/theme-awesome).
 
-The method with `chezmoi` only work with supported distrib Gentoo, Archlinux, VoidLinux or Debian.  
-You can try on other distro variant like Centos, Ubuntu... at your own risk and peril :)
+The method with `chezmoi` only work with a theme for `awesomewm` and only for supported distrib Gentoo, Archlinux or Debian.  
+You can try on other distributions like Ubuntu... at your own risk and peril :)
 
 ### Vim
 To install `vim.plug` and all plugins (see: https://github.com/szorfein/dotfiles/blob/main/vim/.vimrc):

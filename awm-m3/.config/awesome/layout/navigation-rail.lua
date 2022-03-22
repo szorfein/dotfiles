@@ -12,6 +12,7 @@ function nav_rail:init(args)
   self.menubar = args.menubar
   self.screen.rail = wibox(self:wibox_args())
   self:setup()
+  self:signals()
 end
 
 function nav_rail:wibox_args()
@@ -48,7 +49,7 @@ function nav_rail:top_widget()
         icon = '󰍜',
         fg = md.sys.color.on_surface_variant,
         cmd = function() self:hide() end
-      }),
+      }).widget,
       left = dpi(16), top = dpi(10), right = dpi(16),
       widget = wibox.container.margin
     },
@@ -91,6 +92,17 @@ function nav_rail:hide()
   end
   self.screen.padding = { left = 0, right = right_pad }
   self.screen.rail.visible = false
+end
+
+function nav_rail:signals()
+  self.screen.rail_activator = wibox({y = 0, width = 1, visible = true, ontop = false, opacity = 0, below = true, screen = self.screen})
+
+  self.screen.rail_activator.height = self.screen.geometry.height
+  awful.placement.left(self.screen.rail_activator)
+
+  self.screen.rail_activator:connect_signal('mouse::enter', function()
+    self:show()
+  end)
 end
 
 local main = class(nav_rail)

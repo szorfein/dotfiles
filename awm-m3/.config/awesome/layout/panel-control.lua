@@ -150,23 +150,27 @@ function control:monitoring()
       widget = wibox.widget.textbox
     },
     self.disk,
-    {
-      text = 'CPU',
-      widget = wibox.widget.textbox
-    },
-    self.cpu,
+    --{
+    --  text = 'CPU',
+    --  widget = wibox.widget.textbox
+    --},
+    --self.cpu,
     {
       {
-        text = '󱘈',
-        font = md.sys.typescale.icon.font .. ' ' .. dpi(16),
-        widget = wibox.widget.textbox
+        {
+          text = '󱘈',
+          font = md.sys.typescale.icon.font .. ' ' .. dpi(16),
+          widget = wibox.widget.textbox
+        },
+        self.geoloc,
+        spacing = dpi(6),
+        forced_height = dpi(20), -- one line
+        layout = wibox.layout.fixed.horizontal
       },
-      self.geoloc,
-      spacing = dpi(8),
-      forced_height = dpi(20),
-      layout = wibox.layout.fixed.horizontal
+      top = dpi(14),
+      widget = wibox.container.margin
     },
-    spacing = dpi(8),
+    spacing = dpi(10),
     layout = wibox.layout.fixed.vertical
   }
 end

@@ -9,13 +9,22 @@ function button:init(args)
   self.icon = self.args.icon or nil
   self.text = self.args.text or nil
   self.fg = self.args.fg or md.sys.color.primary
-  self.bg = self.args.bg or md.sys.color.surface
   self.cmd = self.args.cmd or nil
   self.state = self:state()
+  self.container = self:container()
   self.surface = self:surface()
   self.widget = self:textbutton()
   self:signals()
-  return self.widget
+end
+
+function button:set_color(color_name)
+  self.container.fg = color_name
+  self.fg = color_name
+end
+
+function button:disable()
+  self.container.fg = md.sys.color.on_surface
+    .. md.sys.state.disable_content_opacity
 end
 
 function button:textbutton()
@@ -35,7 +44,7 @@ function button:textbutton()
       },
       widget = self.surface
     },
-    widget = self:container()
+    widget = self.container
   }
 end
 
@@ -63,7 +72,7 @@ end
 function button:container()
   return wibox.widget {
     fg = self.fg,
-    bg = self.bg .. md.sys.elevation.level0,
+    bg = self.fg .. md.sys.elevation.level0,
     shape = helpers.rrect(dpi(20)),
     widget = wibox.container.background
   }
@@ -100,7 +109,7 @@ function button:signals()
       .. md.sys.state.hover_state_layer_opacity
   end)
   self.state:connect_signal('mouse::leave', function()
-    self.state.bg = self.bg .. '00'
+    self.state.bg = self.fg .. '00'
   end)
   self.widget:connect_signal('button::press', function()
     if self.cmd and type(self.cmd) == 'function' then

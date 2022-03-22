@@ -10,7 +10,7 @@ local music = class()
 
 function music:init()
   self.mpd_status = button_text({
-    icon = '󰽢',
+    icon = '󰱯',
     fg = md.sys.color.error,
     cmd = self.start
   })
@@ -64,23 +64,9 @@ end
 function music:signals()
   awesome.connect_signal('daemon::mpd', function(status)
     if status then
-      self.mpd_status:setup {
-        button_text({
-          icon = '󰽢',
-          fg = md.sys.color.primary,
-          cmd = self.start
-        }),
-        layout = wibox.layout.fixed.horizontal
-      }
+      self.mpd_status:set_color(md.sys.color.primary)
     else
-      self.mpd_status:setup {
-        button_text({
-          icon = '󰽢',
-          fg = md.sys.color.error,
-          cmd = self.start
-        }),
-        layout = wibox.layout.fixed.horizontal
-      }
+      self.mpd_status:set_color(md.sys.color.error)
     end
   end)
   awesome.connect_signal('daemon::mpc', function(img, artist, title, paused)
@@ -151,7 +137,7 @@ function music:top()
         widget = wibox.widget.textbox
       },
       nil,
-      self.mpd_status,
+      self.mpd_status.widget,
       expand = 'none',
       layout = wibox.layout.align.horizontal
     },
@@ -199,36 +185,32 @@ function music:all_mpc_buttons()
     button_text({
       icon = '󰐒',
       fg = md.sys.color.on_surface,
-      cmd = function()
-        self.dialog_save_playlist:display()
-        self.textbox_save:buttons(gears.table.join(
-        awful.button({}, 1, function()
-          self:playlist_prompt()
-        end)
-        ))
-      end
-    }),
+      cmd = function() dialog:centered(
+        'Save playlist to',
+        self:save_playlist()
+      ) end
+    }).widget,
     button_text({
       icon = '󰒝',
       fg = md.sys.color.on_surface,
       cmd = function()
         awful.spawn.with_shell('mpc shuffle')
       end
-    }),
+    }).widget,
     button_text({
       icon = '󰑖',
       fg = md.sys.color.on_surface,
       cmd = function()
         awful.spawn.with_shell('mpc repeat')
       end
-    }),
+    }).widget,
     button_text({
       icon = '󱐰',
       fg = md.sys.color.error,
       cmd = function()
         awful.spawn.with_shell("mpc del 0")
       end
-    }),
+    }).widget,
     layout = wibox.layout.fixed.horizontal
   }
 end
@@ -296,10 +278,13 @@ function music:middle()
         layout = wibox.layout.fixed.vertical
       },
       {
-        self.image,
+        {
+          self.image,
+          forced_height = dpi(160),
+          widget = wibox.container.background
+        },
         {
           self:description(),
-          top = dpi(20),
           left = dpi(10), right = dpi(10),
           widget = wibox.container.margin
         },
@@ -314,14 +299,14 @@ function music:middle()
               cmd = function()
                 awful.spawn.with_shell("mpc -q prev")
               end
-            }),
+            }).widget,
             self.mpc_toggle,
             button_text({
               icon = '󰼧',
               cmd = function()
                 awful.spawn.with_shell("mpc -q next")
               end
-            }),
+            }).widget,
             spacing = dpi(8),
             layout = wibox.layout.fixed.horizontal
           },
@@ -349,8 +334,11 @@ function music:bottom()
         button_text({
           icon = '󰲹',
           text = 'playlists',
-          cmd = function() self.dialog_open_playlist:display() end
-        }),
+          cmd = function() dialog:centered(
+            'Playlist',
+            self:playlist()
+          ) end
+        }).widget,
         spacing = dpi(8),
         layout = wibox.layout.fixed.horizontal
       },
@@ -380,7 +368,7 @@ function music:playlist()
             })
           end)
         end
-      })
+      }).widget
       widget:add(w)
     end
   })
