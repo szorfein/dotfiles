@@ -30,41 +30,43 @@ EOF
 }
 
 gen_gemspec() {
-    content="# frozen_string_literal: true
+    content=$(cat <<EOF
+# frozen_string_literal: true
 
-require_relative 'lib/$PROJ_LOW/version\'
+require_relative 'lib/$PROJ_LOW/version'
 
 # https://guides.rubygems.org/specification-reference/
 Gem::Specification.new do |s|
-  s.name = \'$PROJ_LOW\'
-  s.summary = \'Awesome Ruby Project !\'
+  s.name = '$PROJ_LOW'
+  s.summary = 'Awesome Ruby Project !'
   s.version = $PROJ_CAP::VERSION
   s.platform = Gem::Platform::RUBY
   s.description = <<-DESCRIPTION
     $PROJ is just an awesome gem !
   DESCRIPTION
-  s.email = \'$EMAIL\'
+  s.email = '$EMAIL'
   s.files = Dir.glob('lib/**/*', File::FNM_DOTMATCH)
-  s.homepage = \'https://github.com/$USERNAME/$PROJ\'
-  s.license = \'MIT\'
+  s.homepage = 'https://github.com/$USERNAME/$PROJ'
+  s.license = 'MIT'
   s.metadata = {
-    \'bug_tracker_uri\' => \'https://github.com/$USERNAME/$PROJ/issues\',
-    \'changelog_uri\' => \'https://github.com/$USERNAME/$PROJ/blob/master/CHANGELOG.md\',
-    \'source_code_uri\' => \'https://github.com/$USERNAME/$PROJ\',
-    \'wiki_uri\' => \'https://github.com/$USERNAME/$PROJ/wiki\',
-    \'funding_uri\' => \'https://patreon.com/$USERNAME\',
+    'bug_tracker_uri' => 'https://github.com/$USERNAME/$PROJ/issues',
+    'changelog_uri' => 'https://github.com/$USERNAME/$PROJ/blob/main/CHANGELOG.md',
+    'source_code_uri' => 'https://github.com/$USERNAME/$PROJ',
+    'wiki_uri' => 'https://github.com/$USERNAME/$PROJ/wiki',
+    'funding_uri' => 'https://patreon.com/$USERNAME',
   }
-  s.author = \'$USERNAME\'
-  s.bindir = \'bin\'
-  s.cert_chain = [\'certs/$USERNAME.pem\']
-  s.executables << \'$PROJ_LOW\'
+  s.author = '$USERNAME'
+  s.bindir = 'bin'
+  s.cert_chain = ['certs/$USERNAME.pem']
+  s.executables << '$PROJ_LOW'
   s.extra_rdoc_files = ['README.md']
-  s.required_ruby_version = \'>=$RUBY_VERSION_REQUIRED\'
+  s.required_ruby_version = '>=$RUBY_VERSION_REQUIRED'
   s.requirements << 'TODO change: libmagick, v6.0'
   s.requirements << 'TODO change: A good graphics card'
-  s.signing_key = File.expand_path(\'~/.ssh/gem-private_key.pem\') if \$0 =~ /gem\z/
+  s.signing_key = File.expand_path('~/.ssh/gem-private_key.pem') if \$0 =~ /gem\z/
 end
-"
+EOF
+)
     cat_file "$content" "$PROJ_LOW.gemspec"
 }
 
@@ -113,11 +115,14 @@ end
 }
 
 gen_bin() {
-    content="#!/usr/bin/env ruby
-require \'$PROJ_LOW\'
+    content=$(cat <<EOF
+#!/usr/bin/env ruby
+require '$PROJ_LOW'
 
-puts \'$PROJ_CAP v.\' + $PROJ_CAP::VERSION
-"
+puts '$PROJ_CAP v.' + $PROJ_CAP::VERSION
+EOF
+)
+
     cat_file "$content" "bin/$PROJ_LOW"
     chmod 744 "$PROJ/bin/$PROJ_LOW"
 }
@@ -204,8 +209,11 @@ git_init() {
 
 create_project() {
     echo "===> Building your gem project $PROJ"
-    mkdir -p "$PROJ"/{bin,lib,certs,test}
+    mkdir -p "$PROJ"/bin
+    mkdir -p "$PROJ"/lib
     mkdir -p "$PROJ"/lib/"$PROJ_LOW"
+    mkdir -p "$PROJ"/certs
+    mkdir -p "$PROJ"/test
     gen_changelog
     gen_readme
     gen_gemspec
@@ -220,8 +228,8 @@ create_project() {
 }
 
 make_vars() {
-    PROJ_LOW=${PROJ,,}
-    PROJ_CAP=${PROJ^}
+    PROJ_LOW=$(echo "${PROJ}" | tr '[:upper:]' '[:lower:]')
+    PROJ_CAP=$(echo "${PROJ}" | sed -E 's/[[:alpha:]]+/\u&/g')
     #echo "===> Lowered $PROJ_LOW"
     #echo "===> Cap $PROJ_CAP"
 }

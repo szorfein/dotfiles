@@ -59,7 +59,7 @@ forZsh() {
       echo "Ok, we keep your directory..."
     fi
   }
-  chk https://github.com/robbyrussell/oh-my-zsh.git "$OH_MY_ZSH"
+  chk https://github.com/ohmyzsh/ohmyzsh "$OH_MY_ZSH"
   chk https://github.com/denysdovhan/spaceship-prompt.git "$SPACESHIP"
   # create symbolic link
   ln -s "$SPACESHIP"/spaceship.zsh-theme "$OH_MY_ZSH"/themes/spaceship.zsh-theme
@@ -80,54 +80,37 @@ download_images() {
   )
 }
 
-check_font() {
-  my_font=$(fc-match -a | grep -i "$1" | tail -1)
-  if [ "$my_font" = '' ]; then
-    return 1
-  else
-    return 0
-  fi
-}
-
 install_font() {
-  if ! check_font "$1"; then
-    echo "Font \"$1\" not installed yet"
-    [ -f "$2" ] || {
-      rm -rf "$1"
-      mkdir "$1"
-      curl -s -L -o "$2" "$3"
-      (cd "$1" \
-        && unzip ../"$2"
-      )
-    }
-  else
-    echo "Font \"$1\" alrealy installed, skip..."
-  fi
+  [ -f "$2" ] || {
+    echo "Installing $1"
+    rm -rf "$1"
+    mkdir "$1"
+    curl -# -L -o "$2" "$3"
+    (cd "$1" \
+      && unzip -q ../"$2"
+    )
+  }
 }
 
 grab_fonts() {
   DIR_FONT="$WORKDIR"/.local/share/fonts
   [ -d "$DIR_FONT" ] || mkdir -p "$DIR_FONT"
 
-  echo "Nerd Fonts..."
   (cd "$DIR_FONT" \
-    && install_font "Iosevka Nerd Font" "Iosevka-$PV.zip" "https://github.com/ryanoasis/nerd-fonts/releases/download/v$PV/Iosevka.zip" \
-    && install_font "SpaceMono Nerd Font" "SpaceMono-$PV.zip" "https://github.com/ryanoasis/nerd-fonts/releases/download/v$PV/SpaceMono.zip" \
+    && install_font "Iosevka-$PV" "Iosevka-$PV.zip" "https://github.com/ryanoasis/nerd-fonts/releases/download/v$PV/Iosevka.zip" \
+    && install_font "SpaceMono-$PV" "SpaceMono-$PV.zip" "https://github.com/ryanoasis/nerd-fonts/releases/download/v$PV/SpaceMono.zip" \
+    && install_font cyberpunk "cyberpunk.zip" "https://dl.dafont.com/dl/?f=cyberpunks"
   )
 
-  echo "The Material font..."
+  echo "Installing Material font..."
   (cd "$DIR_FONT" \
     && rm -rf font-material* \
     && rm -rf MaterialDesign* \
     && rm -rf materialdesign* \
     && curl -s -L -o font-material.zip "https://github.com/Templarian/MaterialDesign-Font/archive/master.zip" \
-    && unzip font-material.zip \
+    && unzip -q font-material.zip \
     && rm -f MaterialDesign-Font-master/{README.md,LICENSE}
   )
-
-  echo "Dafont"
-  (cd $DIR_FONT \
-    && install_font cyberpunk "cyberpunk.zip" "https://dl.dafont.com/dl/?f=cyberpunks") 
 
   fc-cache -vf $DIR_FONT
 }
@@ -136,6 +119,9 @@ vim() {
   DEST="$WORKDIR/.vim/autoload"
   curl -fLo "$DEST"/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+  [ -d "$HOME"/.vim/plugged ] || mkdir -p "$HOME"/.vim/plugged
+  vim -c PlugUpdate -c qa
 }
 
 banner() {

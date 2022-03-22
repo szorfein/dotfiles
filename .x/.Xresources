@@ -1,28 +1,13 @@
 !-------------------------------------------
 ! XFT Settings gre
-     
-Xft.antialias:  true 
-Xft.autohint:   false 
+
+Xft.antialias:  true
+Xft.autohint:   false
 Xft.dpi:        96
-Xft.hinting:    true 
-Xft.hintstyle:  hintfull 
+Xft.hinting:    true
+Xft.hintstyle:  hintfull
 Xft.lcdfilter:  lcddefault
 Xft.rgba:       rgb
-
-!-------------------------------------------
-! URXVT - Settings
-
-URxvt*depth:                        32
-URxvt*internalBorder:               3
-URxvt*dynamicColors:                on
-URxvt*urgentOnBell:                 true
-URxvt*borderLess:                   false
-URxvt*scrollBar:                    false
-URxvt*cursorBlink:                  true
-URxvt*cursorUnderline:              true
-URxvt*cursorColor:                  #737077
-URxvt*scrollColor:                  #151515
-URxvt*underlineURLs:                true
 
 !-------------------------------------------
 ! Man pages colors
@@ -30,7 +15,7 @@ URxvt*underlineURLs:                true
 *VT100.colorBDMode:                  true
 *VT100.colorBD:                      red
 *VT100.colorULMode:                  true
-*VT100.colorUL:                      cyan   
+*VT100.colorUL:                      cyan
 *VT100.veryBoldColors:               6
 
 !-------------------------------------------
@@ -63,3 +48,4 @@ st.cwscale:       1.0
 
 #include ".Xresources.d/colors"
 #include ".Xresources.d/fonts"
+
