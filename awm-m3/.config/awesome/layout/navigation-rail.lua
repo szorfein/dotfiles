@@ -92,6 +92,7 @@ function nav_rail:bottom_widget()
     nil,
     button_text({
       icon = '󰌁',
+      fg = md.sys.color.on_surface_variant,
       cmd = function() self.dialog_change_theme:display() end
     }).widget,
     expand = 'none',

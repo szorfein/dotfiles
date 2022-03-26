@@ -12,7 +12,7 @@ function line:init()
     widget = wibox.widget.textbox
   }
   self.content = wibox.widget {
-    font = md.sys.typescale.body_medium.font
+    font = md.sys.typescale.body_small.font
       .. ' ' .. md.sys.typescale.body_medium.size,
     widget = wibox.widget.textbox
   }

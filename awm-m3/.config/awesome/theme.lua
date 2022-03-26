@@ -54,8 +54,7 @@ theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
 theme.menu_height = dpi(15)
 theme.menu_width  = dpi(100)
 
--- Define the image to load
-theme.wallpaper = os.getenv('HOME') .. '/images/' .. md.name .. '.jpg'
+theme.wallpaper = md.wallpaper
 
 -- Generate Awesome icon:
 theme.awesome_icon = theme_assets.awesome_icon(

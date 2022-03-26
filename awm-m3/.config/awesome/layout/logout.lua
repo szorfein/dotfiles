@@ -66,7 +66,7 @@ local keybinds = {
   ['escape'] = function() logout_hide() end,
   ['q'] = function() logout_hide() end,
   ['e'] = awesome.quit,
-  ['p'] = function() awful.spawn_with_shell('sudo poweroff') end,
+  ['p'] = function() awful.spawn.with_shell('sudo poweroff') end,
   ['r'] = awesome.restart,
   ['l'] = function()
     logout_hide()

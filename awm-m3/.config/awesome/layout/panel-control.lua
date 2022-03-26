@@ -199,8 +199,8 @@ end
 function control:right_side()
   local day = os.date('%a'):upper()
   local month = os.date('%b'):upper()
-  local mfont = md.sys.typescale.title_large.font
-    .. ' ' .. md.sys.typescale.title_large.size
+  local mfont = md.sys.typescale.headline_large.font
+    .. ' ' .. md.sys.typescale.headline_large.size
 
   local on = md.sys.color.on_surface
   local on_variant = md.sys.color.on_surface_variant
