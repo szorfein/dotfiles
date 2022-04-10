@@ -22,10 +22,7 @@ function button:fab()
     {
       {
         {
-          {
-            self:make_icon(),
-            layout = wibox.layout.fixed.horizontal
-          },
+          self:make_icon(),
           widget = self:layout()
         },
         widget = self.state
@@ -51,7 +48,7 @@ function button:container()
     fg = self.color,
     bg = self.bg,
     shape = helpers.rrect(dpi(16)),
-    forced_height = dpi(56),
+    --forced_height = dpi(56),
     widget = wibox.container.background
   }
 end
