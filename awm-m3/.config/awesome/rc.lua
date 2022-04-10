@@ -425,8 +425,9 @@ awful.rules.rules = {
       "AlarmWindow",  -- Thunderbird's calendar.
       "ConfigManager",  -- Thunderbird's about:config.
       "pop-up",       -- e.g. Google Chrome's (detached) Developer Tools.
+      "GtkFileChooserDialog",
     }
-  }, properties = { floating = true }},
+  }, properties = { floating = true, placement = helpers.centered_client }},
 
   -- Add titlebars to normal clients and dialogs
   { rule_any = { type = { "normal", "dialog" } },
@@ -448,6 +449,16 @@ awful.rules.rules = {
     }, callback = function(c)
       awful.titlebar.hide(c, 'top')
     end
+  },
+
+  -- to big windows...
+  {
+    rule_any = { role = { 'GtkFileChooserDialog' } },
+    properties = {
+      floating = true,
+      width = awful.screen.focused().geometry.width * 0.55,
+      height = awful.screen.focused().geometry.height * 0.65
+    }
   }
 }
 -- }}}
