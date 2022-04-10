@@ -1,10 +1,11 @@
 local wibox = require('wibox')
 local awful = require('awful')
-local card = require('lib.card-outlined')
 
 local change_theme = class()
 
 function change_theme:init()
+  self.img_dir = os.getenv('HOME') .. '/images/'
+  self.script = os.getenv('HOME') .. '/stow.sh'
 
   self.dialog_change_theme = require('lib.dialog')({ name = 'change_theme' })
   self.dialog_change_theme:centered(
@@ -20,27 +21,43 @@ function change_theme:init()
 end
 
 function change_theme:dialog_widget()
-  return wibox.widget {
-    card({
-      title = 'BETA',
-      image = os.getenv('HOME') .. '/images/beta.jpg',
-      on_click = function()
-        awful.spawn.easy_async_with_shell('~/stow.sh beta-dark', function(_, stderr, _, exit_code)
-          if exit_code == 0 then
-            awesome:restart()
-          else
-            require('naughty')({ title = 'err', text = stderr })
-          end
-        end)
-      end
-    }),
-    card({
-      title = 'LINES',
-      image = os.getenv('HOME') .. '/images/lines.jpg',
-    }),
-    spacing = dpi(8),
-    layout = wibox.layout.fixed.horizontal
+  local themes = {
+    [1] = { "Beta", self.img_dir .. 'beta.jpg', self.script .. ' beta-dark' },
+    [2] = { "Lines", self.img_dir .. 'lines.jpg', self.script .. ' lines' },
+    [3] = { "Morpho", self.img_dir .. 'morpho.jpg', self.script .. ' morpho' },
+    [4] = { "Miami", self.img_dir .. 'miami.jpg', self.script .. ' miami' },
+    [5] = { "Sci", self.img_dir .. 'sci.jpg', self.script .. ' sci' },
+    [6] = { "Astro", self.img_dir .. 'astronaut.jpg', self.script .. ' astronaut' },
   }
+
+  local layout = wibox.widget {
+    spacing = dpi(8),
+    forced_num_rows = 2, forced_num_cols = 3,
+    layout = wibox.layout.grid
+  }
+
+  for _, value in pairs(themes) do
+    local w = wibox.widget {
+      require('lib.card-outlined')({
+        title = value[1],
+        image = value[2],
+        on_click = function()
+          awful.spawn.easy_async_with_shell(value[3], function(_, stderr, _, exit_code)
+            if exit_code == 0 then
+              awesome:restart()
+            else
+              require('naughty')({ title = 'err', text = stderr })
+            end
+          end)
+        end
+      }),
+      layout = wibox.layout.fixed.horizontal
+    }
+
+    layout:add(w)
+  end
+
+  return layout
 end
 
 return change_theme()
