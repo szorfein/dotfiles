@@ -35,7 +35,7 @@ md = require("material") -- md for Material Design
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init( os.getenv('HOME') .. "/.config/awesome/theme.lua" )
+beautiful.init( os.getenv('HOME') .. "/.config/awesome/theme/beautiful.lua" )
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -442,7 +442,8 @@ awful.rules.rules = {
   {
     rule_any = {
       class = {
-        "Apostrophe"
+        "Apostrophe",
+        "Virt-viewer"
       },
     }, callback = function(c)
       awful.titlebar.hide(c, 'top')

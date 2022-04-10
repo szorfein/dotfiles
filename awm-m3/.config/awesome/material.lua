@@ -1,4 +1,4 @@
-local theme = require('theme.theme')
+local theme = require('theme.material')
 
 local material = {}
 
