@@ -22,7 +22,12 @@ function button:fab()
     {
       {
         {
+          {
+            nil,
           self:make_icon(),
+          expand = 'none',
+          layout = wibox.layout.align.horizontal
+        },
           widget = self:layout()
         },
         widget = self.state
@@ -36,9 +41,10 @@ end
 function button:make_icon()
   return wibox.widget {
     text = self.icon,
-    align = 'center',
     valign = 'center',
-    font = md.sys.typescale.icon.font .. ' ' .. dpi(24),
+    font = md.sys.typescale.icon.font .. ' ' .. dpi(16),
+    forced_width = dpi(24),
+    forced_height = dpi(24),
     widget = wibox.widget.textbox
   }
 end
@@ -64,8 +70,7 @@ end
 
 function button:layout()
   return wibox.widget {
-    margins = dpi(16),
-    forced_height = dpi(56),
+    margins = dpi(14),
     widget = wibox.container.margin
   }
 end
