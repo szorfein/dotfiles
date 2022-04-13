@@ -7,10 +7,10 @@
 #define base06 #b1ebff
 #define base07 #b2cad4
 #define base08 #5bd5fa
-#define base09 #8cccf9
-#define base0A #ac9df6
+#define base09 #a9cdf6
+#define base0A #c998c5
 #define base0B #ffb4a9
 #define base0C #c2c4eb
 #define base0D #d99d81
 #define base0E #87f9cb
-#define base0F #8bc4fc
+#define base0F #92a8f8

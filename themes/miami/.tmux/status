@@ -1,8 +1,8 @@
 # Erase default options
 
-setw -g window-status-format "#[fg=colour0,bg=default]#[fg=colour10,bg=colour0] #I #[fg=colour10,bg=colour0] #W #[fg=colour0,bg=default]"
-setw -g window-status-current-format "#[fg=colour6,bg=default]#[bg=colour6]#[fg=colour0,bg=colour6] #I #[fg=colour0,bg=colour6] #{pane_current_path} #[fg=colour0,bg=colour6] #W #[fg=colour6,bg=default]"
-set -g status-left "#[fg=colour0,bg=default]#[fg=colour15,bg=colour0] #S #[fg=colour14,bg=colour0,nobold,nounderscore,noitalics]>> #[fg=colour0,bg=default]"
+setw -g window-status-format "#[fg=colour0,bg=default]#[fg=brightcyan,bg=colour0] #I #[fg=brightcyan,bg=colour0] #W #[fg=colour0,bg=default]"
+setw -g window-status-current-format "#[fg=cyan,bg=default]#[bg=cyan]#[fg=black,bg=cyan] #I #[fg=black,bg=cyan] #{pane_current_path} #[fg=black,bg=cyan] #W #[fg=cyan,bg=default,nobold]"
+set -g status-left "#[fg=colour8,bg=default]#[fg=colour15,bg=colour8] #S #[fg=colour14,bg=colour8,nobold,nounderscore,noitalics]>> #[fg=colour8,bg=default] "
 
 set -g status-right '#[fg=colour6,bg=default]#[fg=colour6,bg=colour0] ﮊ #[fg=colour6,bg=default]'
 set -g status-justify left
