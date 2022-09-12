@@ -120,8 +120,10 @@ vim() {
   curl -fLo "$DEST"/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-  [ -d "$HOME"/.vim/plugged ] || mkdir -p "$HOME"/.vim/plugged
-  vim -c PlugUpdate -c qa
+  if [ "$WORKDIR" = "$HOME" ] ; then
+    [ -d "$HOME"/.vim/plugged ] || mkdir -p "$HOME"/.vim/plugged
+    vim -es -u ~/.vimrc -i NONE -c "PlugInstall" -c "qa"
+  fi
 }
 
 banner() {
@@ -211,6 +213,7 @@ main() {
   "$VIM" && vim
   "$IMG" && download_images
   "$FONT" && grab_fonts
+  echo "[+] Bye"
 }
 
 main "$@"
