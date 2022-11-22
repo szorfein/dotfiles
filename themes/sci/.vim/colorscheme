@@ -1,5 +1,5 @@
 " Color
-colorscheme sci
+colorscheme ombre
 
 " Reload colorscheme
-map <F8> :update<CR>:colorscheme sci<CR>
+map <F8> :update<CR>:colorscheme ombre<CR>
