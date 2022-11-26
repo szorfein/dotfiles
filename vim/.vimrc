@@ -58,6 +58,10 @@ set tabstop=2 softtabstop=2 shiftwidth=2
 autocmd FileType ruby setlocal ts=2 sts=2 sw=2
 autocmd FileType python setlocal ts=4 sts=4 sw=4
 
+" Limit/automatic textwidth (tw) to 80 characters, see:
+" http://blog.ezyang.com/2010/03/vim-textwidth/
+set tw=80 fo=cqt wm=0
+
 " Add a showbreak character when line wrapping long time
 set showbreak=↪\ 
 
