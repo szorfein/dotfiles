@@ -5,7 +5,17 @@
 
 set vicmd=vim
 set syscalls
+
+" Open with preview window
+view
+
 set trash
+
+" What should be saved automatically on restarting vifm.  Drop "savedirs"
+" value if you don't want vifm to remember last visited directories for you.
+set vifminfo=dhistory,savedirs,chistory,state,tui,shistory,
+    \phistory,fhistory,dirstack,registers,bookmarks,bmarks
+
 set history=200
 set nofollowlinks
 set sortnumbers
@@ -46,21 +56,31 @@ command! reload :write | restart full
 
 " ------------------------------------------------------------------------------
 
+" Text
+filetype <text/*> vim
+fileviewer <text/*> bat -p --theme base16 --color always --wrap never --pager never %c -p
+
 " Pdf
 filextype {*.pdf},<application/pdf> zathura %c %i &, apvlv %c, xpdf %c
-fileviewer {*.pdf},<application/pdf>
-  \ vifmimg pdf %px %py %pw %ph %c
-  \ %pc
-  \ vifmimg clear
+fileviewer *.pdf
+    \ vifmimg pdf %px %py %pw %ph %c
+    \ %pc
+    \ vifmimg clear
 
 " epub
 filextype {*.epub}
   \ {View in zathura}
   \ zathura %c %i &
-fileviewer {*.epub}
+fileviewer *.epub
   \ vifmimg epub %px %py %pw %ph %c
   \ %pc
   \ vifmimg clear
+
+" Fonts
+fileviewer *.otf,*.ttf,*.woff
+    \ vifmimg font %px %py %pw %ph %c
+    \ %pc
+    \ vifmimg clear
 
 " PostScript
 filextype {*.ps,*.eps,*.ps.gz},<application/postscript>
@@ -80,13 +100,15 @@ filextype {*.djvu},<image/vnd.djvu>
 filetype {*.wav,*.mp3,*.flac,*.m4a,*.wma,*.ape,*.ac3,*.og[agx],*.spx,*.opus},
        \<audio/*>
        \ {Play using mpv}
-       \ mpv --no-video %f,
+       \ mpv --no-video %c %s,
        \ {Play using ffplay}
        \ ffplay -nodisp -autoexit %c,
        \ {Play using MPlayer}
        \ mplayer %f,
-fileviewer {*.mp3},<audio/mpeg> mp3info
-fileviewer {*.flac},<audio/flac> soxi
+fileviewer {*.wav,*.mp3,*.flac,*.m4a,*.wma,*.ape,*.ac3,*.og[agx],*.spx,*.opus,*.aac}
+    \ vifmimg audio %px %py %pw %ph %c
+    \ %pc
+    \ vifmimg clear
 
 " Video
 filextype {*.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
@@ -97,23 +119,18 @@ filextype {*.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
         \ mpv %f --loop,
         \ {View using mplayer}
         \ mplayer %f,
-fileviewer {*.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
-           \*.fl[icv],*.m2v,*.mov,*.webm,*.ts,*.mts,*.m4v,*.r[am],*.qt,*.divx,
-           \*.as[fx]},
-          \<video/*>
-          \ vifmimg video %px %py %pw %ph %c
-          \ %pc
-          \ vifmimg clear
+fileviewer <video/*>
+    \ vifmimg video %px %py %pw %ph %c
+    \ %pc
+    \ vifmimg clear
 
 " Web
-filextype {*.html,*.htm},<text/html>
+filextype {*.html,*.htm,*.xhtml},<text/html>
         \ {Open with dwb}
         \ dwb %f %i &,
         \ {Open with firefox}
         \ firefox %f &,
-        \ {Open with uzbl}
-        \ uzbl-browser %f %i &,
-filetype {*.html,*.htm},<text/html> links, lynx
+fileviewer {*.html,*.htm,*.xhtml},<text/html> w3m -dump
 
 " Object
 filetype {*.o},<application/x-object> nm %f | less
@@ -123,25 +140,15 @@ filetype {*.[1-8]},<text/troff> man ./%c
 fileviewer {*.[1-8]},<text/troff> man ./%c | col -b
 
 " Images
-filextype {*.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm},<image/*>
-        \ {View in sxiv}
-        \ sxiv %f,
-        \ {View in feh}
-        \ feh -FZ %d --start-at %d/%c 2>/dev/null &
-fileviewer {*.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm},<image/*>
-        \ vifmimg draw %px %py %pw %ph %c
-        \ %pc
-        \ vifmimg clear
-
-" OpenRaster
-filextype *.ora
-        \ {Edit in MyPaint}
-        \ mypaint %f,
-
-" Mindmap
-filextype *.vym
-        \ {Open with VYM}
-        \ vym %f &,
+filextype <image/*>
+  \ {View in sxiv}
+  \ sxiv %f,
+  \ {View in feh}
+  \ feh -. -Z %d --start-at %d/%c 2>/dev/null &
+fileviewer <image/*>
+  \ vifmimg draw %px %py %pw %ph %c
+  \ %pc
+  \ vifmimg clear
 
 " MD5
 filetype *.md5
@@ -330,18 +337,30 @@ nnoremap <c-u> <c-w>x
 " ------------------------------------------------------------------------------
 " Icons
 
-" file types
-set classify='  :dir:/,  :exe:,  :reg:,  :link:'
+set classify+='  ::*.avi,,*.flv,,*.mkv,,*.mov,,*.mp4,,*.mpeg,,*.mpg,,*.webm::'
+set classify+=' ::*.css,,*.less,,*.bat,,*.conf,,*.ini,,*.rc,,*.yml,,*.cfg::'
+set classify=' :dir:, :exe:, :reg:, :link:,? :?:, ::../::'
+set classify+=' ::*.ejs,,*.htm,,*.html,,*.slim,,*.xml::'
+set classify+=' ::*.epub,,*.pdf,,*.fb2,,*.djvu::'
+set classify+=' ::*.fish,,*.sh,,*.bash::'
+set classify+=' ::*.log::'
+set classify+=' ::*.markdown,,*.md,,*.org::'
+set classify+=' ::*.lua::'
+set classify+=' ::*.rb::'
+set classify+=' ::*.rlib,,*.rs::'
+set classify+=' ::.vim,,.vimrc,,.gvimrc,,.vifm::'
+
 " various file names
-set classify+='  ::../::,  ::*.sh::,  ::*.[hc]pp::,  ::*.[hc]::,  ::/^copying|license$/::,  ::.git/,,*.git/::,  ::*.epub,,*.fb2,,*.djvu::,  ::*.pdf::,  ::*.htm,,*.html,,**.[sx]html,,*.xml::'
+set classify+='  ::../::,  ::*.[hc]pp::,  ::*.[hc]::, ::/^copying|license$/::'
 " archives
 set classify+='  ::*.7z,,*.ace,,*.arj,,*.bz2,,*.cpio,,*.deb,,*.dz,,*.gz,,*.jar,,*.lzh,,*.lzma,,*.rar,,*.rpm,,*.rz,,*.tar,,*.taz,,*.tb2,,*.tbz,,*.tbz2,,*.tgz,,*.tlz,,*.trz,,*.txz,,*.tz,,*.tz2,,*.xz,,*.z,,*.zip,,*.zoo::'
 " images
 set classify+='  ::*.bmp,,*.gif,,*.jpeg,,*.jpg,,*.ico,,*.png,,*.ppm,,*.svg,,*.svgz,,*.tga,,*.tif,,*.tiff,,*.xbm,,*.xcf,,*.xpm,,*.xspf,,*.xwd::'
 " audio
-set classify+='  ::*.aac,,*.anx,,*.asf,,*.au,,*.axa,,*.flac,,*.m2a,,*.m4a,,*.mid,,*.midi,,*.mp3,,*.mpc,,*.oga,,*.ogg,,*.ogx,,*.ra,,*.ram,,*.rm,,*.spx,,*.wav,,*.wma,,*.ac3::'
+set classify+='  ::*.aac,,*.anx,,*.asf,,*.au,,*.axa,,*.flac,,*.m2a,,*.m4a,,*.mid,,*.midi,,*.mp3,,*.mpc,,*.oga,,*.ogg,,*.ogx,,*.ra,,*.ram,,*.rm,,*.spx,,*.wav,,*.wma,,*.ac3,,*.opus::'
+
 " media
-set classify+='  ::*.avi,,*.ts,,*.axv,,*.divx,,*.m2v,,*.m4p,,*.m4v,,.mka,,*.mkv,,*.mov,,*.mp4,,*.flv,,*.mp4v,,*.mpeg,,*.mpg,,*.nuv,,*.ogv,,*.pbm,,*.pgm,,*.qt,,*.vob,,*.wmv,,*.xvid::'
+set classify+='  ::*.ts,,*.axv,,*.divx,,*.m2v,,*.m4p,,*.m4v,,.mka,,*.mov,,*.mp4v,,*.nuv,,*.ogv,,*.pbm,,*.pgm,,*.qt,,*.vob,,*.wmv,,*.xvid::'
 " office files
 set classify+='  ::*.doc,,*.docx::,  ::*.xls,,*.xls[mx]::,  ::*.pptx,,*.ppt::'
 
