@@ -1,6 +1,7 @@
 local awful = require("awful")
 local gtable = require("gears.table")
 local mymainmenu = require("module.menu")
+local menubar = require('menubar')
 
 local keys = {}
 
@@ -240,9 +241,9 @@ keys.globalkeys = gtable.join(
   { description = "dark mode", group = "brightness" }),
 
   awful.key({ modkey }, "r", function()
-    awful.spawn.with_shell("rofi -matching fuzzy -show combi")
+    menubar.show()
   end,
-  { description = "rofi", group = "launcher" })
+  { description = "show the menubar", group = "launcher" })
 )
 
 keys.clientkeys = gtable.join(
