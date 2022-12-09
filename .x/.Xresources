@@ -19,17 +19,6 @@ Xft.rgba:       rgb
 *VT100.veryBoldColors:               6
 
 !-------------------------------------------
-! rofi
-
-rofi.lines:                         2
-rofi.color-enabled:                 true
-rofi.separator-style:               none 
-rofi.width:                         33
-rofi.line-padding:                  6
-rofi.hide-scrollbar:                True
-rofi.columns:                       2
-
-!-------------------------------------------
 ! xst
 
 ! ref: https://github.com/gnotclub/xst/blob/master/doc/Xresources

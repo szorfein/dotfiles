@@ -62,7 +62,6 @@ function mybar:init(s)
     {
       {
         require("widgets.launcher")(),
-        require("widgets.rofi")({}),
         s.mytasklist, -- Middle widget
         spacing = dpi(6),
         layout = wibox.layout.fixed.horizontal
