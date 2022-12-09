@@ -35,8 +35,5 @@
 *color7:  #93cfbd
 *color15: #b8eadb
 
-! Rofi
-!                                   fg                    bgSelect fgSelect
 rofi.color-normal: argb:00000000, #1f7590, argb:00000000, #1d282f,#a3d3b0
-!                          bg      border 
 rofi.color-window: argb:ff151d22, #132122, #832757
