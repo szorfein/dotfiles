@@ -49,10 +49,10 @@ The method with `chezmoi` only work with a theme for `awesomewm` and only for su
 You can try on other distributions like Ubuntu... at your own risk and peril :)
 
 ### Vim
-To install `vim.plug` and all plugins (see: https://github.com/szorfein/dotfiles/blob/main/vim/.vimrc):
+For Vim, i use the native package loading, to install all plugins, you need to install `git` and launch:
 
-    stow vim
     ./install --vim
+    stow vim
 
 ### Shell
 You can install [ohmyzsh](https://github.com/ohmyzsh/ohmyzsh) and [spaceship-prompt](https://github.com/denysdovhan/spaceship-prompt) with:

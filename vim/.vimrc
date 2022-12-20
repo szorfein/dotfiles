@@ -10,30 +10,6 @@
 "         ░   ░         ░      ░     ░ ░      
 
 
-call plug#begin('~/.vim/plugged')
-
-" Colors
-Plug 'szorfein/fromthehell.vim'
-Plug 'szorfein/lightline.vim'
-Plug 'szorfein/sci.vim'
-Plug 'szorfein/vamp.vim'
-Plug 'szorfein/ombre.vim'
-
-" Plugins
-Plug 'edkolev/tmuxline.vim'
-Plug 'dense-analysis/ale'
-Plug 'ryanoasis/vim-devicons'
-Plug 'lilydjwg/colorizer'
-Plug 'Yggdroot/indentLine'
-Plug 'mengelbrecht/lightline-bufferline'
-Plug 'airblade/vim-gitgutter'
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'itchyny/lightline.vim'
-Plug 'itchyny/vim-gitbranch'
-Plug 'preservim/nerdtree'
-
-call plug#end()
-
 " Use Vim settings, rather than Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
 set nocompatible
