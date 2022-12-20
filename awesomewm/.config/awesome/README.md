@@ -21,17 +21,9 @@ Used on all themes (widgets, shortcut keyboard):
 | **PDF Reader** | zathura | Used in the app\_drawer |
 | **Video Player** | mpv | Used in the app\_drawer |
 | **Screenshots** | scrot | |
-| **Lock Screen** | Custom | Not very secure for now, stolen at [elenapan](https://github.com/elenapan/dotfiles/blob/master/config/awesome/noodle/lock_screen.lua), a simple Ctrl+Super+R remove the widget so keep the secret ! |
+| **Lock Screen** | betterlockscreen | |
 | **App Drawer** | Custom | I don't use rofi anymore |
 | **Notifications** | Custom | Use naughty lib |
-
-#### Occasionally
-Used occasionally (by theme), theses widgets are not enable globally:
-
-| Name | Dependencies | Theme |
-| --- | --- | --- |
-| Mails | offlineimap | connected, anonymous |
-| Privacy | tor | connected, anonymous |
 
 #### Fonts
 I do not use many different fonts and tried to keep these dependences as small as possible.  
