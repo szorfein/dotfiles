@@ -23,14 +23,9 @@ usage() {
 }
 
 usage_die() { usage; die "$1"; }
-cat_file() {
-    cat <<EOF | tee "$PROJ"/"$2" >/dev/null
-$1
-EOF
-}
 
 gen_gemspec() {
-    content=$(cat <<EOF
+  cat >> "$PROJ_LOW/$PROJ_LOW.gemspec" <<- _EOF_
 # frozen_string_literal: true
 
 require_relative 'lib/$PROJ_LOW/version'
@@ -75,30 +70,35 @@ Gem::Specification.new do |s|
   s.requirements << 'TODO change: A good graphics card'
   s.add_runtime_dependency 'thor', '~> 1.0'
 end
-EOF
-)
-    cat_file "$content" "$PROJ_LOW.gemspec"
+_EOF_
+
+    chmod 744 "$PROJ_LOW/$PROJ_LOW.gemspec"
 }
 
 gen_lib() {
-    content="# frozen_string_literal: true
+  cat >> "$PROJ_LOW/lib/$PROJ_LOW.rb" <<- _EOF_
+# frozen_string_literal: true
+
 require_relative '$PROJ_LOW/version'
 module $PROJ_CAP
 end
-"
-    cat_file "$content" "lib/$PROJ_LOW.rb"
+_EOF_
+
+  chmod 744 "$PROJ_LOW/lib/$PROJ_LOW.rb"
 }
 
 gen_changelog() {
-    content="
+  cat >> "$PROJ_LOW"/CHANGELOG.md <<- _EOF_
 ## 0.0.1, release $(date "+%D")
 * Initial push, code freeying !
 "
-    cat_file "$content" "CHANGELOG.md"
+_EOF_
+    chmod 744 "$PROJ_LOW/CHANGELOG.md"
 }
 
 gen_readme() {
-    content="# $PROJ_CAP
+  cat >> "$PROJ_LOW/README.md" <<- _EOF_
+# $PROJ_CAP
 Awesome ruby gem to build: $PROJ !
 
 ## Gem build
@@ -113,36 +113,40 @@ Awesome ruby gem to build: $PROJ !
 ## Install $PROJ locally
 
     gem install $PROJ-0.0.1.gem -P HighSecurity
-"
-    cat_file "$content" "README.md"
+
+_EOF_
+
+    chmod 744 "$PROJ_LOW/README.md"
 }
 
 gen_version() {
-    content="# frozen_string_literal: true
+  cat >> "$PROJ_LOW/lib/$PROJ_LOW/version.rb" <<- _EOF_
+# frozen_string_literal: true
 module $PROJ_CAP
   VERSION = '0.0.1'
 end
-"
-    cat_file "$content" "lib/$PROJ_LOW/version.rb"
+_EOF_
+
+    chmod 744 "$PROJ_LOW/lib/$PROJ_LOW/version.rb"
 }
 
 gen_bin() {
-    content=$(cat <<EOF
+  cat >> "$PROJ_LOW/bin/$PROJ_LOW" <<- _EOF_
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
 require '$PROJ_LOW'
 
 puts '$PROJ_CAP v.' + $PROJ_CAP::VERSION
-EOF
-)
+_EOF_
 
-    cat_file "$content" "bin/$PROJ_LOW"
-    chmod 744 "$PROJ/bin/$PROJ_LOW"
+  chmod 755 "$PROJ_LOW/bin/$PROJ_LOW"
 }
 
 gen_rakefile() {
-    content="# frozen_string_literal: true
+  cat >> "$PROJ_LOW/Rakefile" <<- _EOF_
+# frozen_string_literal: true
+
 require 'rake/testtask'
 require File.dirname(__FILE__) + '/lib/$PROJ_LOW/version'
 
@@ -159,17 +163,18 @@ namespace :gem do
   task :build do
   Dir['$PROJ_LOW*.gem'].each { |f| File.unlink(f) }
     system('gem build $PROJ_LOW.gemspec')
-    system(\"gem install $PROJ_LOW-#{$PROJ_CAP::VERSION}.gem -P HighSecurity\")
+    system("gem install $PROJ_LOW-#{$PROJ_CAP::VERSION}.gem -P HighSecurity")
   end
 end
 
 task default: :test
-"
-    cat_file "$content" Rakefile
+_EOF_
 }
 
 gen_test() {
-    content="# frozen_string_literal: true
+  cat >> "$PROJ_LOW/test/test_$PROJ_LOW.rb" <<- _EOF_
+# frozen_string_literal: true
+
 require 'minitest/autorun'
 require '$PROJ_LOW'
 
@@ -178,12 +183,13 @@ class Test$PROJ_CAP < Minitest::Test
     assert_equal '0.0.1', $PROJ_CAP::VERSION
   end
 end
-"
-    cat_file "$content" "test/test_$PROJ_LOW.rb"
+
+_EOF_
 }
 
 gen_MIT_license() {
-    content="MIT License
+  cat >> "$PROJ_LOW/LICENSE" <<- _EOF_
+MIT License
 
 Copyright (c) $(date '+%Y') $USERNAME
 
@@ -193,8 +199,9 @@ The above copyright notice and this permission notice shall be included in all c
 
 THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 "
-    cat_file "$content" LICENSE
+_EOF_
 
+  chmod 744 "$PROJ_LOW/LICENSE"
 }
 
 copy_pubkey() {
@@ -225,11 +232,11 @@ git_init() {
 
 create_project() {
     echo "===> Building your gem project $PROJ"
-    mkdir -p "$PROJ"/bin
-    mkdir -p "$PROJ"/lib
-    mkdir -p "$PROJ"/lib/"$PROJ_LOW"
-    mkdir -p "$PROJ"/certs
-    mkdir -p "$PROJ"/test
+    mkdir -p "$PROJ/bin"
+    mkdir -p "$PROJ/lib"
+    mkdir -p "$PROJ/lib/$PROJ_LOW"
+    mkdir -p "$PROJ/certs"
+    mkdir -p "$PROJ/test"
     gen_changelog
     gen_readme
     gen_gemspec
