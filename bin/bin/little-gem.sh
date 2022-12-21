@@ -41,13 +41,16 @@ Gem::Specification.new do |s|
   s.summary = 'Awesome Ruby Project !'
   s.version = $PROJ_CAP::VERSION
   s.platform = Gem::Platform::RUBY
+
   s.description = <<-DESCRIPTION
     $PROJ is just an awesome gem !
   DESCRIPTION
+
   s.email = '$EMAIL'
-  s.files = Dir.glob('lib/**/*', File::FNM_DOTMATCH)
   s.homepage = 'https://github.com/$USERNAME/$PROJ'
   s.license = 'MIT'
+  s.author = '$USERNAME'
+
   s.metadata = {
     'bug_tracker_uri' => 'https://github.com/$USERNAME/$PROJ/issues',
     'changelog_uri' => 'https://github.com/$USERNAME/$PROJ/blob/main/CHANGELOG.md',
@@ -55,15 +58,22 @@ Gem::Specification.new do |s|
     'wiki_uri' => 'https://github.com/$USERNAME/$PROJ/wiki',
     'funding_uri' => 'https://patreon.com/$USERNAME',
   }
-  s.author = '$USERNAME'
+
+  s.files = Dir.glob('{lib,bin}/**/*', File::FNM_DOTMATCH).reject { |f| File.directory?(f) }
+  s.files += %w[CHANGELOG.md LICENSE README.md]
+  s.files += %w[$PROJ_LOW.gemspec]
+
   s.bindir = 'bin'
-  s.cert_chain = ['certs/$USERNAME.pem']
   s.executables << '$PROJ_LOW'
-  s.extra_rdoc_files = ['README.md']
+  s.extra_rdoc_files = %w[README.md]
+
+  s.cert_chain = %w[certs/$USERNAME.pem]
+  s.signing_key = File.expand_path('~/.ssh/gem-private_key.pem')
+
   s.required_ruby_version = '>=$RUBY_VERSION_REQUIRED'
   s.requirements << 'TODO change: libmagick, v6.0'
   s.requirements << 'TODO change: A good graphics card'
-  s.signing_key = File.expand_path('~/.ssh/gem-private_key.pem') if \$0 =~ /gem\z/
+  s.add_runtime_dependency 'thor', '~> 1.0'
 end
 EOF
 )
@@ -71,7 +81,8 @@ EOF
 }
 
 gen_lib() {
-    content="require_relative '$PROJ_LOW/version'
+    content="# frozen_string_literal: true
+require_relative '$PROJ_LOW/version'
 module $PROJ_CAP
 end
 "
@@ -107,8 +118,9 @@ Awesome ruby gem to build: $PROJ !
 }
 
 gen_version() {
-    content="module $PROJ_CAP
-  VERSION = '0.0.1'.freeze
+    content="# frozen_string_literal: true
+module $PROJ_CAP
+  VERSION = '0.0.1'
 end
 "
     cat_file "$content" "lib/$PROJ_LOW/version.rb"
@@ -117,6 +129,8 @@ end
 gen_bin() {
     content=$(cat <<EOF
 #!/usr/bin/env ruby
+# frozen_string_literal: true
+
 require '$PROJ_LOW'
 
 puts '$PROJ_CAP v.' + $PROJ_CAP::VERSION
@@ -128,7 +142,8 @@ EOF
 }
 
 gen_rakefile() {
-    content="require 'rake/testtask'
+    content="# frozen_string_literal: true
+require 'rake/testtask'
 require File.dirname(__FILE__) + '/lib/$PROJ_LOW/version'
 
 # run rake
@@ -140,10 +155,10 @@ end
 
 # Usage: rake gem:build
 namespace :gem do
-  desc \'build the gem\'
+  desc 'build the gem'
   task :build do
-  Dir[\'$PROJ_LOW*.gem\'].each { |f| File.unlink(f) }
-    system(\'gem build $PROJ_LOW.gemspec\')
+  Dir['$PROJ_LOW*.gem'].each { |f| File.unlink(f) }
+    system('gem build $PROJ_LOW.gemspec')
     system(\"gem install $PROJ_LOW-#{$PROJ_CAP::VERSION}.gem -P HighSecurity\")
   end
 end
@@ -154,7 +169,8 @@ task default: :test
 }
 
 gen_test() {
-    content="require 'minitest/autorun'
+    content="# frozen_string_literal: true
+require 'minitest/autorun'
 require '$PROJ_LOW'
 
 class Test$PROJ_CAP < Minitest::Test
