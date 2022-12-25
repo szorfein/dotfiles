@@ -49,8 +49,8 @@ local layout = gen_menu({
     nav_drawer_hide()
   end },
   { icons.layout.lock, "Lock", function()
-    lock_screen_show()
     nav_drawer_hide()
+    awful.spawn('betterlockscreen -l')
   end },
   { icons.app.scrot, "Shot", function()
     awful.spawn.with_shell("scrot -d 5 -q 100")
