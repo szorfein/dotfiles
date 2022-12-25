@@ -117,11 +117,16 @@ grab_fonts() {
 
 vim_clone() {
   target_name="${1##*/}"
-  git clone "https://github.com/${1}" "${DEST}/${target_name}"
+
+  if [ -d "${DEST}/${target_name}" ] ; then
+    (cd "${DEST}/${target_name}" && git pull)
+  else
+    git clone "https://github.com/${1}" "${DEST}/${target_name}"
+  fi
 }
 
 vim() {
-  DEST="$WORKDIR/.vim/pack/start"
+  DEST="$WORKDIR/.vim/pack/dotfiles/start"
   [ -d "$DEST" ] || mkdir -p "$DEST"
 
   vim_clone "edkolev/tmuxline.vim"
