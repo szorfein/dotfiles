@@ -7,7 +7,7 @@
   <img src="https://img.shields.io/github/forks/szorfein/dotfiles?color=%237AA2F7&labelColor=%231A1B26&style=for-the-badge">
 </a>
 <img src="https://badges.pufler.dev/visits/szorfein/dotfiles?style=for-the-badge&color=73daca&logoColor=white&labelColor=1A1B26" />
-<img alt="" src="https://img.shields.io/github/repo-size/szorfein/dotfiles?style=for-the-badge&label=Repo" />
+<img alt="" src="https://img.shields.io/github/repo-size/szorfein/dotfiles?color=%230969da&labelColor=%231A1B26&style=for-the-badge&label=Repo" />
 </p>
 
 ###
@@ -44,6 +44,10 @@
 There are two way to install the last [themes/lines](#screens)
 + Fully scripted with [chezmoi](https://www.chezmoi.io/), (better on a new install),  follow the instruction [here](https://github.com/szorfein/dots).
 + Or manually by following the [wiki page](https://github.com/szorfein/dotfiles/wiki/theme-awesome).
++ With Ansible with
+  [ansible-collection-desktop](https://github.com/szorfein/ansible-collection-desktop),
+you can find an example of playbook
+[here](https://github.com/szorfein/dots/tree/ansible/home/ansible).
 
 The method with `chezmoi` only work with a theme for `awesomewm` and only for supported distrib Gentoo, Archlinux or Debian.  
 You can try on other distributions like Ubuntu... at your own risk and peril :)
