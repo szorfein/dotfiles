@@ -60,8 +60,8 @@ local exit = button({
 })
 
 local function lock_command()
-    exit_screen_hide()
-    lock_screen_show()
+  exit_screen_hide()
+  awful.spawn('betterlockscreen -l')
 end
 
 -- button lock
