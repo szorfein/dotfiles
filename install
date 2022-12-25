@@ -115,15 +115,32 @@ grab_fonts() {
   fc-cache -vf $DIR_FONT
 }
 
-vim() {
-  DEST="$WORKDIR/.vim/autoload"
-  curl -fLo "$DEST"/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+vim_clone() {
+  target_name="${1##*/}"
 
-  if [ "$WORKDIR" = "$HOME" ] ; then
-    [ -d "$HOME"/.vim/plugged ] || mkdir -p "$HOME"/.vim/plugged
-    vim -es -u ~/.vimrc -i NONE -c "PlugInstall" -c "qa"
+  if [ -d "${DEST}/${target_name}" ] ; then
+    (cd "${DEST}/${target_name}" && git pull)
+  else
+    git clone "https://github.com/${1}" "${DEST}/${target_name}"
   fi
+}
+
+vim() {
+  DEST="$WORKDIR/.vim/pack/dotfiles/start"
+  [ -d "$DEST" ] || mkdir -p "$DEST"
+
+  vim_clone "edkolev/tmuxline.vim"
+  vim_clone "dense-analysis/ale"
+  vim_clone "ryanoasis/vim-devicons"
+  vim_clone "lilydjwg/colorizer"
+  vim_clone "Yggdroot/indentLine"
+  vim_clone "mengelbrecht/lightline-bufferline"
+  vim_clone "airblade/vim-gitgutter"
+  vim_clone "christoomey/vim-tmux-navigator"
+  vim_clone "itchyny/lightline.vim"
+  vim_clone "itchyny/vim-gitbranch"
+  vim_clone "preservim/nerdtree"
+  vim_clone "szorfein/ombre.vim"
 }
 
 banner() {
