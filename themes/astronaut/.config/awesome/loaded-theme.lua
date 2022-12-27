@@ -34,7 +34,7 @@ mytheme.x = {
 
 -- fonts
 mytheme.f = {
-  h1 = (height >= 1024 and "Iosevka Light 56" or "Iosevka Medium 46"), -- used on big icon or big title
+  h1 = (height >= 1024 and "Iosevka Light 56" or "Iosevka Medium 40"), -- used on big icon or big title
   h4 = "Iosevka Regular 30",
   h5 = "Material Design Icons Desktop Regular 20", -- icon for h6
   h6 = "Iosevka Regular 20",
