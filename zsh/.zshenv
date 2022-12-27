@@ -13,6 +13,9 @@ fi
 
 export PATH
 
+# XDG
+export XDG_CONFIG_HOME=$HOME/.config
+
 export TERMINAL=xst
 
 # GPG
