@@ -16,7 +16,7 @@
 ! theme11 #E5B8E8
 ! theme12 #FE759E
 ! Others ! (yellow, green, blue)
-! theme13 #45BC6A
+! theme13 #45AC9A
 ! theme14 #ABD368
 ! theme15 #AB94FF
 
@@ -37,7 +37,7 @@
 *.color10: #CC8CF4
 
 ! Yellow, 13, 13
-*.color3: #45BC6A
+*.color3: #45AC9A
 *.color11: #ABC388
 
 ! Blue, 15, 15
