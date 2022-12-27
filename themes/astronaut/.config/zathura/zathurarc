@@ -1,34 +1,34 @@
-set font                        "Iosevka Medium 9"
+set font                        "Iosevka Medium 11"
 
-set default-fg                  "#cbf7fe" # grey_fg
-set default-bg                  "#12171c" # grey
+set default-fg                  "#D8E2FF" # grey_fg
+set default-bg                  "#10161E" # grey
 
-set statusbar-fg                "#cbf7fe" # grey_fg
-set statusbar-bg                "#0D1014" # grey_dark
+set statusbar-fg                "#D8E2FF" # grey_fg
+set statusbar-bg                "#10161E" # grey_dark
 
-set inputbar-fg                 "#c2f5fc" # primary_fg
-set inputbar-bg                 "#00c9ea" # primary
+set inputbar-fg                 "#D8E2FF" # primary_fg
+set inputbar-bg                 "#ADC6FF" # primary
 
-set notification-error-fg       "#0D1014" # error_fg
-set notification-error-bg       "#f3674e" # error
+set notification-error-fg       "#FFB4AB" # error_fg
+set notification-error-bg       "#10161E" # error
 
-set notification-warning-fg     "#0D1014" # error_fg
-set notification-warning-bg     "#f4826c" # error_light
+set notification-warning-fg     "#690005" # error_fg
+set notification-warning-bg     "#FFB4AB" # error_light
 
-set highlight-color             "#2a4f81" #0A
-set highlight-active-color      "#1f1b3f" #0D
+set highlight-color             "#E5B8E8" #0A
+set highlight-active-color      "#44244A" #0D
 
-set completion-highlight-fg     "#1f1b3f"  #02
-set completion-highlight-bg     "#8b09a8" #0C
+set completion-highlight-fg     "#44244A" #02
+set completion-highlight-bg     "#E5B8E8" #0C
 
 set completion-fg               "#1f1b3f" #0C
 set completion-bg               "#e0eaf9" #02
 
-set notification-fg             "#0D1014" # error_fg
-set notification-bg             "#8BF8AB" # error_dark
+set notification-fg             "#D8E2FF" # error_fg
+set notification-bg             "#3B475F" # error_dark
 
-set recolor-lightcolor          "#12171c" # grey
-set recolor-darkcolor           "#cbf7fe" # grey_fg
+set recolor-lightcolor          "#10161E" # grey
+set recolor-darkcolor           "#D8E2FF" # grey_fg
 set recolor                     "true"
 
 # setting recolor-keep true will keep any color your pdf has.
