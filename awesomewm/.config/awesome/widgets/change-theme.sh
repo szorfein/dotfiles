@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 file=".config/awesome/loaded-theme.lua"
 dotsdir="$(file ~/$file | awk '{print $5}')"
@@ -17,7 +17,7 @@ log() {
 }
 
 die() {
-  echo -e "[ERR] $1"
+  echo "[ERR] $1"
   exit 1
 }
 
@@ -55,15 +55,19 @@ split() {
   dotfiles_dir=$(echo "$dotfiles_dir" | sed s:^../..:$HOME:g)
 }
 
+reload_colors() {
+  xrdb merge ~/.Xresources \
+    && kill -USR1 $(pidof xst) \
+    && awesome-client 'awesome.restart()'
+}
+
 change() {
   log "call change"
   log "operate - $dotfiles_dir"
-  cd $dotfiles_dir
-  stow -D $oldTheme -t ~
-  stow $wantTheme -t ~
-  xrdb -merge ~/.Xresources
-  killall -USR1 xst # reload color from xst
-  #awesome --replace
+  cd "$dotfiles_dir"
+  stow -D "$oldTheme" -t ~
+  stow "$wantTheme" -t ~
+  reload_colors
 }
 
 change_theme() {
@@ -72,14 +76,21 @@ change_theme() {
   detect_theme
   split
   change
-  echo $wantTheme > /tmp/awesome-theme
+  echo "$wantTheme" > /tmp/awesome-theme
 }
 
 while [ "$#" -gt 0 ] ; do
   case "$1" in
-    -c | --change) wantTheme="$2" && trap change_theme EXIT
-      shift ; shift ;;
-    -d | --debug) debug=true ; shift ;;
+    -c | --change)
+      wantTheme="$2"
+      change_theme
+      shift
+      shift
+      ;;
+    -d | --debug)
+      debug=true
+      shift
+      ;;
     *) die "Unknown args $1, usage: $0 [--change] [theme-name]\nthemes available: $awesomeThemes" ;;
   esac
 done
