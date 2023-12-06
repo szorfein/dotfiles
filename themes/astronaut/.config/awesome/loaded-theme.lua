@@ -18,7 +18,7 @@ mytheme.x = {
   primary_variant_1 = xrdb.color2 or "#88EFAC", -- primary analog
   primary_variant_2 = xrdb.color4 or "#808FEC", -- primary analog
 
-  secondary = xrdb.color5 or "#E686AC", -- magenta
+  secondary = xrdb.color12 or "#E686AC", -- magenta
   secondary_variant_1 = xrdb.color3 or "#DBA68C", -- secondary analog
   secondary_variant_2 = xrdb.color13 or "#EB86FC", -- secondary analog
 

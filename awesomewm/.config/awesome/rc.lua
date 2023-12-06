@@ -69,5 +69,5 @@ require("module.signals")
 
 awful.spawn.easy_async_with_shell("sh -c 'echo "..M.name.." >/tmp/awesome-theme'", function()
   local icon = "<span foreground='" .. M.x.primary .. "'> ※ </span>"
-  noti.info(icon .. "theme "..M.name.." is loaded" .. icon)
+  noti.info(icon .. "theme "..M.name.." loaded." .. icon)
 end)
