@@ -33,10 +33,10 @@ local rld = button({
 local function make_element(name)
   local change_script = function()
     app.start(
-      "~/.config/awesome/widgets/change-theme.sh --change "..name,
+      "~/.config/awesome/widgets/change-theme.sh --change " .. name,
       true, "miniterm"
     )
-    noti.info("Theme changed, Reload awesome for switch on "..name)
+    noti.info("Loading theme " .. name .. "...")
   end
   local w = button({
     command = change_script,
