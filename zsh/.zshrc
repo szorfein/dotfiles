@@ -16,31 +16,36 @@ set -o vi
 ZSH_THEME="spaceship"
 
 # Plugin list in ~/.oh-my-zsh/plugins
-plugins=(git git-prompt ruby rails)
+# https://github.com/ohmyzsh/ohmyzsh/wiki/plugins
+# https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/gpg-agent
+# https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/transfer
+# MAYBE
+# https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/starship
+# https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/z
+# https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/pass
+# https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/copyfile
+plugins=(git-prompt gpg-agent transfer)
 
-# Disable oh-my-zsh update
-DISABLE_UPDATE_PROMPT=true
-DISABLE_AUTO_UPDATE=true
+# Disable oh-my-zsh update (before load ohmyzsh)
+# https://github.com/ohmyzsh/ohmyzsh#getting-updates
+zstyle ':omz:update' mode disabled
 
 source $ZSH/oh-my-zsh.sh
 
 # Load .aliases.zsh
 [ -r $HOME/.aliases.zsh ] && source $HOME/.aliases.zsh
 
-# With Zsh and Termite
-if [[ $TERM == xterm-termite ]] ; then
-    . /etc/profile.d/vte-2.91.sh
-    __vte_osc7
-fi
-
 # History
 HISTSIZE=1000
 SAVEHIST=1000
 HISTFILE=~/.history
 
+setopt hist_ignore_all_dups # remove older duplicate entries from history
+setopt hist_reduce_blanks # remove superfluous blanks from history items
+
 # Completion
 autoload -Uz compinit
-compinit
+compinit -i
 
 #unset GREP_OPTIONS
 test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || \
@@ -57,30 +62,3 @@ man() {
     LESS_TERMCAP_us=$'\e[0;36m' \
     command man "$@"
 }
-
-# Function for upload file -> https://transfer.sh/
-# Alias of : curl --upload-file ./hello.txt https://transfer.sh/hello.txt 
-# transfer hello.txt 
-transfer() { 
-  if [ $# -eq 0 ]; then
-    echo -e "No arguments specified. Usage:\necho transfer /tmp/test.md\ncat /tmp/test.md | transfer test.md";
-    return 1;
-  fi
-  tmpfile=$( mktemp -t transferXXX );
-  if tty -s; then
-    basefile=$(basename "$1" | sed -e 's/[^a-zA-Z0-9._-]/-/g');
-    curl --retry 3 --connect-timeout 60 --progress-bar --upload-file "$1" "https://transfer.sh/$basefile" >> $tmpfile;
-  else
-    curl --retry 3 --connect-timeout 60 --progress-bar --upload-file "-" "https://transfer.sh/$1" >> $tmpfile ;
-  fi;
-  cat $tmpfile;
-  rm -f $tmpfile;
-}
-
-# GPG with SSH
-unset SSH_AGENT_PID
-if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ] ; then
-    export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
-fi
-
-gpg-connect-agent updatestartuptty /bye >/dev/null
