@@ -1,35 +1,50 @@
 # PATH
 PATH="$HOME/bin:$PATH"
 
+# https://wiki.archlinux.org/title/Ruby#Setup
 if hash ruby 2>/dev/null ; then
-  PATH="$PATH:$(ruby -e 'puts Gem.user_dir')/bin"
+  export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
+  PATH="$PATH:$GEM_HOME/bin"
 fi
 
 if hash yarn 2>/dev/null ; then
   PATH="$PATH:${HOME}/.yarn/bin"
 fi
 
-[ -d $HOME/.emacs.d/bin ] && PATH="$HOME/.emacs.d/bin:$PATH"
+# doomemacs
+# https://github.com/doomemacs/doomemacs#install
+[ -d $HOME/.config/emacs/bin ] && PATH="$HOME/.config/emacs/bin:$PATH"
 
 export PATH
 
 # XDG
-export XDG_CONFIG_HOME=$HOME/.config
+export XDG_CONFIG_HOME="$HOME"/.config
 
+# Locale
+export LANG=en_US.UTF-8
+
+# Terminal
 export TERMINAL=xst
+export TERM=xst-256color
 
-# GPG
-export GPG_TTY=$(tty)
-export GPG_AGENT_INFO=""
+# GPG (using plugin from ohmyzsh instead)
+# export GPG_TTY=$(tty)
+# export GPG_AGENT_INFO=""
 
 # Editor
 export VISUAL=vim
-export EDITOR=$VISUAL
-export SUDO_EDITOR=$VISUAL
+export EDITOR="$VISUAL"
+export SUDO_EDITOR="$VISUAL"
+
+# Path to your oh-my-zsh installation.
+export ZSH="$HOME"/.oh-my-zsh
+
+# Ansible
+export ANSIBLE_CONFIG="$HOME"/.config/ansible/ansible.cfg
 
 # nnn
-[ -f ~/.config/nnn/plugins/nuke ] && export NNN_OPENER="$HOME/.config/nnn/plugins/nuke"
-[ -f ~/.config/nnn/plugins/sxiv ] && export NNN_PLUG="s:sxiv"
+# TODO: config later...
+NNN_OPTS="cEnrx"
 
 # Proxy
 #export http_proxy="http://127.0.0.1:45411"
@@ -40,11 +55,8 @@ export SUDO_EDITOR=$VISUAL
 #export HTTPS_PROXY=${http_proxy}
 #export no_proxy="localhost,127.0.0.1,localaddress,localdomain.com"
 
-# Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
-
 # Hacking Tools
-export HYDRA_PROXY_HTTP="$HTTP_PROXY"
+# export HYDRA_PROXY_HTTP="$HTTP_PROXY"
 
 # export RB_USER_INSTALL='true'
 # export RAILSLAB_U=""
