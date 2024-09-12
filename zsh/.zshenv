@@ -1,6 +1,7 @@
 # PATH
 PATH="$HOME/bin:$PATH"
 
+# https://wiki.archlinux.org/title/Ruby#Setup
 if hash ruby 2>/dev/null ; then
   export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
   PATH="$PATH:$GEM_HOME/bin"
@@ -17,7 +18,7 @@ fi
 export PATH
 
 # XDG
-export XDG_CONFIG_HOME=$HOME/.config
+export XDG_CONFIG_HOME="$HOME"/.config
 
 # Locale
 export LANG=en_US.UTF-8
@@ -32,11 +33,11 @@ export TERM=xst-256color
 
 # Editor
 export VISUAL=vim
-export EDITOR=$VISUAL
-export SUDO_EDITOR=$VISUAL
+export EDITOR="$VISUAL"
+export SUDO_EDITOR="$VISUAL"
 
 # Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
+export ZSH="$HOME"/.oh-my-zsh
 
 # Ansible
 export ANSIBLE_CONFIG="$HOME"/.config/ansible/ansible.cfg

@@ -28,7 +28,7 @@
 
 - **WM:** [Awesome](https://github.com/awesomeWM/awesome)
 - **OS:** [Void](https://voidlinux.org/) or [Gentoo](https://www.gentoo.org/) with [Musl](https://musl.libc.org/), installed with [Getch](https://github.com/szorfein/getch)
-- **SH:** ZSH with [ohmyzsh](https://github.com/ohmyzsh/ohmyzsh) and [spaceship-prompt](https://spaceship-prompt.sh/)
+- **SH:** ZSH with [ohmyzsh](https://github.com/ohmyzsh/ohmyzsh) and [starship](https://starship.rs)
 - **Term:** [xSt](https://github.com/gnotclub/xst)
 - **Editor:** [Vim](https://github.com/vim/vim) and [Doom-Emacs](https://github.com/hlissner/doom-emacs)
 - **Compositor:** [Picom](https://github.com/yshui/picom)

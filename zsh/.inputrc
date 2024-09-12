@@ -1,0 +1,13 @@
+# See all options with: man 3 readline
+
+# Mode vi
+set editing-mode vi
+set keymap vi
+
+# Disable sound on error
+set bell-style none
+
+set completion-ignore-case On
+
+# add color on completion
+set colored-stats On
