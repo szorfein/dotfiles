@@ -37,13 +37,19 @@ md = require("material") -- md for Material Design
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init( os.getenv('HOME') .. "/.config/awesome/theme/beautiful.lua" )
 
+local snackbar = require("lib.snackbar")
+
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
 if awesome.startup_errors then
-  naughty.notify({ preset = naughty.config.presets.critical,
+  snackbar.critical({
     title = "Oops, there were errors during startup!",
-    text = awesome.startup_errors })
+    text = awesome.startup_errors
+  })
+  --naughty.notify({ preset = naughty.config.presets.critical,
+   -- title = "Oops, there were errors during startup!",
+   -- text = awesome.startup_errors })
 end
 
 -- Handle runtime errors after startup
@@ -477,11 +483,11 @@ client.connect_signal("manage", function(c)
     awful.placement.no_offscreen(c)
   end
 
-  naughty.notify({ preset = naughty.config.presets.debug,
+  snackbar.debug({
   title = "client " .. tostring(c.name),
   text = tostring(c.name) })
 
-  naughty.notify({ preset = naughty.config.presets.debug,
+  snackbar.debug({
   title = "client " .. tostring(#client.get()),
   text = tostring(#client.get()) })
 
