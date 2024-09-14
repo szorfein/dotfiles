@@ -1,5 +1,6 @@
 local wibox = require('wibox')
 local helpers = require('lib.helpers')
+local button = require('lib.button-text')
 
 local control = class()
 
@@ -72,11 +73,22 @@ function control:left_side()
       layout = wibox.layout.fixed.vertical
     },
     { -- middle
-      nil,
+      {
+        nil,
+        button({ icon = '󰃞', fg = md.sys.color.outline }).widget,
+        expand = 'none',
+        layout = wibox.layout.align.vertical
+      },
       self:centered({
         require('widgets.brightness')({}),
-        require('widgets.volume')({})
+        require('widgets.volume')({}),
       }),
+      {
+        nil,
+        button({ icon = '󱄠', fg = md.sys.color.outline }).widget,
+        expand = 'none',
+        layout = wibox.layout.align.vertical
+      },
       expand = 'none',
       layout = wibox.layout.align.horizontal
     },

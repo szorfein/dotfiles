@@ -23,10 +23,15 @@ Minimal implementation of the [material guide](https://m3.material.io/) for Awes
 | ACPI | [acpid 2](https://sourceforge.net/projects/acpid2/) |
 | Remote Watch | [Curl](https://curl.haxx.se) |
 | JSON Parser | [jq](https://github.com/stedolan/jq) |
-| Lock Screen | [i3lock-color](https://github.com/Raymo111/i3lock-color) with [xss-lock](https://bitbucket.org/raymonad/xss-lock) |
+| Lock Screen | [betterlockscreen](https://github.com/betterlockscreen/betterlockscreen) with [xss-lock](https://bitbucket.org/raymonad/xss-lock) |
 | Screenshot | [Maim](https://github.com/naelstrof/maim) |
 
 ## Install with Stow
+First remove previous awesome
+
+    stow -d awesome -t ~
+
+And install the new
 
     stow awm-m3
 
