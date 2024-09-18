@@ -5,7 +5,7 @@ local change_theme = class()
 
 function change_theme:init()
   self.img_dir = os.getenv('HOME') .. '/images/'
-  self.script = os.getenv('HOME') .. '/stow.sh'
+  self.script = os.getenv('HOME') .. '/.config/awesome/scripts/stow.sh'
 
   self.dialog_change_theme = require('lib.dialog')({ name = 'change_theme' })
   self.dialog_change_theme:centered(
@@ -22,12 +22,12 @@ end
 
 function change_theme:dialog_widget()
   local themes = {
-    [1] = { "Beta", self.img_dir .. 'beta.jpg', self.script .. ' beta-dark' },
+    [1] = { "Beta", self.img_dir .. 'beta.jpg', self.script .. ' beta' },
     [2] = { "Lines", self.img_dir .. 'lines.jpg', self.script .. ' lines' },
     [3] = { "Morpho", self.img_dir .. 'morpho.jpg', self.script .. ' morpho' },
     [4] = { "Miami", self.img_dir .. 'miami.jpg', self.script .. ' miami' },
     [5] = { "Sci", self.img_dir .. 'sci.jpg', self.script .. ' sci' },
-    [6] = { "Worker", self.img_dir .. 'worker.jpg', self.script .. ' worker' },
+    [6] = { "Focus", self.img_dir .. '1330479.png', self.script .. ' new-theme' },
   }
 
   local layout = wibox.widget {
@@ -42,11 +42,11 @@ function change_theme:dialog_widget()
         title = value[1],
         image = value[2],
         on_click = function()
-          awful.spawn.easy_async_with_shell(value[3], function(_, stderr, _, exit_code)
+          awful.spawn.easy_async_with_shell(value[3], function(stdout, stderr, _, exit_code)
             if exit_code == 0 then
               awesome:restart()
             else
-              require('naughty')({ title = 'err', text = stderr })
+              require('naughty').notify({ title = 'err', text = stdout .. " - " .. stderr })
             end
           end)
         end

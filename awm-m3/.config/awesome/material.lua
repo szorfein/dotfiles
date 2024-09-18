@@ -2,6 +2,7 @@ local theme = require('theme.material')
 
 local material = {}
 
+material.name = theme.name
 material.wallpaper = theme.wallpaper
 
 -- transparent code (hexa) https://gist.github.com/lopspower/03fb1cc0ac9f32ef38f4

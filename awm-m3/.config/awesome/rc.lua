@@ -75,7 +75,7 @@ local helpers = require('lib.helpers')
 local button_text = require('lib.button-text')
 
 -- This is used later as the default terminal and editor to run.
-terminal = "xterm"
+terminal = os.getenv("TERMINAL") or "xst"
 editor = os.getenv("EDITOR") or "nano"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -192,7 +192,6 @@ globalkeys = gears.table.join(
     { description = "view previous", group = "tag" }),
   awful.key({ modkey,           }, "Right",  awful.tag.viewnext,
     { description = "view next", group = "tag" }),
-
   awful.key({ modkey }, "Tab", awful.tag.history.restore,
     { description = "go back", group = "tag" }),
 
@@ -596,6 +595,17 @@ sf = awful.screen.focused()
 sf.dashboard.visible = true
 
 require('daemon')
+
+--local script = "sh -c 'echo "..md.name.." >/tmp/awm-m3'"
+local script = "sh -c 'echo "..md.name.. " >/tmp/awm-m3'"
+awful.spawn.easy_async_with_shell(script, function(_, stderr, _, exit)
+                                    if exit ~= 0 then
+                                      snackbar.debug({text = "theme "..md.name.." failed with: " .. stderr})
+                                    else
+                                      snackbar.debug({text = "theme "..md.name.." loaded."})
+                                    end
+
+end)
 
 -- Run garbage collector regularly to prevent memory leaks
 -- https://wiki.archlinux.org/title/Awesome#Memory_leaks
