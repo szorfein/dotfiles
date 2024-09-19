@@ -9,7 +9,7 @@ local function volume_status()
     local state = string.match(stdout, "%[([%l]*)%]")
     local mute = false
 
-    if volume == nil then
+    if volume == "0" then
       awesome.emit_signal('daemon::volume', 0, true)
     end
 

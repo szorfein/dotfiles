@@ -1,0 +1,35 @@
+# Customized from https://github.com/arcticicestudio/nord-tmux
+TMUX_STATUS_TIME_FORMAT="%I:%M.%p"
+
+#+--------+
+#+ Status +
+#+--------+
+#+--- Layout ---+
+set -g status-justify left
+
+#+-------+
+#+ Panes +
+#+-------+
+set -g pane-border-style bg=#1D100F,fg=#362625
+set -g pane-active-border-style bg=#1D100F,fg=#FFB3B0
+set -g display-panes-colour #2A1C1B
+set -g display-panes-active-colour #362625
+
+#+----------+
+#+ Messages +
+#+----------+
+set -g message-style bg=#362625,fg=#FFB3B0
+set -g message-command-style bg=#362625,fg=#FFB3B0
+
+#+--------+
+#+ Status +
+#+--------+
+#+ Bar ---+
+set -g status-left "#[fg=#FFFFFF,bg=#D23E43,bold] #S #[fg=#D23E43,bg=#2A1C1B,nobold,noitalics,nounderscore]"
+
+set -g status-right "#[fg=#362625,bg=#2A1C1B,nobold,noitalics,nounderscore]#[fg=#F7DDDB,bg=#362625]#[fg=#F7DDDB,bg=#362625] %I:%M.%p #[fg=#FFB3B0,bg=#2A1C1B,nobold,noitalics,nounderscore]#[fg=#1D100F,bg=#FFB3B0,bold] #H "
+
+#+ Window +
+set -g window-status-format "#[fg=black,bg=brightblack,nobold,noitalics,nounderscore] #[fg=white,bg=brightblack]#I #[fg=white,bg=brightblack,nobold,noitalics,nounderscore] #[fg=white,bg=brightblack]#W #F #[fg=brightblack,bg=black,nobold,noitalics,nounderscore]"
+set -g window-status-current-format "#[fg=black,bg=brightcyan,nobold,noitalics,nounderscore] #[fg=black,bg=brightcyan]#I #[fg=black,bg=brightcyan,nobold,noitalics,nounderscore] #[fg=black,bg=brightcyan]#W #F #[fg=brightcyan,bg=black,nobold,noitalics,nounderscore]"
+set -g window-status-separator ""

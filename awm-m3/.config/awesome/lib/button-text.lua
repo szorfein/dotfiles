@@ -1,5 +1,6 @@
 local wibox = require('wibox')
 local helpers = require('lib.helpers')
+local gears = require('gears')
 
 -- https://m3.material.io/m3/pages/common-buttons/specs/#0eea2a85-b4d7-4c74-b08e-98410b9412c7
 local button = class()
@@ -73,7 +74,7 @@ function button:container()
   return wibox.widget {
     fg = self.fg,
     bg = self.fg .. md.sys.elevation.level0,
-    shape = helpers.rrect(dpi(20)),
+    shape = gears.shape.circle,
     widget = wibox.container.background
   }
 end
@@ -81,7 +82,7 @@ end
 function button:surface()
   return wibox.widget {
     bg = self.fg .. md.sys.elevation.level0,
-    shape = helpers.rrect(dpi(20)),
+    shape = gears.shape.circle,
     widget = wibox.container.background
   }
 end
@@ -98,7 +99,7 @@ end
 
 function button:state()
   return wibox.widget {
-    shape = helpers.rrect(dpi(20)),
+    shape = gears.shape.circle,
     widget = wibox.container.background
   }
 end

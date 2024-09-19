@@ -37,4 +37,3 @@ st.cwscale:       1.0
 
 #include ".Xresources.d/colors"
 #include ".Xresources.d/fonts"
-

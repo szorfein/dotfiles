@@ -11,6 +11,7 @@ function nav_rail:init(args)
   self.visible = args.visible or false
   self.menubar = args.menubar
   self.screen.rail = wibox(self:wibox_args())
+
   self:setup()
   self:signals()
 end
@@ -35,10 +36,15 @@ end
 
 function nav_rail:setup()
   self.screen.rail:setup {
-    self:top_widget(),
-    self:middle_widget(),
-    expand = 'none',
-    layout = wibox.layout.align.vertical
+    {
+      self:top_widget(),
+      self:middle_widget(),
+      self:bottom_widget(),
+      expand = 'none',
+      layout = wibox.layout.align.vertical
+    },
+    bottom = dpi(16),
+    widget = wibox.container.margin
   }
 end
 
@@ -70,6 +76,15 @@ function nav_rail:middle_widget()
   return wibox.widget {
     nil,
     require('mod.taglist')({ screen = self.screen }),
+    expand = 'none',
+    layout = wibox.layout.align.horizontal
+  }
+end
+
+function nav_rail:bottom_widget()
+  return wibox.widget {
+    nil,
+    require('widgets.change-theme'),
     expand = 'none',
     layout = wibox.layout.align.horizontal
   }
