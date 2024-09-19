@@ -1,0 +1,5 @@
+" Color
+colorscheme ombre
+
+" Reload colorscheme
+map <F8> :update<CR>:colorscheme ombre<CR>

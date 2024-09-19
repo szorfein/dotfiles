@@ -27,7 +27,7 @@ function change_theme:dialog_widget()
     [3] = { "Morpho", self.img_dir .. 'morpho.jpg', self.script .. ' morpho' },
     [4] = { "Miami", self.img_dir .. 'miami.jpg', self.script .. ' miami' },
     [5] = { "Sci", self.img_dir .. 'sci.jpg', self.script .. ' sci' },
-    [6] = { "Focus", self.img_dir .. '1330479.png', self.script .. ' new-theme' },
+    [6] = { "Focus", self.img_dir .. '1330479.png', self.script .. ' focus' },
   }
 
   local layout = wibox.widget {
@@ -44,7 +44,7 @@ function change_theme:dialog_widget()
         on_click = function()
           awful.spawn.easy_async_with_shell(value[3], function(stdout, stderr, _, exit_code)
             if exit_code == 0 then
-              awesome:restart()
+              awesome.restart
             else
               require('naughty').notify({ title = 'err', text = stdout .. " - " .. stderr })
             end

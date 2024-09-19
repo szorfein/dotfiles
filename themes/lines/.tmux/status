@@ -1,7 +1,7 @@
 # Status 
-set -g status-right '#[fg=cyan,bg=brightblack]  lines '
+set -g status-right '#[fg=cyan]  lines '
 set -g status-justify left
 
 # Window Status
-setw -g window-status-format ' #[fg=brightcyan,bg=brightblack]#[fg=black,bg=brightcyan] #I #[fg=brightcyan,bg=black,nobold,noitalics,nounderscore]#[fg=white,bg=black] #W '
-setw -g window-status-current-format ' #[fg=cyan]#[fg=black,bg=cyan] #I #[fg=cyan,bg=black,nobold]#[fg=cyan,bg=black,bold] #W ''
+setw -g window-status-format '#[fg=blue]#[fg=black,bold,bg=blue] #I #[fg=blue,bg=black]#[fg=white,bg=black] #W '
+setw -g window-status-current-format '#[fg=cyan]#[fg=black,bold,bg=cyan] #I #[fg=cyan,bg=black]#[fg=cyan,bg=black] #W '

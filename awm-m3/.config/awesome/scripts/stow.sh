@@ -49,3 +49,7 @@ hash xst 2>/dev/null && {
   xrdb merge ~/.Xresources
   kill -USR1 $(pidof xst)
 }
+
+# if tmux
+# https://stackoverflow.com/questions/18012930/how-can-i-redirect-all-output-to-dev-null
+hash tmux 2>/dev/null && 2>/dev/null 1>&2 tmux source ~/.tmux.conf 2>/dev/null &

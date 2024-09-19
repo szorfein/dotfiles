@@ -596,7 +596,6 @@ sf.dashboard.visible = true
 
 require('daemon')
 
---local script = "sh -c 'echo "..md.name.." >/tmp/awm-m3'"
 local script = "sh -c 'echo "..md.name.. " >/tmp/awm-m3'"
 awful.spawn.easy_async_with_shell(script, function(_, stderr, _, exit)
                                     if exit ~= 0 then

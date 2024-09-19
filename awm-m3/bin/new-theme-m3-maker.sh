@@ -87,22 +87,35 @@ st.font: Iosevka Term:pixelsize=14:autohint=true;
 EOF
 
 cat <<EOF > "$WORKDIR/.Xresources.d/colors"
-#define base00 $background
-#define base01 $surfaceContainer
-#define base02 $surfaceContainerHigh
-#define base03 $surfaceContainerHighest
-#define base04 $onBackground
-#define base05 $onBackground
-#define base06 $onPrimaryContainer
-#define base07 $onSecondaryContainer
-#define base08 $onSecondaryContainer
-#define base09 $secondary
-#define base0A $secondary
-#define base0B $error
-#define base0C $error
-#define base0D $tertiary
-#define base0E $secondaryFixedDim
-#define base0F $primary
+! Theme - background
+*background: $background
+*foreground: $onBackground
+*cursorColor: $primary
+*fadeColor: $surfaceContainerLow
+! Black - surfaceContainer
+*color0: $surfaceContainer
+*color8: $surfaceContainerHigh
+! Red - error
+*color1: $error
+*color9: $error
+! Green - not include in Material, may be custom
+*color2: $onSecondaryContainer
+*color10: $onSecondaryContainer
+! Yellow - tertiary
+*color3: $tertiary
+*color11: $tertiary
+! Blue - secondary
+*color4: $secondary
+*color12: $secondary
+! Magenta - primary
+*color5: $primary
+*color13: $primary
+! Cyan - not include in Material, may be custom
+*color6: $secondaryFixedDim
+*color14: $secondaryFixedDim
+! White
+*color7: $onSurface
+*color15: $onPrimaryContainer
 EOF
 
 echo "Generation awesome m3..."
@@ -213,6 +226,7 @@ theme.color.inverse_on_surface = '$inverseOnSurface'
 theme.color.inverse_primary = '$inversePrimary'
 theme.color.surface_tint_color = '$surfaceTint'
 theme.color.shadow = '$shadow'
+theme.color.scrim = '$scrim'
 
 theme.typescale.display_large = { font = 'Iosevka Light', size = 54 }
 theme.typescale.display_medium = { font = 'Iosevka Regular', size = 44 }
