@@ -44,7 +44,7 @@ function change_theme:dialog_widget()
         on_click = function()
           awful.spawn.easy_async_with_shell(value[3], function(stdout, stderr, _, exit_code)
             if exit_code == 0 then
-              awesome.restart
+              awesome.restart()
             else
               require('naughty').notify({ title = 'err', text = stdout .. " - " .. stderr })
             end
