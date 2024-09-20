@@ -1,35 +1,29 @@
-# Customized from https://github.com/arcticicestudio/nord-tmux
-TMUX_STATUS_TIME_FORMAT="%I:%M.%p"
+COLOUR_BG="#141219"
+COLOR_PRIMARY="#CDBDFF"
+COLOR_PRIMARY_CONTAINER="#644AB6"
+COLOR_ON_PRIMARY_CONTAINER="#FFFFFF"
+COLOR_SURFACE="#36343B"
+COLOR_ON_SURFACE="#E6E0EA"
+COLOR_TERTIARY="#FFADE2"
+COLOR_SECONDARY="#CCBFF1"
 
-#+--------+
-#+ Status +
-#+--------+
-#+--- Layout ---+
+set-option -g status-position bottom
+
+setw -g window-status-format "#[fg=$COLOR_SURFACE,bg=$COLOUR_BG]#[fg=$COLOR_SECONDARY,bg=$COLOR_SURFACE] #I #[fg=$COLOR_SECONDARY,bg=$COLOR_SURFACE] #W #[fg=$COLOR_SURFACE,bg=$COLOUR_BG]"
+
+setw -g window-status-current-format "#[fg=$COLOR_PRIMARY_CONTAINER,bg=$COLOUR_BG]#[bg=$COLOR_PRIMARY_CONTAINER]#[fg=$COLOR_ON_PRIMARY_CONTAINER,bg=$COLOR_PRIMARY_CONTAINER] #I #[fg=$COLOR_ON_PRIMARY_CONTAINER,bg=$COLOR_PRIMARY_CONTAINER] #{pane_current_path} #[fg=$COLOR_ON_PRIMARY_CONTAINER,bg=$COLOR_PRIMARY_CONTAINER] #W #[fg=$COLOR_PRIMARY_CONTAINER,bg=$COLOUR_BG]"
+
+# FIRST ( 9 >> )
+set -g status-left "#[fg=$COLOR_SURFACE,bg=$COLOUR_BG]#[fg=$COLOR_ON_SURFACE,bg=$COLOR_SURFACE] #S #[fg=$COLOR_TERTIARY,bg=$COLOR_SURFACE,nobold,nounderscore,noitalics]>> #[fg=$COLOR_SURFACE,bg=$COLOUR_BG] "
+
+set -g status-right "#[fg=$COLOR_SURFACE,bg=$COLOUR_BG]#[fg=$COLOR_PRIMARY,bg=$COLOR_SURFACE]   #[fg=$COLOR_SURFACE,bg=$COLOUR_BG]"
+
 set -g status-justify left
+set -g pane-active-border-style "fg=black,bg=default"
+set -g status-style "fg=default,bg=default"
 
-#+-------+
-#+ Panes +
-#+-------+
-set -g pane-border-style bg=#141219,fg=#2B2930
-set -g pane-active-border-style bg=#141219,fg=#CCBFF1
-set -g display-panes-colour #211F26
-set -g display-panes-active-colour #2B2930
-
-#+----------+
-#+ Messages +
-#+----------+
-set -g message-style bg=#2B2930,fg=#CDBDFF
-set -g message-command-style bg=#2B2930,fg=#CDBDFF
-
-#+--------+
-#+ Status +
-#+--------+
-#+ Bar ---+
-set -g status-left "#[fg=#FFFFFF,bg=#644AB6,bold] #S #[fg=#644AB6,bg=#211F26,nobold,noitalics,nounderscore]"
-
-set -g status-right "#[fg=#2B2930,bg=#211F26,nobold,noitalics,nounderscore]#[fg=#E6E0EA,bg=#2B2930]#[fg=#E6E0EA,bg=#2B2930] %I:%M.%p #[fg=#CDBDFF,bg=#211F26,nobold,noitalics,nounderscore]#[fg=#141219,bg=#CDBDFF,bold] #H "
-
-#+ Window +
-set -g window-status-format "#[fg=black,bg=brightblack,nobold,noitalics,nounderscore] #[fg=white,bg=brightblack]#I #[fg=white,bg=brightblack,nobold,noitalics,nounderscore] #[fg=white,bg=brightblack]#W #F #[fg=brightblack,bg=black,nobold,noitalics,nounderscore]"
-set -g window-status-current-format "#[fg=black,bg=brightcyan,nobold,noitalics,nounderscore] #[fg=black,bg=brightcyan]#I #[fg=black,bg=brightcyan,nobold,noitalics,nounderscore] #[fg=black,bg=brightcyan]#W #F #[fg=brightcyan,bg=black,nobold,noitalics,nounderscore]"
-set -g window-status-separator ""
+setw -g window-status-activity-style "fg=colour27,bg=colour234,none"
+setw -g window-status-separator " "
+setw -g window-status-style "fg=colour39,bg=colour234,none"
+set -g pane-active-border-style "fg=$COLOUR_BG" # hide border
+set -g pane-border-style "fg=$COLOUR_BG" # hide border
