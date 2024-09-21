@@ -1,7 +1,7 @@
-let g:lightline.colorscheme = 'ombre'
+let g:lightline.colorscheme = 'morpho'
 let g:lightline.tabline = {'left': [['buffers']], 'right': [['close']] }
 
-let g:lightline.separator = { 'right': '', 'left': '' }
+let g:lightline.separator = { 'right': '', 'left': '' }
 let g:lightline.subseparator = { 'right': ' ', 'left': '' }
 
 let g:lightline.active = {

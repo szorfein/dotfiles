@@ -44,6 +44,12 @@ end
 
 function control:left_side()
   local day = os.date('%e')
+
+  local button_bright = button({ icon = '󰃞', fg = md.sys.color.on_surface })
+  button_bright:disable()
+  local button_vol = button({ icon = '󱄠', fg = md.sys.color.on_surface })
+  button_vol:disable()
+
   return wibox.widget {
     { -- top
       {
@@ -75,7 +81,7 @@ function control:left_side()
     { -- middle
       {
         nil,
-        button({ icon = '󰃞', fg = md.sys.color.outline }).widget,
+        button_bright.widget,
         expand = 'none',
         layout = wibox.layout.align.vertical
       },
@@ -85,7 +91,7 @@ function control:left_side()
       }),
       {
         nil,
-        button({ icon = '󱄠', fg = md.sys.color.outline }).widget,
+        button_vol.widget,
         expand = 'none',
         layout = wibox.layout.align.vertical
       },

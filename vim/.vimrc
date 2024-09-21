@@ -83,6 +83,20 @@ if &t_Co > 2 || has("gui_running")
   set hlsearch
 endif
 
+if !has('gui_running')
+  set t_Co=256
+endif
+
+" true color with tmux (need to set term with tmux-256color)
+" https://vi.stackexchange.com/questions/13458/make-vim-show-all-the-colors
+set termguicolors
+
+" Correct RGB escape codes for vim inside tmux
+if !has('nvim') && $TERM ==# 'screen-256color'
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+endif
+
 " Colors
 source ~/.vim/colorscheme
 

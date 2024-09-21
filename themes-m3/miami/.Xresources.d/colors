@@ -13,13 +13,13 @@
 *color2: #FFC7C4
 *color10: #FFC7C4
 ! Yellow - tertiary
-*color3: #FFB86D
+*color3: #D2A452
 *color11: #FFB86D
 ! Blue - secondary
-*color4: #FFB3B0
+*color4: #D89C99
 *color12: #FFB3B0
 ! Magenta - primary
-*color5: #FFB3B0
+*color5: #FF8986
 *color13: #FFB3B0
 ! Cyan - not include in Material, may be custom
 *color6: #FFB3B0

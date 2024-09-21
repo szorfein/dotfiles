@@ -1,5 +1,9 @@
 # Customized from https://github.com/arcticicestudio/nord-tmux
 TMUX_STATUS_TIME_FORMAT="%I:%M.%p"
+COLOR_PRIMARY_CONTAINER="#5A396D"
+COLOR_ON_PRIMARY_CONTAINER="#F4D9FF"
+COLOR_SECONDARY_CONTAINER="#67355E"
+COLOR_ON_SECONDARY_CONTAINER="#FFD7F3"
 
 #+--------+
 #+ Status +
@@ -10,26 +14,26 @@ set -g status-justify left
 #+-------+
 #+ Panes +
 #+-------+
-set -g pane-border-style bg=#191118,fg=#2A2A2B
-set -g pane-active-border-style bg=#191118,fg=#EFB3EE
-set -g display-panes-colour #201F21
-set -g display-panes-active-colour #2A2A2B
+set -g pane-border-style bg=#161217,fg=#272A2F
+set -g pane-active-border-style bg=#161217,fg=#F3B2E4
+set -g display-panes-colour "#1D2024"
+set -g display-panes-active-colour "#272A2F"
 
 #+----------+
 #+ Messages +
 #+----------+
-set -g message-style bg=#2A2A2B,fg=#FDA9FF
-set -g message-command-style bg=#2A2A2B,fg=#FDA9FF
+set -g message-style bg=#272A2F,fg=#E1B8F5
+set -g message-command-style bg=#272A2F,fg=#E1B8F5
 
 #+--------+
 #+ Status +
 #+--------+
 #+ Bar ---+
-set -g status-left "#[fg=#FFFFFF,bg=#982BA5,bold] #S #[fg=#982BA5,bg=#201F21,nobold,noitalics,nounderscore]"
+set -g status-left "#[fg=$COLOR_ON_SECONDARY_CONTAINER,bg=$COLOR_SECONDARY_CONTAINER,bold] #S #[fg=$COLOR_SECONDARY_CONTAINER,bg=#1F1F1F,nobold,noitalics,nounderscore]"
 
-set -g status-right "#[fg=#2A2A2B,bg=#201F21,nobold,noitalics,nounderscore]#[fg=#E5E2E3,bg=#2A2A2B]#[fg=#E5E2E3,bg=#2A2A2B] %I:%M.%p #[fg=#FDA9FF,bg=#201F21,nobold,noitalics,nounderscore]#[fg=#191118,bg=#FDA9FF,bold] #H "
+set -g status-right "#[fg=#272A2F,bg=#1D2024,nobold,noitalics,nounderscore]#[fg=#E1E2E9,bg=#272A2F]#[fg=#E1E2E9,bg=#272A2F] %I:%M.%p #[fg=#E1B8F5,bg=#1D2024,nobold,noitalics,nounderscore]#[fg=#161217,bg=#E1B8F5,bold] #H "
 
 #+ Window +
 set -g window-status-format "#[fg=black,bg=brightblack,nobold,noitalics,nounderscore] #[fg=white,bg=brightblack]#I #[fg=white,bg=brightblack,nobold,noitalics,nounderscore] #[fg=white,bg=brightblack]#W #F #[fg=brightblack,bg=black,nobold,noitalics,nounderscore]"
-set -g window-status-current-format "#[fg=black,bg=brightcyan,nobold,noitalics,nounderscore] #[fg=black,bg=brightcyan]#I #[fg=black,bg=brightcyan,nobold,noitalics,nounderscore] #[fg=black,bg=brightcyan]#W #F #[fg=brightcyan,bg=black,nobold,noitalics,nounderscore]"
+set -g window-status-current-format "#[fg=black,bg=$COLOR_PRIMARY_CONTAINER,nobold,noitalics,nounderscore] #[fg=$COLOR_ON_PRIMARY_CONTAINER,bg=$COLOR_PRIMARY_CONTAINER]#I #[fg=$COLOR_ON_PRIMARY_CONTAINER,bg=$COLOR_PRIMARY_CONTAINER,nobold,noitalics,nounderscore] #[fg=$COLOR_ON_PRIMARY_CONTAINER,bg=$COLOR_PRIMARY_CONTAINER]#W #F #[fg=$COLOR_PRIMARY_CONTAINER,bg=black,nobold,noitalics,nounderscore]"
 set -g window-status-separator ""
