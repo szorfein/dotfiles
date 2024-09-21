@@ -54,6 +54,7 @@ function dashboard:content()
     wid(require('widgets.date')(), dpi(90), dpi(120)),
     wid(require('widgets.calendar')(), dpi(280), dpi(300)),
     wid(require('widgets.keyboard')(), dpi(90), dpi(90)),
+    wid(require('widgets.quote')(), dpi(90), dpi(90)),
     spacing = dpi(6),
     layout = wibox.layout.fixed.vertical
   }
