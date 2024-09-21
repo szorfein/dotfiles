@@ -1,17 +1,29 @@
 set font "Iosevka Term 10"
-set default-bg "#191118"
-set default-fg "#EEDEE9"
-set statusbar-fg "#C6C6CC"
-set statusbar-bg "#45464C"
-set inputbar-fg "#EFB3EE"
-set notification-error-bg "#FFB1C0"
-set notification-error-fg "#660029"
+set default-bg "#161217"
+set default-fg "#E9E0E7"
+
+set index-bg         "#161217"         # Background
+set index-fg         "#E9E0E7"       # Foreground
+set index-active-bg  "#5A396D"   # Current Line
+set index-active-fg  "#F4D9FF" # Foreground
+
+set statusbar-fg "#E9E0E7"
+set statusbar-bg "#161217"
+set inputbar-fg "#E9E0E7"
+set inputbar-bg "#161217"
+
+set notification-error-bg "#FFB693"
+set notification-error-fg "#542104"
 set notification-warning-bg "#FFB4AB"
 set notification-warning-fg "#690005"
-set highlight-color "#EFB3EE"
-set highlight-active-color "#FDA9FF"
+set notification-bg "#1D2024"
+set notification-fg "#E1E2E9"
+
+set completion-highlight-bg "#67355E"   # Selection
+set completion-highlight-fg "#FFD7F3" # Fg
+
+set recolor-lightcolor "#161217"  # bg
+set recolor-darkcolor "#E9E0E7" # fg
+
 set recolor "true"
-set recolor-lightcolor "#191118"
-set recolor-darkcolor "#EEDEE9"
-set recolor-keephue "true"
-set recolor-reverse-video "true"
+set adjust-open width

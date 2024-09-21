@@ -41,8 +41,12 @@ done
 
 case "$tmuxtheme" in
   'bubble')
+    iconleft=""
+    iconright=""
     ;;
   'nord')
+    iconleft=""
+    iconright=""
     ;;
   *)
     echo "bad theme for tmux, only bubble or nord"
@@ -255,11 +259,13 @@ return theme
 EOF
 
 cat <<EOF > "$WORKDIR/.config/awesome/theme/material.lua"
+local fonts = require('lib.fonts')
+
 local theme = {
   name = '$name',
   wallpaper = os.getenv('HOME') .. '/images/' .. '$name.jpg',
   color = {},
-  typescale = {}
+  typescale = fonts.iosevka()
 }
 
 theme.color.primary = '$primary'
@@ -291,23 +297,6 @@ theme.color.inverse_primary = '$inversePrimary'
 theme.color.surface_tint_color = '$surfaceTint'
 theme.color.shadow = '$shadow'
 theme.color.scrim = '$scrim'
-
-theme.typescale.display_large = { font = 'Iosevka Light', size = 54 }
-theme.typescale.display_medium = { font = 'Iosevka Regular', size = 44 }
-theme.typescale.display_small = { font = 'Iosevka Regular', size = 36 }
-theme.typescale.headline_large = { font = 'Iosevka Heavy', size = 35 }
-theme.typescale.headline_medium = { font = 'Iosevka Regular', size = 28 }
-theme.typescale.headline_small = { font = 'Iosevka Regular', size = 24 }
-theme.typescale.title_large = { font = 'Iosevka Regular', size = 22 }
-theme.typescale.title_medium = { font = 'Iosevka Medium', size = 15 }
-theme.typescale.title_small = { font = 'Iosevka Medium', size = 14 }
-theme.typescale.body_large = { font = 'Iosevka Regular', size = 16 }
-theme.typescale.body_medium = { font = 'Iosevka Regular', size = 13 }
-theme.typescale.body_small = { font = 'Iosevka Regular', size = 12 }
-theme.typescale.label_large = { font = 'Iosevka Medium', size = 14 }
-theme.typescale.label_medium = { font = 'Iosevka Medium', size = 12 }
-theme.typescale.label_small = { font = 'Iosevka Medium', size = 11 }
-theme.typescale.icon = { font = 'Material Design Icons Desktop Regular', size = 14 }
 
 return theme
 EOF
@@ -352,6 +341,10 @@ if [ "$tmuxtheme" = 'nord' ] ; then
 cat <<EOF > "$WORKDIR/.tmux/status"
 # Customized from https://github.com/arcticicestudio/nord-tmux
 TMUX_STATUS_TIME_FORMAT="%I:%M.%p"
+COLOR_PRIMARY_CONTAINER="$primaryContainer"
+COLOR_ON_PRIMARY_CONTAINER="$onPrimaryContainer"
+COLOR_SECONDARY_CONTAINER="$secondaryContainer"
+COLOR_ON_SECONDARY_CONTAINER="$onSecondaryContainer"
 
 #+--------+
 #+ Status +
@@ -364,8 +357,8 @@ set -g status-justify left
 #+-------+
 set -g pane-border-style bg=$background,fg=$surfaceContainerHigh
 set -g pane-active-border-style bg=$background,fg=$secondary
-set -g display-panes-colour $surfaceContainer
-set -g display-panes-active-colour $surfaceContainerHigh
+set -g display-panes-colour "$surfaceContainer"
+set -g display-panes-active-colour "$surfaceContainerHigh"
 
 #+----------+
 #+ Messages +
@@ -377,13 +370,13 @@ set -g message-command-style bg=$surfaceContainerHigh,fg=$primary
 #+ Status +
 #+--------+
 #+ Bar ---+
-set -g status-left "#[fg=$onPrimaryContainer,bg=$primaryContainer,bold] #S #[fg=$primaryContainer,bg=$surfaceContainer,nobold,noitalics,nounderscore]"
+set -g status-left "#[fg=\$COLOR_ON_SECONDARY_CONTAINER,bg=\$COLOR_SECONDARY_CONTAINER,bold] #S #[fg=\$COLOR_SECONDARY_CONTAINER,bg=#1F1F1F,nobold,noitalics,nounderscore]"
 
 set -g status-right "#[fg=$surfaceContainerHigh,bg=$surfaceContainer,nobold,noitalics,nounderscore]#[fg=$onSurface,bg=$surfaceContainerHigh]#[fg=$onSurface,bg=$surfaceContainerHigh] ${TMUX_STATUS_TIME_FORMAT} #[fg=$primary,bg=$surfaceContainer,nobold,noitalics,nounderscore]#[fg=$background,bg=$primary,bold] #H "
 
 #+ Window +
 set -g window-status-format "#[fg=black,bg=brightblack,nobold,noitalics,nounderscore] #[fg=white,bg=brightblack]#I #[fg=white,bg=brightblack,nobold,noitalics,nounderscore] #[fg=white,bg=brightblack]#W #F #[fg=brightblack,bg=black,nobold,noitalics,nounderscore]"
-set -g window-status-current-format "#[fg=black,bg=brightcyan,nobold,noitalics,nounderscore] #[fg=black,bg=brightcyan]#I #[fg=black,bg=brightcyan,nobold,noitalics,nounderscore] #[fg=black,bg=brightcyan]#W #F #[fg=brightcyan,bg=black,nobold,noitalics,nounderscore]"
+set -g window-status-current-format "#[fg=black,bg=\$COLOR_PRIMARY_CONTAINER,nobold,noitalics,nounderscore] #[fg=\$COLOR_ON_PRIMARY_CONTAINER,bg=\$COLOR_PRIMARY_CONTAINER]#I #[fg=\$COLOR_ON_PRIMARY_CONTAINER,bg=\$COLOR_PRIMARY_CONTAINER,nobold,noitalics,nounderscore] #[fg=\$COLOR_ON_PRIMARY_CONTAINER,bg=\$COLOR_PRIMARY_CONTAINER]#W #F #[fg=\$COLOR_PRIMARY_CONTAINER,bg=black,nobold,noitalics,nounderscore]"
 set -g window-status-separator ""
 EOF
 fi
@@ -401,14 +394,14 @@ COLOR_SECONDARY="$secondary"
 
 set-option -g status-position bottom
 
-setw -g window-status-format "#[fg=\$COLOR_SURFACE,bg=\$COLOUR_BG]#[fg=\$COLOR_SECONDARY,bg=\$COLOR_SURFACE] #I #[fg=\$COLOR_SECONDARY,bg=\$COLOR_SURFACE] #W #[fg=\$COLOR_SURFACE,bg=\$COLOUR_BG]"
+setw -g window-status-format "#[fg=\$COLOR_SURFACE,bg=\$COLOUR_BG]$iconleft#[fg=\$COLOR_SECONDARY,bg=\$COLOR_SURFACE] #I #[fg=\$COLOR_SECONDARY,bg=\$COLOR_SURFACE] #W #[fg=\$COLOR_SURFACE,bg=\$COLOUR_BG]$iconright"
 
-setw -g window-status-current-format "#[fg=\$COLOR_PRIMARY_CONTAINER,bg=\$COLOUR_BG]#[bg=\$COLOR_PRIMARY_CONTAINER]#[fg=\$COLOR_ON_PRIMARY_CONTAINER,bg=\$COLOR_PRIMARY_CONTAINER] #I #[fg=\$COLOR_ON_PRIMARY_CONTAINER,bg=\$COLOR_PRIMARY_CONTAINER] #{pane_current_path} #[fg=\$COLOR_ON_PRIMARY_CONTAINER,bg=\$COLOR_PRIMARY_CONTAINER] #W #[fg=\$COLOR_PRIMARY_CONTAINER,bg=\$COLOUR_BG]"
+setw -g window-status-current-format "#[fg=\$COLOR_PRIMARY_CONTAINER,bg=\$COLOUR_BG]$iconleft#[bg=\$COLOR_PRIMARY_CONTAINER]#[fg=\$COLOR_ON_PRIMARY_CONTAINER,bg=\$COLOR_PRIMARY_CONTAINER] #I #[fg=\$COLOR_ON_PRIMARY_CONTAINER,bg=\$COLOR_PRIMARY_CONTAINER] #{pane_current_path} #[fg=\$COLOR_ON_PRIMARY_CONTAINER,bg=\$COLOR_PRIMARY_CONTAINER] #W #[fg=\$COLOR_PRIMARY_CONTAINER,bg=\$COLOUR_BG]$iconright"
 
 # FIRST ( 9 >> )
-set -g status-left "#[fg=\$COLOR_SURFACE,bg=\$COLOUR_BG]#[fg=\$COLOR_ON_SURFACE,bg=\$COLOR_SURFACE] #S #[fg=\$COLOR_TERTIARY,bg=\$COLOR_SURFACE,nobold,nounderscore,noitalics]>> #[fg=\$COLOR_SURFACE,bg=\$COLOUR_BG] "
+set -g status-left "#[fg=\$COLOR_SURFACE,bg=\$COLOUR_BG]$iconleft#[fg=\$COLOR_ON_SURFACE,bg=\$COLOR_SURFACE] #S #[fg=\$COLOR_TERTIARY,bg=\$COLOR_SURFACE,nobold,nounderscore,noitalics]>> #[fg=\$COLOR_SURFACE,bg=\$COLOUR_BG]$iconright "
 
-set -g status-right "#[fg=\$COLOR_SURFACE,bg=\$COLOUR_BG]#[fg=\$COLOR_PRIMARY,bg=\$COLOR_SURFACE]   #[fg=\$COLOR_SURFACE,bg=\$COLOUR_BG]"
+set -g status-right "#[fg=\$COLOR_SURFACE,bg=\$COLOUR_BG]$iconleft#[fg=\$COLOR_PRIMARY,bg=\$COLOR_SURFACE]   #[fg=\$COLOR_SURFACE,bg=\$COLOUR_BG]$iconright"
 
 set -g status-justify left
 set -g pane-active-border-style "fg=black,bg=default"
@@ -433,16 +426,28 @@ EOF
 
 # Original file:
 # https://raw.githubusercontent.com/dracula/vim/master/autoload/dracula.vim
+# https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit
 cat <<EOF > "$VIMLOAD/$name.vim"
 " Palette: {{{
 let g:$name#palette           = {}
+" Foreground
 let g:$name#palette.fg        = ['$onBackground', 253] " #F8F8F2
+let g:$name#palette.onprimarycontainer = ['$onPrimaryContainer', 250]
+let g:$name#palette.onsecondarycontainer = ['$onSecondaryContainer', 248]
+let g:$name#palette.ontertiarycontainer = ['$onTertiaryContainer', 248]
+let g:$name#palette.onerrorcontainer = ['$onErrorContainer', 245]
 
+" Background
 let g:$name#palette.bglighter = ['$surfaceContainerHighest', 238]
 let g:$name#palette.bglight   = ['$surfaceContainerHigh', 237]
 let g:$name#palette.bg        = ['$surfaceContainer', 236]
 let g:$name#palette.bgdark    = ['$surfaceContainerLow', 235] " #21222C
 let g:$name#palette.bgdarker  = ['$surfaceContainerLowest', 234]
+let g:$name#palette.primarycontainer = ['$primaryContainer', 110]
+let g:$name#palette.secondarycontainer = ['$secondaryContainer', 92]
+let g:$name#palette.tertiarycontainer = ['$tertiaryContainer', 92]
+let g:$name#palette.errorcontainer = ['$errorContainer', 88]
+
 
 let g:$name#palette.comment   = ['$outline', 61] " #6272A4
 let g:$name#palette.selection = ['$surfaceBright', 239] " #44475A'
@@ -480,11 +485,57 @@ let g:$name#palette.color_15 = '$onPrimaryContainer'
 " vim: fdm=marker ts=2 sts=2 sw=2 fdl=0:
 EOF
 
+cat <<EOF > "$VIMLOAD/lightline/colorscheme/$name.vim"
+" =============================================================================
+" Filename: autoload/lightline/colorscheme/$name.vim
+" Author: szorfein based on adamalbrecht
+" License: MIT License
+" Last Change: 2018/04/11
+" =============================================================================
+
+let s:black    = g:$name#palette.bg
+let s:gray     = g:$name#palette.bglight
+let s:white    = g:$name#palette.fg
+let s:blue     = g:$name#palette.secondarycontainer
+let s:onblue   = g:$name#palette.onsecondarycontainer
+let s:cyan     = g:$name#palette.cyan
+let s:orange   = g:$name#palette.tertiarycontainer
+let s:onorange = g:$name#palette.ontertiarycontainer
+let s:purple   = g:$name#palette.primarycontainer
+let s:onpurple = g:$name#palette.onprimarycontainer
+let s:red      = g:$name#palette.errorcontainer
+let s:onred    = g:$name#palette.onerrorcontainer
+let s:yellow   = g:$name#palette.yellow
+
+if exists('g:lightline')
+  let s:p = {'normal': {}, 'inactive': {}, 'insert': {}, 'replace': {}, 'visual': {}, 'tabline': {}}
+  let s:p.normal.left = [ [ s:onpurple, s:purple ], [ s:cyan, s:gray ] ]
+  let s:p.normal.right = [ [ s:onpurple, s:purple ], [ s:onblue, s:blue ] ]
+  let s:p.inactive.right = [ [ s:onblue, s:blue ], [ s:white, s:black ] ]
+  let s:p.inactive.left =  [ [ s:cyan, s:black ], [ s:white, s:black ] ]
+  let s:p.insert.left = [ [ s:onblue, s:blue ], [ s:cyan, s:gray ] ]
+  let s:p.replace.left = [ [ s:onred, s:red ], [ s:cyan, s:gray ] ]
+  let s:p.visual.left = [ [ s:onorange, s:orange ], [ s:cyan, s:gray ] ]
+  let s:p.normal.middle = [ [ s:white, s:gray ] ]
+  let s:p.inactive.middle = [ [ s:white, s:gray ] ]
+  let s:p.tabline.left = [ [ s:onblue, s:blue ] ]
+  let s:p.tabline.tabsel = [ [ s:cyan, s:black ] ]
+  let s:p.tabline.middle = [ [ s:onblue, s:gray ] ]
+  let s:p.tabline.right = copy(s:p.normal.right)
+  let s:p.normal.error = [ [ s:onred, s:red ] ]
+  let s:p.normal.warning = [ [ s:yellow, s:black ] ]
+
+  let g:lightline#colorscheme#$name#palette = lightline#colorscheme#flatten(s:p)
+endif
+
+" vim: fdm=marker ts=2 sts=2 sw=2 fdl=0:
+EOF
+
 cat <<EOF > "$WORKDIR/.vim/lightline-theme.vim"
 let g:lightline.colorscheme = '$name'
 let g:lightline.tabline = {'left': [['buffers']], 'right': [['close']] }
 
-let g:lightline.separator = { 'right': '', 'left': '' }
+let g:lightline.separator = { 'right': '$iconleft', 'left': '$iconright' }
 let g:lightline.subseparator = { 'right': ' ', 'left': '' }
 
 let g:lightline.active = {
