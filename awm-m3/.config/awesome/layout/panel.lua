@@ -1,6 +1,6 @@
 local awful = require('awful')
 local wibox = require('wibox')
-local button_text = require('lib.button-text')
+local button_icon = require('lib.button-icon')
 
 -- https://m3.material.io/m3/pages/foldable-devices/compositions#1fe03735-f0ad-4721-9e00-253e6988beed
 local panel = class()
@@ -10,7 +10,7 @@ function panel:init(screen)
   self.width = dpi(256)
 
   self.music = require('layout.panel-music')()
-  self.music_button = button_text({
+  self.music_button = button_icon({
     icon = '󰋋',
     fg = md.sys.color.on_surface_variant,
     cmd = function()
@@ -19,7 +19,7 @@ function panel:init(screen)
   })
 
   self.control = require('layout.panel-control')()
-  self.control_button = button_text({
+  self.control_button = button_icon({
     icon = '󱎴',
     fg = md.sys.color.on_surface_variant,
     cmd = function()
@@ -66,7 +66,7 @@ function panel:head_buttons()
       layout = wibox.layout.fixed.horizontal
     },
     nil, -- center
-    button_text({ -- right
+    button_icon({ -- right
       icon = '󰖭',
       fg = md.sys.color.tertiary,
       cmd = function() self:hide() end,
