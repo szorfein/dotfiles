@@ -1,27 +1,55 @@
 local awful = require('awful')
 local wibox = require('wibox')
 
-local textbox = awful.widget {
-  text = '',
-  layout = wibox.widget.textbox
-}
+local widget = class()
 
-local textbox_author = awful.widget {
-  text = '',
-  layout = wibox.widget.textbox
-}
+function widget:init(args)
+  self.height = args.height or dpi(80) -- display at least 3 lines
+  self:quote()
+  self:author()
+  self:signals()
+  return wibox.widget {
+    {
+      self.quote,
+      {
+        nil,
+        nil,
+        self.author,
+        expand = 'none',
+        layout = wibox.layout.align.horizontal,
+      },
+      spacing = dpi(18),
+      layout = wibox.layout.fixed.vertical
+    },
+    margins = dpi(22),
+    widget = wibox.container.margin
+  }
+end
 
-local quote_widget = awful.widget {
-  textbox,
-  textbox_author,
-  layout = wibox.layout.fixed.horizontal
-}
+function widget:quote()
+  self.quote = wibox.widget {
+    text = '',
+    wrap = 'word_char',
+    ellipsize = 'end',
+    forced_height = self.height,
+    layout = wibox.widget.textbox
+  }
+end
 
-awesome.connect_signal("daemon::quote", function(quote, author)
-  if quote and author then
-    textbox.text = quote
-    textbox_author.text = author
-  end
-end)
+function widget:author()
+  self.author = wibox.widget {
+    text = '',
+    layout = wibox.widget.textbox
+  }
+end
 
-return quote_widget
+function widget:signals()
+  awesome.connect_signal("daemon::quote", function(quote, author)
+    if quote and author then
+      self.quote.text = quote
+      self.author.text = '- ' .. author
+    end
+  end)
+end
+
+return widget

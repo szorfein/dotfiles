@@ -1,29 +1,19 @@
 local awful = require("awful")
 local helpers = require("lib.helpers")
 
-local update_interval = 1200
-local temp_file = "/tmp/awm-quotes"
+local update_interval = 60 * 5
+local file = "/tmp/awm-quotes"
+local script_f = "~/.config/awesome/scripts/quote.sh"
 
-local script = [[sh -c '
- thequote=$(curl -s https://zenquotes.io/api/random)
+local script = [[ sh -c ']] .. script_f ..[[']]
 
- [ -z "$thequote] && {
-   echo "..."
-   exit 1
- }
-
- quote=$(echo "$thequote" | jq '.[0].q')
- author=$(echo "$thequote" | jq '.[0].a')
-
- echo "$quote@@$author"
-']]
-
-helpers.remote_watch(script, update_interval, temp_file, function(stdout)
+helpers:remote_watch(script, update_interval, file, function(stdout)
+  local quote = stdout:match('(.*)@@')
+  local author = stdout:match('@@(.*)')
   if stdout ~= '...' then
-    local quote = stdout:match('(.*)@@')
-    local author = stdout:match('@@(.*)')
     awesome.emit_signal("daemon::quote", quote, author)
   else
-    awful.spawn.with_shell("rm "..temp_file)
+    awful.spawn.with_shell("rm " .. file)
+    awesome.emit_signal("daemon::quote", 'none', 'none')
   end
 end)
