@@ -37,5 +37,7 @@ theme.color.surface_tint_color = '#FFB3B0'
 theme.color.shadow = '#000000'
 theme.color.scrim = '#000000'
 theme.color.surface_container = '#2A1C1B'
+theme.color.outline_variant = '#59413F'
+theme.color.surface_container_low = '#261817'
 
 return theme
