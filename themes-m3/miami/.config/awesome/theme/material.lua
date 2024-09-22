@@ -36,5 +36,6 @@ theme.color.inverse_primary = '#B32730'
 theme.color.surface_tint_color = '#FFB3B0'
 theme.color.shadow = '#000000'
 theme.color.scrim = '#000000'
+theme.color.surface_container = '#2A1C1B'
 
 return theme

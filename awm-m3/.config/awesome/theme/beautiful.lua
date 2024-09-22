@@ -49,10 +49,16 @@ theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
 -- notification_[border_color|border_width|shape|opacity]
 
 -- Variables set for theming the menu:
+-- m3 spec: https://awesomewm.org/doc/api/libraries/awful.menu.html
 -- menu_[bg|fg]_[normal|focus]
 -- menu_[border_color|border_width]
-theme.menu_height = dpi(15)
-theme.menu_width  = dpi(100)
+theme.menu_height = dpi(30) -- material use 48, a bit too high
+theme.menu_width = dpi(180)
+theme.menu_font = md.sys.typescale.label_large.font
+theme.menu_fg_normal = md.sys.color.on_surface
+theme.menu_bg_normal = md.sys.color.surface_container
+theme.menu_fg_focus = md.sys.color.on_secondary_container
+theme.menu_bg_focus = md.sys.color.secondary_container
 
 theme.wallpaper = md.wallpaper
 
