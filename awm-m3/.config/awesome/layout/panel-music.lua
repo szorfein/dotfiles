@@ -75,7 +75,7 @@ function music:signals()
     self.artist.text = artist and 'by ' .. artist or 'by N/A'
     self.image.image = img or nil
 
-    local toggle = self.mpc_toggle:get_all_children()[5]
+    local toggle = self.mpc_toggle:get_all_children()[4]
     local pause = paused or false
     toggle.text = pause and '󰼛' or '󰏤'
   end)
