@@ -227,6 +227,7 @@ theme.color.surface_tint_color = '$surfaceTint'
 theme.color.shadow = '$shadow'
 theme.color.scrim = '$scrim'
 theme.color.surface_container = '$surfaceContainer'
+theme.color.surface_container_high = '$surfaceContainerHigh'
 
 return theme
 EOF

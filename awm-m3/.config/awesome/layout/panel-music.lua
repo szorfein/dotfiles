@@ -33,17 +33,21 @@ function music:init()
     widget = wibox.widget.textbox
   }
 
-  self.dialog_open_playlist = require('lib.dialog')({ name = 'open_playlist' })
-  self.dialog_open_playlist:centered(
-    'Playlists',
-    self:playlist()
-  )
+  self.dialog_open_playlist = require('lib.dialog')({
+    name = 'open_playlist',
+    title = 'Playlists',
+    widget = self:playlist()
+  })
 
-  self.dialog_save_playlist = require('lib.dialog')({ name = 'save_playlist'})
-  self.dialog_save_playlist:centered(
-    'Save playlist to',
-    self:save_playlist()
-  )
+  self.dialog_open_playlist:centered()
+
+  self.dialog_save_playlist = require('lib.dialog')({
+    name = 'save_playlist',
+    title = 'Save playlist',
+    widget = self:save_playlist()
+  })
+
+  self.dialog_save_playlist:centered()
 
   self:signals()
 

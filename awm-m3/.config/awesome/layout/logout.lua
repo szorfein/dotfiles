@@ -10,12 +10,12 @@ local logout = class()
 function logout:init(s)
   self.dialog = require('lib.dialog')({
     screen = s,
-    name = name })
+    name = name,
+    title = 'Logout',
+    widget = self:widget()
+  })
 
-  self.dialog:centered(
-    'Logout',
-    self:widget()
-  )
+  self.dialog:centered()
 
   self.buttons = table.join(
     awful.button({}, 3, function() logout_hide() end)

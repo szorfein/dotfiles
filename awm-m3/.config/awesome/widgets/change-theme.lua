@@ -7,11 +7,13 @@ function change_theme:init()
   self.img_dir = os.getenv('HOME') .. '/images/'
   self.script = os.getenv('HOME') .. '/.config/awesome/scripts/stow.sh'
 
-  self.dialog_change_theme = require('lib.dialog')({ name = 'change_theme' })
-  self.dialog_change_theme:centered(
-    'Change theme',
-    self:dialog_widget()
-  )
+  self.dialog_change_theme = require('lib.dialog')({
+    name = 'change_theme',
+    title = 'Change theme',
+    widget = self:dialog_widget()
+  })
+
+  self.dialog_change_theme:centered()
 
   return require('lib.button-text')({
     icon = '󰌁',
