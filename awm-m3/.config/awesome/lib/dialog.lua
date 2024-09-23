@@ -64,6 +64,20 @@ function dialog:centered()
   }
 end
 
+function dialog:just_centered()
+  self.s[self.name]:setup {
+    nil,
+    {
+      nil,
+      self.widget,
+      expand = "none",
+      layout = wibox.layout.align.horizontal
+    },
+    expand = "none",
+    layout = wibox.layout.align.vertical
+  }
+end
+
 function dialog:container_elevation()
   return wibox.widget {
     bg = md.sys.color.surface_tint_color .. md.sys.elevation.level1,
