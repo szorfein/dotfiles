@@ -15,4 +15,8 @@ function app:lock_with_xss()
   ]])
 end
 
+--function app:web(link)
+--  spawn.with_shell(web_browser .. link)
+--end
+
 return app
