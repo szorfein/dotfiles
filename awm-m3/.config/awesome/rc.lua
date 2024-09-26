@@ -75,9 +75,7 @@ local helpers = require('lib.helpers')
 local button_text = require('lib.button-text')
 
 -- This is used later as the default terminal and editor to run.
-terminal = os.getenv("TERMINAL") or "xst"
-editor = os.getenv("EDITOR") or "nano"
-editor_cmd = terminal .. " -e " .. editor
+local user = require('config.user')
 
 -- check if the system use PulseAudio or Alsa
 is_pulse = helpers:file_exist('/usr/bin/pactl')
@@ -119,22 +117,22 @@ awful.layout.layouts = {
 -- Create a launcher widget and a main menu
 myawesomemenu = {
   { "hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
-  { "manual", terminal .. " -e man awesome" },
-  { "edit config", editor_cmd .. " " .. awesome.conffile },
+  { "manual", user.terminal .. " -e man awesome" },
+  { "edit config", user.editor_cmd .. " " .. awesome.conffile },
   { "restart", awesome.restart },
   { "quit", function() awesome.quit() end },
 }
 
 mymainmenu = awful.menu({ items = {
   { "awesome", myawesomemenu, beautiful.awesome_icon },
-  { "open terminal", terminal }}
+  { "open terminal", user.terminal }}
 })
 
 mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
                                      menu = mymainmenu })
 
 -- Menubar configuration
-menubar.utils.terminal = terminal -- Set the terminal for applications that require it
+menubar.utils.terminal = user.terminal -- Set the terminal for applications that require it
 -- }}}
 
 -- {{{ Wibar
@@ -219,7 +217,7 @@ globalkeys = gears.table.join(
   { description = "jump to urgent client", group = "client" }),
 
   -- Standard program
-  awful.key({ modkey,           }, "Return", function() awful.spawn(terminal) end,
+  awful.key({ modkey,           }, "Return", function() awful.spawn(user.terminal) end,
   { description = "open a terminal", group = "launcher" }),
   awful.key({ modkey, "Control" }, "r", awesome.restart,
   { description = "reload awesome", group = "awesome" }),
@@ -255,9 +253,10 @@ globalkeys = gears.table.join(
   end,
   { description = "restore minimized", group = "client" }),
 
-  -- Prompt
+  -- Menubar
   awful.key({ modkey }, "r", function()
     awful.screen.focused().mypromptbox:run()
+    --menubar.show()
   end,
   { description = "run prompt", group = "launcher" }),
 
@@ -270,8 +269,11 @@ globalkeys = gears.table.join(
     }
   end,
   { description = "lua execute prompt", group = "awesome" }),
-  -- Menubar
-  awful.key({ modkey }, "p", function() menubar.show() end,
+  awful.key({ modkey }, "p", function()
+    local s = awful.screen.focused()
+    s.app_drawer.visible = not s.app_drawer.visible
+    update_app_drawer()
+  end,
   { description = "show the menubar", group = "launcher" })
 )
 

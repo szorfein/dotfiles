@@ -8,6 +8,7 @@ function button:init(args)
   self.args = args or {}
   self.icon = self.args.icon or nil
   self.text = self.args.text or nil
+  self.image = self.args.image or nil
   self.color = self.args.color or md.sys.color.primary
   self.cmd = self.args.cmd or nil
   self.size = args.size or dpi(18)
@@ -23,12 +24,7 @@ function button:elevated()
     {
       {
         {
-          {
-            self:make_icon(),
-            self:make_text(),
-            spacing = self.text and dpi(8) or 0,
-            layout = wibox.layout.fixed.horizontal
-          },
+          self:make_widget(),
           widget = self:layout()
         },
         widget = self.state
@@ -38,8 +34,45 @@ function button:elevated()
     widget = self:container()
   }
 end
+
+function button:make_widget()
+  if self.image then
+    return wibox.widget {
+      self:make_image(),
+      self:make_text(),
+      spacing = self.text and dpi(8) or 0,
+      layout = wibox.layout.fixed.vertical
+    }
+  else
+    return wibox.widget {
+      self:make_icon(),
+      self:make_text(),
+      spacing = self.text and dpi(8) or 0,
+      layout = wibox.layout.fixed.horizontal
+    }
+  end
+end
+
+function button:make_image()
+  if not self.image then return nil end
+
+  return wibox.widget {
+    nil,
+    {
+      image = self.image,
+      forced_height = self.size,
+      forced_width = self.size,
+      resize = true,
+      widget = wibox.widget.imagebox
+    },
+    expand = "none",
+    layout = wibox.layout.align.horizontal
+  }
+end
+
 function button:make_icon()
   if not self.icon then return nil end
+
   return wibox.widget {
     text = self.icon,
     align = 'center',
