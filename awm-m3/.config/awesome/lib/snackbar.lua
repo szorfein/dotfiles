@@ -9,14 +9,14 @@ local snackbar = {}
 
 function snackbar.debug(args)
   naughty.notify({ preset = naughty.config.presets.debug,
-                   title = args.title,
-                   text = args.text,
+                   title = tostring(args.title),
+                   text = tostring(args.text),
                    bg = md.sys.color.inverse_surface,
                    fg = md.sys.color.inverse_on_surface,
                    font = md.sys.typescale.body_medium.font,
                    position = 'bottom_middle',
                    shape = helpers.rrect(dpi(4)),
-                   max_height = dpi(48)
+                   max_height = dpi(48) -- not enough for displaying 2 lines...
   })
 end
 

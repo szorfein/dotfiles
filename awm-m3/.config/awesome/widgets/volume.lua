@@ -3,21 +3,25 @@ local awful = require('awful')
 local helpers = require('lib.helpers')
 local gtable = require('gears.table')
 local vol = require('lib.volume')
-local slider = require('lib.slider')({ fg = md.sys.color.primary })
+local slider = require('lib.slider')
+--local snackbar = require('lib.snackbar')
 
 local volume = class()
 
 function volume:init()
-  self.slider = slider:widget()
-  self.widget = self:create()
+  self.slider = slider({ fg = md.sys.color.secondary,
+                         bg = md.sys.color.secondary_container,
+                         on_change = '~/.config/awesome/scripts/volume.sh ' })
+  self.slider_widget = self.slider:widget()
+  self:create()
   self:buttons()
   self:signals()
   return self.widget
 end
 
 function volume:create()
-  return wibox.widget {
-    self.slider,
+  self.widget = wibox.widget {
+    self.slider_widget,
     forced_height = 100,
     forced_width  = 20,
     direction     = 'east',
@@ -41,11 +45,13 @@ function volume:buttons()
 end
 
 function volume:signals()
-  awesome.connect_signal('daemon::volume', function(vol, mute)
-    slider:set(tonumber(vol))
-  end)
-  slider.slider:connect_signal('property::value', function()
-    vol:set(slider.slider.value)
+  awesome.connect_signal('daemon::volume', function(v, mute)
+    --snackbar.debug({ title = "from widget "..tostring(v) })
+    if mute then
+      self.slider:set(v)
+    else
+      self.slider:set(v)
+    end
   end)
 end
 

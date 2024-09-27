@@ -18,11 +18,7 @@ function volume:down()
 end
 
 function volume:set(value)
-  if is_pulse then
-    spawn.with_shell('pactl set-sink-mute @DEFAULT_SINK@ 0 && pactl set-sink-volume @DEFAULT_SINK@ ' .. value .. '%')
-  else
-    spawn('amixer sset Master ' .. value .. '%')
-  end
+  spawn.with_shell('~/.config/awesome/scripts/volume.sh ' .. value)
 end
 
 return volume
