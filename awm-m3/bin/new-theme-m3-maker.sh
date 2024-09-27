@@ -229,6 +229,7 @@ theme.color.scrim = '$scrim'
 theme.color.surface_container = '$surfaceContainer'
 theme.color.outline_variant = '$outlineVariant'
 theme.color.surface_container_low = '$surfaceContainerLow'
+theme.color.surface_container_high = '$surfaceContainerHigh'
 
 return theme
 EOF

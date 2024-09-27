@@ -1,11 +1,6 @@
 local wibox = require('wibox')
 local awful = require('awful')
-local gears = require('gears')
 local helpers = require('lib.helpers')
-
-local function dashboard_hide(s)
-  s.dashboard.visible = false
-end
 
 local function wid(element, width, height)
   return wibox.widget {
@@ -27,26 +22,13 @@ end
 local dashboard = class()
 
 function dashboard:init(s)
-  s.dashboard = wibox({ visible = false, ontop = true, screen = s })
-  s.dashboard.bg = md.sys.color.primary .. md.sys.elevation.level1
+  self.dialog = require('lib.dialog')({
+    name = 'dashboard',
+    s = s,
+    widget = self:content()
+  })
 
-  s.dashboard:buttons(gears.table.join(
-    awful.button({}, 3, function() dashboard_hide(s) end)
-  ))
-
-  s.dashboard:setup {
-    nil,
-    {
-      nil,
-      self:content(),
-      expand = 'none',
-      layout = wibox.layout.align.horizontal
-    },
-    expand = 'none',
-    layout = wibox.layout.align.vertical
-  }
-
-  awful.placement.maximize(s.dashboard)
+  self.dialog:just_centered()
 end
 
 function dashboard:content()
