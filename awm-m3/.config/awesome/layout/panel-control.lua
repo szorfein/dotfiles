@@ -73,9 +73,7 @@ function control:left_side()
         bottom = dpi(12),
         widget = wibox.container.margin
       },
-      self:centered({
-        self:monitoring(),
-      }),
+      self:centered({ self:monitoring() }),
       layout = wibox.layout.fixed.vertical
     },
     { -- middle
@@ -196,6 +194,7 @@ end
 function control:geoloc()
   return wibox.widget {
     text = 'city, country',
+    forced_width = dpi(240),
     widget = wibox.widget.textbox
   }
 end
