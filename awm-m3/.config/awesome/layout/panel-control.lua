@@ -1,6 +1,7 @@
 local wibox = require('wibox')
 local helpers = require('lib.helpers')
 local button = require('lib.button-text')
+local button_icon = require('lib.button-icon')
 
 local control = class()
 
@@ -45,9 +46,9 @@ end
 function control:left_side()
   local day = os.date('%e')
 
-  local button_bright = button({ icon = '󰃞', fg = md.sys.color.on_surface })
+  local button_bright = button_icon({ icon = '󰃞' })
   button_bright:disable()
-  local button_vol = button({ icon = '󱄠', fg = md.sys.color.on_surface })
+  local button_vol = button_icon({ icon = '󱄠' })
   button_vol:disable()
 
   return wibox.widget {

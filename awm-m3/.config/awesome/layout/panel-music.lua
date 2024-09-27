@@ -5,11 +5,12 @@ local gears = require('gears')
 local helpers = require('lib.helpers')
 local button_outlined = require('lib.button-outlined')
 local button_text = require('lib.button-text')
+local button_icon = require('lib.button-icon')
 
 local music = class()
 
 function music:init()
-  self.mpd_status = button_text({
+  self.mpd_status = button_icon({
     icon = '󰱯',
     fg = md.sys.color.error,
     cmd = self.start
@@ -76,9 +77,9 @@ function music:signals()
   awesome.connect_signal('daemon::mpc', function(img, artist, title, paused)
     self.title.text = title or 'N/A'
     self.artist.text = artist and 'by ' .. artist or 'by N/A'
-    self.image.image = img or '/home/daggoth/images/thumb-1920-609120.jpg'
+    self.image.image = img or nil
 
-    local toggle = self.mpc_toggle:get_all_children()[5]
+    local toggle = self.mpc_toggle:get_all_children()[4]
     local pause = paused or false
     toggle.text = pause and '󰼛' or '󰏤'
   end)
@@ -186,7 +187,7 @@ end
 
 function music:all_mpc_buttons()
   return wibox.widget {
-    button_text({
+    button_icon({
       icon = '󰐒',
       fg = md.sys.color.on_surface,
       cmd = function()
@@ -198,21 +199,21 @@ function music:all_mpc_buttons()
         ))
       end
     }).widget,
-    button_text({
+    button_icon({
       icon = '󰒝',
       fg = md.sys.color.on_surface,
       cmd = function()
         awful.spawn.with_shell('mpc shuffle')
       end
     }).widget,
-    button_text({
+    button_icon({
       icon = '󰑖',
       fg = md.sys.color.on_surface,
       cmd = function()
         awful.spawn.with_shell('mpc repeat')
       end
     }).widget,
-    button_text({
+    button_icon({
       icon = '󱐰',
       fg = md.sys.color.error,
       cmd = function()
@@ -302,14 +303,14 @@ function music:middle()
         nil,
         {
           {
-            button_text({
+            button_icon({
               icon = '󰼨',
               cmd = function()
                 awful.spawn.with_shell("mpc -q prev")
               end
             }).widget,
             self.mpc_toggle,
-            button_text({
+            button_icon({
               icon = '󰼧',
               cmd = function()
                 awful.spawn.with_shell("mpc -q next")

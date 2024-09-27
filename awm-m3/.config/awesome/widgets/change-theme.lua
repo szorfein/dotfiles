@@ -15,7 +15,7 @@ function change_theme:init()
 
   self.dialog_change_theme:centered()
 
-  return require('lib.button-text')({
+  return require('lib.button-icon')({
     icon = '󰌁',
     fg = md.sys.color.on_surface_variant,
     cmd = function() self.dialog_change_theme:display() end

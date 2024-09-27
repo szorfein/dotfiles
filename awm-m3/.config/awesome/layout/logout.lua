@@ -30,6 +30,8 @@ function logout:widget()
       icon = '󰤆',
       size = dpi(55),
       color = md.sys.color.error,
+      text = 'Shutdown',
+      layout = wibox.layout.fixed.vertical,
       cmd = function()
         awful.spawn.with_shell('sudo poweroff')
       end
@@ -38,10 +40,14 @@ function logout:widget()
       icon = '󰈆',
       size = dpi(55),
       color = md.sys.color.secondary,
+      text = 'Quit',
+      layout = wibox.layout.fixed.vertical,
       cmd = awesome.quit
     }),
     button({
       icon = '󰌾',
+      text = 'Lock',
+      layout = wibox.layout.fixed.vertical,
       cmd = function()
         logout_hide()
         app:lock()
@@ -51,6 +57,8 @@ function logout:widget()
     }),
     button({
       icon = '󰜉',
+      text = 'Restart',
+      layout = wibox.layout.fixed.vertical,
       size = dpi(55),
       cmd = awesome.restart,
     }),

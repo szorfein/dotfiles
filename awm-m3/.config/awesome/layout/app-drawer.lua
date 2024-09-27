@@ -171,6 +171,7 @@ local function gen_menu(index)
       image = v.icon,
       size = dpi(66),
       text = v.name,
+      layout = wibox.layout.fixed.vertical,
       cmd = function() v.exec() end
     })
 

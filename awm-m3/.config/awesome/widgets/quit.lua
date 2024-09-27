@@ -2,8 +2,7 @@ local wibox = require('wibox')
 local spawn = require('awful.spawn')
 local naughty = require('naughty')
 local button = require('lib.button-outlined')
-local button_filled = require('lib.button-outlined')
-local app = require('lib.app')
+local button_filled = require('lib.button-filled')
 local awful = require('awful')
 
 local quit = class()
@@ -23,7 +22,6 @@ end
 function quit:dashboard()
   return button({
       icon = '󱒉',
-      color = md.sys.color.secondary,
       cmd = function()
         awful.screen.focused().dashboard.visible = true
       end
@@ -33,7 +31,6 @@ end
 function quit:restart()
   return button({
     icon = '󰜉',
-    color = md.sys.color.secondary,
     cmd = awesome.restart
   })
 end
@@ -56,8 +53,6 @@ end
 function quit:poweroff()
   return button_filled({
     icon = '󰤆',
-    fg = md.sys.color.on_primary,
-    bg = md.sys.color.primary,
     cmd = function() logout_display() end
   })
 end
