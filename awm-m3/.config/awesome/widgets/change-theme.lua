@@ -24,12 +24,12 @@ end
 
 function change_theme:dialog_widget()
   local themes = {
-    [1] = { "Beta", self.img_dir .. 'beta.jpg', self.script .. ' beta' },
+    [1] = { "Focus", self.img_dir .. 'focus.png', self.script .. ' focus' },
     [2] = { "Lines", self.img_dir .. 'lines.jpg', self.script .. ' lines' },
     [3] = { "Morpho", self.img_dir .. 'morpho.jpg', self.script .. ' morpho' },
     [4] = { "Miami", self.img_dir .. 'miami.jpg', self.script .. ' miami' },
     [5] = { "Sci", self.img_dir .. 'sci.jpg', self.script .. ' sci' },
-    [6] = { "Focus", self.img_dir .. '1330479.png', self.script .. ' focus' },
+    [6] = { "Beta", self.img_dir .. 'beta.jpg', self.script .. ' beta' },
   }
 
   local layout = wibox.widget {

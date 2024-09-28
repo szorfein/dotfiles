@@ -1,6 +1,6 @@
 local wibox = require('wibox')
 local spawn = require('awful.spawn')
-local naughty = require('naughty')
+local snackbar = require('lib.snackbar')
 local button = require('lib.button-outlined')
 local button_filled = require('lib.button-filled')
 local awful = require('awful')
@@ -12,7 +12,7 @@ function quit:init()
   return wibox.widget {
     self:dashboard(),
     self:restart(),
-    self:lock(),
+    self:screenshot(),
     self:poweroff(),
     spacing = dpi(14),
     widget = wibox.layout.fixed.vertical
@@ -35,15 +35,15 @@ function quit:restart()
   })
 end
 
-function quit:lock()
+function quit:screenshot()
   return button({
     icon = '󰻛',
     cmd = function()
-      spawn.easy_async_with_shell('maim ~/$(date +%s).png -d 1.0', function(_, stderr, _, exit_code)
+      spawn.easy_async_with_shell('maim -m 10 ~/$(date +%s).jpg -d 8.0', function(_, stderr, _, exit_code)
         if exit_code == 0 then
-          naughty.notify({ text = 'Screenshot taken' })
+          snackbar.debug({ title = 'Screenshot taken' })
         else
-          naughty.notify({ text = stderr })
+          snackbar.debug({ title = stderr })
         end
       end)
     end

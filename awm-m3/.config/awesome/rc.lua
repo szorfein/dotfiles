@@ -254,8 +254,8 @@ globalkeys = gears.table.join(
 
   -- Menubar
   awful.key({ modkey }, "r", function()
-    awful.screen.focused().mypromptbox:run()
-    --menubar.show()
+    --awful.screen.focused().mypromptbox:run()
+    menubar.show()
   end,
   { description = "run prompt", group = "launcher" }),
 
@@ -483,13 +483,13 @@ client.connect_signal("manage", function(c)
     awful.placement.no_offscreen(c)
   end
 
-  snackbar.debug({
-  title = "client " .. tostring(c.name),
-  text = tostring(c.name) })
+  --snackbar.debug({
+  --title = "client " .. tostring(c.name),
+  --text = tostring(c.name) })
 
-  snackbar.debug({
-  title = "client " .. tostring(#client.get()),
-  text = tostring(#client.get()) })
+  --snackbar.debug({
+  --title = "client " .. tostring(#client.get()),
+  --text = tostring(#client.get()) })
 
   if not c.fullscreen and not c.maximized then
     c.shape = helpers.rrect(dpi(12))
@@ -600,9 +600,9 @@ require('daemon')
 local script = "sh -c 'echo "..md.name.. " >/tmp/awm-m3'"
 awful.spawn.easy_async_with_shell(script, function(_, stderr, _, exit)
                                     if exit ~= 0 then
-                                      snackbar.debug({text = "theme "..md.name.." failed with: " .. stderr})
+                                      snackbar.debug({title = "theme "..md.name.." failed with: " .. stderr})
                                     else
-                                      snackbar.debug({text = "theme "..md.name.." loaded."})
+                                      snackbar.debug({title = "theme "..md.name.." loaded."})
                                     end
 
 end)

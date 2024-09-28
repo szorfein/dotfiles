@@ -20,11 +20,14 @@
 # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/z
 # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/pass
 # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/copyfile
-plugins=(git-prompt gpg-agent transfer zsh-autosuggestions starship zsh-syntax-highlighting)
+# https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/keychain
+plugins=(git-prompt gpg-agent transfer zsh-autosuggestions starship zsh-syntax-highlighting keychain)
 
 # Disable oh-my-zsh update (before load ohmyzsh)
 # https://github.com/ohmyzsh/ohmyzsh#getting-updates
 zstyle ':omz:update' mode disabled
+
+zstyle ':omz:plugins:keychain' agents gpg
 
 source "$ZSH/oh-my-zsh.sh"
 

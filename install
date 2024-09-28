@@ -52,7 +52,7 @@ forZsh() {
   [ -d "$ZSH_PLUGINS/zsh-autosuggestion" ] && rm -rf "$ZSH_PLUGINS/zsh-autosuggestion"
   [ -d "$ZSH_PLUGINS/zsh-syntax-highlighting" ] && rm -rf "$ZSH_PLUGINS/zsh-syntax-highlighting"
   [ -d "$OH_MY_ZSH" ] && {
-    read -p "Clearing oh-my-zsh for updates? [y/N] "
+    read -p "Clearing previous ohmyzsh and updates? [y/N] "
     if [[ "$REPLY" =~ ^y|^Y ]] ; then
       rm -rf "$OH_MY_ZSH"
     else
@@ -60,11 +60,8 @@ forZsh() {
     fi
   }
   chk https://github.com/ohmyzsh/ohmyzsh "$OH_MY_ZSH"
-  ckh https://github.com/zsh-users/zsh-autosuggestions "$ZSH_PLUGINS/zsh-autosuggestions"
+  chk https://github.com/zsh-users/zsh-autosuggestions "$ZSH_PLUGINS/zsh-autosuggestions"
   chk https://github.com/zsh-users/zsh-syntax-highlighting.git "$ZSH_PLUGINS/zsh-syntax-highlighting"
-
-  # Previous install
-  [ -s "$OH_MY_ZSH"/themes/spaceship.zsh-theme ] && unlink "$OH_MY_ZSH"/themes/spaceship.zsh-theme
 }
 
 download_images() {
@@ -143,6 +140,7 @@ vim() {
   vim_clone "itchyny/vim-gitbranch"
   vim_clone "preservim/nerdtree"
   vim_clone "szorfein/ombre.vim"
+  vim_clone "szorfein/vamp.vim"
 }
 
 banner() {
