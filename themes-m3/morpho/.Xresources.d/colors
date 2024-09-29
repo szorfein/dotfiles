@@ -10,8 +10,8 @@
 *color1: #FFB4AB
 *color9: #FFB4AB
 ! Green - not include in Material, may be custom
-*color2: #DBCEFF
-*color10: #DBCEFF
+*color2: #93d5c3
+*color10: #acf4e1
 ! Yellow - tertiary
 *color3: #D89AAF
 *color11: #FFADE2
@@ -22,8 +22,8 @@
 *color5: #B39DFF
 *color13: #CDBDFF
 ! Cyan - not include in Material, may be custom
-*color6: #CCBFF1
-*color14: #CCBFF1
+*color6: #6ca7fb
+*color14: #88b7fa
 ! White
 *color7: #E6E0EA
 *color15: #FFFFFF

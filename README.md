@@ -21,19 +21,19 @@
 
 ##
 
-![lines screenshot](https://github.com/szorfein/unix-portfolio/raw/master/lines/full.png)
-![lines 2](https://github.com/szorfein/unix-portfolio/raw/master/lines/start-screen.png)
+![focus screenshot](https://github.com/szorfein/unix-portfolio/raw/master/focus/clean.jpg)
+![focus full](https://github.com/szorfein/unix-portfolio/raw/master/focus/full.jpg)
 
 ###
 
 - **WM:** [Awesome](https://github.com/awesomeWM/awesome)
-- **OS:** [Void](https://voidlinux.org/) or [Gentoo](https://www.gentoo.org/) with [Musl](https://musl.libc.org/), installed with [Getch](https://github.com/szorfein/getch)
-- **SH:** ZSH with [ohmyzsh](https://github.com/ohmyzsh/ohmyzsh) and [starship](https://starship.rs)
+- **OS:** [Arch](https://archlinux.org/), [Void](https://voidlinux.org/) or [Gentoo](https://www.gentoo.org/) with [Musl](https://musl.libc.org/), installed with [Getch](https://github.com/szorfein/getch)
+- **SH:** zsh with [ohmyzsh](https://github.com/ohmyzsh/ohmyzsh) and [starship](https://starship.rs)
 - **Term:** [xSt](https://github.com/gnotclub/xst)
-- **Editor:** [Vim](https://github.com/vim/vim) and [Doom-Emacs](https://github.com/hlissner/doom-emacs)
+- **Editor:** [Vim](https://github.com/vim/vim) and [Doomemacs](https://github.com/doomemacs/doomemacs)
 - **Compositor:** [Picom](https://github.com/yshui/picom)
-- **File Manager:** [FFF](https://github.com/dylanaraps/fff), [Vifm](https://github.com/vifm/vifm)
-- **Fonts:** [Nerd Font](https://www.nerdfonts.com/) Iosevka, SpaceMono + [Material Icons](https://github.com/Templarian/MaterialDesign-Font) + [Papirus](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme)
+- **File Manager:** [NNN](https://github.com/jarun/nnn), [Vifm](https://github.com/vifm/vifm)
+- **Fonts:** [Nerd Font](https://www.nerdfonts.com/) Iosevka + [Material Icons](https://github.com/Templarian/MaterialDesign-Font) + [Papirus](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme)
 - **Dotfiles manager and theme switcher:** [GNU/Stow](https://www.gnu.org/software/stow/)
 
 ###
@@ -41,56 +41,51 @@
 ## Setup
 
 ### Installation for the last theme
-There are three way to install the last [themes/lines](#screens)
-+ Fully scripted with [chezmoi](https://www.chezmoi.io/), (better on a new install),  follow the instruction [here](https://github.com/szorfein/dots).
-+ Manually by following the [wiki page](https://github.com/szorfein/dotfiles/wiki/theme-awesome).
-+ Ansible with
+There are three way to install the last [themes-m3/focus](#screens)
++ Manually by following the [wiki page](https://github.com/szorfein/dotfiles/tree/main/awm-m3/.config/awesome), works on any distribution and you install only what your need.
++ (Not Yet Tested on last theme) Fully scripted with [chezmoi](https://www.chezmoi.io/), (better on a new install), follow the instruction [here](https://github.com/szorfein/dots).
++ (Not Yet Tested on last theme) Ansible with
   [ansible-collection-desktop](https://github.com/szorfein/ansible-collection-desktop),
 you can find an example of playbook
 [here](https://github.com/szorfein/dots/tree/ansible/home/ansible).
 
-The method with `chezmoi` only work with a theme for `awesomewm` and only for supported distrib Gentoo, Archlinux or Debian.  
-You can try on other distributions like Ubuntu... at your own risk and peril :)
+The method with `chezmoi` and `ansible` only work for supported distrib Gentoo, Archlinux, Voidlinux or Debian (bulleyes).  
 
 ### Vim
-For Vim, i use the native package loading, to install all plugins, you need to install `git` and launch:
+For Vim, i use the native Vim8 package loading, to install all plugins, you need to install `git` and launch:
 
+    cd ~/.dotfiles
     ./install --vim
     stow vim
 
 ### Shell
-You can install [ohmyzsh](https://github.com/ohmyzsh/ohmyzsh) and [spaceship-prompt](https://github.com/denysdovhan/spaceship-prompt) with:
+You can install [ohmyzsh](https://github.com/ohmyzsh/ohmyzsh) and extensions with:
 
+    cd ~/.dotfiles
     ./install --zsh
     stow zsh
 
-### Wallpapers
-To recover all the wallpapers (the script will place them into `~/images`), you need to install `curl` and execute a:
-
-    ./install --images
-
-Or search directly [here](https://github.com/szorfein/walls). You have to launch this each time a new theme come.  
-
-### Fonts 
-To install all the fonts (in `~/.local/share/fonts`), you can use my script too.  
-
-    ./install --fonts
+You also need to install [starship](https://starship.rs/guide/#step-1-install-starship) from your package distribution or with cargo.
 
 ### Other themes
 
-`themes/morpho` 
+`themes/lines`  
+
+| full |
+|---|
+| ![full](https://github.com/szorfein/unix-portfolio/raw/master/lines/full.png "lines full") |
+
+`themes/morpho`  
 
 | clean |
 | --- |
 | ![clean](https://github.com/szorfein/unix-portfolio/raw/master/morpho/clean.png "morpho clean") |
 
-`themes/miami` 
+`themes/miami`  
 
 | terms (xst) - lightline.vim - tmux |
 | --- |
 | ![miami screenshot](https://github.com/szorfein/unix-portfolio/raw/master/miami/terms.png "Miami") |
-
-There are many themes under the folder `themes` but not all are compatible with Awesome yet.
 
 ### Other screenshots
 More screenshots are available at [unix-portfolio](https://github.com/szorfein/unix-portfolio) or [Gallery](https://github.com/szorfein/dotfiles/wiki/Gallery).

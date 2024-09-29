@@ -1,29 +1,29 @@
 set font "Iosevka Term 10"
-set default-bg "#161217"
-set default-fg "#E9E0E7"
+set default-bg "#121318"
+set default-fg "#E2E2E9"
 
-set index-bg         "#161217"         # Background
-set index-fg         "#E9E0E7"       # Foreground
-set index-active-bg  "#5A396D"   # Current Line
-set index-active-fg  "#F4D9FF" # Foreground
+set index-bg         "#121318"         # Background
+set index-fg         "#E2E2E9"       # Foreground
+set index-active-bg  "#2F4578"   # Current Line
+set index-active-fg  "#DAE2FF" # Foreground
 
-set statusbar-fg "#E9E0E7"
-set statusbar-bg "#161217"
-set inputbar-fg "#E9E0E7"
-set inputbar-bg "#161217"
+set statusbar-fg "#E2E2E9"
+set statusbar-bg "#121318"
+set inputbar-fg "#E2E2E9"
+set inputbar-bg "#121318"
 
-set notification-error-bg "#FFB693"
-set notification-error-fg "#542104"
+set notification-error-bg "#F3B2E4"
+set notification-error-fg "#4D1F47"
 set notification-warning-bg "#FFB4AB"
 set notification-warning-fg "#690005"
-set notification-bg "#1D2024"
-set notification-fg "#E1E2E9"
+set notification-bg "#1E1F25"
+set notification-fg "#E2E2E9"
 
-set completion-highlight-bg "#67355E"   # Selection
-set completion-highlight-fg "#FFD7F3" # Fg
+set completion-highlight-bg "#4E3D75"   # Selection
+set completion-highlight-fg "#EADDFF" # Fg
 
-set recolor-lightcolor "#161217"  # bg
-set recolor-darkcolor "#E9E0E7" # fg
+set recolor-lightcolor "#121318"  # bg
+set recolor-darkcolor "#E2E2E9" # fg
 
 set recolor "true"
 set adjust-open width

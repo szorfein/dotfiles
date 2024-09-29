@@ -8,6 +8,8 @@ usage() {
   printf "  %s\\t%s\\n" "-n, --name NAME" "A name for the new theme."
   printf "  %s\\t%s\\n" "-f, --file PATH" "A JSON file from a material theme."
   printf "  %s\\t%s\\n" "-t, --tmux THEME" "try: 'bubble' or 'nord' without tilde."
+  printf "  %s\\t%s\\n" "-g, --green COLOR" "custom color for green e.g #50FA7B."
+  printf "  %s\\t%s\\n" "-c, --cyan COLOR" "custom color for cyan e.g #8BE9FD."
   printf "\\n"
 }
 
@@ -23,6 +25,8 @@ while [ "$#" -gt 0 ] ; do
     -n | --name) name="$2" ; shift; shift;;
     -f | --file) filename="$2" ; shift; shift;;
     -t | --tmux) tmuxtheme="$2" ; shift; shift;;
+    -g | --green) greencolor="$2" ; shift; shift;;
+    -c | --cyan) cyancolor="$2" ; shift; shift;;
     -h | --help)
       usage
       exit
@@ -118,6 +122,9 @@ surfaceContainerHigh=$(getjq 'surfaceContainerHigh')
 surfaceContainerHighest=$(getjq 'surfaceContainerHighest')
 # PAUSE
 
+[ -z "$greencolor" ] && greencolor="$secondaryFixedDim"
+[ -z "$cyancolor" ] && cyancolor="$onPrimaryContainer"
+
 # EXTRA colors
 getjq_palette() {
   color=$(cat < "$filename" | jq "$1" | tr -d '"')
@@ -167,8 +174,8 @@ cat <<EOF > "$WORKDIR/.Xresources.d/colors"
 *color1: $error
 *color9: $error
 ! Green - not include in Material, may be custom
-*color2: $onSecondaryContainer
-*color10: $onSecondaryContainer
+*color2: $greencolor
+*color10: $greencolor
 ! Yellow - tertiary
 *color3: $tertiaryLow
 *color11: $tertiary
@@ -179,8 +186,8 @@ cat <<EOF > "$WORKDIR/.Xresources.d/colors"
 *color5: $primaryLow
 *color13: $primary
 ! Cyan - not include in Material, may be custom
-*color6: $secondaryFixedDim
-*color14: $secondaryFixedDim
+*color6: $cyancolor
+*color14: $cyancolor
 ! White
 *color7: $onSurface
 *color15: $onPrimaryContainer
@@ -373,8 +380,8 @@ let g:$name#palette.onerrorcontainer = ['$onErrorContainer', 245]
 " Background
 let g:$name#palette.bglighter = ['$surfaceContainerHighest', 238]
 let g:$name#palette.bglight   = ['$surfaceContainerHigh', 237]
-let g:$name#palette.bg        = ['$surfaceContainer', 236]
-let g:$name#palette.bgdark    = ['$surfaceContainerLow', 235] " #21222C
+let g:$name#palette.bg        = ['$surfaceContainerLow', 236]
+let g:$name#palette.bgdark    = ['$background', 235] " #21222C
 let g:$name#palette.bgdarker  = ['$surfaceContainerLowest', 234]
 let g:$name#palette.primarycontainer = ['$primaryContainer', 110]
 let g:$name#palette.secondarycontainer = ['$secondaryContainer', 92]
@@ -386,8 +393,8 @@ let g:$name#palette.comment   = ['$outline', 61] " #6272A4
 let g:$name#palette.selection = ['$surfaceBright', 239] " #44475A'
 let g:$name#palette.subtle    = ['$inverseOnSurface', 238] " #424450'
 
-let g:$name#palette.cyan      = ['#8BE9FD', 117]
-let g:$name#palette.green     = ['#50FA7B',  84]
+let g:$name#palette.cyan      = ['$cyancolor', 117]
+let g:$name#palette.green     = ['$greencolor',  84]
 let g:$name#palette.orange    = ['$tertiaryLow', 215]
 let g:$name#palette.pink      = ['$primary', 212] " #FF79C6'
 let g:$name#palette.purple    = ['$secondary', 141] " #BD93F9
@@ -399,19 +406,19 @@ let g:$name#palette.yellow    = ['$tertiary', 228] " #F1FA8C
 "
 let g:$name#palette.color_0  = '$surfaceContainerLow' " '#21222C'
 let g:$name#palette.color_1  = '$error' " #FF5555
-let g:$name#palette.color_2  = '#50FA7B'
+let g:$name#palette.color_2  = '$greencolor'
 let g:$name#palette.color_3  = '$tertiaryLow'
 let g:$name#palette.color_4  = '$secondaryLow' " '#BD93F9'
 let g:$name#palette.color_5  = '$primaryLow' " '#FF79C6'
-let g:$name#palette.color_6  = '#8BE9FD'
+let g:$name#palette.color_6  = '$cyancolor'
 let g:$name#palette.color_7  = '$onBackground'
 let g:$name#palette.color_8  = '$outline' " #6272A4
 let g:$name#palette.color_9  = '$error' " '#FF6E6E'
-let g:$name#palette.color_10 = '#69FF94'
+let g:$name#palette.color_10 = '$greencolor'
 let g:$name#palette.color_11 = '$tertiary' " '#FFFFA5'
 let g:$name#palette.color_12 = '$secondary' " '#D6ACFF'
 let g:$name#palette.color_13 = '$primary' " '#FF92DF'
-let g:$name#palette.color_14 = '#A4FFFF'
+let g:$name#palette.color_14 = '$cyancolor'
 let g:$name#palette.color_15 = '$onPrimaryContainer'
 " }}}
 
