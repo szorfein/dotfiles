@@ -1,7 +1,9 @@
 local wibox = require('wibox')
-local helpers = require('lib.helpers')
+local gears = require('gears')
 
--- https://m3.material.io/m3/pages/common-buttons/specs/#0eea2a85-b4d7-4c74-b08e-98410b9412c7
+-- https://m3.material.io/components/icon-buttons/specs
+-- Filled icon button
+
 local button = class()
 
 function button:init(args)
@@ -11,29 +13,25 @@ function button:init(args)
   self.fg = self.args.fg or md.sys.color.on_primary
   self.bg = self.args.bg or md.sys.color.primary
   self.cmd = self.args.cmd or nil
-  self.state = self:state()
-  self.surface = self:surface()
-  self.widget = self:filled()
+  self:state()
+  self:make_widget()
   self:signals()
   return self.widget
 end
 
-function button:filled()
-  return wibox.widget {
+function button:make_widget()
+  self.widget = wibox.widget {
     {
       {
         {
-          {
-            self:make_icon(),
-            self:make_text(),
-            spacing = self.text and dpi(8) or 0,
-            layout = wibox.layout.fixed.horizontal
-          },
-          widget = self:layout()
+          self:make_icon(),
+          self:make_text(),
+          spacing = self.text and dpi(8) or 0,
+          layout = wibox.layout.fixed.horizontal
         },
-        widget = self.state
+        widget = self:layout()
       },
-      widget = self.surface
+      widget = self.state
     },
     widget = self:container()
   }
@@ -64,17 +62,9 @@ function button:container()
   return wibox.widget {
     fg = self.fg,
     bg = self.bg,
-    shape = helpers.rrect(dpi(20)),
+    shape = gears.shape.circle,
     shape_border_width = 1,
     shape_border_color = md.sys.color.outlined,
-    widget = wibox.container.background
-  }
-end
-
-function button:surface()
-  return wibox.widget {
-    bg = self.fg .. md.sys.elevation.level0,
-    shape = helpers.rrect(dpi(20)),
     widget = wibox.container.background
   }
 end
@@ -90,8 +80,9 @@ function button:layout()
 end
 
 function button:state()
-  return wibox.widget {
-    shape = helpers.rrect(dpi(20)),
+  self.state = wibox.widget {
+    bg = self.fg .. '00',
+    shape = gears.shape.circle,
     widget = wibox.container.background
   }
 end
@@ -100,11 +91,9 @@ function button:signals()
   self.state:connect_signal('mouse::enter', function()
     self.state.bg = self.fg
       .. md.sys.state.hover_state_layer_opacity
-    self.surface.bg = self.fg .. md.sys.elevation.level1
   end)
   self.state:connect_signal('mouse::leave', function()
     self.state.bg = self.bg .. '00'
-    self.surface.bg = self.fg .. '00'
   end)
   self.widget:connect_signal('button::press', function()
     if self.cmd and type(self.cmd) == 'function' then

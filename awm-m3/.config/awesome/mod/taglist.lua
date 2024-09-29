@@ -64,7 +64,7 @@ end
 function taglist:font(tag)
   local is_active = #tag:clients() >= 1 and true or false
   local font = is_active
-    and md.sys.color.on_secondary_container
+    and md.sys.color.on_surface
     or md.sys.color.on_surface_variant
   return font
 end

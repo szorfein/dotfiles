@@ -1,13 +1,14 @@
 local wibox = require('wibox')
 local awful = require('awful')
 local gears = require('gears')
-local helpers = require('lib.helpers')
-local slider = require('lib.slider')()
+--local helpers = require('lib.helpers')
+local slider = require('lib.slider')
 
 local brightness = class()
 
 function brightness:init()
-  self.slider = slider:widget()
+  self.slider = slider({ on_change = 'light -S ' })
+  self.slider_widget = self.slider:widget()
   self.widget = self:create()
   self:buttons()
   self:signals()
@@ -16,7 +17,7 @@ end
 
 function brightness:create()
   return wibox.widget {
-    self.slider,
+    self.slider_widget,
     forced_height = 100,
     forced_width  = 20,
     direction     = 'east',
@@ -26,10 +27,7 @@ end
 
 function brightness:signals()
   awesome.connect_signal('daemon::brightness', function(brightness)
-    slider:set(brightness)
-  end)
-  slider.slider:connect_signal('property::value', function()
-    awful.spawn.with_shell('light -S ' .. slider.slider.value)
+    self.slider:set(brightness)
   end)
 end
 

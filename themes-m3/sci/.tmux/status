@@ -1,0 +1,39 @@
+# Customized from https://github.com/arcticicestudio/nord-tmux
+TMUX_STATUS_TIME_FORMAT="%I:%M.%p"
+COLOR_PRIMARY_CONTAINER="#008095"
+COLOR_ON_PRIMARY_CONTAINER="#FFFFFF"
+COLOR_SECONDARY_CONTAINER="#21444D"
+COLOR_ON_SECONDARY_CONTAINER="#B6DAE4"
+
+#+--------+
+#+ Status +
+#+--------+
+#+--- Layout ---+
+set -g status-justify left
+
+#+-------+
+#+ Panes +
+#+-------+
+set -g pane-border-style bg=#0F1416,fg=#262B2C
+set -g pane-active-border-style bg=#0F1416,fg=#A8CCD7
+set -g display-panes-colour "#1C2022"
+set -g display-panes-active-colour "#262B2C"
+
+#+----------+
+#+ Messages +
+#+----------+
+set -g message-style bg=#262B2C,fg=#70D4ED
+set -g message-command-style bg=#262B2C,fg=#70D4ED
+
+#+--------+
+#+ Status +
+#+--------+
+#+ Bar ---+
+set -g status-left "#[fg=$COLOR_ON_SECONDARY_CONTAINER,bg=$COLOR_SECONDARY_CONTAINER,bold] #S #[fg=$COLOR_SECONDARY_CONTAINER,bg=#1F1F1F,nobold,noitalics,nounderscore]"
+
+set -g status-right "#[fg=#262B2C,bg=#1C2022,nobold,noitalics,nounderscore]#[fg=#DFE3E5,bg=#262B2C]#[fg=#DFE3E5,bg=#262B2C] %I:%M.%p #[fg=#70D4ED,bg=#1C2022,nobold,noitalics,nounderscore]#[fg=#0F1416,bg=#70D4ED,bold] #H "
+
+#+ Window +
+set -g window-status-format "#[fg=black,bg=brightblack,nobold,noitalics,nounderscore] #[fg=white,bg=brightblack]#I #[fg=white,bg=brightblack,nobold,noitalics,nounderscore] #[fg=white,bg=brightblack]#W #F #[fg=brightblack,bg=black,nobold,noitalics,nounderscore]"
+set -g window-status-current-format "#[fg=black,bg=$COLOR_PRIMARY_CONTAINER,nobold,noitalics,nounderscore] #[fg=$COLOR_ON_PRIMARY_CONTAINER,bg=$COLOR_PRIMARY_CONTAINER]#I #[fg=$COLOR_ON_PRIMARY_CONTAINER,bg=$COLOR_PRIMARY_CONTAINER,nobold,noitalics,nounderscore] #[fg=$COLOR_ON_PRIMARY_CONTAINER,bg=$COLOR_PRIMARY_CONTAINER]#W #F #[fg=$COLOR_PRIMARY_CONTAINER,bg=black,nobold,noitalics,nounderscore]"
+set -g window-status-separator ""

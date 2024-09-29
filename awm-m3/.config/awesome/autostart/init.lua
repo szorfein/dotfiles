@@ -17,14 +17,23 @@ if [ -f "$userresources" ]; then
   fi
 fi
 
-light -I
-
+if ! light -I ; then light -O ; fi
 if ! pgrep -i picom ; then picom -b ; fi
 ]]
 
 awful.spawn.easy_async_with_shell(script, function(_, _, _, exit_code)
   if exit_code ~= 0 then
     naughty.notify({ title = 'Requirement', text = 'err' })
+  end
+end)
+
+local update_lock = [[
+  betterlockscreen -u ]] .. md.wallpaper .. [[
+]]
+
+awful.spawn.easy_async_with_shell(update_lock, function(_, _, _, exit_code)
+  if exit_code ~= 0 then
+    naughty.notify({ title = 'app lock', text = 'Err with betterlockscreen.' })
   end
 end)
 

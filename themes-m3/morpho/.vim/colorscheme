@@ -1,0 +1,5 @@
+" Color
+colorscheme morpho
+
+" Reload colorscheme
+map <F8> :update<CR>:colorscheme morpho<CR>

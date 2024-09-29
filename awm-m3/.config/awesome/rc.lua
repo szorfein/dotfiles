@@ -35,15 +35,21 @@ md = require("material") -- md for Material Design
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init( os.getenv('HOME') .. "/.config/awesome/theme.lua" )
+beautiful.init( os.getenv('HOME') .. "/.config/awesome/theme/beautiful.lua" )
+
+local snackbar = require("lib.snackbar")
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
 if awesome.startup_errors then
-  naughty.notify({ preset = naughty.config.presets.critical,
+  snackbar.critical({
     title = "Oops, there were errors during startup!",
-    text = awesome.startup_errors })
+    text = awesome.startup_errors
+  })
+  --naughty.notify({ preset = naughty.config.presets.critical,
+   -- title = "Oops, there were errors during startup!",
+   -- text = awesome.startup_errors })
 end
 
 -- Handle runtime errors after startup
@@ -69,13 +75,10 @@ local helpers = require('lib.helpers')
 local button_text = require('lib.button-text')
 
 -- This is used later as the default terminal and editor to run.
-terminal = "xterm"
-editor = os.getenv("EDITOR") or "nano"
-editor_cmd = terminal .. " -e " .. editor
+local user = require('config.user')
 
 -- check if the system use PulseAudio or Alsa
-is_pulse = helpers:file_exist('/usr/bin/pactl')
-
+is_pulse = helpers:file_exist('/usr/bin/pacmd')
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
 -- If you do not like this or do not have such a key,
@@ -113,22 +116,22 @@ awful.layout.layouts = {
 -- Create a launcher widget and a main menu
 myawesomemenu = {
   { "hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
-  { "manual", terminal .. " -e man awesome" },
-  { "edit config", editor_cmd .. " " .. awesome.conffile },
+  { "manual", user.terminal .. " -e man awesome" },
+  { "edit config", user.editor_cmd .. " " .. awesome.conffile },
   { "restart", awesome.restart },
   { "quit", function() awesome.quit() end },
 }
 
 mymainmenu = awful.menu({ items = {
   { "awesome", myawesomemenu, beautiful.awesome_icon },
-  { "open terminal", terminal }}
+  { "open terminal", user.terminal }}
 })
 
 mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
                                      menu = mymainmenu })
 
 -- Menubar configuration
-menubar.utils.terminal = terminal -- Set the terminal for applications that require it
+menubar.utils.terminal = user.terminal -- Set the terminal for applications that require it
 -- }}}
 
 -- {{{ Wibar
@@ -186,7 +189,6 @@ globalkeys = gears.table.join(
     { description = "view previous", group = "tag" }),
   awful.key({ modkey,           }, "Right",  awful.tag.viewnext,
     { description = "view next", group = "tag" }),
-
   awful.key({ modkey }, "Tab", awful.tag.history.restore,
     { description = "go back", group = "tag" }),
 
@@ -214,7 +216,7 @@ globalkeys = gears.table.join(
   { description = "jump to urgent client", group = "client" }),
 
   -- Standard program
-  awful.key({ modkey,           }, "Return", function() awful.spawn(terminal) end,
+  awful.key({ modkey,           }, "Return", function() awful.spawn(user.terminal) end,
   { description = "open a terminal", group = "launcher" }),
   awful.key({ modkey, "Control" }, "r", awesome.restart,
   { description = "reload awesome", group = "awesome" }),
@@ -250,9 +252,10 @@ globalkeys = gears.table.join(
   end,
   { description = "restore minimized", group = "client" }),
 
-  -- Prompt
+  -- Menubar
   awful.key({ modkey }, "r", function()
-    awful.screen.focused().mypromptbox:run()
+    --awful.screen.focused().mypromptbox:run()
+    menubar.show()
   end,
   { description = "run prompt", group = "launcher" }),
 
@@ -265,8 +268,11 @@ globalkeys = gears.table.join(
     }
   end,
   { description = "lua execute prompt", group = "awesome" }),
-  -- Menubar
-  awful.key({ modkey }, "p", function() menubar.show() end,
+  awful.key({ modkey }, "p", function()
+    local s = awful.screen.focused()
+    s.app_drawer.visible = not s.app_drawer.visible
+    update_app_drawer()
+  end,
   { description = "show the menubar", group = "launcher" })
 )
 
@@ -425,8 +431,9 @@ awful.rules.rules = {
       "AlarmWindow",  -- Thunderbird's calendar.
       "ConfigManager",  -- Thunderbird's about:config.
       "pop-up",       -- e.g. Google Chrome's (detached) Developer Tools.
+      "GtkFileChooserDialog",
     }
-  }, properties = { floating = true }},
+  }, properties = { floating = true, placement = helpers.centered_client }},
 
   -- Add titlebars to normal clients and dialogs
   { rule_any = { type = { "normal", "dialog" } },
@@ -442,11 +449,22 @@ awful.rules.rules = {
   {
     rule_any = {
       class = {
-        "Apostrophe"
+        "Apostrophe",
+        "Virt-viewer"
       },
     }, callback = function(c)
       awful.titlebar.hide(c, 'top')
     end
+  },
+
+  -- to big windows...
+  {
+    rule_any = { role = { 'GtkFileChooserDialog' } },
+    properties = {
+      floating = true,
+      width = awful.screen.focused().geometry.width * 0.55,
+      height = awful.screen.focused().geometry.height * 0.65
+    }
   }
 }
 -- }}}
@@ -465,13 +483,13 @@ client.connect_signal("manage", function(c)
     awful.placement.no_offscreen(c)
   end
 
-  naughty.notify({ preset = naughty.config.presets.debug,
-  title = "client " .. tostring(c.name),
-  text = tostring(c.name) })
+  --snackbar.debug({
+  --title = "client " .. tostring(c.name),
+  --text = tostring(c.name) })
 
-  naughty.notify({ preset = naughty.config.presets.debug,
-  title = "client " .. tostring(#client.get()),
-  text = tostring(#client.get()) })
+  --snackbar.debug({
+  --title = "client " .. tostring(#client.get()),
+  --text = tostring(#client.get()) })
 
   if not c.fullscreen and not c.maximized then
     c.shape = helpers.rrect(dpi(12))
@@ -578,6 +596,16 @@ sf = awful.screen.focused()
 sf.dashboard.visible = true
 
 require('daemon')
+
+local script = "sh -c 'echo "..md.name.. " >/tmp/awm-m3'"
+awful.spawn.easy_async_with_shell(script, function(_, stderr, _, exit)
+                                    if exit ~= 0 then
+                                      snackbar.debug({title = "theme "..md.name.." failed with: " .. stderr})
+                                    else
+                                      snackbar.debug({title = "theme "..md.name.." loaded."})
+                                    end
+
+end)
 
 -- Run garbage collector regularly to prevent memory leaks
 -- https://wiki.archlinux.org/title/Awesome#Memory_leaks

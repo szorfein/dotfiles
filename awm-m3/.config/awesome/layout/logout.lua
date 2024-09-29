@@ -10,12 +10,12 @@ local logout = class()
 function logout:init(s)
   self.dialog = require('lib.dialog')({
     screen = s,
-    name = name })
+    name = name,
+    title = 'Logout',
+    widget = self:widget()
+  })
 
-  self.dialog:centered(
-    'Logout',
-    self:widget()
-  )
+  self.dialog:centered()
 
   self.buttons = table.join(
     awful.button({}, 3, function() logout_hide() end)
@@ -30,6 +30,8 @@ function logout:widget()
       icon = '󰤆',
       size = dpi(55),
       color = md.sys.color.error,
+      text = 'Shutdown',
+      layout = wibox.layout.fixed.vertical,
       cmd = function()
         awful.spawn.with_shell('sudo poweroff')
       end
@@ -38,10 +40,14 @@ function logout:widget()
       icon = '󰈆',
       size = dpi(55),
       color = md.sys.color.secondary,
+      text = 'Quit',
+      layout = wibox.layout.fixed.vertical,
       cmd = awesome.quit
     }),
     button({
       icon = '󰌾',
+      text = 'Lock',
+      layout = wibox.layout.fixed.vertical,
       cmd = function()
         logout_hide()
         app:lock()
@@ -51,6 +57,8 @@ function logout:widget()
     }),
     button({
       icon = '󰜉',
+      text = 'Restart',
+      layout = wibox.layout.fixed.vertical,
       size = dpi(55),
       cmd = awesome.restart,
     }),
@@ -66,7 +74,7 @@ local keybinds = {
   ['escape'] = function() logout_hide() end,
   ['q'] = function() logout_hide() end,
   ['e'] = awesome.quit,
-  ['p'] = function() awful.spawn_with_shell('sudo poweroff') end,
+  ['p'] = function() awful.spawn.with_shell('sudo poweroff') end,
   ['r'] = awesome.restart,
   ['l'] = function()
     logout_hide()

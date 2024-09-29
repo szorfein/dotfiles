@@ -15,13 +15,26 @@ function card:elevated(widget)
         margins = dpi(16),
         widget = wibox.container.margin
       },
-      bg = md.sys.color.surface_tint_color .. md.sys.elevation.level1,
-      shape = helpers.rrect(dpi(12)),
-      widget = wibox.container.background
+      widget = self:container_elevation()
     },
-    bg = md.sys.color.surface,
-    widget = wibox.container.background
+    widget = self:container()
   }
+end
+
+function card:container_elevation()
+    return wibox.widget {
+      bg = md.sys.color.surface_tint_color .. md.sys.elevation.level1,
+      shape = helpers:rrect(dpi(12)),
+      widget = wibox.container.background
+    }
+end
+
+function card:container()
+    return wibox.widget {
+      bg = md.sys.color.surface_container_low,
+      shape = helpers:rrect(dpi(12)),
+      widget = wibox.container.background
+    }
 end
 
 return card

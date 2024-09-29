@@ -1,0 +1,29 @@
+! Theme - background
+*background: #121318
+*foreground: #E2E2E9
+*cursorColor: #B1C5FF
+*fadeColor: #1A1B21
+! Black - surfaceContainer
+*color0: #1E1F25
+*color8: #282A2F
+! Red - error
+*color1: #FFB4AB
+*color9: #FFB4AB
+! Green - not include in Material, may be custom
+*color2: #93d5a9
+*color10: #93d5b4
+! Yellow - tertiary
+*color3: #FF78EC
+*color11: #F3B2E4
+! Blue - secondary
+*color4: #BA9AFF
+*color12: #D1BCFD
+! Magenta - primary
+*color5: #A5ABBF
+*color13: #B1C5FF
+! Cyan - not include in Material, may be custom
+*color6: #c2aaf2
+*color14: #d1bcfd
+! White
+*color7: #E2E2E9
+*color15: #DAE2FF
