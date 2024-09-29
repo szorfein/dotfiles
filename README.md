@@ -28,12 +28,12 @@
 
 - **WM:** [Awesome](https://github.com/awesomeWM/awesome)
 - **OS:** [Arch](https://archlinux.org/), [Void](https://voidlinux.org/) or [Gentoo](https://www.gentoo.org/) with [Musl](https://musl.libc.org/), installed with [Getch](https://github.com/szorfein/getch)
-- **SH:** ZSH with [ohmyzsh](https://github.com/ohmyzsh/ohmyzsh) and [starship](https://starship.rs)
+- **SH:** zsh with [ohmyzsh](https://github.com/ohmyzsh/ohmyzsh) and [starship](https://starship.rs)
 - **Term:** [xSt](https://github.com/gnotclub/xst)
 - **Editor:** [Vim](https://github.com/vim/vim) and [Doomemacs](https://github.com/doomemacs/doomemacs)
 - **Compositor:** [Picom](https://github.com/yshui/picom)
 - **File Manager:** [NNN](https://github.com/jarun/nnn), [Vifm](https://github.com/vifm/vifm)
-- **Fonts:** [Nerd Font](https://www.nerdfonts.com/) Iosevka, SpaceMono + [Material Icons](https://github.com/Templarian/MaterialDesign-Font) + [Papirus](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme)
+- **Fonts:** [Nerd Font](https://www.nerdfonts.com/) Iosevka + [Material Icons](https://github.com/Templarian/MaterialDesign-Font) + [Papirus](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme)
 - **Dotfiles manager and theme switcher:** [GNU/Stow](https://www.gnu.org/software/stow/)
 
 ###
