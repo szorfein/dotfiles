@@ -8,7 +8,7 @@ local card = class()
 
 function card:init(args)
   self.image = args.image or nil
-  self.title = args.title or ''
+  self.title = args.title or nil
   self.text = args.text or nil
   self.shape = helpers:rrect(dpi(12))
   self.on_click = args.on_click
@@ -54,7 +54,7 @@ function card:image_widget()
 end
 
 function card:title_widget()
-  if self.title then return nil end
+  if not self.title then return nil end
 
   return wibox.widget {
     {

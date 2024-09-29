@@ -1,11 +1,11 @@
-COLOUR_BG="#1D100F"
+COLOUR_BG="#1A1111"
 COLOR_PRIMARY="#FFB3B0"
-COLOR_PRIMARY_CONTAINER="#D23E43"
-COLOR_ON_PRIMARY_CONTAINER="#FFFFFF"
-COLOR_SURFACE="#413130"
-COLOR_ON_SURFACE="#F7DDDB"
-COLOR_TERTIARY="#FFB86D"
-COLOR_SECONDARY="#FFB3B0"
+COLOR_PRIMARY_CONTAINER="#733332"
+COLOR_ON_PRIMARY_CONTAINER="#FFDAD8"
+COLOR_SURFACE="#3D3232"
+COLOR_ON_SURFACE="#F0DEDD"
+COLOR_TERTIARY="#E3C28C"
+COLOR_SECONDARY="#E7BDBA"
 
 set-option -g status-position bottom
 
@@ -16,7 +16,7 @@ setw -g window-status-current-format "#[fg=$COLOR_PRIMARY_CONTAINER,bg=$COLOUR_B
 # FIRST ( 9 >> )
 set -g status-left "#[fg=$COLOR_SURFACE,bg=$COLOUR_BG]#[fg=$COLOR_ON_SURFACE,bg=$COLOR_SURFACE] #S #[fg=$COLOR_TERTIARY,bg=$COLOR_SURFACE,nobold,nounderscore,noitalics]>> #[fg=$COLOR_SURFACE,bg=$COLOUR_BG] "
 
-set -g status-right "#[fg=$COLOR_SURFACE,bg=$COLOUR_BG]#[fg=$COLOR_PRIMARY,bg=$COLOR_SURFACE]   #[fg=$COLOR_SURFACE,bg=$COLOUR_BG]"
+set -g status-right "#[fg=$COLOR_SURFACE,bg=$COLOUR_BG]#[fg=$COLOR_PRIMARY,bg=$COLOR_SURFACE] ﮊ  #[fg=$COLOR_SURFACE,bg=$COLOUR_BG]"
 
 set -g status-justify left
 set -g pane-active-border-style "fg=black,bg=default"

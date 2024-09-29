@@ -1,9 +1,9 @@
 # Customized from https://github.com/arcticicestudio/nord-tmux
 TMUX_STATUS_TIME_FORMAT="%I:%M.%p"
-COLOR_PRIMARY_CONTAINER="#2F4578"
-COLOR_ON_PRIMARY_CONTAINER="#DAE2FF"
-COLOR_SECONDARY_CONTAINER="#4E3D75"
-COLOR_ON_SECONDARY_CONTAINER="#EADDFF"
+COLOR_PRIMARY_CONTAINER="#3F6C54"
+COLOR_ON_PRIMARY_CONTAINER="#FFFFFF"
+COLOR_SECONDARY_CONTAINER="#304137"
+COLOR_ON_SECONDARY_CONTAINER="#C3D6C8"
 
 #+--------+
 #+ Status +
@@ -14,16 +14,16 @@ set -g status-justify left
 #+-------+
 #+ Panes +
 #+-------+
-set -g pane-border-style bg=#121318,fg=#282A2F
-set -g pane-active-border-style bg=#121318,fg=#D1BCFD
-set -g display-panes-colour "#1E1F25"
-set -g display-panes-active-colour "#282A2F"
+set -g pane-border-style bg=#111412,fg=#282B28
+set -g pane-active-border-style bg=#111412,fg=#B8CBBD
+set -g display-panes-colour "#1E201E"
+set -g display-panes-active-colour "#282B28"
 
 #+----------+
 #+ Messages +
 #+----------+
-set -g message-style bg=#282A2F,fg=#B1C5FF
-set -g message-command-style bg=#282A2F,fg=#B1C5FF
+set -g message-style bg=#282B28,fg=#A1D1B4
+set -g message-command-style bg=#282B28,fg=#A1D1B4
 
 #+--------+
 #+ Status +
@@ -31,7 +31,7 @@ set -g message-command-style bg=#282A2F,fg=#B1C5FF
 #+ Bar ---+
 set -g status-left "#[fg=$COLOR_ON_SECONDARY_CONTAINER,bg=$COLOR_SECONDARY_CONTAINER,bold] #S #[fg=$COLOR_SECONDARY_CONTAINER,bg=#1F1F1F,nobold,noitalics,nounderscore]"
 
-set -g status-right "#[fg=#282A2F,bg=#1E1F25,nobold,noitalics,nounderscore]#[fg=#E2E2E9,bg=#282A2F]#[fg=#E2E2E9,bg=#282A2F] %I:%M.%p #[fg=#B1C5FF,bg=#1E1F25,nobold,noitalics,nounderscore]#[fg=#121318,bg=#B1C5FF,bold] #H "
+set -g status-right "#[fg=#282B28,bg=#1E201E,nobold,noitalics,nounderscore]#[fg=#E2E3DF,bg=#282B28]#[fg=#E2E3DF,bg=#282B28] %I:%M.%p #[fg=#A1D1B4,bg=#1E201E,nobold,noitalics,nounderscore]#[fg=#111412,bg=#A1D1B4,bold] #H "
 
 #+ Window +
 set -g window-status-format "#[fg=black,bg=brightblack,nobold,noitalics,nounderscore] #[fg=white,bg=brightblack]#I #[fg=white,bg=brightblack,nobold,noitalics,nounderscore] #[fg=white,bg=brightblack]#W #F #[fg=brightblack,bg=black,nobold,noitalics,nounderscore]"

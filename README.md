@@ -27,12 +27,12 @@
 ###
 
 - **WM:** [Awesome](https://github.com/awesomeWM/awesome)
-- **OS:** [Void](https://voidlinux.org/) or [Gentoo](https://www.gentoo.org/) with [Musl](https://musl.libc.org/), installed with [Getch](https://github.com/szorfein/getch)
+- **OS:** [Arch](https://archlinux.org/), [Void](https://voidlinux.org/) or [Gentoo](https://www.gentoo.org/) with [Musl](https://musl.libc.org/), installed with [Getch](https://github.com/szorfein/getch)
 - **SH:** ZSH with [ohmyzsh](https://github.com/ohmyzsh/ohmyzsh) and [starship](https://starship.rs)
 - **Term:** [xSt](https://github.com/gnotclub/xst)
 - **Editor:** [Vim](https://github.com/vim/vim) and [Doomemacs](https://github.com/doomemacs/doomemacs)
 - **Compositor:** [Picom](https://github.com/yshui/picom)
-- **File Manager:** [FFF](https://github.com/dylanaraps/fff), [Vifm](https://github.com/vifm/vifm)
+- **File Manager:** [NNN](https://github.com/jarun/nnn), [Vifm](https://github.com/vifm/vifm)
 - **Fonts:** [Nerd Font](https://www.nerdfonts.com/) Iosevka, SpaceMono + [Material Icons](https://github.com/Templarian/MaterialDesign-Font) + [Papirus](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme)
 - **Dotfiles manager and theme switcher:** [GNU/Stow](https://www.gnu.org/software/stow/)
 
@@ -49,7 +49,7 @@ There are three way to install the last [themes-m3/focus](#screens)
 you can find an example of playbook
 [here](https://github.com/szorfein/dots/tree/ansible/home/ansible).
 
-The method with `chezmoi` only work with a theme for `awesomewm` and only for supported distrib Gentoo, Archlinux, Voidlinux or Debian (bulleyes).  
+The method with `chezmoi` and `ansible` only work for supported distrib Gentoo, Archlinux, Voidlinux or Debian (bulleyes).  
 
 ### Vim
 For Vim, i use the native Vim8 package loading, to install all plugins, you need to install `git` and launch:
@@ -69,13 +69,19 @@ You also need to install [starship](https://starship.rs/guide/#step-1-install-st
 
 ### Other themes
 
-`themes/morpho` 
+`themes/lines`  
+
+| full |
+|---|
+| ![full](https://github.com/szorfein/unix-portfolio/raw/master/lines/full.png "lines full") |
+
+`themes/morpho`  
 
 | clean |
 | --- |
 | ![clean](https://github.com/szorfein/unix-portfolio/raw/master/morpho/clean.png "morpho clean") |
 
-`themes/miami` 
+`themes/miami`  
 
 | terms (xst) - lightline.vim - tmux |
 | --- |

@@ -29,7 +29,7 @@ function change_theme:dialog_widget()
     [3] = { "Morpho", self.img_dir .. 'morpho.jpg', self.script .. ' morpho' },
     [4] = { "Miami", self.img_dir .. 'miami.jpg', self.script .. ' miami' },
     [5] = { "Sci", self.img_dir .. 'sci.jpg', self.script .. ' sci' },
-    [6] = { "Beta", self.img_dir .. 'beta.jpg', self.script .. ' beta' },
+    [6] = { "Connected", self.img_dir .. 'connected.jpg', self.script .. ' connected' },
   }
 
   local layout = wibox.widget {

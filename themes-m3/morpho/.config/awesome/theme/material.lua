@@ -39,5 +39,6 @@ theme.color.scrim = '#000000'
 theme.color.surface_container = '#211F26'
 theme.color.outline_variant = '#494552'
 theme.color.surface_container_low = '#1C1B21'
+theme.color.surface_container_high = '#2B2930'
 
 return theme
