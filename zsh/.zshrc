@@ -27,7 +27,10 @@ plugins=(git-prompt gpg-agent transfer zsh-autosuggestions starship zsh-syntax-h
 # https://github.com/ohmyzsh/ohmyzsh#getting-updates
 zstyle ':omz:update' mode disabled
 
-zstyle ':omz:plugins:keychain' agents gpg,ssh
+zstyle ':omz:plugins:keychain' agents gpg
+
+# If need to configure keychain identities
+[ -f ~/.zsh/keychain.zsh ] && source ~/.zsh/keychain.zsh
 
 source "$ZSH/oh-my-zsh.sh"
 

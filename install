@@ -75,6 +75,7 @@ download_images() {
     && curl -L -o walls.zip https://github.com/szorfein/walls/archive/main.zip \
     && unzip walls.zip \
     && mv -f walls-main/*.jpg "$DEST"/ \
+    && mv -f walls-main/*.png "$DEST"/ \
     && rm -rf walls*
   )
 }

@@ -6,6 +6,11 @@ local string = { match = string.match }
 
 local function volume_status()
   spawn.easy_async('amixer get Master', function(stdout)
+    if not stdout or stdout == "" then
+      awesome.emit_signal('daemon::volume', 0, true)
+      return
+    end
+
     local volume, state = string.match(stdout, "%[([%d]+)%%%].*%[([%l]*)%]")
 
     --snackbar.debug({ title = 'get volume '..volume })
