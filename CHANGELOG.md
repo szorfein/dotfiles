@@ -1,3 +1,5 @@
+- Iosevka and IosevkaTerm (missed) update to the v3.2.1 (was 2.1.0).
+
 ## Focus v2.0.0 - September 2024
 New theme Focus, for the install, see
 [here](https://github.com/szorfein/dotfiles/tree/main/awm-m3/.config/awesome).

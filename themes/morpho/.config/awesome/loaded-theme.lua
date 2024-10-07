@@ -35,18 +35,18 @@ mytheme.x = {
 
 -- fonts
 mytheme.f = {
-  h1 = "Iosevka Light 60", -- used rarely on big icon or big title
-  h4 = "Iosevka Regular 32",
+  h1 = "Iosevka Nerd Font Light 60", -- used rarely on big icon or big title
+  h4 = "Iosevka Nerd Font Regular 32",
   h5 = "Material Design Icons Desktop Regular 20", -- icon for h6
-  h6 = "Iosevka Regular 20",
-  subtile_1 = "Iosevka Regular 13", -- used on text list
-  subtile_2 = (height >= 1024 and "Iosevka Light 10" or "Iosevka Light 9"), -- used tasklist
-  body_1 = "Iosevka Term Regular 16", -- used on text body title
-  body_2 = "Iosevka Term Light 14", -- used on text body
+  h6 = "Iosevka Nerd Font Regular 20",
+  subtile_1 = "Iosevka Nerd Font Regular 13", -- used on text list
+  subtile_2 = (height >= 1024 and "Iosevka Nerd Font Light 10" or "Iosevka Nerd Font Light 9"), -- used tasklist
+  body_1 = "IosevkaTerm Nerd Font Regular 16", -- used on text body title
+  body_2 = "IosevkaTerm Nerd Font Light 14", -- used on text body
   icon = "Material Design Icons Desktop Regular 13", -- used for icon
-  button = "Iosevka Term Regular 15", -- used on text button
-  caption = "Iosevka Regular 12", -- used on annotation
-  overline = "Iosevka Regular 10",
+  button = "IosevkaTerm Nerd Font Regular 15", -- used on text button
+  caption = "Iosevka Nerd Font Regular 12", -- used on annotation
+  overline = "Iosevka Nerd Font Regular 10",
 }
 
 -- text emphasis
