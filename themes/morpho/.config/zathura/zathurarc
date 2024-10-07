@@ -1,4 +1,4 @@
-set font                        "Iosevka Term 9"
+set font                        "IosevkaTerm Nerd Font 9"
 
 set default-fg                  "#b7b0d1" # grey_fg
 set default-bg                  "#1a1729" # grey

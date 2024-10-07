@@ -3,7 +3,7 @@
 set -o errexit -o nounset
 
 WORKDIR="$HOME"
-PV="2.1.0"
+PV="3.2.1"
 
 ###############################################################
 # Check deps
@@ -71,24 +71,20 @@ download_images() {
     die "You need to install unzip"
   fi
   [ -d "$DEST" ] || mkdir -p "$DEST"
-  (cd "$DEST" \
+  (cd "$WORKDIR" \
     && curl -L -o walls.zip https://github.com/szorfein/walls/archive/main.zip \
-    && unzip walls.zip \
-    && mv -f walls-main/*.jpg "$DEST"/ \
-    && mv -f walls-main/*.png "$DEST"/ \
-    && rm -rf walls*
+    && unzip -o -j walls.zip -d "$DEST" \
+    && rm -f walls.zip
   )
 }
 
 install_font() {
   [ -f "$2" ] || {
     echo "Installing $1"
-    rm -rf "$1"
-    mkdir "$1"
-    curl -# -L -o "$2" "$3"
-    (cd "$1" \
-      && unzip -q ../"$2"
-    )
+    [ -d "$1" ] || mkdir -p "$1"
+    curl -# -L -o "$2" "$3" \
+      && unzip -o -j "$2" -d "$1" \
+      && rm -f "$2"
   }
 }
 
@@ -97,8 +93,9 @@ grab_fonts() {
   [ -d "$DIR_FONT" ] || mkdir -p "$DIR_FONT"
 
   (cd "$DIR_FONT" \
-    && install_font "Iosevka-$PV" "Iosevka-$PV.zip" "https://github.com/ryanoasis/nerd-fonts/releases/download/v$PV/Iosevka.zip" \
-    && install_font "SpaceMono-$PV" "SpaceMono-$PV.zip" "https://github.com/ryanoasis/nerd-fonts/releases/download/v$PV/SpaceMono.zip" \
+    && install_font "iosevka" "Iosevka-$PV.zip" "https://github.com/ryanoasis/nerd-fonts/releases/download/v$PV/Iosevka.zip" \
+    && install_font "iosevka-term" "IosevkaTerm-$PV.zip" "https://github.com/ryanoasis/nerd-fonts/releases/download/v$PV/IosevkaTerm.zip" \
+    && install_font "spacemono" "SpaceMono-$PV.zip" "https://github.com/ryanoasis/nerd-fonts/releases/download/v$PV/SpaceMono.zip" \
     && install_font cyberpunk "cyberpunk.zip" "https://dl.dafont.com/dl/?f=cyberpunks"
   )
 

@@ -158,7 +158,7 @@ sed "s/Dracula/$CAPNAME/g" -i "$VIMCOLOR/$name.vim"
 
 echo "Generating Xresource..."
 cat <<EOF > "$WORKDIR/.Xresources.d/fonts"
-st.font: Iosevka Term:pixelsize=14:autohint=true;
+st.font: IosevkaTerm Nerd Font:pixelsize=14:autohint=true;
 EOF
 
 cat <<EOF > "$WORKDIR/.Xresources.d/colors"
@@ -245,7 +245,7 @@ EOF
 # https://github.com/dracula/zathura/blob/master/zathurarc
 echo "Generating zathura..."
 cat <<EOF > "$WORKDIR/.config/zathura/zathurarc"
-set font "Iosevka Term 10"
+set font "IosevkaTerm Nerd Font 10"
 set default-bg "$background"
 set default-fg "$onBackground"
 
