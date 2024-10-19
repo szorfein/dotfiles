@@ -435,6 +435,28 @@ awful.rules.rules = {
     }
   }, properties = { floating = true, placement = helpers.centered_client }},
 
+  { -- maximized and respect area
+    rule_any = {
+      class = {
+        "Raven Reader",
+        "raven reader",
+      }
+    },
+    properties = {
+      size_hints_honor = false,
+      floating = false,
+      maximized = false,
+      maximized_vertical = false,
+      maximized_horizontal = false,
+      honor_workarea = true,
+      honor_padding = true,
+    },
+    callback = function (c)
+      awful.placement.centered(c, { honor_padding = true,
+                                    honor_workarea = true })
+    end
+  },
+
   -- Add titlebars to normal clients and dialogs
   { rule_any = { type = { "normal", "dialog" } },
     properties = { titlebars_enabled = true }
