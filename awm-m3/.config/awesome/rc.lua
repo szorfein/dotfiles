@@ -89,7 +89,7 @@ modkey = "Mod4"
 -- Table of layouts to cover with awful.layout.inc, order matters.
 local names = { "󰆍", "󰖟", "󰈙", "󰎁", "󰆧" }
 local l = awful.layout.suit
-local layouts = { l.max, l.max, l.max, l.floating, l.floating,
+local layouts = { l.max, l.max, l.max, l.max, l.floating,
   l.floating, l.floating, l.floating, l.floating }
 
 awful.layout.layouts = {
@@ -440,6 +440,7 @@ awful.rules.rules = {
       class = {
         "Raven Reader",
         "raven reader",
+        "qemu-system-x86_64"
       }
     },
     properties = {
@@ -450,11 +451,8 @@ awful.rules.rules = {
       maximized_horizontal = false,
       honor_workarea = true,
       honor_padding = true,
-    },
-    callback = function (c)
-      awful.placement.centered(c, { honor_padding = true,
-                                    honor_workarea = true })
-    end
+      placement = awful.placement.maximize
+    }
   },
 
   -- Add titlebars to normal clients and dialogs
@@ -472,7 +470,11 @@ awful.rules.rules = {
     rule_any = {
       class = {
         "Apostrophe",
-        "Virt-viewer"
+        "Virt-viewer",
+        "Brave-browser",
+        "Emacs",
+        "Raven Reader",
+        "Notesnook",
       },
     }, callback = function(c)
       awful.titlebar.hide(c, 'top')

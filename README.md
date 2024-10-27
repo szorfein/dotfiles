@@ -43,8 +43,8 @@
 ### Installation for the last theme
 There are three way to install the last [themes-m3/focus](#screens)
 + Manually by following the [wiki page](https://github.com/szorfein/dotfiles/tree/main/awm-m3/.config/awesome), works on any distribution and you install only what your need.
-+ (Not Yet Tested on last theme) Fully scripted with [chezmoi](https://www.chezmoi.io/), (better on a new install), follow the instruction [here](https://github.com/szorfein/dots).
-+ (Not Yet Tested on last theme) Ansible with
++ Fully scripted with [chezmoi](https://www.chezmoi.io/), (better on a new install), follow the instruction [here](https://github.com/szorfein/dots).
++ (Not Yet Tested on last Debian 12) Ansible with
   [ansible-collection-desktop](https://github.com/szorfein/ansible-collection-desktop),
 you can find an example of playbook
 [here](https://github.com/szorfein/dots/tree/ansible/home/ansible).

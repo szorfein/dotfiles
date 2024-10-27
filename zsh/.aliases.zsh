@@ -10,4 +10,4 @@ alias virtualbox=VirtualBox
 # make xclip work with voidlinux
 alias xclip='xclip -sel clip'
 
-alias streload='xrdb merge ~/.Xresources && kill -USR1 $(pidof xst)'
+alias streload='xrdb merge ~/.Xresources && kill -s USR1 $(pidof xst)'
