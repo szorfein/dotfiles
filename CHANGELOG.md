@@ -1,4 +1,6 @@
-- Iosevka and IosevkaTerm (missed) update to the v3.2.1 (was 2.1.0).
+- Remove vifm/bin, new option to install `./install --vifm`.
+- Use `kill -s USR1` instead of `kill -USR1`, compatibility POSIX shell.
+- Font Iosevka and IosevkaTerm (missed) update to the v3.2.1 (was 2.1.0).
 
 ## Focus v2.0.0 - September 2024
 New theme Focus, for the install, see

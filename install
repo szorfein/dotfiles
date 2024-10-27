@@ -141,6 +141,15 @@ vim() {
   vim_clone "szorfein/vamp.vim"
 }
 
+vifm() {
+  [ -d "$WORKDIR/bin" ] || mkdir -p "$WORKDIR/bin"
+  curl -o "$WORKDIR/bin/vifmimg" -sSlL https://raw.githubusercontent.com/thimc/vifmimg/refs/heads/master/vifmimg
+  curl -o "$WORKDIR/bin/vifmrun" -sSlL https://raw.githubusercontent.com/thimc/vifmimg/refs/heads/master/vifmrun
+  curl -o "$WORKDIR/bin/fontpreview" -sSlL https://raw.githubusercontent.com/sdushantha/fontpreview/refs/heads/master/fontpreview
+  chmod u+x "$WORKDIR/bin/vifmimg" "$WORKDIR/bin/vifmrun" "$WORKDIR/bin/fontpreview"
+  printf "\nInstall of vifm done.\n\n"
+}
+
 banner() {
   printf "%s\n" \
     '
@@ -161,6 +170,9 @@ usage() {
 
     printf "%s\n" \
       "-v, --vim     Download and install vim.plug"
+
+    printf "%s\n" \
+      "-m, --vifm    Download and install vifm dependencies."
 
     printf "%s\n" \
       "-f, --fonts   Download and install all the fonts"
@@ -184,6 +196,7 @@ fi
 # Options
 ZSH=false
 VIM=false
+VIFM=false
 IMG=false
 FONT=false
 
@@ -200,6 +213,10 @@ while [ "$#" -gt 0 ] ; do
       ;;
     -v | --vim)
       VIM=true
+      shift
+      ;;
+    -m | --vifm)
+      VIFM=true
       shift
       ;;
     -i | --images)
@@ -226,6 +243,7 @@ main() {
   banner
   "$ZSH" && forZsh
   "$VIM" && vim
+  "$VIFM" && vifm
   "$IMG" && download_images
   "$FONT" && grab_fonts
   echo "[+] Bye"
