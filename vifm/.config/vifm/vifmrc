@@ -77,7 +77,7 @@ fileviewer *.epub
   \ vifmimg clear
 
 " Fonts
-fileviewer *.otf,*.ttf,*.woff
+fileviewer <font/*>
     \ vifmimg font %px %py %pw %ph %c
     \ %pc
     \ vifmimg clear

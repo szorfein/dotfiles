@@ -47,7 +47,7 @@ change_theme "$old_theme" "$1"
 
 hash xst 2>/dev/null && {
   xrdb merge ~/.Xresources
-  kill -USR1 $(pidof xst)
+  kill -s USR1 $(pidof xst)
 }
 
 # if tmux
