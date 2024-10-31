@@ -439,7 +439,6 @@ awful.rules.rules = {
     rule_any = {
       class = {
         "Raven Reader",
-        "raven reader",
         "qemu-system-x86_64"
       }
     },
