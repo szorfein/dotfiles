@@ -1,5 +1,6 @@
 local awful = require('awful')
 local timer = require('gears.timer')
+local beautiful = require('beautiful')
 
 local script = [[
 #!/usr/bin/env sh
@@ -7,30 +8,27 @@ local script = [[
 set -o errexit -o nounset
 
 MUSIC_DIR="$HOME/musics"
-IMG="$HOME/images/thumb-1920-609120.jpg"
+IMG="]].. beautiful.wallpaper ..[["
 CURR=$(mpc current)
 
-if [ -z "$CURR" ] ; then
-  exit 1
-fi
+[ -z "$CURR" ] && exit 1
 
 FILE=$(mpc -f %file% | head -1)
-FILE_DIR=$(echo "$MUSIC_DIR/$FILE" | sed 's|\(.*\)/.*|\1|')
-FIND=$(find "$FILE_DIR" -type f -name '*.jpg' -o -name '*.png')
+FILE_DIR="$MUSIC_DIR/${FILE%/*}"
+# TODO: should we write a script to convert all webp in jpg or png ??
+FIND=$(find "$FILE_DIR" -regex ".*\.\(jpg\|png\|jpeg\)")
 
-if [ "$?" -eq 0 ] ; then
-  IMG="${FIND}"
-fi
+[ -n "$FIND" ] && IMG="${FIND}"
 
 mpc_output=$(mpc -f ARTIST@%artist%@TITLE@%title%@FILE@%file%@)
+
 echo "IMG@${IMG}@$mpc_output"
 ]]
 
 local function mpc_info()
   awful.spawn.easy_async_with_shell(script, function(stdout, _, _, exit_code)
     if exit_code ~= 0 then
-      awesome.emit_signal("daemon::mpc",
-        '/home/daggoth/images/thumb-1920-609120.jpg', 'N/A', 'N/A', true)
+      awesome.emit_signal("daemon::mpc", beautiful.wallpaper, 'N/A', 'N/A', true)
     end
 
     local img = stdout:match('^IMG@(.*)@ARTIST')
