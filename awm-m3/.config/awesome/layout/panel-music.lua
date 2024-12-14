@@ -90,7 +90,7 @@ end
 
 function music:image()
   return wibox.widget {
-    image = '/home/daggoth/images/thumb-1920-609120.jpg',
+    image = md.wallpaper,
     widget = wibox.widget.imagebox
   }
 end

@@ -158,7 +158,8 @@ sed "s/Dracula/$CAPNAME/g" -i "$VIMCOLOR/$name.vim"
 
 echo "Generating Xresource..."
 cat <<EOF > "$WORKDIR/.Xresources.d/fonts"
-st.font: IosevkaTerm Nerd Font:pixelsize=14:autohint=true;
+st.font: IosevkaTerm Nerd Font:style=Regular:pixelsize=14:antialias=true:autohint=true;
+st.font_fallback: Iosevka Nerd Font:style=Regular:pixelsize=14:antialias=true:autohint=true;
 EOF
 
 cat <<EOF > "$WORKDIR/.Xresources.d/colors"

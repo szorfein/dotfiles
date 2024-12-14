@@ -1,6 +1,5 @@
 local awful = require('awful')
 local timer = require('gears.timer')
-local beautiful = require('beautiful')
 
 local script = [[
 #!/usr/bin/env sh
@@ -8,7 +7,7 @@ local script = [[
 set -o errexit -o nounset
 
 MUSIC_DIR="$HOME/musics"
-IMG="]].. beautiful.wallpaper ..[["
+IMG="]].. md.wallpaper ..[["
 CURR=$(mpc current)
 
 [ -z "$CURR" ] && exit 1
@@ -28,7 +27,7 @@ echo "IMG@${IMG}@$mpc_output"
 local function mpc_info()
   awful.spawn.easy_async_with_shell(script, function(stdout, _, _, exit_code)
     if exit_code ~= 0 then
-      awesome.emit_signal("daemon::mpc", beautiful.wallpaper, 'N/A', 'N/A', true)
+      awesome.emit_signal("daemon::mpc", md.wallpaper, 'N/A', 'N/A', true)
     end
 
     local img = stdout:match('^IMG@(.*)@ARTIST')
