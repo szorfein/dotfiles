@@ -14,6 +14,7 @@ function line:init()
   self.content = wibox.widget {
     font = md.sys.typescale.body_small.font
       .. ' ' .. md.sys.typescale.body_medium.size,
+    forced_height = 24, -- one line
     widget = wibox.widget.textbox
   }
   self.widget = wibox.widget {

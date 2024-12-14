@@ -12,11 +12,14 @@ function control:init()
   self.disk = self:progressbar(5)
   self.battery = self:progressbar(5)
   self:signals()
+
   return wibox.widget {
     {
       self:left_side(),
+      nil,
       self:right_side(),
-      layout = wibox.layout.fixed.horizontal
+      expand = 'none',
+      layout = wibox.layout.align.horizontal
     },
     margins = dpi(12),
     widget = wibox.container.margin

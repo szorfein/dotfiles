@@ -1,3 +1,7 @@
+## v2.0.5 - December 2024
+- New doomemacs colorscheme (vamp)
+- Update awm-m3/picom
+- Update bin/ydl script to convert thumb in jpg (default convert in webp).
 - Remove vifm/bin, new option to install `./install --vifm`.
 - Use `kill -s USR1` instead of `kill -USR1`, compatibility POSIX shell.
 - Font Iosevka and IosevkaTerm (missed) update to the v3.2.1 (was 2.1.0).
