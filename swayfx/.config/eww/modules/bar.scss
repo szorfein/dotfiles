@@ -1,0 +1,30 @@
+.bar {
+  .red {
+    color: #ff0;
+  }
+}
+.workspace {
+  background-color: $bg;
+  color: $secondary;
+  font-family: "icomoon";
+  font-size: 22pt;
+  transition: font-size 0.4s;
+  &:hover {
+    color: $on-secondary-container;
+  }
+  .empty {
+    color: #666;
+    &:hover {
+      color: $on-surface;
+    }
+  }
+  .focus {
+    border: 6px solid;
+    border-color: $secondary-container;
+    background-color: $secondary-container;
+    color: $on-secondary-container;
+    border-radius: 24px;
+    min-width: 56px;
+    min-height: 32px;
+  }
+}

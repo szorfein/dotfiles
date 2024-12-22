@@ -1,0 +1,13 @@
+.m3-icon {
+  .icon-button {
+    font-size: 24px;
+    color: $on-surface-variant;
+    min-width: 40px;
+    min-height: 40px;
+    border-radius: 24px;
+    &:hover {
+      color: $primary;
+      background-color: rgba($primary, 0.08);
+    }
+  }
+}

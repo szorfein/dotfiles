@@ -1,0 +1,19 @@
+// Unsets everything so you can style everything from scratch
+* {
+  all: unset;
+}
+
+@import 'colors.scss';
+@import 'widgets/button.scss';
+@import 'windows/sidebar.scss';
+@import 'windows/powermenu.scss';
+
+window background {
+  color: $bg;
+}
+
+.bar {
+  background-color: $bg;
+}
+
+@import 'modules/bar.scss';

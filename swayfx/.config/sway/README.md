@@ -1,7 +1,8 @@
 # SwayFX
 
 ## Dependencies
-The whole (or many) stack has changed because wayland instead X
+The whole (or many) stack has changed because wayland instead X.
+[migration_guide](https://github.com/swaywm/sway/wiki/i3-Migration-Guide)
 
 - swayfx - wm and compositor
 - wezterm - replace xst (tested foot (very fast and good also)) and kitty (not very interested by a console written in Python, Go, C and++)

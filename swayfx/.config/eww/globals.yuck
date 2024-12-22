@@ -1,0 +1,4 @@
+
+; See or not windows
+(defvar bar_visible true)
+

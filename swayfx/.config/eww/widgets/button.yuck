@@ -1,0 +1,10 @@
+; https://m3.material.io/components/icon-buttons/specs
+(defwidget icon-button [?icon onclick]
+(box :class "m3-icon"
+(button :class "icon-button" :onclick onclick
+
+(box icon)
+
+)
+)
+)

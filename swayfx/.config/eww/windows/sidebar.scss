@@ -1,0 +1,12 @@
+.sidebar {
+  background-color: $surface;
+  color: $on-surface;
+  padding-left: 24px;
+  padding-right: 24px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  .header {
+    min-height: 24px;
+    border-bottom: 1px solid $outline;
+  }
+}

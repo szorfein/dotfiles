@@ -22,7 +22,7 @@ set $term wezterm
 # on the original workspace that the command was run on.
 set $menu dmenu_path | wmenu | xargs swaymsg exec --
 
-# window corner radius in px, 
+# window corner radius in px,
 # material use 12 on card (outlined)
 corner_radius 12
 
@@ -39,8 +39,8 @@ shadow_color $shadow7F
 
 # inactive window fade amount. 0.0 = no dimming, 1.0 = fully dimmed
 default_dim_inactive 0.0
-dim_inactive_colors.unfocused #000000FF
-dim_inactive_colors.urgent #900000FF
+dim_inactive_colors.unfocused $shadowFF
+dim_inactive_colors.urgent $errorFF
 
 # Move minimized windows into Scratchpad (enable|disable)
 scratchpad_minimize disable
@@ -48,7 +48,7 @@ scratchpad_minimize disable
 # Titlebar and border configuration
 # SwayFX BUG: https://github.com/WillPower3309/swayfx/issues/201
 # Looks off if > 0
-titlebar_border_thickness 0
+titlebar_border_thickness 1
 
 # Setting border_width to 1 as a temporary workaround for the transparency bug
 # described below.
@@ -59,11 +59,15 @@ for_window [app_id=".*"] border normal $border_width
 
 set $transparency_hex C0
 
+# https://i3wm.org/docs/userguide.html#client_colors
 # class                   border  bg      text    ind     child_border
-client.focused            "$fg"   "$bg"   "$fg"   "$bg"   "$bg"$transparency_hex
-client.focused_inactive   "$outline" "$bglight" "$fg"  "$bg"   "$bg"$transparency_hex
-client.unfocused          "$outline" "$bg" "$fg" "$bg" "$bg"$transparency_hex
-client.background                 "$bg"
+client.focused            "$fg"   "$bg"   "$fg"   "$fg"   "$fg"$transparency_hex
+client.focused_inactive   "$fg"   "$bg"   "$fg"   "$outline" "$fg"$transparency_hex
+client.unfocused          "$outline" "$bg" "$fg" "$outline" "$outline"$transparency_hex
+client.urgent             "$error" "$bg" "$fg" "$error" "$error"$transparency_hex
+client.placeholder        "$bg" "$outline" "$fg" "$bg" "$outline"$transparency_hex
+
+client.background         "$bg"
 
 # Gaps
 gaps outer 0
@@ -98,6 +102,8 @@ output * bg ~/images/Valorant-1833663.jpg fill
 
 # Run on reload
 exec_always {
+    xrdb ~/.Xdefaults
+
     ~/.config/eww/scripts/start.sh
 }
 

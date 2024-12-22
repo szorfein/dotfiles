@@ -3,3 +3,4 @@ set $fg #E0E2E8
 set $shadow #000000
 set $outline #4C444D
 set $bglight #161217
+set $error #FFB4AB
