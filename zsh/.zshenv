@@ -24,8 +24,13 @@ export XDG_CONFIG_HOME="$HOME"/.config
 export LANG=en_US.UTF-8
 
 # Terminal
-export TERMINAL=xst
-export TERM=xst-256color
+if command -v wezterm &>/dev/null; then
+  export TERMINAL=wezterm
+  export TERM=tmux-256color
+else
+  export TERMINAL=xst
+  export TERM=xst-256color
+fi
 
 # GPG (using plugin from ohmyzsh instead)
 # export GPG_TTY=$(tty)

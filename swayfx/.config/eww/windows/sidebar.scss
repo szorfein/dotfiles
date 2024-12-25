@@ -9,4 +9,20 @@
     min-height: 24px;
     border-bottom: 1px solid $outline;
   }
+  .tab-index {
+    min-width: 24px;
+  }
+
+  .tab-index-1 {
+    color: rgba($primary, 0.40);
+  }
+  .tab-index-2 {
+    color: rgba($secondary, 0.40);
+  }
+  .tab-index-3 {
+    color: rgba($on-surface, 0.40);
+  }
+  .focus {
+    color: #f00;
+  }
 }

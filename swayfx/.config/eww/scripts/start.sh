@@ -16,6 +16,6 @@ kill_pid "pgrep -f sway-workspaces.rb"
 # which produce bug, etc... the only process visible should be 'eww daemon'
 eww daemon \
   && sleep 2 \
-  && eww open-many bar sidebar
+  && eww open-many bar sidebar-activator sidebar
 
 ~/.config/eww/scripts/daemons/sway-workspaces.rb
