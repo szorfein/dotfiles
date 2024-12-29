@@ -4,7 +4,7 @@ set -o errexit
 
 kill_pid() {
   if PID=$($1) ; then
-    kill -9 "$PID"
+    kill -9 $PID
   fi
 }
 

@@ -2,16 +2,16 @@
 
 set -o errexit
 
-get_visible=$(eww get sidebar-visible)
+get_visible=$(eww get navbar-visible)
 
 hide_menu() {
-  eww close sidebar
-  eww update sidebar-visible=false
+  eww close bar
+  eww update navbar-visible=false
 }
 
 show_menu() {
-  eww open sidebar
-  eww update sidebar-visible=true
+  eww open bar
+  eww update navbar-visible=true
 }
 
 if [ "$1" = "toggle" ] ; then

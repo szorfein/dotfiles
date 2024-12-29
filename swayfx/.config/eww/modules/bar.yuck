@@ -45,3 +45,5 @@
 (defvar ws8 "empty")
 (defvar ws9 "empty")
 (defvar ws10 "empty")
+
+(defvar navbar-visible true)

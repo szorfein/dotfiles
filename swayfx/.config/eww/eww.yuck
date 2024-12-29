@@ -2,6 +2,7 @@
 (include "globals.yuck")
 
 (include "widgets/button.yuck")
+(include "widgets/home.yuck")
 
 (include "modules/bar.yuck")
 

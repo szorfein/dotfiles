@@ -14,33 +14,37 @@
                     :duration "300ms"
                     :reveal "${sidebar-visible}"
 
-                   (box :orientation "vertical"
-                        :valign "start"
-                        :class "sidebar"
-                        (header)
-                        ; home
-                        (box :visible "${sidebar-page-index == '1'}"
-                             :orientation "vertical"
-                             (overlay
-                                (calendar)
-                             )
-                        )
-                        ; music
-                        (box :visible "${sidebar-page-index == '2'}"
-                             :orientation "vertical"
-                             (overlay
-                                (box "hello")
-                             )
-                        )
-                        ; ??
-                        (box :visible "${sidebar-page-index == '3'}"
-                             :orientation "vertical"
-                             (overlay
-                                (box "hello")
-                             )
-                        )
-                    )
-                    )
+                    (box :orientation "vertical"
+                         :valign "start"
+                         :space-evenly false
+                         (header)
+                         ; home
+                         (box :visible "${sidebar-page-index == '1'}"
+                              :class "sidebar"
+                              :orientation "vertical"
+                              ;:space-evenly true 
+                              ;:vexpand true
+                              ;:hexpand true
+                              (centerbox :orientation "vertical"
+                                   (home-time)
+                                   (home)
+                                   (home-icons)
+                              )
+                         )
+                         ; music
+                         (box :visible "${sidebar-page-index == '2'}"
+                              (overlay
+                                   (box "hello")
+                              )
+                         )
+                         ; ??
+                         (box :visible "${sidebar-page-index == '3'}"
+                              (overlay
+                                   (box "hello")
+                              )
+                         )
+                 )
+         )
 )
 
 ; invisible widget for activating sidebar
