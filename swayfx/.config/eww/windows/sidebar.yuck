@@ -1,50 +1,51 @@
 
-(defwindow sidebar :monitor 0
-                   :geometry (geometry :x 0
-                                       :y 0
-                                       :width "256px"
-                                       :height "100%"
-                                       :anchor "right center")
-                   :stacking "fg"
-                   :exclusive true
-                   (revealer
-                    ; Would prefer a slideleft animation here but it does not work
-                    ; https://github.com/elkowar/eww/issues/1107
-                    :transition "slideleft"
-                    :duration "300ms"
-                    :reveal "${sidebar-visible}"
+(defwindow sidebar
+    :monitor 0
+    :geometry (geometry :x 0
+                        :y 0
+                        :width "256px"
+                        :height "100%"
+                        :anchor "right center")
+    :stacking "fg"
+    :exclusive true
+    (revealer
+        ; Would prefer a slideleft animation here but it does not work
+        ; https://github.com/elkowar/eww/issues/1107
+        :transition "slideleft"
+        :duration "300ms"
+        :reveal "${sidebar-visible}"
 
-                    (box :orientation "vertical"
-                         :valign "start"
-                         :space-evenly false
-                         (header)
-                         ; home
-                         (box :visible "${sidebar-page-index == '1'}"
-                              :class "sidebar"
-                              :orientation "vertical"
-                              ;:space-evenly true 
-                              ;:vexpand true
-                              ;:hexpand true
-                              (centerbox :orientation "vertical"
-                                   (home-time)
-                                   (home)
-                                   (home-icons)
-                              )
-                         )
-                         ; music
-                         (box :visible "${sidebar-page-index == '2'}"
-                              (overlay
-                                   (box "hello")
-                              )
-                         )
-                         ; ??
-                         (box :visible "${sidebar-page-index == '3'}"
-                              (overlay
-                                   (box "hello")
-                              )
-                         )
-                 )
-         )
+        (box :orientation "vertical"
+            :valign "start"
+            :space-evenly false
+            (header)
+            ; home
+            (box :visible "${sidebar-page-index == '1'}"
+                :class "sidebar"
+                :orientation "vertical"
+                ;:space-evenly true
+                ;:vexpand true
+                ;:hexpand true
+                (box :orientation "vertical"
+                    (home-time)
+                    (home)
+                    (home-icons)
+                )
+            )
+            ; music
+            (box :visible "${sidebar-page-index == '2'}"
+                (overlay
+                    (box "hello")
+                )
+            )
+            ; ??
+            (box :visible "${sidebar-page-index == '3'}"
+                (overlay
+                    (box "hello")
+                )
+            )
+        )
+    )
 )
 
 ; invisible widget for activating sidebar
@@ -54,13 +55,13 @@
                         :y 0
                         :width 1
                         :height "100%"
-                        :anchor "right bottom"
-              )
-              :stacking "bg"
-              :exclusive false
-              (box :halign "fill" :valign "fill" :style "background-color: #f00"
-                (eventbox :onhover "~/.config/eww/scripts/toggle-sidebar.sh show &")
-              )
+                        :anchor "right bottom")
+    :stacking "bg"
+    :exclusive false
+    (box :halign "fill" :valign "fill" 
+        ;:style "background-color: #f00"
+        (eventbox :onhover "~/.config/eww/scripts/toggle-sidebar.sh show &")
+    )
 )
 
 (defwidget header []
@@ -68,22 +69,22 @@
                :valign "start"
                :class "header"
                :hexpand false
-               (box :halign "start"
-                    :orientation "horizontal"
-                    (icon-button :icon "" :onclick "~/.config/eww/scripts/toggle-powermenu.sh &")
-                )
+        (box :halign "start"
+            :orientation "horizontal"
+            (icon-button :icon "" :onclick "~/.config/eww/scripts/toggle-powermenu.sh &")
+        )
 
-                (eventbox
-                    (box :orientation "horizontal"
-                        (tabs-indicators)
-                    )
-                )
+        (eventbox
+            (box :orientation "horizontal"
+                (tabs-indicators)
+            )
+        )
 
-                (box :halign "end"
-                     :orientation "horizontal"
-                     ;(icon-button :icon "" :onclick "imv ~/images &")
-                     (icon-button :icon "" :onclick "~/.config/eww/scripts/toggle-sidebar.sh toggle &")
-                )
+        (box :halign "end"
+            :orientation "horizontal"
+            ;(icon-button :icon "" :onclick "imv ~/images &")
+            (icon-button :icon "" :onclick "~/.config/eww/scripts/toggle-sidebar.sh toggle &")
+        )
     )
 )
 
@@ -107,7 +108,7 @@
 (defwidget tab-indicator [index]
     (eventbox :onclick "eww update sidebar-page-index=${index}"
               :cursor "hand2"
-              (box :class "tab-index tab-index-${sidebar-page-index} ${sidebar-page-index == index ? "focus" : ""}" index)
+        (box :class "tab-index tab-index-${sidebar-page-index} ${sidebar-page-index == index ? "focus" : ""}" index)
     )
 )
 

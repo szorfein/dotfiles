@@ -4,7 +4,6 @@
 (include "widgets/button.yuck")
 (include "widgets/home.yuck")
 
-(include "modules/bar.yuck")
-
+(include "windows/bar.yuck")
 (include "windows/sidebar.yuck")
 (include "windows/powermenu.yuck")

@@ -1,0 +1,47 @@
+(defwidget home-time []
+    (box :orientation "horizontal"
+         :space-evenly true
+         time
+    )
+)
+
+(defwidget home []
+ (box ;:vexpand true ;:hexpand true
+      ;:space-evenly true 
+     (box :orientation "horizontal"
+          :halign "start"
+          (box :orientation "vertical"
+               ;:valign "start"
+               "BATTERY"
+               "USEDRAM"
+               "USEDHDD"
+          )
+     )
+     (box :orientation "horizontal" 
+          :halign "end"
+          ;:space-evenly false
+           (box :orientation "vertical"
+                :class "date"
+                :space-evenly false
+                (label :angle 270 :text day :class "day")
+                (label :angle 270 :text month)
+           )
+      )
+ )
+)
+
+(defwidget home-icons []
+    (box :orientation "vertical"
+         ;:space-evenly true
+         :valign "end"
+        (box :orientation "horizontal"
+            (icon-button :icon "x" :onclick "~/.config/eww/scripts/toggle-nav.sh toggle &")
+            (icon-button :icon "x" :onclick "~/.config/eww/scripts/toggle-nav.sh toggle &")
+            (icon-button :icon "x" :onclick "~/.config/eww/scripts/toggle-nav.sh toggle &")
+         )
+     )
+)
+
+(defpoll time :interval "60s" `date +%H%M`)
+(defpoll day :interval "60m" `date +%a`)
+(defpoll month :interval "60m" `date +%b`)

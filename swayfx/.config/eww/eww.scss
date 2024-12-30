@@ -4,8 +4,11 @@
 }
 
 @import 'colors.scss';
+
 @import 'widgets/button.scss';
 @import 'widgets/home.scss';
+
+@import 'windows/bar.scss';
 @import 'windows/sidebar.scss';
 @import 'windows/powermenu.scss';
 
@@ -17,4 +20,3 @@ window background {
   background-color: $bg;
 }
 
-@import 'modules/bar.scss';
