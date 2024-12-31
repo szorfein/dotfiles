@@ -21,16 +21,15 @@
             (header)
             ; home
             (box :visible "${sidebar-page-index == '1'}"
-                :class "sidebar"
+                ;:class "sidebar"
                 :orientation "vertical"
-                ;:space-evenly true
+                :space-evenly false
                 ;:vexpand true
                 ;:hexpand true
-                (box :orientation "vertical"
-                    (home-time)
-                    (home)
-                    (home-icons)
-                )
+                (home-styled)
+                (home-time)
+                (home)
+                (home-icons)
             )
             ; music
             (box :visible "${sidebar-page-index == '2'}"

@@ -1,6 +1,19 @@
 .date {
+  margin-top: 12px;
   font-family: "demova";
-  font-size: 48px;
+  font-size: 54px;
+
   .day {
+    margin: -4px -14px;
   }
+
+  .daynb {
+    margin-left: 8px;
+    margin-top: 8px; // align
+    font-weight: bold;
+  }
+}
+
+.primary {
+  color: $primary;
 }

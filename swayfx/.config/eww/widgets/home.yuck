@@ -6,7 +6,7 @@
 )
 
 (defwidget home []
- (box ;:vexpand true ;:hexpand true
+ (box :valign "fill" :halign "fill"
       ;:space-evenly true 
      (box :orientation "horizontal"
           :halign "start"
@@ -19,15 +19,47 @@
      )
      (box :orientation "horizontal" 
           :halign "end"
-          ;:space-evenly false
+          :space-evenly true 
            (box :orientation "vertical"
                 :class "date"
-                :space-evenly false
-                (label :angle 270 :text day :class "day")
-                (label :angle 270 :text month)
+                (label :class "day" :text "${day.day1}")
+                (label :class "day" :text "${day.day2}")
+                (label :class "day" :text "${day.day3}")
+                (label :class "day" :text "${month.month1}")
+                (label :class "day" :text "${month.month2}")
+                (label :class "day" :text "${month.month3}")
            )
       )
  )
+)
+
+(defwidget home-styled []
+    (box :valign "center" :halign "center" :class "date"
+        (box :orientation "horizontal"
+            (box :orientation "vertical"
+                (label :class "day" :text "${day.day1}")
+                (label :class "day primary" :text "${day.day2}")
+                (label :class "day" :text "${day.day3}")
+                (label :class "day" :text "")
+            )
+        )
+        (box :orientation "horizontal"
+            (box :orientation "vertical"
+                (label :class "day" :text "")
+                (label :class "day" :text "${month.month1}")
+                (label :class "day primary" :text "${month.month2}")
+                (label :class "day" :text "${month.month3}")
+            )
+        )
+        (box :orientation "horizontal"
+            (box :orientation "vertical"
+                (label :angle 90 :class "day" :text ">")
+                (label :class "day" :text "")
+                (label :class "day daynb" :justify "fill" :yalign "6.6"  :text "${day_nb}")
+                (label :class "day" :text "")
+            )
+        )
+    )
 )
 
 (defwidget home-icons []
@@ -35,13 +67,17 @@
          ;:space-evenly true
          :valign "end"
         (box :orientation "horizontal"
-            (icon-button :icon "x" :onclick "~/.config/eww/scripts/toggle-nav.sh toggle &")
+            (box :tooltip "Toggle navbar"
+                (icon-button :icon "" :onclick "~/.config/eww/scripts/toggle-nav.sh toggle &")
+            )
             (icon-button :icon "x" :onclick "~/.config/eww/scripts/toggle-nav.sh toggle &")
             (icon-button :icon "x" :onclick "~/.config/eww/scripts/toggle-nav.sh toggle &")
          )
      )
 )
 
+; all vars
 (defpoll time :interval "60s" `date +%H%M`)
-(defpoll day :interval "60m" `date +%a`)
-(defpoll month :interval "60m" `date +%b`)
+(defpoll day_nb :interval "60m" `date +%e`)
+(defpoll day :interval "60m" `~/.config/eww/scripts/date-json.sh day`)
+(defpoll month :interval "60m" `~/.config/eww/scripts/date-json.sh month`)
