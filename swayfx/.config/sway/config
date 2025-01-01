@@ -80,7 +80,8 @@ show_marks no
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 #output * bg ~/images/psychonaut.jpg fill
-output * bg ~/images/HogwartsLegacy_Dark.png fill
+#output * bg ~/images/HogwartsLegacy_Dark.png fill
+output * bg ~/images/nun.jpg fill
 
 # Example configuration:
 #

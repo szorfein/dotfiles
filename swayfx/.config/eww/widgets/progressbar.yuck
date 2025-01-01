@@ -1,0 +1,40 @@
+(defwidget progressbar-circular [?icon]
+    (box :class "progressbar-circular"
+        (overlay
+            (box :halign "center"
+                 :valign "center"
+                 :class "icon"
+                "${icon}"
+            )
+            (circular-progress
+                :class "backdrop"
+                :thickness 4
+                :value 100
+            )
+            (circular-progress
+                :thickness 4
+                :value 66
+            )
+        )
+    )
+)
+
+(defwidget progressbar [?icon]
+    (box :class "progressbar"
+         :space-evenly false
+         :spacing 8
+        (box :halign "start"
+             :orientation "horizontal"
+             :valign "center"
+             :class "icon"
+            "${icon}"
+        )
+        (box :valign "center"
+            (progress
+                :orientation "horizontal"
+                :flipped false ; reverse the bar on true...
+                :value 66
+            )
+        )
+    )
+)

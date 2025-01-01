@@ -28,7 +28,23 @@
                 ;:hexpand true
                 (home-styled)
                 (home-time)
-                (home)
+                ;(home)
+                (overlay
+                    :space-evenly false
+                    :style "padding: 10px"
+                (box :orientation "h"
+                    :halign "start"
+                    (box :orientation "v"
+                        (home-progressline)
+                        (home-progressline)
+                    )
+                )
+                (box :valign "start"
+                    :halign "end"
+                        :hexpand false
+                    (home-sun)
+                ))
+                (home-progressline-circular)
                 (home-icons)
             )
             ; music

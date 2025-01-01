@@ -3,15 +3,29 @@
   font-family: "demova";
   font-size: 54px;
 
+  // top, right, bottom, left
   .day {
-    margin: -4px -14px;
+    margin: -6px -6px;
   }
 
   .daynb {
-    margin-left: 8px;
+    margin-left: 6px;
     margin-top: 8px; // align
     font-weight: bold;
   }
+}
+
+.home-progress {
+  //border: 1px solid #f00;
+}
+
+.sun {
+  font-family: "Material Symbols Outlined";
+  font-weight: bold;
+  font-size: 48px;
+  min-height: 66px;
+  min-width: 66px;
+  //border: 1px solid #f00;
 }
 
 .primary {

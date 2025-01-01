@@ -1,7 +1,7 @@
 (defwidget home-time []
     (box :orientation "horizontal"
          :space-evenly true
-         time
+         "${time.hour}${time.min}"
     )
 )
 
@@ -55,7 +55,7 @@
             (box :orientation "vertical"
                 (label :angle 90 :class "day" :text ">")
                 (label :class "day" :text "")
-                (label :class "day daynb" :justify "fill" :yalign "6.6"  :text "${day_nb}")
+                (label :class "day daynb" :yalign "6.6"  :text "${day_nb}")
                 (label :class "day" :text "")
             )
         )
@@ -76,8 +76,33 @@
      )
 )
 
+(defwidget home-progressline-circular []
+    (box :orientation "horizontal"
+        (progressbar-circular :icon "")
+        (progressbar-circular :icon "")
+        (progressbar-circular :icon "")
+    )
+)
+
+(defwidget home-progressline []
+    (box :orientation "vertical"
+        :class "home-progress"
+        (progressbar :icon "")
+        (progressbar :icon "")
+        (progressbar :icon "")
+    )
+)
+
+(defwidget home-sun []
+    (box :valign "center"
+        :halign "center"
+        :class "sun"
+        "${time.icon}"
+    )
+)
+
 ; all vars
-(defpoll time :interval "60s" `date +%H%M`)
+(defpoll time :interval "60s" `~/.config/eww/scripts/time-json.sh`)
 (defpoll day_nb :interval "60m" `date +%e`)
 (defpoll day :interval "60m" `~/.config/eww/scripts/date-json.sh day`)
 (defpoll month :interval "60m" `~/.config/eww/scripts/date-json.sh month`)

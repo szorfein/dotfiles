@@ -11,6 +11,8 @@ The whole (or many) stack has changed because wayland instead X.
 - swaybg
 - gem install --user-install i3ipc
 - wl-clipboard
+- jq
+- grim (screenshot), replace scrot
 
 For emacs, you should use emacs-wayland intead of emacs-nativecomp
 
