@@ -2,6 +2,13 @@
 
 set -o errexit
 
+pid_file=/tmp/sidebar
+
+[ -f "$pid_file" ] && exit 0
+
+pid=$(echo $$)
+echo "$pid" >>"$pid_file"
+
 get_visible=$(eww get sidebar-visible)
 
 hide_menu() {
@@ -27,3 +34,5 @@ if [ "$1" = "show" ] ; then
         show_menu
     fi
 fi
+
+rm -r "$pid_file"

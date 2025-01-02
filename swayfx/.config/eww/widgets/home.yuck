@@ -1,3 +1,4 @@
+; Contain all the widgets on the home, sidebar
 (defwidget home-time []
     (box :orientation "horizontal"
          :space-evenly true
@@ -53,9 +54,17 @@
         )
         (box :orientation "horizontal"
             (box :orientation "vertical"
-                (label :angle 90 :class "day" :text ">")
+                ;(label :angle 90 :class "day" :text ">")
+                ;(home-sun)
                 (label :class "day" :text "")
-                (label :class "day daynb" :yalign "6.6"  :text "${day_nb}")
+                (home-sun)
+                ;(label :class "day" :text "")
+                (box :space-overlay true
+                    :valign "top"
+                    :halign "center"
+                    :style "padding-right: 16px"
+                    (label :class "day daynb" :text "${day_nb}")
+                )
                 (label :class "day" :text "")
             )
         )
@@ -98,6 +107,28 @@
         :halign "center"
         :class "sun"
         "${time.icon}"
+    )
+)
+
+(defwidget home-buttons []
+    (centerbox :orientation "horizontal"
+        ;:style "border: 1px solid #f00"
+        (box :spacing 16
+            :halign "start"
+            (slider-vertical)
+        )
+        (box :orientation "vertical"
+            :spacing 16
+            :halign "center"
+            (icon-filled :icon "" :onclick "")
+            (icon-filled :icon "" :onclick "" :class "tertiary")
+        )
+        (box :orientation "vertical"
+            :spacing 16
+            :halign "end"
+            (icon-filled :icon "" :onclick "" :class "secondary")
+            (icon-filled :icon "" :onclick "" :class "error")
+        )
     )
 )
 

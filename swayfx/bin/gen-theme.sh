@@ -30,7 +30,11 @@ mkdir -p "$workdir/.vim"
 
 # colours to extract
 primary=$(ext_dark 'primary')
+on_primary=$(ext_dark 'onPrimary')
 secondary=$(ext_dark 'secondary')
+on_secondary=$(ext_dark 'onSecondary')
+tertiary=$(ext_dark 'tertiary')
+on_tertiary=$(ext_dark 'onTertiary')
 surface=$(ext_dark 'surface')
 on_surface=$(ext_dark 'onSurface')
 on_surface_variant=$(ext_dark 'onSurfaceVariant')
@@ -41,6 +45,7 @@ background=$(ext_dark 'background')
 secondary_container=$(ext_dark 'secondaryContainer')
 on_secondary_container=$(ext_dark 'onSecondaryContainer')
 error=$(ext_dark 'error')
+on_error=$(ext_dark 'onError')
 shadow=$(ext_dark 'shadow')
 scrim=$(ext_dark 'scrim')
 outline_variant=$(ext_dark 'outlineVariant')
@@ -62,7 +67,11 @@ EOF
 
 cat <<EOF > "$workdir/.config/eww/colors.scss"
 \$primary: $primary;
+\$on-primary: $on_primary;
 \$secondary: $secondary;
+\$on-secondary: $on_secondary;
+\$tertiary: $tertiary;
+\$on-tertiary: $on_tertiary;
 \$bg: $surface;
 \$surface: $surface;
 \$on-surface: $on_surface;
@@ -71,6 +80,7 @@ cat <<EOF > "$workdir/.config/eww/colors.scss"
 \$secondary-container: $secondary_container;
 \$on-secondary-container: $on_secondary_container;
 \$error: $error;
+\$on-error: $on_error;
 \$outline: $outline;
 \$scrim: $scrim;
 \$surface-tint: $surface_tint;

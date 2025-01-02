@@ -1,10 +1,19 @@
 ; https://m3.material.io/components/icon-buttons/specs
 (defwidget icon-button [?icon onclick]
-(box :class "m3-icon"
-(button :class "icon-button" :onclick onclick
-
-(box icon)
-
+    (box :class "m3-icon"
+        (button :class "icon-button" :onclick onclick
+            (box icon)
+        )
+    )
 )
-)
+
+(defwidget icon-filled [?icon onclick ?class]
+    (box :class "icon-filled ${class}"
+        :height 48 :width 48
+        (button :onclick onclick
+            (box :valign "center" :halign "center"
+                icon
+            )
+        )
+    )
 )

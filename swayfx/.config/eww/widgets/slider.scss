@@ -1,0 +1,18 @@
+.slider-vertical {
+  scale {
+    margin: 6px;
+  }
+
+  scale trough {
+    background-color: $secondary-container;
+    min-height: 80px;
+    min-width: 38px;
+    border-radius: 18px;
+  }
+
+  scale trough highlight {
+    background-color: $primary;
+    border-radius: 18px;
+    transition: 0.3s;
+  }
+}

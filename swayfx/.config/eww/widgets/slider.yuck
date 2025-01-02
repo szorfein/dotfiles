@@ -1,0 +1,11 @@
+(defwidget slider-vertical []
+    (box :class "slider-vertical"
+        (scale :orientation "vertical"
+            :value 66
+            :max 100
+            :min 1
+            :hexpand true
+            :flipped true
+        )
+    )
+)
