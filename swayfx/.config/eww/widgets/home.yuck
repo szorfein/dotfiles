@@ -87,6 +87,10 @@
 
 (defwidget home-progressline-circular []
     (box :orientation "horizontal"
+        :halign "center"
+        :spacing 20
+        :space-evenly false
+        ;:height 50
         (progressbar-circular :icon "")
         (progressbar-circular :icon "")
         (progressbar-circular :icon "")
@@ -129,6 +133,14 @@
             (icon-filled :icon "" :onclick "" :class "secondary")
             (icon-filled :icon "" :onclick "" :class "error")
         )
+    )
+)
+
+(defwidget home-loc []
+    (box :orientation "vertical"
+        "ICON"
+        "OBAMA"
+        "CONTRY"
     )
 )
 

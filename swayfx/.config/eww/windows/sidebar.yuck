@@ -24,30 +24,40 @@
                 ;:class "sidebar"
                 :orientation "vertical"
                 :space-evenly false
-                ;:vexpand true
-                ;:hexpand true
-                (home-styled)
-                (home-time)
-                ;(home)
-                (overlay
+                :valign "fill"
+                :halign "fill"
+                (box :orientation "v" :valign "start"
                     :space-evenly false
-                    :style "padding: 10px"
-                    (box :orientation "h"
-                        :halign "start"
-                        (box :orientation "v"
-                            (home-progressline)
-                            (home-progressline)
+                    (home-styled)
+                    (home-time)
+                )
+                (box :orientation "v" :valign "center"
+                    ;(home)
+                    (overlay
+                        :space-evenly false
+                        :style "padding: 10px"
+                        (box :orientation "h"
+                            :halign "start"
+                            (box :orientation "v"
+                                (home-progressline)
+                                (home-progressline)
+                            )
+                        )
+                        (box :valign "start"
+                            :halign "end"
+                            :orientation "vertical"
+                            (home-sun)
+                            (home-loc)
                         )
                     )
-                    (box :valign "start"
-                        :halign "end"
-                        :hexpand false
-                        (home-sun)
-                    )
                 )
-                (home-progressline-circular)
-                (home-icons)
-                (home-buttons)
+                (box :orientation "v"
+                    :valign "end"
+                    ;:space-evenly false
+                    (home-progressline-circular)
+                    ;(home-icons)
+                    (home-buttons)
+                )
             )
             ; music
             (box :visible "${sidebar-page-index == '2'}"
