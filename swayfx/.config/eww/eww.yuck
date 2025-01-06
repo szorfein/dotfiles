@@ -3,8 +3,9 @@
 
 (include "widgets/button.yuck")
 (include "widgets/slider.yuck")
-(include "widgets/home.yuck")
 (include "widgets/progressbar.yuck")
+(include "widgets/home.yuck")
+(include "widgets/music.yuck")
 
 (include "windows/bar.yuck")
 (include "windows/sidebar.yuck")

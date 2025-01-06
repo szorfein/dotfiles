@@ -61,8 +61,8 @@
             )
             ; music
             (box :visible "${sidebar-page-index == '2'}"
-                (overlay
-                    (box "hello")
+                (box :orientation "vertical"
+                    (music-metadata)
                 )
             )
             ; ??

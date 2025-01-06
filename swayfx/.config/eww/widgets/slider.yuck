@@ -9,3 +9,15 @@
         )
     )
 )
+
+(defwidget slider-horizontal [?value ?max ?onchange]
+    (box :class "slider-horizontal"
+        (scale :orientation "horizontal"
+            :value "${value}"
+            :max "${max}"
+            :min 0
+            :hexpand true
+            :onchange "${onchange}"
+        )
+    )
+)

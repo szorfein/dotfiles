@@ -13,6 +13,7 @@ The whole (or many) stack has changed because wayland instead X.
 - wl-clipboard
 - jq
 - grim (screenshot), replace scrot
+- playerctl, mpd-mpris or mpdris2, mpv-mpris
 
 For emacs, you should use emacs-wayland intead of emacs-nativecomp
 

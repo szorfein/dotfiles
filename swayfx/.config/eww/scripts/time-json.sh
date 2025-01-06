@@ -3,9 +3,6 @@
 set -o errexit
 
 # https://www.baeldung.com/linux/jq-passing-bash-variables
-# Lowered
-#TODAY=$(date +%a | tr '[:upper:]' '[:lower:]')
-#MONTH=$(date +%b | tr '[:upper:]' '[:lower:]')
 HOUR=$(date +%k)
 MINUTE=$(date +%M)
 # return a Material Icon
@@ -43,10 +40,3 @@ fi
 #if [ "$1" = "day" ] ; then
 LL=$(echo '{"hour": "0", "min":"1", "icon": "2"}' | jq '{"hour": $ARGS.positional[0], "min": $ARGS.positional[1], "icon": $ARGS.positional[2]}' --args ${HOUR} ${MINUTE} ${ICON})
 echo $LL
-#fi
-
-#if [ "$1" = "month" ] ; then
-    # Month
-#    LL=$(echo '{"month1": "0", "month2":"1", "month3": "2"}' | jq '{"month1": $ARGS.positional[0], "month2": $ARGS.positional[1], "month3": $ARGS.positional[2]}' --args ${MONTH:0:1} ${MONTH:1:1} ${MONTH:2:1})
-#    echo $LL
-#fi

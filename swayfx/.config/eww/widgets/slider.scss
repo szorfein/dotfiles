@@ -16,3 +16,22 @@
     transition: 0.3s;
   }
 }
+
+.slider-horizontal {
+  scale {
+    margin: 6px;
+  }
+
+  scale trough {
+    background-color: $secondary-container;
+    min-height: 50px;
+    min-width: 100px;
+    border-radius: 14px;
+  }
+
+  scale trough highlight {
+    background-color: $primary;
+    transition: 0.3s;
+    border-radius: 14px;
+  }
+}

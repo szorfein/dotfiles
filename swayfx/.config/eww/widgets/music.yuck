@@ -1,0 +1,16 @@
+(defwidget music-metadata []
+    (box :orientation "vertical"
+        "Displaying metadata"
+        (image :path "${media.arturl}")
+        "${media.status}"
+        "${media.title}"
+        "${media.artist}"
+        (slider-horizontal :max "${media.length}"
+            :value "${media.position}"
+            :onchange "playerctl position {}"
+        )
+    )
+)
+
+; all vars
+(defvar media "[]")
