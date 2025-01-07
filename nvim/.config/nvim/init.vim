@@ -58,23 +58,16 @@ set cindent
 " Shell
 set shell=/bin/zsh
 
-"let g:lightline = {
-"		\ 'colorscheme': 'arcana',
-"		\ }
-
-if v:version < 802
-"   packadd! arcana
-endif
-
 " Load custom theme when installed
 " (colorscheme + lightline)
 if filereadable(glob("~/.config/nvim/theme.vim"))
     execute 'source' '~/.config/nvim/theme.vim'
 endif
 
-syntax enable
-
-"; colorscheme arcana
-"
-
 lua require('config-lazy')
+
+" Colours
+syntax enable
+" lightline before
+let g:lightline = {'colorscheme': 'catppuccin'}
+colorscheme catppuccin
