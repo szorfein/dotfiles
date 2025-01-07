@@ -1,17 +1,22 @@
 .date {
-  margin-top: 12px;
+  margin-top: dpi(12px);
   font-family: "demova";
-  font-size: 54px;
+  font-size: dpi(57px);
+  //letter-spacing: dpi(-0.25pt);
+  min-height: dpi(64pt);
+  font-weight: 500;
 
   // top, right, bottom, left
   .day {
-    margin: -6px -12px;
+    //margin: dpi(-6px) dpi(-12px);
   }
 
   .daynb {
-    margin-left: 6px;
-    margin-top: 8px; // align
-    font-weight: bold;
+    font-family: "demova";
+    margin-left: dpi(6px);
+    font-size: dpi(57px);
+    margin-top: dpi(8px); // align
+    font-weight: 800;
   }
 }
 
@@ -21,10 +26,10 @@
 
 .sun {
   font-family: "Material Symbols Outlined";
-  font-weight: bold;
-  font-size: 48px;
-  min-height: 66px;
-  min-width: 66px;
+  font-weight: 800;
+  font-size: dpi(57px);
+  min-height: dpi(64px);
+  min-width: dpi(64px);
   //border: 1px solid #f00;
 }
 

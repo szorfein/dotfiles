@@ -3,12 +3,27 @@
   all: unset;
 }
 
+@import '_scale.scss';
+
+@function dpi($value) {
+  $unit: if(unitless($value), null, unit($value));
+
+  @if ($unit == "px" or $unit == "pt") {
+    @return ($value * $scale);
+  } @else {
+    // Return the original value if it's not px or pt
+    @return $value;
+  }
+}
+
 @import 'colors.scss';
 
 @import 'widgets/button.scss';
 @import 'widgets/progressbar.scss';
 @import 'widgets/slider.scss';
+@import 'widgets/card.scss';
 @import 'widgets/home.scss';
+@import 'widgets/music.scss';
 
 @import 'windows/bar.scss';
 @import 'windows/sidebar.scss';

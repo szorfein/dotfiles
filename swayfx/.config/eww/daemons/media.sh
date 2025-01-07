@@ -22,6 +22,10 @@ if [ -f "$PID_FILE" ] ; then
     rm -r "$PID_FILE"
 fi
 
+if pgrep -f "playerctl --follow metadata" ; then
+    pgrep -f "playerctl --follow metadata" | xargs kill
+fi
+
 echo "$PID" >"$PID_FILE"
 
 #while :; do 

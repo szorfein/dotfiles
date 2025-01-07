@@ -19,9 +19,9 @@ For emacs, you should use emacs-wayland intead of emacs-nativecomp
 
 ## Configure keymap
 
-Modify the default xkb-config.env
+Modify the default xkb.example
 
-    cp xkb-config.env xkb-config
+    cp xkb.example keyboard
 
 For a french keyboard for example, you need to change the default 'en'
 
@@ -36,3 +36,10 @@ input type:keyboard {
 bindsym $mod+ampersand workspace number 1
 ...etc
 ```
+
+## Add your DPI scale factor
+
+    ~/.dotfiles/swayfx/bin/test-dpi.sh 1366 768 11.6
+    dp scale factor 0.8443388199535182
+
+    echo "$scale: 0.8443388199535182;" ~/.config/eww/_scale.scss

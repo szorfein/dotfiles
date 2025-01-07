@@ -38,6 +38,7 @@ on_tertiary=$(ext_dark 'onTertiary')
 surface=$(ext_dark 'surface')
 on_surface=$(ext_dark 'onSurface')
 on_surface_variant=$(ext_dark 'onSurfaceVariant')
+surface_container_low=$(ext_dark 'surfaceContainerLow')
 surface_container_high=$(ext_dark 'surfaceContainerHigh')
 surface_tint=$(ext_dark 'surfaceTint')
 # background is lighter than surface
@@ -75,6 +76,7 @@ cat <<EOF > "$workdir/.config/eww/colors.scss"
 \$bg: $surface;
 \$surface: $surface;
 \$on-surface: $on_surface;
+\$surface-container-low: $surface_container_low;
 \$surface-container-high: $surface_container_high;
 \$on-surface-variant: $on_surface_variant;
 \$secondary-container: $secondary_container;
@@ -83,6 +85,7 @@ cat <<EOF > "$workdir/.config/eww/colors.scss"
 \$on-error: $on_error;
 \$outline: $outline;
 \$scrim: $scrim;
+\$shadow: $shadow;
 \$surface-tint: $surface_tint;
 EOF
 

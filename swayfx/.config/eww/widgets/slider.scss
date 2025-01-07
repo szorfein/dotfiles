@@ -1,37 +1,37 @@
 .slider-vertical {
   scale {
-    margin: 6px;
+    margin: dpi(6px);
   }
 
   scale trough {
     background-color: $secondary-container;
-    min-height: 80px;
-    min-width: 38px;
-    border-radius: 18px;
+    min-height: dpi(80px);
+    min-width: dpi(38px);
+    border-radius: dpi(18px);
   }
 
   scale trough highlight {
     background-color: $primary;
-    border-radius: 18px;
+    border-radius: dpi(18px);
     transition: 0.3s;
   }
 }
 
 .slider-horizontal {
   scale {
-    margin: 6px;
+    margin: dpi(6px);
   }
 
   scale trough {
     background-color: $secondary-container;
-    min-height: 50px;
-    min-width: 100px;
-    border-radius: 14px;
+    min-height: dpi(50px);
+    min-width: dpi(100px);
+    border-radius: dpi(14px);
   }
 
   scale trough highlight {
     background-color: $primary;
     transition: 0.3s;
-    border-radius: 14px;
+    border-radius: dpi(14px);
   }
 }

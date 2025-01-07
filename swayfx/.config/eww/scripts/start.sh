@@ -21,6 +21,8 @@ eww daemon \
          sidebar-activator sidebar
 
 ~/.config/eww/scripts/daemons/sway-workspaces.rb
-setsid ~/.config/eww/daemons/media.sh >/dev/null 2>&1 < /dev/null &
+#setsid ~/.config/eww/daemons/media.sh >/dev/null 2>&1 < /dev/null &
+setsid ~/.config/eww/daemons/media.sh &
+#~/.config/eww/daemons/media.sh
 
 

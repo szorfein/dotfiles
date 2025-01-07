@@ -146,12 +146,7 @@ input type:touchpad {
   dwt enabled
 }
 
-input type:keyboard {
-  xkb_layout fr
-  xkb_options grp:alt_shift_toggle,ctrl:nocaps
-  repeat_delay 300
-  repeat_rate 50
-}
+include ~/.config/sway/keyboard
 
 #
 # You can get the names of your inputs by running: swaymsg -t get_inputs
@@ -209,29 +204,7 @@ input type:keyboard {
 #
 # Workspaces:
 #
-# Switch to workspace
-# https://github.com/swaywm/sway/wiki#workspace-switching-on-the-french-layout
-    bindsym $mod+ampersand workspace number 1
-    bindsym $mod+eacute workspace number 2
-    bindsym $mod+quotedbl workspace number 3
-    bindsym $mod+apostrophe workspace number 4
-    bindsym $mod+parenleft workspace number 5
-    bindsym $mod+minus workspace number 6
-    bindsym $mod+egrave workspace number 7
-    bindsym $mod+underscore workspace number 8
-    bindsym $mod+ccedilla workspace number 9
-    bindsym $mod+agrave workspace number 10
 
-    bindsym $mod+Shift+ampersand move container to workspace number 1
-    bindsym $mod+Shift+eacute move container to workspace number 2
-    bindsym $mod+Shift+quotedbl move container to workspace number 3
-    bindsym $mod+Shift+apostrophe move container to workspace number 4
-    bindsym $mod+Shift+5 move container to workspace number 5
-    bindsym $mod+Shift+minus move container to workspace number 6
-    bindsym $mod+Shift+egrave move container to workspace number 7
-    bindsym $mod+Shift+underscore move container to workspace number 8
-    bindsym $mod+Shift+ccedilla move container to workspace number 9
-    bindsym $mod+Shift+agrave move container to workspace number 10
 #
 # Layout stuff:
 #

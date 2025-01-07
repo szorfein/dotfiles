@@ -7,7 +7,8 @@
   background-color: $bg;
   color: $secondary;
   font-family: "icomoon";
-  font-size: 22pt;
+  font-size: dpi(24pt);
+  min-width: dpi(56px);
   transition: font-size 0.4s;
   &:hover {
     color: $on-secondary-container;
@@ -19,12 +20,12 @@
     }
   }
   .focus {
-    border: 6px solid;
+    border: dpi(6px) solid;
     border-color: $secondary-container;
     background-color: $secondary-container;
     color: $on-secondary-container;
-    border-radius: 24px;
-    min-width: 56px;
-    min-height: 32px;
+    border-radius: dpi(28px);
+    min-width: dpi(56px);
+    min-height: dpi(32px);
   }
 }
