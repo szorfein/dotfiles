@@ -27,6 +27,7 @@ mkdir -p "$workdir/.config/eww"
 mkdir -p "$workdir/.config/wezterm"
 mkdir -p "$workdir/.tmux"
 mkdir -p "$workdir/.vim"
+mkdir -p "$workdir/.config/nvim/lua"
 
 # colours to extract
 primary=$(ext_dark 'primary')
@@ -38,9 +39,9 @@ on_tertiary=$(ext_dark 'onTertiary')
 surface=$(ext_dark 'surface')
 on_surface=$(ext_dark 'onSurface')
 on_surface_variant=$(ext_dark 'onSurfaceVariant')
-surface_container_low=$(ext_dark 'surfaceContainerLow')
-surface_container_high=$(ext_dark 'surfaceContainerHigh')
 surface_tint=$(ext_dark 'surfaceTint')
+inverse_surface=$(ext_dark 'inverseSurface')
+inverse_on_surface=$(ext_dark 'inverseOnSurface')
 # background is lighter than surface
 background=$(ext_dark 'background')
 secondary_container=$(ext_dark 'secondaryContainer')
@@ -51,6 +52,11 @@ shadow=$(ext_dark 'shadow')
 scrim=$(ext_dark 'scrim')
 outline_variant=$(ext_dark 'outlineVariant')
 outline=$(ext_dark 'outline')
+surface_container_lowest=$(ext_dark 'surfaceContainerLowest')
+surface_container_low=$(ext_dark 'surfaceContainerLow')
+surface_container=$(ext_dark 'surfaceContainer')
+surface_container_high=$(ext_dark 'surfaceContainerHigh')
+surface_container_highest=$(ext_dark 'surfaceContainerHighest')
 # not include in dark theme
 dark_primary=$(ext_palette 'primary.["70"]')
 dark_secondary=$(ext_palette 'secondary.["70"]')
@@ -87,6 +93,8 @@ cat <<EOF > "$workdir/.config/eww/colors.scss"
 \$scrim: $scrim;
 \$shadow: $shadow;
 \$surface-tint: $surface_tint;
+\$inverse-surface: $inverse_surface;
+\$inverse-on-surface: $inverse_on_surface;
 EOF
 
 cat <<EOF > "$workdir/.config/custom/sway"
@@ -203,6 +211,20 @@ unbind -T copy-mode-vi Enter
 bind-key -T copy-mode-vi y send-keys -X copy-pipe-and-cancel 'wl-copy'
 bind-key -T copy-mode-vi Enter send-keys -X copy-pipe-and-cancel 'wl-copy'
 bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel 'wl-copy'
+EOF
+
+# neovim
+cat <<EOF > "$workdir/.config/nvim/lua/colors.lua"
+-- theme $2
+return {
+  text = '$on_surface',
+  --crust = '$surface_container_lowest',
+  mantle = '$surface_container_low',
+  base = '$surface',
+  surface0 = '$surface_container_highest',
+  --surface1 = '$surface_container',
+  --surface2 = '$surface_container_high'
+}
 EOF
 
 echo "$2 theme generated at $workdir"

@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 #set -o errexit
 
@@ -18,7 +18,7 @@ PID=$$
 if [ -f "$PID_FILE" ] ; then
     OLD_PID=$(cat <"$PID_FILE")
     echo "old pid found $OLD_PID"
-    kill -9 "$OLD_PID"
+    kill "$OLD_PID"
     rm -r "$PID_FILE"
 fi
 
@@ -34,7 +34,7 @@ echo "$PID" >"$PID_FILE"
 #done
 # requires playerctl>=2.0
 # Add non-space character ":" before each parameter to prevent 'read' from skipping over them
-playerctl --follow metadata --format $':{{emoji(status)}}\t:{{position}}\t:{{mpris:length}}\t:{{playerName}}\t:{{mpris:artUrl}}\t:{{duration(position)}}\t:{{duration(mpris:length)}}' | while read -r playing position length name arturl hpos hlen; do
+playerctl --follow metadata --format $':{{status}}\t:{{position}}\t:{{mpris:length}}\t:{{playerName}}\t:{{mpris:artUrl}}\t:{{duration(position)}}\t:{{duration(mpris:length)}}' | while read -r playing position length name arturl hpos hlen; do
 
 # All vars are prefixed with ':'
 playing=${playing:1}

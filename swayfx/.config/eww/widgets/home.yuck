@@ -35,7 +35,8 @@
 )
 
 (defwidget home-styled []
-    (box :valign "center" :halign "center" :class "date"
+    (box :valign "center" :halign "center"
+        :class "date"
         (box :orientation "horizontal"
             (box :orientation "vertical"
                 (label :class "day" :text "${day.day1}")
@@ -60,9 +61,9 @@
                 (home-sun)
                 ;(label :class "day" :text "")
                 (box :space-overlay true
-                    :valign "top"
+                    :valign "center"
                     :halign "center"
-                    :style "padding-right: 16px"
+                    :style "padding-right: 8px"
                     (label :class "day daynb" :text "${day_nb}")
                 )
                 (label :class "day" :text "")

@@ -1,13 +1,13 @@
 .m3-icon {
   .icon-button {
     font-family: "Material Symbols Outlined";
-    font-size: 24px;
+    font-size: dpi(24px);
     color: $on-surface-variant;
-    min-width: 40px;
-    min-height: 40px;
-    border-radius: 24px;
+    min-width: dpi(40px);
+    min-height: dpi(40px);
+    border-radius: 50%;
     &:hover {
-      color: $primary;
+      color: $on-surface-variant;
       background-color: rgba($primary, 0.08);
     }
   }
@@ -51,5 +51,63 @@
       background-color: rgba($on-error, 0.08);
       border-radius: 50%; // circular
     }
+  }
+}
+
+.icon-filled-tonal {
+  font-family: "Material Symbols Outlined";
+  font-size: dpi(24px);
+  min-height: dpi(40px);
+  min-height: dpi(40px);
+  background-color: $secondary-container;
+  color: $on-secondary-container;
+  border-radius: 50%; // circular
+  & button:hover {
+    background-color: rgba($on-secondary-container, 0.08);
+    border-radius: 50%; // circular
+  }
+}
+/*
+  &.primary {
+    background-color: $primary-container;
+    color: $on-primary-container;
+    border-radius: 50%; // circular
+    & button:hover {
+      background-color: rgba($on-primary-container, 0.08);
+      border-radius: 50%; // circular
+    }
+  }
+  &.tertiary {
+    background-color: $tertiary-container;
+    color: $on-tertiary-container;
+    border-radius: 50%; // circular
+    & button:hover {
+      background-color: rgba($on-tertiary-container, 0.08);
+      border-radius: 50%; // circular
+    }
+  }
+  &.error {
+    background-color: $error-container;
+    color: $on-error-container;
+    border-radius: 50%; // circular
+    & button:hover {
+      background-color: rgba($on-error-container, 0.08);
+      border-radius: 50%; // circular
+    }
+  }
+}
+*/
+.icon-outlined {
+  font-family: "Material Symbols Outlined";
+  font-size: dpi(24px);
+  min-height: dpi(40px);
+  min-height: dpi(40px);
+  background-color: $inverse-surface;
+  color: $inverse-on-surface;
+  border-radius: 50%; // circular
+  border: 1px solid $outline;
+  & button:hover {
+    background-color: rgba($inverse-on-surface, 0.08);
+    border-radius: 50%; // circular
   }
 }

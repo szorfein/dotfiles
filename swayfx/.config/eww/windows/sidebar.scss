@@ -1,11 +1,11 @@
 .sidebar {
   background-color: $surface;
   color: $on-surface;
-  padding-left: 24px;
-  padding-right: 24px;
-  padding-top: 12px;
-  padding-bottom: 12px;
+  padding: 0;
   .header {
+    padding-left: dpi(24px);
+    padding-right: dpi(24px);
+    padding-top: dpi(24px);
     min-height: 24px;
     border-bottom: 1px solid $outline;
   }
@@ -24,5 +24,11 @@
   }
   .focus {
     color: #f00;
+  }
+  .container {
+    padding-top: dpi(12px);
+    padding-left: dpi(24px);
+    padding-right: dpi(24px);
+    padding-bottom: dpi(24px);
   }
 }

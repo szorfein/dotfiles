@@ -3,7 +3,7 @@
     :monitor 0
     :geometry (geometry :x 0
                         :y 0
-                        :width "256px"
+                        :width 256
                         :height "100%"
                         :anchor "right center")
     :stacking "fg"
@@ -11,31 +11,38 @@
     (revealer
         ; Would prefer a slideleft animation here but it does not work
         ; https://github.com/elkowar/eww/issues/1107
-        :transition "slideleft"
+        :transition "slideright"
         :duration "300ms"
         :reveal "${sidebar-visible}"
 
         (box :orientation "vertical"
+            ;:style "border: 1px solid #f00"
             :valign "start"
+            :class "sidebar"
             :space-evenly false
-            (header)
+            (header :class "header")
             ; home
             (box :visible "${sidebar-page-index == '1'}"
                 ;:class "sidebar"
                 :orientation "vertical"
                 :space-evenly false
+                :class "container"
                 :valign "fill"
                 :halign "fill"
+                ;:style "border: 1px solid #f00"
                 (box :orientation "v" :valign "start"
                     :space-evenly false
+                    ;:style "border: 1px solid #f00"
                     (home-styled)
                     (home-time)
                 )
                 (box :orientation "v" :valign "center"
+                    :space-evenly false
                     ;(home)
+                    ""
                     (overlay
-                        :space-evenly false
-                        :style "padding: 10px"
+                        ;:space-evenly false
+                        ;:style "padding: 10px"
                         (box :orientation "h"
                             :halign "start"
                             (box :orientation "v"
@@ -53,20 +60,31 @@
                 )
                 (box :orientation "v"
                     :valign "end"
-                    ;:space-evenly false
-                    (home-progressline-circular)
+                    :space-evenly false
+                    ;:style "border: 1px solid #f00"
+                    ""
+                    ""
+                    (home-progressline-circular
+                        :valign "top"
+                        :halign "center"
+                    )
+                    ""
+                    ""
                     ;(home-icons)
                     (home-buttons)
+                    ""
                 )
             )
             ; music
             (box :visible "${sidebar-page-index == '2'}"
+                :class "container"
                 (box :orientation "vertical"
                     (music-metadata)
                 )
             )
             ; ??
             (box :visible "${sidebar-page-index == '3'}"
+                :class "container"
                 (overlay
                     (box "hello")
                 )
@@ -134,7 +152,7 @@
 
 (defwidget tab-indicator [index]
     (eventbox :onclick "eww update sidebar-page-index=${index}"
-              :cursor "hand2"
+        :cursor "hand2"
         (box :class "tab-index tab-index-${sidebar-page-index} ${sidebar-page-index == index ? "focus" : ""}" index)
     )
 )

@@ -27,4 +27,11 @@
 
 .music-card {
   @extend .card-elevated;
+  padding: 0;
+  border-radius: 0 0 33px 33px; // only bottom
+  min-height: dpi(400px);
+  margin-top: dpi(16px);
+  .container {
+    padding: dpi(16px);
+  }
 }
