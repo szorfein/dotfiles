@@ -20,7 +20,7 @@
             :valign "start"
             :class "sidebar"
             :space-evenly false
-            (header :class "header")
+            (header)
             ; home
             (box :visible "${sidebar-page-index == '1'}"
                 ;:class "sidebar"
@@ -79,10 +79,14 @@
             (box :visible "${sidebar-page-index == '2'}"
                 :class "container"
                 (box :orientation "vertical"
+                    :space-evenly false
+                    :spacing 8
+                    (music-buttons)
                     (music-metadata)
+                    (music-volume)
                 )
             )
-            ; ??
+            ; network
             (box :visible "${sidebar-page-index == '3'}"
                 :class "container"
                 (overlay
@@ -110,50 +114,37 @@
 )
 
 (defwidget header []
-    (centerbox :orientation "horizontal"
+    ;(icon-button :icon "" :onclick "~/.config/eww/scripts/toggle-powermenu.sh &")
+    (box :orientation "horizontal"
                :valign "start"
                :class "header"
-               :hexpand false
-        (box :halign "start"
-            :orientation "horizontal"
-            (icon-button :icon "" :onclick "~/.config/eww/scripts/toggle-powermenu.sh &")
-        )
+               ;:hexpand false
+               ;:style "border: 1px solid #f00"
+        (tabs-indicators)
 
-        (eventbox
-            (box :orientation "horizontal"
-                (tabs-indicators)
-            )
-        )
-
-        (box :halign "end"
-            :orientation "horizontal"
             ;(icon-button :icon "" :onclick "imv ~/images &")
-            (icon-button :icon "" :onclick "~/.config/eww/scripts/toggle-sidebar.sh toggle &")
+            ;(icon-button :icon "" :onclick "~/.config/eww/scripts/toggle-sidebar.sh toggle &")
         )
-    )
 )
 
 (defwidget tabs-indicators []
-    (box
-        :orientation "vertical"
-        :valign "left"
-        :vexpand false
-        :space-evenly false
-        (box :orientation "horizontal"
-             :space-evenly false
-             :vexpand false
-             :halign "center"
-             (tab-indicator :index 1)
-             (tab-indicator :index 2)
-             (tab-indicator :index 3)
-        )
+    (box :orientation "horizontal"
+        :hexpand true
+        :class "tabs"
+        :space-evenly true
+        (tab-indicator :index 1 :icon "")
+        (tab-indicator :index 2 :icon "")
+        (tab-indicator :index 3 :icon "")
     )
 )
 
-(defwidget tab-indicator [index]
+(defwidget tab-indicator [index ?icon]
     (eventbox :onclick "eww update sidebar-page-index=${index}"
         :cursor "hand2"
-        (box :class "tab-index tab-index-${sidebar-page-index} ${sidebar-page-index == index ? "focus" : ""}" index)
+        (box :class "my-super-tab-icon ${sidebar-page-index == index ? "active" : "inactive"}"
+            :valign "center"
+            icon
+        )
     )
 )
 

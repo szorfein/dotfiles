@@ -90,6 +90,7 @@ cat <<EOF > "$workdir/.config/eww/colors.scss"
 \$error: $error;
 \$on-error: $on_error;
 \$outline: $outline;
+\$outline-variant: $outline_variant;
 \$scrim: $scrim;
 \$shadow: $shadow;
 \$surface-tint: $surface_tint;

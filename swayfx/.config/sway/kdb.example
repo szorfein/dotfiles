@@ -2,7 +2,7 @@
 #
 # https://github.com/swaywm/sway/wiki#keyboard-layout
 input type:keyboard {
-  xkb_layout en
+  xkb_layout us
   xkb_options grp:alt_shift_toggle,ctrl:nocaps
   repeat_delay 300
   repeat_rate 50

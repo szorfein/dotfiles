@@ -41,3 +41,13 @@
         )
     )
 )
+
+(defwidget button-tonal-vert [?icon ?class text ?onclick]
+    (button :class "button-tonal ${class}"
+        :onclick onclick
+        (box :orientation "vertical"
+            (box :class "text" text)
+            (box :class "icon" icon)
+        )
+    )
+)

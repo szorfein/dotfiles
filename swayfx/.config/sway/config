@@ -114,14 +114,17 @@ exec {
     # https://github.com/swaywm/sway/wiki#systemd-and-dbus-activation-environments
     # systemd
     # exec systemctl --user import-environment WAYLAND_DISPLAY DISPLAY XDG_CURRENT_DESKTOP SWAYSOCK I3SOCK XCURSOR_SIZE XCURSOR_THEME
-
-    systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
-
-    # non-systemd
-    # exec dbus-update-activation-environment WAYLAND_DISPLAY DISPLAY XDG_CURRENT_DESKTOP SWAYSOCK I3SOCK XCURSOR_SIZE XCURSOR_THEME
-
+    if file /sbin/init | grep systemd ; then
+        exec systemctl --user import-environment WAYLAND_DISPLAY DISPLAY XDG_CURRENT_DESKTOP SWAYSOCK I3SOCK
+#systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
     # Prevents GTK apps from hanging for 15-20 sec before launching
-    dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY
+         exec dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY
+    else
+# non-systemd
+        exec dbus-update-activation-environment WAYLAND_DISPLAY DISPLAY XDG_CURRENT_DESKTOP SWAYSOCK I3SOCK
+
+         exec dbus-update-activation-environment DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY
+    fi
 
     # GTK
     # https://github.com/swaywm/sway/wiki/GTK-3-settings-on-Wayland#setting-values-in-gsettings

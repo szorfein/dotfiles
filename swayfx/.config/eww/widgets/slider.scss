@@ -32,6 +32,31 @@
   scale trough highlight {
     background-color: $primary;
     transition: 0.3s;
-    border-radius: dpi(14px);
+    border-radius: dpi(14px) 0 0 dpi(14px);
+  }
+}
+
+.slider-horizontal-m3 {
+  //@extend: .slider-horizontal;
+  margin-top: dpi(8px);
+  margin-bottom: dpi(8px);
+  scale trough {
+    background-color: $secondary-container;
+    min-height: dpi(16px);
+    border-radius: dpi(24px);
+  }
+  scale trough highlight {
+    background-color: $primary;
+    // border only left side top-left, bottom-left
+    border-radius: dpi(24px) 0 0 dpi(24px);
+  }
+  .icon {
+    font-family: "icomoon";
+    font-size: dpi(16pt);
+    padding: dpi(8px);
+  }
+  .label {
+    @extend .label-medium;
+    margin-bottom: dpi(8px);
   }
 }

@@ -111,3 +111,29 @@
     border-radius: 50%; // circular
   }
 }
+
+.button-tonal {
+  padding: dpi(16px);
+  border-radius: 50%;
+  min-height: dpi(40px);
+  margin-left: dpi(4px); // total 8
+  margin-right: dpi(4px); // total 8
+  .text {
+    font-size: dpi(14pt);
+    letter-spacing: dpi(0.1pt);
+    font-weight: 500;
+  }
+  &.enabled {
+    background-color: $secondary-container;
+    color: $on-secondary-container;
+  }
+  &.disabled {
+    background-color: rgba($on-surface, 0.12);
+    color: rgba($on-surface, 0.38);
+  }
+  .icon {
+    font-family: "icomoon";
+    font-size: dpi(18px);
+    margin-top: dpi(8px);
+  }
+}

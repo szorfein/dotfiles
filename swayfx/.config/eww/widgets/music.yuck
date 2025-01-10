@@ -48,5 +48,26 @@
     )
 )
 
+(defwidget music-buttons []
+    (box :orientation "horizontal"
+        :space-evenly true
+        (button-tonal-vert :text "WEB" :class {web-active ? "enabled" : "disabled"} :icon "")
+        (button-tonal-vert :text "MPD" :class {mpd-active ? "enabled" : "disabled"} :icon "")
+        (button-tonal-vert :text "MPV" :class {mpv-active ? "enabled" : "disabled"} :icon "")
+    )
+)
+
+(defwidget music-volume []
+    (slider-horizontal-m3
+        :value 10
+        :max 100
+        :icon ""
+        :label "Volume"
+    )
+)
+
 ; all vars
 (defvar media "[]")
+(defvar web-active false)
+(defvar mpd-active false)
+(defvar mpv-active false)

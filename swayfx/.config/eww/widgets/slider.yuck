@@ -21,3 +21,29 @@
         )
     )
 )
+
+(defwidget slider-horizontal-m3 [value max ?onchange ?class ?icon ?label]
+    ;TODO lack the tooltip and the handle
+    (box :class "slider-horizontal-m3 ${class}"
+        :space-evenly false
+        ;:style "border: 1px solid #f00"
+        :height 50 ; we include the height of the handle
+        :orientation "horizontal"
+        :valign "center"
+        :spacing 8
+        (box :class "icon" :halign "center" :valign "center" icon)
+        (box :orientation "vertical"
+            :halign "fill"
+            :hexpand true
+            (box :class "label" :halign "start" label)
+            (scale :orientation "horizontal"
+                ;:style "border: 1px solid #f0f"
+                :value "${value}"
+                :max "${max}"
+                ;:min 0
+                :hexpand true
+                :onchange "${onchange}"
+            )
+        )
+    )
+)
