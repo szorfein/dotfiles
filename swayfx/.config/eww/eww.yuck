@@ -3,7 +3,9 @@
 
 (include "widgets/button.yuck")
 (include "widgets/slider.yuck")
+(include "widgets/chips.yuck")
 (include "widgets/progressbar.yuck")
+
 (include "widgets/home.yuck")
 (include "widgets/music.yuck")
 

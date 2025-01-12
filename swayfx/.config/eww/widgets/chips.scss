@@ -1,0 +1,15 @@
+.chip-filter {
+  min-height: dpi(32px);
+  border-radius: dpi(8px);
+
+  &.enabled {
+    border: dpi(1px) solid $secondary-container;
+    background-color: $secondary-container;
+    color: $on-secondary-container;
+  }
+  &.disabled {
+    border: dpi(1px) solid $outline-variant;
+    background-color: $surface-container-low;
+    color: $on-surface-variant;
+  }
+}

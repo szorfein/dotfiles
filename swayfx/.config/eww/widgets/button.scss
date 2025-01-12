@@ -112,6 +112,7 @@
   }
 }
 
+// button-outlined
 .button-tonal {
   padding: dpi(16px);
   border-radius: 50%;
@@ -124,12 +125,15 @@
     font-weight: 500;
   }
   &.enabled {
-    background-color: $secondary-container;
-    color: $on-secondary-container;
+    //background-color: $secondary-container;
+    //color: $on-secondary-container;
+    color: $primary;
+    border: dpi(1px) solid $outline;
   }
   &.disabled {
-    background-color: rgba($on-surface, 0.12);
+    //background-color: rgba($on-surface, 0.12);
     color: rgba($on-surface, 0.38);
+    border: dpi(1px) solid rgba($on-surface, 0.12);
   }
   .icon {
     font-family: "icomoon";

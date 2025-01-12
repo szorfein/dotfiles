@@ -30,12 +30,6 @@
                 :valign "fill"
                 :halign "fill"
                 ;:style "border: 1px solid #f00"
-                (box :orientation "v" :valign "start"
-                    :space-evenly false
-                    ;:style "border: 1px solid #f00"
-                    (home-styled)
-                    (home-time)
-                )
                 (box :orientation "v" :valign "center"
                     :space-evenly false
                     ;(home)
@@ -57,6 +51,12 @@
                             (home-loc)
                         )
                     )
+                )
+                (box :orientation "v" :valign "start"
+                    :space-evenly false
+                    ;:style "border: 1px solid #f00"
+                    (home-styled)
+                    (home-time)
                 )
                 (box :orientation "v"
                     :valign "end"
@@ -80,10 +80,11 @@
                 :class "container"
                 (box :orientation "vertical"
                     :space-evenly false
-                    :spacing 8
-                    (music-buttons)
-                    (music-metadata)
+                    :spacing 16
                     (music-volume)
+                    (music-metadata)
+                    (music-buttons)
+                    (music-playlist)
                 )
             )
             ; network

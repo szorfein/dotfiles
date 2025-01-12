@@ -11,24 +11,28 @@
                 (image :path "${media.arturl}"
                     :image-height 166
                     :image-width 206
-                    :preserve-aspect-ratio true
+                    ;:preserve-aspect-ratio true
                 )
             )
             (box :orientation "vertical"
                 :spacing 8
                 :valign "center"
-                :class "container"
+                :class "music-text"
+                :space-evenly false
                 (box :orientation "horizontal"
                     :class "title-small"
+                    ;:style "line-height: 24px"
                     "${media.artist}"
                 )
                 (box :orientation "horizontal"
                     :class "body-medium"
                     "${media.title}"
                 )
-                (slider-horizontal :max "${media.length}"
-                    :value "${media.position}"
-                    :onchange "~/.config/eww/scripts/media.sh pos {}"
+                (box :orientation "vertical" :class "music-slider"
+                    (slider-horizontal :max "${media.length}"
+                        :value "${media.position}"
+                        :onchange "~/.config/eww/scripts/media.sh pos {}"
+                    )
                 )
             )
             (box :orientation "v" :valign "end"
@@ -36,9 +40,9 @@
                 :class "container"
                 (box :orientation "horizontal"
                     :halign "center"
-                    (icon-button :icon "" :onclick "")
+                    (icon-button :icon "" :onclick "playerctl previous")
                     (icon-outlined
-                        :icon {media.status == "Playing" ? "" : "" }
+                        :icon {media.playing == "Playing" ? "" : "" }
                         :onclick "playerctl play-pause"
                     )
                     (icon-button :icon "" :onclick "~/.config/eww/scripts/media.sh next &")
@@ -66,8 +70,54 @@
     )
 )
 
+(defwidget music-playlist []
+    (box :orientation "vertical"
+        :space-evenly false
+        (box 
+            :class "label-large"
+            :halign "start"
+            "MPD Playlists"
+        )
+        (scroll :vscroll true :hscroll false
+            ;:style "border: 1px solid #f00"
+            :class "music-playlist"
+            (box :orientation "vertical"
+                :spacing 8
+                (box :orientation "horizontal"
+                    :spacing 8
+                    (chip-filter :text "hillo"
+                        :class "enabled"
+                    )
+                    (chip-filter :text "hillo"
+                        :class "disabled"
+                    )
+                )
+                (box :orientation "horizontal"
+                    :spacing 8
+                    (chip-filter :text "hillo"
+                        :class "disabled"
+                    )
+                    (chip-filter :text "hillo"
+                        :class "disabled"
+                    )
+                )
+                (box :orientation "horizontal"
+                    :spacing 8
+                    (chip-filter :text "hillo"
+                        :class "disabled"
+                    )
+                    (chip-filter :text "hillo"
+                        :class "disabled"
+                    )
+                )
+            )
+        )
+    )
+)
+
 ; all vars
 (defvar media "[]")
 (defvar web-active false)
 (defvar mpd-active false)
 (defvar mpv-active false)
+(defvar playlist-name "")

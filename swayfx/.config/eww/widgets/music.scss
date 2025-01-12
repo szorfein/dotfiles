@@ -7,4 +7,18 @@
   .container {
     padding: dpi(16px);
   }
+  .music-text {
+    padding-top: dpi(16px);
+    padding-bottom: dpi(16px);
+  }
+  .music-slider {
+    padding-left: dpi(16px);
+    padding-right: dpi(16px);
+    margin-top: dpi(16px);
+  }
+}
+
+.music-playlist {
+  min-height: dpi(100px);
+  margin-top: dpi(16px);
 }
