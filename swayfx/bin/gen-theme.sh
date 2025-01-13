@@ -32,6 +32,8 @@ mkdir -p "$workdir/.config/nvim/lua"
 # colours to extract
 primary=$(ext_dark 'primary')
 on_primary=$(ext_dark 'onPrimary')
+primary_container=$(ext_dark 'primaryContainer')
+on_primary_container=$(ext_dark 'onPrimaryContainer')
 secondary=$(ext_dark 'secondary')
 on_secondary=$(ext_dark 'onSecondary')
 tertiary=$(ext_dark 'tertiary')
@@ -75,6 +77,8 @@ EOF
 cat <<EOF > "$workdir/.config/eww/colors.scss"
 \$primary: $primary;
 \$on-primary: $on_primary;
+\$primary-container: $primary_container;
+\$on-primary-container: $on_primary_container;
 \$secondary: $secondary;
 \$on-secondary: $on_secondary;
 \$tertiary: $tertiary;

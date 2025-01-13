@@ -141,3 +141,35 @@
     margin-top: dpi(8px);
   }
 }
+
+.fab {
+  background-color: $primary-container;
+  border-radius: dpi(12px);
+  min-height: dpi(56px);
+  min-width: dpi(56px);
+  margin: dpi(16px);
+  .fab-icon {
+    font-family: "Material Symbols Outlined";
+    font-size: dpi(24pt);
+    color: $on-primary-container;
+  }
+  &:hover {
+    background-color: rgba($on-primary-container, 0.08);
+  }
+}
+
+.small-fab {
+  background-color: $primary-container;
+  border-radius: dpi(12px);
+  min-height: dpi(40px);
+  min-width: dpi(40px);
+  margin: dpi(8px);
+  .small-fab-icon {
+    font-family: "Material Symbols Outlined";
+    font-size: dpi(24pt);
+    color: $on-primary-container;
+  }
+  &:hover {
+    background-color: rgba($on-primary-container, 0.08);
+  }
+}

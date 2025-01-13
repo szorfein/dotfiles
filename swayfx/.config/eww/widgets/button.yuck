@@ -51,3 +51,30 @@
         )
     )
 )
+
+(defwidget icon-fab [?onclick ?icon ?onrightclick]
+    (box :space-evenly false
+        (button
+            :class "fab"
+            ;:style "border: 1px solid #f00"
+            :onclick "${onclick}"
+            :onrightclick "${onrightclick}"
+            (box :class "fab-icon"
+                icon
+            )
+        )
+    )
+)
+
+(defwidget icon-small-fab [?onclick ?icon]
+    (box :space-evenly false
+        (button
+            :class "small-fab"
+            ;:style "border: 1px solid #f00"
+            :onclick "${onclick}"
+            (box :class "small-fab-icon"
+                icon
+            )
+        )
+    )
+)

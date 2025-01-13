@@ -9,19 +9,50 @@
     :exclusive true
     (revealer :transition "slideleft"
               :reveal "${navbar-visible}"
-        (box :orientation "vertical"
-             ;:valign "fill"
-             :class "workspace"
-            (workspace-indicator :i 1 :class "${ws1}")
-            (workspace-indicator :i 2 :class "${ws2}")
-            (workspace-indicator :i 3 :class "${ws3}")
-            (workspace-indicator :i 4 :class "${ws4}")
-            (workspace-indicator :i 5 :class "${ws5}")
-            (workspace-indicator :i 6 :class "${ws6}")
-            (workspace-indicator :i 7 :class "${ws7}")
-            (workspace-indicator :i 8 :class "${ws8}")
-            (workspace-indicator :i 9 :class "${ws9}")
-            (workspace-indicator :i 10 :class "${ws10}")
+        (centerbox :orientation "vertical"
+            (box :orientation "vertical"
+                        :space-evenly false
+                (icon-fab
+                    :onclick "${navbar-fab-active ? "eww update navbar-fab-active=false" : "eww update navbar-fab-active=true"}"
+                    :onrightclick "~/.config/eww/scripts/toggle-nav.sh toggle &"
+                    :icon "")
+                (revealer :reveal "${navbar-fab-active}"
+                    :transition "crossfade"
+                    (box :orientation "vertical"
+                        :halign "center"
+                        :space-evenly false
+                        (icon-small-fab
+                            :onclick "~/.config/eww/scripts/toggle-sidebar.sh toggle &"
+                            :icon ""
+                        )
+                        (icon-small-fab
+                            :onclick "~/.config/eww/scripts/toggle-powermenu.sh &"
+                            :icon ""
+                        )
+                    )
+                )
+            )
+            ; workspaces
+            (scroll :hscroll false :vscroll true
+                :class "nav-scroll"
+                (box :orientation "vertical"
+                    ;:valign "fill"
+                    :class "workspace"
+                    :space-evenly false
+                    :spacing 12
+                    (workspace-indicator :i 1 :class "${ws1}")
+                    (workspace-indicator :i 2 :class "${ws2}")
+                    (workspace-indicator :i 3 :class "${ws3}")
+                    (workspace-indicator :i 4 :class "${ws4}")
+                    (workspace-indicator :i 5 :class "${ws5}")
+                    (workspace-indicator :i 6 :class "${ws6}")
+                    (workspace-indicator :i 7 :class "${ws7}")
+                    (workspace-indicator :i 8 :class "${ws8}")
+                    (workspace-indicator :i 9 :class "${ws9}")
+                    (workspace-indicator :i 10 :class "${ws10}")
+                )
+            )
+            ""
         )
     )
 )
@@ -47,8 +78,8 @@
 (defwidget workspace-indicator [i class]
     (eventbox :cursor "hand2"
               :onclick "swaymsg -q 'workspace number ${i}'"
-              :onscroll "[ '{}' = 'up' ] && swaymsg -q workspace prev || swaymsg -q workspace next"
-        (box :class "indicator ${class}" :halign "center" "${ws[i]}")
+              ;:onscroll "[ '{}' = 'up' ] && swaymsg -q workspace prev || swaymsg -q workspace next"
+        (box :class "indicator nav-item ${class}" :halign "center" "${ws[i]}")
     )
 )
 
@@ -68,3 +99,4 @@
 (defvar ws10 "empty")
 
 (defvar navbar-visible true)
+(defvar navbar-fab-active false)
