@@ -19,6 +19,22 @@
   }
 }
 
+.time {
+  font-family: "demova";
+  font-size: dpi(50);
+  font-weight: 900;
+  padding-bottom: dpi(16px);
+  border-bottom: dpi(1px) solid $secondary;
+}
+
+.secondary {
+  color: $secondary;
+}
+
+.battery {
+  margin-top: dpi(8px);
+}
+
 .home-progress {
   //border: 1px solid #f00;
 }

@@ -40,8 +40,12 @@
                         (box :orientation "h"
                             :halign "start"
                             (box :orientation "v"
-                                (home-progressline)
-                                (home-progressline)
+                                :space-evenly false
+                                :spacing 16
+                                (home-hour)
+                                (home-battery)
+                                ;(slider-horizontal-m3 :max 100 :value 66 :icon "" :label "Brightness")
+                                ""
                             )
                         )
                         (box :valign "start"
@@ -56,7 +60,6 @@
                     :space-evenly false
                     ;:style "border: 1px solid #f00"
                     (home-styled)
-                    (home-time)
                 )
                 (box :orientation "v"
                     :valign "end"
@@ -68,6 +71,7 @@
                         :valign "top"
                         :halign "center"
                     )
+                    ""
                     ""
                     ""
                     ;(home-icons)

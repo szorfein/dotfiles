@@ -1,4 +1,4 @@
-(defwidget progressbar-circular [?icon]
+(defwidget progressbar-circular [?icon ?value]
     (box :class "progressbar-circular"
         (overlay
             (box :halign "center"
@@ -13,7 +13,7 @@
             )
             (circular-progress
                 :thickness 4
-                :value 66
+                :value value
             )
         )
     )

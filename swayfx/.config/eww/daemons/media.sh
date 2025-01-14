@@ -28,6 +28,18 @@ fi
 
 echo "$PID" >"$PID_FILE"
 
+MPD_MUSIC_DIR="$HOME/musics"
+
+mpd_cover() {
+    [ -d "$MPD_MUSIC_DIR" ] || return
+
+    file=$(mpc -f %file% | head -1)
+    file_dir="$MPD_MUSIC_DIR/${file%/*}"
+    if find=$(find "$file_dir" -regex ".*\.\(jpg\|png\|jpeg\)") ; then
+        echo "$find"
+    fi
+}
+
 #while :; do 
     # always prefer inotify or any mechanism to check change over sleep
     #sleep 5
@@ -49,24 +61,22 @@ hpos=$(expr " $hpos" : " .\\(.*\\)")
 hlen=$(expr " $hlen" : " .\\(.*\\)")
 
 # artist and title can contain a lot of characters...
-artist=$(playerctl metadata --format '{{ trunc(artist, 14) }}')
-title=$(playerctl metadata --format '{{ trunc(title, 14) }}')
+artist=$(playerctl metadata --format '{{ trunc(artist, 16) }}')
+title=$(playerctl metadata --format '{{ trunc(title, 16) }}')
 
 if [ "$name" = "brave" ] ; then
     arturl="${arturl#file://}"
 fi
 
-if [ -z "$arturl" ] ; then
-    if [ "$name" = "mpd" ] ; then
-        echo "check for mpd..."
-    fi
-    arturl="$HOME/images/nun.jpg" # default cover
+if [ "$name" = "mpd" ] ; then
+    arturl=$(mpd_cover)
 fi
 
+# default
+[ -z "$arturl " ] && arturl="$HOME/images/nun.jpg"
 [ -z "$title" ] && title="N/A"
 [ -z "$artist" ] && artist="N/A"
 
-#echo "{\"playing\":\"$playing\",\"position\":\"$position\",\"length\":\"$length\",\"name\":\"$name\",\"artist\":\"$artist\",\"title\":\"$title\",\"arturl\":\"$arturl\",\"hpos\":\"$hpos\",\"hlen\":\"$hlen\"}"
 eww update media="{
     \"playing\":\"$playing\",
     \"position\":\"$position\",

@@ -92,9 +92,9 @@
         :spacing 20
         :space-evenly false
         ;:height 50
-        (progressbar-circular :icon "")
-        (progressbar-circular :icon "")
-        (progressbar-circular :icon "")
+        (progressbar-circular :icon "" :value "${EWW_CPU.avg}")
+        (progressbar-circular :icon "" :value "${EWW_RAM.used_mem_perc}")
+        (progressbar-circular :icon "" :value "${EWW_DISK["/home"].used_perc}")
     )
 )
 
@@ -142,6 +142,27 @@
         "ICON"
         "OBAMA"
         "CONTRY"
+    )
+)
+
+(defwidget home-hour []
+    (box :orientation "horizontal"
+        (box :orientation "horizontal"
+            :class "time"
+            "${time.hour}"
+        )
+        (box :orientation "horizontal"
+            :class "time secondary"
+            "${time.min}"
+        )
+    )
+)
+
+(defwidget home-battery []
+    (box :orientation "horizontal"
+        :halign "start"
+        :class "battery body-large"
+        "${round(EWW_BATTERY.total_avg, 0)}% Battery"
     )
 )
 

@@ -48,6 +48,10 @@ inverse_on_surface=$(ext_dark 'inverseOnSurface')
 background=$(ext_dark 'background')
 secondary_container=$(ext_dark 'secondaryContainer')
 on_secondary_container=$(ext_dark 'onSecondaryContainer')
+tertiary_container=$(ext_dark 'tertiaryContainer')
+on_tertiary_container=$(ext_dark 'onTertiaryContainer')
+error_container=$(ext_dark 'errorContainer')
+on_error_container=$(ext_dark 'onErrorContainer')
 error=$(ext_dark 'error')
 on_error=$(ext_dark 'onError')
 shadow=$(ext_dark 'shadow')
@@ -216,6 +220,61 @@ unbind -T copy-mode-vi Enter
 bind-key -T copy-mode-vi y send-keys -X copy-pipe-and-cancel 'wl-copy'
 bind-key -T copy-mode-vi Enter send-keys -X copy-pipe-and-cancel 'wl-copy'
 bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel 'wl-copy'
+
+# Load catppuccin
+run ~/.config/tmux/plugins/catppuccin/tmux/catppuccin.tmux
+
+# Customize colors
+set -g @ctp_bg "$surface"
+set -g @ctp_fg "$on_surface"
+set -g @ctp_surface_1 "$surface_container_low"
+set -g @ctp_mauve "$primary"
+set -g @ctp_crust "$surface_container_lowest"
+
+# Left
+set -g @catppuccin_window_current_number_color "$primary"
+set -g @catppuccin_window_number_color "$secondary"
+set -g @catppuccin_window_current_text_color "$surface_container"
+set -g @catppuccin_window_text_color "$surface_container"
+
+# Configure the catppuccin plugin
+set -g @catppuccin_flavor "mocha"
+set -g @catppuccin_window_status_style "rounded"
+
+# status line
+set -gF status-style "bg=#{@ctp_bg},fg=#{@ctp_fg}"
+
+# Customize plugins colors
+set -gF @catppuccin_status_directory_icon_bg "#{@ctp_mauve}"
+set -gF @catppuccin_status_directory_text_bg "#{@ctp_surface_1}"
+
+set -gF @catppuccin_status_uptime_text_bg "#{@ctp_surface_1}"
+set -gF @catppuccin_status_uptime_text_fg "#{@ctp_fg}"
+set -gF @catppuccin_status_session_text_bg "#{@ctp_surface_1}"
+set -gF @catppuccin_status_session_text_fg "#{@ctp_fg}"
+set -gF @catppuccin_status_application_text_bg "#{@ctp_surface_1}"
+set -gF @catppuccin_status_application_text_fg "#{@ctp_fg}"
+
+# Icon fg/bg
+set -g @catppuccin_status_directory_icon_bg "$primary_container"
+set -g @catppuccin_status_directory_icon_fg "$on_primary_container"
+set -g @catppuccin_status_uptime_icon_bg "$secondary_container"
+set -g @catppuccin_status_uptime_icon_fg "$on_secondary_container"
+set -g @catppuccin_status_session_icon_bg "$tertiary_container"
+set -g @catppuccin_status_session_icon_fg "$on_tertiary_container"
+set -g @catppuccin_status_application_icon_bg "$error_container"
+set -g @catppuccin_status_application_icon_fg "$on_error_container"
+
+# Make the status line pretty and add some modules
+set -g status-right-length 100
+set -g status-left-length 100
+set -g status-left ""
+set -g status-right "#{E:@catppuccin_status_application}"
+set -ag status-right " "
+set -ag status-right "#{E:@catppuccin_status_session}"
+set -ag status-right " "
+set -ag status-right "#{E:@catppuccin_status_uptime}"
+set -ag status-right "#{E:@catppuccin_status_directory}"
 EOF
 
 # neovim

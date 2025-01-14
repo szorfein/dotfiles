@@ -55,9 +55,9 @@
 (defwidget music-buttons []
     (box :orientation "horizontal"
         :space-evenly true
-        (button-tonal-vert :text "WEB" :class {web-active ? "enabled" : "disabled"} :icon "")
-        (button-tonal-vert :text "MPD" :class {mpd-active ? "enabled" : "disabled"} :icon "")
-        (button-tonal-vert :text "MPV" :class {mpv-active ? "enabled" : "disabled"} :icon "")
+        (button-tonal-vert :text "WEB" :class {web-active ? "enabled" : "disabled"} :icon "" :onclick "playerctl -p brave play-pause &")
+        (button-tonal-vert :text "MPD" :class {mpd-active ? "enabled" : "disabled"} :icon "" :onclick "playerctl -p mpd play-pause &")
+        (button-tonal-vert :text "MPV" :class {mpv-active ? "enabled" : "disabled"} :icon "" :onclick "playerctl -p mpv play-pause &")
     )
 )
 
