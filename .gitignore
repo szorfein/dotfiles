@@ -14,3 +14,5 @@ vifm/.config/vifm/scripts/
 vifm/.config/vifm/*.txt
 vifm/.config/vifm/*.json
 vifm/.config/vifm/vifmi*
+
+nvim/.config/nvim/lazy-lock.json

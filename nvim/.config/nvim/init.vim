@@ -69,5 +69,6 @@ lua require('config-lazy')
 " Colours
 syntax enable
 " lightline before
-let g:lightline = {'colorscheme': 'catppuccin'}
+"let g:lightline = {'colorscheme': 'catppuccin'}
 colorscheme catppuccin
+
