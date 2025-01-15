@@ -25,6 +25,7 @@
   font-weight: 900;
   padding-bottom: dpi(16px);
   border-bottom: dpi(1px) solid $secondary;
+  margin-bottom: dpi(8px);
 }
 
 .secondary {
@@ -43,11 +44,20 @@
   font-family: "Material Symbols Outlined";
   font-weight: 800;
   font-size: dpi(57px);
-  min-height: dpi(64px);
+  //min-height: dpi(64px);
   min-width: dpi(64px);
   //border: 1px solid #f00;
 }
 
 .primary {
   color: $primary;
+}
+
+.progressbar-circ {
+  //margin-top: dpi(16px);
+  //margin-bottom: dpi(66px);
+}
+
+.home-loc {
+  padding: dpi(8px);
 }

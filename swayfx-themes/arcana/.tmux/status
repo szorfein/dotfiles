@@ -32,10 +32,10 @@ set -g @catppuccin_window_status_style "rounded"
 # status line
 set -gF status-style "bg=#{@ctp_bg},fg=#{@ctp_fg}"
 
-set -g @catppuccin_window_current_number_color "#E1B7F5"
-set -g @catppuccin_window_current_text_color "#1C2024"
-set -g @catppuccin_window_text_color "#1C2024"
-set -g @catppuccin_window_number_color "#C8BFFF"
+set -gF @catppuccin_window_current_number_color "#E1B7F5"
+set -gF @catppuccin_window_current_text_color "#1C2024"
+set -gF @catppuccin_window_text_color "#1C2024"
+set -gF @catppuccin_window_number_color "#C8BFFF"
 
 # Customize plugins colors
 set -gF @catppuccin_status_directory_text_bg "#{@ctp_surface_1}"

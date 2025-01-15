@@ -17,7 +17,6 @@
 
         (box :orientation "vertical"
             ;:style "border: 1px solid #f00"
-            :valign "start"
             :class "sidebar"
             :space-evenly false
             (header)
@@ -29,6 +28,7 @@
                 :class "container"
                 :valign "fill"
                 :halign "fill"
+                :spacing 16
                 ;:style "border: 1px solid #f00"
                 (box :orientation "v" :valign "center"
                     :space-evenly false
@@ -37,24 +37,25 @@
                     (overlay
                         ;:space-evenly false
                         ;:style "padding: 10px"
+                        (box
+                        ;:style 'border: 1px solid #f00'
                         (box :orientation "h"
                             :halign "start"
                             (box :orientation "v"
+                                ;:style 'border: 1px solid #f00'
                                 :space-evenly false
                                 :spacing 16
                                 (home-hour)
                                 (home-battery)
-                                ;(slider-horizontal-m3 :max 100 :value 66 :icon "" :label "Brightness")
-                                ""
                             )
                         )
                         (box :valign "start"
                             :halign "end"
                             :orientation "vertical"
-                            (home-sun)
-                            (home-loc)
+                            ;:style 'border: 1px solid #f00'
+                                "" ; add buttons?
                         )
-                    )
+                    ))
                 )
                 (box :orientation "v" :valign "start"
                     :space-evenly false
@@ -65,18 +66,31 @@
                     :valign "end"
                     :space-evenly false
                     ;:style "border: 1px solid #f00"
-                    ""
-                    ""
-                    (home-progressline-circular
-                        :valign "top"
-                        :halign "center"
+                    (box
+                        ;:style "border: 1px solid #f00"
+                        ;:style "padding: 14px"
+                        :space-evenly false
+                        :spacing 8
+                        (box ;:space-evenly true
+                            :halign "start"
+                            :valign "center"
+                            ;:style "border: 1px solid #0aa"
+                            ;:width 40
+                            (home-progressline-circular)
+                        )
+                        (box :orientation "v"
+                            ;:style "border: 1px solid #0aa"
+                            :halign "fill"
+                            :valign "start"
+                            :hexpand true
+                            :space-evenly false
+                            (home-loc-icon)
+                            (home-loc)
+                        )
                     )
-                    ""
-                    ""
-                    ""
                     ;(home-icons)
-                    (home-buttons)
-                    ""
+                    ;(home-buttons)
+                    (home-slides)
                 )
             )
             ; music

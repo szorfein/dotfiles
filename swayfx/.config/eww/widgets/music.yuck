@@ -65,7 +65,7 @@
     (slider-horizontal-m3
         :value 10
         :max 100
-        :icon ""
+        :icon ""
         :label "Volume"
     )
 )

@@ -50,11 +50,13 @@
     // border only left side top-left, bottom-left
     border-radius: dpi(24px) 0 0 dpi(24px);
   }
+
   .icon {
-    font-family: "icomoon";
-    font-size: dpi(16pt);
+    font-family: "Material Symbols Outlined";
+    font-size: dpi(22pt);
     padding: dpi(8px);
   }
+
   .label {
     @extend .label-medium;
     margin-bottom: dpi(8px);

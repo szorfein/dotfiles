@@ -121,7 +121,7 @@ exec {
          exec dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY
 
          if command -v mpd-mpris &>/dev/null ; then
-             systemctl start --user mpd
+             systemctl start --user mpd-mpris
          fi
     else
 # non-systemd

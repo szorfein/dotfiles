@@ -87,10 +87,11 @@
 )
 
 (defwidget home-progressline-circular []
-    (box :orientation "horizontal"
+    (box :orientation "vertical"
         :halign "center"
         :spacing 20
         :space-evenly false
+        :class "progressbar-circ"
         ;:height 50
         (progressbar-circular :icon "" :value "${EWW_CPU.avg}")
         (progressbar-circular :icon "" :value "${EWW_RAM.used_mem_perc}")
@@ -108,7 +109,7 @@
 )
 
 (defwidget home-sun []
-    (box :valign "center"
+    (box :valign "start"
         :halign "center"
         :class "sun"
         "${time.icon}"
@@ -139,35 +140,88 @@
 
 (defwidget home-loc []
     (box :orientation "vertical"
-        "ICON"
-        "OBAMA"
-        "CONTRY"
+        :halign "fill"
+        :valign "fill"
+        :class "home-loc"
+        ;:style 'border: 1px solid #f00'
+        :space-evenly false
+        :spacing 6
+        (label
+            :truncate true
+            :limit-width 10
+            ;:style "border: 1px solid #0ff"
+            :class "body-medium"
+            :justify "left"
+            :text "${geoloc.isp_name}"
+        )
+        (label
+            :truncate true
+            :limit-width 10
+            ;:style "border: 1px solid #0ff"
+            :class "body-medium"
+            :justify "left"
+            :text "${geoloc.country_name}"
+        )
+        (label
+            :truncate true
+            :limit-width 10
+            ;:style "border: 1px solid #0ff"
+            :class "body-medium"
+            :justify "left"
+            :text {geoloc.city_name == "null" ? "${geoloc.continent_name}" : "${geoloc.city_name}"}
+        )
     )
 )
 
 (defwidget home-hour []
     (box :orientation "horizontal"
+        ;:style "border: 1px solid #f00"
+        :class "time"
         (box :orientation "horizontal"
-            :class "time"
+            :halign "end"
             "${time.hour}"
         )
         (box :orientation "horizontal"
-            :class "time secondary"
+            :class "secondary"
             "${time.min}"
         )
     )
 )
 
 (defwidget home-battery []
-    (box :orientation "horizontal"
-        :halign "start"
-        :class "battery body-large"
-        "${round(EWW_BATTERY.total_avg, 0)}% Battery"
+    (box :orientation "vertical"
+        :class "battery body-medium"
+        :spacing 8
+        :space-evenly false
+        (box :orientation "horizontal"
+            :halign "start"
+            "${round(EWW_BATTERY.total_avg, 0)}% Battery"
+        )
+        (box :halign "start"
+            "${EWW_TEMPS.ACPITZ_TEMP1}°C"
+        )
+    )
+)
+
+(defwidget home-slides []
+    (box :orientation "vertical"
+        ;:style "border: 1px solid #f00"
+        :valign "center"
+        ;:space-evenly false
+        (slider-horizontal-m3 :max 100 :value 66 :icon "" :label "Brightness")
+    )
+)
+
+(defwidget home-loc-icon []
+    (box :class "sun"
+        ""
     )
 )
 
 ; all vars
+
 (defpoll time :interval "60s" `~/.config/eww/scripts/time-json.sh`)
 (defpoll day_nb :interval "60m" `date +%e`)
 (defpoll day :interval "60m" `~/.config/eww/scripts/date-json.sh day`)
 (defpoll month :interval "60m" `~/.config/eww/scripts/date-json.sh month`)
+(defpoll geoloc :interval "5m" `~/.config/eww/scripts/geoloc.sh`)
