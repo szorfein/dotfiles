@@ -6,34 +6,6 @@
     )
 )
 
-(defwidget home []
- (box :valign "fill" :halign "fill"
-      ;:space-evenly true 
-     (box :orientation "horizontal"
-          :halign "start"
-          (box :orientation "vertical"
-               ;:valign "start"
-               "BATTERY"
-               "USEDRAM"
-               "USEDHDD"
-          )
-     )
-     (box :orientation "horizontal" 
-          :halign "end"
-          :space-evenly true 
-           (box :orientation "vertical"
-                :class "date"
-                (label :class "day" :text "${day.day1}")
-                (label :class "day" :text "${day.day2}")
-                (label :class "day" :text "${day.day3}")
-                (label :class "day" :text "${month.month1}")
-                (label :class "day" :text "${month.month2}")
-                (label :class "day" :text "${month.month3}")
-           )
-      )
- )
-)
-
 (defwidget home-styled []
     (box :valign "center" :halign "center"
         :class "date"
@@ -109,7 +81,7 @@
 )
 
 (defwidget home-sun []
-    (box :valign "start"
+    (box :valign "center"
         :halign "center"
         :class "sun"
         "${time.icon}"
@@ -117,24 +89,14 @@
 )
 
 (defwidget home-buttons []
-    (centerbox :orientation "horizontal"
+    (box :orientation "vertical"
+        :halign "center"
+        :spacing 8
         ;:style "border: 1px solid #f00"
-        (box :spacing 16
-            :halign "start"
-            (slider-vertical)
-        )
-        (box :orientation "vertical"
-            :spacing 16
-            :halign "center"
-            (icon-filled :icon "" :onclick "")
-            (icon-filled :icon "" :onclick "" :class "tertiary")
-        )
-        (box :orientation "vertical"
-            :spacing 16
-            :halign "end"
-            (icon-filled :icon "" :onclick "" :class "secondary")
-            (icon-filled :icon "" :onclick "" :class "error")
-        )
+        (icon-filled :icon "" :onclick "~/.config/eww/scripts/screenshot.sh &" :class "primary")
+        (icon-filled :icon "" :onclick "" :class "secondary")
+        (icon-filled :icon "" :onclick "" :class "tertiary")
+        ;(icon-filled :icon "" :onclick "" :class "error")
     )
 )
 
@@ -145,13 +107,14 @@
         :class "home-loc"
         ;:style 'border: 1px solid #f00'
         :space-evenly false
-        :spacing 6
+        ;:spacing 6
         (label
             :truncate true
             :limit-width 10
             ;:style "border: 1px solid #0ff"
             :class "body-medium"
             :justify "left"
+            :xalign 0 :yalign 0
             :text "${geoloc.isp_name}"
         )
         (label
@@ -160,6 +123,7 @@
             ;:style "border: 1px solid #0ff"
             :class "body-medium"
             :justify "left"
+            :xalign 0 :yalign 0
             :text "${geoloc.country_name}"
         )
         (label
@@ -168,6 +132,7 @@
             ;:style "border: 1px solid #0ff"
             :class "body-medium"
             :justify "left"
+            :xalign 0 :yalign 0
             :text {geoloc.city_name == "null" ? "${geoloc.continent_name}" : "${geoloc.city_name}"}
         )
     )
@@ -206,6 +171,7 @@
 (defwidget home-slides []
     (box :orientation "vertical"
         ;:style "border: 1px solid #f00"
+        :class "home-slide"
         :valign "center"
         ;:space-evenly false
         (slider-horizontal-m3 :max 100 :value 66 :icon "" :label "Brightness")
@@ -213,7 +179,8 @@
 )
 
 (defwidget home-loc-icon []
-    (box :class "sun"
+    (box :halign "start"
+        :class "sun home-loc-icon"
         ""
     )
 )

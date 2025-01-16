@@ -28,6 +28,7 @@ mkdir -p "$workdir/.config/wezterm"
 mkdir -p "$workdir/.tmux"
 mkdir -p "$workdir/.vim"
 mkdir -p "$workdir/.config/nvim/lua"
+mkdir -p "$workdir/.config/zathura"
 
 # colours to extract
 primary=$(ext_dark 'primary')
@@ -212,69 +213,64 @@ set -s copy-command 'wl-copy'
 #bind-key p run "wl-paste -n | tmux load-buffer - ; tmux paste-buffer"
 # Wayland, Ctrl+a+v (copy mode), press y for copy. Alt+p for paste
 # https://www.rockyourcode.com/copy-and-paste-in-tmux/
-set-option -s set-clipboard off
+#set-option -s set-clipboard off
 bind P paste-buffer
-bind-key -T copy-mode-vi v send-keys -X begin-selection
-bind-key -T copy-mode-vi V send-keys -X rectangle-toggle
-unbind -T copy-mode-vi Enter
-bind-key -T copy-mode-vi y send-keys -X copy-pipe-and-cancel 'wl-copy'
-bind-key -T copy-mode-vi Enter send-keys -X copy-pipe-and-cancel 'wl-copy'
-bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel 'wl-copy'
-
-# Load catppuccin
-run ~/.config/tmux/plugins/catppuccin/tmux/catppuccin.tmux
-
-# Customize colors
-set -g @ctp_bg "$surface"
-set -g @ctp_fg "$on_surface"
-set -g @ctp_surface_1 "$surface_container_low"
-set -g @ctp_mauve "$primary"
-set -g @ctp_crust "$surface_container_lowest"
-
-# Left
-set -g @catppuccin_window_current_number_color "$primary"
-set -g @catppuccin_window_number_color "$secondary"
-set -g @catppuccin_window_current_text_color "$surface_container"
-set -g @catppuccin_window_text_color "$surface_container"
+bind-key -T copy-mode-vi 'v' send-keys -X begin-selection
+bind-key -T copy-mode-vi 'y' send-keys -X copy-pipe "wl-copy"
+#bind-key -T copy-mode-vi V send-keys -X rectangle-toggle
+#unbind -T copy-mode-vi Enter
+#bind-key -T copy-mode-vi y send-keys -X copy-pipe-and-cancel 'wl-copy'
+#bind-key -T copy-mode-vi Enter send-keys -X copy-pipe-and-cancel 'wl-copy'
+#bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel 'wl-copy'
 
 # Configure the catppuccin plugin
 set -g @catppuccin_flavor "mocha"
 set -g @catppuccin_window_status_style "rounded"
 
 # status line
-set -gF status-style "bg=#{@ctp_bg},fg=#{@ctp_fg}"
+set -gF status-style "bg=$surface,fg=$on_surface"
 
 # Customize plugins colors
-set -gF @catppuccin_status_directory_icon_bg "#{@ctp_mauve}"
-set -gF @catppuccin_status_directory_text_bg "#{@ctp_surface_1}"
+#
+# App
+set -gF @catppuccin_status_application_icon_bg "$surface_container_low"
+set -g @catppuccin_status_application_icon_fg "$error"
+set -gF @catppuccin_status_application_text_bg "$surface_container_low"
+set -g @catppuccin_status_application_text_fg "$error"
 
-set -gF @catppuccin_status_uptime_text_bg "#{@ctp_surface_1}"
-set -gF @catppuccin_status_uptime_text_fg "#{@ctp_fg}"
-set -gF @catppuccin_status_session_text_bg "#{@ctp_surface_1}"
-set -gF @catppuccin_status_session_text_fg "#{@ctp_fg}"
-set -gF @catppuccin_status_application_text_bg "#{@ctp_surface_1}"
-set -gF @catppuccin_status_application_text_fg "#{@ctp_fg}"
+# Session
+set -gF @catppuccin_status_session_icon_bg "$surface_container_low"
+set -gF @catppuccin_status_session_icon_fg "$tertiary"
+set -gF @catppuccin_status_session_text_bg "$surface_container_low"
+set -gF @catppuccin_status_session_text_fg "$tertiary"
 
-# Icon fg/bg
-set -g @catppuccin_status_directory_icon_bg "$primary_container"
-set -g @catppuccin_status_directory_icon_fg "$on_primary_container"
-set -g @catppuccin_status_uptime_icon_bg "$secondary_container"
-set -g @catppuccin_status_uptime_icon_fg "$on_secondary_container"
-set -g @catppuccin_status_session_icon_bg "$tertiary_container"
-set -g @catppuccin_status_session_icon_fg "$on_tertiary_container"
-set -g @catppuccin_status_application_icon_bg "$error_container"
-set -g @catppuccin_status_application_icon_fg "$on_error_container"
+# Uptime
+set -gF @catppuccin_status_uptime_text_bg "$surface_container_low"
+set -gF @catppuccin_status_uptime_text_fg "$secondary"
+set -gF @catppuccin_status_uptime_icon_bg "$surface_container_low"
+set -gF @catppuccin_status_uptime_icon_fg "$secondary"
+
+# Directory
+set -gF @catppuccin_status_directory_text_bg "$surface_container_low"
+set -gF @catppuccin_status_directory_text_fg "$primary"
+set -g @catppuccin_status_directory_icon_bg "$surface_container_low"
+set -g @catppuccin_status_directory_icon_fg "$primary"
+
+# Load catppuccin
+run ~/.config/tmux/plugins/catppuccin/tmux/catppuccin.tmux
+
+# Current
+set -gF window-status-format "#[bg=$surface_container_low,fg=$on_surface]##I ##T"
+set -gF window-status-current-format "#[bg=$surface_container_low,fg=cyan,bold] ##I#[fg=cyan,bold] ##T"
 
 # Make the status line pretty and add some modules
 set -g status-right-length 100
 set -g status-left-length 100
 set -g status-left ""
-set -g status-right "#{E:@catppuccin_status_application}"
-set -ag status-right " "
-set -ag status-right "#{E:@catppuccin_status_session}"
-set -ag status-right " "
-set -ag status-right "#{E:@catppuccin_status_uptime}"
-set -ag status-right "#{E:@catppuccin_status_directory}"
+set -ag status-left "#{E:@catppuccin_status_application}"
+set -ag status-left "#{E:@catppuccin_status_session}"
+set -ag status-left "#{E:@catppuccin_status_uptime}"
+set -ag status-left "#{E:@catppuccin_status_directory}"
 EOF
 
 # neovim
@@ -289,6 +285,47 @@ return {
   --surface1 = '$surface_container',
   --surface2 = '$surface_container_high'
 }
+EOF
+
+cat <<EOF > "$workdir/.config/zathura/zathurarc"
+set default-fg                    "$on_surface"
+set default-bg 			  "$surface"
+
+set completion-bg		  "$surface_container_high"
+set completion-fg		  "$on_surface"
+set completion-highlight-bg	  "$primary_container"
+set completion-highlight-fg	  "$on_primary_container"
+set completion-group-bg		  "$surface_container_high"
+set completion-group-fg		  "$secondary"
+
+set statusbar-fg		  "$on_surface"
+set statusbar-bg		  "$surface_container_high"
+
+set notification-bg		  "$surface_container_high"
+set notification-fg		  "$on_surface"
+set notification-error-bg	  "$surface_container_high"
+set notification-error-fg	  "$error"
+set notification-warning-bg	  "$surface_container_high"
+set notification-warning-fg	  "$tertiary"
+
+set inputbar-fg			  "$on_surface"
+set inputbar-bg 		  "$surface_container_high"
+
+set recolor                       "true"
+set recolor-lightcolor		  "$surface"
+set recolor-darkcolor		  "$on_surface"
+
+set index-fg		          "$on_surface"
+set index-bg		          "$surface"
+set index-active-fg	          "$on_surface"
+set index-active-bg	          "$surface_container_high"
+
+set render-loading-bg	          "$surface"
+set render-loading-fg	          "$on_surface"
+
+set highlight-color		  rgba(87,82,104,0.5)
+set highlight-fg                  rgba(245,194,231,0.5)
+set highlight-active-color	  rgba(245,194,231,0.5)
 EOF
 
 echo "$2 theme generated at $workdir"

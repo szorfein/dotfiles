@@ -8,61 +8,58 @@ set -s copy-command 'wl-copy'
 # https://www.rockyourcode.com/copy-and-paste-in-tmux/
 set-option -s set-clipboard off
 bind P paste-buffer
-bind-key -T copy-mode-vi v send-keys -X begin-selection
-bind-key -T copy-mode-vi V send-keys -X rectangle-toggle
-unbind -T copy-mode-vi Enter
-bind-key -T copy-mode-vi y send-keys -X copy-pipe-and-cancel 'wl-copy'
-bind-key -T copy-mode-vi Enter send-keys -X copy-pipe-and-cancel 'wl-copy'
-bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel 'wl-copy'
-
-# Load catppuccin
-run ~/.config/tmux/plugins/catppuccin/tmux/catppuccin.tmux
-
-# Customize colors
-set -g @ctp_bg "#101418"
-set -g @ctp_fg "#E0E2E8"
-set -g @ctp_surface_1 "#181C20"
-set -g @ctp_mauve "#E1B7F5"
-set -g @ctp_crust "#0B0F12"
+bind-key -T copy-mode-vi 'v' send-keys -X begin-selection
+bind-key -T copy-mode-vi 'y' send-keys -X copy-pipe "wl-copy"
+#bind-key -T copy-mode-vi V send-keys -X rectangle-toggle
+#unbind -T copy-mode-vi Enter
+#bind-key -T copy-mode-vi y send-keys -X copy-pipe-and-cancel 'wl-copy'
+#bind-key -T copy-mode-vi Enter send-keys -X copy-pipe-and-cancel 'wl-copy'
+#bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel 'wl-copy'
 
 # Configure the catppuccin plugin
 set -g @catppuccin_flavor "mocha"
 set -g @catppuccin_window_status_style "rounded"
 
 # status line
-set -gF status-style "bg=#{@ctp_bg},fg=#{@ctp_fg}"
-
-set -gF @catppuccin_window_current_number_color "#E1B7F5"
-set -gF @catppuccin_window_current_text_color "#1C2024"
-set -gF @catppuccin_window_text_color "#1C2024"
-set -gF @catppuccin_window_number_color "#C8BFFF"
+set -gF status-style "bg=#101418,fg=#E0E2E8"
 
 # Customize plugins colors
-set -gF @catppuccin_status_directory_text_bg "#{@ctp_surface_1}"
-set -g @catppuccin_status_directory_icon_bg "#5A3960"
-set -g @catppuccin_status_directory_icon_fg "#F5D9FF"
+#
+# App
+set -gF @catppuccin_status_application_icon_bg "#181C20"
+set -g @catppuccin_status_application_icon_fg "#FFB4AB"
+set -gF @catppuccin_status_application_text_bg "#181C20"
+set -g @catppuccin_status_application_text_fg "#FFB4AB"
 
-set -gF @catppuccin_status_uptime_text_bg "#{@ctp_surface_1}"
-set -gF @catppuccin_status_uptime_text_fg "#{@ctp_fg}"
-set -gF @catppuccin_status_uptime_icon_bg "#463F77"
-set -gF @catppuccin_status_uptime_icon_fg "#E5DEFF"
-set -gF @catppuccin_status_session_icon_bg "#004F56"
-set -gF @catppuccin_status_session_icon_fg "#9DF9FA"
-set -g @catppuccin_status_application_icon_bg "#93000A"
-set -g @catppuccin_status_application_icon_fg "#FFDAD6"
-set -gF @catppuccin_status_session_text_bg "#{@ctp_surface_1}"
-set -gF @catppuccin_status_session_text_fg "#{@ctp_fg}"
-set -gF @catppuccin_status_application_text_bg "#{@ctp_surface_1}"
-set -gF @catppuccin_status_application_text_fg "#{@ctp_fg}"
+# Session
+set -gF @catppuccin_status_session_icon_bg "#181C20"
+set -gF @catppuccin_status_session_icon_fg "#81D3DE"
+set -gF @catppuccin_status_session_text_bg "#181C20"
+set -gF @catppuccin_status_session_text_fg "#81D3DE"
+
+# Uptime
+set -gF @catppuccin_status_uptime_text_bg "#181C20"
+set -gF @catppuccin_status_uptime_text_fg "#C8BFFF"
+set -gF @catppuccin_status_uptime_icon_bg "#181C20"
+set -gF @catppuccin_status_uptime_icon_fg "#C8BFFF"
+
+# Directory
+set -gF @catppuccin_status_directory_text_bg "#181C20"
+set -gF @catppuccin_status_directory_text_fg "#E1B7F5"
+set -g @catppuccin_status_directory_icon_bg "#181C20"
+set -g @catppuccin_status_directory_icon_fg "#E1B7F5"
+
+# Load catppuccin
+run ~/.config/tmux/plugins/catppuccin/tmux/catppuccin.tmux
+
+# Current
+set -gF window-status-format "#[bg=#181C20,fg=#E0E2E8]##I ##T"
+set -gF window-status-current-format "#[bg=#181C20,fg=cyan,bold] ##I#[fg=cyan,bold] ##T"
 
 # Make the status line pretty and add some modules
 set -g status-right-length 100
 set -g status-left-length 100
-set -g status-left ""
-set -g status-right "#{E:@catppuccin_status_application}"
-set -ag status-right " "
-set -ag status-right "#{E:@catppuccin_status_session}"
-set -ag status-right " "
-set -ag status-right "#{E:@catppuccin_status_uptime}"
-set -ag status-right " "
-set -ag status-right "#{E:@catppuccin_status_directory}"
+set -g status-left "#{E:@catppuccin_status_application}"
+set -ag status-left "#{E:@catppuccin_status_session}"
+set -ag status-left "#{E:@catppuccin_status_uptime}"
+set -ag status-left "#{E:@catppuccin_status_directory}"

@@ -54,10 +54,20 @@
 }
 
 .progressbar-circ {
+  padding-left: dpi(8px);
   //margin-top: dpi(16px);
   //margin-bottom: dpi(66px);
 }
 
+.home-loc-icon {
+  padding-left: dpi(43px); // Go bottom the Month plz
+  margin-bottom: dpi(8px);
+}
+
 .home-loc {
-  padding: dpi(8px);
+  padding-left: dpi(24px);
+}
+
+.home-slide {
+  margin-top: dpi(16px);
 }

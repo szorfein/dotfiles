@@ -13,45 +13,72 @@
   }
 }
 
-.icon-filled {
-  font-family: "Material Symbols Outlined";
-  font-size: 24px;
-  min-height: 40px;
-  min-height: 40px;
-  background-color: $primary;
-  color: $on-primary;
-  border-radius: 50%; // circular
-  & button:hover {
-    background-color: rgba($on-primary, 0.08);
-    border-radius: 50%; // circular
+.icon-filled-primary {
+  @extend .icon-filled;
+  &.enabled {
+    background-color: $primary;
+    color: $on-primary;
   }
-  &.secondary {
+  &.disabled {
+    color: rgba($on-primary, 0.38);
+    background-color: rgba($primary, 0.12);
+  }
+  &:hover {
+    background-color: rgba($primary, 0.90);
+  }
+}
+
+.icon-filled-secondary {
+  @extend .icon-filled;
+  &.enabled {
     background-color: $secondary;
     color: $on-secondary;
-    border-radius: 50%; // circular
-    & button:hover {
-      background-color: rgba($on-secondary, 0.08);
-      border-radius: 50%; // circular
-    }
   }
-  &.tertiary {
+  &.disabled {
+    color: rgba($on-secondary, 0.38);
+    background-color: rgba($secondary, 0.12);
+  }
+  &:hover {
+    background-color: rgba($secondary, 0.90);
+  }
+}
+
+.icon-filled-tertiary {
+  @extend .icon-filled;
+  &.enabled {
     background-color: $tertiary;
     color: $on-tertiary;
-    border-radius: 50%; // circular
-    & button:hover {
-      background-color: rgba($on-tertiary, 0.08);
-      border-radius: 50%; // circular
-    }
   }
-  &.error {
+  &.disabled {
+    color: rgba($on-tertiary, 0.38);
+    background-color: rgba($tertiary, 0.12);
+  }
+  &:hover {
+    background-color: rgba($tertiary, .90);
+  }
+}
+
+.icon-filled-error {
+  @extend .icon-filled;
+  &:hover {
+    background-color: rgba($on-error, 0.08);
+  }
+  &.enabled {
     background-color: $error;
     color: $on-error;
-    border-radius: 50%; // circular
-    & button:hover {
-      background-color: rgba($on-error, 0.08);
-      border-radius: 50%; // circular
-    }
   }
+  &.disabled {
+    color: rgba($on-error, 0.38);
+    background-color: rgba($error, 0.12);
+  }
+}
+
+.icon-filled {
+  font-family: "Material Symbols Outlined";
+  font-size: dpi(24pt);
+  min-height: dpi(40px);
+  min-height: dpi(40px);
+  border-radius: 50%; // circular
 }
 
 .icon-filled-tonal {

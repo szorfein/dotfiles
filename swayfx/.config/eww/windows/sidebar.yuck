@@ -49,11 +49,11 @@
                                 (home-battery)
                             )
                         )
-                        (box :valign "start"
+                        (box :valign "center"
                             :halign "end"
                             :orientation "vertical"
                             ;:style 'border: 1px solid #f00'
-                                "" ; add buttons?
+                                (home-buttons)
                         )
                     ))
                 )
