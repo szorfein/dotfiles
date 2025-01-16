@@ -23,7 +23,7 @@ set history=10000 " maximum
 set hlsearch " highlight search results
 set incsearch " move cursor as you type wh searching
 set langnoremap " helps avoid mappings breaking
-set laststatus=2 " display status line
+set laststatus=0 " hide status line, =2 to display
 set listchars=tab:>\ ,trail:-,nbsp:+ " char for :list
 set nrformats=bin,hex " <c-a> and <c-x> support
 set ruler " display current line # in corner

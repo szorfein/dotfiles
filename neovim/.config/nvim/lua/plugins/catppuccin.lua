@@ -1,15 +1,21 @@
+local mycolors = require('colors')
+
 return {
     "catppuccin/nvim",
     name = "catppuccin",
     priority = 1000,
-    opts = function(_, opts)
-        local mycolors = require('colors')
+    opts = {
         color_overrides = {
             all = {
+                text = mycolors.text,
+                --crust = mycolors.crust,
+                mantle = mycolors.mantle,
                 base = mycolors.base,
-                text = mycolors.text
+                surface0 = mycolors.surface0, --comment
+                --surface1 = mycolors.surface1,
+                --surface2 = mycolors.surface2,
             }
-        }
+        },
         integrations = {
             gitsigns = true,
             treesitter = true,
@@ -19,5 +25,5 @@ return {
                 colored_indent_levels = false,
             }
         }
-    end
+    }
 }
