@@ -26,7 +26,6 @@ mkdir -p "$workdir/.config/custom"
 mkdir -p "$workdir/.config/eww"
 mkdir -p "$workdir/.config/wezterm"
 mkdir -p "$workdir/.tmux"
-mkdir -p "$workdir/.vim"
 mkdir -p "$workdir/.config/nvim/lua"
 mkdir -p "$workdir/.config/zathura"
 
@@ -70,14 +69,6 @@ dark_secondary=$(ext_palette 'secondary.["70"]')
 
 echo "primary $primary"
 echo "secondary $secondary"
-
-cat <<EOF > "$workdir/.vim/colorscheme"
-" Clipboard wayland
-let g:wayland_clipboard_copy_args = ['--primary', '--paste-once']
-nnoremap "+y y:call system("wl-copy", @")
-nnoremap "+p :let @"=substitute(system("wl-paste --no-newline"), '', '', 'g')p
-nnoremap "*p :let @"=substitute(system("wl-paste --no-newline --primary"), '', '', 'g')p
-EOF
 
 cat <<EOF > "$workdir/.config/eww/colors.scss"
 \$primary: $primary;
@@ -266,8 +257,8 @@ set -gF window-status-current-format "#[bg=$surface_container_low,fg=cyan,bold] 
 # Make the status line pretty and add some modules
 set -g status-right-length 100
 set -g status-left-length 100
-set -g status-left ""
-set -ag status-left "#{E:@catppuccin_status_application}"
+set -g status-right ""
+set -a status-left "#{E:@catppuccin_status_application}"
 set -ag status-left "#{E:@catppuccin_status_session}"
 set -ag status-left "#{E:@catppuccin_status_uptime}"
 set -ag status-left "#{E:@catppuccin_status_directory}"

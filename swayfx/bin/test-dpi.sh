@@ -29,10 +29,23 @@ WIDTH="$1"
 HEIGHT="$2"
 DIAGONAL="$3"
 
+to_shell() {
+    echo "export EWW_SCALE=$1" > "$HOME/.eww_scale"
+}
+
+to_eww_scss() {
+    ewwdir="$HOME/.config/eww"
+    [ -d "$ewwdir" ] || mkdir -p "$ewwdir"
+    echo "\$scale: $1;" > "$ewwdir/_scale.scss"
+}
+
 if [ -z "$WIDTH" ] || [ -z "$HEIGHT" ] || [ -z "$DIAGONAL" ] ; then
     echo "usage: ./test-dpi WIDTH HEIGHT DIAGONAL"
     echo "example: ./test-dpi 1366 768 11.6"
-    exit 1
+    echo "default use a scale of 1.0"
+    to_shell "1.0"
+    to_eww_scss "1.0"
+    exit 0
 fi
 
 MYDPI=$(echo "print ( ((($WIDTH ** 2)+($HEIGHT ** 2) ) ** (0.5) ) / $DIAGONAL )" | python3)
@@ -40,3 +53,6 @@ MYDPI=$(echo "print ( ((($WIDTH ** 2)+($HEIGHT ** 2) ) ** (0.5) ) / $DIAGONAL )"
 DPC=$(echo "print( $MYDPI / 160 )" | python3)
 echo "your DPI is $MYDPI"
 echo "dp scale factor $DPC"
+
+to_shell "$DPC"
+to_eww_scss "$DPC"

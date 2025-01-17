@@ -1,10 +1,6 @@
-.bar {
-  .red {
-    color: #ff0;
-  }
-}
 .nav-item {
   min-height: dpi(56px);
+  margin-bottom: dpi(12px);
 }
 
 .workspace {
@@ -12,12 +8,10 @@
   color: $secondary;
   font-family: "icomoon";
   font-size: dpi(24pt);
-  min-width: dpi(56px);
-  min-height: dpi(56px);
   transition: font-size 0.4s;
   &:hover {
-    color: $on-secondary-container;
-  }
+      color: $on-secondary-container;
+    }
   .empty {
     color: #666;
     min-height: dpi(56px);
@@ -34,6 +28,7 @@
     min-height: dpi(56px);
   }
 }
+
 .nav-scroll {
-  min-height: dpi(500px);
+  min-height: dpi(400px);
 }

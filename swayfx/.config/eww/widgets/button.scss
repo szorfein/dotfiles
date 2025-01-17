@@ -60,9 +60,6 @@
 
 .icon-filled-error {
   @extend .icon-filled;
-  &:hover {
-    background-color: rgba($on-error, 0.08);
-  }
   &.enabled {
     background-color: $error;
     color: $on-error;
@@ -70,6 +67,9 @@
   &.disabled {
     color: rgba($on-error, 0.38);
     background-color: rgba($error, 0.12);
+  }
+  &:hover {
+    background-color: rgba($error, .90);
   }
 }
 
@@ -94,36 +94,7 @@
     border-radius: 50%; // circular
   }
 }
-/*
-  &.primary {
-    background-color: $primary-container;
-    color: $on-primary-container;
-    border-radius: 50%; // circular
-    & button:hover {
-      background-color: rgba($on-primary-container, 0.08);
-      border-radius: 50%; // circular
-    }
-  }
-  &.tertiary {
-    background-color: $tertiary-container;
-    color: $on-tertiary-container;
-    border-radius: 50%; // circular
-    & button:hover {
-      background-color: rgba($on-tertiary-container, 0.08);
-      border-radius: 50%; // circular
-    }
-  }
-  &.error {
-    background-color: $error-container;
-    color: $on-error-container;
-    border-radius: 50%; // circular
-    & button:hover {
-      background-color: rgba($on-error-container, 0.08);
-      border-radius: 50%; // circular
-    }
-  }
-}
-*/
+
 .icon-outlined {
   font-family: "Material Symbols Outlined";
   font-size: dpi(24px);

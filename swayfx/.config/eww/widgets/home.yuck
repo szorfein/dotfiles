@@ -29,10 +29,15 @@
             (box :orientation "vertical"
                 ;(label :angle 90 :class "day" :text ">")
                 ;(home-sun)
-                (label :class "day" :text "")
+                (box :class "day"
+                    :width 40 :height 40
+                    :halign "center" :valign "center"
+                    (icon-filled :icon "" :onclick "" :class "error")
+                )
+                ;(label :class "day" :text "")
                 (home-sun)
                 ;(label :class "day" :text "")
-                (box :space-overlay true
+                (box :space-evenly true
                     :valign "center"
                     :halign "center"
                     :style "padding-right: 8px"
@@ -96,7 +101,6 @@
         (icon-filled :icon "" :onclick "~/.config/eww/scripts/screenshot.sh &" :class "primary")
         (icon-filled :icon "" :onclick "" :class "secondary")
         (icon-filled :icon "" :onclick "" :class "tertiary")
-        ;(icon-filled :icon "" :onclick "" :class "error")
     )
 )
 
@@ -109,7 +113,7 @@
         :space-evenly false
         ;:spacing 6
         (label
-            :truncate true
+            ;:truncate true
             :limit-width 10
             ;:style "border: 1px solid #0ff"
             :class "body-medium"
@@ -118,7 +122,7 @@
             :text "${geoloc.isp_name}"
         )
         (label
-            :truncate true
+            ;:truncate true
             :limit-width 10
             ;:style "border: 1px solid #0ff"
             :class "body-medium"
@@ -127,7 +131,7 @@
             :text "${geoloc.country_name}"
         )
         (label
-            :truncate true
+            ;:truncate true
             :limit-width 10
             ;:style "border: 1px solid #0ff"
             :class "body-medium"
@@ -141,7 +145,7 @@
 (defwidget home-hour []
     (box :orientation "horizontal"
         ;:style "border: 1px solid #f00"
-        :class "time"
+        :class "mb-16 time"
         (box :orientation "horizontal"
             :halign "end"
             "${time.hour}"
@@ -155,14 +159,18 @@
 
 (defwidget home-battery []
     (box :orientation "vertical"
-        :class "battery body-medium"
+        :class "battery body-medium mt-16"
         :spacing 8
         :space-evenly false
         (box :orientation "horizontal"
+            :space-evenly false
             :halign "start"
+            (box :class "simple-icon" "")
             "${round(EWW_BATTERY.total_avg, 0)}% Battery"
         )
         (box :halign "start"
+            :space-evenly false
+            (box :class "simple-icon" "")
             "${EWW_TEMPS.ACPITZ_TEMP1}°C"
         )
     )

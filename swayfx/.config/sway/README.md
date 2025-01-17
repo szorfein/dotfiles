@@ -5,17 +5,25 @@ The whole (or many) stack has changed because wayland instead X.
 [migration_guide](https://github.com/swaywm/sway/wiki/i3-Migration-Guide)
 
 - swayfx - wm and compositor
-- wezterm - replace xst (tested foot (very fast and good also)) and kitty (not very interested by a console written in Python, Go, C and++)
+- wezterm - replace xst (tested foot (very fast and good also)) and kitty (not very interested by a console written in Python and Go but it's an option)
 - imv - images viewer, replace feh
 - eww - widgets (instead of the awesomewm API)
 - swaybg
-- gem install --user-install i3ipc
 - wl-clipboard
 - jq
 - grim (screenshot), replace scrot
 - playerctl, mpd-mpris or mpdris2, mpv-mpris
+- ruby (ruby-gem)
+- neovim (optional) - replace doomemacs and vim
 
-For emacs, you should use emacs-wayland intead of emacs-nativecomp
+## From Ruby
+
+    gem install --user-install i3ipc
+
+You also need to add ruby in your `$PATH` via .zprofile, .zshenv, etc...
+
+    export GEM_HOME="$(gem env user_gemhome)"
+    export PATH="$PATH:$GEM_HOME/bin"
 
 ## Configure keymap
 
@@ -37,9 +45,12 @@ bindsym $mod+ampersand workspace number 1
 ...etc
 ```
 
-## Add your DPI scale factor
+## Run test-dpi.sh
+Configs need 2 files in `~/.eww_scale` and `~/.config/eww/_scale.scss` generated with the script.
 
     ~/.dotfiles/swayfx/bin/test-dpi.sh 1366 768 11.6
     dp scale factor 0.8443388199535182
 
-    echo "$scale: 0.8443388199535182;" ~/.config/eww/_scale.scss
+To load .eww_scale, you need to add it in your shell e.g .zprofile
+
+    source ~/.eww_scale

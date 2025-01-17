@@ -59,6 +59,7 @@ set -gF window-status-current-format "#[bg=#181C20,fg=cyan,bold] ##I#[fg=cyan,bo
 # Make the status line pretty and add some modules
 set -g status-right-length 100
 set -g status-left-length 100
+set -g status-right ""
 set -g status-left "#{E:@catppuccin_status_application}"
 set -ag status-left "#{E:@catppuccin_status_session}"
 set -ag status-left "#{E:@catppuccin_status_uptime}"

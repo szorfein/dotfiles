@@ -32,6 +32,10 @@ else
   export TERM=xst-256color
 fi
 
+if [ -f "$HOME/.eww_scale" ] ; then
+    source "$HOME/.eww_scale"
+fi
+
 # GPG (using plugin from ohmyzsh instead)
 # export GPG_TTY=$(tty)
 # export GPG_AGENT_INFO=""

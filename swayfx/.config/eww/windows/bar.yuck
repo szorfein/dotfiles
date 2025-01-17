@@ -2,20 +2,21 @@
     :monitor 0
     :geometry (geometry :x 0
                         :y 0
-                        :width "80px"
+                        :width "${80 * get_env("EWW_SCALE")}px"
+                        ;:width "80px"
                         :height "100%"
                         :anchor "left center")
     :stacking "fg"
     :exclusive true
-    (revealer :transition "slideleft"
-              :reveal "${navbar-visible}"
+    (revealer :transition "slideleft" :reveal "${navbar-visible}"
         (centerbox :orientation "vertical"
             (box :orientation "vertical"
-                        :space-evenly false
+                :space-evenly false
                 (icon-fab
                     :onclick "${navbar-fab-active ? "eww update navbar-fab-active=false" : "eww update navbar-fab-active=true"}"
                     :onrightclick "~/.config/eww/scripts/toggle-nav.sh toggle &"
-                    :icon "")
+                    :icon ""
+                )
                 (revealer :reveal "${navbar-fab-active}"
                     :transition "crossfade"
                     (box :orientation "vertical"
@@ -39,7 +40,8 @@
                     ;:valign "fill"
                     :class "workspace"
                     :space-evenly false
-                    :spacing 12
+                    :spacing "${12 * get_env("EWW_SCALE")}"
+                    ;:spacing 2
                     (workspace-indicator :i 1 :class "${ws1}")
                     (workspace-indicator :i 2 :class "${ws2}")
                     (workspace-indicator :i 3 :class "${ws3}")
@@ -69,17 +71,23 @@
     :stacking "overlay"
     :exclusive false
     (box :halign "fill"
-         :valign "fill"
-         ;:style "background-color: #f00"
+        :valign "fill"
+        ;:style "background-color: #f00"
         (eventbox :onhover "~/.config/eww/scripts/toggle-nav.sh show &")
     )
 )
 
 (defwidget workspace-indicator [i class]
     (eventbox :cursor "hand2"
-              :onclick "swaymsg -q 'workspace number ${i}'"
-              ;:onscroll "[ '{}' = 'up' ] && swaymsg -q workspace prev || swaymsg -q workspace next"
-        (box :class "indicator nav-item ${class}" :halign "center" "${ws[i]}")
+        :onclick "swaymsg -q 'workspace number ${i}'"
+        ;:onscroll "[ '{}' = 'up' ] && swaymsg -q workspace prev || swaymsg -q workspace next"
+        (box :class "indicator nav-item ${class}"
+            :halign "center"
+            :valign "center"
+            :width "${56 * get_env("EWW_SCALE")}"
+            :height "${56 * get_env("EWW_SCALE")}"
+            "${ws[i]}"
+        )
     )
 )
 
