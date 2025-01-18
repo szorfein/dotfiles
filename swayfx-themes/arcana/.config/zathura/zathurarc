@@ -33,6 +33,6 @@ set index-active-bg	          "#272A2E"
 set render-loading-bg	          "#101418"
 set render-loading-fg	          "#E0E2E8"
 
-set highlight-color	          rgba(#5A396D, 0.5)
-set highlight-fg                  rgba(#F5D9FF, 0.5)
-set highlight-active-color	  rgba(#F5D9FF, 0.5)
+set highlight-color		  rgba(87,82,104,0.5)
+set highlight-fg                  rgba(245,194,231,0.5)
+set highlight-active-color	  rgba(245,194,231,0.5)

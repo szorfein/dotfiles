@@ -1,5 +1,0 @@
-" Clipboard wayland
-let g:wayland_clipboard_copy_args = ['--primary', '--paste-once']
-nnoremap "+y y:call system("wl-copy", @")
-nnoremap "+p :let @"=substitute(system("wl-paste --no-newline"), '', '', 'g')p
-nnoremap "*p :let @"=substitute(system("wl-paste --no-newline --primary"), '', '', 'g')p

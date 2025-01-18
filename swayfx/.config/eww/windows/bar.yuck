@@ -27,7 +27,7 @@
                             :icon ""
                         )
                         (icon-small-fab
-                            :onclick "~/.config/eww/scripts/toggle-powermenu.sh &"
+                            :onclick "~/.config/eww/scripts/toggle-powermenu.sh && eww update navbar-fab-active=false &"
                             :icon ""
                         )
                     )
@@ -78,7 +78,7 @@
 )
 
 (defwidget workspace-indicator [i class]
-    (eventbox :cursor "hand2"
+    (eventbox :cursor "hand1"
         :onclick "swaymsg -q 'workspace number ${i}'"
         ;:onscroll "[ '{}' = 'up' ] && swaymsg -q workspace prev || swaymsg -q workspace next"
         (box :class "indicator nav-item ${class}"
@@ -93,7 +93,18 @@
 
 ; echo -e "\u<code name>", e.g: echo -e "\ue9ca" will display icon-heart and paste here
 ; the first element will not count...
-(defvar ws "[\"_\", \"\", \"\", \"\", \"\", \"x\", \"x\", \"\", \"\", \"x\", \"x\"]")
+(defvar ws "[\"_\",
+    \"\",
+    \"\",
+    \"\",
+    \"\",
+    \"\",
+    \"\",
+    \"\",
+    \"\",
+    \"\",
+    \"\"]"
+)
 
 (defvar ws1 "empty")
 (defvar ws2 "empty")

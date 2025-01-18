@@ -157,8 +157,8 @@
         :class "tabs"
         :space-evenly true
         (tab-indicator :index 1 :icon "")
-        (tab-indicator :index 2 :icon "")
-        (tab-indicator :index 3 :icon "")
+        (tab-indicator :index 2 :icon "")
+        (tab-indicator :index 3 :icon "")
     )
 )
 

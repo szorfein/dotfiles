@@ -6,7 +6,7 @@ set -s copy-command 'wl-copy'
 #bind-key p run "wl-paste -n | tmux load-buffer - ; tmux paste-buffer"
 # Wayland, Ctrl+a+v (copy mode), press y for copy. Alt+p for paste
 # https://www.rockyourcode.com/copy-and-paste-in-tmux/
-set-option -s set-clipboard off
+#set-option -s set-clipboard off
 bind P paste-buffer
 bind-key -T copy-mode-vi 'v' send-keys -X begin-selection
 bind-key -T copy-mode-vi 'y' send-keys -X copy-pipe "wl-copy"
@@ -60,7 +60,7 @@ set -gF window-status-current-format "#[bg=#181C20,fg=cyan,bold] ##I#[fg=cyan,bo
 set -g status-right-length 100
 set -g status-left-length 100
 set -g status-right ""
-set -g status-left "#{E:@catppuccin_status_application}"
+set -a status-left "#{E:@catppuccin_status_application}"
 set -ag status-left "#{E:@catppuccin_status_session}"
 set -ag status-left "#{E:@catppuccin_status_uptime}"
 set -ag status-left "#{E:@catppuccin_status_directory}"

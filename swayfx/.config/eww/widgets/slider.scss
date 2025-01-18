@@ -23,16 +23,14 @@
   }
 
   scale trough {
-    background-color: $secondary-container;
-    min-height: dpi(50px);
+    background-color: $surface-container-highest;
+    min-height: dpi(16px);
     min-width: dpi(100px);
-    border-radius: dpi(14px);
   }
 
   scale trough highlight {
-    background-color: $primary;
+    background-color: $error;
     transition: 0.3s;
-    border-radius: dpi(14px) 0 0 dpi(14px);
   }
 }
 

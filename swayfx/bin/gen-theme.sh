@@ -84,11 +84,14 @@ cat <<EOF > "$workdir/.config/eww/colors.scss"
 \$on-surface: $on_surface;
 \$surface-container-low: $surface_container_low;
 \$surface-container-high: $surface_container_high;
+\$surface-container-highest: $surface_container_highest;
 \$on-surface-variant: $on_surface_variant;
 \$secondary-container: $secondary_container;
 \$on-secondary-container: $on_secondary_container;
 \$error: $error;
 \$on-error: $on_error;
+\$error-container: $error_container;
+\$on-error-container: $on_error_container;
 \$outline: $outline;
 \$outline-variant: $outline_variant;
 \$scrim: $scrim;
