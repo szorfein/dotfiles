@@ -58,6 +58,20 @@ set cindent
 " Shell
 set shell=/bin/zsh
 
+" Shortcuts
+
+" Few Emacs shorcuts
+" https://caiorss.github.io/Emacs-Elisp-Programming/Keybindings.html
+nmap <C-x>s :w<cr>
+nmap <C-x><C-f> :FzfLua files<cr>
+nmap <C-x>c :wq<cr> " should be <C-x><C-c> but not works
+
+" Begin and end line
+inoremap <C-a> <home>
+inoremap <C-e> <end>
+nnoremap <C-a> <home>
+nnoremap <C-e> <end>
+
 " Load custom theme when installed
 " (colorscheme + lightline)
 if filereadable(glob("~/.config/nvim/theme.vim"))

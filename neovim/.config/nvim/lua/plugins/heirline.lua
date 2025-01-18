@@ -62,6 +62,11 @@ return {
                     nov = 'Ov',
                     noV = 'oV',
                     ["no\22"] = "O?",
+                    r = "...", -- app?
+                    rm = "M",
+                    ["r?"] = "?",
+                    ["!"] = "!",
+                    t = "T",
                 },
                 mode_colors = {
                     n = 'red',
@@ -70,6 +75,10 @@ return {
                     v = 'magenta',
                     V = 'magenta',
                     c = 'cyan',
+                    R =  "orange", -- app?
+                    r =  "orange",
+                    ["!"] =  "red",
+                    t =  "red"
                 }
             },
             provider = function(self)
