@@ -182,7 +182,7 @@
         :class "home-slide"
         :valign "center"
         ;:space-evenly false
-        (slider-horizontal-m3 :max 100 :value 66 :icon "" :label "Brightness")
+        (slider-horizontal-m3 :min 1 :max 100 :value "${brightness}" :icon "" :label "Brightness" :onchange "light -S {}")
     )
 )
 
@@ -194,9 +194,9 @@
 )
 
 ; all vars
-
 (defpoll time :interval "60s" `~/.config/eww/scripts/time-json.sh`)
 (defpoll day_nb :interval "60m" `date +%e`)
 (defpoll day :interval "60m" `~/.config/eww/scripts/date-json.sh day`)
 (defpoll month :interval "60m" `~/.config/eww/scripts/date-json.sh month`)
 (defpoll geoloc :interval "5m" `~/.config/eww/scripts/geoloc.sh`)
+(defpoll brightness :interval "60m" `light -G`)

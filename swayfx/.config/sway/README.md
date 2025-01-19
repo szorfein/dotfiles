@@ -14,6 +14,7 @@ The whole (or many) stack has changed because wayland instead X.
 - grim (screenshot), replace scrot
 - playerctl, mpd-mpris or mpdris2, mpv-mpris
 - ruby (ruby-gem)
+- light, inotify-tools
 - neovim (optional) - replace doomemacs and vim
 
 ## From Ruby

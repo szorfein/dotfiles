@@ -22,7 +22,7 @@
     )
 )
 
-(defwidget slider-horizontal-m3 [value max ?onchange ?class ?icon ?label]
+(defwidget slider-horizontal-m3 [value ?min max ?onchange ?class ?icon ?label]
     ;TODO lack the tooltip and the handle
     (box :class "slider-horizontal-m3 ${class}"
         :space-evenly false
@@ -40,7 +40,7 @@
                 ;:style "border: 1px solid #f0f"
                 :value "${value}"
                 :max "${max}"
-                ;:min 0
+                :min "${min}"
                 :hexpand true
                 :onchange "${onchange}"
             )
