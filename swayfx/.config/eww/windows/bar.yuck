@@ -27,7 +27,7 @@
                             :icon ""
                         )
                         (icon-small-fab
-                            :onclick "~/.config/eww/scripts/toggle-powermenu.sh && eww update navbar-fab-active=false &"
+                            :onclick "~/.config/eww/scripts/dialog.sh toggle powermenu && eww update navbar-fab-active=false &"
                             :icon ""
                         )
                     )

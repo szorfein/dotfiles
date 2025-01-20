@@ -16,7 +16,11 @@
                 (box :orientation "horizontal"
                     :space-evenly false
                     :halign "end"
-                    (icon-button :height 48 :icon "" :onclick "")
+                    (icon-button 
+                        :height 48
+                        :icon ""
+                        :onclick "~/.config/eww/scripts/dialog.sh open playlists"
+                    )
                 )
                 (image :path "${media.arturl}"
                     :image-height 166
@@ -68,10 +72,11 @@
 
 (defwidget music-volume []
     (slider-horizontal-m3
-        :value 10
+        :value "${volume}"
         :max 100
         :icon ""
         :label "Volume"
+        :onchange "~/.config/eww/scripts/volume.sh set {}"
     )
 )
 
@@ -126,3 +131,4 @@
 (defvar mpd-active false)
 (defvar mpv-active false)
 (defvar playlist-name "")
+(defvar volume "")

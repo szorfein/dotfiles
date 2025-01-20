@@ -27,6 +27,7 @@ eww daemon \
 # Other daemons
 setsid ~/.config/eww/daemons/media.sh >/dev/null 2>&1 < /dev/null &
 setsid ~/.config/eww/daemons/light.sh >/dev/null 2>&1 < /dev/null &
+setsid ~/.config/eww/daemons/volume.sh >/dev/null 2>&1 < /dev/null &
 setsid ~/.config/eww/scripts/daemons/sway-workspaces.rb >/dev/null 2>&1 < /dev/null &
 
 

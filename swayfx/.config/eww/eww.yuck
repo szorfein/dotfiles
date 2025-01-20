@@ -12,3 +12,4 @@
 (include "windows/bar.yuck")
 (include "windows/sidebar.yuck")
 (include "windows/powermenu.yuck")
+(include "windows/playlists.yuck")
