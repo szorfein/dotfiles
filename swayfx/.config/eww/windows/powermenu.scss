@@ -3,17 +3,17 @@
   background: rgba($scrim, 0.32);
   .dialog-content {
     border: 0px solid #fff;
-    border-radius: 28px;
-    min-width: 280px;
+    border-radius: dpi(28px);
+    min-width: dpi(280px);
     background-color: $surface-container-high;
   }
   .dialog-tint {
     background-color: rgba($surface-tint, 0.06);
     background-size: 100% 100%;
-    border-radius: 28px;
+    border-radius: dpi(28px);
     border: 0px solid $surface-container-high;
   }
   .container {
-    padding: 24px;
+    padding: dpi(24px);
   }
 }

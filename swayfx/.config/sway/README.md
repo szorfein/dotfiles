@@ -15,7 +15,8 @@ The whole (or many) stack has changed because wayland instead X.
 - playerctl, mpd-mpris or mpdris2, mpv-mpris
 - ruby (ruby-gem)
 - light, inotify-tools
-- neovim (optional) - replace doomemacs and vim
+- Neovim (optional) - replace doomemacs and vim
+- Pinta, replace Gimp.
 
 ## From Ruby
 

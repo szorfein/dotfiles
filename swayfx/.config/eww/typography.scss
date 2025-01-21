@@ -1,4 +1,12 @@
 // https://m3.material.io/styles/typography/type-scale-tokens
+.headline-small {
+  font-family: "demova";
+  font-size: dpi(24pt);
+  font-weight: 400;
+  letter-spacing: 0;
+  color: $on-surface;
+}
+
 .title-small {
   font-family: "Iosevka Nerd Font";
   font-size: dpi(14pt);
@@ -21,6 +29,7 @@
   min-height: dpi(20pt);
   // also named font-tracking
   letter-spacing: dpi(0.25pt);
+  color: $on-surface-variant;
 }
 
 .body-small {

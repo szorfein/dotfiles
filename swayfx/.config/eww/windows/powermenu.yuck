@@ -25,7 +25,11 @@
                         :valign "center"
                         :spacing 16
                         :orientation "vertical"
-                        (box "title")
+                        ; title
+                        (box :class "headline-small"
+                            :style "line-height: 32pt"
+                            "Logout"
+                        )
                         (box :halign "center" 
                             (icon-button :icon "logout" :onclick "")
                             (icon-button :icon "hibern" :onclick "")

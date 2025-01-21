@@ -1,8 +1,11 @@
 ; https://m3.material.io/components/chips/specs
 
-(defwidget chip-filter [text class]
-    (box :orientation "horizontal"
+(defwidget chip-filter [text class ?onclick]
+    (button
         :class "label-large chip-filter ${class}"
-        text
+        :onclick "${onclick}"
+        (box :orientation "horizontal"
+            text
+        )
     )
 )

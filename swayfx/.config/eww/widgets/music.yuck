@@ -93,31 +93,28 @@
             :class "music-playlist"
             (box :orientation "vertical"
                 :spacing 8
-                (box :orientation "horizontal"
-                    :spacing 8
-                    (chip-filter :text "hillo"
-                        :class "enabled"
-                    )
-                    (chip-filter :text "hillo"
-                        :class "disabled"
-                    )
-                )
-                (box :orientation "horizontal"
-                    :spacing 8
-                    (chip-filter :text "hillo"
-                        :class "disabled"
-                    )
-                    (chip-filter :text "hillo"
-                        :class "disabled"
-                    )
-                )
-                (box :orientation "horizontal"
-                    :spacing 8
-                    (chip-filter :text "hillo"
-                        :class "disabled"
-                    )
-                    (chip-filter :text "hillo"
-                        :class "disabled"
+                (for pl in mpd-playlists
+                    (box 
+                        :hexpand true
+                        :halign "fill"
+                        :space-evenly false
+                        :spacing 8
+                        (box :halign "fill"
+                            :hexpand true
+                            (chip-filter
+                                :text "${pl}"
+                                :onclick "~/.config/eww/scripts/mpc.sh load ${pl}"
+                                ;eww update playlist-focus=${pl} && mpc clear && mpc load ${pl} && mpc play"
+                                :class { playlist-focus == "${pl}" ? "enabled" : "disabled" }
+                            )
+                        )
+                        (box :halign "end"
+                            (icon-button
+                                :icon ""
+                                :onclick "~/.config/eww/scripts/mpc.sh rm ${pl}"
+                                :width 48
+                            )
+                        )
                     )
                 )
             )
@@ -125,10 +122,12 @@
     )
 )
 
-; all vars
+; all vars 
 (defvar media "[]")
 (defvar web-active false)
 (defvar mpd-active false)
 (defvar mpv-active false)
 (defvar playlist-name "")
 (defvar volume "")
+(defvar mpd-playlists '["6", "9"]')
+(defvar playlist-focus "")

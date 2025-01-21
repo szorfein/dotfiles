@@ -25,12 +25,19 @@
                         :valign "center"
                         :spacing 16
                         :orientation "vertical"
-                        (box "Playlist")
-                        (box "Add music ${media.artist} in playlist named:")
+                        ;title
+                        (box :class "headline-small"
+                            :style "line-height: 32pt"
+                            "Playlist"
+                        )
+                        ; supporting text
+                        (box :class "body-medium"
+                            "Add music ${media.artist} in playlist named:"
+                        )
                         (centerbox
                             ""
-                            (input :onaccept "mpc addplaylist {} \"$(mpc -f %file% | head -1)\" && ~/.config/eww/scripts/dialog.sh close playlists"
-                                :style "border: 1px solid #f00"
+                            (input :class "text-field body-large"
+                                :onaccept "~/.config/eww/scripts/mpc.sh create {} && ~/.config/eww/scripts/dialog.sh close playlists"
                                 :value ""
                             )
                             ""

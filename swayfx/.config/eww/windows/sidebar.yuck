@@ -163,7 +163,7 @@
 )
 
 (defwidget tab-indicator [index ?icon]
-    (eventbox :onclick "eww update sidebar-page-index=${index}"
+    (eventbox :onclick "eww update sidebar-page-index=${index} &"
         :cursor "hand2"
         (box :class "my-super-tab-icon ${sidebar-page-index == index ? "active" : "inactive"}"
             :valign "center"
