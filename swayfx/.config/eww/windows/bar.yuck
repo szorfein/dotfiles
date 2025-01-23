@@ -2,7 +2,7 @@
     :monitor 0
     :geometry (geometry :x 0
                         :y 0
-                        :width "${80 * get_env("EWW_SCALE")}px"
+                        :width "${round(80 * get_env("EWW_SCALE"), 0)}px"
                         ;:width "80px"
                         :height "100%"
                         :anchor "left center")
@@ -40,7 +40,7 @@
                     ;:valign "fill"
                     :class "workspace"
                     :space-evenly false
-                    :spacing "${12 * get_env("EWW_SCALE")}"
+                    :spacing "${round(12 * get_env("EWW_SCALE"), 0)}"
                     ;:spacing 2
                     (workspace-indicator :i 1 :class "${ws1}")
                     (workspace-indicator :i 2 :class "${ws2}")
@@ -84,8 +84,8 @@
         (box :class "indicator nav-item ${class}"
             :halign "center"
             :valign "center"
-            :width "${56 * get_env("EWW_SCALE")}"
-            :height "${56 * get_env("EWW_SCALE")}"
+            :width "${round(56 * get_env("EWW_SCALE"), 0)}px"
+            :height "${round(56 * get_env("EWW_SCALE"), 0)}px"
             "${ws[i]}"
         )
     )

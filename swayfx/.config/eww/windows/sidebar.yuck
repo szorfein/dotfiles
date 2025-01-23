@@ -2,7 +2,8 @@
     :monitor 0
     :geometry (geometry :x 0
                         :y 0
-                        :width "${290 * get_env('EWW_SCALE')}px"
+                        :width "${round(290 * get_env('EWW_SCALE'), 0)}px"
+
                         :height "100%"
                         :anchor "right center")
     :stacking "fg"
@@ -27,7 +28,7 @@
                 :class "container"
                 :valign "fill"
                 :halign "fill"
-                :spacing {round(16 * get_env("EWW_SCALE"), 0)}
+                :spacing "${round(26 * get_env("EWW_SCALE"), 0)}"
                 ;:style "border: 1px solid #f00"
                 (box :orientation "v" :valign "center"
                     :space-evenly false
@@ -103,7 +104,8 @@
                 (box :orientation "vertical"
                     :space-evenly false
                     ; no spacing without round
-                    :spacing {round(16 * get_env("EWW_SCALE"), 0)}
+                    ; don't add px on spacing...
+                    :spacing "${round(16 * get_env("EWW_SCALE"), 0)}"
                     (music-volume)
                     (music-metadata)
                     (music-buttons)
@@ -164,6 +166,7 @@
 
 (defwidget tab-indicator [index ?icon]
     (eventbox :onclick "eww update sidebar-page-index=${index} &"
+        :onrightclick "~/.config/eww/scripts/dialog.sh close sidebar &"
         :cursor "hand2"
         (box :class "my-super-tab-icon ${sidebar-page-index == index ? "active" : "inactive"}"
             :valign "center"

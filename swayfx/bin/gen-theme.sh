@@ -4,9 +4,16 @@ set -o errexit -o nounset
 
 # Usage:
 # gen-theme.sh ~/Downloads/magic.json magic
+# Theme are generated on
+# https://material-foundation.github.io/material-theme-builder/
+# And exported in JSON format
 
 filename="$1"
 workdir="/tmp/$2"
+
+# Clone this
+# https://github.com/themix-project/oomox-gtk-theme
+GTK_DIR="$HOME/labs/oomox-gtk-theme"
 
 ext_dark() {
   color=$(cat < "$filename" | jq ".schemes.dark.$1" | tr -d '"')
@@ -217,6 +224,16 @@ bind-key -T copy-mode-vi 'y' send-keys -X copy-pipe "wl-copy"
 #bind-key -T copy-mode-vi Enter send-keys -X copy-pipe-and-cancel 'wl-copy'
 #bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel 'wl-copy'
 
+# Configure plugin mode_indicator
+set -g @mode_indicator_prefix_prompt "WAIT"
+set -g @mode_indicator_prefix_mode_style fg=$secondary,bold
+set -g @mode_indicator_copy_prompt "COPY"
+set -g @mode_indicator_copy_mode_style fg=green,bold
+set -g @mode_indicator_sync_prompt "SYNC"
+set -g @mode_indicator_sync_mode_style fg=$error,bold
+set -g @mode_indicator_empty_prompt "TMUX"
+set -g @mode_indicator_empty_mode_style fg=purple,bold
+
 # Configure the catppuccin plugin
 set -g @catppuccin_flavor "mocha"
 set -g @catppuccin_window_status_style "rounded"
@@ -254,17 +271,21 @@ set -g @catppuccin_status_directory_icon_fg "$primary"
 run ~/.config/tmux/plugins/catppuccin/tmux/catppuccin.tmux
 
 # Current
-set -gF window-status-format "#[bg=$surface_container_low,fg=$on_surface]##I ##T"
-set -gF window-status-current-format "#[bg=$surface_container_low,fg=cyan,bold] ##I#[fg=cyan,bold] ##T"
+set -g status-justify centre
+set -gF window-status-format "#[bg=$surface_container_low,fg=$on_surface]##I:##T"
+set -gF window-status-current-format "#[bg=$surface_container_low,fg=cyan,bold]##I:#[fg=cyan,bold]##T"
 
 # Make the status line pretty and add some modules
 set -g status-right-length 100
 set -g status-left-length 100
 set -g status-right ""
-set -a status-left "#{E:@catppuccin_status_application}"
-set -ag status-left "#{E:@catppuccin_status_session}"
-set -ag status-left "#{E:@catppuccin_status_uptime}"
+set -g status-left "#{tmux_mode_indicator}"
+set -ag status-left "#{E:@catppuccin_status_application}"
 set -ag status-left "#{E:@catppuccin_status_directory}"
+set -ag status-right "#{E:@catppuccin_status_session}"
+set -ag status-right "#{E:@catppuccin_status_uptime}"
+
+run-shell ~/.config/tmux/plugins/tmux-mode-indicator/mode_indicator.tmux
 EOF
 
 # neovim
@@ -321,5 +342,12 @@ set highlight-color		  rgba(87,82,104,0.5)
 set highlight-fg                  rgba(245,194,231,0.5)
 set highlight-active-color	  rgba(245,194,231,0.5)
 EOF
+
+# Generate a gtk theme under ~/.themes
+# need to remove '#' with ${MYVAR:1}
+(cd "$GTK_DIR" && ./change_color.sh -o "$2" <(echo -e "BG=${surface:1}\nBTN_BG=${surface_container_high:1}\nBTN_FG=${primary:1}\nFG=${on_surface:1}\nGRADIENT=0.0\nHDR_BTN_BG=${primary:1}\nHDR_BTN_FG=${on_primary:1}\nHDR_BG=${surface_container_low:1}\nHDR_FG=${on_surface:1}\nROUNDNESS=24\nSEL_BG=${secondary_container:1}\nSEL_FG=${on_secondary_container:1}\nSPACING=8\nTXT_BG=${surface_container:1}\nTXT_FG=${on_surface:1}\nWM_BORDER_FOCUS=${primary:1}\nWM_BORDER_UNFOCUS=${outline:1}\n"))
+
+# Load gtk theme with
+# gsettings set org.gnome.desktop.interface gtk-theme "$2"
 
 echo "$2 theme generated at $workdir"

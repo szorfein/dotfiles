@@ -4,8 +4,9 @@ set -o errexit
 
 if [ -f /tmp/daemon-playlists ] ; then
     OLDPID=$(cat </tmp/daemon-playlists)
-    kill "$OLDPID"
-    echo "killing $OLDPID"
+    if kill "$OLDPID" 2>/dev/null ; then
+        echo "killing $OLDPID"
+    fi
 fi
 
 echo "$$">/tmp/daemon-playlists

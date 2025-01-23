@@ -17,13 +17,15 @@ PID=$$
 
 if [ -f "$PID_FILE" ] ; then
     OLD_PID=$(cat <"$PID_FILE")
-    echo "old pid found $OLD_PID"
-    kill "$OLD_PID"
+    if kill $OLD_PID 2>/dev/null ; then
+        echo "old pid found $OLD_PID"
+        echo "killing $OLD_PID"
+    fi
     rm -r "$PID_FILE"
 fi
 
-if pgrep -f "playerctl --follow metadata" ; then
-    pgrep -f "playerctl --follow metadata" | xargs kill
+if PIDS=$(pgrep -f "playerctl --follow metadata") ; then
+    kill $PIDS
 fi
 
 echo "$PID" >"$PID_FILE"
@@ -40,13 +42,15 @@ mpd_cover() {
     fi
 }
 
+OLD_SONG=""
 #while :; do 
     # always prefer inotify or any mechanism to check change over sleep
     #sleep 5
 #done
 # requires playerctl>=2.0
 # Add non-space character ":" before each parameter to prevent 'read' from skipping over them
-playerctl --follow metadata --format $':{{status}}\t:{{position}}\t:{{mpris:length}}\t:{{playerName}}\t:{{mpris:artUrl}}\t:{{duration(position)}}\t:{{duration(mpris:length)}}' | while read -r playing position length name arturl hpos hlen; do
+#playerctl --follow metadata --format $':{{status}}\t:{{position}}\t:{{mpris:length}}\t:{{playerName}}\t:{{mpris:artUrl}}\t:{{duration(position)}}\t:{{duration(mpris:length)}}' | while read -r playing position length name arturl hpos hlen; do
+playerctl --follow metadata --format $':{{status}}\t:{{position}}\t:{{mpris:length}}\t:{{playerName}}\t:{{mpris:artUrl}}\t:{{duration(position)}}\t:{{duration(mpris:length)}}\t:{{xesam:title}}\t:{{xesam:artist}}' | while read -r playing position length name arturl hpos hlen title artist; do
 
 # All vars are prefixed with ':'
 # in Bash, simply use playing=${playing:1}
@@ -59,31 +63,35 @@ name=$(expr " $name" : " .\\(.*\\)")
 arturl=$(expr " $arturl" : " .\\(.*\\)")
 hpos=$(expr " $hpos" : " .\\(.*\\)")
 hlen=$(expr " $hlen" : " .\\(.*\\)")
+title=$(expr " $title" : " .\\(.*\\)")
+artist=$(expr " $artist" : " .\\(.*\\)")
 
 # artist and title can contain a lot of characters...
-artist=$(playerctl metadata --format '{{ trunc(artist, 16) }}')
-title=$(playerctl metadata --format '{{ trunc(title, 16) }}')
+#artist=$(playerctl metadata --format '{{ trunc(artist, 16) }}')
+#title=$(playerctl metadata --format '{{ trunc(title, 16) }}')
 
 if [ "$name" = "brave" ] ; then
     arturl="${arturl#file://}"
 fi
 
 if [ "$name" = "mpd" ] ; then
-    arturl=$(mpd_cover)
+    if [ "$OLD_SONG" != "$title" ] ; then
+        arturl=$(mpd_cover)
+    fi
 fi
 
 # default
 [ -z "$arturl " ] && arturl="$HOME/images/nun.jpg"
 [ -z "$title" ] && title="N/A"
 [ -z "$artist" ] && artist="N/A"
-
+OLD_SONG="$title"
 eww update media="{
     \"playing\":\"$playing\",
     \"position\":\"$position\",
     \"length\":\"$length\",
     \"name\":\"$name\",
-    \"artist\":\"$artist\",
-    \"title\":\"$title\",
+    \"artist\":\"${artist:0:16}\",
+    \"title\":\"${title:0:16}\",
     \"arturl\":\"$arturl\",
     \"hpos\":\"$hpos\",
     \"hlen\":\"$hlen\"
@@ -92,9 +100,10 @@ eww update media="{
 web=false
 mpd=false
 mpv=false
-playerlist=$(playerctl -l)
+#playerlist=$(playerctl -l)
 
-if expr "$playerlist" : '.*[brave]' >/dev/null; then
+#if expr "$playerlist" : '.*[brave]' >/dev/null; then
+if expr "$name" : '.*[brave]' >/dev/null; then
     status=$(playerctl -p brave status 2>/dev/null)
     if [ "$status" = "Playing" ] ; then
         web=true
@@ -103,7 +112,8 @@ if expr "$playerlist" : '.*[brave]' >/dev/null; then
     fi
 fi
 
-if expr "$playerlist" : '.*[mpd]' >/dev/null; then
+#if expr "$playerlist" : '.*[mpd]' >/dev/null; then
+if expr "$name" : '.*[mpd]' >/dev/null; then
     status=$(playerctl -p mpd status 2>/dev/null)
     if [ "$status" = "Playing" ] ; then
         mpd=true
@@ -112,7 +122,8 @@ if expr "$playerlist" : '.*[mpd]' >/dev/null; then
     fi
 fi
 
-if expr "$playerlist" : '.*[mpv]' >/dev/null; then
+#if expr "$playerlist" : '.*[mpv]' >/dev/null; then
+if expr "$name" : '.*[mpv]' >/dev/null; then
     status=$(playerctl -p mpv status 2>/dev/null)
     if [ "$status" = "Playing" ] ; then
         mpv=true

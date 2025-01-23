@@ -3,13 +3,13 @@
 set -o errexit
 
 open() {
-    eww open "$1"
     eww update "$1"-visible=true
+    eww open "$1"
 }
 
 close() {
-    eww close "$1"
     eww update "$1"-visible=false
+    eww close "$1"
 }
 
 toggle() {
