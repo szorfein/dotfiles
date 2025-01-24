@@ -115,8 +115,10 @@
             ; network
             (box :visible "${sidebar-page-index == '3'}"
                 :class "container"
-                (overlay
-                    (box "hello")
+                (box :orientation "vertical"
+                    :spacing "${round(16 * get_env("EWW_SCALE"), 0)}"
+                    (network-stats)
+                    (network-buttons)
                 )
             )
         )

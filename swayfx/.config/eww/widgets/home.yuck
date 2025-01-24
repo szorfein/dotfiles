@@ -197,12 +197,17 @@
 (defpoll time :run-while "${sidebar-page-index == "1"}"
     :interval "60s" `~/.config/eww/scripts/time-json.sh`)
 (defpoll day_nb :run-while "${sidebar-page-index == "1"}"
-    :interval "60m" `date +%e`)
+    :interval "60m" `date +%e`
+)
 (defpoll day :run-while "${sidebar-page-index == "1"}"
-    :interval "60m" `~/.config/eww/scripts/date-json.sh day`)
+    :interval "60m" `~/.config/eww/scripts/date-json.sh day`
+)
 (defpoll month :run-while "${sidebar-page-index == "1"}"
-    :interval "60m" `~/.config/eww/scripts/date-json.sh month`)
+    :interval "60m" `~/.config/eww/scripts/date-json.sh month`
+)
 (defpoll geoloc :run-while "${sidebar-page-index == "1"}"
-    :interval "5m" `~/.config/eww/scripts/geoloc.sh`)
+    :interval "5m" `~/.config/eww/scripts/geoloc.sh`
+)
 (defpoll brightness :run-while "${sidebar-page-index == "1"}"
-    :interval "60m" `light -G`)
+    :interval "60m" `light -G`
+)

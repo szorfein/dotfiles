@@ -8,6 +8,7 @@
 
 (include "widgets/home.yuck")
 (include "widgets/music.yuck")
+(include "widgets/network.yuck")
 
 (include "windows/bar.yuck")
 (include "windows/sidebar.yuck")

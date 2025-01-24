@@ -81,8 +81,8 @@ alsa_mute() {
 
 get_sound() {
     case "$AUDIO" in
-        *pipewire*) get_pipewire ;;
-        *pulseaudio*) get_pulseaudio ;;
+        *pipewire*) pipewire_get ;;
+        *pulseaudio*) pulseaudio_get ;;
         *alsa*) alsa_get ;;
     esac
 }

@@ -37,7 +37,7 @@ mpd_cover() {
 
     file=$(mpc -f %file% | head -1)
     file_dir="$MPD_MUSIC_DIR/${file%/*}"
-    if find=$(find "$file_dir" -regex ".*\.\(jpg\|png\|jpeg\)") ; then
+    if find=$(find "$file_dir" -regex ".*\.\(jpg\|png\|jpeg\)" | head -1) ; then
         echo "$find"
     fi
 }
@@ -50,7 +50,10 @@ OLD_SONG=""
 # requires playerctl>=2.0
 # Add non-space character ":" before each parameter to prevent 'read' from skipping over them
 #playerctl --follow metadata --format $':{{status}}\t:{{position}}\t:{{mpris:length}}\t:{{playerName}}\t:{{mpris:artUrl}}\t:{{duration(position)}}\t:{{duration(mpris:length)}}' | while read -r playing position length name arturl hpos hlen; do
-playerctl --follow metadata --format $':{{status}}\t:{{position}}\t:{{mpris:length}}\t:{{playerName}}\t:{{mpris:artUrl}}\t:{{duration(position)}}\t:{{duration(mpris:length)}}\t:{{xesam:title}}\t:{{xesam:artist}}' | while read -r playing position length name arturl hpos hlen title artist; do
+#playerctl --follow metadata --format $':{{status}}\t:{{position}}\t:{{mpris:length}}\t:{{playerName}}\t:{{mpris:artUrl}}\t:{{duration(position)}}\t:{{duration(mpris:length)}}\t:{{trunc(title, 16)}}\t:{{trunc(artist, 16)}}' | while read -r playing position length name arturl hpos hlen title artist; do
+# artist should be placed before title
+# artist name and title should not contain any space...
+playerctl --follow metadata --format $':{{status}}\t:{{position}}\t:{{mpris:length}}\t:{{playerName}}\t:{{mpris:artUrl}}\t:{{duration(position)}}\t:{{duration(mpris:length)}}\t:{{trunc((markup_escape(artist)),16)}}\t:{{trunc((markup_escape(title)), 16)}}' | while read -r playing position length name arturl hpos hlen artist title; do
 
 # All vars are prefixed with ':'
 # in Bash, simply use playing=${playing:1}
@@ -58,8 +61,6 @@ playing=$(expr " $playing" : " .\\(.*\\)")
 position=$(expr " $position" : " .\\(.*\\)")
 length=$(expr " $length" : " .\\(.*\\)")
 name=$(expr " $name" : " .\\(.*\\)")
-#artist=${artist:1}
-#title=${title:1}
 arturl=$(expr " $arturl" : " .\\(.*\\)")
 hpos=$(expr " $hpos" : " .\\(.*\\)")
 hlen=$(expr " $hlen" : " .\\(.*\\)")
@@ -75,13 +76,13 @@ if [ "$name" = "brave" ] ; then
 fi
 
 if [ "$name" = "mpd" ] ; then
-    if [ "$OLD_SONG" != "$title" ] ; then
-        arturl=$(mpd_cover)
-    fi
+    #if [ "$OLD_SONG" != "$title" ] ; then
+        arturl="$(mpd_cover)"
+    #fi
 fi
 
 # default
-[ -z "$arturl " ] && arturl="$HOME/images/nun.jpg"
+[ -z "$arturl" ] && arturl="$HOME/images/nun.jpg"
 [ -z "$title" ] && title="N/A"
 [ -z "$artist" ] && artist="N/A"
 OLD_SONG="$title"
@@ -90,8 +91,8 @@ eww update media="{
     \"position\":\"$position\",
     \"length\":\"$length\",
     \"name\":\"$name\",
-    \"artist\":\"${artist:0:16}\",
-    \"title\":\"${title:0:16}\",
+    \"artist\":\"$artist\",
+    \"title\":\"$title\",
     \"arturl\":\"$arturl\",
     \"hpos\":\"$hpos\",
     \"hlen\":\"$hlen\"

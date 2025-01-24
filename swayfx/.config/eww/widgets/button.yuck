@@ -9,11 +9,12 @@
 )
 
 (defwidget icon-filled [?icon onclick ?class]
-    (button :onclick onclick
-        :class "icon-filled-${class} enabled"
-        (box :valign "center" :halign "center"
-            :height 40 :width 40
-            icon
+    (box :class "icon-filled-${class} enabled"
+        (button :onclick onclick
+            (box :valign "center" :halign "center"
+                :height 40 :width 40
+                icon
+            )
         )
     )
 )

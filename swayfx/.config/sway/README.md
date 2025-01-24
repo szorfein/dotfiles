@@ -56,3 +56,9 @@ Configs need 2 files in `~/.eww_scale` and `~/.config/eww/_scale.scss` generated
 To load .eww_scale, you need to add it in your shell e.g .zprofile
 
     source ~/.eww_scale
+
+## Interact with IWD
+User need to be added in `network` or `wheel` group.
+
+    usermod -aG network username
+

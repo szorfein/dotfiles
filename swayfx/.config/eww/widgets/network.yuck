@@ -1,0 +1,31 @@
+(defwidget network-stats []
+    (box
+        (box :orientation "horizontal"
+            (box :orientation "vertical"
+                "Download"
+                "${round(EWW_NET.wlan0.NET_DOWN / 1000000, 2)}MB/s"
+            )
+        )
+        (box :orientation "horizontal"
+            (box :orientation "vertical"
+                "Upload"
+                "${round(EWW_NET.wlan0.NET_UP / 1000000, 2)}MB/s"
+            )
+        )
+    )
+)
+
+(defwidget network-buttons []
+    (box :orientation "horizontal"
+        :spacing 8
+        (icon-filled-tonal :icon "" :onclick "")
+        (icon-filled-tonal
+            :icon ""
+            :onclick "~/.config/eww/scripts/network.sh wifi-toggle"
+            :class { wifi-killed ? "enabled" : "disabled" }
+        )
+        (icon-filled-tonal :icon "" :onclick "")
+    )
+)
+
+(defvar wifi-killed false)

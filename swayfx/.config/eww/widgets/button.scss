@@ -23,8 +23,8 @@
     color: rgba($on-primary, 0.38);
     background-color: rgba($primary, 0.12);
   }
-  &:hover {
-    background-color: rgba($primary, 0.90);
+  & button:hover {
+    background-color: rgba($on-primary, 0.08);
   }
 }
 
@@ -38,8 +38,8 @@
     color: rgba($on-secondary, 0.38);
     background-color: rgba($secondary, 0.12);
   }
-  &:hover {
-    background-color: rgba($secondary, 0.90);
+  & button:hover {
+    background-color: rgba($on-secondary, .08);
   }
 }
 
@@ -53,8 +53,8 @@
     color: rgba($on-tertiary, 0.38);
     background-color: rgba($tertiary, 0.12);
   }
-  &:hover {
-    background-color: rgba($tertiary, .90);
+  & button:hover {
+    background-color: rgba($on-tertiary, .08);
   }
 }
 
@@ -68,8 +68,8 @@
     color: rgba($on-error, 0.38);
     background-color: rgba($error, 0.12);
   }
-  &:hover {
-    background-color: rgba($error, .90);
+  & button:hover {
+    background-color: rgba($on-error, .08);
   }
 }
 
@@ -89,6 +89,14 @@
   background-color: $secondary-container;
   color: $on-secondary-container;
   border-radius: 50%; // circular
+  &.enabled {
+    background-color: $secondary-container;
+    color: $on-secondary-container;
+  }
+  &.disabled {
+    background-color: rgba($on-surface, 0.12);
+    color: rgba($on-surface, 0.38);
+  }
   & button:hover {
     background-color: rgba($on-secondary-container, 0.08);
     border-radius: 50%; // circular
