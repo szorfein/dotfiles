@@ -117,8 +117,10 @@
                 :class "container"
                 (box :orientation "vertical"
                     :spacing "${round(16 * get_env("EWW_SCALE"), 0)}"
+                    :space-evenly false
                     (network-stats)
                     (network-buttons)
+                    (network-ssids)
                 )
             )
         )
@@ -167,12 +169,18 @@
 )
 
 (defwidget tab-indicator [index ?icon]
-    (eventbox :onclick "eww update sidebar-page-index=${index} &"
-        :onrightclick "~/.config/eww/scripts/dialog.sh close sidebar &"
+    (eventbox
+        
         :cursor "hand2"
         (box :class "my-super-tab-icon ${sidebar-page-index == index ? "active" : "inactive"}"
             :valign "center"
-            icon
+            (button
+                :onclick "eww update sidebar-page-index=${index} &"
+                :onrightclick "~/.config/eww/scripts/dialog.sh close sidebar &"
+                (box
+                    icon
+                )
+            )
         )
     )
 )

@@ -16,16 +16,48 @@
 )
 
 (defwidget network-buttons []
-    (box :orientation "horizontal"
+    (box
+        :orientation "horizontal"
+        :space-evenly true
         :spacing 8
-        (icon-filled-tonal :icon "" :onclick "")
+        (icon-filled-tonal
+            :icon ""
+            :onclick ""
+            :class { tor-enabled ? "enabled" : "disabled" }
+        )
         (icon-filled-tonal
             :icon ""
             :onclick "~/.config/eww/scripts/network.sh wifi-toggle"
             :class { wifi-killed ? "enabled" : "disabled" }
         )
-        (icon-filled-tonal :icon "" :onclick "")
+        (icon-filled-tonal 
+            :icon ""
+            :onclick ""
+        )
     )
 )
 
+(defwidget network-ssids []
+    (box :orientation "vertical"
+        (scroll :hscroll false :vscroll true
+            :class "network-scroll"
+    (for ssid in wifi-ssids
+    (box :class "body-large" "${ssid}")
+        )
+        )
+)
+)
+
+; all vars
 (defvar wifi-killed false)
+(defpoll tor-enabled
+    :interval "60s"
+    :run-while {sidebar-page-index == "3"}
+    `~/.config/eww/scripts/network.sh test-tor`
+)
+;(defvar wifi-ssids '[]')
+(defpoll wifi-ssids
+    :interval "60s"
+    :run-while {sidebar-page-index == "3"}
+    `~/test-iwd-script.sh`
+)

@@ -30,13 +30,13 @@
       color: $primary;
       border-bottom: dpi(3px) solid $primary;
       border-radius: dpi(3px) dpi(3px) 0 0;
-      &:hover {
+      & button:hover {
         background-color: rgba($primary, 0.08);
       }
     }
     &.inactive {
       color: $on-surface-variant;
-      &:hover {
+      & button:hover {
         background-color: rgba($on-surface, 0.08);
       }
     }

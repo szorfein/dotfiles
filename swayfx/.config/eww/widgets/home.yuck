@@ -98,7 +98,12 @@
         :halign "center"
         :spacing 8
         ;:style "border: 1px solid #f00"
-        (icon-filled :icon "" :onclick "~/.config/eww/scripts/screenshot.sh &" :class "primary")
+        (icon-filled
+            :icon ""
+            :onclick "~/.config/eww/scripts/screenshot.sh &"
+            :onrightclick "sleep 5 && ~/.config/eww/scripts/screenshot.sh &"
+            :class "primary"
+        )
         (icon-filled :icon "" :onclick "" :class "secondary")
         (icon-filled :icon "" :onclick "" :class "tertiary")
     )
@@ -163,12 +168,14 @@
         :spacing 8
         :space-evenly false
         (box :orientation "horizontal"
+            :spacing 6
             :space-evenly false
             :halign "start"
             (box :class "simple-icon" "")
             "${round(EWW_BATTERY.total_avg, 0)}% Battery"
         )
         (box :halign "start"
+            :spacing 6
             :space-evenly false
             (box :class "simple-icon" "")
             "${EWW_TEMPS.ACPITZ_TEMP1}°C"

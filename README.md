@@ -21,6 +21,27 @@
 
 ##
 
+![holy screenshot](https://github.com/szorfein/unix-portfolio/raw/master/holy/clean.jpg)
+
+###
+
+- **WM:** [SwayFX](https://github.com/WillPower3309/swayfx)
+- **OS:** [Arch](https://archlinux.org/), [Void](https://voidlinux.org/) or [Gentoo](https://www.gentoo.org/) with [Musl](https://musl.libc.org/), installed with [Getch](https://github.com/szorfein/getch)
+- **SH:** zsh with [ohmyzsh](https://github.com/ohmyzsh/ohmyzsh) and [starship](https://starship.rs)
+- **Term:** [wezterm](https://github.com/wez/wezterm)
+- **Editor:** [NeoVim](https://neovim.io) with [LazyVim](https://lazyvim.github.io/)
+- **File Manager:** [NNN](https://github.com/jarun/nnn), [Nemo](https://github.com/linuxmint/nemo)
+- **Fonts:** [Nerd Font Iosevka](https://www.nerdfonts.com/) + [Material Icons](https://github.com/google/material-design-icons) + [Papirus](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme) + [Demova](https://www.dafont.com/demova.font)
+- **Dotfiles manager and theme switcher:** [GNU/Stow](https://www.gnu.org/software/stow/)
+
+## Setup
+
+### Installation
+
+Soon i hope...
+
+## Previous setup
+
 ![focus screenshot](https://github.com/szorfein/unix-portfolio/raw/master/focus/clean.jpg)
 ![focus full](https://github.com/szorfein/unix-portfolio/raw/master/focus/full.jpg)
 
@@ -40,7 +61,7 @@
 
 ## Setup
 
-### Installation for the last theme
+### Installation
 There are three way to install the last [themes-m3/focus](#screens)
 + Manually by following the [wiki page](https://github.com/szorfein/dotfiles/tree/main/awm-m3/.config/awesome), works on any distribution and you install only what your need.
 + Fully scripted with [chezmoi](https://www.chezmoi.io/), (better on a new install), follow the instruction [here](https://github.com/szorfein/dots).
@@ -80,12 +101,6 @@ You also need to install [starship](https://starship.rs/guide/#step-1-install-st
 | clean |
 | --- |
 | ![clean](https://github.com/szorfein/unix-portfolio/raw/master/morpho/clean.png "morpho clean") |
-
-`themes/miami`  
-
-| terms (xst) - lightline.vim - tmux |
-| --- |
-| ![miami screenshot](https://github.com/szorfein/unix-portfolio/raw/master/miami/terms.png "Miami") |
 
 ### Other screenshots
 More screenshots are available at [unix-portfolio](https://github.com/szorfein/unix-portfolio) or [Gallery](https://github.com/szorfein/dotfiles/wiki/Gallery).

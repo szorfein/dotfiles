@@ -37,7 +37,7 @@
                         (centerbox
                             ""
                             (input :class "text-field body-large"
-                                :onaccept "~/.config/eww/scripts/mpc.sh create {} && ~/.config/eww/scripts/dialog.sh close playlists"
+                                :onaccept "~/.config/eww/scripts/mpc.sh create {} && ~/.config/eww/scripts/dialog.sh close playlists &"
                                 :value ""
                             )
                             ""

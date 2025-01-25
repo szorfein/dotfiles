@@ -8,9 +8,10 @@
     )
 )
 
-(defwidget icon-filled [?icon onclick ?class]
+(defwidget icon-filled [?icon onclick ?class ?onrightclick]
     (box :class "icon-filled-${class} enabled"
         (button :onclick onclick
+            :onrightclick onrightclick
             (box :valign "center" :halign "center"
                 :height 40 :width 40
                 icon
@@ -53,9 +54,8 @@
 )
 
 (defwidget icon-fab [?onclick ?icon ?onrightclick]
-    (box :space-evenly false
+    (box :class "fab"
         (button
-            :class "fab"
             ;:style "border: 1px solid #f00"
             :onclick "${onclick}"
             :onrightclick "${onrightclick}"
@@ -67,9 +67,8 @@
 )
 
 (defwidget icon-small-fab [?onclick ?icon]
-    (box :space-evenly false
+    (box :class "small-fab"
         (button
-            :class "small-fab"
             ;:style "border: 1px solid #f00"
             :onclick "${onclick}"
             (box :class "small-fab-icon"

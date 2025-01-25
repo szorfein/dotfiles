@@ -23,7 +23,8 @@
                     )
                 )
                 (image :path "${media.arturl}"
-                    :image-height 166
+                    ; 110 don't move the UI !
+                    :image-height 110
                     :image-width 206
                     ;:style "border: 1px solid #f00"
                     ;:preserve-aspect-ratio true
@@ -52,6 +53,7 @@
                     (icon-button :icon "" :onclick "playerctl previous")
                     (icon-outlined
                         :icon {media.playing == "Playing" ? "" : "" }
+                        :class {media.playing == "Playing" ? "enabled" : "disabled" }
                         :onclick "playerctl play-pause"
                     )
                     (icon-button :icon "" :onclick "~/.config/eww/scripts/media.sh next &")

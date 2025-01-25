@@ -108,12 +108,19 @@
   font-size: dpi(24px);
   min-height: dpi(40px);
   min-height: dpi(40px);
-  background-color: $inverse-surface;
-  color: $inverse-on-surface;
   border-radius: 50%; // circular
-  border: 1px solid $outline;
+  &.disabled {
+    background-color: rgba($on-surface, .12);
+    color: rgba($on-surface, .38);
+    border: 1px solid rgba($on-surface, .12);
+  }
+  &.enabled {
+    background-color: $inverse-surface;
+    color: $inverse-on-surface;
+    border: 1px solid $outline;
+  }
   & button:hover {
-    background-color: rgba($inverse-on-surface, 0.08);
+    background-color: rgba($on-surface, 0.08);
     border-radius: 50%; // circular
   }
 }
@@ -159,7 +166,7 @@
     font-size: dpi(24pt);
     color: $on-primary-container;
   }
-  &:hover {
+  & button:hover {
     background-color: rgba($on-primary-container, 0.08);
   }
 }
@@ -175,7 +182,7 @@
     font-size: dpi(24pt);
     color: $on-primary-container;
   }
-  &:hover {
+  & button:hover {
     background-color: rgba($on-primary-container, 0.08);
   }
 }

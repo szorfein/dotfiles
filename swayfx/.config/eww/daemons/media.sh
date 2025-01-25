@@ -53,7 +53,8 @@ OLD_SONG=""
 #playerctl --follow metadata --format $':{{status}}\t:{{position}}\t:{{mpris:length}}\t:{{playerName}}\t:{{mpris:artUrl}}\t:{{duration(position)}}\t:{{duration(mpris:length)}}\t:{{trunc(title, 16)}}\t:{{trunc(artist, 16)}}' | while read -r playing position length name arturl hpos hlen title artist; do
 # artist should be placed before title
 # artist name and title should not contain any space...
-playerctl --follow metadata --format $':{{status}}\t:{{position}}\t:{{mpris:length}}\t:{{playerName}}\t:{{mpris:artUrl}}\t:{{duration(position)}}\t:{{duration(mpris:length)}}\t:{{trunc((markup_escape(artist)),16)}}\t:{{trunc((markup_escape(title)), 16)}}' | while read -r playing position length name arturl hpos hlen artist title; do
+#playerctl --follow metadata --format $':{{status}}\t:{{position}}\t:{{mpris:length}}\t:{{playerName}}\t:{{mpris:artUrl}}\t:{{duration(position)}}\t:{{duration(mpris:length)}}\t:{{trunc((markup_escape(artist)),16)}}\t:{{trunc((markup_escape(title)), 16)}}' | while read -r playing position length name arturl hpos hlen artist title; do
+playerctl --follow metadata --format $':{{status}}\t:{{position}}\t:{{mpris:length}}\t:{{playerName}}\t:{{mpris:artUrl}}\t:{{duration(position)}}\t:{{duration(mpris:length)}}\t:{{trunc(artist,16)}}@@{{trunc(title, 16)}}' | while read -r playing position length name arturl hpos hlen artist_title; do
 
 # All vars are prefixed with ':'
 # in Bash, simply use playing=${playing:1}
@@ -64,8 +65,12 @@ name=$(expr " $name" : " .\\(.*\\)")
 arturl=$(expr " $arturl" : " .\\(.*\\)")
 hpos=$(expr " $hpos" : " .\\(.*\\)")
 hlen=$(expr " $hlen" : " .\\(.*\\)")
-title=$(expr " $title" : " .\\(.*\\)")
-artist=$(expr " $artist" : " .\\(.*\\)")
+artist=$(expr " ${artist_title%@@*}" : " .\\(.*\\)" | tr -d '"')
+title="$(echo ${artist_title#*@@} | tr -d '"')"
+
+#echo "1 ${artist_title%@@*}"
+#echo "2 ${artist_title#*@@}"
+#echo "3 ${artist_title%%*@@}"
 
 # artist and title can contain a lot of characters...
 #artist=$(playerctl metadata --format '{{ trunc(artist, 16) }}')
@@ -82,10 +87,22 @@ if [ "$name" = "mpd" ] ; then
 fi
 
 # default
+[ -z "$playing" ] && playing="Unknown"
 [ -z "$arturl" ] && arturl="$HOME/images/nun.jpg"
 [ -z "$title" ] && title="N/A"
 [ -z "$artist" ] && artist="N/A"
 OLD_SONG="$title"
+#echo "{
+#   \"playing\":\"$playing\",
+#   \"position\":\"$position\",
+#   \"length\":\"$length\",
+#   \"name\":\"$name\",
+#   \"artist\":\"$artist\",
+#   \"title\":\"$title\",
+#   \"arturl\":\"$arturl\",
+#   \"hpos\":\"$hpos\",
+#   \"hlen\":\"$hlen\"
+#}"
 eww update media="{
     \"playing\":\"$playing\",
     \"position\":\"$position\",

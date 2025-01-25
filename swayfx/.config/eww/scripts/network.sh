@@ -24,3 +24,11 @@ if [ "$1" = "wifi-toggle" ] ; then
         wifi_kill
     fi
 fi
+
+if [ "$1" = "test-tor" ] ; then
+    if $(curl -x socks5h://localhost:9050 -s https://check.torproject.org/api/ip | grep -q true) ; then
+        echo true
+    else
+        echo false
+    fi
+fi

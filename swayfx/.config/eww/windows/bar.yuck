@@ -79,14 +79,18 @@
 
 (defwidget workspace-indicator [i class]
     (eventbox :cursor "hand1"
-        :onclick "swaymsg -q 'workspace number ${i}'"
         ;:onscroll "[ '{}' = 'up' ] && swaymsg -q workspace prev || swaymsg -q workspace next"
-        (box :class "indicator nav-item ${class}"
-            :halign "center"
-            :valign "center"
-            :width "${round(56 * get_env("EWW_SCALE"), 0)}px"
-            :height "${round(56 * get_env("EWW_SCALE"), 0)}px"
-            "${ws[i]}"
+        (box :class "nav-item ${class}"
+            (button
+                :onclick "swaymsg -q 'workspace number ${i}'"
+                (box
+                    :halign "center"
+                    :valign "center"
+                    :width "${round(56 * get_env("EWW_SCALE"), 0)}px"
+                    :height "${round(56 * get_env("EWW_SCALE"), 0)}px"
+                    "${ws[i]}"
+                )
+            )
         )
     )
 )
