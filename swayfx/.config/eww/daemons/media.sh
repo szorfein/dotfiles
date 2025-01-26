@@ -87,7 +87,6 @@ if [ "$name" = "mpd" ] ; then
 fi
 
 # default
-[ -z "$playing" ] && playing="Unknown"
 [ -z "$arturl" ] && arturl="$HOME/images/nun.jpg"
 [ -z "$title" ] && title="N/A"
 [ -z "$artist" ] && artist="N/A"

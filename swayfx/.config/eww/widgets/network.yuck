@@ -18,8 +18,10 @@
 (defwidget network-buttons []
     (box
         :orientation "horizontal"
-        :space-evenly true
+        :halign "center"
+        :space-evenly false
         :spacing 8
+        :height 48
         (icon-filled-tonal
             :icon ""
             :onclick ""
@@ -39,13 +41,20 @@
 
 (defwidget network-ssids []
     (box :orientation "vertical"
+        :space-evenly false
+        :spacing 8
+        (box :class "label-large"
+            :halign "start"
+            "Nearby ssids"
+        )
         (scroll :hscroll false :vscroll true
             :class "network-scroll"
-    (for ssid in wifi-ssids
-    (box :class "body-large" "${ssid}")
+            :valign "start"
+            (for ssid in wifi-ssids
+                (box :class "body-large" "${ssid}")
+            )
         )
-        )
-)
+    )
 )
 
 ; all vars

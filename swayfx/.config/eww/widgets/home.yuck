@@ -32,7 +32,7 @@
                 (box :class "day"
                     :width 40 :height 40
                     :halign "center" :valign "center"
-                    (icon-filled :icon "" :onclick "" :class "error")
+                    (icon-filled :icon "" :onclick "" :class "error")
                 )
                 ;(label :class "day" :text "")
                 (home-sun)
@@ -104,8 +104,8 @@
             :onrightclick "sleep 5 && ~/.config/eww/scripts/screenshot.sh &"
             :class "primary"
         )
-        (icon-filled :icon "" :onclick "" :class "secondary")
-        (icon-filled :icon "" :onclick "" :class "tertiary")
+        (icon-filled :icon "" :onclick "" :class "secondary")
+        (icon-filled :icon "" :onclick "" :class "tertiary")
     )
 )
 

@@ -14,12 +14,18 @@
                     :onchange "~/.config/eww/scripts/media.sh pos {}"
                 )
                 (box :orientation "horizontal"
-                    :space-evenly false
-                    :halign "end"
+                    ;:space-evenly false
+                    :halign "center"
                     (icon-button 
                         :height 48
-                        :icon ""
+                        :icon ""
                         :onclick "~/.config/eww/scripts/dialog.sh open playlists"
+                    )
+                    ""
+                    ""
+                    (icon-button
+                        :onclick ""
+                        :icon ""
                     )
                 )
                 (image :path "${media.arturl}"

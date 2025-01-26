@@ -27,11 +27,12 @@
 
 - **WM:** [SwayFX](https://github.com/WillPower3309/swayfx)
 - **OS:** [Arch](https://archlinux.org/), [Void](https://voidlinux.org/) or [Gentoo](https://www.gentoo.org/) with [Musl](https://musl.libc.org/), installed with [Getch](https://github.com/szorfein/getch)
-- **SH:** zsh with [ohmyzsh](https://github.com/ohmyzsh/ohmyzsh) and [starship](https://starship.rs)
-- **Term:** [wezterm](https://github.com/wez/wezterm)
-- **Editor:** [NeoVim](https://neovim.io) with [LazyVim](https://lazyvim.github.io/)
+- **Shell:** zsh with [ohmyzsh](https://github.com/ohmyzsh/ohmyzsh) and [starship](https://starship.rs)
+- **Widgets:** [EWW](https://elkowar.github.io/eww/eww.html) 
+- **Term:** [Wezterm](https://github.com/wez/wezterm)
+- **Editor:** [NeoVim](https://neovim.io) with [LazyVim](https://lazyvim.github.io/) and [tmux](https://github.com/tmux/tmux/wiki)
 - **File Manager:** [NNN](https://github.com/jarun/nnn), [Nemo](https://github.com/linuxmint/nemo)
-- **Fonts:** [Nerd Font Iosevka](https://www.nerdfonts.com/) + [Material Icons](https://github.com/google/material-design-icons) + [Papirus](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme) + [Demova](https://www.dafont.com/demova.font)
+- **Fonts:** [Iosevka](https://www.nerdfonts.com/) + [Material Icons](https://github.com/google/material-design-icons) + [Papirus](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme) + [Demova](https://www.dafont.com/demova.font) + [IcoMoon](https://icomoon.io/)
 - **Dotfiles manager and theme switcher:** [GNU/Stow](https://www.gnu.org/software/stow/)
 
 ## Setup

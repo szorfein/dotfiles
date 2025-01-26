@@ -115,6 +115,7 @@ set \$shadow $shadow
 set \$outline $outline_variant
 set \$bglight $background
 set \$error $error
+set \$theme $2
 EOF
 
 cat <<EOF > "$workdir/.Xdefaults"
@@ -272,14 +273,14 @@ run ~/.config/tmux/plugins/catppuccin/tmux/catppuccin.tmux
 
 # Current
 set -g status-justify centre
-set -gF window-status-format "#[bg=$surface_container_low,fg=$on_surface]##I:##T"
-set -gF window-status-current-format "#[bg=$surface_container_low,fg=cyan,bold]##I:#[fg=cyan,bold]##T"
+set -gF window-status-format "#[bg=$surface_container_low,fg=$secondary_container]#[bg=$secondary_container,fg=$on_secondary_container]##I ##T#[bg=$surface_container_low,fg=$secondary_container]"
+set -gF window-status-current-format "#[bg$surface_container_low,fg=$primary]#[bg=$primary,fg=$on_primary,bold]##I #[fg=$on_primary,bold]##T#[bg=$surface_container_low,fg=$primary]"
 
 # Make the status line pretty and add some modules
 set -g status-right-length 100
 set -g status-left-length 100
 set -g status-right ""
-set -g status-left "#{tmux_mode_indicator}"
+set -g status-left "#{tmux_mode_indicator} "
 set -ag status-left "#{E:@catppuccin_status_application}"
 set -ag status-left "#{E:@catppuccin_status_directory}"
 set -ag status-right "#{E:@catppuccin_status_session}"
@@ -291,14 +292,20 @@ EOF
 # neovim
 cat <<EOF > "$workdir/.config/nvim/lua/colors.lua"
 -- theme $2
+-- base colors: https://github.com/catppuccin/nvim/blob/main/lua/catppuccin/palettes/mocha.lua
 return {
-  text = '$on_surface',
-  --crust = '$surface_container_lowest',
-  mantle = '$surface_container_low',
-  base = '$surface',
-  surface0 = '$surface_container_highest',
-  --surface1 = '$surface_container',
-  --surface2 = '$surface_container_high'
+    maroon = '$error',
+    lavender = '$secondary',
+    blue = '$dark_secondary', -- 70
+    pink = '$primary',
+    mauve = '$dark_primary',
+    text = '$on_surface',
+    --crust = '$surface_container_lowest',
+    mantle = '$surface_container_low',
+    base = '$surface',
+    surface0 = '$surface_container_highest',
+    --surface1 = '$surface_container',
+    --surface2 = '$surface_container_high'
 }
 EOF
 

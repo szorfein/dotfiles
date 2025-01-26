@@ -37,6 +37,9 @@ shadows_on_csd enable
 shadow_blur_radius 50
 shadow_color $shadow7F
 
+# hideous with it
+titlebar_separator disable
+
 # inactive window fade amount. 0.0 = no dimming, 1.0 = fully dimmed
 default_dim_inactive 0.0
 dim_inactive_colors.unfocused $shadowFF
@@ -132,6 +135,8 @@ exec {
 
     # GTK
     # https://github.com/swaywm/sway/wiki/GTK-3-settings-on-Wayland#setting-values-in-gsettings
+    # Loading custom gtk theme under ~/.themes
+    gsettings set org.gnome.desktop.interface gtk-theme $theme
     gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
 }
 
@@ -154,6 +159,7 @@ input type:touchpad {
 }
 
 include ~/.config/sway/keyboard
+include ~/.config/sway/rules
 
 #
 # You can get the names of your inputs by running: swaymsg -t get_inputs
@@ -181,6 +187,9 @@ include ~/.config/sway/keyboard
 
     # Reload the configuration file
     bindsym $mod+Shift+c reload
+
+    # Alt+Tab go last focus workspace
+    bindsym $mod+Tab workspace back_and_forth
 
     # Exit sway (logs you out of your Wayland session)
     bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
