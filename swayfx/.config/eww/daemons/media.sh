@@ -30,9 +30,8 @@ fi
 
 echo "$PID" >"$PID_FILE"
 
-MPD_MUSIC_DIR="$HOME/musics"
-
 mpd_cover() {
+    [ -n "$MPD_MUSIC_DIR" ] || return
     [ -d "$MPD_MUSIC_DIR" ] || return
 
     file=$(mpc -f %file% | head -1)

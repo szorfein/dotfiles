@@ -45,6 +45,9 @@ export VISUAL=vim
 export EDITOR="$VISUAL"
 export SUDO_EDITOR="$VISUAL"
 
+# MPD Dir
+export MPD_MUSIC_DIR="$HOME/musics"
+
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME"/.oh-my-zsh
 

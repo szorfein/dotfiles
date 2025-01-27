@@ -22,6 +22,7 @@
 ##
 
 ![holy screenshot](https://github.com/szorfein/unix-portfolio/raw/master/holy/clean.jpg)
+![holy screenshot](https://github.com/szorfein/unix-portfolio/raw/master/holy/full.jpg)
 
 ###
 
@@ -39,7 +40,9 @@
 
 ### Installation
 
-Soon i hope...
+Follow the guide [here](https://github.com/szorfein/dotfiles/tree/main/swayfx/.config/sway)
+
+Installation not yet available for chezmoi [dots](https://github.com/szorfein/dots) or ansible.
 
 ## Previous setup
 

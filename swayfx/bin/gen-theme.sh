@@ -259,8 +259,8 @@ set -gF @catppuccin_status_session_text_fg "$tertiary"
 # Uptime
 set -gF @catppuccin_status_uptime_text_bg "$surface_container_low"
 set -gF @catppuccin_status_uptime_text_fg "$secondary"
-set -gF @catppuccin_status_uptime_icon_bg "$surface_container_low"
-set -gF @catppuccin_status_uptime_icon_fg "$secondary"
+set -g @catppuccin_status_uptime_icon_bg "$surface_container_low"
+set -g @catppuccin_status_uptime_icon_fg "$secondary"
 
 # Directory
 set -gF @catppuccin_status_directory_text_bg "$surface_container_low"
@@ -274,7 +274,7 @@ run ~/.config/tmux/plugins/catppuccin/tmux/catppuccin.tmux
 # Current
 set -g status-justify centre
 set -gF window-status-format "#[bg=$surface_container_low,fg=$secondary_container]#[bg=$secondary_container,fg=$on_secondary_container]##I ##T#[bg=$surface_container_low,fg=$secondary_container]"
-set -gF window-status-current-format "#[bg$surface_container_low,fg=$primary]#[bg=$primary,fg=$on_primary,bold]##I #[fg=$on_primary,bold]##T#[bg=$surface_container_low,fg=$primary]"
+set -gF window-status-current-format "#[bg=$surface_container_low,fg=$primary]#[bg=$primary,fg=$on_primary,bold]##I #[fg=$on_primary,bold]##T#[bg=$surface_container_low,fg=$primary]"
 
 # Make the status line pretty and add some modules
 set -g status-right-length 100
