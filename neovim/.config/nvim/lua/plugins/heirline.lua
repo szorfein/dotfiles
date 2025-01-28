@@ -164,7 +164,7 @@ return {
                 viMode,
                 rightSeparator,
                 {
-                    provider = ' '
+                    provider = "%=", -- align right
                 },
                 leftSeparator,
                 FileType,

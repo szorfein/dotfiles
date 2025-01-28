@@ -23,10 +23,16 @@ set history=10000 " maximum
 set hlsearch " highlight search results
 set incsearch " move cursor as you type wh searching
 set langnoremap " helps avoid mappings breaking
+
+" hide bottom bar completly
 set laststatus=0 " hide status line, =2 to display
+set noshowmode
+"set noshowcmd
+set noruler
+
 set listchars=tab:>\ ,trail:-,nbsp:+ " char for :list
 set nrformats=bin,hex " <c-a> and <c-x> support
-set ruler " display current line # in corner
+"set ruler " display current line # in corner
 set sessionoptions-=options " do not carry options accross session
 "set shortmess=F " less verbose file info
 set showcmd " show last command in status line
