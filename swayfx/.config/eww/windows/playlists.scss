@@ -1,0 +1,11 @@
+.text-field {
+  background-color: $surface-container-highest;
+  border-radius: dpi(4px) dpi(4px) 0 0;
+  color: $on-surface;
+  border-bottom: 2px solid $primary;
+  min-height: dpi(56px);
+  padding-left: dpi(16px);
+  padding-right: dpi(16px);
+  padding-top: dpi(8px);
+  padding-bottom: dpi(8px);
+}

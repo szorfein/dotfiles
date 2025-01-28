@@ -1,0 +1,7 @@
+---
+things:
+   - name: cyberpunk.zip
+     url: https://dl.dafont.com/dl/?f=cyberpunks
+time: 86000
+all_to_dest_dir: .local/share/fonts
+keep_name: true

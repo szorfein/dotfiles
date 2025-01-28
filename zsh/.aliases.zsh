@@ -11,3 +11,6 @@ alias virtualbox=VirtualBox
 alias xclip='xclip -sel clip'
 
 alias streload='xrdb merge ~/.Xresources && kill -s USR1 $(pidof xst)'
+
+# https://elijahmanor.com/blog/fd-fzf-tmux-nvim
+alias v='fd --type f --hidden --exclude .git | fzf-tmux -p --reverse | xargs nvim'

@@ -1,0 +1,72 @@
+(defwidget network-stats []
+    (box
+        (box :orientation "horizontal"
+            (box :orientation "vertical"
+                "Download"
+                "${round(EWW_NET.wlan0.NET_DOWN / 1000000, 2)}MB/s"
+            )
+        )
+        (box :orientation "horizontal"
+            (box :orientation "vertical"
+                "Upload"
+                "${round(EWW_NET.wlan0.NET_UP / 1000000, 2)}MB/s"
+            )
+        )
+    )
+)
+
+(defwidget network-buttons []
+    (box
+        :orientation "horizontal"
+        :halign "center"
+        :space-evenly false
+        :spacing 8
+        :height 48
+        (icon-filled-tonal
+            :icon ""
+            :onclick ""
+            :class { tor-enabled ? "enabled" : "disabled" }
+        )
+        (icon-filled-tonal
+            :icon ""
+            :onclick "~/.config/eww/scripts/network.sh wifi-toggle"
+            :class { wifi-killed ? "enabled" : "disabled" }
+        )
+        (icon-filled-tonal 
+            :icon ""
+            :onclick ""
+        )
+    )
+)
+
+(defwidget network-ssids []
+    (box :orientation "vertical"
+        :space-evenly false
+        :spacing 8
+        (box :class "label-large"
+            :halign "start"
+            "Nearby ssids"
+        )
+        (scroll :hscroll false :vscroll true
+            :class "network-scroll"
+            :valign "start"
+            (for ssid in wifi-ssids
+                (box :class "body-large" "${ssid}")
+            )
+        )
+    )
+)
+
+; all vars
+(defvar wifi-killed false)
+(defpoll tor-enabled
+    :interval "60s"
+    :run-while {sidebar-page-index == "3"}
+    `~/.config/eww/scripts/network.sh test-tor`
+)
+;(defvar wifi-ssids '[]')
+(defpoll wifi-ssids
+    :interval "60s"
+    :run-while {sidebar-page-index == "3"}
+    `~/test-iwd-script.sh`
+)

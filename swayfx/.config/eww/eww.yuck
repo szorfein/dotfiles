@@ -1,0 +1,16 @@
+
+(include "globals.yuck")
+
+(include "widgets/button.yuck")
+(include "widgets/slider.yuck")
+(include "widgets/chips.yuck")
+(include "widgets/progressbar.yuck")
+
+(include "widgets/home.yuck")
+(include "widgets/music.yuck")
+(include "widgets/network.yuck")
+
+(include "windows/bar.yuck")
+(include "windows/sidebar.yuck")
+(include "windows/powermenu.yuck")
+(include "windows/playlists.yuck")

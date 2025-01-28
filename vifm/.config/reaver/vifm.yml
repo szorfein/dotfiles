@@ -1,0 +1,12 @@
+---
+things:
+  - name: vifmimg
+    url: https://raw.githubusercontent.com/thimc/vifmimg/refs/heads/master/vifmimg
+  - name: vifmrun
+    url: https://raw.githubusercontent.com/thimc/vifmimg/refs/heads/master/vifmrun
+  - name: fontpreview
+    url: https://raw.githubusercontent.com/sdushantha/fontpreview/refs/heads/master/fontpreview
+  - name: epub-thumbnailer
+    url: https://github.com/marianosimone/epub-thumbnailer/raw/refs/heads/master/src/epub-thumbnailer.py
+all_to_dest_dir: bin
+time: 86000

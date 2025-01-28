@@ -1,0 +1,7 @@
+set $bg #141218
+set $fg #E7E0E8
+set $shadow #000000
+set $outline #48454E
+set $bglight #121318
+set $error #FFB4AB
+set $theme holy

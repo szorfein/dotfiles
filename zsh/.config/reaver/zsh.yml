@@ -1,0 +1,12 @@
+---
+things:
+  - name: ohmyzsh.tar.gz
+    url: https://github.com/ohmyzsh/ohmyzsh/archive/refs/heads/master.tar.gz
+    dest_dir: .oh-my-zsh
+  - name: zsh-autosuggestions.tar.gz
+    url: https://github.com/zsh-users/zsh-autosuggestions/archive/refs/heads/master.tar.gz
+    dest_dir: .oh-my-zsh/custom/plugins/zsh-autosuggestions
+  - name: zsh-syntax-highlighting.tar.gz
+    url: https://github.com/zsh-users/zsh-syntax-highlighting/archive/refs/heads/master.tar.gz
+    dest_dir: .oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+time: 86000

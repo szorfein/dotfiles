@@ -1,0 +1,189 @@
+(defwindow sidebar
+    :monitor 0
+    :geometry (geometry :x 0
+                        :y 0
+                        :width "${round(290 * get_env('EWW_SCALE'), 0)}px"
+
+                        :height "100%"
+                        :anchor "right center")
+    :stacking "fg"
+    :exclusive true
+    (revealer
+        ; Would prefer a slideleft animation here but it does not work
+        ; https://github.com/elkowar/eww/issues/1107
+        :transition "slideright"
+        :duration "300ms"
+        :reveal "${sidebar-visible}"
+
+        (box :orientation "vertical"
+            ;:style "border: 1px solid #f00"
+            :class "sidebar"
+            :space-evenly false
+            (header)
+            ; home
+            (box :visible "${sidebar-page-index == '1'}"
+                ;:class "sidebar"
+                :orientation "vertical"
+                :space-evenly false
+                :class "container"
+                :valign "fill"
+                :halign "fill"
+                :spacing "${round(26 * get_env("EWW_SCALE"), 0)}"
+                ;:style "border: 1px solid #f00"
+                (box :orientation "v" :valign "center"
+                    :space-evenly false
+                    ;(home)
+                    ""
+                    (overlay
+                        ;:space-evenly false
+                        ;:style "padding: 10px"
+                        (box
+                            ;:width 210
+                            :halign "fill"
+                            :space-evenly false
+                            ;:style 'border: 1px solid #f00'
+                            (box :orientation "h"
+                                :halign "start"
+                                (box :orientation "v"
+                                    ;:style 'border: 1px solid #f00'
+                                    :space-evenly false
+                                    (home-hour)
+                                    (home-battery)
+                                )
+                            )
+                            (box :valign "center"
+                                :halign "end"
+                                :orientation "vertical"
+                                :hexpand true
+                                ;:style 'border: 1px solid #f00'
+                                (home-buttons)
+                            )
+                        )
+                    )
+                )
+                (box :orientation "v" :valign "start"
+                    :halign "center"
+                    :space-evenly false
+                    ;:width 210
+                    ;:style "border: 1px solid #f00"
+                    (home-styled)
+                )
+                (box :orientation "v"
+                    :valign "end"
+                    :halign "fill"
+                    ;:width 210
+                    :space-evenly false
+                    ;:style "border: 1px solid #f00"
+                    (box
+                        ;:style "border: 1px solid #f00"
+                        ;:style "padding: 14px"
+                        :space-evenly false
+                        :spacing 8
+                        (box ;:space-evenly true
+                            :halign "start"
+                            :valign "center"
+                            ;:style "border: 1px solid #0aa"
+                            (home-progressline-circular)
+                        )
+                        (box :orientation "v"
+                            ;:style "border: 1px solid #0aa"
+                            :halign "fill"
+                            :valign "start"
+                            :hexpand true
+                            :space-evenly false
+                            (home-loc-icon)
+                            (home-loc)
+                        )
+                    )
+                    (home-slides)
+                )
+            )
+            ; music
+            (box :visible "${sidebar-page-index == '2'}"
+                :class "container"
+                (box :orientation "vertical"
+                    :space-evenly false
+                    ; no spacing without round
+                    ; don't add px on spacing...
+                    :spacing "${round(16 * get_env("EWW_SCALE"), 0)}"
+                    (music-volume)
+                    (music-metadata)
+                    (music-buttons)
+                    (music-playlist)
+                )
+            )
+            ; network
+            (box :visible "${sidebar-page-index == '3'}"
+                :class "container"
+                (box :orientation "vertical"
+                    :spacing "${round(16 * get_env("EWW_SCALE"), 0)}"
+                    :space-evenly false
+                    (network-stats)
+                    (network-buttons)
+                    (network-ssids)
+                )
+            )
+        )
+    )
+)
+
+; invisible widget for activating sidebar
+(defwindow sidebar-activator
+    :monitor 0
+    :geometry (geometry :x 0
+                        :y 0
+                        :width "1px"
+                        :height "100%"
+                        :anchor "right bottom")
+    :stacking "bg"
+    :exclusive false
+    (box :halign "fill" :valign "fill" 
+        ;:style "background-color: #f00"
+        (eventbox :onhover "~/.config/eww/scripts/toggle-sidebar.sh show &")
+    )
+)
+
+(defwidget header []
+    ;(icon-button :icon "" :onclick "~/.config/eww/scripts/toggle-powermenu.sh &")
+    (box :orientation "horizontal"
+        :valign "start"
+        :class "header"
+        ;:hexpand false
+        ;:style "border: 1px solid #f00"
+        (tabs-indicators)
+
+        ;(icon-button :icon "" :onclick "imv ~/images &")
+        ;(icon-button :icon "" :onclick "~/.config/eww/scripts/toggle-sidebar.sh toggle &")
+    )
+)
+
+(defwidget tabs-indicators []
+    (box :orientation "horizontal"
+        :hexpand true
+        :class "tabs"
+        :space-evenly true
+        (tab-indicator :index 1 :icon "")
+        (tab-indicator :index 2 :icon "")
+        (tab-indicator :index 3 :icon "")
+    )
+)
+
+(defwidget tab-indicator [index ?icon]
+    (eventbox
+        
+        :cursor "hand2"
+        (box :class "my-super-tab-icon ${sidebar-page-index == index ? "active" : "inactive"}"
+            :valign "center"
+            (button
+                :onclick "eww update sidebar-page-index=${index} &"
+                :onrightclick "~/.config/eww/scripts/dialog.sh close sidebar &"
+                (box
+                    icon
+                )
+            )
+        )
+    )
+)
+
+(defvar sidebar-page-index "1")
+(defvar sidebar-visible true)

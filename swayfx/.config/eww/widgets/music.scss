@@ -1,0 +1,25 @@
+.music-card {
+  @extend .card-elevated;
+  padding: 0;
+  border-radius: 0 0 33px 33px; // only bottom
+  min-height: dpi(400px);
+  margin-top: dpi(16px);
+  .container {
+    padding: dpi(16px);
+  }
+  // arrange until the music panel occupe the whole space available
+  .music-text {
+    padding-top: dpi(26px);
+    padding-bottom: dpi(26px);
+  }
+  .music-slider {
+    padding-left: dpi(16px);
+    padding-right: dpi(16px);
+    margin-top: dpi(16px);
+  }
+}
+
+.music-playlist {
+  min-height: dpi(120px);
+  margin-top: dpi(16px);
+}

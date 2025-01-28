@@ -1,0 +1,53 @@
+(defwidget slider-vertical []
+    (box :class "slider-vertical"
+        (scale :orientation "vertical"
+            :value 66
+            :max 100
+            :min 1
+            :hexpand true
+            :flipped true
+        )
+    )
+)
+
+(defwidget slider-horizontal [?value ?max ?onchange]
+    (box :class "slider-horizontal"
+        (eventbox :cursor "hand2"
+            (scale :orientation "horizontal"
+                :value "${value}"
+                :max "${max}"
+                :min 0
+                :hexpand true
+                :onchange "${onchange}"
+            )
+        )
+    )
+)
+
+(defwidget slider-horizontal-m3 [value ?min max ?onchange ?class ?icon ?label]
+    ;TODO lack the tooltip and the handle
+    (box :class "slider-horizontal-m3 ${class}"
+        :space-evenly false
+        ;:style "border: 1px solid #f00"
+        :height 50 ; we include the height of the handle
+        :orientation "horizontal"
+        :valign "center"
+        :spacing 8
+        (box :class "icon" :halign "center" :valign "center" icon)
+        (box :orientation "vertical"
+            :halign "fill"
+            :hexpand true
+            (box :class "label" :halign "start" label)
+            (eventbox :cursor "hand2"
+                (scale :orientation "horizontal"
+                    ;:style "border: 1px solid #f0f"
+                    :value "${value}"
+                    :max "${max}"
+                    :min "${min}"
+                    :hexpand true
+                    :onchange "${onchange}"
+                )
+            )
+        )
+    )
+)

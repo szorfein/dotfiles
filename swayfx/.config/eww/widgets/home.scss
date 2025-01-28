@@ -1,0 +1,78 @@
+.date {
+  font-family: "demova";
+  font-size: dpi(66px);
+  //letter-spacing: dpi(-0.25pt);
+  min-height: dpi(64pt);
+  font-weight: 500;
+
+  // top, right, bottom, left
+  .day {
+    //margin: dpi(-6px) dpi(-12px);
+  }
+
+  .daynb {
+    font-family: "demova";
+    margin-left: dpi(6px);
+    font-size: dpi(57px);
+    margin-top: dpi(8px); // align
+    font-weight: 800;
+  }
+}
+
+.time {
+  font-family: "demova";
+  font-size: dpi(50);
+  font-weight: 900;
+  padding-bottom: dpi(16px);
+  border-bottom: dpi(1px) solid $secondary;
+  margin-bottom: dpi(8px);
+}
+
+.secondary {
+  color: $secondary;
+}
+
+.battery {
+  margin-top: dpi(8px);
+}
+
+.home-progress {
+  //border: 1px solid #f00;
+}
+
+.sun {
+  font-family: "Material Symbols Outlined";
+  font-weight: 800;
+  font-size: dpi(57px);
+  //min-height: dpi(64px);
+  min-width: dpi(64px);
+  //border: 1px solid #f00;
+}
+
+.primary {
+  color: $primary;
+}
+
+.progressbar-circ {
+  padding-left: dpi(8px);
+  //margin-top: dpi(16px);
+  //margin-bottom: dpi(66px);
+}
+
+.home-loc-icon {
+  padding-left: dpi(33px); // Go bottom the Month plz
+  margin-bottom: dpi(8px);
+}
+
+.home-loc {
+  padding-left: dpi(24px);
+}
+
+.home-slide {
+  margin-top: dpi(16px);
+}
+
+.simple-icon {
+  font-family: 'Material Symbols Outlined';
+  font-size: dpi(14pt);
+}
