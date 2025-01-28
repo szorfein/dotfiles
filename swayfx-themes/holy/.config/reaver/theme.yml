@@ -18,4 +18,4 @@ things:
     url: https://github.com/szorfein/gtk-themes/archive/refs/heads/swayfx.tar.gz
     strip_components: 1
     dest_dir: ".themes"
-    time: 86000
+time: 86000

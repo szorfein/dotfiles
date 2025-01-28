@@ -30,13 +30,13 @@ Minimal implementation of the [material guide](https://m3.material.io/) for Awes
 
 ### Archlinux
 
-    sudo pacman -Syy awesome picom feh light papirus-icon-theme \
+    sudo pacman -Syy awesome picom feh papirus-icon-theme \
     xss-lock inotify-tools maim jq mpd mpc xorg-server xorg-xinit \
     xclip xf86-input-libinput curl stow xcb-util-image pam libev \
     cairo libxkbcommon-x11 libjpeg-turbo xcb-util-xrm pkgconf \
     bc imagemagick xorg-xdpyinfo xorg-xrandr
 
-And from [AUR](https://aur.archlinux.org/): `i3lock-color betterlockscreen xst`
+And from [AUR](https://aur.archlinux.org/): `i3lock-color betterlockscreen xst light`
 
 ### Voidlinux
 
@@ -62,38 +62,33 @@ You can create a directory e.g `backup` and move all the files which can conflic
 
 Many files from my `awesome` will look for `~/.dotfiles`, so be sure to copy to the right place.
 
-## Install the fonts, wallpapers required
-
-    cd ~/.dotfiles
-    ./install --images --fonts
-
 ## Install the config files with Stow
-First, remove previous configs for awesome
+Last theme is 'focus'.
 
     cd ~/.dotfiles
-    stow -d awesome -t ~
+    ./stow.sh --purge --awm-m3 focus
 
-Also need to remove previous theme
+More complete command, adapt with your need:
 
-    cd ~/.dotfiles/themes
-    stow -d <current-theme-used> -t ~
+    ./stow.sh --purge --doom --awm-m3 focus --zsh --ncmpcpp --vim
 
-Install the new files
+## Install the fonts, wallpapers required
+You probably have to install ruby with ruby-gem
 
-    cd ~/.dotfiles
-    stow awm-m3 -t ~
-
-And choose a theme in `~/.dotfiles/themes-m3`, the last is `focus`
-
-    cd ~/.dotfiles/themes-m3
-    stow focus -t ~
+    gem install --user-install reaver
+    reaver
 
 ## Update
 
     cd ~/.dotfiles
     git pull
-    stow -R awm-m3
-    cd ~/.dotfiles/themes-m3
-    stow -R <current-theme-name>
+
+Reinstall all stow configs you use
+
+    ./stow.sh --purge --awm-m3 current-theme-name
+
+And reaver to grab the last packages.
+
+    reaver
 
 Enjoy

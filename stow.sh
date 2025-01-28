@@ -8,11 +8,11 @@ DEBUG=false
 [ -d "$HOME/.dotfiles" ] && DOTFILES="$HOME/.dotfiles"
 
 if [ -z "$DOTFILES" ] ; then
-    [ -z "$DOTFILES_DIR"] && kill "Dotfiles directory no found, use export DOTFILES_DIR=\"your_path\""
+    [ -z "$DOTFILES_DIR"] && dagger "Dotfiles directory no found, use export DOTFILES_DIR=\"your_path\""
     DOTFILES="$DOTFILES_DIR"
 fi
 
-kill() { echo "$1"; exit 1; }
+dagger() { echo "$1"; exit 1; }
 
 del_stow() {
     [ $DEBUG = true ] && echo "Removing $2 from $1..."
@@ -108,6 +108,7 @@ while [ "$#" -gt 0 ] ; do
             ;;
         -a3 | --awesome-m3)
             mkdir -p "$HOME/.config/awesome"
+            add_stow "$DOTFILES" ".x"
             add_stow "$DOTFILES" "awm-m3"
             add_stow "$DOTFILES/themes-m3" "$2"
             shift
@@ -115,6 +116,7 @@ while [ "$#" -gt 0 ] ; do
             ;;
         -a2 | --awesome-m2)
             mkdir -p "$HOME/.config/awesome"
+            add_stow "$DOTFILES" ".x"
             add_stow "$DOTFILES" "awesomewm"
             add_stow "$DOTFILES/themes" "$2"
             shift

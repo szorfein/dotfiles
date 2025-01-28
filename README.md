@@ -28,13 +28,13 @@
 
 - **WM:** [SwayFX](https://github.com/WillPower3309/swayfx)
 - **OS:** [Arch](https://archlinux.org/), [Void](https://voidlinux.org/) or [Gentoo](https://www.gentoo.org/) with [Musl](https://musl.libc.org/), installed with [Getch](https://github.com/szorfein/getch)
-- **Shell:** zsh with [ohmyzsh](https://github.com/ohmyzsh/ohmyzsh) and [starship](https://starship.rs)
+- **Shell:** zsh with [ohmyzsh](https://github.com/ohmyzsh/ohmyzsh), [starship](https://starship.rs), [look for other plugins](https://github.com/szorfein/dotfiles/blob/main/zsh/.config/reaver/zsh.yml)
 - **Widgets:** [EWW](https://elkowar.github.io/eww/eww.html) 
 - **Term:** [Wezterm](https://github.com/wez/wezterm)
-- **Editor:** [NeoVim](https://neovim.io) with [LazyVim](https://lazyvim.github.io/) and [tmux](https://github.com/tmux/tmux/wiki)
+- **Editor:** [NeoVim](https://neovim.io) with [LazyVim](https://lazyvim.github.io/) ([all plugins](https://github.com/szorfein/dotfiles/tree/main/neovim/.config/nvim/lua/plugins)) and [tmux](https://github.com/tmux/tmux/wiki) ([plugins list](https://github.com/szorfein/dotfiles/blob/main/tmux/.config/reaver/tmux.yml))
 - **File Manager:** [NNN](https://github.com/jarun/nnn), [Nemo](https://github.com/linuxmint/nemo)
 - **Fonts:** [Iosevka](https://www.nerdfonts.com/) + [Material Icons](https://github.com/google/material-design-icons) + [Papirus](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme) + [Demova](https://www.dafont.com/demova.font) + [IcoMoon](https://icomoon.io/)
-- **Dotfiles manager and theme switcher:** [GNU/Stow](https://www.gnu.org/software/stow/)
+- **Dotfiles manager and theme switcher:** [GNU/Stow](https://www.gnu.org/software/stow/), [reaver](https://github.com/szorfein/reaver).
 
 ## Setup
 
@@ -75,36 +75,6 @@ you can find an example of playbook
 [here](https://github.com/szorfein/dots/tree/ansible/home/ansible).
 
 The method with `chezmoi` and `ansible` only work for supported distrib Gentoo, Archlinux, Voidlinux or Debian (bulleyes).  
-
-### Vim
-For Vim, i use the native Vim8 package loading, to install all plugins, you need to install `git` and launch:
-
-    cd ~/.dotfiles
-    ./install --vim
-    stow vim
-
-### Shell
-You can install [ohmyzsh](https://github.com/ohmyzsh/ohmyzsh) and extensions with:
-
-    cd ~/.dotfiles
-    ./install --zsh
-    stow zsh
-
-You also need to install [starship](https://starship.rs/guide/#step-1-install-starship) from your package distribution or with cargo.
-
-### Other themes
-
-`themes/lines`  
-
-| full |
-|---|
-| ![full](https://github.com/szorfein/unix-portfolio/raw/master/lines/full.png "lines full") |
-
-`themes/morpho`  
-
-| clean |
-| --- |
-| ![clean](https://github.com/szorfein/unix-portfolio/raw/master/morpho/clean.png "morpho clean") |
 
 ### Other screenshots
 More screenshots are available at [unix-portfolio](https://github.com/szorfein/unix-portfolio) or [Gallery](https://github.com/szorfein/dotfiles/wiki/Gallery).

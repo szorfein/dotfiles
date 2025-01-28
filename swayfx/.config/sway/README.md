@@ -89,7 +89,7 @@ And reload your shell after that.
 Modify the default xkb.example in this directory.
 
     mkdir -p ~/.config/sway
-    cp ~/.dotfiles/sway/.config/sway/kdb.example ~/.config/sway/keyboard
+    cp ~/.dotfiles/swayfx/.config/sway/kdb.example ~/.config/sway/keyboard
 
 For a french keyboard for example, you need to change the default `xkb_layout us'
 
@@ -116,7 +116,7 @@ User need to be added in `network` or `wheel` group.
 ## Installation
 Before using stow, make sure to backup all your personal files and move them in a backup directory.
 
-Using `stow` and my script `stow.sh`, you'll need to install at least:
+Using my script `stow.sh`, you'll need to install at least:
 `swayfx` and a `swayfx-themes` (last is `holy`).
 
     ~/.dotfiles/stow.sh --swayfx holy
