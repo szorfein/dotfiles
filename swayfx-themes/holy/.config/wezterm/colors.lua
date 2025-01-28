@@ -1,8 +1,8 @@
 return {
   -- The default text color
-  foreground = '#E0E2E8',
+  foreground = '#E7E0E8',
   -- The default background color
-  background = '#101418',
+  background = '#141218',
 
   -- Overrides the cell background color when the current cell is occupied by the
   -- cursor and the cursor style is set to Block
@@ -26,12 +26,12 @@ return {
   split = '#0f111a',
 
   ansi = {
-    '#161217', -- black
+    '#121318', -- black
     '#dd6777', -- red
     '#90ceaa', -- green
     '#ecd3a0', -- yellow
-    '#AB9FFF', -- blue
-    '#CC97E8', -- magenta
+    '#B89DF4', -- blue
+    '#9CA7EE', -- magenta
     '#93cee9', -- teal
     '#cbced3', -- white
   },
@@ -40,8 +40,8 @@ return {
     '#FFB4AB', -- red
     '#95d3af', -- green
     '#f1d8a5', -- yellow
-    '#C8BFFF', -- blue
-    '#E1B7F5', -- magenta
+    '#D1BCFD', -- blue
+    '#BAC3FF', -- magenta
     '#98d3ee', -- teal
     '#d0d3d8', -- white
   },

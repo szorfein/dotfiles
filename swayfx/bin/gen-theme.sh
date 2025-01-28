@@ -29,7 +29,7 @@ ext_palette() {
 
 mkdir -p "$workdir"
 mkdir -p "$workdir/.Xdefaults.d"
-mkdir -p "$workdir/.config/custom"
+mkdir -p "$workdir/.config/sway"
 mkdir -p "$workdir/.config/eww"
 mkdir -p "$workdir/.config/wezterm"
 mkdir -p "$workdir/.tmux"
@@ -108,7 +108,7 @@ cat <<EOF > "$workdir/.config/eww/colors.scss"
 \$inverse-on-surface: $inverse_on_surface;
 EOF
 
-cat <<EOF > "$workdir/.config/custom/sway"
+cat <<EOF > "$workdir/.config/sway/theme"
 set \$bg $surface
 set \$fg $on_surface
 set \$shadow $shadow

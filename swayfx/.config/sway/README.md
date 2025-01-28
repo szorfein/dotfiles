@@ -5,7 +5,7 @@ The whole (or many) stack has changed because wayland instead X.
 [migration_guide](https://github.com/swaywm/sway/wiki/i3-Migration-Guide)
 
 - swayfx - wm and compositor
-- wezterm - replace xst (tested foot (very fast and good also)) and kitty (not very interested by a console written in Python and Go but it's an option)
+- wezterm - replace xst (tested foot (very fast and good also)) and kitty (not very interested but it's an option)
 - imv - images viewer, replace feh
 - eww - widgets (instead of the awesomewm API)
 - swaybg
@@ -57,10 +57,17 @@ Install `i3ipc` locally
 
     gem install --user-install i3ipc
 
+## Cloning this repo
+Copy this repository:
+
+    git clone https://github.com/szorfein/dotfiles ~/.dotfiles
+
+If you add my dotfiles in another place, edit your shell (see below)
+
 ## Configuration
 
 ### Shell
-You have to add 4 lines in your shell `.bash_profile`, `.zprofile`, etc
+You have to add 5 lines in your shell `.bash_profile`, `.zprofile`, etc
 
 ```sh
 # Load eww_scale
@@ -72,13 +79,17 @@ export PATH="$PATH:$GEM_HOME/bin"
 
 # Mpd music dir, you also have to configure mpd...
 export MPD_MUSIC_DIR="$HOME/where-musics-are"
+
+# Where Dotfiles are, if not ~/.dotfiles
+export DOTFILES_DIR="$HOME/.dotfiles"
 ```
 And reload your shell after that.
 
 ### Keyboard
 Modify the default xkb.example in this directory.
 
-    cp xkb.example keyboard
+    mkdir -p ~/.config/sway
+    cp ~/.dotfiles/sway/.config/sway/kdb.example ~/.config/sway/keyboard
 
 For a french keyboard for example, you need to change the default `xkb_layout us'
 
@@ -103,12 +114,31 @@ User need to be added in `network` or `wheel` group.
     usermod -aG network username
 
 ## Installation
-Copy this repository:
+Before using stow, make sure to backup all your personal files and move them in a backup directory.
 
-    git clone https://github.com/szorfein/dotfiles ~/.dotfiles
+Using `stow` and my script `stow.sh`, you'll need to install at least:
+`swayfx` and a `swayfx-themes` (last is `holy`).
 
-Using `stow`, you need to install `swayfx` and a `swayfx-themes`
+    ~/.dotfiles/stow.sh --swayfx holy
 
-    cd ~/.dotfiles
-    stow swayfx -t ~
-    stow -d swayfx-themes holy -t ~
+If you want a more complete command, you can also add `wezterm`, `zsh`, `neovim`, `tmux`.
+
+    ~/.dotfiles/stow.sh --purge --wezterm --swayfx holy --neovim --tmux --zsh
+
+Use --purge if need to reinstall files.
+
+## Download dependencies
+After installing dotfiles with `stow.sh`, last step is to downloads all the required files (wallpapers, fonts, gtk-themes, icons, etc) in two commands ([reaver](https://geeksrepos.com/szorfein/reaver)):
+
+    gem install --user-install reaver
+    reaver
+
+## Updates
+Update the repo using `git pull`
+
+    cd .dotfiles && git pull
+
+Reinstall files with `stow.sh --purge` to reinstall new dotfiles.
+
+    ~/.dotfiles/stow.sh --purge --wezterm --swayfx holy
+    reaver

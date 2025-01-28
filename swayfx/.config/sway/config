@@ -4,7 +4,8 @@
 #
 # Read `man 5 sway` for a complete reference.
 
-include ~/.config/custom/sway
+#include ~/.config/custom/sway
+include ~/.config/sway/theme
 
 ### Variables
 #
