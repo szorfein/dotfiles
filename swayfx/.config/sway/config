@@ -61,6 +61,14 @@ set $border_width 1
 # All windows have a title bar by default
 for_window [app_id=".*"] border normal $border_width
 
+## Info on windows like xprop
+## swaymsg -t get_tree
+
+## Disabling titlebar
+for_window {
+    [app_id="^brave-browser$"] border pixel 0
+}
+
 set $transparency_hex C0
 
 # https://i3wm.org/docs/userguide.html#client_colors
@@ -83,9 +91,7 @@ show_marks no
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-#output * bg ~/images/psychonaut.jpg fill
-#output * bg ~/images/HogwartsLegacy_Dark.png fill
-output * bg ~/images/nun.jpg fill
+output * bg $theme-bg fill
 
 # Example configuration:
 #

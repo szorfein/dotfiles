@@ -1,3 +1,25 @@
+## Holy v3.0.0
+
+### News
++ Wayland with SwayFX (raise some old i3 themes?).
++ Wrote widgets with [EWW](https://github.com/elkowar/eww).
++ Add Tmux Plugins [catppuccin](https://github.com/catppuccin/tmux), [mode-indicator](https://github.com/MunifTanjim/tmux-mode-indicator).
++ Add Neovim with LazyVim, add configs for [heirline](https://github.com/rebelot/heirline.nvim), [catppuccin.nvim](https://github.com/catppuccin/nvim), [fzf.lua](https://github.com/ibhagwan/fzf-lua) and many more...
++ Add [Wezterm](https://wezfurlong.org/wezterm/index.html).
++ Add [Reaver](https://github.com/szorfein/reaver) to downloads all stuff icons, fonts, wallpapers, plugins and more...
++ Add `fzf` for Tmux and Neovim, see `v` aliase (zsh).
++ `stow.sh` script, should make install and removal of stow links more easy.
++ GTK-Theme generated with [oomox](https://github.com/themix-project/oomox-gtk-theme) for new themes.
++ Nemo (replace vifm) and we also have `nnn` for Nerd.
++ [playerctl](https://github.com/altdesktop/playerctl) MPRIS on top of mpd, mpc, mpv. Mitigate here since I don't use spotify or any other web service for music but we'll see...
+
+### Updated
++ zsh, tmux now support wayland.
+
+### Dropped
++ `install` script, replaced by reaver and yaml files.
++ `vifm` configs (ueberzug no longer maintained).
+
 ## v2.0.5 - December 2024
 - New doomemacs colorscheme (vamp)
 - Update awm-m3/picom

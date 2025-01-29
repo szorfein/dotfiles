@@ -5,3 +5,4 @@ set $outline #48454E
 set $bglight #121318
 set $error #FFB4AB
 set $theme holy
+set $theme-bg ~/images/holy.jpg

@@ -23,7 +23,7 @@ The whole (or many) stack has changed because wayland instead X.
     sudo pacman -Syy papirus-icon-theme \
     inotify-tools imv jq mpd mpc wl-clipboard curl stow \
     bc imagemagick rubygems grim swaybg wmenu \
-    playerctl mpd-mpris mpv-mpris wezterm \ 
+    playerctl mpd-mpris mpv-mpris wezterm rust \ 
     git meson scdoc wayland-protocols cairo gdk-pixbuf2 \
     libevdev libinput json-c libgudev wayland libxcb \
 	libxkbcommon pango pcre2 wlroots0.17 \
@@ -35,6 +35,11 @@ From AUR:
 
     scenefx swayfx eww light
 
+Before installing `eww` from AUR, you need to import gpg key:
+
+    curl -sS https://github.com/elkowar.gpg | gpg --import'
+    curl -sS https://github.com/web-flow.gpg | gpg --import
+
 ### Voidlinux
 
     sudo xbps-install -S swayfx imv light jq wl-clipboard \
@@ -45,8 +50,9 @@ From AUR:
 ### Gentoo
 You will need to activate [GURU](https://github.com/gentoo/guru)
 
-    sudo emerge -av light curl stow papirus-icon-theme \
-    inotify-tools swaybg imv \
+    sudo emerge -av light net-misc/curl stow
+    papirus-icon-theme \
+    inotify-tools swaybg imv app-misc/jq \
     app-misc/jq media-sound/mpd media-sound/mpc \
     dev-lang/ruby playerctl wl-clipboard wezterm \
     gui-apps/grim gui-apps/wmenu net-wireless/iwd \
