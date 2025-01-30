@@ -32,7 +32,11 @@
                 (box :class "day"
                     :width 40 :height 40
                     :halign "center" :valign "center"
-                    (icon-filled :icon "" :onclick "" :class "error")
+                    (icon-filled
+                        :icon ""
+                        :onclick "~/.config/eww/scripts/dialog.sh open powermenu"
+                        :class "error"
+                    )
                 )
                 ;(label :class "day" :text "")
                 (home-sun)

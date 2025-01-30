@@ -18,54 +18,54 @@ bind-key -T copy-mode-vi 'y' send-keys -X copy-pipe "wl-copy"
 
 # Configure plugin mode_indicator
 set -g @mode_indicator_prefix_prompt "WAIT"
-set -g @mode_indicator_prefix_mode_style "fg=#D1BCFD,bold"
+set -g @mode_indicator_prefix_mode_style fg=#D1BCFD,bold
 set -g @mode_indicator_copy_prompt "COPY"
-set -g @mode_indicator_copy_mode_style "fg=green,bold"
+set -g @mode_indicator_copy_mode_style fg=green,bold
 set -g @mode_indicator_sync_prompt "SYNC"
-set -g @mode_indicator_sync_mode_style "fg=#FFB4AB,bold"
+set -g @mode_indicator_sync_mode_style fg=#FFB4AB,bold
 set -g @mode_indicator_empty_prompt "TMUX"
-set -g @mode_indicator_empty_mode_style "fg=purple,bold"
+set -g @mode_indicator_empty_mode_style fg=purple,bold
 
 # Configure the catppuccin plugin
 set -g @catppuccin_flavor "mocha"
 set -g @catppuccin_window_status_style "rounded"
 
 # status line
-set -gF status-style "bg=#141218,fg=#E7E0E8"
+set -gF status-style "bg=#131318,fg=#E5E1E9"
 
 # Customize plugins colors
 #
 # App
-set -gF @catppuccin_status_application_icon_bg "#1D1B20"
+set -gF @catppuccin_status_application_icon_bg "#1C1B20"
 set -g @catppuccin_status_application_icon_fg "#FFB4AB"
-set -gF @catppuccin_status_application_text_bg "#1D1B20"
+set -gF @catppuccin_status_application_text_bg "#1C1B20"
 set -g @catppuccin_status_application_text_fg "#FFB4AB"
 
 # Session
-set -gF @catppuccin_status_session_icon_bg "#1D1B20"
+set -gF @catppuccin_status_session_icon_bg "#1C1B20"
 set -gF @catppuccin_status_session_icon_fg "#E8B6F0"
-set -gF @catppuccin_status_session_text_bg "#1D1B20"
+set -gF @catppuccin_status_session_text_bg "#1C1B20"
 set -gF @catppuccin_status_session_text_fg "#E8B6F0"
 
 # Uptime
-set -gF @catppuccin_status_uptime_text_bg "#1D1B20"
+set -gF @catppuccin_status_uptime_text_bg "#1C1B20"
 set -gF @catppuccin_status_uptime_text_fg "#D1BCFD"
-set -g @catppuccin_status_uptime_icon_bg "#1D1B20"
+set -g @catppuccin_status_uptime_icon_bg "#1C1B20"
 set -g @catppuccin_status_uptime_icon_fg "#D1BCFD"
 
 # Directory
-set -gF @catppuccin_status_directory_text_bg "#1D1B20"
-set -gF @catppuccin_status_directory_text_fg "#BAC3FF"
-set -g @catppuccin_status_directory_icon_bg "#1D1B20"
-set -g @catppuccin_status_directory_icon_fg "#BAC3FF"
+set -gF @catppuccin_status_directory_text_bg "#1C1B20"
+set -gF @catppuccin_status_directory_text_fg "#C6C0FF"
+set -g @catppuccin_status_directory_icon_bg "#1C1B20"
+set -g @catppuccin_status_directory_icon_fg "#C6C0FF"
 
 # Load catppuccin
 run ~/.config/tmux/plugins/catppuccin/tmux/catppuccin.tmux
 
 # Current
 set -g status-justify centre
-set -gF window-status-format "#[bg=#1D1B20,fg=#4E3D75]#[bg=#4E3D75,fg=#EADDFF]##I ##T #[bg=#1D1B20,fg=#4E3D75]"
-set -gF window-status-current-format "#[bg=#1D1B20,fg=#BAC3FF]#[bg=#BAC3FF,fg=#222C61,bold]##I #[fg=#222C61,bold]##T#[bg=#1D1B20,fg=#BAC3FF]"
+set -gF window-status-format "#[bg=#1C1B20,fg=#4E3D75]#[bg=#4E3D75,fg=#EADDFF]##I ##T#[bg=#1C1B20,fg=#4E3D75]"
+set -gF window-status-current-format "#[bg=#1C1B20,fg=#C6C0FF]#[bg=#C6C0FF,fg=#2E295F,bold]##I #[fg=#2E295F,bold]##T#[bg=#1C1B20,fg=#C6C0FF]"
 
 # Make the status line pretty and add some modules
 set -g status-right-length 100

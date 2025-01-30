@@ -15,6 +15,7 @@ The whole (or many) stack has changed because wayland instead X.
 - playerctl, mpd-mpris or mpdris2, mpv-mpris, mpc (needed to manage mpd playlists)
 - ruby
 - light, inotify-tools
+- Nemo (optional)
 - Neovim (optional) - replace doomemacs and vim
 - Pinta (optional), replace Gimp.
 
@@ -29,7 +30,7 @@ The whole (or many) stack has changed because wayland instead X.
 	libxkbcommon pango pcre2 wlroots0.17 \
     libdrm libglvnd pixman glslang meson ninja \
     cargo libdbusmenu-gtk3 gtk3 gtk-layer-shell \
-    iwd
+    iwd nemo
 
 From AUR:
 
@@ -37,7 +38,7 @@ From AUR:
 
 Before installing `eww` from AUR, you need to import gpg key:
 
-    curl -sS https://github.com/elkowar.gpg | gpg --import'
+    curl -sS https://github.com/elkowar.gpg | gpg --import
     curl -sS https://github.com/web-flow.gpg | gpg --import
 
 ### Voidlinux
@@ -45,13 +46,13 @@ Before installing `eww` from AUR, you need to import gpg key:
     sudo xbps-install -S swayfx imv light jq wl-clipboard \
     papirus-icon-theme inotify-tools mpd mpc wezterm curl \
     stow playerctl mpv-mpris mpDris2 eww ruby swaybg grim \
-    wmenu iwd
+    wmenu iwd nemo
 
 ### Gentoo
 You will need to activate [GURU](https://github.com/gentoo/guru)
 
     sudo emerge -av light net-misc/curl stow
-    papirus-icon-theme \
+    papirus-icon-theme gnome-extra/nemo \
     inotify-tools swaybg imv app-misc/jq \
     app-misc/jq media-sound/mpd media-sound/mpc \
     dev-lang/ruby playerctl wl-clipboard wezterm \

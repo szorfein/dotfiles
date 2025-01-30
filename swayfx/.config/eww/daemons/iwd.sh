@@ -9,6 +9,11 @@ remove_escape_sequences() {
 }
 
 get_interface() {
+    if ! ip a | grep -q 'wl' ; then
+        eww update wifi-on=false
+        exit 1
+    fi
+
     if interface=$(iwctl device list | remove_escape_sequences | awk '{print $1" == ["$2"] == ["$3"]"}' | awk '{print $1}') ; then
         #eww update wlan="$interface"
         echo "$interface"
