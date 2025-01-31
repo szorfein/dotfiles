@@ -10,7 +10,9 @@ load() {
 }
 
 update() {
-    str=$(echo "[$(mpc lsplaylist | jq -Rs | sed -e 's/\\n/", "/g')]")
+    str=$(echo "[$(mpc lsplaylist | jq -Rs | sed -e 's/\\n/", "/g' | sed -e 's/, ""//')]")
+    #str=$(echo "[$(mpc lsplaylist | jq -Rs | sed -e 's/\\n/", "/g')]")
+    #echo "$str"
     eww update mpd-playlists="$str"
 }
 

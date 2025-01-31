@@ -42,11 +42,22 @@ Before installing `eww` from AUR, you need to import gpg key:
     curl -sS https://github.com/web-flow.gpg | gpg --import
 
 ### Voidlinux
+Install your [graphic driver](https://docs.voidlinux.org/config/graphical-session/graphics-drivers/index.html) first. e.g for intel:
+
+    sudo xbps-install -S linux-firmware-intel mesa-dri intel-video-accel
+ 
+Swayfx dependencies
 
     sudo xbps-install -S swayfx imv light jq wl-clipboard \
     papirus-icon-theme inotify-tools mpd mpc wezterm curl \
     stow playerctl mpv-mpris mpDris2 eww ruby swaybg grim \
-    wmenu iwd nemo
+    wmenu iwd nemo seatd turnstile
+
+Required step as root
+
+    usermod -aG _seatd username
+    ln -s /etc/sv/seatd /var/service
+    ln -s /etc/sv/turnstiled /var/service
 
 ### Gentoo
 You will need to activate [GURU](https://github.com/gentoo/guru)

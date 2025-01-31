@@ -1,0 +1,29 @@
+; https://m3.material.io/components/lists/specs
+(defwidget list-item [?text ?icon ?onclick ?onrightclick ?class]
+    (box
+        :orientation "horizontal"
+        :class "list-item ${class}"
+        ;:height 56
+        (button
+            :onclick onclick
+            :onrightclick onrightclick
+            (box
+                :class "container"
+                :space-evenly false
+                (box
+                    :class "leading"
+                    ;:height 40
+                    ;:width 40
+                    :valign "center"
+                    "A"
+                )
+                (box
+                    :halign "start" 
+                    :class "body-large"
+                    :valign "center"
+                    text
+                )
+            )
+        )
+    )
+)

@@ -78,7 +78,7 @@
                         ;:style "border: 1px solid #f00"
                         ;:style "padding: 14px"
                         :space-evenly false
-                        :spacing 8
+                        :spacing "${round(8 * get_env("EWW_SCALE"), 0)}"
                         (box ;:space-evenly true
                             :halign "start"
                             :valign "center"
@@ -105,11 +105,12 @@
                     :space-evenly false
                     ; no spacing without round
                     ; don't add px on spacing...
-                    :spacing "${round(16 * get_env("EWW_SCALE"), 0)}"
-                    (music-volume)
+                    :spacing "${round(26 * get_env("EWW_SCALE"), 0)}"
+                    (music-playlist-horizontal)
                     (music-metadata)
                     (music-buttons)
-                    (music-playlist)
+                    ;(music-playlist)
+                    (music-volume)
                 )
             )
             ; network

@@ -16,11 +16,11 @@ get_interface() {
 
     if interface=$(iwctl device list | remove_escape_sequences | awk '{print $1" == ["$2"] == ["$3"]"}' | awk '{print $1}') ; then
         #eww update wlan="$interface"
-        echo "$interface"
+        #echo "$interface"
         eww update wifi-on=true
     else
         #eww update wlan=false
-        echo "false"
+        #echo "false"
         eww update wifi-on=false
     fi
 }
@@ -31,8 +31,9 @@ scan_ssid() {
     #| sed 's/ psk / ; [psk ] ; /;s/ open / ; [open] ; /;s/\s\+/ /g')
     #| awk -F " ; " '{print $2" =="$1}')
     #echo "$scan_result"
-    str=$(echo "$scan_result" | jq -Rs | sed -e 's/\\n/", "/g')
-    echo "$str"
+    str=$(echo "$scan_result" | jq -Rs | sed -e 's/\\n/", "/g' | sed -e 's/, ""//')
+    #str=$(echo "$scan_result" | jq -Rs | sed -e 's/\\n/", "/g')
+    #echo "$str"
     eww update wifi-ssids="[$str]"
 
     #iwctl station "$interface" connect "ssid"

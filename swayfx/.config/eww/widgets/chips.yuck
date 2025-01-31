@@ -4,8 +4,10 @@
     (button
         :class "label-large chip-filter ${class}"
         :onclick "${onclick}"
-        (box :orientation "horizontal"
-            text
+        (label
+            :show-truncated false
+            :height 32
+            :text text
         )
     )
 )
