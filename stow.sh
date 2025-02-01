@@ -109,7 +109,7 @@ while [ "$#" -gt 0 ] ; do
             shift
             ;;
         -a3 | --awesome-m3)
-            mkdir -p "$HOME/.config/awesome"
+            mkdir -p "$HOME/.config/awesome/theme"
             add_stow "$DOTFILES" ".x"
             add_stow "$DOTFILES" "awm-m3"
             add_stow "$DOTFILES/themes-m3" "$2"
@@ -117,7 +117,10 @@ while [ "$#" -gt 0 ] ; do
             shift
             ;;
         -a2 | --awesome-m2)
-            mkdir -p "$HOME/.config/awesome"
+            # Probably not working...
+            # Also need to add themes/<theme-name> here
+            mkdir -p "$HOME/.config/awesome/themes"
+            mkdir -p "$HOME/.config/awesome/bar"
             add_stow "$DOTFILES" ".x"
             add_stow "$DOTFILES" "awesomewm"
             add_stow "$DOTFILES/themes" "$2"

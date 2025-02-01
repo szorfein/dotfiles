@@ -9,6 +9,7 @@
 (defwidget home-styled []
     (box :valign "center" :halign "center"
         :class "date"
+        :spacing "${round(8 * get_env("EWW_SCALE"), 0)}"
         (box :orientation "horizontal"
             (box :orientation "vertical"
                 (label :class "day" :text "${day.day1}")

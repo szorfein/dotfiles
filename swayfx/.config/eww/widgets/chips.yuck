@@ -6,7 +6,6 @@
         :onclick "${onclick}"
         (label
             :show-truncated false
-            :height 32
             :text text
         )
     )
