@@ -116,6 +116,7 @@ set \$outline $outline_variant
 set \$bglight $background
 set \$error $error
 set \$theme $2
+set \$theme-bg TODO: update-plz.jpg
 EOF
 
 cat <<EOF > "$workdir/.Xdefaults"

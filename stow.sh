@@ -35,7 +35,7 @@ basename() {
 purge_stow() {
     echo "Uninstalling all dots from $DOTFILES..."
 
-    for dir in .x awesomewm awm-m3 bin doomemacs gnupg mpd ncmpcpp swayfx tmux vifm vim wezterm zsh; do
+    for dir in .x awesomewm awm-m3 bin doomemacs gnupg mpd neovim ncmpcpp swayfx tmux vifm vim wezterm zsh; do
         [ -d "$DOTFILES/$dir" ] || continue
         del_stow "$DOTFILES" "$dir"
     done
@@ -76,10 +76,12 @@ purge_stow() {
 usage() {
     echo "Arguments:"
     printf "\t%s\t\t\t\t%s\n"  "--purge" "Remove all older stow links, use it after each updates as first argument"
-    printf "\t%s\t\t\t%s\n"  "-n | --ncmpcpp" "Add dots for ncmpcpp"
     printf "\t%s\t%s\n"  "-s | --swayfx theme-name" "Add swayfx with a theme-name (only 'holy' for now)"
     printf "\t%s\t%s\n"  "-a3 | --awm-m3 theme-name" "Add awesome-wm with a theme-name ('focus', 'connected', 'lines', 'miami', 'morpho', 'sci')"
     printf "\t%s\t%s\n"  "-a2 | --awm-m2 theme-name" "Add awesome-wm with old theme-name ('anonymous', 'astronaut', 'lines', 'machine', 'miami', 'morpho', 'worker') (! not sure all themes works !)"
+    printf "\t%s\t\t%s\n"  "-d | --doomemacs" "Add dots for doomemacs"
+    printf "\t%s\t\t\t%s\n"  "-nv | --neovim" "Add dots for neovim"
+    printf "\t%s\t\t\t%s\n"  "-n | --ncmpcpp" "Add dots for ncmpcpp"
     printf "\t%s\t\t\t%s\n"  "-t | --tmux" "Add dots for tmux"
     printf "\t%s\t\t\t%s\n"  "-w | --wezterm" "Add dots for wezterm"
     printf "\t%s\t\t\t%s\n"  "-z | --zsh" "Add dots for zsh"
@@ -107,7 +109,7 @@ while [ "$#" -gt 0 ] ; do
             shift
             ;;
         -a3 | --awesome-m3)
-            mkdir -p "$HOME/.config/awesome"
+            mkdir -p "$HOME/.config/awesome/theme"
             add_stow "$DOTFILES" ".x"
             add_stow "$DOTFILES" "awm-m3"
             add_stow "$DOTFILES/themes-m3" "$2"
@@ -115,11 +117,23 @@ while [ "$#" -gt 0 ] ; do
             shift
             ;;
         -a2 | --awesome-m2)
-            mkdir -p "$HOME/.config/awesome"
+            # Probably not working...
+            # Also need to add themes/<theme-name> here
+            mkdir -p "$HOME/.config/awesome/themes"
+            mkdir -p "$HOME/.config/awesome/bar"
             add_stow "$DOTFILES" ".x"
             add_stow "$DOTFILES" "awesomewm"
             add_stow "$DOTFILES/themes" "$2"
             shift
+            shift
+            ;;
+        -d | --doomemacs)
+            add_stow "$DOTFILES" "doomemacs"
+            shift
+            ;;
+        -nv | --neovim)
+            mkdir -p "$HOME/.config/nvim/lua"
+            add_stow "$DOTFILES" "neovim"
             shift
             ;;
         -t | --tmux)

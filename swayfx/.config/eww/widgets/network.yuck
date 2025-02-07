@@ -20,8 +20,8 @@
         :orientation "horizontal"
         :halign "center"
         :space-evenly false
-        :spacing 8
-        :height 48
+        :spacing "${round(16 * get_env("EWW_SCALE"), 0)}"
+        :height "${round(48 * get_env("EWW_SCALE"), 0)}"
         (icon-filled-tonal
             :icon ""
             :onclick ""
@@ -35,6 +35,7 @@
         (icon-filled-tonal 
             :icon ""
             :onclick ""
+            :class { wifi-on ? "enabled" : "disabled" }
         )
     )
 )
@@ -42,7 +43,7 @@
 (defwidget network-ssids []
     (box :orientation "vertical"
         :space-evenly false
-        :spacing 8
+        :spacing "${round(8 * get_env("EWW_SCALE"), 0)}"
         (box :class "label-large"
             :halign "start"
             "Nearby ssids"
@@ -50,8 +51,12 @@
         (scroll :hscroll false :vscroll true
             :class "network-scroll"
             :valign "start"
-            (for ssid in wifi-ssids
-                (box :class "body-large" "${ssid}")
+            (box
+                :orientation "vertical"
+                :space-evenly false
+                (for ssid in wifi-ssids
+                    (list-item :class "body-large" :text "${ssid}")
+                )
             )
         )
     )
@@ -64,9 +69,11 @@
     :run-while {sidebar-page-index == "3"}
     `~/.config/eww/scripts/network.sh test-tor`
 )
+(defvar wifi-on false)
 ;(defvar wifi-ssids '[]')
 (defpoll wifi-ssids
     :interval "60s"
     :run-while {sidebar-page-index == "3"}
-    `~/test-iwd-script.sh`
+    ;:initial "[]"
+    `~/.config/eww/daemons/iwd.sh`
 )

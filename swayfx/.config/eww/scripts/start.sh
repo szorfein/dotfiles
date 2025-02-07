@@ -13,7 +13,7 @@ kill_pid "pgrep -f sway-workspaces.rb"
 
 #export EWW_SCALE=0.8443388199535182
 #export EWW_SCALE=0.84
-source ~/.eww_scale
+. ~/.eww_scale
 
 # Without sleep, the 'eww open-many x' keep in the process
 # see with (ps aux |  grep eww)

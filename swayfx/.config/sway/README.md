@@ -15,6 +15,7 @@ The whole (or many) stack has changed because wayland instead X.
 - playerctl, mpd-mpris or mpdris2, mpv-mpris, mpc (needed to manage mpd playlists)
 - ruby
 - light, inotify-tools
+- Nemo (optional)
 - Neovim (optional) - replace doomemacs and vim
 - Pinta (optional), replace Gimp.
 
@@ -23,34 +24,82 @@ The whole (or many) stack has changed because wayland instead X.
     sudo pacman -Syy papirus-icon-theme \
     inotify-tools imv jq mpd mpc wl-clipboard curl stow \
     bc imagemagick rubygems grim swaybg wmenu \
-    playerctl mpd-mpris mpv-mpris wezterm \ 
+    playerctl mpd-mpris mpv-mpris wezterm rust \ 
     git meson scdoc wayland-protocols cairo gdk-pixbuf2 \
     libevdev libinput json-c libgudev wayland libxcb \
-	libxkbcommon pango pcre2 wlroots0.17 \
+	libxkbcommon pango pcre2 wlroots0.17 seatd \
     libdrm libglvnd pixman glslang meson ninja \
     cargo libdbusmenu-gtk3 gtk3 gtk-layer-shell \
-    iwd
+    iwd nemo
 
 From AUR:
 
     scenefx swayfx eww light
 
+Before installing `eww` from AUR, you need to import gpg key:
+
+    curl -sS https://github.com/elkowar.gpg | gpg --import
+    curl -sS https://github.com/web-flow.gpg | gpg --import
+
+Required step as root
+
+    usermod -aG seat username
+    systemctl enable seatd
+    systemctl start seatd
+
 ### Voidlinux
+Install your [graphic driver](https://docs.voidlinux.org/config/graphical-session/graphics-drivers/index.html) first. e.g for intel:
+
+    sudo xbps-install -S linux-firmware-intel mesa-dri intel-video-accel
+ 
+Swayfx dependencies
 
     sudo xbps-install -S swayfx imv light jq wl-clipboard \
     papirus-icon-theme inotify-tools mpd mpc wezterm curl \
     stow playerctl mpv-mpris mpDris2 eww ruby swaybg grim \
-    wmenu iwd
+    wmenu iwd nemo seatd turnstile
+
+Required step as root
+
+    usermod -aG _seatd username
+    ln -s /etc/sv/seatd /var/service
+    ln -s /etc/sv/turnstiled /var/service
 
 ### Gentoo
 You will need to activate [GURU](https://github.com/gentoo/guru)
 
-    sudo emerge -av light curl stow papirus-icon-theme \
-    inotify-tools swaybg imv \
+    sudo emerge -av light net-misc/curl stow
+    papirus-icon-theme gnome-extra/nemo \
+    inotify-tools swaybg imv app-misc/jq \
     app-misc/jq media-sound/mpd media-sound/mpc \
     dev-lang/ruby playerctl wl-clipboard wezterm \
     gui-apps/grim gui-apps/wmenu net-wireless/iwd \
-    gui-apps/eww gui-wm/swayfx mpv-mpris mpd-mpris
+    gui-apps/eww gui-wm/swayfx mpv-mpris mpd-mpris \
+    acct-group/seat seatd
+
+> [!WARNING]
+> Wezterm on musl don't compile [error-on-ld](https://bugs.gentoo.org/937717)
+
+> [!NOTE]
+> seatd should be compiled with the `server` use flag
+
+Required step as root
+
+    usermod -aG seat username
+    usermod -aG video username
+    
+And enable the `seatd` service, for `musl` you have to manually create XDG_RUNTIME_DIR; add this into your `.zprofile` (or equivalent).
+
+```sh
+if test -z "${XDG_RUNTIME_DIR}"; then
+  export XDG_RUNTIME_DIR=/tmp/"${UID}"-runtime-dir
+    if ! test -d "${XDG_RUNTIME_DIR}"; then
+        mkdir "${XDG_RUNTIME_DIR}"
+        chmod 0700 "${XDG_RUNTIME_DIR}"
+    fi
+fi
+```
+See on gentoo [wiki](https://wiki.gentoo.org/wiki/Sway#Starting_Sway_manually)
 
 ### From Ruby
 Install `i3ipc` locally

@@ -86,8 +86,8 @@
                 (box
                     :halign "center"
                     :valign "center"
-                    :width "${round(56 * get_env("EWW_SCALE"), 0)}px"
-                    :height "${round(56 * get_env("EWW_SCALE"), 0)}px"
+                    :width "${round(56 * get_env("EWW_SCALE"), 0)}"
+                    :height "${round(56 * get_env("EWW_SCALE"), 0)}"
                     "${ws[i]}"
                 )
             )

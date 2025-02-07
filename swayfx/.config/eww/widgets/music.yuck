@@ -100,32 +100,55 @@
             ;:style "border: 1px solid #f00"
             :class "music-playlist"
             (box :orientation "vertical"
-                :spacing 8
                 (for pl in mpd-playlists
                     (box 
                         :hexpand true
                         :halign "fill"
                         :space-evenly false
-                        :spacing 8
+                        ;:spacing 8
                         (box :halign "fill"
                             :hexpand true
-                            (chip-filter
-                                :text "${pl}"
+                            (list-item
+                                :text pl
                                 :onclick "~/.config/eww/scripts/mpc.sh load ${pl}"
-                                ;eww update playlist-focus=${pl} && mpc clear && mpc load ${pl} && mpc play"
                                 :class { playlist-focus == "${pl}" ? "enabled" : "disabled" }
-                            )
-                        )
-                        (box :halign "end"
-                            (icon-button
-                                :icon ""
-                                :onclick "~/.config/eww/scripts/mpc.sh rm ${pl}"
-                                :width 48
                             )
                         )
                     )
                 )
             )
+        )
+    )
+)
+
+(defwidget music-playlist-horizontal []
+    (box :orientation "vertical"
+        :spacing "${round(16 * get_env("EWW_SCALE"), 0)}"
+        (box 
+            :class "label-large"
+            :halign "start"
+            "MPD Playlists"
+        )
+        (scroll :vscroll false :hscroll true
+            (box :orientation "horizontal"
+                :space-evenly false
+                :spacing "${round(8 * get_env("EWW_SCALE"), 0)}"
+                (for pl in mpd-playlists
+                    (chip-filter
+                        :text "${pl}"
+                        :onclick "~/.config/eww/scripts/mpc.sh load ${pl}"
+                ;eww update playlist-focus=${pl} && mpc clear && mpc load ${pl} && mpc play"
+                        :class { playlist-focus == "${pl}" ? "enabled" : "disabled" }
+                    )
+                )
+            )
+            ;(box :halign "end"
+            ;   (icon-button
+            ;       :icon ""
+            ;       :onclick "~/.config/eww/scripts/mpc.sh rm ${pl}"
+            ;       :width 48
+            ;   )
+            ;)
         )
     )
 )
@@ -137,5 +160,5 @@
 (defvar mpv-active false)
 (defvar playlist-name "")
 (defvar volume "")
-(defvar mpd-playlists '["6", "9"]')
+(defvar mpd-playlists '["No one yet"]')
 (defvar playlist-focus "")
