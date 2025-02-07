@@ -1,0 +1,80 @@
+# Wayland clipboard
+set -s copy-command 'wl-copy'
+
+# clip vim
+#bind-key -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "wl-copy && wl-paste -n | wl-copy -p"
+#bind-key p run "wl-paste -n | tmux load-buffer - ; tmux paste-buffer"
+# Wayland, Ctrl+a+v (copy mode), press y for copy. Alt+p for paste
+# https://www.rockyourcode.com/copy-and-paste-in-tmux/
+#set-option -s set-clipboard off
+bind P paste-buffer
+bind-key -T copy-mode-vi 'v' send-keys -X begin-selection
+bind-key -T copy-mode-vi 'y' send-keys -X copy-pipe "wl-copy"
+#bind-key -T copy-mode-vi V send-keys -X rectangle-toggle
+#unbind -T copy-mode-vi Enter
+#bind-key -T copy-mode-vi y send-keys -X copy-pipe-and-cancel 'wl-copy'
+#bind-key -T copy-mode-vi Enter send-keys -X copy-pipe-and-cancel 'wl-copy'
+#bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel 'wl-copy'
+
+# Configure plugin mode_indicator
+set -g @mode_indicator_prefix_prompt "WAIT"
+set -g @mode_indicator_prefix_mode_style fg=#D1BCFD,bold
+set -g @mode_indicator_copy_prompt "COPY"
+set -g @mode_indicator_copy_mode_style fg=green,bold
+set -g @mode_indicator_sync_prompt "SYNC"
+set -g @mode_indicator_sync_mode_style fg=#FFB4AB,bold
+set -g @mode_indicator_empty_prompt "TMUX"
+set -g @mode_indicator_empty_mode_style fg=purple,bold
+
+# Configure the catppuccin plugin
+set -g @catppuccin_flavor "mocha"
+set -g @catppuccin_window_status_style "rounded"
+
+# status line
+set -gF status-style "bg=#131318,fg=#E5E1E9"
+
+# Customize plugins colors
+#
+# App
+set -gF @catppuccin_status_application_icon_bg "#1C1B20"
+set -g @catppuccin_status_application_icon_fg "#FFB4AB"
+set -gF @catppuccin_status_application_text_bg "#1C1B20"
+set -g @catppuccin_status_application_text_fg "#FFB4AB"
+
+# Session
+set -gF @catppuccin_status_session_icon_bg "#1C1B20"
+set -gF @catppuccin_status_session_icon_fg "#E8B6F0"
+set -gF @catppuccin_status_session_text_bg "#1C1B20"
+set -gF @catppuccin_status_session_text_fg "#E8B6F0"
+
+# Uptime
+set -gF @catppuccin_status_uptime_text_bg "#1C1B20"
+set -gF @catppuccin_status_uptime_text_fg "#D1BCFD"
+set -g @catppuccin_status_uptime_icon_bg "#1C1B20"
+set -g @catppuccin_status_uptime_icon_fg "#D1BCFD"
+
+# Directory
+set -gF @catppuccin_status_directory_text_bg "#1C1B20"
+set -gF @catppuccin_status_directory_text_fg "#C6C0FF"
+set -g @catppuccin_status_directory_icon_bg "#1C1B20"
+set -g @catppuccin_status_directory_icon_fg "#C6C0FF"
+
+# Load catppuccin
+run ~/.config/tmux/plugins/catppuccin/tmux/catppuccin.tmux
+
+# Current
+set -g status-justify centre
+set -gF window-status-format "#[bg=#1C1B20,fg=#4E3D75]#[bg=#4E3D75,fg=#EADDFF]##I ##T#[bg=#1C1B20,fg=#4E3D75]"
+set -gF window-status-current-format "#[bg=#1C1B20,fg=#C6C0FF]#[bg=#C6C0FF,fg=#2E295F,bold]##I #[fg=#2E295F,bold]##T#[bg=#1C1B20,fg=#C6C0FF]"
+
+# Make the status line pretty and add some modules
+set -g status-right-length 100
+set -g status-left-length 100
+set -g status-right ""
+set -g status-left "#{tmux_mode_indicator} "
+set -ag status-left "#{E:@catppuccin_status_application}"
+set -ag status-left "#{E:@catppuccin_status_directory}"
+set -ag status-right "#{E:@catppuccin_status_session}"
+set -ag status-right "#{E:@catppuccin_status_uptime}"
+
+run-shell ~/.config/tmux/plugins/tmux-mode-indicator/mode_indicator.tmux

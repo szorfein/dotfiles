@@ -1,0 +1,20 @@
+---
+things:
+  - name: wallpapers.zip
+    url: https://github.com/szorfein/walls/archive/refs/heads/main.zip
+    dest_dir: images
+  - name: materialdesign.zip
+    url: https://github.com/Templarian/MaterialDesign-Font/archive/refs/heads/master.zip
+    dest_dir: .local/share/fonts
+    keep_name: true
+  - name: iosevka.tar.xz
+    url: https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Iosevka.tar.xz
+    strip_components: 0
+    dest_dir: .local/share/fonts
+    keep_name: true
+  - name: iosevka-term.tar.xz
+    url: https://github.com/ryanoasis/nerd-fonts/releases/latest/download/IosevkaTerm.tar.xz
+    strip_components: 0
+    dest_dir: .local/share/fonts
+    keep_name: true
+time: 86000

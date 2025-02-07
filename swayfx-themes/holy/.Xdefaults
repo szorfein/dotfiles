@@ -1,0 +1,28 @@
+*background: #131318
+*foreground: #E5E1E9
+*cursorColor: #DAB9FE
+*fadeColor: #1B1B1B
+! Black - surfaceContainer
+*color0: #131318
+*color8: #2A2A2A
+! Red - error
+*color1: #FFB4AB
+*color9: #FFB4AB
+! Green - not include in Material, may be custom
+*color2: #3FA4C5
+*color10: #88d0ed
+! Yellow - tertiary
+*color3: #FF8791
+*color11: #FFB2B6
+! Blue - secondary
+*color4: #B89DF4
+*color12: #D1BCFD
+! Magenta - primary
+*color5: #A8A0FF
+*color13: #C6C0FF
+! Cyan - not include in Material, may be custom
+*color6: #F86e9d
+*color14: #ffb1c6
+! White
+*color7: #E2E2E2
+*color15: #DDBEFF

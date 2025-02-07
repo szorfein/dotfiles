@@ -1,0 +1,25 @@
+---
+things:
+  - name: doom
+    url: https://github.com/doomemacs/doomemacs
+    git: true
+    dest_dir: .config/emacs
+  - name: all-the-icons.ttf
+    url: https://github.com/domtronn/all-the-icons.el/raw/master/fonts/all-the-icons.ttf
+    dest_dir: .local/share/fonts
+  - name: fontawesome.ttf
+    url: https://github.com/domtronn/all-the-icons.el/raw/master/fonts/fontawesome.ttf
+    dest_dir: .local/share/fonts
+  - name: material-design-icons.ttf
+    url: https://github.com/domtronn/all-the-icons.el/raw/master/fonts/material-design-icons.ttf
+    dest_dir: .local/share/fonts
+  - name: octicons.ttf
+    url: https://github.com/domtronn/all-the-icons.el/raw/master/fonts/octicons.ttf
+    dest_dir: .local/share/fonts
+  - name: weathericons.ttf
+    url: https://github.com/domtronn/all-the-icons.el/raw/master/fonts/weathericons.ttf
+    dest_dir: .local/share/fonts
+  - name: NFM.ttf
+    url: https://github.com/rainstormstudio/nerd-icons.el/raw/main/fonts/NFM.ttf
+    dest_dir: .local/share/fonts
+time: 86000

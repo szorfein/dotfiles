@@ -1,0 +1,34 @@
+// https://m3.material.io/components/progress-indicators/specs
+.progressbar {
+  min-height: dpi(4px);
+  min-width: dpi(40px);
+  progressbar > trough {
+    min-width: dpi(40px);
+    min-height: dpi(4px);
+    background-color: $secondary-container;
+  }
+  progressbar > trough progress {
+    min-height: dpi(4px);
+    background-color: $primary;
+  }
+  .icon {
+    font-size: dpi(21px);
+    font-family: "Material Symbols Outlined";
+    color: $on-surface-variant;
+  }
+}
+
+.progressbar-circular {
+  min-height: dpi(40px);
+  min-width: dpi(40px);
+  transition: color 0.2s;
+  color: $primary;
+  .backdrop {
+    color: $secondary-container;
+  }
+  .icon {
+    font-size: dpi(21px);
+    font-family: "Material Symbols Outlined";
+    color: $on-surface-variant;
+  }
+}

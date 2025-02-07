@@ -1,0 +1,29 @@
+.list-item {
+  min-height: dpi(56px);
+  background-color: $surface;
+  border-bottom: 1px solid $outline;
+  .container {
+    padding-left: dpi(16px);
+    padding-right: dpi(16px);
+    //padding-top: dpi(8px);
+    //padding-bottom: dpi(8px);
+    .leading {
+      min-width: dpi(40px);
+      min-height: dpi(40px);
+      border-radius: 50%;
+      background-color: $primary;
+      color: $on-primary;
+      margin-right: dpi(16px);
+    }
+  }
+  &.enabled {
+    background-color: $surface;
+    color: $on-surface;
+  }
+  &.disabled {
+    color: rgba($on-surface, .38);
+  }
+  & button:hover {
+    background-color: rgba($on-surface, .08);
+  }
+}

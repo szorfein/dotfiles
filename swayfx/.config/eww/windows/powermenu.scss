@@ -1,0 +1,19 @@
+.powermenu {
+  // https://m3.material.io/styles/elevation/applying-elevation
+  background: rgba($scrim, 0.32);
+  .dialog-content {
+    border: 0px solid #fff;
+    border-radius: dpi(28px);
+    min-width: dpi(280px);
+    background-color: $surface-container-high;
+  }
+  .dialog-tint {
+    background-color: rgba($surface-tint, 0.06);
+    background-size: 100% 100%;
+    border-radius: dpi(28px);
+    border: 0px solid $surface-container-high;
+  }
+  .container {
+    padding: dpi(24px);
+  }
+}

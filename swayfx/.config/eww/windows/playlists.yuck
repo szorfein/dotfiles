@@ -1,0 +1,52 @@
+(defwindow playlists :monitor 0
+                     :geometry (geometry :x 0
+                                         :y 0
+                                         :width "100%"
+                                         :height "200%"
+                                         :anchor "left center")
+                      :stacking "overlay"
+                      :exclusive false
+                      :focusable true
+
+    (revealer :transition "crossfade"
+        :reveal "${playlists-visible}"
+        (eventbox :halign "fill"
+            :valign "fill"
+            :onclick "~/.config/eww/scripts/dialog.sh close playlists &"
+            :class "powermenu"
+
+            (box :halign "center"
+                :valign "center"
+                :space-evenly false
+                :class "dialog-content" 
+                (box :height "100%" :width "100%" :vexpand true :hexpand true :class "dialog-tint"
+                    (box :class "container"
+                        :vexpand true
+                        :valign "center"
+                        :spacing 16
+                        :orientation "vertical"
+                        ;title
+                        (box :class "headline-small"
+                            :style "line-height: 32pt"
+                            "Playlist"
+                        )
+                        ; supporting text
+                        (box :class "body-medium"
+                            "Add music ${media.artist} in playlist named:"
+                        )
+                        (centerbox
+                            ""
+                            (input :class "text-field body-large"
+                                :onaccept "~/.config/eww/scripts/mpc.sh create {} && ~/.config/eww/scripts/dialog.sh close playlists &"
+                                :value ""
+                            )
+                            ""
+                        )
+                    )
+                )
+            )
+        )
+    )
+)
+
+(defvar playlists-visible false)

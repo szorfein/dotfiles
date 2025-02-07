@@ -1,13 +1,19 @@
 alias feh='feh -. -B black -g 628x580'
 alias sxiv='sxiv -s h -g 628x580'
-alias mpv='mpv --profile=fast --geometry="50%x50%"'
+alias mpv='mpv --profile=fast --geometry="50%x50%" --auto-window-resize=no'
 alias ionic="~/node_modules/ionic/bin/ionic"
 alias ng="~/node_modules/@angular/cli/bin/ng"
 alias sqlmap="sqlmap --check-tor --random-agent"
 alias vifm=vifmrun
-alias virtualbox=VirtualBox
+
+if command -v nvim >/dev/null ; then
+    alias vim=nvim
+fi
 
 # make xclip work with voidlinux
 alias xclip='xclip -sel clip'
 
 alias streload='xrdb merge ~/.Xresources && kill -s USR1 $(pidof xst)'
+
+# https://elijahmanor.com/blog/fd-fzf-tmux-nvim
+alias v='fd --type f --hidden --exclude .git | fzf-tmux -p --reverse | xargs nvim'

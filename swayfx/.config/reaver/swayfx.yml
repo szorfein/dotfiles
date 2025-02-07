@@ -1,0 +1,13 @@
+---
+things:
+  - name: szorfein-fonts.tar.gz
+    url: https://github.com/szorfein/fonts/archive/refs/heads/main.tar.gz
+    strip_components: 1
+    dest_dir: .local/share/fonts
+  - name: material-design-icons.ttf
+    url: https://github.com/google/material-design-icons/raw/refs/heads/master/variablefont/MaterialSymbolsOutlined%5BFILL,GRAD,opsz,wght%5D.ttf
+    dest_dir: .local/share/fonts
+  - name: swayfx-wallpapers.zip
+    url: https://github.com/szorfein/walls/archive/refs/heads/swayfx.zip
+    dest_dir: images
+time: 86000

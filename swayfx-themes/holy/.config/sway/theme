@@ -1,0 +1,8 @@
+set $bg #131318
+set $fg #E5E1E9
+set $shadow #000000
+set $outline #47464F
+set $bglight #131318
+set $error #FFB4AB
+set $theme holy
+set $theme-bg ~/images/holy.jpg

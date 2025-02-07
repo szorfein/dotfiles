@@ -1,0 +1,22 @@
+# >> Floating
+for_window {
+    [app_id="floating"] floating enable
+    [app_id="mpv"] floating enable, resize set 840 500, move position center
+    [app_id="imv"] floating enable, resize set 840 500, move position center
+}
+
+# >> Dialog
+set $handle_dialog floating enable, move container to workspace current
+for_window {
+    [title="(?:Open|Save) (?:File|Folder|As)"] $handle_dialog
+    [app_id="pop-up,task_dialog,About"] $handle_dialog
+    [window_type="dialog"] $handle_dialog
+    [window_type="utility"] $handle_dialog
+    [window_type="toolbar"] $handle_dialog
+    [window_type="splash"] $handle_dialog
+    [window_type="menu"] $handle_dialog
+    [window_type="dropdown_menu"] $handle_dialog
+    [window_type="popup_menu"] $handle_dialog
+    [window_type="tooltip"] $handle_dialog
+    [window_type="notification"] $handle_dialog
+}

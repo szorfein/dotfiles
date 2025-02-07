@@ -1,0 +1,164 @@
+(defwidget music-metadata []
+    (box :orientation "vertical"
+        (box :orientation "vertical"
+            :class "music-card"
+            :hexpand true
+            :vexpand true
+            :space-evenly false
+            ;:style "border: 1px solid #f00"
+            (box :orientation "vertical" :valign "start"
+                ;:style "border: 1px solid #f00"
+                :space-evenly false
+                (slider-horizontal :max "${media.length}"
+                    :value "${media.position}"
+                    :onchange "~/.config/eww/scripts/media.sh pos {}"
+                )
+                (box :orientation "horizontal"
+                    ;:space-evenly false
+                    :halign "center"
+                    (icon-button 
+                        :height 48
+                        :icon ""
+                        :onclick "~/.config/eww/scripts/dialog.sh open playlists"
+                    )
+                    ""
+                    ""
+                    (icon-button
+                        :onclick ""
+                        :icon ""
+                    )
+                )
+                (image :path "${media.arturl}"
+                    ; 110 don't move the UI !
+                    :image-height 110
+                    :image-width 206
+                    ;:style "border: 1px solid #f00"
+                    ;:preserve-aspect-ratio true
+                )
+            )
+            (box :orientation "vertical"
+                :spacing 8
+                :valign "center"
+                :class "music-text"
+                :space-evenly false
+                (box :orientation "horizontal"
+                    :class "title-small"
+                    ;:style "line-height: 24px"
+                    "${media.artist}"
+                )
+                (box :orientation "horizontal"
+                    :class "body-medium"
+                    "${media.title}"
+                )
+            )
+            (box :orientation "v" :valign "end"
+                ;:style "border: 1px solid #f00"
+                :class "container"
+                (box :orientation "horizontal"
+                    :halign "center"
+                    (icon-button :icon "" :onclick "playerctl previous")
+                    (icon-outlined
+                        :icon {media.playing == "Playing" ? "" : "" }
+                        :class {media.playing == "Playing" ? "enabled" : "disabled" }
+                        :onclick "playerctl play-pause"
+                    )
+                    (icon-button :icon "" :onclick "~/.config/eww/scripts/media.sh next &")
+                )
+            )
+        )
+    )
+)
+
+(defwidget music-buttons []
+    (box :orientation "horizontal"
+        :space-evenly true
+        (button-tonal-vert :text "WEB" :class {web-active ? "enabled" : "disabled"} :icon "" :onclick "playerctl -p brave play-pause &")
+        (button-tonal-vert :text "MPD" :class {mpd-active ? "enabled" : "disabled"} :icon "" :onclick "playerctl -p mpd play-pause &")
+        (button-tonal-vert :text "MPV" :class {mpv-active ? "enabled" : "disabled"} :icon "" :onclick "playerctl -p mpv play-pause &")
+    )
+)
+
+(defwidget music-volume []
+    (slider-horizontal-m3
+        :value "${volume}"
+        :max 100
+        :icon ""
+        :label "Volume"
+        :onchange "~/.config/eww/scripts/volume.sh set {}"
+    )
+)
+
+(defwidget music-playlist []
+    (box :orientation "vertical"
+        :space-evenly false
+        (box 
+            :class "label-large"
+            :halign "start"
+            "MPD Playlists"
+        )
+        (scroll :vscroll true :hscroll false
+            ;:style "border: 1px solid #f00"
+            :class "music-playlist"
+            (box :orientation "vertical"
+                (for pl in mpd-playlists
+                    (box 
+                        :hexpand true
+                        :halign "fill"
+                        :space-evenly false
+                        ;:spacing 8
+                        (box :halign "fill"
+                            :hexpand true
+                            (list-item
+                                :text pl
+                                :onclick "~/.config/eww/scripts/mpc.sh load ${pl}"
+                                :class { playlist-focus == "${pl}" ? "enabled" : "disabled" }
+                            )
+                        )
+                    )
+                )
+            )
+        )
+    )
+)
+
+(defwidget music-playlist-horizontal []
+    (box :orientation "vertical"
+        :spacing "${round(16 * get_env("EWW_SCALE"), 0)}"
+        (box 
+            :class "label-large"
+            :halign "start"
+            "MPD Playlists"
+        )
+        (scroll :vscroll false :hscroll true
+            (box :orientation "horizontal"
+                :space-evenly false
+                :spacing "${round(8 * get_env("EWW_SCALE"), 0)}"
+                (for pl in mpd-playlists
+                    (chip-filter
+                        :text "${pl}"
+                        :onclick "~/.config/eww/scripts/mpc.sh load ${pl}"
+                ;eww update playlist-focus=${pl} && mpc clear && mpc load ${pl} && mpc play"
+                        :class { playlist-focus == "${pl}" ? "enabled" : "disabled" }
+                    )
+                )
+            )
+            ;(box :halign "end"
+            ;   (icon-button
+            ;       :icon ""
+            ;       :onclick "~/.config/eww/scripts/mpc.sh rm ${pl}"
+            ;       :width 48
+            ;   )
+            ;)
+        )
+    )
+)
+
+; all vars 
+(defvar media "[]")
+(defvar web-active false)
+(defvar mpd-active false)
+(defvar mpv-active false)
+(defvar playlist-name "")
+(defvar volume "")
+(defvar mpd-playlists '["No one yet"]')
+(defvar playlist-focus "")

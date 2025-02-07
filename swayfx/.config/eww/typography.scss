@@ -1,0 +1,56 @@
+// https://m3.material.io/styles/typography/type-scale-tokens
+.headline-small {
+  font-family: "demova";
+  font-size: dpi(24pt);
+  font-weight: 400;
+  letter-spacing: 0;
+  color: $on-surface;
+}
+
+.title-small {
+  font-family: "Iosevka Nerd Font";
+  font-size: dpi(14pt);
+  font-weight: 500;
+  min-height: dpi(20pt);
+  letter-spacing: dpi(0.1pt);
+}
+
+.body-large {
+  font-family: "Iosevka Nerd Font";
+  font-weight: 400;
+  font-size: dpi(16pt);
+  letter-spacing: dpi(0.5pt);
+}
+
+.body-medium {
+  font-family: "Iosevka Nerd Font";
+  font-weight: 400;
+  font-size: dpi(14pt);
+  min-height: dpi(20pt);
+  // also named font-tracking
+  letter-spacing: dpi(0.25pt);
+  color: $on-surface-variant;
+}
+
+.body-small {
+  font-family: "Iosevka Nerd Font";
+  font-weight: 400;
+  font-size: dpi(12pt);
+  min-height: dpi(16pt);
+  // also named font-tracking
+  letter-spacing: dpi(0.4pt);
+}
+
+.label-large {
+  font-size: dpi(14pt);
+  font-weight: 500;
+  letter-spacing: dpi(0.1pt);
+  min-height: dpi(20px);
+}
+
+.label-medium {
+  font-size: dpi(12pt);
+  font-weight: 500;
+  letter-spacing: dpi(0.5pt);
+  min-height: dpi(16px);
+}

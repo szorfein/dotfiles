@@ -1,0 +1,11 @@
+---
+things:
+  - name: catppuccin-tmux
+    url: https://github.com/catppuccin/tmux
+    git: true
+    dest_dir: .config/tmux/plugins/catppuccin/tmux
+  - name: tmux-mode-indicator
+    url: https://github.com/MunifTanjim/tmux-mode-indicator.git
+    git: true
+    dest_dir: .config/tmux/plugins/tmux-mode-indicator
+time: 86999

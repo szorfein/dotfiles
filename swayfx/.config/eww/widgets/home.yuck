@@ -1,0 +1,225 @@
+; Contain all the widgets on the home, sidebar
+(defwidget home-time []
+    (box :orientation "horizontal"
+         :space-evenly true
+         "${time.hour}${time.min}"
+    )
+)
+
+(defwidget home-styled []
+    (box :valign "center" :halign "center"
+        :class "date"
+        :spacing "${round(8 * get_env("EWW_SCALE"), 0)}"
+        (box :orientation "horizontal"
+            (box :orientation "vertical"
+                (label :class "day" :text "${day.day1}")
+                (label :class "day primary" :text "${day.day2}")
+                (label :class "day" :text "${day.day3}")
+                (label :class "day" :text "")
+            )
+        )
+        (box :orientation "horizontal"
+            (box :orientation "vertical"
+                (label :class "day" :text "")
+                (label :class "day" :text "${month.month1}")
+                (label :class "day primary" :text "${month.month2}")
+                (label :class "day" :text "${month.month3}")
+            )
+        )
+        (box :orientation "horizontal"
+            (box :orientation "vertical"
+                ;(label :angle 90 :class "day" :text ">")
+                ;(home-sun)
+                (box :class "day"
+                    :width 40 :height 40
+                    :halign "center" :valign "center"
+                    (icon-filled
+                        :icon ""
+                        :onclick "~/.config/eww/scripts/dialog.sh open powermenu"
+                        :class "error"
+                    )
+                )
+                ;(label :class "day" :text "")
+                (home-sun)
+                ;(label :class "day" :text "")
+                (box :space-evenly true
+                    :valign "center"
+                    :halign "center"
+                    :style "padding-right: 8px"
+                    (label :class "day daynb" :text "${day_nb}")
+                )
+                (label :class "day" :text "")
+            )
+        )
+    )
+)
+
+(defwidget home-icons []
+    (box :orientation "vertical"
+         ;:space-evenly true
+         :valign "end"
+        (box :orientation "horizontal"
+            (box :tooltip "Toggle navbar"
+                (icon-button :icon "" :onclick "~/.config/eww/scripts/toggle-nav.sh toggle &")
+            )
+            (icon-button :icon "x" :onclick "~/.config/eww/scripts/toggle-nav.sh toggle &")
+            (icon-button :icon "x" :onclick "~/.config/eww/scripts/toggle-nav.sh toggle &")
+         )
+     )
+)
+
+(defwidget home-progressline-circular []
+    (box :orientation "vertical"
+        :halign "center"
+        :spacing 20
+        :space-evenly false
+        :class "progressbar-circ"
+        ;:height 50
+        (progressbar-circular :icon "" :value "${EWW_CPU.avg}")
+        (progressbar-circular :icon "" :value "${EWW_RAM.used_mem_perc}")
+        (progressbar-circular :icon "" :value "${EWW_DISK["/home"].used_perc}")
+    )
+)
+
+(defwidget home-progressline []
+    (box :orientation "vertical"
+        :class "home-progress"
+        (progressbar :icon "")
+        (progressbar :icon "")
+        (progressbar :icon "")
+    )
+)
+
+(defwidget home-sun []
+    (box :valign "center"
+        :halign "center"
+        :class "sun"
+        "${time.icon}"
+    )
+)
+
+(defwidget home-buttons []
+    (box :orientation "vertical"
+        :halign "center"
+        :spacing 8
+        ;:style "border: 1px solid #f00"
+        (icon-filled
+            :icon ""
+            :onclick "~/.config/eww/scripts/screenshot.sh &"
+            :onrightclick "sleep 5 && ~/.config/eww/scripts/screenshot.sh &"
+            :class "primary"
+        )
+        (icon-filled :icon "" :onclick "" :class "secondary")
+        (icon-filled :icon "" :onclick "" :class "tertiary")
+    )
+)
+
+(defwidget home-loc []
+    (box :orientation "vertical"
+        :halign "fill"
+        :valign "fill"
+        :class "home-loc"
+        ;:style 'border: 1px solid #f00'
+        :space-evenly false
+        ;:spacing 6
+        (label
+            ;:truncate true
+            :limit-width 10
+            ;:style "border: 1px solid #0ff"
+            :class "body-medium"
+            :justify "left"
+            :xalign 0 :yalign 0
+            :text "${geoloc.isp_name}"
+        )
+        (label
+            ;:truncate true
+            :limit-width 10
+            ;:style "border: 1px solid #0ff"
+            :class "body-medium"
+            :justify "left"
+            :xalign 0 :yalign 0
+            :text "${geoloc.country_name}"
+        )
+        (label
+            ;:truncate true
+            :limit-width 10
+            ;:style "border: 1px solid #0ff"
+            :class "body-medium"
+            :justify "left"
+            :xalign 0 :yalign 0
+            :text {geoloc.city_name == "null" ? "${geoloc.continent_name}" : "${geoloc.city_name}"}
+        )
+    )
+)
+
+(defwidget home-hour []
+    (box :orientation "horizontal"
+        ;:style "border: 1px solid #f00"
+        :class "mb-16 time"
+        (box :orientation "horizontal"
+            :halign "end"
+            "${time.hour}"
+        )
+        (box :orientation "horizontal"
+            :class "secondary"
+            "${time.min}"
+        )
+    )
+)
+
+(defwidget home-battery []
+    (box :orientation "vertical"
+        :class "battery body-medium mt-16"
+        :spacing 8
+        :space-evenly false
+        (box :orientation "horizontal"
+            :spacing 6
+            :space-evenly false
+            :halign "start"
+            (box :class "simple-icon" "")
+            "${round(EWW_BATTERY.total_avg, 0)}% Battery"
+        )
+        (box :halign "start"
+            :spacing 6
+            :space-evenly false
+            (box :class "simple-icon" "")
+            "${EWW_TEMPS.ACPITZ_TEMP1}°C"
+        )
+    )
+)
+
+(defwidget home-slides []
+    (box :orientation "vertical"
+        ;:style "border: 1px solid #f00"
+        :class "home-slide"
+        :valign "center"
+        ;:space-evenly false
+        (slider-horizontal-m3 :min 1 :max 100 :value "${brightness}" :icon "" :label "Brightness" :onchange "light -S {}")
+    )
+)
+
+(defwidget home-loc-icon []
+    (box :halign "start"
+        :class "sun home-loc-icon"
+        ""
+    )
+)
+
+; all vars
+(defpoll time :run-while "${sidebar-page-index == "1"}"
+    :interval "60s" `~/.config/eww/scripts/time-json.sh`)
+(defpoll day_nb :run-while "${sidebar-page-index == "1"}"
+    :interval "60m" `date +%e`
+)
+(defpoll day :run-while "${sidebar-page-index == "1"}"
+    :interval "60m" `~/.config/eww/scripts/date-json.sh day`
+)
+(defpoll month :run-while "${sidebar-page-index == "1"}"
+    :interval "60m" `~/.config/eww/scripts/date-json.sh month`
+)
+(defpoll geoloc :run-while "${sidebar-page-index == "1"}"
+    :interval "5m" `~/.config/eww/scripts/geoloc.sh`
+)
+(defpoll brightness :run-while "${sidebar-page-index == "1"}"
+    :interval "60m" `light -G`
+)

@@ -1,0 +1,44 @@
+.sidebar {
+  background-color: $surface;
+  color: $on-surface;
+  //padding: 0;
+  .header {
+   // padding-left: dpi(24px);
+    //padding-right: dpi(24px);
+    //padding-top: dpi(24px);
+    background-color: $surface;
+    min-height: dpi(48px);
+    border-bottom: dpi(1px) solid $outline-variant;
+    //;border-bottom: 1px solid $outline;
+  }
+  .container {
+    padding-top: dpi(12px);
+    padding-left: dpi(24px);
+    padding-right: dpi(24px);
+    padding-bottom: dpi(24px);
+  }
+}
+
+.tabs {
+  min-height: dpi(48px);
+  .my-super-tab-icon {
+    padding: dpi(8px);
+    font-family: "icomoon";
+    font-size: dpi(24pt);
+    min-height: dpi(48px);
+    &.active {
+      color: $primary;
+      border-bottom: dpi(3px) solid $primary;
+      border-radius: dpi(3px) dpi(3px) 0 0;
+      & button:hover {
+        background-color: rgba($primary, 0.08);
+      }
+    }
+    &.inactive {
+      color: $on-surface-variant;
+      & button:hover {
+        background-color: rgba($on-surface, 0.08);
+      }
+    }
+  }
+}

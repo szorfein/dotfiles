@@ -1,0 +1,62 @@
+.slider-vertical {
+  scale {
+    margin: dpi(6px);
+  }
+
+  scale trough {
+    background-color: $secondary-container;
+    min-height: dpi(80px);
+    min-width: dpi(38px);
+    border-radius: dpi(18px);
+  }
+
+  scale trough highlight {
+    background-color: $primary;
+    border-radius: dpi(18px);
+    transition: 0.3s;
+  }
+}
+
+.slider-horizontal {
+  scale {
+    margin: dpi(6px);
+  }
+
+  scale trough {
+    background-color: $surface-container-highest;
+    min-height: dpi(16px);
+    min-width: dpi(100px);
+  }
+
+  scale trough highlight {
+    background-color: $error;
+    transition: 0.3s;
+  }
+}
+
+.slider-horizontal-m3 {
+  //@extend: .slider-horizontal;
+  margin-top: dpi(8px);
+  margin-bottom: dpi(8px);
+  scale trough {
+    background-color: $secondary-container;
+    min-height: dpi(16px);
+    border-radius: dpi(24px);
+  }
+  scale trough highlight {
+    background-color: $primary;
+    // border only left side top-left, bottom-left
+    border-radius: dpi(24px) 0 0 dpi(24px);
+  }
+
+  .icon {
+    font-family: "Material Symbols Outlined";
+    font-size: dpi(22pt);
+    padding: dpi(8px);
+  }
+
+  .label {
+    @extend .label-medium;
+    margin-bottom: dpi(8px);
+  }
+}
