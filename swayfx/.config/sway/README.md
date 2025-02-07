@@ -27,7 +27,7 @@ The whole (or many) stack has changed because wayland instead X.
     playerctl mpd-mpris mpv-mpris wezterm rust \ 
     git meson scdoc wayland-protocols cairo gdk-pixbuf2 \
     libevdev libinput json-c libgudev wayland libxcb \
-	libxkbcommon pango pcre2 wlroots0.17 \
+	libxkbcommon pango pcre2 wlroots0.17 seatd \
     libdrm libglvnd pixman glslang meson ninja \
     cargo libdbusmenu-gtk3 gtk3 gtk-layer-shell \
     iwd nemo
@@ -40,6 +40,12 @@ Before installing `eww` from AUR, you need to import gpg key:
 
     curl -sS https://github.com/elkowar.gpg | gpg --import
     curl -sS https://github.com/web-flow.gpg | gpg --import
+
+Required step as root
+
+    usermod -aG seat username
+    systemctl enable seatd
+    systemctl start seatd
 
 ### Voidlinux
 Install your [graphic driver](https://docs.voidlinux.org/config/graphical-session/graphics-drivers/index.html) first. e.g for intel:
@@ -68,7 +74,32 @@ You will need to activate [GURU](https://github.com/gentoo/guru)
     app-misc/jq media-sound/mpd media-sound/mpc \
     dev-lang/ruby playerctl wl-clipboard wezterm \
     gui-apps/grim gui-apps/wmenu net-wireless/iwd \
-    gui-apps/eww gui-wm/swayfx mpv-mpris mpd-mpris
+    gui-apps/eww gui-wm/swayfx mpv-mpris mpd-mpris \
+    acct-group/seat seatd
+
+> [!WARNING]
+> Wezterm on musl don't compile [error-on-ld](https://bugs.gentoo.org/937717)
+
+> [!NOTE]
+> seatd should be compiled with the `server` use flag
+
+Required step as root
+
+    usermod -aG seat username
+    usermod -aG video username
+    
+And enable the `seatd` service, for `musl` you have to manually create XDG_RUNTIME_DIR; add this into your `.zprofile` (or equivalent).
+
+```sh
+if test -z "${XDG_RUNTIME_DIR}"; then
+  export XDG_RUNTIME_DIR=/tmp/"${UID}"-runtime-dir
+    if ! test -d "${XDG_RUNTIME_DIR}"; then
+        mkdir "${XDG_RUNTIME_DIR}"
+        chmod 0700 "${XDG_RUNTIME_DIR}"
+    fi
+fi
+```
+See on gentoo [wiki](https://wiki.gentoo.org/wiki/Sway#Starting_Sway_manually)
 
 ### From Ruby
 Install `i3ipc` locally

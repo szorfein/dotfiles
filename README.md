@@ -28,13 +28,13 @@
 
 - **WM:** [SwayFX](https://github.com/WillPower3309/swayfx)
 - **OS:** [Arch](https://archlinux.org/), [Void](https://voidlinux.org/) or [Gentoo](https://www.gentoo.org/) with [Musl](https://musl.libc.org/), installed with [Getch](https://github.com/szorfein/getch)
-- **Shell:** zsh with [ohmyzsh](https://github.com/ohmyzsh/ohmyzsh), [starship](https://starship.rs), ([plugins](https://github.com/szorfein/dotfiles/blob/main/zsh/.config/reaver/zsh.yml))
+- **Shell:** Zsh with [Oh My Zsh](https://github.com/ohmyzsh/ohmyzsh), [Starship](https://starship.rs), ([plugins](https://github.com/szorfein/dotfiles/blob/main/zsh/.config/reaver/zsh.yml))
 - **Widgets:** [EWW](https://elkowar.github.io/eww/eww.html) 
 - **Term:** [Wezterm](https://github.com/wez/wezterm)
-- **Editor:** [NeoVim](https://neovim.io) with [LazyVim](https://lazyvim.github.io/) ([plugins](https://github.com/szorfein/dotfiles/tree/main/neovim/.config/nvim/lua/plugins)) and [tmux](https://github.com/tmux/tmux/wiki) ([plugins](https://github.com/szorfein/dotfiles/blob/main/tmux/.config/reaver/tmux.yml))
-- **File Manager:** [NNN](https://github.com/jarun/nnn), [Nemo](https://github.com/linuxmint/nemo)
+- **Editor:** [NeoVim](https://neovim.io) with [LazyVim](https://lazyvim.github.io/) ([plugins](https://github.com/szorfein/dotfiles/tree/main/neovim/.config/nvim/lua/plugins)) and [Tmux](https://github.com/tmux/tmux/wiki) ([plugins](https://github.com/szorfein/dotfiles/blob/main/tmux/.config/reaver/tmux.yml))
+- **File Manager:** [NNN](https://github.com/jarun/nnn) + Thunar (alsa) or [Nemo](https://github.com/linuxmint/nemo) (pulse)
 - **Fonts:** [Iosevka](https://www.nerdfonts.com/) + [Material Icons](https://github.com/google/material-design-icons) + [Papirus](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme) + [Demova](https://www.dafont.com/demova.font) + [IcoMoon](https://icomoon.io/)
-- **Dotfiles manager and theme switcher:** [GNU/Stow](https://www.gnu.org/software/stow/), [reaver](https://github.com/szorfein/reaver).
+- **Dotfiles manager and theme switcher:** [GNU/Stow](https://www.gnu.org/software/stow/), [Reaver](https://github.com/szorfein/reaver).
 
 ## Setup
 

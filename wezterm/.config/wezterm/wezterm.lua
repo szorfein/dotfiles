@@ -12,7 +12,7 @@ config.set_environment_variables = {
 }
 
 config.font = wezterm.font {
-  family = 'IosevkaTerm Nerd Font',
+  family = 'Iosevka Nerd Font',
 }
 
 -- config.font = wezterm.font_with_fallback { 'Material Symbols Outlined' }
@@ -21,15 +21,19 @@ config.font = wezterm.font {
 -- Default to 10.0 on Windows but 12.0 on other systems
 config.font_size = 11.0
 
-config.line_height = 1.2
+config.line_height = 1.4
 
-config.window_padding = { top = 14, bottom = 14, left = 14, right = 14 }
+config.underline_position = "-3pt"
+
+config.window_padding = { top = 8, bottom = 8, left = 16, right = 16 }
 
 config.colors = colors
 
 config.enable_tab_bar = false
 
 config.window_background_opacity = 1.0
+
+config.default_cursor_style = 'SteadyBar'
 
 config.enable_wayland = true
 
