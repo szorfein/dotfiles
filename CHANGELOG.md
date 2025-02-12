@@ -1,3 +1,6 @@
+### Fixes
+- picom glx errors on awesome startup
+
 ## Holy v3.0.0
 
 ### News
