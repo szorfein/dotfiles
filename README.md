@@ -42,7 +42,7 @@
 
 Follow the guide [here](https://github.com/szorfein/dotfiles/tree/main/swayfx/.config/sway)
 
-Installation not yet available for chezmoi [dots](https://github.com/szorfein/dots) or ansible.
+Automatic installation available with Chezmoi [dots](https://github.com/szorfein/dots) or [chezmoi-ansible](https://github.com/szorfein/dots/tree/ansible) (only Archlinux, Gentoo, Voidlinux).
 
 ## Previous setup
 

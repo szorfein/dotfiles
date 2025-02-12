@@ -11,6 +11,7 @@
         :class "date"
         :spacing "${round(8 * get_env("EWW_SCALE"), 0)}"
         (box :orientation "horizontal"
+        ;:style "border: 1px solid #f00"
             (box :orientation "vertical"
                 (label :class "day" :text "${day.day1}")
                 (label :class "day primary" :text "${day.day2}")
@@ -19,6 +20,7 @@
             )
         )
         (box :orientation "horizontal"
+        ;:style "border: 1px solid #f00"
             (box :orientation "vertical"
                 (label :class "day" :text "")
                 (label :class "day" :text "${month.month1}")
@@ -27,6 +29,7 @@
             )
         )
         (box :orientation "horizontal"
+        ;:style "border: 1px solid #f00"
             (box :orientation "vertical"
                 ;(label :angle 90 :class "day" :text ">")
                 ;(home-sun)
@@ -42,11 +45,12 @@
                 ;(label :class "day" :text "")
                 (home-sun)
                 ;(label :class "day" :text "")
-                (box :space-evenly true
+                (box
                     :valign "center"
                     :halign "center"
-                    :style "padding-right: 8px"
-                    (label :class "day daynb" :text "${day_nb}")
+                    ;:style "padding-right: 8px"
+                    ;(label :class "day daynb" :text "${day_nb}")
+                    :class "day daynb" day_nb
                 )
                 (label :class "day" :text "")
             )
@@ -101,7 +105,7 @@
 (defwidget home-buttons []
     (box :orientation "vertical"
         :halign "center"
-        :spacing 8
+        :spacing "${round(12 * get_env("EWW_SCALE"), 0)}"
         ;:style "border: 1px solid #f00"
         (icon-filled
             :icon ""
@@ -170,17 +174,17 @@
 (defwidget home-battery []
     (box :orientation "vertical"
         :class "battery body-medium mt-16"
-        :spacing 8
+        :spacing "${round(14 * get_env("EWW_SCALE"), 0)}"
         :space-evenly false
         (box :orientation "horizontal"
-            :spacing 6
+            :spacing "${round(8 * get_env("EWW_SCALE"), 0)}"
             :space-evenly false
             :halign "start"
             (box :class "simple-icon" "")
             "${round(EWW_BATTERY.total_avg, 0)}% Battery"
         )
         (box :halign "start"
-            :spacing 6
+            :spacing "${round(8 * get_env("EWW_SCALE"), 0)}"
             :space-evenly false
             (box :class "simple-icon" "")
             "${EWW_TEMPS.ACPITZ_TEMP1}°C"
