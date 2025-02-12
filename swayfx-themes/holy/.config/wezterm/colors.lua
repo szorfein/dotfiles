@@ -31,18 +31,18 @@ return {
     '#90ceaa', -- green
     '#ecd3a0', -- yellow
     '#B89DF4', -- blue
-    '#A8A0FF', -- magenta
-    '#93cee9', -- teal
+    '#B8A6B8', -- magenta
+    '#A8A0FF', -- teal
     '#cbced3', -- white
   },
   brights = {
     '#262831', -- black
     '#FFB4AB', -- red
-    '#95d3af', -- green
+    '#a1d39a', -- green
     '#f1d8a5', -- yellow
     '#D1BCFD', -- blue
-    '#C6C0FF', -- magenta
-    '#98d3ee', -- teal
+    '#E8B6F0', -- magenta
+    '#C6C0FF', -- teal
     '#d0d3d8', -- white
   },
 

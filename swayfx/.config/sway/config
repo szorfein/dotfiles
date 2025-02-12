@@ -4,6 +4,9 @@
 #
 # Read `man 5 sway` for a complete reference.
 
+# enable or not enable, this is the question...
+xwayland disable
+
 #include ~/.config/custom/sway
 include ~/.config/sway/theme
 
