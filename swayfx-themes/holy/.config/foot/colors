@@ -1,0 +1,25 @@
+# -*- conf -*-
+[cursor]
+color=262626 6c6c6c
+
+[colors]
+foreground=f4f3ee
+background=101319
+regular0=171b24
+regular1=e34f4f
+regular2=69bfce
+regular3=e37e4f
+regular4=5679E2
+regular5=956dea
+regular6=5599E2
+regular7=f4f3ee
+bright0=3A435A
+bright1=de2b2b
+bright2=56b7c8
+bright3=de642b
+bright4=3e66e0
+bright5=88aAc4
+bright6=3f8cde
+bright7=ffffff
+# selection-foreground=bcbcbc
+# selection-background=3a3e4e
