@@ -7,6 +7,7 @@ set -o errexit -o nounset
 # Theme are generated on
 # https://material-foundation.github.io/material-theme-builder/
 # And exported in JSON format
+# See my post https://szorfein.vercel.app/post/your-own-swayfx-theme
 
 filename="$1"
 workdir="/tmp/$2"
@@ -25,6 +26,11 @@ ext_palette() {
   echo "$color" | tr -d '"'
 }
 
+ext_terminal() {
+  color=$(cat < "$filename" | jq .terminal."$1" | tr -d '"')
+  echo "$color" | tr -d '"'
+}
+
 [ -d "$workdir" ] && rm -r "$workdir"
 
 mkdir -p "$workdir"
@@ -32,6 +38,7 @@ mkdir -p "$workdir/.Xdefaults.d"
 mkdir -p "$workdir/.config/sway"
 mkdir -p "$workdir/.config/eww"
 mkdir -p "$workdir/.config/wezterm"
+mkdir -p "$workdir/.config/foot"
 mkdir -p "$workdir/.tmux"
 mkdir -p "$workdir/.config/nvim/lua"
 mkdir -p "$workdir/.config/zathura"
@@ -48,6 +55,7 @@ on_tertiary=$(ext_dark 'onTertiary')
 surface=$(ext_dark 'surface')
 on_surface=$(ext_dark 'onSurface')
 on_surface_variant=$(ext_dark 'onSurfaceVariant')
+surface_variant=$(ext_dark 'surfaceVariant')
 surface_tint=$(ext_dark 'surfaceTint')
 inverse_surface=$(ext_dark 'inverseSurface')
 inverse_on_surface=$(ext_dark 'inverseOnSurface')
@@ -70,9 +78,24 @@ surface_container_low=$(ext_dark 'surfaceContainerLow')
 surface_container=$(ext_dark 'surfaceContainer')
 surface_container_high=$(ext_dark 'surfaceContainerHigh')
 surface_container_highest=$(ext_dark 'surfaceContainerHighest')
+surface_bright=$(ext_dark 'surfaceBright')
 # not include in dark theme
-dark_primary=$(ext_palette 'primary.["70"]')
-dark_secondary=$(ext_palette 'secondary.["70"]')
+dark_primary=$(ext_palette 'primary.["60"]')
+dark_secondary=$(ext_palette 'secondary.["60"]')
+dark_tertiary=$(ext_palette 'tertiary.["60"]')
+# extract terminal color
+t_magenta_bright=$(ext_terminal 'magentaBright')
+t_magenta=$(ext_terminal 'magenta')
+t_red=$(ext_terminal 'red')
+t_red_bright=$(ext_terminal 'redBright')
+t_yellow=$(ext_terminal 'yellow')
+t_yellow_bright=$(ext_terminal 'yellowBright')
+t_green=$(ext_terminal 'green')
+t_green_bright=$(ext_terminal 'greenBright')
+t_cyan_bright=$(ext_terminal 'cyanBright')
+t_cyan=$(ext_terminal 'cyan')
+t_blue=$(ext_terminal 'blue')
+t_blue_bright=$(ext_terminal 'blueBright')
 
 echo "primary $primary"
 echo "secondary $secondary"
@@ -122,32 +145,32 @@ EOF
 cat <<EOF > "$workdir/.Xdefaults"
 *background: $surface
 *foreground: $on_surface
-*cursorColor: #DAB9FE
+*cursorColor: $primary
 *fadeColor: #1B1B1B
 ! Black - surfaceContainer
-*color0: $background
-*color8: #2A2A2A
+*color0: $surface_container
+*color8: $surface_bright
 ! Red - error
-*color1: #FFB4AB
-*color9: $error
-! Green - not include in Material, may be custom
-*color2: #3FA4C5
-*color10: #88d0ed
-! Yellow - tertiary
-*color3: #FF8791
-*color11: #FFB2B6
-! Blue - secondary
-*color4: $dark_secondary
-*color12: $secondary
-! Magenta - primary
-*color5: $dark_primary
-*color13: $primary
+*color1: $t_red
+*color9: $t_red_bright
+! Green
+*color2: $t_green
+*color10: $t_green_bright
+! Yellow
+*color3: $t_yellow
+*color11: $t_yellow_bright
+! Blue
+*color4: $t_blue
+*color12: $t_blue_bright
+! Magenta
+*color5: $t_magenta
+*color13: $t_magenta_bright
 ! Cyan - not include in Material, may be custom
-*color6: #F86e9d
-*color14: #ffb1c6
+*color6: $t_cyan
+*color14: $t_cyan_bright
 ! White
 *color7: #E2E2E2
-*color15: #DDBEFF
+*color15: $on_surface
 EOF
 
 cat <<EOF > "$workdir/.config/wezterm/colors.lua"
@@ -159,9 +182,9 @@ return {
 
   -- Overrides the cell background color when the current cell is occupied by the
   -- cursor and the cursor style is set to Block
-  cursor_bg = '#a5b6cf',
+  cursor_bg = '$primary',
   -- Overrides the text color when the current cell is occupied by the cursor
-  cursor_fg = '#0d0f18',
+  cursor_fg = '$on_primary',
   -- Specifies the border color of the cursor when the cursor style is set to Block,
   -- or the color of the vertical or horizontal bar when the cursor style is set to
   -- Bar or Underline.
@@ -179,24 +202,24 @@ return {
   split = '#0f111a',
 
   ansi = {
-    '$background', -- black
-    '#dd6777', -- red
-    '#90ceaa', -- green
-    '#ecd3a0', -- yellow
-    '$dark_secondary', -- blue
-    '$dark_primary', -- magenta
-    '#93cee9', -- teal
+    '$surface_container_high', -- black
+    '$t_red', -- red
+    '$t_green', -- green
+    '$t_yellow', -- yellow
+    '$t_blue', -- blue
+    '$t_magenta', -- magenta
+    '$t_cyan', -- teal
     '#cbced3', -- white
   },
   brights = {
-    '#262831', -- black
-    '$error', -- red
-    '#95d3af', -- green
-    '#f1d8a5', -- yellow
-    '$secondary', -- blue
-    '$primary', -- magenta
-    '#98d3ee', -- teal
-    '#d0d3d8', -- white
+    '$surface_variant', -- black
+    '$t_red_bright', -- red
+    '$t_green_bright', -- green
+    '$t_yellow_bright', -- yellow
+    '$t_blue_bright', -- blue
+    '$t_magenta_bright', -- magenta
+    '$t_cyan_bright', -- teal
+    '$on_surface', -- white
   },
 
   -- Since: 20220319-142410-0fcdea07
@@ -205,6 +228,76 @@ return {
   -- to this color to give a visual cue about the compose state.
   compose_cursor = '#c296eb'
 }
+EOF
+
+# need to remove '#' with ${MYVAR:1}
+cat <<EOF > "$workdir/.config/foot/colors"
+# -*- conf -*-
+[cursor]
+
+[colors]
+# alpha=1.0
+background=${surface:1}
+foreground=${on_surface:1}
+# flash=7f7f00
+# flash-alpha=0.5
+
+## Normal/regular colors (color palette 0-7)
+regular0=${surface_container_high:1} # black
+regular1=${t_red:1} # red
+regular2=${t_green:1} # green
+regular3=${t_yellow:1} # yellow
+regular4=${t_blue:1} # blue
+regular5=${t_magenta:1} # magenta
+regular6=${t_cyan:1} # cyan
+regular7=${on_surface:1} # white
+
+## Bright colors (color palette 8-15)
+bright0=${surface_variant:1} # bright black
+bright1=${t_red_bright:1} # bright red
+bright2=${t_green_bright:1} # bright green
+bright3=${t_yellow_bright:1} # bright yellow
+bright4=${t_blue_bright:1} # bright blue
+bright5=${t_magenta_bright:1} # bright magenta
+bright6=${t_cyan_bright:1} # bright cyan
+bright7=${on_surface:1} # bright white
+
+## dimmed colors (see foot.ini(5) man page)
+# dim0=<not set>
+# ...
+# dim7=<not-set>
+
+## The remaining 256-color palette
+# 16 = <256-color palette #16>
+# ...
+# 255 = <256-color palette #255>
+
+## Sixel colors
+# sixel0 =  000000
+# sixel1 =  3333cc
+# sixel2 =  cc2121
+# sixel3 =  33cc33
+# sixel4 =  cc33cc
+# sixel5 =  33cccc
+# sixel6 =  cccc33
+# sixel7 =  878787
+# sixel8 =  424242
+# sixel9 =  545499
+# sixel10 = 994242
+# sixel11 = 549954
+# sixel12 = 995499
+# sixel13 = 549999
+# sixel14 = 999954
+# sixel15 = cccccc
+
+## Misc colors
+# selection-foreground=<inverse foreground/background>
+# selection-background=<inverse foreground/background>
+# jump-labels=<regular0> <regular3>          # black-on-yellow
+# scrollback-indicator=<regular0> <bright4>  # black-on-bright-blue
+search-box-no-match=${error:1} ${on_error:1}  # black-on-red
+# search-box-match=<regular0> <regular3>     # black-on-yellow
+# urls=<regular3>
 EOF
 
 cat <<EOF > "$workdir/.tmux/status"
@@ -294,19 +387,30 @@ EOF
 cat <<EOF > "$workdir/.config/nvim/lua/colors.lua"
 -- theme $2
 -- base colors: https://github.com/catppuccin/nvim/blob/main/lua/catppuccin/palettes/mocha.lua
+-- WGAG AAA need a contrast of 7:1 for normal text
 return {
-    maroon = '$error',
-    lavender = '$secondary',
-    blue = '$dark_secondary', -- 70
-    pink = '$primary',
-    mauve = '$dark_primary',
-    text = '$on_surface',
     --crust = '$surface_container_lowest',
+    --surface1 = '$surface_container',
+    --surface2 = '$surface_container_high'
+
+    pink = "$t_magenta_bright", -- magenta light
+    mauve = "$t_magenta", -- magenta
+    red = "$t_red", -- red
+    maroon = "$t_red_bright", -- red light
+    peach = "$t_yellow", -- yellow
+    yellow = "$t_yellow_bright", -- yellow light
+    green = "$t_green", -- green
+    teal = "$t_green_bright", -- green light
+    sky = "$t_cyan_bright", -- cyan light
+    sapphire = "$t_cyan", -- cyan
+    blue = "$t_blue", -- blue
+    lavender = "$t_blue_bright", -- blue light
+    text = '$on_surface',
+
+    --crust = '#0E0E13',
     mantle = '$surface_container_low',
     base = '$surface',
     surface0 = '$surface_container_highest',
-    --surface1 = '$surface_container',
-    --surface2 = '$surface_container_high'
 }
 EOF
 

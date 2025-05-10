@@ -24,7 +24,7 @@
         :height "${round(48 * get_env("EWW_SCALE"), 0)}"
         (icon-filled-tonal
             :icon ""
-            :onclick ""
+            :onclick "spior -r &"
             :class { tor-enabled ? "enabled" : "disabled" }
         )
         (icon-filled-tonal

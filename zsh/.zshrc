@@ -79,3 +79,6 @@ man() {
 
 test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || \
   eval "$(dircolors -b)"
+
+# If Turso
+[ -d "$HOME/.turso" ] && export PATH="$PATH:/home/user/.turso"

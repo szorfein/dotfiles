@@ -1,3 +1,7 @@
+## Holy v3.2.0 - May 10 2025
++ Add a colorscheme for Holy (terminals app)
++ Add configuration for [foot](https://codeberg.org/dnkl/foot)
+
 ### Fixes
 - picom glx errors on awesome startup
 
