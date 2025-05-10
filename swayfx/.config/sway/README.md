@@ -78,7 +78,7 @@ You will need to activate [GURU](https://github.com/gentoo/guru)
     acct-group/seat seatd
 
 > [!WARNING]
-> Wezterm on musl don't compile [error-on-ld](https://bugs.gentoo.org/937717)
+> Wezterm on musl don't compile [error-on-ld](https://bugs.gentoo.org/937717), you may use foot instead.
 
 > [!NOTE]
 > seatd should be compiled with the `server` use flag
@@ -191,3 +191,7 @@ Reinstall files with `stow.sh --purge` to reinstall new dotfiles.
 
     ~/.dotfiles/stow.sh --purge --wezterm --swayfx holy
     reaver
+
+### Create your own theme
+Follow the guide to create your own theme.  
+https://szorfein.vercel.app/post/your-own-swayfx-theme

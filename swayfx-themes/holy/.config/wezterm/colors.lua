@@ -6,13 +6,13 @@ return {
 
   -- Overrides the cell background color when the current cell is occupied by the
   -- cursor and the cursor style is set to Block
-  cursor_bg = '#a5b6cf',
+  cursor_bg = '#C6C0FF',
   -- Overrides the text color when the current cell is occupied by the cursor
-  cursor_fg = '#0d0f18',
+  cursor_fg = '#2E295F',
   -- Specifies the border color of the cursor when the cursor style is set to Block,
   -- or the color of the vertical or horizontal bar when the cursor style is set to
   -- Bar or Underline.
-  cursor_border = '#C6C0FF',
+  cursor_border = '#a5b6cf',
 
   -- the foreground color of selected text
   selection_fg = '#a5b6cf',
@@ -27,22 +27,22 @@ return {
 
   ansi = {
     '#2A292F', -- black
-    '#DD5193', -- red
-    '#5EB6D1', -- green
-    '#fab387', -- yellow
-    '#4383EB', -- blue
-    '#B557F9', -- magenta
-    '#79A5BE', -- teal
-    '#CAB4F3', -- white
+    '#F059B7', -- red
+    '#20B0B3', -- green
+    '#FFBFA5', -- yellow
+    '#7F93FF', -- blue
+    '#C781F8', -- magenta
+    '#7DD9FF', -- teal
+    '#cbced3', -- white
   },
   brights = {
     '#47464F', -- black
     '#F97AA5', -- red
-    '#6CCEC9', -- green
+    '#00C6CD', -- green
     '#f9e2af', -- yellow
-    '#86A9FB', -- blue
-    '#BA9CED', -- magenta
-    '#91C5E3', -- teal
+    '#84B4F3', -- blue
+    '#C590FF', -- magenta
+    '#5DC7E7', -- teal
     '#E5E1E9', -- white
   },
 

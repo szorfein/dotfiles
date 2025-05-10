@@ -230,36 +230,37 @@ return {
 }
 EOF
 
-cat <<EOF > "$workdir/.config/foot/colors.lua"
+# need to remove '#' with ${MYVAR:1}
+cat <<EOF > "$workdir/.config/foot/colors"
 # -*- conf -*-
 [cursor]
 
 [colors]
 # alpha=1.0
-background=$surface
-foreground=$on_surface
+background=${surface:1}
+foreground=${on_surface:1}
 # flash=7f7f00
 # flash-alpha=0.5
 
 ## Normal/regular colors (color palette 0-7)
-regular0=$surface_container_high # black
-regular1=$t_red  # red
-regular2=$t_green  # green
-regular3=$t_yellow  # yellow
-regular4=$t_blue # blue
-regular5=$t_magenta # magenta
-regular6=$t_cyan # cyan
-regular7=$on_surface  # white
+regular0=${surface_container_high:1} # black
+regular1=${t_red:1} # red
+regular2=${t_green:1} # green
+regular3=${t_yellow:1} # yellow
+regular4=${t_blue:1} # blue
+regular5=${t_magenta:1} # magenta
+regular6=${t_cyan:1} # cyan
+regular7=${on_surface:1} # white
 
 ## Bright colors (color palette 8-15)
-bright0=$surface_variant # bright black
-bright1=$t_red_bright # bright red
-bright2=$t_green_bright # bright green
-bright3=$t_yellow_bright # bright yellow
-bright4=$t_blue_bright # bright blue
-bright5=$t_magenta_bright # bright magenta
-bright6=$t_cyan_bright # bright cyan
-bright7=$on_surface # bright white
+bright0=${surface_variant:1} # bright black
+bright1=${t_red_bright:1} # bright red
+bright2=${t_green_bright:1} # bright green
+bright3=${t_yellow_bright:1} # bright yellow
+bright4=${t_blue_bright:1} # bright blue
+bright5=${t_magenta_bright:1} # bright magenta
+bright6=${t_cyan_bright:1} # bright cyan
+bright7=${on_surface:1} # bright white
 
 ## dimmed colors (see foot.ini(5) man page)
 # dim0=<not set>
@@ -294,7 +295,7 @@ bright7=$on_surface # bright white
 # selection-background=<inverse foreground/background>
 # jump-labels=<regular0> <regular3>          # black-on-yellow
 # scrollback-indicator=<regular0> <bright4>  # black-on-bright-blue
-search-box-no-match=$on_error $error  # black-on-red
+search-box-no-match=${error:1} ${on_error:1}  # black-on-red
 # search-box-match=<regular0> <regular3>     # black-on-yellow
 # urls=<regular3>
 EOF
@@ -386,12 +387,12 @@ EOF
 cat <<EOF > "$workdir/.config/nvim/lua/colors.lua"
 -- theme $2
 -- base colors: https://github.com/catppuccin/nvim/blob/main/lua/catppuccin/palettes/mocha.lua
+-- WGAG AAA need a contrast of 7:1 for normal text
 return {
     --crust = '$surface_container_lowest',
     --surface1 = '$surface_container',
     --surface2 = '$surface_container_high'
 
-    text = '$on_surface',
     pink = "$t_magenta_bright", -- magenta light
     mauve = "$t_magenta", -- magenta
     red = "$t_red", -- red
@@ -404,6 +405,7 @@ return {
     sapphire = "$t_cyan", -- cyan
     blue = "$t_blue", -- blue
     lavender = "$t_blue_bright", -- blue light
+    text = '$on_surface',
 
     --crust = '#0E0E13',
     mantle = '$surface_container_low',

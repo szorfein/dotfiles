@@ -1,25 +1,66 @@
 # -*- conf -*-
 [cursor]
-color=262626 6c6c6c
 
 [colors]
-foreground=f4f3ee
-background=101319
-regular0=171b24
-regular1=e34f4f
-regular2=69bfce
-regular3=e37e4f
-regular4=5679E2
-regular5=956dea
-regular6=5599E2
-regular7=f4f3ee
-bright0=3A435A
-bright1=de2b2b
-bright2=56b7c8
-bright3=de642b
-bright4=3e66e0
-bright5=88aAc4
-bright6=3f8cde
-bright7=ffffff
-# selection-foreground=bcbcbc
-# selection-background=3a3e4e
+# alpha=1.0
+background=131318
+foreground=E5E1E9
+# flash=7f7f00
+# flash-alpha=0.5
+
+## Normal/regular colors (color palette 0-7)
+regular0=2A292F # black
+regular1=F059B7 # red
+regular2=20B0B3 # green
+regular3=FFBFA5 # yellow
+regular4=7F93FF # blue
+regular5=C781F8 # magenta
+regular6=7DD9FF # cyan
+regular7=E5E1E9 # white
+
+## Bright colors (color palette 8-15)
+bright0=47464F # bright black
+bright1=F97AA5 # bright red
+bright2=00C6CD # bright green
+bright3=f9e2af # bright yellow
+bright4=84B4F3 # bright blue
+bright5=C590FF # bright magenta
+bright6=5DC7E7 # bright cyan
+bright7=E5E1E9 # bright white
+
+## dimmed colors (see foot.ini(5) man page)
+# dim0=<not set>
+# ...
+# dim7=<not-set>
+
+## The remaining 256-color palette
+# 16 = <256-color palette #16>
+# ...
+# 255 = <256-color palette #255>
+
+## Sixel colors
+# sixel0 =  000000
+# sixel1 =  3333cc
+# sixel2 =  cc2121
+# sixel3 =  33cc33
+# sixel4 =  cc33cc
+# sixel5 =  33cccc
+# sixel6 =  cccc33
+# sixel7 =  878787
+# sixel8 =  424242
+# sixel9 =  545499
+# sixel10 = 994242
+# sixel11 = 549954
+# sixel12 = 995499
+# sixel13 = 549999
+# sixel14 = 999954
+# sixel15 = cccccc
+
+## Misc colors
+# selection-foreground=<inverse foreground/background>
+# selection-background=<inverse foreground/background>
+# jump-labels=<regular0> <regular3>          # black-on-yellow
+# scrollback-indicator=<regular0> <bright4>  # black-on-bright-blue
+search-box-no-match=FFB4AB 690005  # black-on-red
+# search-box-match=<regular0> <regular3>     # black-on-yellow
+# urls=<regular3>
