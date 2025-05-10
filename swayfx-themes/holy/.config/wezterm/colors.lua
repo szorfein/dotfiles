@@ -6,9 +6,9 @@ return {
 
   -- Overrides the cell background color when the current cell is occupied by the
   -- cursor and the cursor style is set to Block
-  cursor_bg = '#a5b6cf',
+  cursor_bg = '#C6C0FF',
   -- Overrides the text color when the current cell is occupied by the cursor
-  cursor_fg = '#0d0f18',
+  cursor_fg = '#2E295F',
   -- Specifies the border color of the cursor when the cursor style is set to Block,
   -- or the color of the vertical or horizontal bar when the cursor style is set to
   -- Bar or Underline.
@@ -26,24 +26,24 @@ return {
   split = '#0f111a',
 
   ansi = {
-    '#131318', -- black
-    '#dd6777', -- red
-    '#90ceaa', -- green
-    '#ecd3a0', -- yellow
-    '#B89DF4', -- blue
-    '#B8A6B8', -- magenta
-    '#A8A0FF', -- teal
+    '#2A292F', -- black
+    '#F059B7', -- red
+    '#20B0B3', -- green
+    '#FFBFA5', -- yellow
+    '#7F93FF', -- blue
+    '#C781F8', -- magenta
+    '#7DD9FF', -- teal
     '#cbced3', -- white
   },
   brights = {
-    '#262831', -- black
-    '#FFB4AB', -- red
-    '#a1d39a', -- green
-    '#f1d8a5', -- yellow
-    '#D1BCFD', -- blue
-    '#E8B6F0', -- magenta
-    '#C6C0FF', -- teal
-    '#d0d3d8', -- white
+    '#47464F', -- black
+    '#F97AA5', -- red
+    '#00C6CD', -- green
+    '#f9e2af', -- yellow
+    '#84B4F3', -- blue
+    '#C590FF', -- magenta
+    '#5DC7E7', -- teal
+    '#E5E1E9', -- white
   },
 
   -- Since: 20220319-142410-0fcdea07
