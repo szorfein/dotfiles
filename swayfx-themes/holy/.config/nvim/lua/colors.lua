@@ -12,8 +12,8 @@ return {
     maroon = "#F97AA5", -- red light
     peach = "#FFBFA5", -- yellow
     yellow = "#f9e2af", -- yellow light
-    green = "#20B0B3", -- green
-    teal = "#00C6CD", -- green light
+    green = "#55e7f9", -- green
+    teal = "#53f3e1", -- green light
     sky = "#5DC7E7", -- cyan light
     sapphire = "#7DD9FF", -- cyan
     blue = "#7F93FF", -- blue

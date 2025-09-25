@@ -28,7 +28,7 @@ return {
   ansi = {
     '#2A292F', -- black
     '#F059B7', -- red
-    '#20B0B3', -- green
+    '#55e7f9', -- green
     '#FFBFA5', -- yellow
     '#7F93FF', -- blue
     '#C781F8', -- magenta
@@ -38,7 +38,7 @@ return {
   brights = {
     '#47464F', -- black
     '#F97AA5', -- red
-    '#00C6CD', -- green
+    '#53f3e1', -- green
     '#f9e2af', -- yellow
     '#84B4F3', -- blue
     '#C590FF', -- magenta

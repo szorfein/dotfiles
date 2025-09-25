@@ -30,6 +30,11 @@ Not very essential, purely to improve the UI:
 
 ...
 
+## Troubleshooting
+#### Error during update (checkout failed...)
+Remove the concerned plugin from e.g: `rm -rf ~/.local/share/nvim/lazy/<plugin-name>`
+Run `:Lazy` on nvim to reinstall the plugin.
+
 ## Inspiration
 
 - https://github.com/AstroNvim/AstroNvim
