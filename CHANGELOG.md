@@ -1,3 +1,7 @@
+## Bug Fixed
+#### Neovim
++ treesitter: remove module 'org' no longer available.
+
 ## Holy v3.2.0 - May 10 2025
 + Add a colorscheme for Holy (terminals app)
 + Add configuration for [foot](https://codeberg.org/dnkl/foot)
