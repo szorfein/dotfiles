@@ -1,8 +1,8 @@
 local mycolors = require('colors')
 
 return {
-    "catppuccin/nvim",
-    name = "catppuccin",
+    'catppuccin/nvim',
+    name = 'catppuccin',
     priority = 1000,
     opts = {
         color_overrides = {
@@ -27,16 +27,16 @@ return {
                 surface0 = mycolors.surface0, --comment
                 --surface1 = mycolors.surface1,
                 --surface2 = mycolors.surface2,
-            }
+            },
         },
         integrations = {
             gitsigns = true,
             treesitter = true,
             indent_blankline = {
                 enabled = true,
-                scope_color = "", -- catppuccin color (eg. `lavender`) Default: text
+                scope_color = '', -- catppuccin color (eg. `lavender`) Default: text
                 colored_indent_levels = false,
-            }
-        }
-    }
+            },
+        },
+    },
 }
