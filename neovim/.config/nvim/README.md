@@ -25,6 +25,8 @@ Config use [lazy.vim](https://lazy.folke.io/) to grab all the dependencies, so y
 - [heirline](https://github.com/rebelot/heirline.nvim) - replace lightline, it's also more easy and fast to customize and don't need to create a palette of colors in vim script, thanks the [doc](https://github.com/rebelot/heirline.nvim/blob/master/cookbook.md).
 - [fzf.nvim](https://github.com/ibhagwan/fzf-lua) - I don't have try telescope yet but i don't need feature like file preview. Just need a fast and minimal fuzzy finder. Fzf also works with tmux.
 - [catppuccin.nvim](https://github.com/catppuccin/nvim), enought good, but also very modular, we can change all the colors if need (what we do to match with my themes).
+- Code formatter with [conform.nvim](https://github.com/stevearc/conform.nvim)
+- Autocompletion with [blink.nvim](https://github.com/saghen/blink.cmpstallation.md)
 
 Not very essential, purely to improve the UI:
 
