@@ -1,0 +1,20 @@
+{
+  "setup": {
+    "prefix": ["setup", "template", "vue"],
+    "body": [
+      "<template>",
+      "\t$1",
+      "</template>",
+      "",
+      "<script lang=\"ts\" setup>",
+      "\t$2",
+      "</script>",
+      "",
+      "<style lang=\"sass\">",
+      "\t$3",
+      "</style>",
+      ""
+    ],
+    "description": "My standard setup Vue3 + TS"
+  }
+}

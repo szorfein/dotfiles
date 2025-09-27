@@ -5,11 +5,14 @@ return {
     opts = {
         formatters_by_ft = {
             css = { 'prettier' },
-            lua = { 'stylua' },
+            graphql = { 'prettier' },
             html = { 'prettier' },
             javascript = { 'prettier', stop_after_first = true },
+            json = { 'prettier' },
+            lua = { 'stylua' },
             markdown = { 'prettier' },
             ruby = { 'rubocop' },
+            typescript = { 'prettier' },
             yaml = { 'prettier' },
             vue = { 'prettier' },
         },

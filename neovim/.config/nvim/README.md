@@ -18,7 +18,7 @@ Config use [lazy.vim](https://lazy.folke.io/) to grab all the dependencies, so y
 
 ## Plugins selection
 
-- [nvim-treesitter](https://github.com/nvim-treesitter)
+- Syntax highlighting with [nvim-treesitter](https://github.com/nvim-treesitter)
 - [nvim-autopairs](https://github.com/windwp/nvim-autopairs), essential.
 - [nvim-ts-autotag](https://github.com/windwp/nvim-ts-autotag) autopairs for html, tsx
 - [gitsigns](https://github.com/lewis6991/gitsigns.nvim), replace vim-gitgutter
@@ -27,6 +27,7 @@ Config use [lazy.vim](https://lazy.folke.io/) to grab all the dependencies, so y
 - [catppuccin.nvim](https://github.com/catppuccin/nvim), enought good, but also very modular, we can change all the colors if need (what we do to match with my themes).
 - Code formatter with [conform.nvim](https://github.com/stevearc/conform.nvim)
 - Autocompletion with [blink.nvim](https://github.com/saghen/blink.cmpstallation.md)
+- Snippets with [LuaSnip](https://github.com/L3MON4D3/LuaSnip) and [friendly-snippets](https://github.com/rafamadriz/friendly-snippets)
 
 Not very essential, purely to improve the UI:
 
@@ -47,6 +48,7 @@ Run `:Lazy` on nvim to reinstall the plugin.
 ## Inspiration
 
 - https://github.com/AstroNvim/AstroNvim
+- https://github.com/NvChad/NvChad
 - https://github.com/elenapan/dotfiles/tree/master/config/nvim
 
 Also from books:
