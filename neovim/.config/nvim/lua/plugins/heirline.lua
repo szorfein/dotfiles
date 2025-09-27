@@ -82,7 +82,9 @@ return {
                 },
             },
             provider = function(self)
-                return ' %2(' .. self.mode_names[self.mode] .. '%)'
+                if self.mode_names[self.mode] then
+                    return ' %2(' .. self.mode_names[self.mode] .. '%)'
+                end
             end,
             hl = function(self)
                 local mode = self.mode:sub(1, 1) -- get only the first mode character

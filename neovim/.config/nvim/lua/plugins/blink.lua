@@ -4,6 +4,7 @@ return {
     version = '1.*',
     event = { 'InsertEnter', 'CmdlineEnter' },
     opts = {
+        snippets = { preset = 'luasnip' },
         keymap = {
             ['<C-Space>'] = { 'show', 'show_documentation', 'hide_documentation' },
             ['<Up>'] = { 'select_prev', 'fallback' },
@@ -33,15 +34,23 @@ return {
             },
         },
         appearance = {
-            nerd_font_variant = 'iosevka',
+            nerd_font_variant = 'normal',
         },
         -- (Default) Only show the documentation popup when manually triggered
         completion = {
-            list = { selection = { preselect = true, auto_insert = true } },
+            --list = { selection = { preselect = true, auto_insert = true } },
             accept = {
                 auto_brackets = { enabled = true },
             },
-            documentation = { auto_show = false },
+            documentation = {
+                auto_show = true,
+                auto_show_delay_ms = 200,
+                window = { border = 'rounded' },
+            },
+            menu = {
+                scrollbar = false,
+                border = 'rounded',
+            },
         },
         -- Default list of enabled providers defined so that you can extend it
         -- elsewhere in your config, without redefining it, due to `opts_extend`
@@ -54,7 +63,7 @@ return {
         -- when the Rust fuzzy matcher is not available, by using `implementation = "prefer_rust"`
         --
         -- See the fuzzy documentation for more information
-        fuzzy = { implementation = 'prefer_rust_with_warning' },
+        fuzzy = { implementation = 'prefer_rust' },
     },
     opts_extend = { 'sources.default' },
 }
