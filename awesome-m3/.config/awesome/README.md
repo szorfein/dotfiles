@@ -66,11 +66,11 @@ Many files from my `awesome` will look for `~/.dotfiles`, so be sure to copy to 
 Last theme is 'focus'.
 
     cd ~/.dotfiles
-    ./stow.sh --purge --awm-m3 focus
+    ./stow.sh --purge --awesome-m3 focus
 
 More complete command, adapt with your need:
 
-    ./stow.sh --purge --doom --awm-m3 focus --zsh --ncmpcpp --vim
+    ./stow.sh --purge --doom --awesome-m3 focus --zsh --ncmpcpp --vim
 
 ## Install the fonts, wallpapers required
 You probably have to install ruby with ruby-gem
@@ -85,7 +85,7 @@ You probably have to install ruby with ruby-gem
 
 Reinstall all stow configs you use
 
-    ./stow.sh --purge --awm-m3 current-theme-name
+    ./stow.sh --purge --awesome-m3 current-theme-name
 
 And reaver to grab the last packages.
 

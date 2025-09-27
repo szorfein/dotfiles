@@ -67,7 +67,7 @@ Automatic installation available with Chezmoi [dots](https://github.com/szorfein
 
 ### Installation
 There are three way to install [themes-m3/focus](#screens)
-+ Manually by following the [wiki page](https://github.com/szorfein/dotfiles/tree/main/awm-m3/.config/awesome), works on any distribution and you install only what your need.
++ Manually by following the [wiki page](https://github.com/szorfein/dotfiles/tree/main/awesome-m3/.config/awesome), works on any distribution and you install only what your need.
 + Fully scripted with [chezmoi](https://www.chezmoi.io/), (better on a new install), follow the instruction [here](https://github.com/szorfein/dots).
 + (Not Yet Tested on last Debian 12) Ansible with
   [ansible-collection-desktop](https://github.com/szorfein/ansible-collection-desktop),
