@@ -1,0 +1,149 @@
+/*******************************************************************************
+ * ROFI Color theme
+ * User: Tung Cena
+ * Copyright: Tung Cena
+ *******************************************************************************/
+
+* {
+    active-background:           rgba ( 39, 50, 56, 100 % );
+    active-foreground:           rgba ( 128, 203, 196, 100 % );
+    alternate-active-background: rgba ( 39, 50, 56, 100 % );
+    alternate-active-foreground: @active-foreground;
+    alternate-normal-background: rgba ( 39, 50, 56, 100 % );
+    alternate-normal-foreground: @foreground;
+    alternate-urgent-background: rgba ( 39, 50, 56, 100 % );
+    alternate-urgent-foreground: @urgent-foreground;
+    background-color:            rgba ( 0, 0, 0, 0 % );
+    background:                  rgba (11, 11, 13, 0.95);
+    border-color:                @foreground;
+    bordercolor:                 rgba ( 39, 50, 56, 100 % );
+    font:                        "Raleway SemiBold 14";
+    foreground:                  rgba ( 193, 193, 193, 100 % );
+    lightbg:                     rgba ( 238, 232, 213, 100 % );
+    lightfg:                     rgba ( 88, 104, 117, 100 % );
+    normal-background:           rgba ( 39, 50, 56, 100 % );
+    normal-foreground:           @foreground;
+    selected-active-background:  rgba ( 57, 66, 73, 100 % );
+    selected-active-foreground:  rgba ( 128, 203, 196, 100 % );
+    selected-normal-background:  rgba ( 57, 66, 73, 100 % );
+    selected-normal-foreground:  rgba ( 208, 26, 58, 1 );
+    selected-urgent-background:  rgba ( 57, 66, 73, 100 % );
+    selected-urgent-foreground:  rgba ( 255, 24, 68, 100 % );
+    separatorcolor:              rgba ( 30, 37, 41, 100 % );
+    spacing:                     2;
+    urgent-background:           rgba ( 39, 50, 56, 100 % );
+    urgent-foreground:           rgba ( 255, 24, 68, 100 % );
+    transparent:                 rgba (0, 0, 0, 0);
+}
+#window {
+    background-color: @background;
+    border:           0;
+    height:           40%;
+    padding:          7% 8%;
+    transparency:     "screenshot";
+    width:            40%;
+}
+#mainbox {
+    border:  0;
+    padding: 0;
+}
+#message {
+    border:  0;
+    padding: 0;
+}
+#textbox {
+    text-color: @foreground;
+}
+
+// Result block
+#listview {
+    fixed-height: 0;
+    border:       0;
+    border-color: @separatorcolor;
+    spacing:      15px;
+    scrollbar:    false;
+    padding:      0;
+}
+
+// Result
+#element {
+    border:  0;
+    padding: 0;
+}
+#element.normal.normal {
+    background-color: @transparent;
+    text-color:       @normal-foreground;
+}
+#element.normal.urgent {
+    background-color: @urgent-background;
+    text-color:       @urgent-foreground;
+}
+#element.normal.active {
+    background-color: @active-background;
+    text-color:       @active-foreground;
+}
+#element.selected.normal {
+    background-color: @transparent;
+    text-color:       @selected-normal-foreground;
+}
+#element.selected.urgent {
+    background-color: @selected-urgent-background;
+    text-color:       @selected-urgent-foreground;
+}
+#element.selected.active {
+    background-color: @selected-active-background;
+    text-color:       @selected-active-foreground;
+}
+#element.alternate.normal {
+    background-color: @transparent;
+    text-color:       @alternate-normal-foreground;
+}
+#element.alternate.urgent {
+    background-color: @alternate-urgent-background;
+    text-color:       @alternate-urgent-foreground;
+}
+#element.alternate.active {
+    background-color: @alternate-active-background;
+    text-color:       @alternate-active-foreground;
+}
+
+#scrollbar {
+    width:        0;
+    border:       0;
+    handle-width: 8px;
+    padding:      0;
+}
+#sidebar {
+    border:       0;
+    border-color: @separatorcolor;
+}
+#button.selected {
+    background-color: @selected-normal-background;
+    text-color:       @selected-normal-foreground;
+}
+#inputbar {
+    spacing:    0;
+    text-color: @normal-foreground;
+    padding:    0 0 10px;
+}
+#case-indicator {
+    spacing:    0;
+    text-color: @normal-foreground;
+}
+#entry {
+    spacing:    0;
+    text-color: @normal-foreground;
+}
+#prompt {
+    spacing:    0;
+    text-color: @normal-foreground;
+}
+#inputbar {
+    children: [prompt, textbox-prompt-colon, entry, case-indicator];
+}
+#textbox-prompt-colon {
+    expand:     false;
+    str:        ":";
+    margin:     0 0.3em 0 0;
+    text-color: @normal-foreground;
+}

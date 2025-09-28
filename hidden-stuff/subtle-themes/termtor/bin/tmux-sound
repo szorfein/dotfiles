@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# Open ncmpcpp with visualizer with tmux
+# In tmux, C-m mean "Enter"
+
+tmux new-session -s musics -d 'ncmpcpp' && \
+tmux rename-window 'Musics' && \
+tmux split-window -t musics:1 && \
+tmux send-keys "ncmpcpp" "C-m" && \
+tmux -2 attach-session -t musics
+exit 0
