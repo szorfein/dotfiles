@@ -1,7 +1,9 @@
-## v3.5.0
+## v3.5.0 - Sep 28 2025
 
 The repo contain a lot of lua files, so i include configuration for linter
-stylua.toml (lua) and .prettierrc (json, markdown, yaml, css)
+[stylua.toml](https://github.com/szorfein/dotfiles/blob/main/stylua.toml) (lua)
+and [.prettierrc](https://github.com/szorfein/dotfiles/blob/main/.prettierrc)
+(json, markdown, yaml, css)
 
 ### Neovim
 
@@ -22,8 +24,9 @@ Plugins dropped
 - dropped vim 8 configuration...
 - dropped vifm configuration...
 - move bin/ scripts into zsh/
-- rename themes-m3 - awm-m3-themes
-- rename themes - awesome-themes
+- rename themes-m3 - awesome-m3-themes
+- rename themes - awesome-m2-themes
+- move older i3, subtle configs to hidden_stuff/
 
 ## Holy v3.2.0 - May 10 2025
 
