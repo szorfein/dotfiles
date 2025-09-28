@@ -34,8 +34,8 @@
 - **Editor:** [NeoVim](https://neovim.io) with [LazyVim](https://lazyvim.github.io/) ([plugins](https://github.com/szorfein/dotfiles/tree/main/neovim/.config/nvim/lua/plugins)) and [Tmux](https://github.com/tmux/tmux/wiki) ([plugins](https://github.com/szorfein/dotfiles/blob/main/tmux/.config/reaver/tmux.yml))
 - **File Manager:** [NNN](https://github.com/jarun/nnn) + Thunar (alsa) or [Nemo](https://github.com/linuxmint/nemo) (pulse)
 - **Fonts:** [Iosevka](https://www.nerdfonts.com/) + [Material Icons](https://github.com/google/material-design-icons) + [Papirus](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme) + [Demova](https://www.dafont.com/demova.font) + [IcoMoon](https://icomoon.io/)
-- **Dotfiles manager and theme switcher:** [GNU/Stow](https://www.gnu.org/software/stow/).
-- **Dotfiles dependencies manager:** [Reaver](https://github.com/szorfein/reaver).
+- **Dotfiles manager and theme switcher:** [GNU/Stow](https://www.gnu.org/software/stow/)
+- **Dotfiles dependencies manager:** [Reaver](https://github.com/szorfein/reaver)
 
 ## Setup
 
@@ -60,8 +60,8 @@ Automatic installation available with Chezmoi [dots](https://github.com/szorfein
 - **Compositor:** [Picom](https://github.com/yshui/picom)
 - **File Manager:** [NNN](https://github.com/jarun/nnn), [Vifm](https://github.com/vifm/vifm)
 - **Fonts:** [Nerd Font](https://www.nerdfonts.com/) Iosevka + [Material Icons](https://github.com/Templarian/MaterialDesign-Font) + [Papirus](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme)
-- **Dotfiles manager and theme switcher:** [GNU/Stow](https://www.gnu.org/software/stow/).
-- **Dotfiles dependencies manager:** [Reaver](https://github.com/szorfein/reaver).
+- **Dotfiles manager and theme switcher:** [GNU/Stow](https://www.gnu.org/software/stow/)
+- **Dotfiles dependencies manager:** [Reaver](https://github.com/szorfein/reaver)
 
 ###
 

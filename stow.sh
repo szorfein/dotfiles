@@ -153,6 +153,7 @@ while [ "$#" -gt 0 ] ; do
         -z | --zsh)
             # Present on Voidlinux
             [ -f ~/.inputrc ] && rm ~/.inputrc
+            mkdir -p "$HOME/bin"
             add_stow "$DOTFILES" "zsh"
             shift
             ;;
