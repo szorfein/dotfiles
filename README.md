@@ -34,7 +34,8 @@
 - **Editor:** [NeoVim](https://neovim.io) with [LazyVim](https://lazyvim.github.io/) ([plugins](https://github.com/szorfein/dotfiles/tree/main/neovim/.config/nvim/lua/plugins)) and [Tmux](https://github.com/tmux/tmux/wiki) ([plugins](https://github.com/szorfein/dotfiles/blob/main/tmux/.config/reaver/tmux.yml))
 - **File Manager:** [NNN](https://github.com/jarun/nnn) + Thunar (alsa) or [Nemo](https://github.com/linuxmint/nemo) (pulse)
 - **Fonts:** [Iosevka](https://www.nerdfonts.com/) + [Material Icons](https://github.com/google/material-design-icons) + [Papirus](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme) + [Demova](https://www.dafont.com/demova.font) + [IcoMoon](https://icomoon.io/)
-- **Dotfiles manager and theme switcher:** [GNU/Stow](https://www.gnu.org/software/stow/), [Reaver](https://github.com/szorfein/reaver).
+- **Dotfiles manager and theme switcher:** [GNU/Stow](https://www.gnu.org/software/stow/)
+- **Dotfiles dependencies manager:** [Reaver](https://github.com/szorfein/reaver)
 
 ## Setup
 
@@ -60,14 +61,15 @@ Automatic installation available with Chezmoi [dots](https://github.com/szorfein
 - **File Manager:** [NNN](https://github.com/jarun/nnn), [Vifm](https://github.com/vifm/vifm)
 - **Fonts:** [Nerd Font](https://www.nerdfonts.com/) Iosevka + [Material Icons](https://github.com/Templarian/MaterialDesign-Font) + [Papirus](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme)
 - **Dotfiles manager and theme switcher:** [GNU/Stow](https://www.gnu.org/software/stow/)
+- **Dotfiles dependencies manager:** [Reaver](https://github.com/szorfein/reaver)
 
 ###
 
 ## Setup
 
 ### Installation
-There are three way to install [themes-m3/focus](#screens)
-+ Manually by following the [wiki page](https://github.com/szorfein/dotfiles/tree/main/awm-m3/.config/awesome), works on any distribution and you install only what your need.
+There are three way to install [awesome-m3-themes/focus](#screens)
++ Manually by following the [wiki page](https://github.com/szorfein/dotfiles/tree/main/awesome-m3/.config/awesome), works on any distribution and you install only what your need.
 + Fully scripted with [chezmoi](https://www.chezmoi.io/), (better on a new install), follow the instruction [here](https://github.com/szorfein/dots).
 + (Not Yet Tested on last Debian 12) Ansible with
   [ansible-collection-desktop](https://github.com/szorfein/ansible-collection-desktop),
