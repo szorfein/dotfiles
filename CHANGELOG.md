@@ -1,3 +1,12 @@
+## v3.5.3
+
+### Bug Fixes
+
+- tmux: remove default-terminal on Wayland, cause many bugs when (tmux-256color)
+  not present.
+- zsh: force the load of .zshenv (not loaded before on Gentoo...)
+- zshenv: check if command exist before setting variables.
+
 ## v3.5.0 - Sep 28 2025
 
 The repo contain a lot of lua files, so i include configuration for linter

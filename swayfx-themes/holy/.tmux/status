@@ -1,21 +1,3 @@
-# Wayland clipboard
-set -s copy-command 'wl-copy'
-
-# clip vim
-#bind-key -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "wl-copy && wl-paste -n | wl-copy -p"
-#bind-key p run "wl-paste -n | tmux load-buffer - ; tmux paste-buffer"
-# Wayland, Ctrl+a+v (copy mode), press y for copy. Alt+p for paste
-# https://www.rockyourcode.com/copy-and-paste-in-tmux/
-#set-option -s set-clipboard off
-bind P paste-buffer
-bind-key -T copy-mode-vi 'v' send-keys -X begin-selection
-bind-key -T copy-mode-vi 'y' send-keys -X copy-pipe "wl-copy"
-#bind-key -T copy-mode-vi V send-keys -X rectangle-toggle
-#unbind -T copy-mode-vi Enter
-#bind-key -T copy-mode-vi y send-keys -X copy-pipe-and-cancel 'wl-copy'
-#bind-key -T copy-mode-vi Enter send-keys -X copy-pipe-and-cancel 'wl-copy'
-#bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel 'wl-copy'
-
 # Configure plugin mode_indicator
 set -g @mode_indicator_prefix_prompt "WAIT"
 set -g @mode_indicator_prefix_mode_style fg=#D1BCFD,bold
