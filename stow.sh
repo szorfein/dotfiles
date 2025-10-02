@@ -103,6 +103,7 @@ while [ "$#" -gt 0 ] ; do
             ;;
         -s | --swayfx)
             mkdir -p "$HOME/.config/sway"
+            mkdir -p "$HOME/.tmux"
             add_stow "$DOTFILES" "swayfx"
             add_stow "$DOTFILES/swayfx-themes" "$2"
             shift
@@ -110,6 +111,7 @@ while [ "$#" -gt 0 ] ; do
             ;;
         -a3 | --awesome-m3)
             mkdir -p "$HOME/.config/awesome/theme"
+            mkdir -p "$HOME/.tmux"
             add_stow "$DOTFILES" ".x"
             add_stow "$DOTFILES" "awesome-m3"
             add_stow "$DOTFILES/awesome-m3-themes" "$2"
@@ -121,6 +123,7 @@ while [ "$#" -gt 0 ] ; do
             # Also need to add themes/<theme-name> here
             mkdir -p "$HOME/.config/awesome/themes"
             mkdir -p "$HOME/.config/awesome/bar"
+            mkdir -p "$HOME/.tmux"
             add_stow "$DOTFILES" ".x"
             add_stow "$DOTFILES" "awesome-m2"
             add_stow "$DOTFILES/awesome-m2-themes" "$2"

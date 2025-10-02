@@ -11,17 +11,17 @@ foreground=E5E1E9
 ## Normal/regular colors (color palette 0-7)
 regular0=2A292F # black
 regular1=F059B7 # red
-regular2=20B0B3 # green
+regular2=55e7f9 # green
 regular3=FFBFA5 # yellow
 regular4=7F93FF # blue
 regular5=C781F8 # magenta
 regular6=7DD9FF # cyan
-regular7=E5E1E9 # white
+regular7=cbced3 # white
 
 ## Bright colors (color palette 8-15)
 bright0=47464F # bright black
 bright1=F97AA5 # bright red
-bright2=00C6CD # bright green
+bright2=53f3e1 # bright green
 bright3=f9e2af # bright yellow
 bright4=84B4F3 # bright blue
 bright5=C590FF # bright magenta

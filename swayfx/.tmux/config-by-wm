@@ -1,0 +1,16 @@
+# Wayland
+set-option -g update-environment "DISPLAY WAYLAND_DISPLAY SWAYSOCK SSH_AUTH_SOCK"
+
+# Colors 
+set -ag terminal-overrides ',xterm-256color:RGB'
+
+# Wayland clipboard
+set -s copy-command 'wl-copy'
+
+# Copy | require wl-clipboard
+# https://www.rockyourcode.com/copy-and-paste-in-tmux/
+#bind P paste-buffer
+bind-key -T copy-mode-vi 'v' send -X begin-selection
+bind-key -T copy-mode-vi 'y' send -X copy-pipe "wl-copy"
+bind-key -T copy-mode-vi 'y' send-keys -X copy-pipe-and-cancel "wl-paste -n | wl-copy -p"
+

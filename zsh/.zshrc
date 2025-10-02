@@ -35,6 +35,7 @@ zstyle ':omz:plugins:keychain' agents gpg
 source "$ZSH/oh-my-zsh.sh"
 
 [ -f ~/.zprofile ] && source ~/.zprofile
+[ -f ~/.zshenv ] && source ~/.zshenv
 
 # History
 HISTSIZE=666
