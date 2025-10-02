@@ -24,10 +24,13 @@ export XDG_CONFIG_HOME="$HOME"/.config
 export LANG=en_US.UTF-8
 
 # Terminal
-if command -v wezterm &>/dev/null; then
+if command -v foot &>/dev/null; then
+  export TERMINAL=foot
+  #export TERM=foot-direct (set by foot)
+elif command -v wezterm &>/dev/null; then
   export TERMINAL=wezterm
   #export TERM=tmux-256color
-else
+elif command -v xst &>/dev/null; then
   export TERMINAL=xst
   export TERM=xst-256color
 fi
@@ -41,12 +44,18 @@ fi
 # export GPG_AGENT_INFO=""
 
 # Editor
-export VISUAL=vim
+if command -v nvim &>/dev/null; then
+    export VISUAL=nvim
+elif command -v vim &>/dev/null; then
+    export VISUAL=vim
+fi
 export EDITOR="$VISUAL"
 export SUDO_EDITOR="$VISUAL"
 
 # MPD Dir
 export MPD_MUSIC_DIR="$HOME/musics"
+# If mpd port is different than default 6600
+# export MPD_PORT="6600"
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME"/.oh-my-zsh
@@ -97,5 +106,3 @@ NNN_OPTS="cEnrx"
 # If jekyll, mkdir -p ~/.gems/bin
 # export GEM_PATH=/home/izsha/.gems:/usr/lib64/ruby/gems/2.3.0/gems/
 
-# If mpd port is different than default 6600
-# export MPD_PORT="6600"

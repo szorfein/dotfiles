@@ -1,3 +1,6 @@
+# Info on current apps launched (like xprop utility):
+# swaymsg -t get_tree
+#
 # >> Floating
 for_window {
     [app_id="floating"] floating enable
