@@ -3,13 +3,13 @@
         (box :orientation "horizontal"
             (box :orientation "vertical"
                 "Download"
-                "${round(EWW_NET.wlan0.NET_DOWN / 1000000, 2)}MB/s"
+                "${round(EWW_NET.lo.NET_DOWN / 100000, 2)}MB/s"
             )
         )
         (box :orientation "horizontal"
             (box :orientation "vertical"
                 "Upload"
-                "${round(EWW_NET.wlan0.NET_UP / 1000000, 2)}MB/s"
+                "${round(EWW_NET.lo.NET_UP / 100000, 2)}MB/s"
             )
         )
     )
@@ -74,6 +74,6 @@
 (defpoll wifi-ssids
     :interval "60s"
     :run-while {sidebar-page-index == "3"}
-    ;:initial "[]"
+    ;:initial '{}'
     `~/.config/eww/daemons/iwd.sh`
 )

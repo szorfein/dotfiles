@@ -12,16 +12,25 @@ fi
 
 if [ -f /tmp/daemon-volume ] ; then
     OLDPID=$(cat </tmp/daemon-volume)
-    kill "$OLDPID"
+    if [ -n "$OLDPID" ] && $(pgrep -ns "$OLDPID") ; then
+        kill -9 "$OLDPID"
+    fi
     echo "killing $OLDPID"
 fi
 
 pipewire_daemon() {
-    :
+    while :; do
+        vol=$(~/.config/eww/scripts/volume.sh get)
+        eww update volume="$vol"
+        sleep 30
+    done
 }
 
 pulseaudio_daemon() {
-    :
+    pactl subscribe 2> /dev/null | grep --line-buffered "sink #" | while read -r _ ; do
+        vol=$(~/.config/eww/scripts/volume.sh get)
+        eww update volume="$vol"
+    done
 }
 
 alsa_daemon() {

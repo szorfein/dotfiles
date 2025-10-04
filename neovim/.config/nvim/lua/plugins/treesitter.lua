@@ -7,9 +7,7 @@ return {
     --event = { 'LazyFile', 'VeryLazy' },
     cmd = { 'TSUpdate', 'TSInstall', 'TSLog', 'TSUninstall' },
     opts_extend = { 'ensure_installed' },
-    ---@class lazyvim.TSConfig: TSConfig
     opts = {
-        -- LazyVim config for treesitter
         indent = { enable = true },
         highlight = { enable = true },
         folds = { enable = true },

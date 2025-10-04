@@ -159,6 +159,6 @@
 (defvar mpd-active false)
 (defvar mpv-active false)
 (defvar playlist-name "")
-(defvar volume "")
+(defvar volume 0)
 (defvar mpd-playlists '["No one yet"]')
 (defvar playlist-focus "")

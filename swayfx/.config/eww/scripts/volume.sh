@@ -17,12 +17,17 @@ noti() {
     dunstify -u low -i "$1" -a "volume" "Volume" "$2" -r 999
 }
 
+eww_update() {
+    eww update volume="$1"
+}
+
 pipewire_get() {
-    wpctl get-volume @DEFAULT_AUDIO_SINK@
+    wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print $2}' | tr -d '0.'
 }
 
 pipewire_set() {
     wpctl set-volume @DEFAULT_AUDIO_SINK@ "$1"%
+    eww_update "$1"
     noti "$ICON" "wpctl set to $1"
 }
 
@@ -47,6 +52,7 @@ get_pulseaudio() {
 pulseaudio_set() {
     pactl set-sink-mute @DEFAULT_SINK@ false
     pactl set-sink-volume @DEFAULT_SINK@ "$1%"
+    eww_update "$1"
     noti "$ICON" "pulse set to $1"
 }
 
@@ -78,6 +84,7 @@ alsa_get() {
 
 alsa_set() {
     amixer set Master "$1"%
+    eww_update "$1"
     noti "$ICON" "alsa set to $1"
 }
 
