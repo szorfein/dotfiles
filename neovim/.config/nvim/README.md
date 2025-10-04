@@ -25,7 +25,8 @@ you have nothing to do.
 
 ## Plugins selection
 
-- Syntax highlighting with [nvim-treesitter](https://github.com/nvim-treesitter)
+- Syntax highlighting with
+  [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
 - [nvim-autopairs](https://github.com/windwp/nvim-autopairs), essential.
 - [nvim-ts-autotag](https://github.com/windwp/nvim-ts-autotag) autopairs for
   html, tsx
@@ -67,6 +68,7 @@ the plugin.
 - https://github.com/AstroNvim/AstroNvim
 - https://github.com/NvChad/NvChad
 - https://github.com/elenapan/dotfiles/tree/master/config/nvim
+- https://github.com/LazyVim/starter/tree/main
 
 Also from books:
 
