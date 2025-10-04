@@ -55,7 +55,7 @@
                 :orientation "vertical"
                 :space-evenly false
                 (for ssid in wifi-ssids
-                    (list-item :class "body-large" :text "${ssid}")
+                    (list-item :class "body-large" :text "${ssid.name}")
                 )
             )
         )
@@ -70,10 +70,8 @@
     `~/.config/eww/scripts/network.sh test-tor`
 )
 (defvar wifi-on false)
-;(defvar wifi-ssids '[]')
 (defpoll wifi-ssids
     :interval "60s"
     :run-while {sidebar-page-index == "3"}
-    ;:initial '{}'
     `~/.config/eww/daemons/iwd.sh`
 )
