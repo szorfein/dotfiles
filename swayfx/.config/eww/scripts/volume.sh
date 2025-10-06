@@ -2,10 +2,10 @@
 
 set -o errexit
 
-AUDIO="pulseaudio"
 ICON=""
 ICON_INC=""
 ICON_DEC=""
+AUDIO="pulseaudio"
 
 if pidof pipewire >/dev/null 2>&1; then
     AUDIO="pipewire"
@@ -83,8 +83,8 @@ alsa_get() {
 }
 
 alsa_set() {
-    amixer set Master "$1"%
-    eww_update "$1"
+    amixer set Master "$1"% >/dev/null
+    #eww_update "$1"
     noti "$ICON" "alsa set to $1"
 }
 

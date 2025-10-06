@@ -34,6 +34,7 @@
   [Starship](https://starship.rs),
   ([plugins](https://github.com/szorfein/dotfiles/blob/main/zsh/.config/reaver/zsh.yml))
 - **Widgets:** [EWW](https://elkowar.github.io/eww/eww.html)
+- **Notification:** [Dunst](https://github.com/dunst-project/dunst) with dunstify
 - **Term:** [Wezterm](https://github.com/wez/wezterm)
 - **Editor:** [NeoVim](https://neovim.io) with
   [LazyVim](https://lazyvim.github.io/)
