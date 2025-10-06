@@ -104,6 +104,8 @@ while [ "$#" -gt 0 ] ; do
         -s | --swayfx)
             mkdir -p "$HOME/.config/sway"
             mkdir -p "$HOME/.tmux"
+            mkdir -p "$HOME/.config/foot"
+            mkdir -p "$HOME/.config/dunst/dunstrc.d"
             add_stow "$DOTFILES" "swayfx"
             add_stow "$DOTFILES/swayfx-themes" "$2"
             shift

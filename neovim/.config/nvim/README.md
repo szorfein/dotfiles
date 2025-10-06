@@ -25,7 +25,8 @@ you have nothing to do.
 
 ## Plugins selection
 
-- Syntax highlighting with [nvim-treesitter](https://github.com/nvim-treesitter)
+- Syntax highlighting with
+  [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
 - [nvim-autopairs](https://github.com/windwp/nvim-autopairs), essential.
 - [nvim-ts-autotag](https://github.com/windwp/nvim-ts-autotag) autopairs for
   html, tsx
@@ -62,11 +63,21 @@ Remove the concerned plugin from e.g:
 `rm -rf ~/.local/share/nvim/lazy/<plugin-name>` Run `:Lazy` on nvim to reinstall
 the plugin.
 
+#### No highlight color on your programming language
+
+You probably need to install manually one from treesitter, for example for
+installing bash in nvim, type:
+
+    :TSInstall bash
+
+After the installation, relaunch your script to have the highlight enabled.
+
 ## Inspiration
 
 - https://github.com/AstroNvim/AstroNvim
 - https://github.com/NvChad/NvChad
 - https://github.com/elenapan/dotfiles/tree/master/config/nvim
+- https://github.com/LazyVim/starter/tree/main
 
 Also from books:
 

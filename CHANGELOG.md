@@ -1,4 +1,6 @@
-## v3.5.3
+## v3.6.0
+
+- Add notification with Dunst for SwayFX.
 
 ### Bug Fixes
 

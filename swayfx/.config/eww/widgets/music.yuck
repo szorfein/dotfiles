@@ -72,9 +72,9 @@
 (defwidget music-buttons []
     (box :orientation "horizontal"
         :space-evenly true
-        (button-tonal-vert :text "WEB" :class {web-active ? "enabled" : "disabled"} :icon "" :onclick "playerctl -p brave play-pause &")
-        (button-tonal-vert :text "MPD" :class {mpd-active ? "enabled" : "disabled"} :icon "" :onclick "playerctl -p mpd play-pause &")
-        (button-tonal-vert :text "MPV" :class {mpv-active ? "enabled" : "disabled"} :icon "" :onclick "playerctl -p mpv play-pause &")
+        (button-tonal-vert :text "WEB" :class {media.web-active ? "enabled" : "disabled"} :icon "" :onclick "~/.config/eww/scripts/media.sh web-toggle &")
+        (button-tonal-vert :text "MPD" :class {media.mpd-active ? "enabled" : "disabled"} :icon "" :onclick "~/.config/eww/scripts/media.sh mpd-toggle &")
+        (button-tonal-vert :text "MPV" :class {media.mpv-active ? "enabled" : "disabled"} :icon "" :onclick "~/.config/eww/scripts/media.sh mpv-toggle &")
     )
 )
 
@@ -155,10 +155,7 @@
 
 ; all vars 
 (defvar media "[]")
-(defvar web-active false)
-(defvar mpd-active false)
-(defvar mpv-active false)
 (defvar playlist-name "")
-(defvar volume "")
-(defvar mpd-playlists '["No one yet"]')
+(defvar volume 0)
+(defvar mpd-playlists "[]")
 (defvar playlist-focus "")
