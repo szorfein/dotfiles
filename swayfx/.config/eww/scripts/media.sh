@@ -4,11 +4,14 @@
 # Playerctl is a really bad reader...
 # command should be duplicated to actual make what we want.
 # And i don't talk about all other dependencies for mpv(mpris), mpd (mpris), web and more which can also fail for any other reason...
+# (dawn stack)
 
 set -o errexit
 
 WEB="brave"
 if command -v librewolf >/dev/null ; then
+    WEB="firefox"
+elif command -v firefox >/dev/null ; then 
     WEB="firefox"
 fi
 
@@ -23,7 +26,7 @@ if [ "$1" = "next" ] ; then
     #if [[ "$PLY" = "brave" || "$PLY" = "firefox" ]] ; then
     #    playerctl -p "$PLY" position "$INSEC"
     #else
-        playerctl -p "$PLY" next
+    playerctl -p "$PLY" next
     #fi
 fi
 
@@ -74,7 +77,7 @@ if [ "$1" = "web-toggle" ] ; then
     playerctl -p mpd pause || echo "mpd paused"
     playerctl -p mpv pause || echo "mpv paused"
     playerctl -p mpv pause || echo "mpv paused"
-    playerctl -p "$WEB" play-pause
+    playerctl -p "$WEB" play-pause || echo "$WEB can fail"
 fi
 
 if [ "$1" = "mpd-toggle" ] ; then
@@ -82,7 +85,7 @@ if [ "$1" = "mpd-toggle" ] ; then
     playerctl -p mpv pause || echo "mpv pause"
     playerctl -p "$WEB" pause || echo "$WEB pause"
     playerctl -p mpv pause || echo "mpv pause"
-    playerctl -p mpd play-pause
+    playerctl -p mpd play-pause || echo "mpd can fail"
 fi
 
 if [ "$1" = "mpv-toggle" ] ; then
@@ -90,5 +93,5 @@ if [ "$1" = "mpv-toggle" ] ; then
     playerctl -p "$WEB" pause || echo "$WEB pause"
     playerctl -p mpd pause || echo "mpd pause"
     playerctl -p mpd pause || echo "mpd pause"
-    playerctl -p mpv play-pause
+    playerctl -p mpv play-pause || echo "mpv can fail"
 fi
