@@ -1,6 +1,8 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 set -o errexit 
+
+SCAN_RES=""
 
 # https://gist.github.com/foxyfocus/4388f34059af56e179fb4aa00ca0a913
 
@@ -25,16 +27,43 @@ get_interface() {
     fi
 }
 
+check_assoc() {
+    capture_symbol=$(echo "$1" | awk '{print $1}')
+    if [ "$capture_symbol" = ">" ] ; then
+        return 0
+    fi 
+    return 1
+}
+
+build_json() {
+    json='['
+    while read -r line; do 
+        #echo "[$line]"
+        connected=false
+        check_assoc "$line" && connected=true
+        name="$(echo $line | tr -d '>' | awk '{print $1}')"
+        json+="{\"name\": \"$name\","
+        json+="\"connected\": $connected},"
+    done <<< "$SCAN_RES"
+    json=${json::-1} # Remove last comma
+    json+=']'
+    echo "$json"
+    #eww update wifi-ssids="$json"
+}
+
 scan_ssid() {
     iwctl station "$interface" scan && sleep 1
-    scan_result=$(iwctl station "$interface" get-networks | remove_escape_sequences | sed 's/\s\+/ /g')
+    if ! SCAN_RES=$(iwctl station "$interface" get-networks | remove_escape_sequences | sed 's/\s\+/ /g') ; then
+        exit 0
+    fi
+    build_json
     #| sed 's/ psk / ; [psk ] ; /;s/ open / ; [open] ; /;s/\s\+/ /g')
     #| awk -F " ; " '{print $2" =="$1}')
     #echo "$scan_result"
-    str=$(echo "$scan_result" | jq -Rs | sed -e 's/\\n/", "/g' | sed -e 's/, ""//')
+    #str=$(echo "$scan_result" | jq -Rs | sed -e 's/\\n/", "/g' | sed -e 's/, ""//')
     #str=$(echo "$scan_result" | jq -Rs | sed -e 's/\\n/", "/g')
     #echo "$str"
-    eww update wifi-ssids="[$str]"
+    #eww update wifi-ssids="[$str]"
 
     #iwctl station "$interface" connect "ssid"
     #iwctl station "$interface" disconnect

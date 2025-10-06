@@ -21,6 +21,7 @@ The whole (or many) stack has changed because wayland instead X.
 - Nemo (optional)
 - Neovim (optional) - replace doomemacs and vim
 - Pinta (optional), replace Gimp.
+- Dunst - Notification.
 
 ### Archlinux
 
@@ -33,7 +34,7 @@ The whole (or many) stack has changed because wayland instead X.
     libxkbcommon pango pcre2 wlroots0.17 seatd \
     libdrm libglvnd pixman glslang meson ninja \
     cargo libdbusmenu-gtk3 gtk3 gtk-layer-shell \
-    iwd nemo
+    iwd nemo dunst
 
 From AUR:
 

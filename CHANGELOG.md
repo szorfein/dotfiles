@@ -1,11 +1,16 @@
-## v3.5.3
+## v3.6.0 - Oct. 6 2025
+
+- Add notification with Dunst for SwayFX.
 
 ### Bug Fixes
 
 - tmux: remove default-terminal on Wayland, cause many bugs when (tmux-256color)
-  not present.
+  not present and separate configs for X and Wayland.
 - zsh: force the load of .zshenv (not loaded before on Gentoo...)
 - zshenv: check if command exist before setting variables.
+- Correct eww variable wifi-ssids
+- One call of `eww update` on `eww/daemons/media`
+- Playerctl can works also with firefox.
 
 ## v3.5.0 - Sep 28 2025
 

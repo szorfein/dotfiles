@@ -1,36 +1,31 @@
 return {
     'nvim-treesitter/nvim-treesitter',
     branch = 'main',
-    event = { 'BufReadPost', 'BufNewFile' },
-    cmd = { 'TSInstall', 'TSBufEnable', 'TSBufDisable', 'TSModuleInfo' },
+    version = false, -- last release is way too old and doesn't work on Windows
     build = ':TSUpdate',
+    lazy = vim.fn.argc(-1) == 0, -- load treesitter early when opening a file from the cmdline
+    --event = { 'LazyFile', 'VeryLazy' },
+    cmd = { 'TSUpdate', 'TSInstall', 'TSBufEnable', 'TSBufDisable', 'TSLog', 'TSUninstall' },
+    opts_extend = { 'ensure_installed' },
     opts = {
-        -- https://github.com/nvim-treesitter/nvim-treesitter?tab=readme-ov-file#supported-languages
-        ensure_installed = {
-            'astro',
-            'bash',
-            'lua',
-            'markdown',
-            'markdown_inline',
-            'query',
-            'gpg',
-            'scss',
-            'graphql',
-            'sql',
-            'vim',
-            'vimdoc',
-            'javascript',
-            'html',
-            'yaml',
-            'ruby',
-            'rust',
-            'tmux',
-            'vue',
-            'yuck',
-        },
-        sync_install = false,
-        highlight = { enable = true },
-        incremental_selection = { enable = true },
         indent = { enable = true },
+        highlight = { enable = true, use_languagetree = true },
+        folds = { enable = true },
+        ensure_installed = { 'lua', 'luadoc', 'printf', 'vim', 'vimdoc' },
     },
+    ---@param opts lazyvim.TSConfig
+    config = function(_, opts)
+        local TS = require('nvim-treesitter')
+
+        -- setup treesitter
+        TS.setup(opts)
+
+        vim.api.nvim_create_autocmd('FileType', {
+            group = vim.api.nvim_create_augroup('treesitter', { clear = true }),
+            callback = function()
+                -- highlighting
+                pcall(vim.treesitter.start)
+            end,
+        })
+    end,
 }
