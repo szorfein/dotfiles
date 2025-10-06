@@ -27,23 +27,34 @@ get_interface() {
     fi
 }
 
+check_assoc() {
+    capture_symbol=$(echo "$1" | awk '{print $1}')
+    if [ "$capture_symbol" = ">" ] ; then
+        return 0
+    fi 
+    return 1
+}
+
 build_json() {
     json='['
     while read -r line; do 
         #echo "[$line]"
+        connected=false
+        check_assoc "$line" && connected=true
         name="$(echo $line | tr -d '>' | awk '{print $1}')"
-        json+="{\"name\": \"$name\"},"
+        json+="{\"name\": \"$name\","
+        json+="\"connected\": $connected},"
     done <<< "$SCAN_RES"
     json=${json::-1} # Remove last comma
     json+=']'
     echo "$json"
-    eww update wifi-ssids="$json"
+    #eww update wifi-ssids="$json"
 }
 
 scan_ssid() {
     iwctl station "$interface" scan && sleep 1
     if ! SCAN_RES=$(iwctl station "$interface" get-networks | remove_escape_sequences | sed 's/\s\+/ /g') ; then
-        echo "fail"
+        exit 0
     fi
     build_json
     #| sed 's/ psk / ; [psk ] ; /;s/ open / ; [open] ; /;s/\s\+/ /g')

@@ -5,43 +5,13 @@ return {
     build = ':TSUpdate',
     lazy = vim.fn.argc(-1) == 0, -- load treesitter early when opening a file from the cmdline
     --event = { 'LazyFile', 'VeryLazy' },
-    cmd = { 'TSUpdate', 'TSInstall', 'TSLog', 'TSUninstall' },
+    cmd = { 'TSUpdate', 'TSInstall', 'TSBufEnable', 'TSBufDisable', 'TSLog', 'TSUninstall' },
     opts_extend = { 'ensure_installed' },
     opts = {
         indent = { enable = true },
-        highlight = { enable = true },
+        highlight = { enable = true, use_languagetree = true },
         folds = { enable = true },
-        ensure_installed = {
-            'astro',
-            'bash',
-            'c',
-            'diff',
-            'html',
-            'javascript',
-            'jsdoc',
-            'json',
-            'jsonc',
-            'lua',
-            'luadoc',
-            'luap',
-            'markdown',
-            'markdown_inline',
-            'printf',
-            'python',
-            'query',
-            'regex',
-            'ruby',
-            'rust',
-            'scss',
-            'toml',
-            'tmux',
-            'typescript',
-            'vim',
-            'vimdoc',
-            'vue',
-            'yaml',
-            'yuck',
-        },
+        ensure_installed = { 'lua', 'luadoc', 'printf', 'vim', 'vimdoc' },
     },
     ---@param opts lazyvim.TSConfig
     config = function(_, opts)
@@ -51,7 +21,7 @@ return {
         TS.setup(opts)
 
         vim.api.nvim_create_autocmd('FileType', {
-            group = vim.api.nvim_create_augroup('lazyvim_treesitter', { clear = true }),
+            group = vim.api.nvim_create_augroup('treesitter', { clear = true }),
             callback = function()
                 -- highlighting
                 pcall(vim.treesitter.start)

@@ -6,13 +6,13 @@ set -o errexit
 #
 ICON=""
 
-if PID=$(pgrep -x inotifywait); then
+if PID=$(pgrep -f "inotifywait .*brightness"); then
     killall "$PID"
 fi
 
-if pgrep -f "sh .*light.sh" ; then
-    pgrep -f "sh .*light.sh" | xargs kill -9
-fi
+#if pgrep -f "sh .*light.sh" ; then
+#   pgrep -f "sh .*light.sh" | xargs kill -9
+#fi
 
 #path=/sys/class/backlight/acpi_video0
 path=/sys/class/backlight

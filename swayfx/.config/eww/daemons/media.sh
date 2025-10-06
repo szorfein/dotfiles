@@ -24,7 +24,7 @@ if [ -f "$PID_FILE" ] ; then
     rm -r "$PID_FILE"
 fi
 
-if PIDS=$(pgrep -f "playerctl --follow metadata") ; then
+if PIDS=$(pgrep -f "playerctl --follow") ; then
     kill $PIDS
 fi
 
@@ -48,11 +48,8 @@ OLD_SONG=""
 #done
 # requires playerctl>=2.0
 # Add non-space character ":" before each parameter to prevent 'read' from skipping over them
-#playerctl --follow metadata --format $':{{status}}\t:{{position}}\t:{{mpris:length}}\t:{{playerName}}\t:{{mpris:artUrl}}\t:{{duration(position)}}\t:{{duration(mpris:length)}}' | while read -r playing position length name arturl hpos hlen; do
-#playerctl --follow metadata --format $':{{status}}\t:{{position}}\t:{{mpris:length}}\t:{{playerName}}\t:{{mpris:artUrl}}\t:{{duration(position)}}\t:{{duration(mpris:length)}}\t:{{trunc(title, 16)}}\t:{{trunc(artist, 16)}}' | while read -r playing position length name arturl hpos hlen title artist; do
 # artist should be placed before title
 # artist name and title should not contain any space...
-#playerctl --follow metadata --format $':{{status}}\t:{{position}}\t:{{mpris:length}}\t:{{playerName}}\t:{{mpris:artUrl}}\t:{{duration(position)}}\t:{{duration(mpris:length)}}\t:{{trunc((markup_escape(artist)),16)}}\t:{{trunc((markup_escape(title)), 16)}}' | while read -r playing position length name arturl hpos hlen artist title; do
 playerctl --follow metadata --format $':{{status}}\t:{{position}}\t:{{mpris:length}}\t:{{playerName}}\t:{{mpris:artUrl}}\t:{{duration(position)}}\t:{{duration(mpris:length)}}\t:{{trunc(artist,16)}}@@{{trunc(title, 16)}}' | while read -r playing position length name arturl hpos hlen artist_title; do
 
 # All vars are prefixed with ':'
@@ -79,9 +76,13 @@ if [ "$name" = "brave" ] ; then
     arturl="${arturl#file://}"
 fi
 
+if [ "$name" = "firefox" ] ; then
+    arturl="${arturl#file://}"
+fi
+
 if [ "$name" = "mpd" ] ; then
     #if [ "$OLD_SONG" != "$title" ] ; then
-        arturl="$(mpd_cover)"
+    arturl="$(mpd_cover)"
     #fi
 fi
 
@@ -90,17 +91,53 @@ fi
 [ -z "$title" ] && title="N/A"
 [ -z "$artist" ] && artist="N/A"
 OLD_SONG="$title"
-#echo "{
-#   \"playing\":\"$playing\",
-#   \"position\":\"$position\",
-#   \"length\":\"$length\",
-#   \"name\":\"$name\",
-#   \"artist\":\"$artist\",
-#   \"title\":\"$title\",
-#   \"arturl\":\"$arturl\",
-#   \"hpos\":\"$hpos\",
-#   \"hlen\":\"$hlen\"
-#}"
+
+web=false
+mpd=false
+mpv=false
+#playerlist=$(playerctl -l)
+
+#if expr "$playerlist" : '.*[brave]' >/dev/null; then
+#if expr "$name" : '.*[brave]' >/dev/null; then
+if [[ "$name" = "brave" && "$playing" = "Playing" ]] ; then
+    #status=$(playerctl -p brave status 2>/dev/null)
+    web=true
+    echo "we enable web (brave) $web"
+else
+    web=false
+fi
+
+#if expr "$name" : '.*[firefox]' >/dev/null; then
+if [[ "$name" = "firefox" && "$playing" = "Playing" ]] ; then
+    #status=$(playerctl -p firefox status 2>/dev/null)
+    web=true
+    echo "we enable web $web"
+else
+    web=false
+fi
+
+#if expr "$playerlist" : '.*[mpd]' >/dev/null; then
+if expr "$name" : '.*[mpd]' >/dev/null; then
+#if [[ "$name" = "mpd" && "$playing" = "Playing" ]] ; then
+    if [ "$playing" = "Playing" ] ; then
+        #status=$(playerctl -p mpd status 2>/dev/null)
+        mpd=true
+        echo "we enable mpd $mpd"
+    else
+        mpd=false
+    fi
+fi
+
+#if expr "$playerlist" : '.*[mpv]' >/dev/null; then
+#if expr "$name" : '.*[mpv]' >/dev/null; then
+if [[ "$name" = "mpv" && "$playing" = "Playing" ]] ; then
+    #status=$(playerctl -p mpv status 2>/dev/null)
+    mpv=true
+    echo "we enable mpv $mpv"
+else
+    mpv=false
+fi
+
 eww update media="{
     \"playing\":\"$playing\",
     \"position\":\"$position\",
@@ -110,44 +147,10 @@ eww update media="{
     \"title\":\"$title\",
     \"arturl\":\"$arturl\",
     \"hpos\":\"$hpos\",
-    \"hlen\":\"$hlen\"
+    \"hlen\":\"$hlen\",
+    \"web-active\":$web,
+    \"mpd-active\":$mpd,
+    \"mpv-active\":$mpv
 }"
-
-web=false
-mpd=false
-mpv=false
-#playerlist=$(playerctl -l)
-
-#if expr "$playerlist" : '.*[brave]' >/dev/null; then
-if expr "$name" : '.*[brave]' >/dev/null; then
-    status=$(playerctl -p brave status 2>/dev/null)
-    if [ "$status" = "Playing" ] ; then
-        web=true
-    else
-        web=false
-    fi
-fi
-
-#if expr "$playerlist" : '.*[mpd]' >/dev/null; then
-if expr "$name" : '.*[mpd]' >/dev/null; then
-    status=$(playerctl -p mpd status 2>/dev/null)
-    if [ "$status" = "Playing" ] ; then
-        mpd=true
-    else
-        mpd=false
-    fi
-fi
-
-#if expr "$playerlist" : '.*[mpv]' >/dev/null; then
-if expr "$name" : '.*[mpv]' >/dev/null; then
-    status=$(playerctl -p mpv status 2>/dev/null)
-    if [ "$status" = "Playing" ] ; then
-        mpv=true
-    else
-        mpv=false
-    fi
-fi
-
-eww update web-active="$web" mpd-active="$mpd" mpv-active="$mpv"
 done
 

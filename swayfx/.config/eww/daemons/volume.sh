@@ -18,7 +18,14 @@ if [ -f /tmp/daemon-volume ] ; then
     echo "killing $OLDPID"
 fi
 
+#if PIDS=$(pgrep -f "sh .*volume.sh") ; then
+#   echo "found proc with pgrep $PIDS"
+    #pgrep -f "sh .*volume.sh" | xargs kill
+#   kill $PIDS
+#fi
+
 pipewire_daemon() {
+    echo "pipewire"
     while :; do
         vol=$(~/.config/eww/scripts/volume.sh get)
         eww update volume="$vol"
@@ -27,6 +34,7 @@ pipewire_daemon() {
 }
 
 pulseaudio_daemon() {
+    echo "pulse"
     pactl subscribe 2> /dev/null | grep --line-buffered "sink #" | while read -r _ ; do
         vol=$(~/.config/eww/scripts/volume.sh get)
         eww update volume="$vol"
@@ -34,8 +42,10 @@ pulseaudio_daemon() {
 }
 
 alsa_daemon() {
+    echo "alsa"
     while :; do
         vol=$(~/.config/eww/scripts/volume.sh get)
+        echo "$vol"
         eww update volume="$vol"
         sleep 30
     done

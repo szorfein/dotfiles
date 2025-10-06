@@ -63,6 +63,15 @@ Remove the concerned plugin from e.g:
 `rm -rf ~/.local/share/nvim/lazy/<plugin-name>` Run `:Lazy` on nvim to reinstall
 the plugin.
 
+#### No highlight color on your programming language
+
+You probably need to install manually one from treesitter, for example for
+installing bash in nvim, type:
+
+    :TSInstall bash
+
+After the installation, relaunch your script to have the highlight enabled.
+
 ## Inspiration
 
 - https://github.com/AstroNvim/AstroNvim
