@@ -42,6 +42,7 @@ mkdir -p "$workdir/.config/foot"
 mkdir -p "$workdir/.tmux"
 mkdir -p "$workdir/.config/nvim/lua"
 mkdir -p "$workdir/.config/zathura"
+mkdir -p "$workdir/.config/dunst/dunstrc.d"
 
 # colours to extract
 primary=$(ext_dark 'primary')
@@ -59,6 +60,7 @@ surface_variant=$(ext_dark 'surfaceVariant')
 surface_tint=$(ext_dark 'surfaceTint')
 inverse_surface=$(ext_dark 'inverseSurface')
 inverse_on_surface=$(ext_dark 'inverseOnSurface')
+inverse_primary=$(ext_dark 'inversePrimary')
 # background is lighter than surface
 background=$(ext_dark 'background')
 secondary_container=$(ext_dark 'secondaryContainer')
@@ -99,6 +101,14 @@ t_blue_bright=$(ext_terminal 'blueBright')
 
 echo "primary $primary"
 echo "secondary $secondary"
+
+cat <<EOF > "$workdir/.config/eww/fonts.scss"
+// material(3) use 2 fonts mainly and name it:
+// md.ref.typeface.brand
+// md.ref.typeface.plain
+\$brand: "Demova";
+\$plain: "Iosevka Nerd Font";
+EOF
 
 cat <<EOF > "$workdir/.config/eww/colors.scss"
 \$primary: $primary;
@@ -301,24 +311,6 @@ search-box-no-match=${error:1} ${on_error:1}  # black-on-red
 EOF
 
 cat <<EOF > "$workdir/.tmux/status"
-# Wayland clipboard
-set -s copy-command 'wl-copy'
-
-# clip vim
-#bind-key -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "wl-copy && wl-paste -n | wl-copy -p"
-#bind-key p run "wl-paste -n | tmux load-buffer - ; tmux paste-buffer"
-# Wayland, Ctrl+a+v (copy mode), press y for copy. Alt+p for paste
-# https://www.rockyourcode.com/copy-and-paste-in-tmux/
-#set-option -s set-clipboard off
-bind P paste-buffer
-bind-key -T copy-mode-vi 'v' send-keys -X begin-selection
-bind-key -T copy-mode-vi 'y' send-keys -X copy-pipe "wl-copy"
-#bind-key -T copy-mode-vi V send-keys -X rectangle-toggle
-#unbind -T copy-mode-vi Enter
-#bind-key -T copy-mode-vi y send-keys -X copy-pipe-and-cancel 'wl-copy'
-#bind-key -T copy-mode-vi Enter send-keys -X copy-pipe-and-cancel 'wl-copy'
-#bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel 'wl-copy'
-
 # Configure plugin mode_indicator
 set -g @mode_indicator_prefix_prompt "WAIT"
 set -g @mode_indicator_prefix_mode_style fg=$secondary,bold
@@ -453,6 +445,67 @@ set render-loading-fg	          "$on_surface"
 set highlight-color		  rgba(87,82,104,0.5)
 set highlight-fg                  rgba(245,194,231,0.5)
 set highlight-active-color	  rgba(245,194,231,0.5)
+EOF
+
+# dunst
+cat <<EOF > "$workdir/.config/dunst/dunstrc.d/10-bytheme.conf"
+# To display terminal icon: (nerd-font, icomoon)
+# echo "\u<code>", e.g: echo "\uf09c2"
+#
+[global]
+    # Text
+    font = IosevkaTerm Nerd Font 14
+
+# Defines width in pixels of frame around the notification window.
+    # Set to 0 to disable.
+    frame_width = 4
+
+# Defines color of the frame around the notification window.
+    frame_color = "$inverse_on_surface" # inverse-on-surface
+
+# The format of the message.  Possible variables are:
+    #   %a  appname
+    #   %s  summary
+    #   %b  body
+    #   %c  category
+    #   %S  stack_tag
+    #   %i  iconname (including its path)
+    #   %I  iconname (without its path)
+    #   %p  progress value if set ([  0%] to [100%]) or nothing
+    #   %n  progress value if set without any extra characters
+    #   %%  literal %
+    # Markup is allowed
+# format = "<b>%s</b>\n%b"
+# foreground use inverse-on-surface color
+# rise seem lowered the horizontal line
+    format = "<span rise='-6000' font_desc='icomoon 24'>%I</span><span foreground='$inverse_on_surface'>  %s</span>\n<span rise='-4000' font_desc='Iosevka Nerd Font Mono 24' foreground='$inverse_on_surface'>  </span><span foreground='$inverse_on_surface'>%b</span>"
+
+[urgency_low]
+    # IMPORTANT: colors have to be defined in quotation marks.
+    # Otherwise the "#" and following would be interpreted as a comment.
+    background = "$inverse_surface" # inverse-surface
+    foreground = "$inverse_primary" # inverse-primary
+    timeout = 5
+    # Icon for notifications with low urgency
+    default_icon = dialog-information
+
+[urgency_normal]
+    background = "$inverse_surface" # inverse-surface
+    foreground = "$inverse_primary" # inverse-surface
+    timeout = 5
+    override_pause_level = 30
+    # Icon for notifications with normal urgency
+    default_icon = dialog-information
+
+[urgency_critical]
+    background = "$inverse_surface"
+    foreground = "$error"
+    frame_color = "$error"
+    timeout = 0
+    override_pause_level = 60
+    # Icon for notifications with critical urgency
+    default_icon = dialog-warning
+
 EOF
 
 # Generate a gtk theme under ~/.themes

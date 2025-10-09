@@ -6,6 +6,15 @@ SCAN_RES=""
 
 # https://gist.github.com/foxyfocus/4388f34059af56e179fb4aa00ca0a913
 
+if PIDS=$(pgrep -f "sh .*iwd.sh") ; then 
+    MYPID=$$
+    PIDS_CLEAN=$(echo "$PIDS" | sed s/"$MYPID"//)
+    if [ -n "$PIDS_CLEAN" ] ; then
+        echo "clean $PIDS_CLEAN"
+        echo "$PIDS_CLEAN" | xargs kill
+    fi
+fi
+
 remove_escape_sequences() {
     tail -n +5 | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[m|K]//g;/^\s*$/d"
 }
@@ -13,7 +22,7 @@ remove_escape_sequences() {
 get_interface() {
     if ! ip a | grep -q 'wl' ; then
         eww update wifi-on=false
-        exit 1
+        return 1
     fi
 
     if interface=$(iwctl device list | remove_escape_sequences | awk '{print $1" == ["$2"] == ["$3"]"}' | awk '{print $1}') ; then
@@ -25,6 +34,8 @@ get_interface() {
         #echo "false"
         eww update wifi-on=false
     fi
+
+    return 0
 }
 
 check_assoc() {
@@ -47,14 +58,14 @@ build_json() {
     done <<< "$SCAN_RES"
     json=${json::-1} # Remove last comma
     json+=']'
-    echo "$json"
-    #eww update wifi-ssids="$json"
+    #echo "$json"
+    eww update wifi-ssids="$json"
 }
 
 scan_ssid() {
     iwctl station "$interface" scan && sleep 1
     if ! SCAN_RES=$(iwctl station "$interface" get-networks | remove_escape_sequences | sed 's/\s\+/ /g') ; then
-        exit 0
+        return 0
     fi
     build_json
     #| sed 's/ psk / ; [psk ] ; /;s/ open / ; [open] ; /;s/\s\+/ /g')
@@ -71,5 +82,9 @@ scan_ssid() {
     #iwctl known-networks "network_name" show
 }
 
-get_interface
-scan_ssid
+while :; do
+    if get_interface ; then
+        scan_ssid
+    fi
+    sleep 60
+done

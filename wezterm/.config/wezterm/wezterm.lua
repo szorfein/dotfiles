@@ -1,6 +1,6 @@
 -- Pull in the wezterm API
-local wezterm = require 'wezterm'
-local colors = require 'colors'
+local wezterm = require("wezterm")
+local colors = require("colors")
 
 -- This will hold the configuration.
 local config = wezterm.config_builder()
@@ -8,12 +8,12 @@ local config = wezterm.config_builder()
 -- True color with tmux
 -- https://gist.github.com/andersevenrud/015e61af2fd264371032763d4ed965b6#configuration-files
 config.set_environment_variables = {
-    TERM = 'xterm-256color'
+	TERM = "xterm-256color",
 }
 
-config.font = wezterm.font {
-  family = 'Iosevka Nerd Font',
-}
+config.font = wezterm.font({
+	family = "Iosevka Nerd Font",
+})
 
 -- config.font = wezterm.font_with_fallback { 'Material Symbols Outlined' }
 
@@ -33,7 +33,7 @@ config.enable_tab_bar = false
 
 config.window_background_opacity = 1.0
 
-config.default_cursor_style = 'SteadyBar'
+config.default_cursor_style = "SteadyBar"
 
 config.enable_wayland = true
 

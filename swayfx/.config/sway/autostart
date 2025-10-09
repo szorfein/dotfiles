@@ -33,6 +33,9 @@ exec {
 # Notifications
     dunst
 
+# Fast terminal 
+    foot -s
+
 # EWW
     ~/.config/eww/scripts/start.sh
 }

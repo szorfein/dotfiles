@@ -11,7 +11,7 @@
                 :space-evenly false
                 (slider-horizontal :max "${media.length}"
                     :value "${media.position}"
-                    :onchange "~/.config/eww/scripts/media.sh pos {}"
+                    :onchange "~/.config/eww/scripts/media.sh pos {} &"
                 )
                 (box :orientation "horizontal"
                     ;:space-evenly false

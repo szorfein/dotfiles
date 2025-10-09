@@ -64,16 +64,6 @@
 
 ; all vars
 (defvar wifi-killed false)
-(defpoll tor-enabled
-    :interval "60s"
-    :run-while {sidebar-page-index == "3"}
-    :initial false
-    `~/.config/eww/scripts/network.sh test-tor`
-)
+(defvar tor-enabled false)
 (defvar wifi-on false)
-(defpoll wifi-ssids
-    :interval "60s"
-    :run-while {sidebar-page-index == "3"}
-    :initial "[]"
-    `~/.config/eww/daemons/iwd.sh`
-)
+(defvar wifi-ssids "[]")

@@ -18,15 +18,18 @@ kill_pid "pgrep -f sway-workspaces.rb"
 # Without sleep, the 'eww open-many x' keep in the process
 # see with (ps aux |  grep eww)
 # which produce bug, etc... the only process visible should be 'eww daemon'
-eww daemon \
-  && sleep 2 \
-  && eww open-many \
-         navbar-activator bar \
-         sidebar-activator sidebar
+sleep 5
+eww daemon &
+wait
+eww open-many \
+    navbar-activator bar \
+    sidebar-activator sidebar
 
 # Other daemons
-setsid ~/.config/eww/daemons/media.sh >/dev/null 2>&1 < /dev/null &
-setsid ~/.config/eww/daemons/light.sh >/dev/null 2>&1 < /dev/null &
-setsid ~/.config/eww/daemons/volume.sh >/dev/null 2>&1 < /dev/null &
-setsid ~/.config/eww/daemons/playlists.sh >/dev/null 2>&1 < /dev/null &
-setsid ~/.config/eww/scripts/daemons/sway-workspaces.rb >/dev/null 2>&1 < /dev/null &
+~/.config/eww/scripts/daemons/sway-workspaces.rb >/dev/null 2>&1 &
+~/.config/eww/daemons/media.sh >/dev/null 2>&1 &
+~/.config/eww/daemons/light.sh >/dev/null 2>&1 &
+~/.config/eww/daemons/volume.sh >/dev/null 2>&1 &
+~/.config/eww/daemons/playlists.sh >/dev/null 2>&1 &
+~/.config/eww/daemons/iwd.sh >/dev/null 2>&1 &
+~/.config/eww/daemons/tor.sh >/dev/null 2>&1 &

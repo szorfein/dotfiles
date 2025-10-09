@@ -1,0 +1,62 @@
+# Configure plugin mode_indicator
+set -g @mode_indicator_prefix_prompt "WAIT"
+set -g @mode_indicator_prefix_mode_style fg=#FFB2BD,bold
+set -g @mode_indicator_copy_prompt "COPY"
+set -g @mode_indicator_copy_mode_style fg=green,bold
+set -g @mode_indicator_sync_prompt "SYNC"
+set -g @mode_indicator_sync_mode_style fg=#EEBF6D,bold
+set -g @mode_indicator_empty_prompt "TMUX"
+set -g @mode_indicator_empty_mode_style fg=purple,bold
+
+# Configure the catppuccin plugin
+set -g @catppuccin_flavor "mocha"
+set -g @catppuccin_window_status_style "rounded"
+
+# status line
+set -gF status-style "bg=#1A1111,fg=#F1DEDD"
+
+# Customize plugins colors
+#
+# App
+set -gF @catppuccin_status_application_icon_bg "#231919"
+set -g @catppuccin_status_application_icon_fg "#EEBF6D"
+set -gF @catppuccin_status_application_text_bg "#231919"
+set -g @catppuccin_status_application_text_fg "#EEBF6D"
+
+# Session
+set -gF @catppuccin_status_session_icon_bg "#231919"
+set -gF @catppuccin_status_session_icon_fg "#FFB688"
+set -gF @catppuccin_status_session_text_bg "#231919"
+set -gF @catppuccin_status_session_text_fg "#FFB688"
+
+# Uptime
+set -gF @catppuccin_status_uptime_text_bg "#231919"
+set -gF @catppuccin_status_uptime_text_fg "#FFB2BD"
+set -g @catppuccin_status_uptime_icon_bg "#231919"
+set -g @catppuccin_status_uptime_icon_fg "#FFB2BD"
+
+# Directory
+set -gF @catppuccin_status_directory_text_bg "#231919"
+set -gF @catppuccin_status_directory_text_fg "#FFB3AE"
+set -g @catppuccin_status_directory_icon_bg "#231919"
+set -g @catppuccin_status_directory_icon_fg "#FFB3AE"
+
+# Load catppuccin
+run ~/.config/tmux/plugins/catppuccin/tmux/catppuccin.tmux
+
+# Current
+set -g status-justify centre
+set -gF window-status-format "#[bg=#231919,fg=#72333F]#[bg=#72333F,fg=#FFD9DD]##I ##T#[bg=#231919,fg=#72333F]"
+set -gF window-status-current-format "#[bg=#231919,fg=#FFB3AE]#[bg=#FFB3AE,fg=#571D1C,bold]##I #[fg=#571D1C,bold]##T#[bg=#231919,fg=#FFB3AE]"
+
+# Make the status line pretty and add some modules
+set -g status-right-length 100
+set -g status-left-length 100
+set -g status-right ""
+set -g status-left "#{tmux_mode_indicator} "
+set -ag status-left "#{E:@catppuccin_status_application}"
+set -ag status-left "#{E:@catppuccin_status_directory}"
+set -ag status-right "#{E:@catppuccin_status_session}"
+set -ag status-right "#{E:@catppuccin_status_uptime}"
+
+run-shell ~/.config/tmux/plugins/tmux-mode-indicator/mode_indicator.tmux

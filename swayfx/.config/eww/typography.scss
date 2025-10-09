@@ -1,6 +1,13 @@
 // https://m3.material.io/styles/typography/type-scale-tokens
+.display-small {
+  font-family: $brand;
+  font-size: dpi(30pt);
+  letter-spacing: 0;
+  font-weight: 400;
+}
+
 .headline-small {
-  font-family: "demova";
+  font-family: $brand;
   font-size: dpi(24pt);
   font-weight: 400;
   letter-spacing: 0;
@@ -8,7 +15,7 @@
 }
 
 .title-small {
-  font-family: "Iosevka Nerd Font";
+  font-family: $plain;
   font-size: dpi(14pt);
   font-weight: 500;
   min-height: dpi(20pt);
@@ -16,14 +23,14 @@
 }
 
 .body-large {
-  font-family: "Iosevka Nerd Font";
+  font-family: $plain;
   font-weight: 400;
   font-size: dpi(16pt);
   letter-spacing: dpi(0.5pt);
 }
 
 .body-medium {
-  font-family: "Iosevka Nerd Font";
+  font-family: $plain;
   font-weight: 400;
   font-size: dpi(14pt);
   min-height: dpi(20pt);
@@ -33,7 +40,7 @@
 }
 
 .body-small {
-  font-family: "Iosevka Nerd Font";
+  font-family: $plain;
   font-weight: 400;
   font-size: dpi(12pt);
   min-height: dpi(16pt);
@@ -42,6 +49,7 @@
 }
 
 .label-large {
+  font-family: $plain;
   font-size: dpi(14pt);
   font-weight: 500;
   letter-spacing: dpi(0.1pt);
@@ -49,6 +57,7 @@
 }
 
 .label-medium {
+  font-family: $plain;
   font-size: dpi(12pt);
   font-weight: 500;
   letter-spacing: dpi(0.5pt);
