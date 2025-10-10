@@ -32,7 +32,7 @@ pipewire_daemon() {
     while :; do
         vol=$(~/.config/eww/scripts/volume.sh get)
         eww update volume="$vol"
-        sleep 30
+        exec sleep 30
     done
 }
 
@@ -50,7 +50,7 @@ alsa_daemon() {
         vol=$(~/.config/eww/scripts/volume.sh get)
         echo "$vol"
         eww update volume="$vol"
-        sleep 30
+        exec sleep 30
     done
 }
 

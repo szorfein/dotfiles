@@ -33,7 +33,7 @@ return {
     '#b969ad', -- blue
     '#f46889', -- magenta
     '#b9a1d2', -- teal
-    '#cbced3', -- white
+    '#fadc89', -- white
   },
   brights = {
     '#534342', -- black
@@ -43,7 +43,7 @@ return {
     '#ec87dd', -- blue
     '#f986af', -- magenta
     '#907da4', -- teal
-    '#F1DEDD', -- white
+    '#ffeea8', -- white
   },
 
   -- Since: 20220319-142410-0fcdea07

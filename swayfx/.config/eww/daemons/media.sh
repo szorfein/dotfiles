@@ -12,23 +12,19 @@
 #
 # Not on (lack of metadata)
 # invidious
-PID_FILE="/tmp/daemon-media"
-PID=$$
 
-if [ -f "$PID_FILE" ] ; then
-    OLD_PID=$(cat <"$PID_FILE")
-    if kill $OLD_PID 2>/dev/null ; then
-        echo "old pid found $OLD_PID"
-        echo "killing $OLD_PID"
+if PIDS=$(pgrep -f "sh .*media.sh") ; then
+    MYPID=$$
+    PIDS_CLEAN=$(echo "$PIDS" | sed s/"$MYPID"//)
+    if [ -n "$PIDS_CLEAN" ] ; then
+        #echo "clean $PIDS_CLEAN"
+        echo "$PIDS_CLEAN" | xargs kill
     fi
-    rm -r "$PID_FILE"
 fi
 
-if PIDS=$(pgrep -f "playerctl --follow") ; then
-    kill $PIDS
-fi
-
-echo "$PID" >"$PID_FILE"
+#if PIDS=$(pgrep -f "playerctl --follow") ; then
+#   kill $PIDS
+#fi
 
 mpd_cover() {
     [ -n "$MPD_MUSIC_DIR" ] || return
@@ -50,7 +46,7 @@ OLD_SONG=""
 # Add non-space character ":" before each parameter to prevent 'read' from skipping over them
 # artist should be placed before title
 # artist name and title should not contain any space...
-playerctl --follow metadata --format $':{{status}}\t:{{position}}\t:{{mpris:length}}\t:{{playerName}}\t:{{mpris:artUrl}}\t:{{duration(position)}}\t:{{duration(mpris:length)}}\t:{{trunc(artist,16)}}@@{{trunc(title, 16)}}' | while read -r playing position length name arturl hpos hlen artist_title; do
+exec playerctl --follow metadata --format $':{{status}}\t:{{position}}\t:{{mpris:length}}\t:{{playerName}}\t:{{mpris:artUrl}}\t:{{duration(position)}}\t:{{duration(mpris:length)}}\t:{{trunc(artist,16)}}@@{{trunc(title, 16)}}' | while read -r playing position length name arturl hpos hlen artist_title; do
 
 # All vars are prefixed with ':'
 # in Bash, simply use playing=${playing:1}
@@ -63,10 +59,6 @@ hpos=$(expr " $hpos" : " .\\(.*\\)")
 hlen=$(expr " $hlen" : " .\\(.*\\)")
 artist=$(expr " ${artist_title%@@*}" : " .\\(.*\\)" | tr -d '"')
 title="$(echo ${artist_title#*@@} | tr -d '"')"
-
-#echo "1 ${artist_title%@@*}"
-#echo "2 ${artist_title#*@@}"
-#echo "3 ${artist_title%%*@@}"
 
 # artist and title can contain a lot of characters...
 #artist=$(playerctl metadata --format '{{ trunc(artist, 16) }}')
@@ -81,13 +73,13 @@ if [ "$name" = "firefox" ] ; then
 fi
 
 if [ "$name" = "mpd" ] ; then
-    #if [ "$OLD_SONG" != "$title" ] ; then
     arturl="$(mpd_cover)"
-    #fi
 fi
 
+DEFAULT_IMG=$(grep theme-bg ~/.config/sway/theme | awk '{print $3}' | sed s/~//)
+
 # default
-[ -z "$arturl" ] && arturl="$HOME/images/nun.jpg"
+[ -z "$arturl" ] && arturl="$HOME$DEFAULT_IMG"
 [ -z "$title" ] && title="N/A"
 [ -z "$artist" ] && artist="N/A"
 OLD_SONG="$title"
@@ -95,23 +87,20 @@ OLD_SONG="$title"
 web=false
 mpd=false
 mpv=false
-#playerlist=$(playerctl -l)
 
 #if expr "$playerlist" : '.*[brave]' >/dev/null; then
 #if expr "$name" : '.*[brave]' >/dev/null; then
 if [[ "$name" = "brave" && "$playing" = "Playing" ]] ; then
-    #status=$(playerctl -p brave status 2>/dev/null)
     web=true
-    echo "we enable web (brave) $web"
+    #echo "we enable web (brave) $web"
 else
     web=false
 fi
 
 #if expr "$name" : '.*[firefox]' >/dev/null; then
 if [[ "$name" = "firefox" && "$playing" = "Playing" ]] ; then
-    #status=$(playerctl -p firefox status 2>/dev/null)
     web=true
-    echo "we enable web $web"
+    #echo "we enable web $web"
 else
     web=false
 fi
@@ -120,9 +109,8 @@ fi
 if expr "$name" : '.*[mpd]' >/dev/null; then
 #if [[ "$name" = "mpd" && "$playing" = "Playing" ]] ; then
     if [ "$playing" = "Playing" ] ; then
-        #status=$(playerctl -p mpd status 2>/dev/null)
         mpd=true
-        echo "we enable mpd $mpd"
+        #echo "we enable mpd $mpd"
     else
         mpd=false
     fi
@@ -131,26 +119,14 @@ fi
 #if expr "$playerlist" : '.*[mpv]' >/dev/null; then
 #if expr "$name" : '.*[mpv]' >/dev/null; then
 if [[ "$name" = "mpv" && "$playing" = "Playing" ]] ; then
-    #status=$(playerctl -p mpv status 2>/dev/null)
     mpv=true
-    echo "we enable mpv $mpv"
+    #echo "we enable mpv $mpv"
 else
     mpv=false
 fi
 
-eww update media="{
-    \"playing\":\"$playing\",
-    \"position\":\"$position\",
-    \"length\":\"$length\",
-    \"name\":\"$name\",
-    \"artist\":\"$artist\",
-    \"title\":\"$title\",
-    \"arturl\":\"$arturl\",
-    \"hpos\":\"$hpos\",
-    \"hlen\":\"$hlen\",
-    \"web-active\":$web,
-    \"mpd-active\":$mpd,
-    \"mpv-active\":$mpv
-}"
+cat <<EOF 
+{"playing":"$playing","position":"$position","length":"$length","name":"$name","artist":"$artist","title":"$title","arturl":"$arturl","hpos":"$hpos","hlen":"$hlen","web-active":$web,"mpd-active":$mpd,"mpv-active":$mpv}
+EOF
+sleep 2
 done
-

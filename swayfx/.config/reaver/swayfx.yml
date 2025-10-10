@@ -10,7 +10,7 @@ things:
   - name: swayfx-wallpapers.zip
     url: https://github.com/szorfein/walls/archive/refs/heads/swayfx.zip
     dest_dir: images
-  - name: nice-tag.zip
-    url: https://dl.dafont.com/dl/?f=nice_tag
+  - name: y_yo-tags.zip
+    url: https://dl.dafont.com/dl/?f=y_yo_tags
     dest_dir: .local/share/fonts
 time: 86000

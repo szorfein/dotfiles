@@ -98,6 +98,8 @@ t_cyan_bright=$(ext_terminal 'cyanBright')
 t_cyan=$(ext_terminal 'cyan')
 t_blue=$(ext_terminal 'blue')
 t_blue_bright=$(ext_terminal 'blueBright')
+t_white=$(ext_terminal 'white')
+t_white_bright=$(ext_terminal 'whiteBright')
 
 echo "primary $primary"
 echo "secondary $secondary"
@@ -179,8 +181,8 @@ cat <<EOF > "$workdir/.Xdefaults"
 *color6: $t_cyan
 *color14: $t_cyan_bright
 ! White
-*color7: #E2E2E2
-*color15: $on_surface
+*color7: $t_white
+*color15: $t_white_bright
 EOF
 
 cat <<EOF > "$workdir/.config/wezterm/colors.lua"
@@ -219,7 +221,7 @@ return {
     '$t_blue', -- blue
     '$t_magenta', -- magenta
     '$t_cyan', -- teal
-    '#cbced3', -- white
+    '$t_white', -- white
   },
   brights = {
     '$surface_variant', -- black
@@ -229,7 +231,7 @@ return {
     '$t_blue_bright', -- blue
     '$t_magenta_bright', -- magenta
     '$t_cyan_bright', -- teal
-    '$on_surface', -- white
+    '$t_white_bright', -- white
   },
 
   -- Since: 20220319-142410-0fcdea07
@@ -260,7 +262,7 @@ regular3=${t_yellow:1} # yellow
 regular4=${t_blue:1} # blue
 regular5=${t_magenta:1} # magenta
 regular6=${t_cyan:1} # cyan
-regular7=${on_surface:1} # white
+regular7=${t_white:1} # white
 
 ## Bright colors (color palette 8-15)
 bright0=${surface_variant:1} # bright black
@@ -270,7 +272,7 @@ bright3=${t_yellow_bright:1} # bright yellow
 bright4=${t_blue_bright:1} # bright blue
 bright5=${t_magenta_bright:1} # bright magenta
 bright6=${t_cyan_bright:1} # bright cyan
-bright7=${on_surface:1} # bright white
+bright7=${t_white_bright:1} # bright white
 
 ## dimmed colors (see foot.ini(5) man page)
 # dim0=<not set>
@@ -381,10 +383,6 @@ cat <<EOF > "$workdir/.config/nvim/lua/colors.lua"
 -- base colors: https://github.com/catppuccin/nvim/blob/main/lua/catppuccin/palettes/mocha.lua
 -- WGAG AAA need a contrast of 7:1 for normal text
 return {
-    --crust = '$surface_container_lowest',
-    --surface1 = '$surface_container',
-    --surface2 = '$surface_container_high'
-
     pink = "$t_magenta_bright", -- magenta light
     mauve = "$t_magenta", -- magenta
     red = "$t_red", -- red
@@ -398,11 +396,16 @@ return {
     blue = "$t_blue", -- blue
     lavender = "$t_blue_bright", -- blue light
     text = '$on_surface',
-
-    --crust = '#0E0E13',
-    mantle = '$surface_container_low',
-    base = '$surface',
+    subtext1 = '$t_white_bright',
+    subtext0 = '$t_white',
+    -- ...
+    --surface2 = '$surface_container_high'
+    --surface1 = '$surface_container',
     surface0 = '$surface_container_highest',
+    base = '$surface',
+    mantle = '$surface_container_low',
+    --crust = '$surface_container_lowest',
+    --crust = '#0E0E13', -- deep dark
 }
 EOF
 

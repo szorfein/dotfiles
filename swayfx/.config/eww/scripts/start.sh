@@ -8,7 +8,10 @@ kill_pid() {
   fi
 }
 
-kill_pid "pgrep -x eww"
+if PIDS=$(pgrep -f "eww .*") ; then
+   echo "$PIDS" | xargs kill
+fi
+
 kill_pid "pgrep -f sway-workspaces.rb"
 
 #export EWW_SCALE=0.8443388199535182
@@ -18,8 +21,8 @@ kill_pid "pgrep -f sway-workspaces.rb"
 # Without sleep, the 'eww open-many x' keep in the process
 # see with (ps aux |  grep eww)
 # which produce bug, etc... the only process visible should be 'eww daemon'
-sleep 5
-eww daemon &
+sleep 3
+eww daemon --debug &
 wait
 eww open-many \
     navbar-activator bar \
@@ -27,7 +30,7 @@ eww open-many \
 
 # Other daemons
 ~/.config/eww/scripts/daemons/sway-workspaces.rb >/dev/null 2>&1 &
-~/.config/eww/daemons/media.sh >/dev/null 2>&1 &
+#~/.config/eww/daemons/media.sh >/dev/null 2>&1 &
 ~/.config/eww/daemons/light.sh >/dev/null 2>&1 &
 ~/.config/eww/daemons/volume.sh >/dev/null 2>&1 &
 ~/.config/eww/daemons/playlists.sh >/dev/null 2>&1 &

@@ -63,7 +63,8 @@ build_json() {
 }
 
 scan_ssid() {
-    iwctl station "$interface" scan && sleep 1
+    iwctl station "$interface" scan
+    sleep 1
     if ! SCAN_RES=$(iwctl station "$interface" get-networks | remove_escape_sequences | sed 's/\s\+/ /g') ; then
         return 0
     fi
@@ -86,5 +87,5 @@ while :; do
     if get_interface ; then
         scan_ssid
     fi
-    sleep 60
+    exec sleep 60
 done

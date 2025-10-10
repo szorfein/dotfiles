@@ -26,5 +26,5 @@ test_tor() {
 
 while :; do
     test_tor
-    sleep 60
+    exec sleep 60
 done

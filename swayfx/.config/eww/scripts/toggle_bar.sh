@@ -5,7 +5,7 @@ set -o errexit
 curr=$(eww get bar_visible)
 echo "curr is $curr"
 
-if [ "$curr" = "true" ] ; then
+#if [ "$curr" = "true" ] ; then
   echo "is true - remove bar"
   eww close bar
   eww update bar_visible=false

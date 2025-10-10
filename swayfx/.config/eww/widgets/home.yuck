@@ -8,7 +8,8 @@
 
 (defwidget home-styled []
     (box :valign "center" :halign "center"
-        :class "date"
+        ;:class "date"
+        :class "display-large"
         :spacing "${round(8 * get_env("EWW_SCALE"), 0)}"
         (box :orientation "horizontal"
         ;:style "border: 1px solid #f00"
@@ -159,7 +160,7 @@
 (defwidget home-hour []
     (box :orientation "horizontal"
         ;:style "border: 1px solid #f00"
-        :class "mb-16 time"
+        :class "mb-16 display-large time"
         (box :orientation "horizontal"
             :halign "end"
             "${time.hour}"
@@ -210,20 +211,26 @@
 )
 
 ; all vars
-(defpoll time :run-while "${sidebar-page-index == "1"}"
-    :interval "60s" `~/.config/eww/scripts/time-json.sh`)
-(defpoll day_nb :run-while "${sidebar-page-index == "1"}"
-    :interval "60m" `date +%e`
+(defpoll time :interval "60s"
+    :run-while { sidebar-page-index == 1 }
+    `~/.config/eww/scripts/time-json.sh`
 )
-(defpoll day :run-while "${sidebar-page-index == "1"}"
-    :interval "60m" `~/.config/eww/scripts/date-json.sh day`
+(defpoll day_nb :interval "60m"
+    :run-while { sidebar-page-index == 1 }
+    `date +%e`
 )
-(defpoll month :run-while "${sidebar-page-index == "1"}"
-    :interval "60m" `~/.config/eww/scripts/date-json.sh month`
+(defpoll day :interval "60m"
+     :run-while { sidebar-page-index == 1 }
+     `~/.config/eww/scripts/date-json.sh day`
 )
-(defpoll geoloc :run-while "${sidebar-page-index == "1"}"
-    :interval "5m" `~/.config/eww/scripts/geoloc.sh`
+(defpoll month :interval "60m" 
+     :run-while { sidebar-page-index == 1 }
+     :initial "{}"
+     `~/.config/eww/scripts/date-json.sh month`
 )
-(defpoll brightness :run-while "${sidebar-page-index == "1"}"
-    :interval "60m" `light -G`
+(defpoll geoloc :interval "5m"
+     :run-while { sidebar-page-index == 1 }
+     :initial "{}"
+     `~/.config/eww/scripts/geoloc.sh`
 )
+(defvar brightness "0")

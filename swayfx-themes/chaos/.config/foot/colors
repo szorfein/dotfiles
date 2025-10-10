@@ -16,7 +16,7 @@ regular3=f37e4e # yellow
 regular4=b969ad # blue
 regular5=f46889 # magenta
 regular6=b9a1d2 # cyan
-regular7=F1DEDD # white
+regular7=fadc89 # white
 
 ## Bright colors (color palette 8-15)
 bright0=534342 # bright black
@@ -26,7 +26,7 @@ bright3=ffad4f # bright yellow
 bright4=ec87dd # bright blue
 bright5=f986af # bright magenta
 bright6=907da4 # bright cyan
-bright7=F1DEDD # bright white
+bright7=ffeea8 # bright white
 
 ## dimmed colors (see foot.ini(5) man page)
 # dim0=<not set>

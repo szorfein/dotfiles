@@ -176,8 +176,8 @@
         (box :class "my-super-tab-icon ${sidebar-page-index == index ? "active" : "inactive"}"
             :valign "center"
             (button
-                :onclick "eww update sidebar-page-index=${index}"
-                :onrightclick "~/.config/eww/scripts/dialog.sh close sidebar"
+                :onclick "eww update sidebar-page-index=${index} &"
+                :onrightclick "~/.config/eww/scripts/dialog.sh close sidebar &"
                 (box
                     icon
                 )

@@ -1,7 +1,14 @@
 // https://m3.material.io/styles/typography/type-scale-tokens
+.display-large {
+  font-family: $brand;
+  font-size: dpi(57pt);
+  letter-spacing: dpi(-0.25pt);
+  font-weight: 400;
+}
+
 .display-small {
   font-family: $brand;
-  font-size: dpi(30pt);
+  font-size: dpi(36pt);
   letter-spacing: 0;
   font-weight: 400;
 }
