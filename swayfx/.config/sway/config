@@ -26,6 +26,8 @@ set $term footclient
 # on the original workspace that the command was run on.
 set $menu wmenu-run | xargs swaymsg exec --
 
+set $eww $HOME/.config/eww
+
 # window corner radius in px,
 # material use 12 on card (outlined)
 corner_radius 12
@@ -226,7 +228,7 @@ include ~/.config/sway/rules
     bindsym $mod+a focus parent
 
     # eww
-    bindsym $mod+F1 exec "~/.config/eww/scripts/toggle_bar.sh"
+    bindsym $mod+F1 exec "$eww/scripts/dialog.sh open powermenu"
 #
 # Scratchpad:
 #
@@ -239,29 +241,9 @@ include ~/.config/sway/rules
     # Show the next scratchpad window or hide the focused scratchpad window.
     # If there are multiple scratchpad windows, this command cycles through them.
     #bindsym $mod+minus scratchpad show
-#
-# Resizing containers:
-#
-mode "resize" {
-    # left will shrink the containers width
-    # right will grow the containers width
-    # up will shrink the containers height
-    # down will grow the containers height
-    bindsym $left resize shrink width 10px
-    bindsym $down resize grow height 10px
-    bindsym $up resize shrink height 10px
-    bindsym $right resize grow width 10px
 
-    # Ditto, with arrow keys
-    bindsym Left resize shrink width 10px
-    bindsym Down resize grow height 10px
-    bindsym Up resize shrink height 10px
-    bindsym Right resize grow width 10px
+include ~/.config/sway/modes
 
-    # Return to default mode
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
 bindsym $mod+r mode "resize"
 
 #

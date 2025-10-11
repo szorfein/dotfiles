@@ -159,8 +159,7 @@
 (defvar mpd-playlists "[]")
 (defvar playlist-focus "")
 
-;(defvar media "[]")
 ; it look the best way to start media.sh (in perf)
-(deflisten media :initial "[]"
+(deflisten media :initial "{}"
  `~/.config/eww/daemons/media.sh`
 )

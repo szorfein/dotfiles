@@ -78,6 +78,7 @@ After the installation, relaunch your script to have the highlight enabled.
 - https://github.com/NvChad/NvChad
 - https://github.com/elenapan/dotfiles/tree/master/config/nvim
 - https://github.com/LazyVim/starter/tree/main
+- https://code.x-e.ro/dotfiles
 
 Also from books:
 

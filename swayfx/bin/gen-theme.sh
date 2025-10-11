@@ -36,7 +36,7 @@ ext_terminal() {
 mkdir -p "$workdir"
 mkdir -p "$workdir/.Xdefaults.d"
 mkdir -p "$workdir/.config/sway"
-mkdir -p "$workdir/.config/eww"
+mkdir -p "$workdir/.config/eww/styles"
 mkdir -p "$workdir/.config/wezterm"
 mkdir -p "$workdir/.config/foot"
 mkdir -p "$workdir/.tmux"
@@ -104,15 +104,15 @@ t_white_bright=$(ext_terminal 'whiteBright')
 echo "primary $primary"
 echo "secondary $secondary"
 
-cat <<EOF > "$workdir/.config/eww/fonts.scss"
+cat <<EOF > "$workdir/.config/eww/styles/typography.scss"
 // material(3) use 2 fonts mainly and name it:
 // md.ref.typeface.brand
 // md.ref.typeface.plain
-\$brand: "Demova";
-\$plain: "Iosevka Nerd Font";
+@import 'brand-demova.scss';
+@import 'plain-iosevka.scss';
 EOF
 
-cat <<EOF > "$workdir/.config/eww/colors.scss"
+cat <<EOF > "$workdir/.config/eww/styles/colors.scss"
 \$primary: $primary;
 \$on-primary: $on_primary;
 \$primary-container: $primary_container;

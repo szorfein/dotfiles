@@ -1,8 +1,15 @@
-// https://m3.material.io/styles/typography/type-scale-tokens
+// material(3) use 2 fonts mainly and name it:
+// md.ref.typeface.brand
+// md.ref.typeface.plain
+//@import "brand-yotags.scss";
+//@import "plain-iosevka.scss";
+
+$brand: "Y-Yo Tags";
+
 .display-large {
   font-family: $brand;
-  font-size: dpi(57pt);
-  letter-spacing: dpi(-0.25pt);
+  font-size: dpi(60pt);
+  letter-spacing: dpi(-4pt);
   font-weight: 400;
 }
 
@@ -20,6 +27,9 @@
   letter-spacing: 0;
   color: $on-surface;
 }
+
+// https://m3.material.io/styles/typography/type-scale-tokens
+$plain: "Iosevka Nerd Font";
 
 .title-small {
   font-family: $plain;

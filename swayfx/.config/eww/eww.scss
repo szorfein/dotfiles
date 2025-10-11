@@ -17,9 +17,8 @@
 }
 
 @import 'globals.scss';
-@import 'fonts.scss';
-@import 'colors.scss';
-@import 'typography.scss';
+@import 'styles/colors.scss';
+@import 'styles/typography.scss';
 
 @import 'widgets/button.scss';
 @import 'widgets/progressbar.scss';

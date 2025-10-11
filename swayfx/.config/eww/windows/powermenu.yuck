@@ -2,7 +2,7 @@
                      :geometry (geometry :x 0
                                          :y 0
                                          :width "100%"
-                                         :height "200%"
+                                         :height "100%"
                                          :anchor "left center")
                       :stacking "overlay"
                       :exclusive false
@@ -18,7 +18,8 @@
             (box :halign "center"
                 :valign "center"
                 :space-evenly false
-                :class "dialog-content" 
+                :class "dialog"
+
                 (box :height "100%" :width "100%" :vexpand true :hexpand true :class "dialog-tint"
                     (box :class "container"
                         :vexpand true

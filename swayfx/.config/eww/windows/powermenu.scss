@@ -1,11 +1,24 @@
+window.powermenu {
+  background: transparent;
+  //appearance: none;
+  //position: absolute;
+}
+
 .powermenu {
   // https://m3.material.io/styles/elevation/applying-elevation
   background: rgba($scrim, 0.32);
-  .dialog-content {
+  animation: dialog-backdrop 0.4s;
+
+  .dialog {
     border: 0px solid #fff;
     border-radius: dpi(28px);
-    min-width: dpi(280px);
+    //min-width: dpi(400px);
     background-color: $surface-container-high;
+    color: $on-surface-variant;
+    border: none;
+    outline: none;
+    margin: 0;
+    min-width: dpi(35rem);
   }
   .dialog-tint {
     background-color: rgba($surface-tint, 0.06);
@@ -15,5 +28,15 @@
   }
   .container {
     padding: dpi(24px);
+  }
+
+  @keyframes dialog-backdrop {
+    0% {
+      background-color: transparent;
+    }
+
+    100% {
+      background: rgba($scrim, 0.10);
+    }
   }
 }
