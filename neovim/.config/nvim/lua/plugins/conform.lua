@@ -5,6 +5,7 @@ return {
     opts = {
         formatters_by_ft = {
             css = { 'prettier' },
+            scss = { 'prettier' },
             graphql = { 'prettier' },
             html = { 'prettier' },
             javascript = { 'prettier', stop_after_first = true },

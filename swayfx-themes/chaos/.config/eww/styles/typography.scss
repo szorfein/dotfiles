@@ -20,16 +20,15 @@ $brand: "Y-Yo Tags";
   font-weight: 400;
 }
 
+$plain: "Iosevka Nerd Font";
+
 .headline-small {
-  font-family: $brand;
+  font-family: $plain;
   font-size: dpi(24pt);
   font-weight: 400;
   letter-spacing: 0;
   color: $on-surface;
 }
-
-// https://m3.material.io/styles/typography/type-scale-tokens
-$plain: "Iosevka Nerd Font";
 
 .title-small {
   font-family: $plain;

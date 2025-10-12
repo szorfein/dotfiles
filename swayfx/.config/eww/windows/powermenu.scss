@@ -1,33 +1,50 @@
+$rounding-extra-large: dpi(28px);
+$curve-decel: cubic-bezier(0.05, 0.7, 0.1, 1);
+$elevate1: 0 0.125rem 0.125rem 0 rgba($shadow, 0.32);
+$elevate2: 0 0.125rem 0.125rem 0 rgba($shadow, 0.52);
+$easing-fast-spatial: cubic-bezier(0.42, 1.67, 0.21, 0.9) 0.35s;
+$easing-fast: cubic-bezier(0.31, 0.94, 0.34, 1) 0.15s;
+
 window.powermenu {
   background: transparent;
   //appearance: none;
-  //position: absolute;
+  animation: dialog-backdrop 0.4s;
 }
 
 .powermenu {
   // https://m3.material.io/styles/elevation/applying-elevation
   background: rgba($scrim, 0.32);
-  animation: dialog-backdrop 0.4s;
+  animation:
+    dialog-in $curve-decel 0.5s,
+    opacity $curve-decel 0.1s both;
 
   .dialog {
     border: 0px solid #fff;
-    border-radius: dpi(28px);
-    //min-width: dpi(400px);
+    border-radius: $rounding-extra-large;
     background-color: $surface-container-high;
     color: $on-surface-variant;
     border: none;
     outline: none;
     margin: 0;
-    min-width: dpi(35rem);
+    //min-width: dpi(35rem);
+    min-width: dpi(280px);
+    //max-width: dpi(560px);
+    .sicon h1 h2 h3 h4 {
+      //text-align: center;
+    }
   }
   .dialog-tint {
     background-color: rgba($surface-tint, 0.06);
     background-size: 100% 100%;
-    border-radius: dpi(28px);
+    border-radius: $rounding-extra-large;
     border: 0px solid $surface-container-high;
   }
   .container {
     padding: dpi(24px);
+    .headline-small {
+      margin: dpi(16px) 0;
+      color: $on-surface;
+    }
   }
 
   @keyframes dialog-backdrop {
@@ -36,7 +53,71 @@ window.powermenu {
     }
 
     100% {
-      background: rgba($scrim, 0.10);
+      background: rgba($scrim, 0.1);
+    }
+  }
+
+  @keyframes dialog-in {
+    // 'transform' and 'clip-path:' don't work yet on eww/gtk
+    0% {
+      //transform: translate(-50%, -70%);
+      //clip-path: inset(0 0 100% 0 round $rounding-extra-large);
+    }
+
+    100% {
+      //transform: translate(-50%, -50%);
+      //clip-path: inset(0 0 0 0 round $rounding-extra-large);
+    }
+  }
+}
+
+.sicon {
+  font-family: 'Material Symbols Outlined';
+  font-size: dpi(24px);
+  color: $secondary;
+}
+
+.card-icon {
+  button {
+    box-shadow: $elevate1;
+    background-color: $surface-container-low;
+    color: $on-surface;
+    padding: dpi(16px);
+    border-radius: dpi(16px);
+    transition:
+      transform 0.3s,
+      border-radius 0.3s,
+      padding 0.3s;
+    &:hover {
+      background-color: rgba($surface-tint, 0.08);
+      box-shadow: $elevate2;
+    }
+    .icon {
+      font-family: 'Material Symbols Outlined';
+      font-size: dpi(48px);
+    }
+  }
+}
+
+.button-text {
+  color: $primary;
+  background: transparent;
+  button {
+    padding: dpi(16px);
+    border: 1px solid transparent;
+    border-radius: 1.25rem;
+    transition:
+      border-radius $easing-fast-spatial,
+      box-shadow $easing-fast,
+      background-color $easing-fast,
+      color $easing-fast,
+      margin $easing-fast,
+      padding $easing-fast-spatial;
+    &:hover {
+      background: rgba($primary, 0.08);
+      //color: $on-primary;
+      border: 1px solid transparent;
+      //padding: 0 1rem;
     }
   }
 }

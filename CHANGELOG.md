@@ -1,3 +1,6 @@
+- New logout screen with basic action 'poweroff', 'hibernate', 'quit Sway' and
+  'lock screen'.
+
 ## v3.6.0 - Oct. 6 2025
 
 - Add notification with Dunst for SwayFX.
