@@ -1,18 +1,18 @@
 // material(3) use 2 fonts mainly and name it:
 // md.ref.typeface.brand
 // md.ref.typeface.plain
-$brand: "Demova";
+$brand: 'Demova';
 
 .display-large {
   font-family: $brand;
-  font-size: dpi(66pt);
+  font-size: dpi(50pt);
   letter-spacing: dpi(-0.25pt);
   font-weight: 400;
 }
 
 .display-small {
   font-family: $brand;
-  font-size: dpi(60pt);
+  font-size: dpi(46pt);
   letter-spacing: 0;
   font-weight: 400;
 }
@@ -26,7 +26,7 @@ $brand: "Demova";
 }
 
 // https://m3.material.io/styles/typography/type-scale-tokens
-$plain: "Iosevka Nerd Font";
+$plain: 'Iosevka Nerd Font';
 
 .title-small {
   font-family: $plain;

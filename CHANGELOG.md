@@ -1,5 +1,8 @@
 - New logout screen with basic action 'poweroff', 'hibernate', 'quit Sway' and
   'lock screen'.
+- New changetheme widget (dialog), can switch between Holy and Jinx (or Chaos
+  we'll see) for now.
+- Neovim: add shfmt to format shell script.
 
 ## v3.6.0 - Oct. 6 2025
 

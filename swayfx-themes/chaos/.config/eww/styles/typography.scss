@@ -4,7 +4,8 @@
 //@import "brand-yotags.scss";
 //@import "plain-iosevka.scss";
 
-$brand: "Y-Yo Tags";
+$brand: 'Y-Yo Tags';
+$plain: 'Iosevka Nerd Font';
 
 .display-large {
   font-family: $brand;
@@ -15,12 +16,10 @@ $brand: "Y-Yo Tags";
 
 .display-small {
   font-family: $brand;
-  font-size: dpi(36pt);
+  font-size: dpi(56pt);
   letter-spacing: 0;
   font-weight: 400;
 }
-
-$plain: "Iosevka Nerd Font";
 
 .headline-small {
   font-family: $plain;

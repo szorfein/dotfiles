@@ -182,7 +182,7 @@
     ellipsize = middle
 
     # Ignore newlines '\n' in notifications.
-    ignore_newline = no
+    ignore_newline = true
 
     # Stack together notifications with the same content
     stack_duplicates = true

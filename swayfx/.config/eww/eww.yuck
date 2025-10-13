@@ -2,6 +2,8 @@
 (include "./globals.yuck")
 
 (include "./widgets/button.yuck")
+(include "./widgets/card.yuck")
+(include "./widgets/dialog.yuck")
 (include "./widgets/slider.yuck")
 (include "./widgets/chips.yuck")
 (include "./widgets/progressbar.yuck")
@@ -15,3 +17,4 @@
 (include "./windows/sidebar.yuck")
 (include "./windows/powermenu.yuck")
 (include "./windows/playlists.yuck")
+(include "./windows/changetheme.yuck")

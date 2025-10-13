@@ -18,10 +18,12 @@ you have nothing to do.
 - prettier
 - rubocop
 - stylua
+- shfmt
 
 ## Installation per distros
 
-- Archlinux: `sudo pacman -S neovim fd fzf tmux git prettier rubocop stylua`
+- Archlinux:
+  `sudo pacman -S neovim fd fzf tmux git prettier rubocop stylua shfmt`
 
 ## Plugins selection
 

@@ -29,7 +29,7 @@
         )
         (icon-filled-tonal
             :icon ""
-            :onclick "~/.config/eww/scripts/network.sh wifi-toggle"
+            :onclick "${eww_scripts}/network.sh wifi-toggle &"
             :class { wifi-killed ? "enabled" : "disabled" }
         )
         (icon-filled-tonal 

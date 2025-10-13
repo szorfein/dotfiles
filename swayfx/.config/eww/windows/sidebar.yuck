@@ -1,7 +1,7 @@
 (defwindow sidebar
     :monitor 0
-    :geometry (geometry :x 0
-                        :y 0
+    :geometry (geometry :x "0%"
+                        :y "0%"
                         :width "${round(290 * get_env('EWW_SCALE'), 0)}px"
 
                         :height "100%"
@@ -140,7 +140,7 @@
     :exclusive false
     (box :halign "fill" :valign "fill" 
         ;:style "background-color: #f00"
-        (eventbox :onhover "~/.config/eww/scripts/toggle-sidebar.sh show &")
+        (eventbox :onhover "${eww_scripts}/toggle-sidebar.sh show &")
     )
 )
 
@@ -177,7 +177,7 @@
             :valign "center"
             (button
                 :onclick "eww update sidebar-page-index=${index} &"
-                :onrightclick "~/.config/eww/scripts/dialog.sh close sidebar &"
+                :onrightclick "${eww_scripts}/dialog.sh close sidebar &"
                 (box
                     icon
                 )

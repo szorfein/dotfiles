@@ -9,7 +9,7 @@
 (defwidget home-styled []
     (box :valign "center" :halign "center"
         ;:class "date"
-        :class "display-large"
+        :class "display-small"
         :spacing "${round(8 * get_env("EWW_SCALE"), 0)}"
         (box :orientation "horizontal"
         ;:style "border: 1px solid #f00"
@@ -39,7 +39,7 @@
                     :halign "center" :valign "center"
                     (icon-filled
                         :icon ""
-                        :onclick "~/.config/eww/scripts/dialog.sh open powermenu"
+                        :onclick "${eww_scripts}/dialog.sh open powermenu &"
                         :class "error"
                     )
                 )
@@ -65,10 +65,10 @@
          :valign "end"
         (box :orientation "horizontal"
             (box :tooltip "Toggle navbar"
-                (icon-button :icon "" :onclick "~/.config/eww/scripts/toggle-nav.sh toggle &")
+                (icon-button :icon "" :onclick "${eww_scripts}/toggle-nav.sh toggle &")
             )
-            (icon-button :icon "x" :onclick "~/.config/eww/scripts/toggle-nav.sh toggle &")
-            (icon-button :icon "x" :onclick "~/.config/eww/scripts/toggle-nav.sh toggle &")
+            (icon-button :icon "x" :onclick "${eww_scripts}/toggle-nav.sh toggle &")
+            (icon-button :icon "x" :onclick "${eww_scripts}/toggle-nav.sh toggle &")
          )
      )
 )
@@ -104,18 +104,18 @@
 )
 
 (defwidget home-buttons []
-    (box :orientation "vertical"
+(box :orientation "vertical"
         :halign "center"
         :spacing "${round(12 * get_env("EWW_SCALE"), 0)}"
         ;:style "border: 1px solid #f00"
         (icon-filled
-            :icon ""
-            :onclick "~/.config/eww/scripts/screenshot.sh &"
-            :onrightclick "sleep 5 && ~/.config/eww/scripts/screenshot.sh &"
+            :icon "add_a_photo"
+            :onclick "${eww_scripts}/screenshot.sh &"
+            :onrightclick "sleep 5 && ${eww_scripts}/screenshot.sh &"
             :class "primary"
         )
-        (icon-filled :icon "" :onclick "" :class "secondary")
-        (icon-filled :icon "" :onclick "" :class "tertiary")
+        (icon-filled :icon "palette" :onclick "${eww_scripts}/dialog.sh open changetheme &" :class "secondary")
+        (icon-filled :icon "refresh" :onclick "eww reload" :class "tertiary")
     )
 )
 

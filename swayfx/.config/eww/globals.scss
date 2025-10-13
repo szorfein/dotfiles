@@ -1,3 +1,14 @@
+// core code about elevation
+// https://github.com/material-components/material-web/blob/main/elevation/internal/_elevation.scss
+$elevate1: 0 dpi(1px) dpi(3px) dpi(1px) rgba($shadow, 0.32);
+$elevate2: 0 dpi(2px) dpi(6px) dpi(2px) rgba($shadow, 0.32);
+$elevate3: 0 dpi(4px) dpi(8px) dpi(3px) rgba($shadow, 0.32);
+
+$easing-fast-spatial: cubic-bezier(0.42, 1.67, 0.21, 0.9) 0.35s;
+$easing-fast: cubic-bezier(0.31, 0.94, 0.34, 1) 0.15s;
+
+$rounding-extra-large: dpi(28px);
+
 .mt-16 {
   margin-top: dpi(16px);
 }

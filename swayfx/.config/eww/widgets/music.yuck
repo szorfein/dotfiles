@@ -11,7 +11,7 @@
                 :space-evenly false
                 (slider-horizontal :max "${media.length}"
                     :value "${media.position}"
-                    :onchange "~/.config/eww/scripts/media.sh pos {} &"
+                    :onchange "${eww_scripts}/media.sh pos {} &"
                 )
                 (box :orientation "horizontal"
                     ;:space-evenly false
@@ -19,7 +19,7 @@
                     (icon-button 
                         :height 48
                         :icon ""
-                        :onclick "~/.config/eww/scripts/dialog.sh open playlists &"
+                        :onclick "${eww_scripts}/dialog.sh open playlists &"
                     )
                     ""
                     ""
@@ -62,7 +62,7 @@
                         :class {media.playing == "Playing" ? "enabled" : "disabled" }
                         :onclick "playerctl play-pause &"
                     )
-                    (icon-button :icon "" :onclick "~/.config/eww/scripts/media.sh next &")
+                    (icon-button :icon "" :onclick "${eww_scripts}/media.sh next &")
                 )
             )
         )
@@ -72,9 +72,9 @@
 (defwidget music-buttons []
     (box :orientation "horizontal"
         :space-evenly true
-        (button-tonal-vert :text "WEB" :class {media.web-active ? "enabled" : "disabled"} :icon "" :onclick "~/.config/eww/scripts/media.sh web-toggle &")
-        (button-tonal-vert :text "MPD" :class {media.mpd-active ? "enabled" : "disabled"} :icon "" :onclick "~/.config/eww/scripts/media.sh mpd-toggle &")
-        (button-tonal-vert :text "MPV" :class {media.mpv-active ? "enabled" : "disabled"} :icon "" :onclick "~/.config/eww/scripts/media.sh mpv-toggle &")
+        (button-tonal-vert :text "WEB" :class {media.web-active ? "enabled" : "disabled"} :icon "" :onclick "${eww_scripts}/media.sh web-toggle &")
+        (button-tonal-vert :text "MPD" :class {media.mpd-active ? "enabled" : "disabled"} :icon "" :onclick "${eww_scripts}/media.sh mpd-toggle &")
+        (button-tonal-vert :text "MPV" :class {media.mpv-active ? "enabled" : "disabled"} :icon "" :onclick "${eww_scripts}/media.sh mpv-toggle &")
     )
 )
 
@@ -84,7 +84,7 @@
         :max 100
         :icon ""
         :label "Volume"
-        :onchange "~/.config/eww/scripts/volume.sh set {} &"
+        :onchange "${eww_scripts}/volume.sh set {} &"
     )
 )
 
@@ -110,7 +110,7 @@
                             :hexpand true
                             (list-item
                                 :text pl
-                                :onclick "~/.config/eww/scripts/mpc.sh load ${pl} &"
+                                :onclick "${eww_scripts}/mpc.sh load ${pl} &"
                                 :class { playlist-focus == "${pl}" ? "enabled" : "disabled" }
                             )
                         )
@@ -136,7 +136,7 @@
                 (for pl in mpd-playlists
                     (chip-filter
                         :text "${pl}"
-                        :onclick "~/.config/eww/scripts/mpc.sh load ${pl} &"
+                        :onclick "${eww_scripts}/mpc.sh load ${pl} &"
                 ;eww update playlist-focus=${pl} && mpc clear && mpc load ${pl} && mpc play"
                         :class { playlist-focus == "${pl}" ? "enabled" : "disabled" }
                     )

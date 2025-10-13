@@ -108,8 +108,82 @@ cat <<EOF > "$workdir/.config/eww/styles/typography.scss"
 // material(3) use 2 fonts mainly and name it:
 // md.ref.typeface.brand
 // md.ref.typeface.plain
-@import 'brand-demova.scss';
-@import 'plain-iosevka.scss';
+\$brand: 'Demova';
+\$plain: 'Iosevka Nerd Font';
+
+.display-large {
+  font-family: \$brand;
+  font-size: dpi(50pt);
+  letter-spacing: dpi(-0.25pt);
+  font-weight: 400;
+}
+
+.display-small {
+  font-family: \$brand;
+  font-size: dpi(46pt);
+  letter-spacing: 0;
+  font-weight: 400;
+}
+
+.headline-small {
+  font-family: \$brand;
+  font-size: dpi(54pt);
+  font-weight: 400;
+  letter-spacing: 0;
+  color: \$on-surface;
+}
+
+// https://m3.material.io/styles/typography/type-scale-tokens
+
+.title-small {
+  font-family: \$plain;
+  font-size: dpi(14pt);
+  font-weight: 500;
+  min-height: dpi(20pt);
+  letter-spacing: dpi(0.1pt);
+}
+
+.body-large {
+  font-family: \$plain;
+  font-weight: 400;
+  font-size: dpi(16pt);
+  letter-spacing: dpi(0.5pt);
+}
+
+.body-medium {
+  font-family: \$plain;
+  font-weight: 400;
+  font-size: dpi(14pt);
+  min-height: dpi(20pt);
+  // also named font-tracking
+  letter-spacing: dpi(0.25pt);
+  color: \$on-surface-variant;
+}
+
+.body-small {
+  font-family: \$plain;
+  font-weight: 400;
+  font-size: dpi(12pt);
+  min-height: dpi(16pt);
+  // also named font-tracking
+  letter-spacing: dpi(0.4pt);
+}
+
+.label-large {
+  font-family: \$plain;
+  font-size: dpi(14pt);
+  font-weight: 500;
+  letter-spacing: dpi(0.1pt);
+  min-height: dpi(20px);
+}
+
+.label-medium {
+  font-family: \$plain;
+  font-size: dpi(12pt);
+  font-weight: 500;
+  letter-spacing: dpi(0.5pt);
+  min-height: dpi(16px);
+}
 EOF
 
 cat <<EOF > "$workdir/.config/eww/styles/colors.scss"
@@ -454,38 +528,13 @@ EOF
 cat <<EOF > "$workdir/.config/dunst/dunstrc.d/10-bytheme.conf"
 # To display terminal icon: (nerd-font, icomoon)
 # echo "\u<code>", e.g: echo "\uf09c2"
-#
 [global]
-    # Text
     font = IosevkaTerm Nerd Font 14
-
-# Defines width in pixels of frame around the notification window.
-    # Set to 0 to disable.
     frame_width = 4
-
-# Defines color of the frame around the notification window.
     frame_color = "$inverse_on_surface" # inverse-on-surface
-
-# The format of the message.  Possible variables are:
-    #   %a  appname
-    #   %s  summary
-    #   %b  body
-    #   %c  category
-    #   %S  stack_tag
-    #   %i  iconname (including its path)
-    #   %I  iconname (without its path)
-    #   %p  progress value if set ([  0%] to [100%]) or nothing
-    #   %n  progress value if set without any extra characters
-    #   %%  literal %
-    # Markup is allowed
-# format = "<b>%s</b>\n%b"
-# foreground use inverse-on-surface color
-# rise seem lowered the horizontal line
-    format = "<span rise='-6000' font_desc='icomoon 24'>%I</span><span foreground='$inverse_on_surface'>  %s</span>\n<span rise='-4000' font_desc='Iosevka Nerd Font Mono 24' foreground='$inverse_on_surface'>  </span><span foreground='$inverse_on_surface'>%b</span>"
+    format = "<span rise='-5000' font_desc='Material Symbols Outlined Regular 20'>%I</span><span foreground='$inverse_on_surface'> %s</span><span font_desc='Iosevka Nerd Font Regular 14' foreground='$inverse_on_surface'> &gt; %b</span>"
 
 [urgency_low]
-    # IMPORTANT: colors have to be defined in quotation marks.
-    # Otherwise the "#" and following would be interpreted as a comment.
     background = "$inverse_surface" # inverse-surface
     foreground = "$inverse_primary" # inverse-primary
     timeout = 5
@@ -501,8 +550,8 @@ cat <<EOF > "$workdir/.config/dunst/dunstrc.d/10-bytheme.conf"
     default_icon = dialog-information
 
 [urgency_critical]
-    background = "$inverse_surface"
-    foreground = "$error"
+    background = "$error"
+    foreground = "$on_error"
     frame_color = "$error"
     timeout = 0
     override_pause_level = 60

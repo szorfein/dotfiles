@@ -1,6 +1,6 @@
 (defwindow powermenu :monitor 0
-                     :geometry (geometry :x 0
-                                         :y 0
+                     :geometry (geometry :x "0%"
+                                         :y "0%"
                                          :width "100%"
                                          :height "100%"
                                          :anchor "left center")
@@ -12,75 +12,34 @@
         :reveal "${powermenu-visible}"
         (eventbox :halign "fill"
             :valign "fill"
-            :onclick "~/.config/eww/scripts/dialog.sh close powermenu &"
+            :onclick "${eww_scripts}/dialog.sh close powermenu &"
             :class "powermenu"
 
-            (box :halign "center"
-                :valign "center"
-                :space-evenly false
-                :class "dialog"
-
-                (box :height "100%" :width "100%" :vexpand true :hexpand true :class "dialog-tint"
-                    (box :class "container"
-                        :vexpand true
-                        :valign "center"
-                        :orientation "vertical"
-                        :space-evenly false
-                        :spacing 8
-                        ; title
-                        (sicon :icon "logout")
-                        (box :class "headline-small"
-                            :style "line-height: 32pt"
-                            "Logout"
-                        )
-                        (box :halign "center" 
-                         :spacing 8
-                         :orientation "horizontal"
-                         (card-icon :icon "power_off" :title "Poweroff" :onclick "")
-                         (card-icon :icon "bedtime" :title "Hibernate" :onclick "")
-                         (card-icon :icon "logout" :title "Quit Sway" :onclick "")
-                         (card-icon :icon "lock" :title "Lock" :onclick "")
-                        )
-                        (box :halign "end"
-                         :space-evenly false
-                         (button-text :text "Ok" :onclick "~/.config/eww/scripts/dialog.sh close powermenu &")
-                        )
-                    )
-                )
-            )
-        )
-    )
-)
-
-; sicon: simple icon
-(defwidget sicon [icon]
-    (box :halign "center" 
-         :class "sicon"
-         icon
-    )
-)
-
-(defwidget card-icon [icon title onclick]
-    (box :class "card-icon"
-        (button :class "icon-button"
-                :onclick "${onclick}"
-            (box :orientation "vertical"
-                (box :class "icon" icon)
-                (box :class "title-small" title)
+            (dialog :icon "logout" :title "Logout"
+                 (box :halign "center" 
+                      :spacing 8
+                      :orientation "horizontal"
+                      (card-icon :icon "power_off" :title "Poweroff" :onclick "")
+                      (card-icon :icon "bedtime" :title "Hibernate" :onclick "")
+                      (card-icon :icon "logout" :title "Quit Sway" :onclick "sway exit")
+                      (card-icon :icon "lock" :title "Lock" :onclick "")
+                 )
+                 (box :halign "end"
+                      :space-evenly false
+                      (button-text :text "Ok" :onclick "${eww_scripts}/dialog.sh close powermenu &")
+                 )
             )
         )
     )
 )
 
 (defwidget button-text [text onclick]
- ; height 50, if the widget 'dance', increase the value
- (box :class "button-text" :height 50
-  (button :onclick "${onclick}"
-  (box :class "label-large"
-    text
-  )
-  )
- )
+    ; height 50, if the widget 'dance', increase the value
+    (box :class "button-text" :height 50
+        (button :onclick "${onclick}"
+            (box :class "label-large" text)
+        )
+    )
 )
 
 (defvar powermenu-visible false)
