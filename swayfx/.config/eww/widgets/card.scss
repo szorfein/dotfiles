@@ -33,6 +33,7 @@
     box-shadow: $elevate1;
     background-color: $surface-container-low;
     color: $on-surface;
+    border: 1px solid transparent;
     border-radius: dpi(16px);
     &:hover {
       background-color: rgba($surface-tint, 0.08);

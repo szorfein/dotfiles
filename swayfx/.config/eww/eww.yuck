@@ -2,6 +2,7 @@
 (include "./globals.yuck")
 
 (include "./widgets/button.yuck")
+(include "./widgets/button-groups.yuck")
 (include "./widgets/card.yuck")
 (include "./widgets/dialog.yuck")
 (include "./widgets/slider.yuck")

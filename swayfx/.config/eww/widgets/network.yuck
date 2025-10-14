@@ -62,7 +62,43 @@
     )
 )
 
+; one line of buttons
+(defwidget button-groups-networks []
+    (box :space-evenly false
+         :spacing 8
+         :halign "center"
+         :hexpand false
+        (button-groups-icon-text :icon "invert_colors" :text "Tor" :onclick "" :class { tor-enabled ? "enabled" : ""})
+        (button-groups-icon-text :icon "wifi" :text "openwrt" :onclick "")
+    )
+)
+
+; one line of buttons
+(defwidget button-groups-multimedia []
+    (box :space-evenly false
+         :spacing 8
+         :halign "center"
+        (button-groups-icon :icon "videocam" :onclick "")
+        (button-groups-icon :icon "${audio["muted-icon"]}" :onclick "${eww_scripts}/alsa-audio.sh toggle &" :class { audio["muted"] ? "" : "enabled"})
+        (button-groups-icon :icon "mic_off" :onclick "")
+    )
+)
+
+(defwidget music-volume []
+    (slider-horizontal-m3
+        :value "${audio["volume"]}"
+        :max 100
+        :icon ""
+        :label "Volume"
+        :onchange "${eww_scripts}/alsa-audio.sh set {} &"
+    )
+)
+
 ; all vars
+(defpoll audio :interval "5m"
+               :initial "{}"
+               `~/.config/eww/scripts/alsa-audio.sh`
+)
 (defvar wifi-killed false)
 (defvar tor-enabled false)
 (defvar wifi-on false)

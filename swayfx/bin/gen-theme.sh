@@ -198,6 +198,7 @@ cat <<EOF > "$workdir/.config/eww/styles/colors.scss"
 \$bg: $surface;
 \$surface: $surface;
 \$on-surface: $on_surface;
+\$surface-container: $surface_container;
 \$surface-container-low: $surface_container_low;
 \$surface-container-high: $surface_container_high;
 \$surface-container-highest: $surface_container_highest;

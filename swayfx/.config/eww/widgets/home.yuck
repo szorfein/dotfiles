@@ -199,7 +199,7 @@
         :class "home-slide"
         :valign "center"
         ;:space-evenly false
-        (slider-horizontal-m3 :min 1 :max 100 :value "${brightness}" :icon "" :label "Brightness" :onchange "light -S {}")
+        (slider-horizontal-m3 :min 1 :max 100 :value "${brightness}" :icon "brightness_2" :label "Brightness" :onchange "light -S {}")
     )
 )
 

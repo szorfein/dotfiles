@@ -122,6 +122,8 @@
                     (network-stats)
                     (network-buttons)
                     (network-ssids)
+                    (button-groups-networks)
+                    (button-groups-multimedia)
                 )
             )
         )

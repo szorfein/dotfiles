@@ -78,16 +78,6 @@
     )
 )
 
-(defwidget music-volume []
-    (slider-horizontal-m3
-        :value "${volume}"
-        :max 100
-        :icon ""
-        :label "Volume"
-        :onchange "${eww_scripts}/volume.sh set {} &"
-    )
-)
-
 (defwidget music-playlist []
     (box :orientation "vertical"
         :space-evenly false
@@ -155,7 +145,6 @@
 
 ; all vars 
 (defvar playlist-name "")
-(defvar volume 0)
 (defvar mpd-playlists "[]")
 (defvar playlist-focus "")
 

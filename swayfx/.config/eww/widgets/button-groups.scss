@@ -1,0 +1,84 @@
+.button-groups-icon {
+  font-family: 'Material Symbols Outlined';
+  font-size: dpi(28px);
+  font-weight: 500;
+  color: $on-surface-variant;
+  border-radius: 50%;
+  background-color: $surface-container;
+  border: 1px solid transparent;
+  transition:
+    border-radius $easing-fast-spatial,
+    box-shadow $easing-fast,
+    background-color $easing-fast,
+    color $easing-fast,
+    margin $easing-fast,
+    padding $easing-fast-spatial;
+  button {
+    padding: 0 dpi(16px);
+    &:active {
+      //padding: 0 1rem;
+      padding: 0 dpi(24px);
+    }
+    &:hover {
+      background-color: $surface-container-highest;
+      border-radius: 50%;
+    }
+    &.enabled {
+      background-color: $primary;
+      color: $on-primary;
+      border-radius: 50%;
+      &:active {
+        padding: 0 dpi(16px);
+      }
+    }
+  }
+}
+
+.button-groups-icon-text {
+  color: $on-surface-variant;
+  border-radius: 25%;
+  background-color: $surface-container;
+  border: 1px solid transparent;
+  button {
+    padding: 0 dpi(16px);
+    transition:
+      border-radius $easing-fast-spatial,
+      box-shadow $easing-fast,
+      background-color $easing-fast,
+      color $easing-fast,
+      padding $easing-fast-spatial,
+      margin $easing-fast;
+    &:active {
+      padding: 0 dpi(17px);
+    }
+    &:hover {
+      background-color: $surface-container-highest;
+      border-radius: 25%;
+    }
+    .icon {
+      font-family: 'Material Symbols Outlined';
+      font-size: dpi(28px);
+      font-weight: 500;
+    }
+    .label-large {
+      color: $on-surface-variant;
+      //text-wrap: balance;
+    }
+    &.enabled {
+      border-radius: 25%;
+      background-color: $primary;
+      padding: 0 dpi(16px);
+      .icon {
+        color: $on-primary;
+      }
+      .label-large {
+        color: $on-primary;
+        //text-wrap: balance;
+      }
+      &:active {
+        //padding: 0 1rem;
+        padding: 0 dpi(16px);
+      }
+    }
+  }
+}
