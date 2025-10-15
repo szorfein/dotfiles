@@ -21,9 +21,25 @@
     color: $on-surface;
   }
   &.disabled {
-    color: rgba($on-surface, .38);
+    color: rgba($on-surface, 0.38);
   }
   & button:hover {
-    background-color: rgba($on-surface, .08);
+    background-color: rgba($on-surface, 0.08);
+  }
+}
+.list-normal {
+  color: $on-surface;
+  border-bottom: 1px solid $outline;
+}
+
+.list-with-icon {
+  border-bottom: 1px solid $outline;
+  button {
+    .icon {
+      font-family: 'Material Symbols Outlined';
+      font-size: dpi(24pt);
+      font-weight: 400;
+      color: $primary;
+    }
   }
 }

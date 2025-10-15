@@ -119,11 +119,12 @@
                 (box :orientation "vertical"
                     :spacing "${round(16 * get_env("EWW_SCALE"), 0)}"
                     :space-evenly false
-                    (network-stats)
-                    (network-buttons)
-                    (network-ssids)
+                    (button-groups-wifi)
                     (button-groups-networks)
                     (button-groups-multimedia)
+                    (network-ssids)
+                    (network-stats)
+                    (last-events)
                 )
             )
         )

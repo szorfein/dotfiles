@@ -57,10 +57,10 @@
                 (box :orientation "horizontal"
                     :halign "center"
                     (icon-button :icon "" :onclick "playerctl previous &")
-                    (icon-outlined
-                        :icon {media.playing == "Playing" ? "" : "" }
-                        :class {media.playing == "Playing" ? "enabled" : "disabled" }
+                    (button-groups-icon
+                        :icon {media["playing"] =~ "^Play" ? "pause" : "play_arrow"}
                         :onclick "playerctl play-pause &"
+                        :class {media.playing == 'Playing' ? 'enabled' : ''}
                     )
                     (icon-button :icon "" :onclick "${eww_scripts}/media.sh next &")
                 )

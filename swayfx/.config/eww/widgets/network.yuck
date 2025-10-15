@@ -1,41 +1,14 @@
 (defwidget network-stats []
-    (box
-        (box :orientation "horizontal"
-            (box :orientation "vertical"
-                "Download"
-                "${round(EWW_NET.lo.NET_DOWN / 1000000, 2)}MB/s"
-            )
+    (box :orientation "horizontal"
+         :class "network-stats"
+         :space-evenly false
+        (box :space-evenly false
+            (box :class "icon-primary" "download_2")
+            (box :class "label-small" "${round(EWW_NET.lo.NET_DOWN / 1000000, 2)}MB/s")
         )
-        (box :orientation "horizontal"
-            (box :orientation "vertical"
-                "Upload"
-                "${round(EWW_NET.lo.NET_UP / 1000000, 2)}MB/s"
-            )
-        )
-    )
-)
-
-(defwidget network-buttons []
-    (box
-        :orientation "horizontal"
-        :halign "center"
-        :space-evenly false
-        :spacing "${round(16 * get_env("EWW_SCALE"), 0)}"
-        :height "${round(48 * get_env("EWW_SCALE"), 0)}"
-        (icon-filled-tonal
-            :icon ""
-            :onclick "spior -r &"
-            :class { tor-enabled ? "enabled" : "disabled" }
-        )
-        (icon-filled-tonal
-            :icon ""
-            :onclick "${eww_scripts}/network.sh wifi-toggle &"
-            :class { wifi-killed ? "enabled" : "disabled" }
-        )
-        (icon-filled-tonal 
-            :icon ""
-            :onclick ""
-            :class { wifi-on ? "enabled" : "disabled" }
+        (box :space-evenly false
+            (box :class "icon-tertiary" "upload_2")
+            (box :class "label-small" "${round(EWW_NET.lo.NET_UP / 1000000, 2)}MB/s")
         )
     )
 )
@@ -55,17 +28,29 @@
                 :orientation "vertical"
                 :space-evenly false
                 (for ssid in wifi-ssids
-                    (list-item :class "body-large" :text {ssid.connected ? "[A] ${ssid.name}" : "${ssid.name}"})
+                    ;(list-item :class "body-large" :text {ssid.connected ? "[A] ${ssid.name}" : "${ssid.name}"})
+                    (list-item-normal :text {ssid.connected ? "[A] ${ssid.name}" : "${ssid.name}"})
+                    ;(box :class "label-medium" "${ssid.name}")
                 )
             )
         )
     )
 )
 
+(defwidget button-groups-wifi []
+    (box :space-evenly false
+         :spacing "${round(8 * get_env("EWW_SCALE"), 0)}"
+         :halign "center"
+         :hexpand false
+        (button-groups-icon :icon wifi-killed-icon :onclick "${eww_scripts}/network.sh wifi-toggle &" :class { wifi-killed ? "enabled" : ""})
+        (button-groups-icon :icon "system_update_alt" :onclick "")
+    )
+)
+
 ; one line of buttons
 (defwidget button-groups-networks []
     (box :space-evenly false
-         :spacing 8
+         :spacing "${round(6 * get_env("EWW_SCALE"), 0)}"
          :halign "center"
          :hexpand false
         (button-groups-icon-text :icon "invert_colors" :text "Tor" :onclick "" :class { tor-enabled ? "enabled" : ""})
@@ -76,7 +61,7 @@
 ; one line of buttons
 (defwidget button-groups-multimedia []
     (box :space-evenly false
-         :spacing 8
+         :spacing "${round(8 * get_env("EWW_SCALE"), 0)}"
          :halign "center"
         (button-groups-icon :icon "videocam" :onclick "")
         (button-groups-icon :icon "${audio["muted-icon"]}" :onclick "${eww_scripts}/alsa-audio.sh toggle &" :class { audio["muted"] ? "" : "enabled"})
@@ -94,12 +79,36 @@
     )
 )
 
+(defwidget last-events []
+    (box :orientation "vertical"
+         :space-evenly false
+         :spacing "${round(16 * get_env("EWW_SCALE"), 0)}"
+        (box :class "label-large"
+            :halign "start"
+            "Last events"
+        )
+        (scroll :hscroll false :vscroll true
+                :class "last-events"
+            (for event in events
+                (list-with-icon :icon "${event.icon}"
+                                :title "${event.title}"
+                                :text "${event.msg}"
+                                :time "${event.time}"
+                                :action "${event.action}"
+                )
+            )
+        )
+    )
+)
+
 ; all vars
 (defpoll audio :interval "5m"
                :initial "{}"
                `~/.config/eww/scripts/alsa-audio.sh`
 )
 (defvar wifi-killed false)
+(defvar wifi-killed-icon "airplanemode_inactive")
 (defvar tor-enabled false)
 (defvar wifi-on false)
 (defvar wifi-ssids "[]")
+(defvar events "[{\"icon\":\"pause\",\"title\":\"system\",\"msg\":\"updated\",\"time\":\"11:50\",\"action\":\"footclient\"},{\"icon\":\"play\",\"title\":\"music\",\"msg\":\"Playing MasterbootRecord\",\"time\":\"11:56\",\"action\":\"footclient\"}]")

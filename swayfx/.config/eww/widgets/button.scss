@@ -96,28 +96,6 @@
   }
 }
 
-.icon-filled-tonal {
-  font-family: 'Material Symbols Outlined';
-  font-size: dpi(24px);
-  min-height: dpi(40px);
-  min-height: dpi(40px);
-  background-color: $secondary-container;
-  color: $on-secondary-container;
-  border-radius: 50%; // circular
-  &.enabled {
-    background-color: $secondary-container;
-    color: $on-secondary-container;
-  }
-  &.disabled {
-    background-color: rgba($on-surface, 0.12);
-    color: rgba($on-surface, 0.38);
-  }
-  & button:hover {
-    background-color: rgba($on-secondary-container, 0.08);
-    border-radius: 50%; // circular
-  }
-}
-
 .icon-outlined {
   font-family: 'Material Symbols Outlined';
   font-size: dpi(24px);

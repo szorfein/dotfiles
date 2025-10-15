@@ -20,18 +20,6 @@
     )
 )
 
-(defwidget icon-filled-tonal [?icon onclick ?class]
-    (box :class "icon-filled-tonal ${class}"
-        (button :onclick onclick
-            (box :orientation "horizontal"
-                :valign "center" :halign "center"
-                :height 48 :width 48
-                icon
-            )
-        )
-    )
-)
-
 (defwidget icon-outlined [?icon onclick ?class]
     (box :class "icon-outlined ${class}"
         (button :onclick onclick

@@ -1,6 +1,30 @@
 .network-scroll {
   margin-top: dpi(8px);
-  min-height: dpi(400px);
-  background-color: $surface-container-low;
+  min-height: dpi(160px);
+  background-color: $surface-container-highest;
   border-radius: dpi(24px);
+  border-left: 0.25rem dotted $primary;
+  padding: dpi(8px) dpi(16px);
+}
+
+.last-events {
+  box-shadow: $elevate1;
+  background-color: $surface-container-low;
+  color: $on-surface;
+  padding: dpi(16px);
+  min-height: dpi(160px);
+  border-radius: dpi(24px);
+}
+.network-stats {
+  padding: dpi(16px) 0;
+  .icon-primary {
+    font-family: 'Material Symbols Outlined';
+    font-size: dpi(24pt);
+    color: $primary;
+  }
+  .icon-tertiary {
+    font-family: 'Material Symbols Outlined';
+    font-size: dpi(24pt);
+    color: $tertiary;
+  }
 }
