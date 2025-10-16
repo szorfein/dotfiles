@@ -1,3 +1,11 @@
+- New logout screen with basic action 'poweroff', 'hibernate', 'quit Sway' and
+  'lock screen'.
+- New changetheme widget (dialog), can switch between Holy and Jinx (or Chaos
+  we'll see) for now.
+- New set of icons widgets from
+  [m3 button-groups](https://m3.material.io/components/button-groups)
+- Neovim: add shfmt to format shell script.
+
 ## v3.6.0 - Oct. 6 2025
 
 - Add notification with Dunst for SwayFX.

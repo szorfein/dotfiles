@@ -1,5 +1,5 @@
 .date {
-  font-family: "demova";
+  font-family: $brand;
   font-size: dpi(66px);
   //letter-spacing: dpi(-0.25pt);
   min-height: dpi(66pt);
@@ -11,7 +11,7 @@
   }
 
   .daynb {
-    font-family: "demova";
+    font-family: $brand;
     //margin-left: dpi(6px);
     font-size: dpi(60px);
     margin-top: dpi(14px); // align
@@ -20,9 +20,6 @@
 }
 
 .time {
-  font-family: "demova";
-  font-size: dpi(50);
-  font-weight: 900;
   padding-bottom: dpi(16px);
   border-bottom: dpi(1px) solid $secondary;
   margin-bottom: dpi(8px);

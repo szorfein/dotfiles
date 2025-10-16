@@ -34,9 +34,11 @@ fi
 # $0 pos 60000000 - go to position 60
 if [ "$1" = "pos" ] ; then
     #echo "script called with $2"
-    INSEC=$(( $2 / 1000000 ))
-    #echo "convert $INSEC"
-    playerctl position "$INSEC"
+    # need to convert microsecond in second
+    TIME="$2"
+    LTIME=$(( TIME / 1000000))
+    RTIME=$(( TIME % 1000000))
+    playerctl position "$LTIME.$RTIME"
 fi
 
 pause_ply() {

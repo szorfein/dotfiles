@@ -1,0 +1,43 @@
+# -*- conf -*-
+[cursor]
+
+[colors]
+# alpha=1.0
+background=1A1111
+foreground=F1DEDD
+# flash=7f7f00
+# flash-alpha=0.5
+
+## Normal/regular colors (color palette 0-7)
+regular0=322827 # black
+regular1=fb5c67 # red
+regular2=edad74 # green
+regular3=f37e4e # yellow
+regular4=d369cb # blue
+regular5=f46889 # magenta
+regular6=c471e2 # cyan
+regular7=fcddf0 # white
+
+## Bright colors (color palette 8-15)
+bright0=534342 # bright black
+bright1=fe7378 # bright red
+bright2=ebca7c # bright green
+bright3=ffad4f # bright yellow
+bright4=e878eb # bright blue
+bright5=f986af # bright magenta
+bright6=dd89fd # bright cyan
+bright7=fccfe0 # bright white
+
+## dimmed colors (see foot.ini(5) man page)
+# dim0=<not set>
+# ...
+# dim7=<not-set>
+
+## Misc colors
+# selection-foreground=<inverse foreground/background>
+# selection-background=<inverse foreground/background>
+# jump-labels=<regular0> <regular3>          # black-on-yellow
+# scrollback-indicator=<regular0> <bright4>  # black-on-bright-blue
+search-box-no-match=EEBF6D 422D00  # black-on-red
+# search-box-match=<regular0> <regular3>     # black-on-yellow
+# urls=<regular3>

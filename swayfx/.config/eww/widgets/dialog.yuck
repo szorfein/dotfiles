@@ -1,0 +1,30 @@
+(defwidget dialog [icon title]
+    (box :halign "center"
+         :valign "center"
+         :space-evenly false
+         :class "dialog"
+        (box :height "100%" :width "100%" :vexpand true :hexpand true :class "dialog-tint"
+            (box :class "dialog-container"
+                 :vexpand true
+                 :valign "center"
+                 :orientation "vertical"
+                 :space-evenly false
+                 :spacing 8
+                 (sicon :icon icon)
+                 (box :class "headline-small"
+                      :style "line-height: 32pt"
+                      title
+                )
+                (children)
+            )
+        )
+    )
+)
+
+; sicon: simple icon
+(defwidget sicon [icon]
+    (box :halign "center" 
+         :class "sicon"
+         icon
+    )
+)

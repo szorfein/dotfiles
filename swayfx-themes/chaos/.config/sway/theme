@@ -1,0 +1,8 @@
+set $bg #1A1111
+set $fg #F1DEDD
+set $shadow #000000
+set $outline #534342
+set $bglight #1A1111
+set $error #EEBF6D
+set $theme chaos
+set $theme-bg ~/images/Anarchy-tmp.png

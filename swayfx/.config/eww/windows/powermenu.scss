@@ -1,19 +1,61 @@
+$curve-decel: cubic-bezier(0.05, 0.7, 0.1, 1);
+
+window.powermenu {
+  background: transparent;
+  //appearance: none;
+  animation: dialog-backdrop 0.4s;
+}
+
 .powermenu {
   // https://m3.material.io/styles/elevation/applying-elevation
   background: rgba($scrim, 0.32);
-  .dialog-content {
-    border: 0px solid #fff;
-    border-radius: dpi(28px);
-    min-width: dpi(280px);
-    background-color: $surface-container-high;
+  animation:
+    dialog-in $curve-decel 0.5s,
+    opacity $curve-decel 0.1s both;
+}
+
+@keyframes dialog-backdrop {
+  0% {
+    background-color: transparent;
   }
-  .dialog-tint {
-    background-color: rgba($surface-tint, 0.06);
-    background-size: 100% 100%;
-    border-radius: dpi(28px);
-    border: 0px solid $surface-container-high;
+
+  100% {
+    background: rgba($scrim, 0.1);
   }
-  .container {
-    padding: dpi(24px);
+}
+
+@keyframes dialog-in {
+  // 'transform' and 'clip-path:' don't work yet on eww/gtk
+  0% {
+    //transform: translate(-50%, -70%);
+    //clip-path: inset(0 0 100% 0 round $rounding-extra-large);
+  }
+
+  100% {
+    //transform: translate(-50%, -50%);
+    //clip-path: inset(0 0 0 0 round $rounding-extra-large);
+  }
+}
+
+.button-text {
+  color: $primary;
+  background: transparent;
+  button {
+    padding: dpi(16px);
+    border: 1px solid transparent;
+    border-radius: 1.25rem;
+    transition:
+      border-radius $easing-fast-spatial,
+      box-shadow $easing-fast,
+      background-color $easing-fast,
+      color $easing-fast,
+      margin $easing-fast,
+      padding $easing-fast-spatial;
+    &:hover {
+      background: rgba($primary, 0.08);
+      //color: $on-primary;
+      border: 1px solid transparent;
+      //padding: 0 1rem;
+    }
   }
 }

@@ -27,3 +27,38 @@
         )
     )
 )
+
+(defwidget list-item-normal [text]
+    (box :orientation "horizontal"
+         :class "list-normal"
+         :height "${round(56 * get_env("EWW_SCALE"), 0)}"
+        (box :halign "start" :class "body-large" text)
+    )
+)
+
+(defwidget list-with-icon [icon title text time action]
+    (box :orientation "horizontal"
+         :class "list-with-icon"
+         :space-evenly false
+         :halign "fill"
+         :valign "start"
+         :hexpand true
+         :height "${round(56 * get_env("EWW_SCALE"), 0)}"
+        (button :onclick "${action} &"
+            (box :orientation "horizontal"
+                 :space-evenly false
+                 :halign "fill"
+                 :hexpand true
+                 :spacing "${round(16 * get_env("EWW_SCALE"), 0)}"
+
+            (box :class "icon" icon)
+            (box :orientation "vertical"
+                 :space-evenly false
+                (box :halign "start" :class "label-medium" title)
+                (box :class "body-medium" text)
+            )
+            (box :halign "end" :class "label-small" time)
+         )
+        )
+    )
+)
