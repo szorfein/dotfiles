@@ -4,21 +4,30 @@
 //@import "brand-yotags.scss";
 //@import "plain-iosevka.scss";
 
-$brand: 'Y-Yo Tags';
-$plain: 'Iosevka Nerd Font';
+//$brand: 'Y-Yo Tags';
+// weird $brand: "FUNNY CHAOS";
+// no change on Number $brand: "Tagster";
+// challenger $brand: "TAGLINER";
+$brand: "TAGLINER";
+$plain: "Iosevka Nerd Font";
 
 .display-large {
   font-family: $brand;
-  font-size: dpi(60pt);
+  //font-size: dpi(60pt);
+  font-size: dpi(52pt);
   letter-spacing: dpi(-4pt);
-  font-weight: 400;
+  font-weight: 500;
 }
 
 .display-small {
   font-family: $brand;
-  font-size: dpi(56pt);
+  //font-size: dpi(56pt);
+  //font-size: dpi(55pt);
+  font-size: dpi(44pt);
   letter-spacing: 0;
-  font-weight: 400;
+  //letter-spacing: dpi(-4pt);
+  //font-weight: 400;
+  font-weight: 600;
 }
 
 .headline-small {

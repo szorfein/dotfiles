@@ -121,9 +121,9 @@
                     :space-evenly false
                     (button-groups-wifi)
                     (button-groups-networks)
-                    (button-groups-multimedia)
-                    (network-ssids)
                     (network-stats)
+                    (network-ssids)
+                    (button-groups-multimedia)
                     (last-events)
                 )
             )

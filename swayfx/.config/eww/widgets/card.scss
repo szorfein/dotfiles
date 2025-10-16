@@ -13,13 +13,13 @@
     color: $on-surface;
     padding: dpi(16px);
     border-radius: dpi(16px);
+    transition:
+      transform 0.3s,
+      border-radius 0.3s,
+      padding 0.3s;
     &:hover {
       background-color: rgba($surface-tint, 0.08);
       box-shadow: $elevate2;
-      transition:
-        transform 0.3s,
-        border-radius 0.3s,
-        padding 0.3s;
     }
     .icon {
       font-family: 'Material Symbols Outlined';
@@ -35,13 +35,13 @@
     color: $on-surface;
     border: 1px solid transparent;
     border-radius: dpi(16px);
+    transition:
+      transform 0.3s,
+      border-radius 0.3s,
+      padding 0.3s;
     &:hover {
       background-color: rgba($surface-tint, 0.08);
       box-shadow: $elevate2;
-      transition:
-        transform 0.3s,
-        border-radius 0.3s,
-        padding 0.3s;
     }
     image {
       border: 1px solid transparent;
