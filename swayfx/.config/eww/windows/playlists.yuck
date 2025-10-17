@@ -1,6 +1,6 @@
 (defwindow playlists :monitor 0
-                     :geometry (geometry :x 0
-                                         :y 0
+                     :geometry (geometry :x "0%"
+                                         :y "0%"
                                          :width "100%"
                                          :height "200%"
                                          :anchor "left center")
@@ -12,7 +12,7 @@
         :reveal "${playlists-visible}"
         (eventbox :halign "fill"
             :valign "fill"
-            :onclick "~/.config/eww/scripts/dialog.sh close playlists &"
+            :onclick "${eww_scripts}/dialog.sh close playlists &"
             :class "powermenu"
 
             (box :halign "center"
@@ -37,7 +37,7 @@
                         (centerbox
                             ""
                             (input :class "text-field body-large"
-                                :onaccept "~/.config/eww/scripts/mpc.sh create {} && ~/.config/eww/scripts/dialog.sh close playlists &"
+                                :onaccept "${eww_scripts}/mpc.sh create {} && ${eww_scripts}/dialog.sh close playlists &"
                                 :value ""
                             )
                             ""

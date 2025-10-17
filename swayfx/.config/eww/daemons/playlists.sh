@@ -13,5 +13,5 @@ echo "$$">/tmp/daemon-playlists
 
 while :; do
     ~/.config/eww/scripts/mpc.sh update
-    sleep 99
+    exec sleep 99
 done

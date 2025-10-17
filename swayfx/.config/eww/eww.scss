@@ -8,7 +8,7 @@
 @function dpi($value) {
   $unit: if(unitless($value), null, unit($value));
 
-  @if ($unit == "px" or $unit == "pt") {
+  @if ($unit == 'px' or $unit == 'pt') {
     @return ($value * $scale);
   } @else {
     // Return the original value if it's not px or pt
@@ -16,11 +16,13 @@
   }
 }
 
+@import 'styles/colors.scss';
 @import 'globals.scss';
-@import 'colors.scss';
-@import 'typography.scss';
+@import 'styles/typography.scss';
 
 @import 'widgets/button.scss';
+@import 'widgets/button-groups.scss';
+@import 'widgets/dialog.scss';
 @import 'widgets/progressbar.scss';
 @import 'widgets/slider.scss';
 @import 'widgets/card.scss';
@@ -43,4 +45,3 @@ window background {
 .bar {
   background-color: $bg;
 }
-

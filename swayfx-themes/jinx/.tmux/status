@@ -1,0 +1,25 @@
+# style come from https://github.com/gh0stzk/dotfiles/blob/master/config/tmux/tmux.conf
+
+# status line
+set-option -g status-style fg='black',bg='default'
+
+# --
+set-option -g status-fg 'default'
+set-option -g status-bg '#231919' #surfaceContainerLow
+set -g status-justify left
+
+# -- left 
+set-option -g status-left-style none
+set -g status-left-length 60
+set -g status-left ''
+
+# -- right
+set-option -g status-right-style none
+set -g status-right-length 60
+set -g status-right '#[fg=green]#[fg=black,bg=green] #[fg=white,bg=black] #W #[fg=cyan]#[fg=black,bg=cyan] #[fg=white,bg=black] #{p:pane_current_path} #[fg=magenta]#[fg=black,bg=magenta] #[fg=white,bg=black] #S '
+
+# -- center
+set -g window-status-separator "#[bg=default] "
+set -g window-status-current-format "#[fg=white,bg=black] #W #[fg=black,bg=brightred] #I#[fg=brightred,bg=default]"
+set -g window-status-format "#[fg=white,bg=black] #W #[fg=black,bg=yellow] #I#[fg=yellow,bg=default]"
+

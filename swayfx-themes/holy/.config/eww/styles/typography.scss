@@ -1,14 +1,35 @@
-// https://m3.material.io/styles/typography/type-scale-tokens
+// material(3) use 2 fonts mainly and name it:
+// md.ref.typeface.brand
+// md.ref.typeface.plain
+$brand: 'Demova';
+
+.display-large {
+  font-family: $brand;
+  font-size: dpi(50pt);
+  letter-spacing: dpi(-0.25pt);
+  font-weight: 400;
+}
+
+.display-small {
+  font-family: $brand;
+  font-size: dpi(46pt);
+  letter-spacing: 0;
+  font-weight: 400;
+}
+
 .headline-small {
-  font-family: "demova";
-  font-size: dpi(24pt);
+  font-family: $brand;
+  font-size: dpi(54pt);
   font-weight: 400;
   letter-spacing: 0;
   color: $on-surface;
 }
 
+// https://m3.material.io/styles/typography/type-scale-tokens
+$plain: 'Iosevka Nerd Font';
+
 .title-small {
-  font-family: "Iosevka Nerd Font";
+  font-family: $plain;
   font-size: dpi(14pt);
   font-weight: 500;
   min-height: dpi(20pt);
@@ -16,14 +37,14 @@
 }
 
 .body-large {
-  font-family: "Iosevka Nerd Font";
+  font-family: $plain;
   font-weight: 400;
   font-size: dpi(16pt);
   letter-spacing: dpi(0.5pt);
 }
 
 .body-medium {
-  font-family: "Iosevka Nerd Font";
+  font-family: $plain;
   font-weight: 400;
   font-size: dpi(14pt);
   min-height: dpi(20pt);
@@ -33,7 +54,7 @@
 }
 
 .body-small {
-  font-family: "Iosevka Nerd Font";
+  font-family: $plain;
   font-weight: 400;
   font-size: dpi(12pt);
   min-height: dpi(16pt);
@@ -42,6 +63,7 @@
 }
 
 .label-large {
+  font-family: $plain;
   font-size: dpi(14pt);
   font-weight: 500;
   letter-spacing: dpi(0.1pt);
@@ -49,6 +71,7 @@
 }
 
 .label-medium {
+  font-family: $plain;
   font-size: dpi(12pt);
   font-weight: 500;
   letter-spacing: dpi(0.5pt);

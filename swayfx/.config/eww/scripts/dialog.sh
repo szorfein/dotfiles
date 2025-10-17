@@ -3,32 +3,42 @@
 set -o errexit
 
 open() {
+    eww open "$1" &
+    wait
     eww update "$1"-visible=true
-    eww open "$1"
 }
 
 close() {
+    eww close "$1" &
+    wait
     eww update "$1"-visible=false
-    eww close "$1"
 }
 
-toggle() {
-    curr=$(eww get "$1"-visible)
-    if [ "$curr" = "true" ] ; then
-        close "$1"
+test_dialog() {
+    #echo "testing $1"
+    if eww active-windows | grep -q -x "^$1: $1$"; then
+        return 0
     else
-        open "$1"
+        return 1
     fi
 }
 
-if [ "$1" = "open" ] ; then
-    open "$2"
+if [ "$1" = "open" ]; then
+    if ! test_dialog "$2"; then
+        open "$2"
+    fi
 fi
 
-if [ "$1" = "close" ] ; then
-    close "$2"
+if [ "$1" = "close" ]; then
+    if test_dialog "$2"; then
+        close "$2"
+    fi
 fi
 
-if [ "$1" = "toggle" ] ; then
-    toggle "$2"
+if [ "$1" = "toggle" ]; then
+    if test_dialog "$2"; then
+        close "$2"
+    else
+        open "$2"
+    fi
 fi

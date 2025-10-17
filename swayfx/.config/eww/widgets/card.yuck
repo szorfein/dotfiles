@@ -1,0 +1,29 @@
+(defwidget card-icon [icon title onclick]
+    (box :class "card-icon"
+        (button ;:class "icon-button"
+                :onclick "${onclick}"
+            (box :orientation "vertical"
+                (box :class "icon" icon)
+                (box :class "title-small" title)
+            )
+        )
+    )
+)
+
+(defwidget card-image [path_image title onclick]
+    (box :class "card-image"
+        (button :onclick "${onclick}"
+            (box :orientation "vertical"
+             :space-evenly false
+                (image :path "${path_image}"
+                       :image-width "${300 * round(get_env('EWW_SCALE'), 0)}"
+                       :image-height 200
+                       :preserve-aspect-ratio false
+                       :vexpand true
+                       :valign "fill"
+                )
+                (box :halign "start" :class "title-small" title)
+            )
+        )
+    )
+)

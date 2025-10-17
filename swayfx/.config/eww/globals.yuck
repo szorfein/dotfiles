@@ -1,3 +1,4 @@
+(defvar eww_scripts "~/.config/eww/scripts")
 
 ; See or not windows
 (defvar bar_visible true)

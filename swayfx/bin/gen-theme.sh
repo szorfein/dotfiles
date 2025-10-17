@@ -36,12 +36,13 @@ ext_terminal() {
 mkdir -p "$workdir"
 mkdir -p "$workdir/.Xdefaults.d"
 mkdir -p "$workdir/.config/sway"
-mkdir -p "$workdir/.config/eww"
+mkdir -p "$workdir/.config/eww/styles"
 mkdir -p "$workdir/.config/wezterm"
 mkdir -p "$workdir/.config/foot"
 mkdir -p "$workdir/.tmux"
 mkdir -p "$workdir/.config/nvim/lua"
 mkdir -p "$workdir/.config/zathura"
+mkdir -p "$workdir/.config/dunst/dunstrc.d"
 
 # colours to extract
 primary=$(ext_dark 'primary')
@@ -59,6 +60,7 @@ surface_variant=$(ext_dark 'surfaceVariant')
 surface_tint=$(ext_dark 'surfaceTint')
 inverse_surface=$(ext_dark 'inverseSurface')
 inverse_on_surface=$(ext_dark 'inverseOnSurface')
+inverse_primary=$(ext_dark 'inversePrimary')
 # background is lighter than surface
 background=$(ext_dark 'background')
 secondary_container=$(ext_dark 'secondaryContainer')
@@ -96,11 +98,95 @@ t_cyan_bright=$(ext_terminal 'cyanBright')
 t_cyan=$(ext_terminal 'cyan')
 t_blue=$(ext_terminal 'blue')
 t_blue_bright=$(ext_terminal 'blueBright')
+t_white=$(ext_terminal 'white')
+t_white_bright=$(ext_terminal 'whiteBright')
 
 echo "primary $primary"
 echo "secondary $secondary"
 
-cat <<EOF > "$workdir/.config/eww/colors.scss"
+cat <<EOF > "$workdir/.config/eww/styles/typography.scss"
+// material(3) use 2 fonts mainly and name it:
+// md.ref.typeface.brand
+// md.ref.typeface.plain
+\$brand: 'Demova';
+\$plain: 'Iosevka Nerd Font';
+
+.display-large {
+  font-family: \$brand;
+  font-size: dpi(50pt);
+  letter-spacing: dpi(-0.25pt);
+  font-weight: 400;
+}
+
+.display-small {
+  font-family: \$brand;
+  font-size: dpi(46pt);
+  letter-spacing: 0;
+  font-weight: 400;
+}
+
+.headline-small {
+  font-family: \$brand;
+  font-size: dpi(54pt);
+  font-weight: 400;
+  letter-spacing: 0;
+  color: \$on-surface;
+}
+
+// https://m3.material.io/styles/typography/type-scale-tokens
+
+.title-small {
+  font-family: \$plain;
+  font-size: dpi(14pt);
+  font-weight: 500;
+  min-height: dpi(20pt);
+  letter-spacing: dpi(0.1pt);
+}
+
+.body-large {
+  font-family: \$plain;
+  font-weight: 400;
+  font-size: dpi(16pt);
+  letter-spacing: dpi(0.5pt);
+}
+
+.body-medium {
+  font-family: \$plain;
+  font-weight: 400;
+  font-size: dpi(14pt);
+  min-height: dpi(20pt);
+  // also named font-tracking
+  letter-spacing: dpi(0.25pt);
+  color: \$on-surface-variant;
+}
+
+.body-small {
+  font-family: \$plain;
+  font-weight: 400;
+  font-size: dpi(12pt);
+  min-height: dpi(16pt);
+  // also named font-tracking
+  letter-spacing: dpi(0.4pt);
+}
+
+.label-large {
+  font-family: \$plain;
+  font-size: dpi(14pt);
+  font-weight: 500;
+  letter-spacing: dpi(0.1pt);
+  min-height: dpi(20px);
+}
+
+.label-medium {
+  font-family: \$plain;
+  font-size: dpi(12pt);
+  font-weight: 500;
+  letter-spacing: dpi(0.5pt);
+  min-height: dpi(16px);
+}
+EOF
+
+cat <<EOF > "$workdir/.config/eww/styles/colors.scss"
 \$primary: $primary;
 \$on-primary: $on_primary;
 \$primary-container: $primary_container;
@@ -112,6 +198,7 @@ cat <<EOF > "$workdir/.config/eww/colors.scss"
 \$bg: $surface;
 \$surface: $surface;
 \$on-surface: $on_surface;
+\$surface-container: $surface_container;
 \$surface-container-low: $surface_container_low;
 \$surface-container-high: $surface_container_high;
 \$surface-container-highest: $surface_container_highest;
@@ -169,36 +256,20 @@ cat <<EOF > "$workdir/.Xdefaults"
 *color6: $t_cyan
 *color14: $t_cyan_bright
 ! White
-*color7: #E2E2E2
-*color15: $on_surface
+*color7: $t_white
+*color15: $t_white_bright
 EOF
 
 cat <<EOF > "$workdir/.config/wezterm/colors.lua"
 return {
-  -- The default text color
   foreground = '$on_surface',
-  -- The default background color
   background = '$surface',
-
-  -- Overrides the cell background color when the current cell is occupied by the
-  -- cursor and the cursor style is set to Block
   cursor_bg = '$primary',
-  -- Overrides the text color when the current cell is occupied by the cursor
   cursor_fg = '$on_primary',
-  -- Specifies the border color of the cursor when the cursor style is set to Block,
-  -- or the color of the vertical or horizontal bar when the cursor style is set to
-  -- Bar or Underline.
   cursor_border = '#a5b6cf',
-
-  -- the foreground color of selected text
   selection_fg = '#a5b6cf',
-  -- the background color of selected text
   selection_bg = '#151720',
-
-  -- The color of the scrollbar "thumb"; the portion that represents the current viewport
   scrollbar_thumb = '#11131c',
-
-  -- The color of the split lines between panes
   split = '#0f111a',
 
   ansi = {
@@ -209,7 +280,7 @@ return {
     '$t_blue', -- blue
     '$t_magenta', -- magenta
     '$t_cyan', -- teal
-    '#cbced3', -- white
+    '$t_white', -- white
   },
   brights = {
     '$surface_variant', -- black
@@ -219,7 +290,7 @@ return {
     '$t_blue_bright', -- blue
     '$t_magenta_bright', -- magenta
     '$t_cyan_bright', -- teal
-    '$on_surface', -- white
+    '$t_white_bright', -- white
   },
 
   -- Since: 20220319-142410-0fcdea07
@@ -250,7 +321,7 @@ regular3=${t_yellow:1} # yellow
 regular4=${t_blue:1} # blue
 regular5=${t_magenta:1} # magenta
 regular6=${t_cyan:1} # cyan
-regular7=${on_surface:1} # white
+regular7=${t_white:1} # white
 
 ## Bright colors (color palette 8-15)
 bright0=${surface_variant:1} # bright black
@@ -260,35 +331,7 @@ bright3=${t_yellow_bright:1} # bright yellow
 bright4=${t_blue_bright:1} # bright blue
 bright5=${t_magenta_bright:1} # bright magenta
 bright6=${t_cyan_bright:1} # bright cyan
-bright7=${on_surface:1} # bright white
-
-## dimmed colors (see foot.ini(5) man page)
-# dim0=<not set>
-# ...
-# dim7=<not-set>
-
-## The remaining 256-color palette
-# 16 = <256-color palette #16>
-# ...
-# 255 = <256-color palette #255>
-
-## Sixel colors
-# sixel0 =  000000
-# sixel1 =  3333cc
-# sixel2 =  cc2121
-# sixel3 =  33cc33
-# sixel4 =  cc33cc
-# sixel5 =  33cccc
-# sixel6 =  cccc33
-# sixel7 =  878787
-# sixel8 =  424242
-# sixel9 =  545499
-# sixel10 = 994242
-# sixel11 = 549954
-# sixel12 = 995499
-# sixel13 = 549999
-# sixel14 = 999954
-# sixel15 = cccccc
+bright7=${t_white_bright:1} # bright white
 
 ## Misc colors
 # selection-foreground=<inverse foreground/background>
@@ -301,24 +344,6 @@ search-box-no-match=${error:1} ${on_error:1}  # black-on-red
 EOF
 
 cat <<EOF > "$workdir/.tmux/status"
-# Wayland clipboard
-set -s copy-command 'wl-copy'
-
-# clip vim
-#bind-key -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "wl-copy && wl-paste -n | wl-copy -p"
-#bind-key p run "wl-paste -n | tmux load-buffer - ; tmux paste-buffer"
-# Wayland, Ctrl+a+v (copy mode), press y for copy. Alt+p for paste
-# https://www.rockyourcode.com/copy-and-paste-in-tmux/
-#set-option -s set-clipboard off
-bind P paste-buffer
-bind-key -T copy-mode-vi 'v' send-keys -X begin-selection
-bind-key -T copy-mode-vi 'y' send-keys -X copy-pipe "wl-copy"
-#bind-key -T copy-mode-vi V send-keys -X rectangle-toggle
-#unbind -T copy-mode-vi Enter
-#bind-key -T copy-mode-vi y send-keys -X copy-pipe-and-cancel 'wl-copy'
-#bind-key -T copy-mode-vi Enter send-keys -X copy-pipe-and-cancel 'wl-copy'
-#bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel 'wl-copy'
-
 # Configure plugin mode_indicator
 set -g @mode_indicator_prefix_prompt "WAIT"
 set -g @mode_indicator_prefix_mode_style fg=$secondary,bold
@@ -389,10 +414,6 @@ cat <<EOF > "$workdir/.config/nvim/lua/colors.lua"
 -- base colors: https://github.com/catppuccin/nvim/blob/main/lua/catppuccin/palettes/mocha.lua
 -- WGAG AAA need a contrast of 7:1 for normal text
 return {
-    --crust = '$surface_container_lowest',
-    --surface1 = '$surface_container',
-    --surface2 = '$surface_container_high'
-
     pink = "$t_magenta_bright", -- magenta light
     mauve = "$t_magenta", -- magenta
     red = "$t_red", -- red
@@ -406,11 +427,16 @@ return {
     blue = "$t_blue", -- blue
     lavender = "$t_blue_bright", -- blue light
     text = '$on_surface',
-
-    --crust = '#0E0E13',
-    mantle = '$surface_container_low',
-    base = '$surface',
+    subtext1 = '$t_white_bright',
+    subtext0 = '$t_white',
+    -- ...
+    --surface2 = '$surface_container_high'
+    --surface1 = '$surface_container',
     surface0 = '$surface_container_highest',
+    base = '$surface',
+    mantle = '$surface_container_low',
+    --crust = '$surface_container_lowest',
+    --crust = '#0E0E13', -- deep dark
 }
 EOF
 
@@ -453,6 +479,42 @@ set render-loading-fg	          "$on_surface"
 set highlight-color		  rgba(87,82,104,0.5)
 set highlight-fg                  rgba(245,194,231,0.5)
 set highlight-active-color	  rgba(245,194,231,0.5)
+EOF
+
+# dunst
+cat <<EOF > "$workdir/.config/dunst/dunstrc.d/10-bytheme.conf"
+# To display terminal icon: (nerd-font, icomoon)
+# echo "\u<code>", e.g: echo "\uf09c2"
+[global]
+    font = IosevkaTerm Nerd Font 14
+    frame_width = 4
+    frame_color = "$inverse_on_surface" # inverse-on-surface
+    format = "<span rise='-5000' font_desc='Material Symbols Outlined Regular 20'>%I</span><span foreground='$inverse_on_surface'> %s</span><span font_desc='Iosevka Nerd Font Regular 14' foreground='$inverse_on_surface'> &gt; %b</span>"
+
+[urgency_low]
+    background = "$inverse_surface" # inverse-surface
+    foreground = "$inverse_primary" # inverse-primary
+    timeout = 5
+    # Icon for notifications with low urgency
+    default_icon = dialog-information
+
+[urgency_normal]
+    background = "$inverse_surface" # inverse-surface
+    foreground = "$inverse_primary" # inverse-surface
+    timeout = 5
+    override_pause_level = 30
+    # Icon for notifications with normal urgency
+    default_icon = dialog-information
+
+[urgency_critical]
+    background = "$error"
+    foreground = "$on_error"
+    frame_color = "$error"
+    timeout = 0
+    override_pause_level = 60
+    # Icon for notifications with critical urgency
+    default_icon = dialog-warning
+
 EOF
 
 # Generate a gtk theme under ~/.themes

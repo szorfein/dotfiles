@@ -33,6 +33,14 @@ exec {
 # Notifications
     dunst
 
+# Fast terminal 
+    foot -s
+
+# if Thunar
+    if command -v thunar &>/dev/null ; then
+        thunar --daemon
+    fi
+
 # EWW
     ~/.config/eww/scripts/start.sh
 }

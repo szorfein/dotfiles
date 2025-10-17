@@ -1,0 +1,24 @@
+; https://m3.material.io/components/button-groups/specs
+(defwidget button-groups-icon [icon onclick ?class]
+    (box :class "button-groups-icon"
+     :height "${56 * round(get_env("EWW_SCALE"), 0)}"
+     :width "${56 * round(get_env("EWW_SCALE"), 0)}"
+        (button :onclick "${onclick}" :class "${class}" icon)
+    )
+)
+
+(defwidget button-groups-icon-text [icon text onclick ?class]
+    (box :class "button-groups-icon-text"
+         :height "${56 * round(get_env("EWW_SCALE"), 0)}"
+         :width "${82 * round(get_env("EWW_SCALE"), 0)}"
+         :hexpand false
+        (button :onclick "${onclick}" :class "${class}"
+            (box :space-evenly false
+                 :halign "center"
+                 :spacing "${6 * round(get_env("EWW_SCALE"), 0)}"
+                (box :class "icon" icon)
+                (box :class "label-large" text)
+            )
+        )
+    )
+)

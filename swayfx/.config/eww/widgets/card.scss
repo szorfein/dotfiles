@@ -5,3 +5,52 @@
   padding-left: dpi(16px);
   padding-right: dpi(16px);
 }
+
+.card-icon {
+  button {
+    box-shadow: $elevate1;
+    background-color: $surface-container-low;
+    color: $on-surface;
+    padding: dpi(16px);
+    border-radius: dpi(16px);
+    transition:
+      transform 0.3s,
+      border-radius 0.3s,
+      padding 0.3s;
+    &:hover {
+      background-color: rgba($surface-tint, 0.08);
+      box-shadow: $elevate2;
+    }
+    .icon {
+      font-family: 'Material Symbols Outlined';
+      font-size: dpi(48px);
+    }
+  }
+}
+
+.card-image {
+  button {
+    box-shadow: $elevate1;
+    background-color: $surface-container-low;
+    color: $on-surface;
+    border: 1px solid transparent;
+    border-radius: dpi(16px);
+    transition:
+      transform 0.3s,
+      border-radius 0.3s,
+      padding 0.3s;
+    &:hover {
+      background-color: rgba($surface-tint, 0.08);
+      box-shadow: $elevate2;
+    }
+    image {
+      border: 1px solid transparent;
+      border-radius: dpi(16px);
+      min-width: dpi(200px);
+      min-height: dpi(100px);
+    }
+    .title-small {
+      padding: dpi(16px);
+    }
+  }
+}

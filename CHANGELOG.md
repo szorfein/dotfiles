@@ -1,3 +1,23 @@
+## v4.0.0 - Jinx - Oct 17 2025
+
+- New SwayFX theme.
+- Rewrite the last sidebar windows (network).
+- New logout screen with basic action 'poweroff', 'hibernate', 'quit Sway' and
+  'lock screen'.
+- New changetheme widget (dialog), can switch between Holy and Jinx.
+- New set of icons widgets from
+  [m3 button-groups](https://m3.material.io/components/button-groups)
+- Neovim: add shfmt to format shell script.
+
+### Change (now and futur)
+
+- Sound: I will probably drop support on pulseaudio here for the futur. I don't know yet if i will using pure ALSA or ALSA+Pipewire, we'll see.
+- I have alrealy dropped my old Vim8 config. Please use only Doomemacs for themes on Xorg (AwesomeWM)...
+- My dots on Sway (and EWW) don't support multi screens yet...
+- Neovim: with add LSP, Mason soon to install lacking packages on some Linux distro.
+
+Create an issue if you encounter other problems.
+
 ## v3.6.0 - Oct. 6 2025
 
 - Add notification with Dunst for SwayFX.
@@ -9,8 +29,7 @@
 - zsh: force the load of .zshenv (not loaded before on Gentoo...)
 - zshenv: check if command exist before setting variables.
 - Correct eww variable wifi-ssids
-- One call of `eww update` on `eww/daemons/media`
-- Playerctl can works also with firefox.
+- Playerctl can works also with firefox, brave, mpd, mpv.
 
 ## v3.5.0 - Sep 28 2025
 

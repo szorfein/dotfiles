@@ -1,6 +1,6 @@
 .m3-icon {
   .icon-button {
-    font-family: "Material Symbols Outlined";
+    font-family: 'Material Symbols Outlined';
     font-size: dpi(24px);
     color: $on-surface-variant;
     min-width: dpi(40px);
@@ -25,6 +25,7 @@
   }
   & button:hover {
     background-color: rgba($on-primary, 0.08);
+    box-shadow: $elevate1;
   }
 }
 
@@ -39,7 +40,8 @@
     background-color: rgba($secondary, 0.12);
   }
   & button:hover {
-    background-color: rgba($on-secondary, .08);
+    background-color: rgba($on-secondary, 0.08);
+    box-shadow: $elevate1;
   }
 }
 
@@ -54,7 +56,8 @@
     background-color: rgba($tertiary, 0.12);
   }
   & button:hover {
-    background-color: rgba($on-tertiary, .08);
+    background-color: rgba($on-tertiary, 0.08);
+    box-shadow: $elevate1;
   }
 }
 
@@ -69,50 +72,40 @@
     background-color: rgba($error, 0.12);
   }
   & button:hover {
-    background-color: rgba($on-error, .08);
+    background-color: rgba($on-error, 0.08);
+    box-shadow: $elevate1;
   }
 }
 
 .icon-filled {
-  font-family: "Material Symbols Outlined";
+  font-family: 'Material Symbols Outlined';
   font-size: dpi(24pt);
   min-height: dpi(40px);
   min-height: dpi(40px);
+  font-weight: 500;
   border-radius: 50%; // circular
-}
-
-.icon-filled-tonal {
-  font-family: "Material Symbols Outlined";
-  font-size: dpi(24px);
-  min-height: dpi(40px);
-  min-height: dpi(40px);
-  background-color: $secondary-container;
-  color: $on-secondary-container;
-  border-radius: 50%; // circular
-  &.enabled {
-    background-color: $secondary-container;
-    color: $on-secondary-container;
-  }
-  &.disabled {
-    background-color: rgba($on-surface, 0.12);
-    color: rgba($on-surface, 0.38);
-  }
-  & button:hover {
-    background-color: rgba($on-secondary-container, 0.08);
-    border-radius: 50%; // circular
+  button {
+    border: 1px solid transparent;
+    transition:
+      border-radius $easing-fast-spatial,
+      box-shadow $easing-fast,
+      background-color $easing-fast,
+      color $easing-fast,
+      margin $easing-fast,
+      padding $easing-fast-spatial;
   }
 }
 
 .icon-outlined {
-  font-family: "Material Symbols Outlined";
+  font-family: 'Material Symbols Outlined';
   font-size: dpi(24px);
   min-height: dpi(40px);
   min-height: dpi(40px);
   border-radius: 50%; // circular
   &.disabled {
-    background-color: rgba($on-surface, .12);
-    color: rgba($on-surface, .38);
-    border: 1px solid rgba($on-surface, .12);
+    background-color: rgba($on-surface, 0.12);
+    color: rgba($on-surface, 0.38);
+    border: 1px solid rgba($on-surface, 0.12);
   }
   &.enabled {
     background-color: $inverse-surface;
@@ -149,7 +142,7 @@
     border: dpi(1px) solid rgba($on-surface, 0.12);
   }
   .icon {
-    font-family: "icomoon";
+    font-family: 'icomoon';
     font-size: dpi(18px);
     margin-top: dpi(8px);
   }
@@ -162,7 +155,7 @@
   min-width: dpi(56px);
   margin: dpi(16px);
   .fab-icon {
-    font-family: "Material Symbols Outlined";
+    font-family: 'Material Symbols Outlined';
     font-size: dpi(24pt);
     color: $on-primary-container;
   }
@@ -178,7 +171,7 @@
   min-width: dpi(40px);
   margin: dpi(8px);
   .small-fab-icon {
-    font-family: "Material Symbols Outlined";
+    font-family: 'Material Symbols Outlined';
     font-size: dpi(24pt);
     color: $on-primary-container;
   }

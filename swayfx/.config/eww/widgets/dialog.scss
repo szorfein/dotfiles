@@ -1,0 +1,34 @@
+.dialog {
+  border: 0px solid #fff;
+  border-radius: $rounding-extra-large;
+  //background-color: $surface-container-high;
+  background-color: $surface-container;
+  color: $on-surface-variant;
+  border: none;
+  outline: none;
+  margin: 0;
+  //min-width: dpi(35rem);
+  min-width: dpi(280px);
+  //max-width: dpi(560px);
+}
+
+.dialog-tint {
+  background-color: rgba($surface-tint, 0.06);
+  background-size: 100% 100%;
+  border-radius: $rounding-extra-large;
+  border: 0px solid $surface-container-high;
+}
+
+.dialog-container {
+  padding: dpi(24px);
+  .headline-small {
+    margin: dpi(16px) 0;
+    color: $on-surface;
+  }
+}
+
+.sicon {
+  font-family: 'Material Symbols Outlined';
+  font-size: dpi(24px);
+  color: $secondary;
+}

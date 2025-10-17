@@ -21,32 +21,34 @@
 
 ##
 
-![holy screenshot](https://github.com/szorfein/unix-portfolio/raw/master/holy/clean.jpg)
-![holy screenshot](https://github.com/szorfein/unix-portfolio/raw/master/holy/full.jpg)
+![Jinx screenshot](https://github.com/szorfein/unix-portfolio/raw/master/Jinx/jinx-dialog.jpg)
+![Jinx screenshot](https://github.com/szorfein/unix-portfolio/raw/master/Jinx/full.jpg)
 
 ###
 
 - **WM:** [SwayFX](https://github.com/WillPower3309/swayfx)
-- **OS:** [Arch](https://archlinux.org/), [Void](https://voidlinux.org/) or
-  [Gentoo](https://www.gentoo.org/) with [Musl](https://musl.libc.org/),
-  installed with [Getch](https://github.com/szorfein/getch)
+- **OS:** [Void](https://voidlinux.org/) or [Gentoo](https://www.gentoo.org/)
+  with [Musl](https://musl.libc.org/), installed with
+  [Getch](https://github.com/szorfein/getch)
 - **Shell:** Zsh with [Oh My Zsh](https://github.com/ohmyzsh/ohmyzsh),
   [Starship](https://starship.rs),
   ([plugins](https://github.com/szorfein/dotfiles/blob/main/zsh/.config/reaver/zsh.yml))
 - **Widgets:** [EWW](https://elkowar.github.io/eww/eww.html)
-- **Notification:** [Dunst](https://github.com/dunst-project/dunst) with dunstify
-- **Term:** [Wezterm](https://github.com/wez/wezterm)
+- **Notification:** [Dunst](https://github.com/dunst-project/dunst) with
+  dunstify
+- **Term:** [Wezterm](https://github.com/wez/wezterm) or Foot
 - **Editor:** [NeoVim](https://neovim.io) with
-  [LazyVim](https://lazyvim.github.io/)
+  [Lazy.nVim](https://lazy.folke.io/),
   ([plugins](https://github.com/szorfein/dotfiles/tree/main/neovim/.config/nvim/lua/plugins))
   and [Tmux](https://github.com/tmux/tmux/wiki)
   ([plugins](https://github.com/szorfein/dotfiles/blob/main/tmux/.config/reaver/tmux.yml))
-- **File Manager:** [NNN](https://github.com/jarun/nnn) + Thunar (alsa) or
-  [Nemo](https://github.com/linuxmint/nemo) (pulse)
+- **Sound:** [ALSA](https://www.alsa-project.org)
+- **File Manager:** [NNN](https://github.com/jarun/nnn) + [Thunar](https://docs.xfce.org/xfce/thunar/start).
 - **Fonts:** [Iosevka](https://www.nerdfonts.com/) +
-  [Material Icons](https://github.com/google/material-design-icons) +
+  [Material Icons Outlined](https://github.com/google/material-design-icons) +
   [Papirus](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme) +
-  [Demova](https://www.dafont.com/demova.font) + [IcoMoon](https://icomoon.io/)
+  [Tagliner](https://www.dafont.com/fr/tagliner.font) +
+  [IcoMoon](https://icomoon.io/)
 - **Dotfiles manager and theme switcher:**
   [GNU/Stow](https://www.gnu.org/software/stow/)
 - **Dotfiles dependencies manager:**
@@ -66,57 +68,19 @@ Archlinux, Gentoo, Voidlinux).
 
 ## Previous setup
 
-![focus screenshot](https://github.com/szorfein/unix-portfolio/raw/master/focus/clean.jpg)
-![focus full](https://github.com/szorfein/unix-portfolio/raw/master/focus/full.jpg)
-
-###
-
-- **WM:** [Awesome](https://github.com/awesomeWM/awesome)
-- **OS:** [Arch](https://archlinux.org/), [Void](https://voidlinux.org/) or
-  [Gentoo](https://www.gentoo.org/) with [Musl](https://musl.libc.org/),
-  installed with [Getch](https://github.com/szorfein/getch)
-- **SH:** zsh with [ohmyzsh](https://github.com/ohmyzsh/ohmyzsh) and
-  [starship](https://starship.rs)
-- **Term:** [xSt](https://github.com/gnotclub/xst)
-- **Editor:** [NeoVim](https://neovim.io/) or
-  [Doomemacs](https://github.com/doomemacs/doomemacs)
-- **Compositor:** [Picom](https://github.com/yshui/picom)
-- **File Manager:** [NNN](https://github.com/jarun/nnn),
-  [Vifm](https://github.com/vifm/vifm)
-- **Fonts:** [Nerd Font](https://www.nerdfonts.com/) Iosevka +
-  [Material Icons](https://github.com/Templarian/MaterialDesign-Font) +
-  [Papirus](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme)
-- **Dotfiles manager and theme switcher:**
-  [GNU/Stow](https://www.gnu.org/software/stow/)
-- **Dotfiles dependencies manager:**
-  [Reaver](https://github.com/szorfein/reaver)
-
-###
-
-## Setup
-
-### Installation
-
-There are three way to install [awesome-m3-themes/focus](#screens)
-
-- Manually by following the
-  [wiki page](https://github.com/szorfein/dotfiles/tree/main/awesome-m3/.config/awesome),
-  works on any distribution and you install only what your need.
-- Fully scripted with [chezmoi](https://www.chezmoi.io/), (better on a new
-  install), follow the instruction [here](https://github.com/szorfein/dots).
-- (Not Yet Tested on last Debian 12) Ansible with
-  [ansible-collection-desktop](https://github.com/szorfein/ansible-collection-desktop),
-  you can find an example of playbook
-  [here](https://github.com/szorfein/dots/tree/ansible/home/ansible).
-
-The method with `chezmoi` and `ansible` only work for supported distrib Gentoo,
-Archlinux, Voidlinux or Debian (bulleyes).
+![holy screenshot](https://github.com/szorfein/unix-portfolio/raw/master/holy/clean.jpg)
+![holy screenshot](https://github.com/szorfein/unix-portfolio/raw/master/holy/full.jpg)
 
 ### Other screenshots
 
-More screenshots are available at
+More screenshots of previous themes are available at
 [unix-portfolio](https://github.com/szorfein/unix-portfolio) or
-[Gallery](https://github.com/szorfein/dotfiles/wiki/Gallery).
+[reddit](https://reddit.com/user/szorfein).
+
+> [!NOTE]
+> My Reddit account was totally blocked and no way to recover it (password problem). Also the access on reddit.com is a true nightmare for user using TOR so i just can't login/post anymore on the platform...  
+
+If people want to post screenshots of my themes on the platform (free karma), they are totally free to do :)
 
 #### Support
 

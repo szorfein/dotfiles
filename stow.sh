@@ -103,6 +103,7 @@ while [ "$#" -gt 0 ] ; do
             ;;
         -s | --swayfx)
             mkdir -p "$HOME/.config/sway"
+            mkdir -p "$HOME/.config/eww/styles"
             mkdir -p "$HOME/.tmux"
             mkdir -p "$HOME/.config/foot"
             mkdir -p "$HOME/.config/dunst/dunstrc.d"
