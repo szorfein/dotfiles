@@ -28,11 +28,6 @@ bright5=f986af # bright magenta
 bright6=dd89fd # bright cyan
 bright7=fccfe0 # bright white
 
-## dimmed colors (see foot.ini(5) man page)
-# dim0=<not set>
-# ...
-# dim7=<not-set>
-
 ## Misc colors
 # selection-foreground=<inverse foreground/background>
 # selection-background=<inverse foreground/background>

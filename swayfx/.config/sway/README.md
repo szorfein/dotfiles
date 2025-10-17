@@ -2,7 +2,7 @@
 
 ## Dependencies
 
-The whole (or many) stack has changed because wayland instead X.
+The whole (or many) stack has changed because wayland instead of X.
 [migration_guide](https://github.com/swaywm/sway/wiki/i3-Migration-Guide)
 
 - swayfx - wm and compositor
@@ -64,7 +64,7 @@ Swayfx dependencies
     sudo xbps-install -S swayfx imv light jq wl-clipboard \
     papirus-icon-theme inotify-tools mpd mpc wezterm curl \
     stow playerctl mpv-mpris mpDris2 eww ruby swaybg grim \
-    wmenu iwd nemo seatd turnstile
+    wmenu iwd nemo seatd turnstile dunst
 
 Required step as root
 
@@ -112,7 +112,7 @@ See on gentoo [wiki](https://wiki.gentoo.org/wiki/Sway#Starting_Sway_manually)
 
 ### From Ruby
 
-Install `i3ipc` locally
+After the installation of the dependencies, for all distros, Install `i3ipc` locally:
 
     gem install --user-install i3ipc
 
@@ -149,7 +149,7 @@ And reload your shell after that.
 
 ### Keyboard
 
-Modify the default xkb.example in this directory.
+Copy the keyboard layout example, modify the default 'us' if need.
 
     mkdir -p ~/.config/sway
     cp ~/.dotfiles/swayfx/.config/sway/kdb.example ~/.config/sway/keyboard
@@ -175,6 +175,11 @@ with the script.
     ~/.dotfiles/swayfx/bin/test-dpi.sh 1366 768 11.6
     dp scale factor 0.8443388199535182
 
+The script need 3 paramaters to calculate your DPI:
+- `$1` horizontal screen, 
+- `$2` vertical
+- `$3` is the diagonale
+
 ### Interact with iwd
 
 User need to be added in `network` or `wheel` group.
@@ -187,22 +192,25 @@ Before using stow, make sure to backup all your personal files and move them in
 a backup directory.
 
 Using my script `stow.sh`, you'll need to install at least: `swayfx` and a
-`swayfx-themes` (last is `holy`).
+`swayfx-themes` (last is `jinx`).
 
-    ~/.dotfiles/stow.sh --swayfx holy
+    ~/.dotfiles/stow.sh --swayfx jinx
 
 If you want a more complete command, you can also add `wezterm`, `zsh`,
 `neovim`, `tmux`.
 
-    ~/.dotfiles/stow.sh --purge --wezterm --swayfx holy --neovim --tmux --zsh
+    ~/.dotfiles/stow.sh --purge --wezterm --swayfx jinx --neovim --tmux --zsh
 
-Use --purge if need to reinstall files.
+Use `--purge` if need to reinstall files as first argument.
 
-## Download dependencies
+I recommand you to create an alias or function (for Fish) here for easy reinstall, e.g for Zsh: 
+
+    alias reinstall_jinx="~/.dotfiles/stow.sh --purge --wezterm --swayfx jinx --neovim --tmux --zsh"
+
+## Download other dependencies
 
 After installing dotfiles with `stow.sh`, last step is to downloads all the
-required files (wallpapers, fonts, gtk-themes, icons, etc) in two commands
-([reaver](https://geeksrepos.com/szorfein/reaver)):
+required files (wallpapers, fonts, gtk-themes, icons, etc) in two commands, thanks ([reaver](https://geeksrepos.com/szorfein/reaver)):
 
     gem install --user-install reaver
     reaver
@@ -222,3 +230,8 @@ Reinstall files with `stow.sh --purge` to reinstall new dotfiles.
 
 Follow the guide to create your own theme.  
 https://szorfein.vercel.app/post/your-own-swayfx-theme
+
+### Thanks lighten libs using m3
+
+- https://github.com/w3teal/gmx.css or https://gmxcss.js.org/
+- https://github.com/beercss/beercss or https://www.beercss.com/

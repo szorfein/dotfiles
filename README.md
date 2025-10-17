@@ -38,14 +38,14 @@
   dunstify
 - **Term:** [Wezterm](https://github.com/wez/wezterm) or Foot
 - **Editor:** [NeoVim](https://neovim.io) with
-  [LazyVim](https://lazyvim.github.io/)
+  [Lazy.nVim](https://lazy.folke.io/),
   ([plugins](https://github.com/szorfein/dotfiles/tree/main/neovim/.config/nvim/lua/plugins))
   and [Tmux](https://github.com/tmux/tmux/wiki)
   ([plugins](https://github.com/szorfein/dotfiles/blob/main/tmux/.config/reaver/tmux.yml))
-- **File Manager:** [NNN](https://github.com/jarun/nnn) + Thunar (alsa) or
-  [Nemo](https://github.com/linuxmint/nemo) (pulse)
+- **Sound:** [ALSA](https://www.alsa-project.org)
+- **File Manager:** [NNN](https://github.com/jarun/nnn) + [Thunar](https://docs.xfce.org/xfce/thunar/start).
 - **Fonts:** [Iosevka](https://www.nerdfonts.com/) +
-  [Material Icons](https://github.com/google/material-design-icons) +
+  [Material Icons Outlined](https://github.com/google/material-design-icons) +
   [Papirus](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme) +
   [Tagliner](https://www.dafont.com/fr/tagliner.font) +
   [IcoMoon](https://icomoon.io/)
@@ -73,9 +73,14 @@ Archlinux, Gentoo, Voidlinux).
 
 ### Other screenshots
 
-More screenshots are available at
+More screenshots of previous themes are available at
 [unix-portfolio](https://github.com/szorfein/unix-portfolio) or
-[Gallery](https://github.com/szorfein/dotfiles/wiki/Gallery).
+[reddit](https://reddit.com/user/szorfein).
+
+> [!NOTE]
+> My Reddit account was totally blocked and no way to recover it (password problem). Also the access on reddit.com is a true nightmare for user using TOR so i just can't login/post anymore on the platform...  
+
+If people want to post screenshots of my themes on the platform (free karma), they are totally free to do :)
 
 #### Support
 
