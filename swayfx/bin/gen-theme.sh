@@ -262,30 +262,14 @@ EOF
 
 cat <<EOF > "$workdir/.config/wezterm/colors.lua"
 return {
-  -- The default text color
   foreground = '$on_surface',
-  -- The default background color
   background = '$surface',
-
-  -- Overrides the cell background color when the current cell is occupied by the
-  -- cursor and the cursor style is set to Block
   cursor_bg = '$primary',
-  -- Overrides the text color when the current cell is occupied by the cursor
   cursor_fg = '$on_primary',
-  -- Specifies the border color of the cursor when the cursor style is set to Block,
-  -- or the color of the vertical or horizontal bar when the cursor style is set to
-  -- Bar or Underline.
   cursor_border = '#a5b6cf',
-
-  -- the foreground color of selected text
   selection_fg = '#a5b6cf',
-  -- the background color of selected text
   selection_bg = '#151720',
-
-  -- The color of the scrollbar "thumb"; the portion that represents the current viewport
   scrollbar_thumb = '#11131c',
-
-  -- The color of the split lines between panes
   split = '#0f111a',
 
   ansi = {
@@ -348,34 +332,6 @@ bright4=${t_blue_bright:1} # bright blue
 bright5=${t_magenta_bright:1} # bright magenta
 bright6=${t_cyan_bright:1} # bright cyan
 bright7=${t_white_bright:1} # bright white
-
-## dimmed colors (see foot.ini(5) man page)
-# dim0=<not set>
-# ...
-# dim7=<not-set>
-
-## The remaining 256-color palette
-# 16 = <256-color palette #16>
-# ...
-# 255 = <256-color palette #255>
-
-## Sixel colors
-# sixel0 =  000000
-# sixel1 =  3333cc
-# sixel2 =  cc2121
-# sixel3 =  33cc33
-# sixel4 =  cc33cc
-# sixel5 =  33cccc
-# sixel6 =  cccc33
-# sixel7 =  878787
-# sixel8 =  424242
-# sixel9 =  545499
-# sixel10 = 994242
-# sixel11 = 549954
-# sixel12 = 995499
-# sixel13 = 549999
-# sixel14 = 999954
-# sixel15 = cccccc
 
 ## Misc colors
 # selection-foreground=<inverse foreground/background>
