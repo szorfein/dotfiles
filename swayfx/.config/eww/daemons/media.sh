@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 #set -o errexit
 
@@ -22,9 +22,14 @@ if PIDS=$(pgrep -f "sh .*media.sh"); then
     fi
 fi
 
-#if PIDS=$(pgrep -f "playerctl --follow") ; then
-#   kill $PIDS
-#fi
+if PIDS=$(pgrep -f "playerctl --follow"); then
+    MYPID=$$
+    PIDS_CLEAN=$(echo "$PIDS" | sed s/"$MYPID"//)
+    if [ -n "$PIDS_CLEAN" ]; then
+        #echo "clean $PIDS_CLEAN"
+        echo "$PIDS_CLEAN" | xargs kill
+    fi
+fi
 
 mpd_cover() {
     [ -n "$MPD_MUSIC_DIR" ] || return
@@ -37,6 +42,24 @@ mpd_cover() {
     fi
 }
 
+trim_sed() {
+    if [ -z "$1" ]; then return 1; fi
+
+    trim=$(echo "$1" | sed -e 's/[[:punct:]]*//g' -e 's/^[[:space:]]*//g' -e 's/[[:space:]]*$//g')
+    printf '%s' "$trim"
+}
+
+convert_img() {
+    IMGNAME="${1##*/}"
+    if [ ! -f "/tmp/$IMGNAME" ]; then
+        #echo "creating image..."
+        touch "/tmp/$IMGNAME"
+        # Run in background
+        magick "$1" -resize 840x480^ -gravity Center -extent 840x480 "/tmp/$IMGNAME" > /dev/null 2>&1 &
+    fi
+    printf '%s\n' "/tmp/$IMGNAME"
+}
+
 OLD_SONG=""
 #while :; do
 # always prefer inotify or any mechanism to check change over sleep
@@ -46,7 +69,7 @@ OLD_SONG=""
 # Add non-space character ":" before each parameter to prevent 'read' from skipping over them
 # artist should be placed before title
 # artist name and title should not contain any space...
-exec playerctl --follow metadata --format $':{{status}}\t:{{position}}\t:{{mpris:length}}\t:{{playerName}}\t:{{mpris:artUrl}}\t:{{duration(position)}}\t:{{duration(mpris:length)}}\t:{{trunc(artist,16)}}@@{{trunc(title, 16)}}' | while read -r playing position length name arturl hpos hlen artist_title; do
+exec playerctl --follow metadata --format $':{{status}}\t:{{position}}\t:{{mpris:length}}\t:{{playerName}}\t:{{mpris:artUrl}}\t:{{duration(position)}}\t:{{duration(mpris:length)}}\t:{{trunc(artist,18)}}@@{{trunc(title, 18)}}' | while read -r playing position length name arturl hpos hlen artist_title; do
 
     # All vars are prefixed with ':'
     # in Bash, simply use playing=${playing:1}
@@ -59,6 +82,10 @@ exec playerctl --follow metadata --format $':{{status}}\t:{{position}}\t:{{mpris
     hlen=$(expr " $hlen" : " .\\(.*\\)")
     artist=$(expr " ${artist_title%@@*}" : " .\\(.*\\)" | tr -d '"')
     title="$(echo ${artist_title#*@@} | tr -d '"')"
+
+    # Remove undesirable symbols...
+    artist=$(trim_sed "$artist")
+    title=$(trim_sed "$title")
 
     # artist and title can contain a lot of characters...
     #artist=$(playerctl metadata --format '{{ trunc(artist, 16) }}')
@@ -88,45 +115,41 @@ exec playerctl --follow metadata --format $':{{status}}\t:{{position}}\t:{{mpris
     mpd=false
     mpv=false
 
-    #if expr "$playerlist" : '.*[brave]' >/dev/null; then
-    #if expr "$name" : '.*[brave]' >/dev/null; then
-    if [[ "$name" = "brave" && "$playing" = "Playing" ]]; then
-        web=true
-        #echo "we enable web (brave) $web"
-    else
-        web=false
-    fi
+    # The image size has a HUGE impact on eww performance !
+    # use imagemagick to convert the image
+    arturl=$(convert_img "$arturl")
 
-    #if expr "$name" : '.*[firefox]' >/dev/null; then
-    if [[ "$name" = "firefox" && "$playing" = "Playing" ]]; then
-        web=true
-        #echo "we enable web $web"
-    else
-        web=false
-    fi
-
-    #if expr "$playerlist" : '.*[mpd]' >/dev/null; then
-    if expr "$name" : '.*[mpd]' > /dev/null; then
-        #if [[ "$name" = "mpd" && "$playing" = "Playing" ]] ; then
+    if expr "$name" : '.*[brave]' > /dev/null; then
         if [ "$playing" = "Playing" ]; then
-            mpd=true
-            #echo "we enable mpd $mpd"
-        else
-            mpd=false
+            web=true
+            #echo "we enable web (brave) $web"
         fi
     fi
 
-    #if expr "$playerlist" : '.*[mpv]' >/dev/null; then
-    #if expr "$name" : '.*[mpv]' >/dev/null; then
-    if [[ "$name" = "mpv" && "$playing" = "Playing" ]]; then
-        mpv=true
-        #echo "we enable mpv $mpv"
-    else
-        mpv=false
+    if expr "$name" : '.*[firefox]' > /dev/null; then
+        if [ "$playing" = "Playing" ]; then
+            web=true
+            #echo "we enable web $web"
+        fi
     fi
 
-    cat << EOF
-{"playing":"$playing","position":"$position","length":"$length","name":"$name","artist":"$artist","title":"$title","arturl":"$arturl","hpos":"$hpos","hlen":"$hlen","web-active":$web,"mpd-active":$mpd,"mpv-active":$mpv}
-EOF
-    #sleep 2
+    if expr "$name" : '.*[mpd]' > /dev/null; then
+        if [ "$playing" = "Playing" ]; then
+            mpd=true
+            #echo "we enable mpd $mpd"
+        fi
+    fi
+
+    if expr "$name" : '.*[mpv]' > /dev/null; then
+        if [ "$playing" = "Playing" ]; then
+            mpv=true
+            #echo "we enable mpv $mpv"
+        fi
+    fi
+
+    #    cat << EOF
+    JSON="{\"playing\":\"$playing\",\"position\":\"$position\",\"length\":\"$length\",\"name\":\"$name\",\"artist\":\"$artist\",\"title\":\"$title\",\"arturl\":\"$arturl\",\"hpos\":\"$hpos\",\"hlen\":\"$hlen\",\"web-active\":$web,\"mpd-active\":$mpd,\"mpv-active\":$mpv}"
+    #EOF
+    echo "$JSON"
+    eww update media="$JSON"
 done

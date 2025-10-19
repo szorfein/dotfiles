@@ -7,16 +7,14 @@ exec_always {
 exec {
     # https://github.com/swaywm/sway/wiki#systemd-and-dbus-activation-environments
     # systemd
-    # exec systemctl --user import-environment WAYLAND_DISPLAY DISPLAY XDG_CURRENT_DESKTOP SWAYSOCK I3SOCK XCURSOR_SIZE XCURSOR_THEME
     if file /sbin/init | grep systemd ; then
         exec systemctl --user import-environment WAYLAND_DISPLAY DISPLAY XDG_CURRENT_DESKTOP SWAYSOCK I3SOCK
-#systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
-    # Prevents GTK apps from hanging for 15-20 sec before launching
-         exec dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY
+        # Prevents GTK apps from hanging for 15-20 sec before launching
+        exec dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY
 
-         if command -v mpd-mpris &>/dev/null ; then
-             systemctl start --user mpd-mpris
-         fi
+#if command -v mpd-mpris &>/dev/null ; then
+#            systemctl start --user mpd-mpris
+#        fi
     else
 # non-systemd
         exec dbus-update-activation-environment WAYLAND_DISPLAY DISPLAY XDG_CURRENT_DESKTOP SWAYSOCK I3SOCK
