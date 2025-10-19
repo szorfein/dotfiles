@@ -152,6 +152,7 @@
 (defvar playlist-focus "")
 
 ; it look the best way to start media.sh (in perf)
-(deflisten media :initial "{}"
- `~/.config/eww/daemons/media.sh`
-)
+(defvar media "{}")
+;(deflisten media :initial "{}"
+;`~/.config/eww/daemons/media.sh`
+;)

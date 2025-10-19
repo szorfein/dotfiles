@@ -75,25 +75,25 @@ play_web() {
 }
 
 if [ "$1" = "web-toggle" ] ; then
-    playerctl -p mpd pause || echo "mpd paused"
-    playerctl -p mpd pause || echo "mpd paused"
-    playerctl -p mpv pause || echo "mpv paused"
-    playerctl -p mpv pause || echo "mpv paused"
+    #playerctl -p mpd pause || echo "mpd paused"
+    #playerctl -p mpd pause || echo "mpd paused"
+    #playerctl -p mpv pause || echo "mpv paused"
+    #playerctl -p mpv pause || echo "mpv paused"
     playerctl -p "$WEB" play-pause || echo "$WEB can fail"
 fi
 
 if [ "$1" = "mpd-toggle" ] ; then
-    playerctl -p "$WEB" pause || echo "$WEB pause"
-    playerctl -p mpv pause || echo "mpv pause"
-    playerctl -p "$WEB" pause || echo "$WEB pause"
-    playerctl -p mpv pause || echo "mpv pause"
+    #playerctl -p "$WEB" pause || echo "$WEB pause"
+    #playerctl -p mpv pause || echo "mpv pause"
+    #playerctl -p "$WEB" pause || echo "$WEB pause"
+    #playerctl -p mpv pause || echo "mpv pause"
     playerctl -p mpd play-pause || echo "mpd can fail"
 fi
 
 if [ "$1" = "mpv-toggle" ] ; then
-    playerctl -p "$WEB" pause || echo "$WEB pause"
-    playerctl -p "$WEB" pause || echo "$WEB pause"
-    playerctl -p mpd pause || echo "mpd pause"
-    playerctl -p mpd pause || echo "mpd pause"
+    #playerctl -p "$WEB" pause || echo "$WEB pause"
+    #playerctl -p "$WEB" pause || echo "$WEB pause"
+    #playerctl -p mpd pause || echo "mpd pause"
+    #playerctl -p mpd pause || echo "mpd pause"
     playerctl -p mpv play-pause || echo "mpv can fail"
 fi

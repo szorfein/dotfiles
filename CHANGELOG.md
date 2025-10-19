@@ -1,3 +1,9 @@
+## 4.0.1
+
+Bugs Fix
+
+- Use imagemagick to convert cover album image, image too big has a HUGE performance impact on EWW.
+
 ## v4.0.0 - Jinx - Oct 17 2025
 
 - New SwayFX theme.
@@ -11,10 +17,13 @@
 
 ### Change (now and futur)
 
-- Sound: I will probably drop support on pulseaudio here for the futur. I don't know yet if i will using pure ALSA or ALSA+Pipewire, we'll see.
-- I have alrealy dropped my old Vim8 config. Please use only Doomemacs for themes on Xorg (AwesomeWM)...
+- Sound: I will probably drop support on pulseaudio here for the futur. I don't
+  know yet if i will using pure ALSA or ALSA+Pipewire, we'll see.
+- I have alrealy dropped my old Vim8 config. Please use only Doomemacs for
+  themes on Xorg (AwesomeWM)...
 - My dots on Sway (and EWW) don't support multi screens yet...
-- Neovim: with add LSP, Mason soon to install lacking packages on some Linux distro.
+- Neovim: with add LSP, Mason soon to install lacking packages on some Linux
+  distro.
 
 Create an issue if you encounter other problems.
 
