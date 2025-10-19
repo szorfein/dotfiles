@@ -55,8 +55,87 @@ you have nothing to do.
 
 ## Shortcuts
 
-...
+  :MasonInstallAll 
 
+ALL shortcuts bellow are not yet implemented, maybe in futur. A lot come from Emacs.
+
+Command abbreviations:
+
+- C- -> Control
+- M- -> Meta, ("Alt" on most keyboard)
+- S- -> Shift
+- s- -> Super (not Shift)
+- SPC -> Space
+
+Will implement following shorcuts:
+
+Basic:
+- C-x C-f: find (open) a file
+- C-x C-s: save the buffer
+- C-x C-w: save the buffer as
+- C-x s: save all buffer (interactive ?)
+- C-x b: switch buffer 
+- C-x k: kill (close) buffer 
+- C-x C-b: Display all open buffer 
+- C-x C-c: quit Neovim
+- C-x u: undo
+
+Minibuffer: where are display error message ?
+For session, search: 
+- https://github.com/rmagatti/auto-session
+- https://github.com/stevearc/resession.nvim
+- https://github.com/folke/persistence.nvim
+
+Windows (I don't thing implement this like this)
+- C-x 0: delete active window
+- C-x 1: delete other window
+- C-x 2: split window bellow (v)
+- C-x 3: split window right (h)
+- C-x o: Switch active window
+
+Directional window move (like windmove package)
+- S-<left>
+- S-<right>
+- S-<up>
+- S-<down>
+
+Move:
+- <left>... Arrow key, move character by character
+- C-<left>... Move word by word in the direction
+- C-a: move begin line 
+- C-e: move end line
+
+Whichkey (help command on C-h)
+- C-h w or C-h k
+- C-h b: display all keybinds (true mode)
+
+LSP: M-x server-start
+
+Completing Word:
+
+Manage bookmark and register (need a plugin - https://github.com/tomasky/bookmarks.nvim ?)
+- C-x r m: Set a bookmark 
+- C-x r l: List bookmark 
+- C-x r b: Jump to a bookmark 
+
+TAB completion 
+- TAB
+- C-M-j or C-M-k: down or up
+- C-n, C-p
+- M-<: Begin completion list
+- M->: End completion list
+
+Indent (or align) a region , one of:
+- C-M-\ and add the symbol for align, e.g: C-M-\ :
+- C-x Tab: ?
+- C-M-o: following by a symbol
+
+Running one command
+- M-!
+- M-x shell Enter: create a shell in it's own buffer
+
+Dired: ((see file   hierarchy)
+- C-x d: ((C-n go next, C-p prev, v preview))
 ## Troubleshooting
 
 #### Error during update (checkout failed or any error related to git...)
@@ -85,3 +164,9 @@ After the installation, relaunch your script to have the highlight enabled.
 Also from books:
 
 - Mastering Vim by Ruslan Osipov
+- Mastering Emacs by Mickey Petersen
+
+### Keybinds Emacs
+- https://github.com/sei40kr/nvimacs/blob/main/plugin/nvimacs.lua
+- https://github.com/andrep/vimacs/blob/master/plugin/vimacs.vim
+- https://github.com/tpope/vim-rsi/blob/master/plugin/rsi.vim

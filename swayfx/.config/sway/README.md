@@ -22,6 +22,7 @@ The whole (or many) stack has changed because wayland instead of X.
 - Neovim (optional) - replace doomemacs and vim
 - Pinta (optional), replace Gimp.
 - Dunst - Notification.
+- imagemagick - Convert cover album
 
 ### Archlinux
 
@@ -31,10 +32,10 @@ The whole (or many) stack has changed because wayland instead of X.
     playerctl mpd-mpris mpv-mpris wezterm rust \
     git meson scdoc wayland-protocols cairo gdk-pixbuf2 \
     libevdev libinput json-c libgudev wayland libxcb \
-    libxkbcommon pango pcre2 wlroots0.17 seatd \
+    libxkbcommon pango pcre2 wlroots0.19 seatd \
     libdrm libglvnd pixman glslang meson ninja \
     cargo libdbusmenu-gtk3 gtk3 gtk-layer-shell \
-    iwd nemo dunst
+    iwd thunar dunst
 
 From AUR:
 
@@ -64,7 +65,7 @@ Swayfx dependencies
     sudo xbps-install -S swayfx imv light jq wl-clipboard \
     papirus-icon-theme inotify-tools mpd mpc wezterm curl \
     stow playerctl mpv-mpris mpDris2 eww ruby swaybg grim \
-    wmenu iwd nemo seatd turnstile dunst
+    wmenu iwd Thunar seatd turnstile dunst
 
 Required step as root
 
@@ -77,7 +78,7 @@ Required step as root
 You will need to activate [GURU](https://github.com/gentoo/guru)
 
     sudo emerge -av light net-misc/curl stow
-    papirus-icon-theme gnome-extra/nemo \
+    papirus-icon-theme xfce-base/thunar \
     inotify-tools swaybg imv app-misc/jq \
     app-misc/jq media-sound/mpd media-sound/mpc \
     dev-lang/ruby playerctl wl-clipboard wezterm \
@@ -199,7 +200,7 @@ Using my script `stow.sh`, you'll need to install at least: `swayfx` and a
 If you want a more complete command, you can also add `wezterm`, `zsh`,
 `neovim`, `tmux`.
 
-    ~/.dotfiles/stow.sh --purge --wezterm --swayfx jinx --neovim --tmux --zsh
+    ~/.dotfiles/stow.sh --purge --wezterm --neovim --tmux --zsh --swayfx jinx
 
 Use `--purge` if need to reinstall files as first argument.
 
@@ -231,7 +232,7 @@ Reinstall files with `stow.sh --purge` to reinstall new dotfiles.
 Follow the guide to create your own theme.  
 https://szorfein.vercel.app/post/your-own-swayfx-theme
 
-### Thanks lighten libs using m3
+### Thanks lighten libs using m3 with css
 
 - https://github.com/w3teal/gmx.css or https://gmxcss.js.org/
 - https://github.com/beercss/beercss or https://www.beercss.com/
