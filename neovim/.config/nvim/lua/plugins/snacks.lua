@@ -35,6 +35,8 @@ return {
             ui_select = true,
         },
 
+        explorer = {},
+
         -- configure scope
         scope = {
             filter = function(buf)
@@ -42,4 +44,55 @@ return {
             end,
         },
     },
+    keys = {
+        {
+            '<leader>,',
+            function()
+                Snacks.picker.buffers()
+            end,
+            desc = 'Buffers',
+        },
+        {
+            '<c-f><c-f>',
+            function()
+                --require('snacks').picker.files()
+                Snacks.picker.files({
+                    hidden = vim.tbl_get((vim.uv or vim.loop).fs_stat('.git') or {}, 'type') == 'directory',
+                })
+            end,
+            desc = 'Find Files',
+        },
+    },
+    init = function()
+        vim.api.nvim_create_autocmd('User', {
+            pattern = 'VeryLazy',
+            callback = function()
+                local r = require('utils.remaps')
+
+                -- https://github.com/folke/snacks.nvim/blob/main/docs/debug.md
+                _G.dd = function(...)
+                    Snacks.debug.inspect(...)
+                end
+                _G.bt = function()
+                    Snacks.debug.backtrace()
+                end
+
+                -- Override print to use snacks for `:=` command
+                -- :=Snacks.notifier.notify("hello",4)
+                if vim.fn.has('nvim-0.11') == 1 then
+                    vim._print = function(_, ...)
+                        _G.dd(...)
+                    end
+                else
+                    vim.print = _G.dd
+                end
+
+                r.noremap('n', '<c-x><c-f>', function()
+                    Snacks.picker.files({
+                        hidden = vim.tbl_get((vim.uv or vim.loop).fs_stat('.git') or {}, 'type') == 'directory',
+                    })
+                end, 'Find files')
+            end,
+        })
+    end,
 }

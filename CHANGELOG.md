@@ -1,8 +1,16 @@
 ## 4.0.1
 
+Neovim
+
+- Add Mason
+- Add Neovim-LSP (for bash and lua)
+- Add Snack.picker instead of lua-fzf
+- More Emacs shortcut
+
 Bugs Fix
 
-- Use imagemagick to convert cover album image, image too big has a HUGE performance impact on EWW.
+- Use imagemagick to convert cover album image, image too big has a HUGE
+  performance impact on EWW.
 
 ## v4.0.0 - Jinx - Oct 17 2025
 

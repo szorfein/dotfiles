@@ -53,11 +53,26 @@ you have nothing to do.
 - [nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons), replace
   vim-devicons.
 
-## Shortcuts
+## Basic commands
 
-  :MasonInstallAll 
+Manage plugin (lazy.nvim):
 
-ALL shortcuts bellow are not yet implemented, maybe in futur. A lot come from Emacs.
+    :Lazy
+    :Lazy check
+    :Lazy update
+    :Lazy clean (clean disabled plugin)
+    :Lazy sync (update and clean)
+
+Language syntax highligh (treesitter):
+
+    :TSInstall bash
+
+Installing tool (for conform.nvim (code format), lsp):
+
+    :Mason (see the list and install what you want)
+    :MasonInstallAll (install all things enable here (very short list))
+
+## Keyboard Shortcuts
 
 Command abbreviations:
 
@@ -67,26 +82,39 @@ Command abbreviations:
 - s- -> Super (not Shift)
 - SPC -> Space
 
+Move:
+
+- C-a: move begin line
+- C-e: move end line
+
+Search file:
+
+- C-x C-f: find (open) a file
+
 Will implement following shorcuts:
 
 Basic:
-- C-x C-f: find (open) a file
+
+ALL shortcuts bellow are not yet implemented, maybe in futur. A lot come from
+Emacs.
+
 - C-x C-s: save the buffer
 - C-x C-w: save the buffer as
 - C-x s: save all buffer (interactive ?)
-- C-x b: switch buffer 
-- C-x k: kill (close) buffer 
-- C-x C-b: Display all open buffer 
+- C-x b: switch buffer
+- C-x k: kill (close) buffer
+- C-x C-b: Display all open buffer
 - C-x C-c: quit Neovim
 - C-x u: undo
 
-Minibuffer: where are display error message ?
-For session, search: 
+Minibuffer: where are display error message ? For session, search:
+
 - https://github.com/rmagatti/auto-session
 - https://github.com/stevearc/resession.nvim
 - https://github.com/folke/persistence.nvim
 
 Windows (I don't thing implement this like this)
+
 - C-x 0: delete active window
 - C-x 1: delete other window
 - C-x 2: split window bellow (v)
@@ -94,18 +122,19 @@ Windows (I don't thing implement this like this)
 - C-x o: Switch active window
 
 Directional window move (like windmove package)
+
 - S-<left>
 - S-<right>
 - S-<up>
 - S-<down>
 
 Move:
+
 - <left>... Arrow key, move character by character
 - C-<left>... Move word by word in the direction
-- C-a: move begin line 
-- C-e: move end line
 
 Whichkey (help command on C-h)
+
 - C-h w or C-h k
 - C-h b: display all keybinds (true mode)
 
@@ -113,12 +142,15 @@ LSP: M-x server-start
 
 Completing Word:
 
-Manage bookmark and register (need a plugin - https://github.com/tomasky/bookmarks.nvim ?)
-- C-x r m: Set a bookmark 
-- C-x r l: List bookmark 
-- C-x r b: Jump to a bookmark 
+Manage bookmark and register (need a plugin -
+https://github.com/tomasky/bookmarks.nvim ?)
 
-TAB completion 
+- C-x r m: Set a bookmark
+- C-x r l: List bookmark
+- C-x r b: Jump to a bookmark
+
+TAB completion
+
 - TAB
 - C-M-j or C-M-k: down or up
 - C-n, C-p
@@ -126,16 +158,20 @@ TAB completion
 - M->: End completion list
 
 Indent (or align) a region , one of:
+
 - C-M-\ and add the symbol for align, e.g: C-M-\ :
 - C-x Tab: ?
 - C-M-o: following by a symbol
 
 Running one command
+
 - M-!
 - M-x shell Enter: create a shell in it's own buffer
 
-Dired: ((see file   hierarchy)
+Dired: ((see file hierarchy)
+
 - C-x d: ((C-n go next, C-p prev, v preview))
+
 ## Troubleshooting
 
 #### Error during update (checkout failed or any error related to git...)
@@ -167,6 +203,7 @@ Also from books:
 - Mastering Emacs by Mickey Petersen
 
 ### Keybinds Emacs
+
 - https://github.com/sei40kr/nvimacs/blob/main/plugin/nvimacs.lua
 - https://github.com/andrep/vimacs/blob/master/plugin/vimacs.vim
 - https://github.com/tpope/vim-rsi/blob/master/plugin/rsi.vim
