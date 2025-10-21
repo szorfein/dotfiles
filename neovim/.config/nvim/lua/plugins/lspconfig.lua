@@ -1,3 +1,7 @@
+local vim = vim
+local map = vim.keymap.set
+local icon = require('utils.icon')
+
 return {
     'neovim/nvim-lspconfig',
     dependencies = {
@@ -7,6 +11,49 @@ return {
     config = function()
         -- 'trace', 'debug', 'info', 'warn', 'error'
         vim.lsp.set_log_level('error')
+
+        -- keybind shortcuts
+        local function on_attach(client, bufnr)
+            local function buf_set_option(o, v)
+                vim.api.nvim_set_option_value(o, v, { buf = bufnr })
+            end
+            buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+            local opts = { buffer = bufnr }
+
+            local cap = client.server_capabilities
+            if cap.definitionProvider then
+                map('n', 'gD', vim.lsp.buf.definition, opts)
+            end
+        end
+
+        -- config diagnostic
+        -- https://smarttech101.com/nvim-lsp-diagnostics-keybindings-signs-virtual-texts
+        vim.diagnostic.config({
+            virtual_text = {
+                -- source = "always",  -- Or "if_many"
+                prefix = '●', -- Could be '■', '▎', 'x'
+            },
+            severity_sort = true,
+            float = {
+                source = 'always', -- Or "if_many"
+                border = 'rounded',
+                --border = 'shadow',
+                focused = false,
+                focus = false,
+                style = 'minimal',
+                header = '',
+                prefix = '',
+            },
+            signs = {
+                text = {
+                    [vim.diagnostic.severity.ERROR] = icon.get('DiagnosticError'),
+                    [vim.diagnostic.severity.HINT] = icon.get('DiagnosticHint'),
+                    [vim.diagnostic.severity.WARN] = icon.get('DiagnosticWarn'),
+                    [vim.diagnostic.severity.INFO] = icon.get('DiagnosticInfo'),
+                },
+            },
+        })
 
         local border = { border = 'shadow' }
         vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.hover, border)
@@ -27,6 +74,9 @@ return {
         local servers = {
             bashls = require('lsp.bashls')(on_attach),
             lua_ls = require('lsp.luals')(on_attach),
+            rubocop = require('lsp.rubocop')(on_attach),
+            -- problem with ruby_lsp mason install (not executable)
+            --ruby_lsp = require('lsp.rubylsp')(on_attach),
         }
         local server_names = {}
         local server_configs = {}
@@ -46,7 +96,7 @@ return {
                 automatic_enable = false,
             })
             for s, c in pairs(server_configs) do
-                vim.lsp.enable(vim.tbl_deep_extend('force', default_lsp_config, c or {}))
+                vim.lsp.enable(s, vim.tbl_deep_extend('force', default_lsp_config, c or {}))
             end
         end
     end,

@@ -60,7 +60,6 @@ convert_img() {
     printf '%s\n' "/tmp/$IMGNAME"
 }
 
-OLD_SONG=""
 #while :; do
 # always prefer inotify or any mechanism to check change over sleep
 #sleep 5
@@ -81,7 +80,7 @@ exec playerctl --follow metadata --format $':{{status}}\t:{{position}}\t:{{mpris
     hpos=$(expr " $hpos" : " .\\(.*\\)")
     hlen=$(expr " $hlen" : " .\\(.*\\)")
     artist=$(expr " ${artist_title%@@*}" : " .\\(.*\\)" | tr -d '"')
-    title="$(echo ${artist_title#*@@} | tr -d '"')"
+    title=$(echo "${artist_title#*@@}" | tr -d '"')
 
     # Remove undesirable symbols...
     artist=$(trim_sed "$artist")
@@ -109,7 +108,6 @@ exec playerctl --follow metadata --format $':{{status}}\t:{{position}}\t:{{mpris
     [ -z "$arturl" ] && arturl="$HOME$DEFAULT_IMG"
     [ -z "$title" ] && title="N/A"
     [ -z "$artist" ] && artist="N/A"
-    OLD_SONG="$title"
 
     web=false
     mpd=false
@@ -144,6 +142,8 @@ exec playerctl --follow metadata --format $':{{status}}\t:{{position}}\t:{{mpris
         if [ "$playing" = "Playing" ]; then
             mpv=true
             #echo "we enable mpv $mpv"
+        else
+            mpv=false
         fi
     fi
 
