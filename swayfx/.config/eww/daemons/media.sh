@@ -131,14 +131,14 @@ exec playerctl --follow metadata --format $':{{status}}\t:{{position}}\t:{{mpris
         fi
     fi
 
-    if expr "$name" : '.*[mpd]' > /dev/null; then
+    if expr "$name" : '.*[mpd]$' > /dev/null; then
         if [ "$playing" = "Playing" ]; then
             mpd=true
             #echo "we enable mpd $mpd"
         fi
     fi
 
-    if expr "$name" : '.*[mpv]' > /dev/null; then
+    if expr "$name" : '.*[mpv]$' > /dev/null; then
         if [ "$playing" = "Playing" ]; then
             mpv=true
             #echo "we enable mpv $mpv"

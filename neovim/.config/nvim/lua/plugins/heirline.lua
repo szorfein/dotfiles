@@ -1,3 +1,5 @@
+local vim = vim
+
 return {
     'rebelot/heirline.nvim',
     event = 'BufEnter',
@@ -71,7 +73,6 @@ return {
                 mode_colors = {
                     n = 'red',
                     i = 'green',
-                    R = 'orange',
                     v = 'magenta',
                     V = 'magenta',
                     c = 'cyan',

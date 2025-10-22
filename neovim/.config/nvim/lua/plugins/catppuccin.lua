@@ -7,7 +7,6 @@ return {
     opts = {
         color_overrides = {
             all = {
-                maroon = mycolors.maroon,
                 pink = mycolors.pink,
                 mauve = mycolors.mauve,
                 red = mycolors.red,

@@ -32,6 +32,7 @@ return {
             vim.cmd('MasonUpdate')
 
             local ensure_installed = {
+                'ansible-lint',
                 'stylua',
                 'prettier',
                 'shfmt',

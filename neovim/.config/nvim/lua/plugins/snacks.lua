@@ -1,4 +1,6 @@
 -- https://github.com/folke/snacks.nvim/blob/main/docs
+local vim = vim
+
 return {
     'folke/snacks.nvim',
     lazy = false,
@@ -48,19 +50,25 @@ return {
         {
             '<leader>,',
             function()
-                Snacks.picker.buffers()
+                require('snacks').picker.buffers()
             end,
             desc = 'Buffers',
         },
         {
             '<c-f><c-f>',
             function()
-                --require('snacks').picker.files()
-                Snacks.picker.files({
+                require('snacks').picker.files({
                     hidden = vim.tbl_get((vim.uv or vim.loop).fs_stat('.git') or {}, 'type') == 'directory',
                 })
             end,
             desc = 'Find Files',
+        },
+        {
+            '<leader>lD',
+            function()
+                require('snacks').picker.diagnostics()
+            end,
+            desc = 'Search diagnostics',
         },
     },
     init = function()
@@ -71,10 +79,10 @@ return {
 
                 -- https://github.com/folke/snacks.nvim/blob/main/docs/debug.md
                 _G.dd = function(...)
-                    Snacks.debug.inspect(...)
+                    require('snacks').debug.inspect(...)
                 end
                 _G.bt = function()
-                    Snacks.debug.backtrace()
+                    require('snacks').debug.backtrace()
                 end
 
                 -- Override print to use snacks for `:=` command
@@ -88,7 +96,7 @@ return {
                 end
 
                 r.noremap('n', '<c-x><c-f>', function()
-                    Snacks.picker.files({
+                    require('snacks').picker.files({
                         hidden = vim.tbl_get((vim.uv or vim.loop).fs_stat('.git') or {}, 'type') == 'directory',
                     })
                 end, 'Find files')
