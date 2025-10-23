@@ -6,7 +6,7 @@ The whole (or many) stack has changed because wayland instead of X.
 [migration_guide](https://github.com/swaywm/sway/wiki/i3-Migration-Guide)
 
 - swayfx - wm and compositor
-- wezterm - replace xst (tested foot (very fast and good also)) and kitty (not
+- foot - replace xSt
   very interested but it's an option)
 - imv - images viewer, replace feh
 - eww - widgets (instead of the awesomewm API)
@@ -18,18 +18,18 @@ The whole (or many) stack has changed because wayland instead of X.
   playlists)
 - ruby
 - light, inotify-tools
-- Nemo (optional)
+- Thunar (optional)
 - Neovim (optional) - replace doomemacs and vim
 - Pinta (optional), replace Gimp.
 - Dunst - Notification.
-- imagemagick - Convert cover album
+- imagemagick - Convert all images used by EWW
 
 ### Archlinux
 
-    sudo pacman -Syy papirus-icon-theme \
+    sudo pacman -Syy \
     inotify-tools imv jq mpd mpc wl-clipboard curl stow \
     bc imagemagick rubygems grim swaybg wmenu \
-    playerctl mpd-mpris mpv-mpris wezterm rust \
+    playerctl mpd-mpris mpv-mpris foot rust \
     git meson scdoc wayland-protocols cairo gdk-pixbuf2 \
     libevdev libinput json-c libgudev wayland libxcb \
     libxkbcommon pango pcre2 wlroots0.19 seatd \
@@ -63,9 +63,9 @@ first. e.g for intel:
 Swayfx dependencies
 
     sudo xbps-install -S swayfx imv light jq wl-clipboard \
-    papirus-icon-theme inotify-tools mpd mpc wezterm curl \
+    inotify-tools mpd mpc foot curl \
     stow playerctl mpv-mpris mpDris2 eww ruby swaybg grim \
-    wmenu iwd Thunar seatd turnstile dunst
+    wmenu iwd Thunar seatd turnstile dunst ImageMagick
 
 Required step as root
 
@@ -77,17 +77,20 @@ Required step as root
 
 You will need to activate [GURU](https://github.com/gentoo/guru)
 
+    sudo emerge -av app-eselect/eselect-repository
+    sudo eselect repository add guru git https://github.com/gentoo/guru.git
+    sudo emaint sync -r guru
+
+And install packages:
+
     sudo emerge -av light net-misc/curl stow
-    papirus-icon-theme xfce-base/thunar \
+    xfce-base/thunar \
     inotify-tools swaybg imv app-misc/jq \
     app-misc/jq media-sound/mpd media-sound/mpc \
-    dev-lang/ruby playerctl wl-clipboard wezterm \
+    dev-lang/ruby playerctl wl-clipboard gui-apps/foot \
     gui-apps/grim gui-apps/wmenu net-wireless/iwd \
     gui-apps/eww gui-wm/swayfx mpv-mpris mpd-mpris \
-    acct-group/seat seatd
-
-> [!WARNING] Wezterm on musl don't compile
-> [error-on-ld](https://bugs.gentoo.org/937717), you may use foot instead.
+    acct-group/seat seatd media-gfx/imagemagick
 
 > [!NOTE] seatd should be compiled with the `server` use flag
 
@@ -197,16 +200,17 @@ Using my script `stow.sh`, you'll need to install at least: `swayfx` and a
 
     ~/.dotfiles/stow.sh --swayfx jinx
 
-If you want a more complete command, you can also add `wezterm`, `zsh`,
+If you want a more complete command, you can also add `foot`, `zsh`,
 `neovim`, `tmux`.
 
-    ~/.dotfiles/stow.sh --purge --wezterm --neovim --tmux --zsh --swayfx jinx
+    ~/.dotfiles/stow.sh --purge --foot --neovim --tmux --zsh --swayfx jinx
 
-Use `--purge` if need to reinstall files as first argument.
+Use `--purge` if need to reinstall files as first argument.  
+The theme you want as last argument `--swayfx jinx`.
 
 I recommand you to create an alias or function (for Fish) here for easy reinstall, e.g for Zsh: 
 
-    alias reinstall_jinx="~/.dotfiles/stow.sh --purge --wezterm --swayfx jinx --neovim --tmux --zsh"
+    alias reinstall_jinx="~/.dotfiles/stow.sh --purge --foot --neovim --tmux --zsh --swayfx jinx"
 
 ## Download other dependencies
 
@@ -224,7 +228,7 @@ Update the repo using `git pull`
 
 Reinstall files with `stow.sh --purge` to reinstall new dotfiles.
 
-    ~/.dotfiles/stow.sh --purge --wezterm --swayfx holy
+    ~/.dotfiles/stow.sh --purge --foot --swayfx holy
     reaver
 
 ### Create your own theme
