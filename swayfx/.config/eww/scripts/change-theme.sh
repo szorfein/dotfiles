@@ -2,7 +2,7 @@
 
 set -o errexit -o nounset
 
-ICON=$(echo -e "\ue40a")
+ICON=""
 DOTFILES="$HOME/.dotfiles"
 THEMES="$DOTFILES/swayfx-themes"
 FOUND=false
@@ -31,9 +31,9 @@ install_theme() {
 
 SELECTED="$1"
 
-for theme in $(ls "$THEMES"); do
-    #echo "$theme"
-    if [ "$theme" = "$SELECTED" ]; then
+for theme in "$THEMES"/*; do
+    theme_name="${theme##*/}"
+    if [ "$theme_name" = "$SELECTED" ]; then
         echo "found $SELECTED"
         FOUND=true
     fi
@@ -43,8 +43,10 @@ if ! "$FOUND"; then
     die "No theme $SELECTED found"
 fi
 
-for theme in $(ls "$THEMES"); do
-    uninstall_theme "$theme"
+for theme in "$THEMES"/*; do
+    theme_name="${theme##*/}"
+    echo "uninstall $theme_name"
+    uninstall_theme "$theme_name"
 done
 
 install_theme "$SELECTED"

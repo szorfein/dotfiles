@@ -68,23 +68,18 @@ set shell=/bin/zsh
 
 " Few Emacs shorcuts
 " https://caiorss.github.io/Emacs-Elisp-Programming/Keybindings.html
-nmap <C-x>s :w<cr>
-nmap <C-x><C-f> :FzfLua files<cr>
-nmap <C-x>c :wq<cr> " should be <C-x><C-c> but not works
-
-" Begin and end line
-inoremap <C-a> <home>
-inoremap <C-e> <end>
-nnoremap <C-a> <home>
-nnoremap <C-e> <end>
+"nmap <C-x>s :w<cr>
+"nmap <C-x><C-f> :FzfLua files<cr>
+"nmap <C-x>c :wq<cr> " should be <C-x><C-c> but not works
 
 " Load custom theme when installed
 " (colorscheme + lightline)
-if filereadable(glob("~/.config/nvim/theme.vim"))
-    execute 'source' '~/.config/nvim/theme.vim'
-endif
+" if filereadable(glob("~/.config/nvim/theme.vim"))
+"   execute 'source' '~/.config/nvim/theme.vim'
+"endif
 
-lua require('config-lazy')
+lua require('configs.commands')
+lua require('configs.lazy')
 
 " Colours
 syntax enable
