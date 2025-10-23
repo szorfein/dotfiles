@@ -38,6 +38,9 @@ require('lazy').setup({
 
     -- https://github.com/NvChad/starter/blob/main/lua/configs/lazy.lua
     performance = {
+        cache = {
+            enabled = true,
+        },
         rtp = {
             disabled_plugins = {
                 '2html_plugin',

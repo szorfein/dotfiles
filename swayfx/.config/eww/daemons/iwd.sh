@@ -52,7 +52,7 @@ build_json() {
         #echo "[$line]"
         connected=false
         check_assoc "$line" && connected=true
-        name="$(echo $line | tr -d '>' | awk '{print $1}')"
+        name=$(echo "$line" | tr -d '>' | awk '{print $1}')
         json+="{\"name\": \"$name\","
         json+="\"connected\": $connected},"
     done <<< "$SCAN_RES"
@@ -83,9 +83,12 @@ scan_ssid() {
     #iwctl known-networks "network_name" show
 }
 
+i=1
 while :; do
+    echo "run daemons/iwd $i"
     if get_interface ; then
         scan_ssid
     fi
-    exec sleep 60
+    sleep 60
+    i=$((i + 1))
 done

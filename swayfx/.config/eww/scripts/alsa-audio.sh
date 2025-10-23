@@ -3,8 +3,8 @@
 set -o errexit
 
 ISMUTE=false
-ICON_ON=$(echo -e "\ue050")
-ICON_OFF=$(echo -e "\ue04f")
+ICON_ON=""
+ICON_OFF=""
 ICON="$ICON_OFF"
 
 TOGGLE=false
@@ -15,18 +15,20 @@ noti() {
 }
 
 ## PARAMS
-if [[ -n "$1" && "$1" = "toggle" ]]; then
-    TOGGLE=true
-elif [[ -n "$1" && "$1" = "set" ]]; then
-    if [ -n "$2" ]; then
-        CHANGE_VOLUME=true
-        amixer set Master "$2"%
-        noti "$2"
+if [ -n "$1" ]; then
+    if [ "$1" = "toggle" ]; then
+        TOGGLE=true
+    elif [ "$1" = "set" ]; then
+        if [ -n "$2" ]; then
+            CHANGE_VOLUME=true
+            amixer set Master "$2"%
+            noti "$2"
+        fi
     fi
 fi
 
 AMIXER=$(amixer sget Master | grep "\[")
-IS_VOL_ON=$(echo "$AMIXER" | awk '{print $6}' | tr -d "[[]")
+IS_VOL_ON=$(echo "$AMIXER" | awk '{print $6}' | tr -d "\[[\]")
 
 mute_alsa_card() {
     ISMUTE=true
@@ -52,7 +54,7 @@ else
     echo "??"
 fi
 
-VOL=$(echo "$AMIXER" | awk '{print $4}' | tr -d "[%]")
+VOL=$(echo "$AMIXER" | awk '{print $4}' | tr -d "\[%\]")
 
 JSON="{"
 JSON="$JSON\"volume\":$VOL,"
@@ -60,7 +62,7 @@ JSON="$JSON\"muted\":$ISMUTE,"
 JSON="$JSON\"muted-icon\":\"$ICON\""
 JSON="$JSON}"
 
-if [[ $TOGGLE || $CHANGE_VOLUME ]]; then
+if [ $TOGGLE ] || [ $CHANGE_VOLUME ]; then
     eww update audio="$JSON" &
     wait
 fi

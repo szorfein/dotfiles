@@ -3,8 +3,7 @@
 set -o errexit
 
 # check https://smarttech101.com/how-to-send-notifications-in-linux-using-dunstify-notify-send
-#
-ICON=$(echo -e "\ue3a7")
+ICON=""
 LIGHT="1"
 
 if PID=$(pgrep -f "inotifywait .*brightness"); then
