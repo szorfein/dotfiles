@@ -1,4 +1,8 @@
-## 4.2.2
+## 4.3.2
+
+Sway - EWW
+
+- Convert images used by EWW at start (help for default image cover album, changetheme)
 
 Neovim
 
