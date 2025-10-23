@@ -2,16 +2,16 @@
 
 set -o errexit
 
-if [ -f /tmp/daemon-playlists ] ; then
-    OLDPID=$(cat </tmp/daemon-playlists)
-    if kill "$OLDPID" 2>/dev/null ; then
-        echo "killing $OLDPID"
+if PIDS=$(pgrep -f "sh .*playlists.sh"); then
+    MYPID=$$
+    PIDS_CLEAN=$(echo "$PIDS" | sed s/"$MYPID"//)
+    if [ -n "$PIDS_CLEAN" ]; then
+        echo "clean $PIDS_CLEAN"
+        echo "$PIDS_CLEAN" | xargs kill
     fi
 fi
 
-echo "$$">/tmp/daemon-playlists
-
 while :; do
     ~/.config/eww/scripts/mpc.sh update
-    exec sleep 99
+    sleep 99
 done

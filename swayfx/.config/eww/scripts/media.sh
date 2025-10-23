@@ -1,4 +1,4 @@
-#!/usr/bin/sh
+#!/usr/bin/env bash
 
 # For people reading this script
 # Playerctl is a really bad reader...

@@ -7,9 +7,9 @@ ICON_INC=""
 ICON_DEC=""
 AUDIO="pulseaudio"
 
-if pidof pipewire >/dev/null 2>&1; then
+if pidof pipewire > /dev/null 2>&1; then
     AUDIO="pipewire"
-elif ! pidof pulseaudio >/dev/null 2>&1; then
+elif ! pidof pulseaudio > /dev/null 2>&1; then
     AUDIO="alsa"
 fi
 
@@ -83,7 +83,7 @@ alsa_get() {
 }
 
 alsa_set() {
-    amixer set Master "$1"% >/dev/null
+    amixer set Master "$1"% > /dev/null
     #eww_update "$1"
     noti "$ICON" "alsa set to $1"
 }
@@ -104,61 +104,60 @@ alsa_mute() {
 
 get_sound() {
     case "$AUDIO" in
-        *pipewire*) pipewire_get ;;
-        *pulseaudio*) pulseaudio_get ;;
-        *alsa*) alsa_get ;;
+    *pipewire*) pipewire_get ;;
+    *pulseaudio*) pulseaudio_get ;;
+    *alsa*) alsa_get ;;
     esac
 }
 
 set_sound() {
     case "$AUDIO" in
-        *pipewire*) pipewire_set "$1" ;;
-        *pulseaudio*) pulseaudio_set "$1" ;;
-        *alsa*) alsa_set "$1" ;;
+    *pipewire*) pipewire_set "$1" ;;
+    *pulseaudio*) pulseaudio_set "$1" ;;
+    *alsa*) alsa_set "$1" ;;
     esac
 }
 
 mute_sound() {
     case "$AUDIO" in
-        *pipewire*) pipewire_mute ;;
-        *pulseaudio*) pulseaudio_mute ;;
-        *alsa*) alsa_mute ;;
+    *pipewire*) pipewire_mute ;;
+    *pulseaudio*) pulseaudio_mute ;;
+    *alsa*) alsa_mute ;;
     esac
 }
 
 up_sound() {
     case "$AUDIO" in
-        *pipewire*) pipewire_up ;;
-        *pulseaudio*) pulseaudio_up ;;
-        *alsa*) alsa_up ;;
+    *pipewire*) pipewire_up ;;
+    *pulseaudio*) pulseaudio_up ;;
+    *alsa*) alsa_up ;;
     esac
 }
 
 down_sound() {
     case "$AUDIO" in
-        *pipewire*) pipewire_down ;;
-        *pulseaudio*) pulseaudio_down ;;
-        *alsa*) alsa_down ;;
+    *pipewire*) pipewire_down ;;
+    *pulseaudio*) pulseaudio_down ;;
+    *alsa*) alsa_down ;;
     esac
 }
 
-if [ "$1" = "get" ] ; then 
+if [ "$1" = "get" ]; then
     get_sound
 fi
 
-if [ "$1" = "set" ] ; then 
+if [ "$1" = "set" ]; then
     set_sound "$2"
 fi
 
-if [ "$1" = "mute" ] ; then 
+if [ "$1" = "mute" ]; then
     mute_sound
 fi
 
-if [ "$1" = "up" ] ; then 
+if [ "$1" = "up" ]; then
     up_sound
 fi
 
-if [ "$1" = "down" ] ; then 
+if [ "$1" = "down" ]; then
     down_sound
 fi
-

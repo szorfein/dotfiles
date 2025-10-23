@@ -4,8 +4,8 @@ set -o errexit
 
 # TODO: check for a daemon with: ip monitor
 # https://github.com/waltinator/net-o-matic/blob/master/net-o-matic
-ICON_WIFI_ON=$(print "\ue194")
-ICON_WIFI_KILLED=$(print "\ue539")
+ICON_WIFI_ON=""
+ICON_WIFI_KILLED=""
 
 wifi_killed="$(eww get wifi-killed)"
 

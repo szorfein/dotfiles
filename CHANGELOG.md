@@ -1,16 +1,18 @@
-## 4.0.1
+## 4.2.0
 
 Neovim
 
 - Add Mason
-- Add Neovim-LSP (for bash and lua)
-- Add Snack.picker instead of lua-fzf
+- Add Neovim-LSP (for bash, lua and ruby)
+- Use Snack.picker instead of lua-fzf
+- Add whichkey.nvim
+- Add resession.nvim
 - More Emacs shortcut
 
 Bugs Fix
 
-- Use imagemagick to convert cover album image, image too big has a HUGE
-  performance impact on EWW.
+- Use imagemagick to convert cover album image, image too big has a HUGE performance impact on EWW.
+- Correct all eww/daemons,scripts (thks shellcheck). Make them compatible with Dash (for Voidlinux)) or specify the use of  /usr/bin/env bash.
 
 ## v4.0.0 - Jinx - Oct 17 2025
 
