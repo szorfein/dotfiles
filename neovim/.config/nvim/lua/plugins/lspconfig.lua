@@ -73,7 +73,9 @@ return {
         -- servers
         local servers = {
             bashls = require('lsp.bashls')(on_attach),
+            codebook = require('lsp.codebook')(on_attach),
             lua_ls = require('lsp.luals')(on_attach),
+            --harper_ls = require('lsp.harper_ls')(on_attach),
             rubocop = require('lsp.rubocop')(on_attach),
             -- problem with ruby_lsp mason install (not executable)
             --ruby_lsp = require('lsp.rubylsp')(on_attach),
