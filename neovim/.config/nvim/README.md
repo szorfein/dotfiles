@@ -38,6 +38,10 @@ you have nothing to do.
 
 Look under lua/ui and lua/plugins to see all plugins activated.
 
+| language | format | lsp | note |
+|---|---|---|---|
+| ruby | rubocop | rubocop,standardrb | rubyfmt (error install) sorbet, ruby-lsp don't install correctly. solargraph, stimulus report nothing?, steep is with ast_grep (config) are annoying, syntax_tree (or stree?), ttags not available on Mason|
+
 ## Basic commands
 
 Manage plugin (lazy.nvim):
