@@ -2,29 +2,28 @@
 
 ## Dependencies
 
-The whole (or many) stack has changed because wayland instead of X.
+The whole (or many) stack has changed because Wayland instead of X.
 [migration_guide](https://github.com/swaywm/sway/wiki/i3-Migration-Guide)
 
-- swayfx - wm and compositor
-- foot - replace xSt
-  very interested but it's an option)
-- imv - images viewer, replace feh
-- eww - widgets (instead of the awesomewm API)
-- swaybg
+- SwayFX - wm and compositor
+- Foot - replace xSt
+- Imv - images viewer, replace Feh
+- Eww - widgets (instead of the Awesome WM API)
+- Swaybg
 - wl-clipboard
 - jq
 - grim (screenshot), replace scrot
-- playerctl, mpd-mpris or mpdris2, mpv-mpris, mpc (needed to manage mpd
+- Playerctl, mpd-mpris or mpdris2, mpv-mpris, mpc (needed to manage mpd
   playlists)
 - ruby
-- light, inotify-tools
+- Light, inotify-tools
 - Thunar (optional)
-- Neovim (optional) - replace doomemacs and vim
+- Neovim (optional) - replace Doom Emacs and vim
 - Pinta (optional), replace Gimp.
 - Dunst - Notification.
-- imagemagick - Convert all images used by EWW
+- imagemagick - Convert all images used by Eww
 
-### Archlinux
+### Arch Linux
 
     sudo pacman -Syy \
     inotify-tools imv jq mpd mpc wl-clipboard curl stow \
@@ -41,7 +40,7 @@ From AUR:
 
     scenefx swayfx eww light
 
-Before installing `eww` from AUR, you need to import gpg key:
+Before installing `eww` from AUR, you need to import GPG key:
 
     curl -sS https://github.com/elkowar.gpg | gpg --import
     curl -sS https://github.com/web-flow.gpg | gpg --import
@@ -52,7 +51,7 @@ Required step as root
     systemctl enable seatd
     systemctl start seatd
 
-### Voidlinux
+### Void Linux
 
 Install your
 [graphic driver](https://docs.voidlinux.org/config/graphical-session/graphics-drivers/index.html)
@@ -60,7 +59,7 @@ first. e.g for intel:
 
     sudo xbps-install -S linux-firmware-intel mesa-dri intel-video-accel
 
-Swayfx dependencies
+SwayFX dependencies
 
     sudo xbps-install -S swayfx imv light jq wl-clipboard \
     inotify-tools mpd mpc foot curl \
@@ -112,11 +111,11 @@ if test -z "${XDG_RUNTIME_DIR}"; then
 fi
 ```
 
-See on gentoo [wiki](https://wiki.gentoo.org/wiki/Sway#Starting_Sway_manually)
+See on Gentoo [wiki](https://wiki.gentoo.org/wiki/Sway#Starting_Sway_manually)
 
 ### From Ruby
 
-After the installation of the dependencies, for all distros, Install `i3ipc` locally:
+After the installation of the dependencies, for all Linux distribution, Install `i3ipc` locally:
 
     gem install --user-install i3ipc
 
@@ -132,7 +131,7 @@ If you add my dotfiles in another place, edit your shell (see below)
 
 ### Shell
 
-You have to add 5 lines in your shell `.bash_profile`, `.zprofile`, etc
+You have to add 5 lines in your shell `.bash_profile`, `.zprofile`, etc...
 
 ```sh
 # Load eww_scale
@@ -168,7 +167,7 @@ input type:keyboard {
 }
 ```
 
-And follow configurations for keymap on the
+And follow configurations for remap keyboard keys on the
 [sway-wiki](https://github.com/swaywm/sway/wiki#locale-specific-configuration-tricks)
 
 ### Run test-dpi.sh
@@ -179,10 +178,10 @@ with the script.
     ~/.dotfiles/swayfx/bin/test-dpi.sh 1366 768 11.6
     dp scale factor 0.8443388199535182
 
-The script need 3 paramaters to calculate your DPI:
+The script need 3 parameters to calculate your DPI:
 - `$1` horizontal screen, 
 - `$2` vertical
-- `$3` is the diagonale
+- `$3` is the diagonal
 
 ### Interact with iwd
 
@@ -192,7 +191,7 @@ User need to be added in `network` or `wheel` group.
 
 ## Installation
 
-Before using stow, make sure to backup all your personal files and move them in
+Before using stow, make sure to backups all your personal files and move them in
 a backup directory.
 
 Using my script `stow.sh`, you'll need to install at least: `swayfx` and a
@@ -208,14 +207,14 @@ If you want a more complete command, you can also add `foot`, `zsh`,
 Use `--purge` if need to reinstall files as first argument.  
 The theme you want as last argument `--swayfx jinx`.
 
-I recommand you to create an alias or function (for Fish) here for easy reinstall, e.g for Zsh: 
+I recommend you to create an alias or function (for Fish) here for easy reinstall, e.g for Zsh: 
 
     alias reinstall_jinx="~/.dotfiles/stow.sh --purge --foot --neovim --tmux --zsh --swayfx jinx"
 
 ## Download other dependencies
 
 After installing dotfiles with `stow.sh`, last step is to downloads all the
-required files (wallpapers, fonts, gtk-themes, icons, etc) in two commands, thanks ([reaver](https://geeksrepos.com/szorfein/reaver)):
+required files (wallpapers, fonts, GTK themes, icons, etc...) in two commands, thanks ([Reaver](https://geeksrepos.com/szorfein/reaver)):
 
     gem install --user-install reaver
     reaver
@@ -236,7 +235,7 @@ Reinstall files with `stow.sh --purge` to reinstall new dotfiles.
 Follow the guide to create your own theme.  
 https://szorfein.vercel.app/post/your-own-swayfx-theme
 
-### Thanks lighten libs using m3 with css
+### Thanks lighten library using Material 3 with CSS
 
 - https://github.com/w3teal/gmx.css or https://gmxcss.js.org/
 - https://github.com/beercss/beercss or https://www.beercss.com/
