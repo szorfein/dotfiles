@@ -31,11 +31,25 @@ return {
         integrations = {
             gitsigns = true,
             treesitter = true,
-            indent_blankline = {
+            snacks = {
                 enabled = true,
-                scope_color = '', -- catppuccin color (eg. `lavender`) Default: text
-                colored_indent_levels = false,
             },
+            lsp_trouble = true,
+            which_key = true,
+            indent_blankline = {
+                enabled = false,
+            },
+            illuminate = {
+                enabled = false,
+            },
+            telescope = {
+                enabled = false,
+            },
+            ufo = false,
+            nvimtree = false,
+            cmp = false,
+            dap = false,
+            dap_ui = false,
         },
     },
 }

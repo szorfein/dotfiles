@@ -1,22 +1,22 @@
-## 4.3.2
+## 4.4.3
 
 Sway - EWW
 
-- Convert images used by EWW at start (help for default image cover album, changetheme)
+- Convert all images used by EWW at start (help for default image cover album, changetheme)
 
 Neovim
 
-- Add Mason, Neovim-LSP (for bash, lua and ruby)
+- More plugins with Mason, Neovim-LSP (for bash, lua and ruby), Whichkey, Trouble.
 - Use Snack.picker instead of lua-fzf
-- Add Whichkey.nvim
-- Remove top winbar (heirline.nvim) from more unwanted buffer/window list.
-- Remove resession.nvim and use native mksession.
-- More Emacs shortcut
+- More LSP activated with [codebook](https://github.com/blopker/codebook)
+- More Emacs shortcuts
+- Remove [resession](https://github.com/stevearc/resession.nvim) and use native mksession.
 
 Bugs Fix
 
+- Use conditional winbar (Heirline) for unwanted buffer/window list.
 - Use imagemagick to convert cover album image, image too big has a HUGE performance impact on EWW.
-- Correct all eww/daemons,scripts (thks shellcheck). Make them compatible with Dash (for Voidlinux) when possible or specify the use of /usr/bin/env bash.
+- Correct all eww/daemons,scripts (thanks shellcheck). Make them compatible with Dash (for Void Linux) when possible or specify the use of /usr/bin/env bash.
 
 ## v4.0.0 - Jinx - Oct 17 2025
 
@@ -33,11 +33,9 @@ Bugs Fix
 
 - Sound: I will probably drop support on pulseaudio here for the futur. I don't
   know yet if i will using pure ALSA or ALSA+Pipewire, we'll see.
-- I have alrealy dropped my old Vim8 config. Please use only Doomemacs for
+- I have alrealy dropped my old Vim8 config. Please use only Doom Emacs for
   themes on Xorg (AwesomeWM)...
 - My dots on Sway (and EWW) don't support multi screens yet...
-- Neovim: with add LSP, Mason soon to install lacking packages on some Linux
-  distro.
 
 Create an issue if you encounter other problems.
 
@@ -128,7 +126,7 @@ Plugins dropped
 
 ## v2.0.5 - December 2024
 
-- New doomemacs colorscheme (vamp)
+- New Doom Emacs colorscheme (vamp)
 - Update awm-m3/picom
 - Update bin/ydl script to convert thumb in jpg (default convert in webp).
 - Remove vifm/bin, new option to install `./install --vifm`.
@@ -156,7 +154,7 @@ New theme Focus, for the install, see
   [new-theme-m3-maker.sh](https://github.com/szorfein/dotfiles/blob/main/awm-m3/bin/new-theme-m3-maker.sh),
   works with
   [material-theme-builder](https://material-foundation.github.io/material-theme-builder/).
-- Add colors for doomemacs, you need to edit `~/.config/doom/config.el` and add
+- Add colors for Doom Emacs, you need to edit `~/.config/doom/config.el` and add
   `(setq doom-theme 'doom-shadow)` to load the theme.
 
 ### Updated

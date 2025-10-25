@@ -76,7 +76,7 @@ More screenshots of previous themes are available at
 [reddit.com](https://reddit.com/user/szorfein).
 
 > [!NOTE]
-> My Reddit account was totally blocked and no way to recover it (access/email/password problem). Only the access on reddit.com with TOR is a true nightmare so I just can't login/post anymore on the platform...  
+> My Reddit account was totally blocked and no way to recover it (access/email/password problem). Access on reddit.com with TOR is a true nightmare so I just can't login/post anymore on the platform...  
 
 If people want to post screenshots of my themes on the platform (free karma), they are totally free to do :)
 
