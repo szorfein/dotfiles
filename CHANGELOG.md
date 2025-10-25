@@ -5,7 +5,8 @@ Neovim
 - Add Mason, Neovim-LSP (for bash, lua and ruby)
 - Use Snack.picker instead of lua-fzf
 - Add Whichkey.nvim
-- Add Resession.nvim
+- Remove top winbar (heirline.nvim) from more unwanted buffer/window list.
+- Remove resession.nvim and use native mksession.
 - More Emacs shortcut
 
 Bugs Fix

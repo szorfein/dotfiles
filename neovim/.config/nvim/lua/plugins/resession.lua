@@ -3,7 +3,7 @@ local map = vim.keymap.set
 
 return {
     'stevearc/resession.nvim',
-    --enabled = false,
+    enabled = false,
     config = function()
         local resession = require('resession')
         resession.setup({
