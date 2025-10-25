@@ -70,6 +70,13 @@ return {
             end,
             desc = 'Search diagnostics',
         },
+        {
+            '<C-x>b',
+            function()
+                require('snacks').picker.buffers()
+            end,
+            desc = 'Search buffer',
+        },
     },
     init = function()
         vim.api.nvim_create_autocmd('User', {

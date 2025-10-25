@@ -4,7 +4,7 @@ set -o errexit
 
 kill_pid() {
     if PIDS=$($1); then
-        kill $PIDS
+        echo "$PIDS" | xargs kill "$PIDS"
     fi
 }
 
@@ -39,3 +39,6 @@ eww open-many \
 ~/.config/eww/daemons/playlists.sh > /dev/null 2>&1 &
 ~/.config/eww/daemons/iwd.sh > /dev/null 2>&1 &
 ~/.config/eww/daemons/tor.sh > /dev/null 2>&1 &
+
+# Used to convert default images used by EWW
+~/.config/eww/daemons/convert-imgs.sh > /dev/null 2>&1 &

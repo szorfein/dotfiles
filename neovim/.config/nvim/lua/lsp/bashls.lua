@@ -16,8 +16,9 @@ return function(on_attach)
                 globPattern = vim.env.GLOB_PATTERN or '*@(.sh|.inc|.bash|.command|.zsh)',
             },
         },
-        filetypes = { 'sh', 'zsh' },
+        filetypes = { 'bash', 'sh', 'zsh' },
         root_dir = util.find_git_ancestor,
+        root_markers = { '.git' },
         single_file_support = true,
     }
 end

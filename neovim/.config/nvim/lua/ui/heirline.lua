@@ -160,6 +160,15 @@ return {
         return {
             opts = {
                 colors = colors,
+                -- if the callback returns true, the winbar will be disabled for that window
+                disable_winbar_cb = function(args)
+                    return conditions.buffer_matches({
+                        -- :h special-buffers
+                        buftype = { 'nofile', 'prompt', 'help', 'quickfix', 'unlisted', 'scratch' },
+                        -- to see all current buffer name -> :ls!
+                        filetype = { '^git.*', 'fugitive', 'Trouble', 'dashboard', 'Snacks' },
+                    }, args.buf)
+                end,
             },
             statusline = {
                 hl = { fg = 'fg', bg = 'bg' },

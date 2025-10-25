@@ -18,15 +18,17 @@ return function(on_attach)
                     version = 'LuaJIT',
                 },
                 diagnostics = {
-                    globals = { 'vim' },
+                    -- this don't works
+                    -- [#1788](https://github.com/LuaLS/lua-language-server/issues/1788)
+                    globals = { 'vim', 'awesome' },
                 },
                 workspace = {
+                    checkThirdParty = false,
                     -- make the server aware of Neovim runtime files
                     -- library = {
                     -- 	[vim.fn.expand('$VIMRUNTIME/lua')] = true,
                     -- 	[vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true
                     -- },
-                    checkThirdParty = false,
                 },
                 -- do not send telemetry data containing a randomized but unique identifier
                 telemetry = { enable = false },

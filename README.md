@@ -33,11 +33,11 @@
 - **Shell:** [Zsh](https://www.zsh.org/) with [Oh My Zsh](https://github.com/ohmyzsh/ohmyzsh),
   [Starship](https://starship.rs),
   ([plugins](https://github.com/szorfein/dotfiles/blob/main/zsh/.config/reaver/zsh.yml))
-- **Widgets:** [EWW](https://elkowar.github.io/eww/eww.html)
+- **Widgets:** [Eww](https://elkowar.github.io/eww/eww.html)
 - **Notification:** [Dunst](https://github.com/dunst-project/dunst) with
-  dunstify
-- **Term:** [Foot](https://codeberg.org/dnkl/foot) or [Wezterm](https://github.com/wez/wezterm)
-- **Editor:** [NeoVim](https://neovim.io) with
+  `dunstify`
+- **Term:** [Foot](https://codeberg.org/dnkl/foot) or [WezTerm](https://github.com/wez/wezterm)
+- **Editor:** [Neovim](https://neovim.io) with
   [Lazy.nvim](https://lazy.folke.io/),
   ([plugins](https://github.com/szorfein/dotfiles/tree/main/neovim/.config/nvim/lua/plugins))
   and [Tmux](https://github.com/tmux/tmux/wiki)
@@ -59,10 +59,10 @@
 Follow the guide
 [here](https://github.com/szorfein/dotfiles/tree/main/swayfx/.config/sway)
 
-Automatic installation available with Chezmoi
+Automatic installation available with `chezmoi`
 [dots](https://github.com/szorfein/dots) or
 [chezmoi-ansible](https://github.com/szorfein/dots/tree/ansible) (only
-Archlinux, Gentoo, Voidlinux).
+Arch Linux, Gentoo, Void Linux).
 
 ## Previous setup
 
@@ -72,18 +72,18 @@ Archlinux, Gentoo, Voidlinux).
 ### Other screenshots
 
 More screenshots of previous themes are available at
-[unix-portfolio](https://github.com/szorfein/unix-portfolio) or
-[reddit](https://reddit.com/user/szorfein).
+[portfolio](https://github.com/szorfein/unix-portfolio) or
+[reddit.com](https://reddit.com/user/szorfein).
 
 > [!NOTE]
-> My Reddit account was totally blocked and no way to recover it (access/email/password problem). Also the access on reddit.com is a true nightmare for user using TOR so i just can't login/post anymore on the platform...  
+> My Reddit account was totally blocked and no way to recover it (access/email/password problem). Access on reddit.com with TOR is a true nightmare so I just can't login/post anymore on the platform...  
 
 If people want to post screenshots of my themes on the platform (free karma), they are totally free to do :)
 
 #### Support
 
 Any support will be greatly appreciated, star the repo, a coffee, donation,
-thanks you !
+thanks you!
 
 [![Donate](https://img.shields.io/badge/don-liberapay-1ba9a4)](https://liberapay.com/szorfein)
 [![Donate](https://img.shields.io/badge/don-patreon-ab69f4)](https://www.patreon.com/szorfein)
