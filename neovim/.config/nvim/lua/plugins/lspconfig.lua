@@ -78,8 +78,6 @@ return {
             harper_ls = require('lsp.harper_ls')(on_attach),
             rubocop = require('lsp.rubocop')(on_attach),
             standardrb = require('lsp.standardrb')(on_attach),
-            -- problem with ruby_lsp mason install (not executable)
-            --ruby_lsp = require('lsp.rubylsp')(on_attach),
         }
         local server_names = {}
         local server_configs = {}

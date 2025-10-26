@@ -25,7 +25,7 @@ you have nothing to do.
 - Arch Linux:
   `sudo pacman -S neovim fd fzf tmux git prettier rubocop stylua shfmt bash-language-server lua-language-server ansible-lint`
 
-## Plugins selection (in brief)
+## Plugins selection
 
 - Language Server Protocol with [Native LSP](https://github.com/neovim/nvim-lspconfig). Only Lua, Ruby, Unix Shell for now.
 - Fuzzy finding with [Snacks Picker](https://github.com/folke/snacks.nvim/blob/main/docs/picker.md)
@@ -38,9 +38,11 @@ you have nothing to do.
 
 Look under lua/ui and lua/plugins to see all plugins activated.
 
-| language | format | lsp | note |
+## Combo Conform/LSP
+
+| language | format | lsp | notes |
 |---|---|---|---|
-| ruby | rubocop | rubocop,standardrb | rubyfmt (error install) sorbet, ruby-lsp don't install correctly. solargraph, stimulus report nothing?, steep is with ast_grep (config) are annoying, syntax_tree (or stree?), ttags not available on Mason|
+| ruby | rufo or rubocop | rubocop or standardrb | rubyfmt (error install) sorbet, ruby-lsp don't install correctly. solargraph, stimulus report nothing?, steep is with ast_grep (config) are annoying, syntax_tree (or stree?), ttags not available on Mason|
 
 ## Basic commands
 
