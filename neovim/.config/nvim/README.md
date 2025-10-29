@@ -3,12 +3,12 @@
 Custom config for Neovim in order to upgrade my older
 [vim 8 configs](https://github.com/szorfein/dotfiles/tree/main/vim) and replace
 [Doom Emacs](https://github.com/doomemacs/doomemacs) (very slow on Wayland and a
-lots of features just don't work without Xwayland).
+lots of features just don't work without XWayland).
 
 Config use [lazy.vim](https://lazy.folke.io/) to grab all the dependencies, so
 you have nothing to do.
 
-## Dependencies with linter for conform.nvim
+## Dependencies
 
 - neovim
 - fd (replace `find`, written in Rust)
@@ -24,25 +24,34 @@ you have nothing to do.
 
 - Arch Linux:
   `sudo pacman -S neovim fd fzf tmux git prettier rubocop stylua shfmt bash-language-server lua-language-server ansible-lint`
+- Void Linux:
+  `sudo xbps-install -S neovim fd fzf tmux nodejs StyLua shfmt bash-language-server lua-language-server python3-ansible-lint`
 
 ## Plugins selection
 
-- Language Server Protocol with [Native LSP](https://github.com/neovim/nvim-lspconfig). Only Lua, Ruby, Unix Shell for now.
-- Fuzzy finding with [Snacks Picker](https://github.com/folke/snacks.nvim/blob/main/docs/picker.md)
+- Language Server Protocol with
+  [Native LSP](https://github.com/neovim/nvim-lspconfig). Only Lua, Ruby, Unix
+  Shell for now.
+- Fuzzy finding with
+  [Snacks Picker](https://github.com/folke/snacks.nvim/blob/main/docs/picker.md)
 - Code formatter with [Conform](https://github.com/stevearc/conform.nvim)
 - Autocompletion with [Blink.cmp](https://github.com/Saghen/blink.cmp)
-- Colors use [Catppuccin](https://github.com/catppuccin/nvim), very
-  modular, we can change all the colors if need (what we do to match with my
-  themes).
-- Top bar with [heirline](https://github.com/rebelot/heirline.nvim) - replace lightline, it's also more easy and fast to customize and don't need to create a palette of colors in vim script, thanks the [doc](https://github.com/rebelot/heirline.nvim/blob/master/cookbook.md).
+- Colors use [Catppuccin](https://github.com/catppuccin/nvim), very modular, we
+  can change all the colors if need (what we do to match with my themes).
+- Top bar with [heirline](https://github.com/rebelot/heirline.nvim) - replace
+  lightline, it's also more easy and fast to customize and don't need to create
+  a palette of colors in vim script, thanks the
+  [doc](https://github.com/rebelot/heirline.nvim/blob/master/cookbook.md).
 
 Look under lua/ui and lua/plugins to see all plugins activated.
 
 ## Combo Conform/LSP
 
-| language | format | lsp | notes |
-|---|---|---|---|
-| ruby | rufo or rubocop | rubocop or standardrb | rubyfmt (error install) sorbet, ruby-lsp don't install correctly. solargraph, stimulus report nothing?, steep is with ast_grep (config) are annoying, syntax_tree (or stree?), ttags not available on Mason|
+| language | format | lsp                     | notes                                                                                                                                                                                                       |
+| -------- | ------ | ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Lua      | stylua | lua_language_server     |                                                                                                                                                                                                             |
+| Ruby     | rufo   | rubocop (or standardrb) | rubyfmt (error install) sorbet, ruby-lsp don't install correctly. solargraph, stimulus report nothing?, steep is with ast_grep (config) are annoying, syntax_tree (or stree?), ttags not available on Mason |
+| Shell    | shfmt  | bash_language_server    |                                                                                                                                                                                                             |
 
 ## Basic commands
 
@@ -90,22 +99,23 @@ Move:
 
 Search file, buffer, session:
 
-- C-x C-f: find (open) a file
-- C-x b: switch buffer
-- C-x s: save buffer
-- C-x k: kill (close) buffer
+- `C-x C-f`: find (open) a file
+- `C-x b`: switch buffer
+- `C-x C-s`: save current buffer
+- `C-x s`: save all buffers
+- `C-x k`: kill (close) buffer
 
 `C-h` to display help:
 
-- C-h b: display all keyboard shortcuts (with Whichkey)
+- `C-h b`: display all keyboard shortcuts (with Whichkey)
 
 ## Troubleshooting
 
 #### Error during update (check out failed or any error related to git...)
 
 Remove the concerned plugin from e.g:
-`rm -rf ~/.local/share/nvim/lazy/<plugin-name>` Run `:Lazy` on Neovim to reinstall
-the plugin.
+`rm -rf ~/.local/share/nvim/lazy/<plugin-name>` Run `:Lazy` on Neovim to
+reinstall the plugin.
 
 #### No highlight color on your programming language
 
@@ -114,7 +124,7 @@ installing Bash in Neovim, type:
 
     :TSInstall bash
 
-After the installation, relaunch your script to have the highlight enabled.
+After the installation, relaunch nvim to have the highlight enabled.
 
 ## Inspiration
 

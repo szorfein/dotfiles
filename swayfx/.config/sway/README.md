@@ -223,6 +223,10 @@ thanks ([Reaver](https://geeksrepos.com/szorfein/reaver)):
     gem install --user-install reaver
     reaver
 
+## Start
+
+On Void Linux, you may need: `exec dbus-run-session -- sway`
+
 ## Updates
 
 Update the repo using `git pull`

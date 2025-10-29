@@ -17,4 +17,5 @@ map({ 'i', 'n' }, '<M-l>', '<C-Right>', { silent = true, desc = 'move forward-wo
 -- Buffers
 -- docs about vim buffer: https://readmedium.com/neovim-for-beginners-managing-buffers-91367668ce7
 map('n', '<C-x>k', ':bw<CR>', { silent = true, desc = 'kill current buffer' })
-map('n', '<C-x>s', ':w<CR>', { desc = 'save file' })
+map('n', '<C-x><C-s>', ':w<CR>', { desc = 'save current buffer' })
+map('n', '<C-x>s', ':wa<CR>', { desc = 'save all buffers' })
