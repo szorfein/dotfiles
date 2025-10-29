@@ -36,6 +36,7 @@ return {
                 'stylua',
                 'prettier',
                 'shfmt',
+                'rufo',
             }
             local missing_tools = filter_missing_tools(ensure_installed)
             if #missing_tools > 0 then
