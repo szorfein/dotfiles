@@ -83,9 +83,6 @@ More screenshots of previous themes are available at
 > (access/email/password problem). Access on reddit.com with TOR is a true
 > nightmare so I just can't login/post anymore on the platform...
 
-If people want to post screenshots of my themes on the platform (free karma),
-they are totally free to do :)
-
 #### Support
 
 Any support will be greatly appreciated, star the repo, a coffee, donation,
