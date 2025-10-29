@@ -18,7 +18,8 @@ return {
                 json = prettier,
                 lua = { 'stylua' },
                 markdown = { 'prettier' },
-                ruby = { 'rubocop' },
+                --ruby = { 'rubocop' },
+                ruby = { 'rufo' },
                 sh = { 'shfmt' },
                 typescript = prettier,
                 vue = { 'prettier' },
@@ -43,7 +44,7 @@ return {
             format_on_save = {
                 lsp_format = 'fallback',
                 --async = false,
-                timeout_ms = 500,
+                timeout_ms = 2900,
             },
         },
         keys = {

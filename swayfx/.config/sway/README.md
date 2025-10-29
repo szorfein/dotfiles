@@ -27,8 +27,8 @@ The whole (or many) stack has changed because Wayland instead of X.
 
     sudo pacman -Syy \
     inotify-tools imv jq mpd mpc wl-clipboard curl stow \
-    bc imagemagick rubygems grim swaybg wmenu \
-    playerctl mpd-mpris mpv-mpris foot rust \
+    bc imagemagick rubygems grim swaybg wmenu rust \
+    playerctl mpd-mpris mpv-mpris foot foot-terminfo \
     git meson scdoc wayland-protocols cairo gdk-pixbuf2 \
     libevdev libinput json-c libgudev wayland libxcb \
     libxkbcommon pango pcre2 wlroots0.19 seatd \
@@ -115,7 +115,8 @@ See on Gentoo [wiki](https://wiki.gentoo.org/wiki/Sway#Starting_Sway_manually)
 
 ### From Ruby
 
-After the installation of the dependencies, for all Linux distribution, Install `i3ipc` locally:
+After the installation of the dependencies, for all Linux distribution, Install
+`i3ipc` locally:
 
     gem install --user-install i3ipc
 
@@ -179,7 +180,8 @@ with the script.
     dp scale factor 0.8443388199535182
 
 The script need 3 parameters to calculate your DPI:
-- `$1` horizontal screen, 
+
+- `$1` horizontal screen,
 - `$2` vertical
 - `$3` is the diagonal
 
@@ -199,25 +201,31 @@ Using my script `stow.sh`, you'll need to install at least: `swayfx` and a
 
     ~/.dotfiles/stow.sh --swayfx jinx
 
-If you want a more complete command, you can also add `foot`, `zsh`,
-`neovim`, `tmux`.
+If you want a more complete command, you can also add `foot`, `zsh`, `neovim`,
+`tmux`.
 
     ~/.dotfiles/stow.sh --purge --foot --neovim --tmux --zsh --swayfx jinx
 
 Use `--purge` if need to reinstall files as first argument.  
 The theme you want as last argument `--swayfx jinx`.
 
-I recommend you to create an alias or function (for Fish) here for easy reinstall, e.g for Zsh: 
+I recommend you to create an alias or function (for Fish) here for easy
+reinstall, e.g for Zsh:
 
     alias reinstall_jinx="~/.dotfiles/stow.sh --purge --foot --neovim --tmux --zsh --swayfx jinx"
 
 ## Download other dependencies
 
 After installing dotfiles with `stow.sh`, last step is to downloads all the
-required files (wallpapers, fonts, GTK themes, icons, etc...) in two commands, thanks ([Reaver](https://geeksrepos.com/szorfein/reaver)):
+required files (wallpapers, fonts, GTK themes, icons, etc...) in two commands,
+thanks ([Reaver](https://geeksrepos.com/szorfein/reaver)):
 
     gem install --user-install reaver
     reaver
+
+## Start
+
+On Void Linux, you may need: `exec dbus-run-session -- sway`
 
 ## Updates
 
