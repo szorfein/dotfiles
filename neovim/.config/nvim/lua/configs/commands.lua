@@ -19,3 +19,5 @@ map({ 'i', 'n' }, '<M-l>', '<C-Right>', { silent = true, desc = 'move forward-wo
 map('n', '<C-x>k', ':bw<CR>', { silent = true, desc = 'kill current buffer' })
 map('n', '<C-x><C-s>', ':w<CR>', { desc = 'save current buffer' })
 map('n', '<C-x>s', ':wa<CR>', { desc = 'save all buffers' })
+
+-- open terminal: https://inv.nadeko.net/watch?v=ooTcnx066Do&listen=false
