@@ -1,21 +1,20 @@
 ## 4.5.3
 
-Sway - EWW
+#### Sway - EWW
 
 - Convert all images used by EWW at start (help for default image cover album,
   changetheme)
 
-Neovim
+#### Neovim
 
-- More plugins with Mason, Neovim-LSP (for bash, lua and ruby), Whichkey,
-  Trouble.
+- More plugins with Mason, Neovim-LSP, Whichkey, [Zettel](https://github.com/michal-h21/vim-zettel), Trouble.
 - Use Snack.picker instead of lua-fzf
-- More LSP activated with [codebook](https://github.com/blopker/codebook)
+- More LSP enabled with [codebook](https://github.com/blopker/codebook), [bashls](), [luals](), [rubocop]().
 - More Emacs shortcuts
 - Remove [resession](https://github.com/stevearc/resession.nvim) and use native
   mksession with [persistence](https://github.com/folke/persistence.nvim).
 
-Bugs Fix
+#### Bugs Fix
 
 - Use conditional winbar (Heirline) for unwanted buffer/window list.
 - Use imagemagick to convert cover album image, image too big has a HUGE
