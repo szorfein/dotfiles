@@ -1,4 +1,9 @@
-## 4.5.3
+## 4.6.3
+
+#### Global change
+
+- Replace [NNN](https://github.com/jarun/nnn) by
+  [Yazi](https://github.com/sxyazi/yazi)
 
 #### Sway - EWW
 
@@ -7,9 +12,15 @@
 
 #### Neovim
 
-- More plugins with Mason, Neovim-LSP, Whichkey, [Zettel](https://github.com/michal-h21/vim-zettel), Trouble.
-- Use Snack.picker instead of lua-fzf
-- More LSP enabled with [codebook](https://github.com/blopker/codebook), [bashls](), [luals](), [rubocop]().
+- More plugins with Mason, Neovim-LSP, Whichkey,
+  [Zettel](https://github.com/michal-h21/vim-zettel), Trouble.
+- Use
+  [Snack.picker](https://github.com/folke/snacks.nvim/blob/main/docs/picker.md)
+  instead of lua-fzf
+- More LSP enabled with [codebook](https://github.com/blopker/codebook),
+  [bashls](https://github.com/bash-lsp/bash-language-server),
+  [luals](https://github.com/luals/lua-language-server),
+  [rubocop](https://github.com/rubocop/rubocop).
 - More Emacs shortcuts
 - Remove [resession](https://github.com/stevearc/resession.nvim) and use native
   mksession with [persistence](https://github.com/folke/persistence.nvim).
@@ -24,30 +35,35 @@
 
 ## v4.0.0 - Jinx - Oct 17 2025
 
+#### Global change
+
+The repo contain a lot of lua files, so i include configuration for linter
+[stylua.toml](https://github.com/szorfein/dotfiles/blob/main/stylua.toml) (lua)
+and [.prettierrc](https://github.com/szorfein/dotfiles/blob/main/.prettierrc)
+(json, markdown, yaml, css)
+
+#### Sway - EWW
+
 - New SwayFX theme.
+- Add notification with Dunst for SwayFX.
 - Rewrite the last sidebar windows (network).
 - New logout screen with basic action 'poweroff', 'hibernate', 'quit Sway' and
   'lock screen'.
 - New changetheme widget (dialog), can switch between Holy and Jinx.
 - New set of icons widgets from
   [m3 button-groups](https://m3.material.io/components/button-groups)
-- Neovim: add shfmt to format shell script.
 
-### Change (now and futur)
+#### Neovim
 
-- Sound: I will probably drop support on pulseaudio here for the futur. I don't
-  know yet if i will using pure ALSA or ALSA+Pipewire, we'll see.
-- I have alrealy dropped my old Vim8 config. Please use only Doom Emacs for
-  themes on Xorg (AwesomeWM)...
-- My dots on Sway (and EWW) don't support multi screens yet...
+- Add shfmt to format shell script.
+- Add [snacks.nvim](https://github.com/folke/snacks.nvim)
+- Add [blink.nvim](https://github.com/Saghen/blink.nvim)
+- Add [luasnip](https://github.com/L3MON4D3/LuaSnip)
+- Remove [dressing.nvim](https://github.com/stevearc/dressing.nvim)
+- Remove
+  [indent-blankline](https://github.com/lukas-reineke/indent-blankline.nvim)
 
-Create an issue if you encounter other problems.
-
-## v3.6.0 - Oct. 6 2025
-
-- Add notification with Dunst for SwayFX.
-
-### Bug Fixes
+#### Bugs Fix
 
 - tmux: remove default-terminal on Wayland, cause many bugs when (tmux-256color)
   not present and separate configs for X and Wayland.
@@ -56,28 +72,7 @@ Create an issue if you encounter other problems.
 - Correct eww variable wifi-ssids
 - Playerctl can works also with firefox, brave, mpd, mpv.
 
-## v3.5.0 - Sep 28 2025
-
-The repo contain a lot of lua files, so i include configuration for linter
-[stylua.toml](https://github.com/szorfein/dotfiles/blob/main/stylua.toml) (lua)
-and [.prettierrc](https://github.com/szorfein/dotfiles/blob/main/.prettierrc)
-(json, markdown, yaml, css)
-
-### Neovim
-
-New plugins added - see
-[config](https://github.com/szorfein/dotfiles/tree/main/neovim/.config/nvim)
-
-- [snacks.nvim](https://github.com/folke/snacks.nvim)
-- [blink.nvim](https://github.com/Saghen/blink.nvim)
-- [luasnip](https://github.com/L3MON4D3/LuaSnip)
-
-Plugins dropped
-
-- [dressing.nvim](https://github.com/stevearc/dressing.nvim)
-- [indent-blankline](https://github.com/lukas-reineke/indent-blankline.nvim)
-
-### Dotfiles Reorg.
+## Dotfiles Reorg.- Sep 28 2025
 
 - dropped vim 8 configuration...
 - dropped vifm configuration...

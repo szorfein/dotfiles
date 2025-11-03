@@ -1,0 +1,16 @@
+[mgr]
+hovered = { fg = "black", bg = "blue" }
+border_style = { fg = "black" }
+
+[mode]
+normal_main = { bg = "blue", fg = "black" }
+normal_alt = { bg = "magenta", fg = "black" }
+
+[status]
+overall = { bg = "black", fg = "white" }
+
+[filetype]
+rules = [
+# fallback - Dir
+    { name = "*/", fg = "cyan" }
+]

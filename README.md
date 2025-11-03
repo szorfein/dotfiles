@@ -45,7 +45,7 @@
   and [Tmux](https://github.com/tmux/tmux/wiki)
   ([plugins](https://github.com/szorfein/dotfiles/blob/main/tmux/.config/reaver/tmux.yml))
 - **Sound:** [ALSA](https://www.alsa-project.org)
-- **File Manager:** [NNN](https://github.com/jarun/nnn) +
+- **File Manager:** [Yazi](https://github.com/sxyazi/yazi) +
   [Thunar](https://docs.xfce.org/xfce/thunar/start).
 - **Fonts:** [Iosevka](https://www.nerdfonts.com/) +
   [Material Icons Outlined](https://github.com/google/material-design-icons) +
