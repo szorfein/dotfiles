@@ -1,0 +1,69 @@
+# Keybind Configuration for fsel
+# Customize all keyboard shortcuts here or in your main config.toml
+# Changes take effect immediately on next launch
+
+# ===== NAVIGATION =====
+
+# Move down in list (also: Ctrl+N for vim-style navigation)
+down = ["down", { key = "n", modifiers = "ctrl" }]
+
+# Move up in list (also: Ctrl+P for vim-style navigation)
+up = ["up", { key = "p", modifiers = "ctrl" }]
+
+# Jump to first item in list
+left = ["left"]
+
+# Jump to last item in list
+right = ["right"]
+
+# ===== ACTIONS =====
+
+# Launch selected app or select item (also: Ctrl+Y)
+select = ["enter", { key = "y", modifiers = "ctrl" }]
+
+# Exit without launching (also: Ctrl+Q, Ctrl+C)
+exit = ["esc", { key = "q", modifiers = "ctrl" }, { key = "c", modifiers = "ctrl" }]
+
+# Toggle pin/favorite on selected app (pinned apps always appear first with 📌 icon)
+pin = [{ key = "space", modifiers = "ctrl" }]
+
+# Delete character from search query
+backspace = ["backspace"]
+
+# ===== CCLIP MODE ONLY =====
+# These keybinds only work in clipboard history mode (fsel --cclip)
+
+# Display large fullscreen image preview (bypasses TUI, press any key to return)
+# Note: Ctrl+I is the same as Tab in terminals, so we use Alt+I instead
+image_preview = [{ key = "i", modifiers = "alt" }]
+
+# Tag clipboard item with custom tags (colors, emojis)
+# Note: Press Esc to cancel tag creation/editing
+tag = [{ key = "t", modifiers = "ctrl" }]
+
+# Remove tag from clipboard item (hardcoded, not configurable)
+# Keybind: Alt+T
+# Note: This prompts which tag to remove if item has multiple tags
+
+# ===== KEY REFERENCE =====
+# Available key names:
+#   Letters: "a", "b", "c", ... "z"
+#   Numbers: "0", "1", "2", ... "9"
+#   Special: "up", "down", "left", "right", "enter", "esc", "escape", 
+#            "space", "backspace", "tab", "delete"
+#
+# Available modifiers:
+#   "ctrl" or "control"
+#   "shift"
+#   "alt"
+#
+# Syntax examples:
+#   Simple key:        "enter"
+#   With modifier:     { key = "c", modifiers = "ctrl" }
+#   Multiple binds:    ["enter", { key = "y", modifiers = "ctrl" }]
+#   Combined mods:     { key = "a", modifiers = "ctrl+shift" }
+#
+# Note: Mouse support is enabled by default (can be disabled with --disable-mouse)
+#   - Click to select and launch
+#   - Hover to highlight
+#   - Scroll wheel to navigate list

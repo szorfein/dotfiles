@@ -9,6 +9,9 @@
 
 - Convert all images used by EWW at start (help for default image cover album,
   changetheme)
+- Change wmenu launcher by
+  [otter-launcher](https://github.com/kuokuo123/otter-launcher) +
+  [fsel](https://github.com/Mjoyufull/fsel)
 
 #### Neovim
 

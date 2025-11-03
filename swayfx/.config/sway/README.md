@@ -223,9 +223,17 @@ thanks ([Reaver](https://geeksrepos.com/szorfein/reaver)):
     gem install --user-install reaver
     reaver
 
+## Menu launcher
+
+I use fsel with otter-launcher, unfortunately, there are not include in a lot of
+Linux distribution. So you have to compile them with Rust and Cargo, just start
+my script:
+
+    ~/bin/compile-menu-launcher.sh
+
 ## Start
 
-On Void Linux, you may need: `exec dbus-run-session -- sway`
+On Void Linux, you need to start SwayFX with: `exec dbus-run-session -- sway`
 
 ## Updates
 
