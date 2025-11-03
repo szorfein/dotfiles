@@ -15,10 +15,10 @@ return {
     },
     {
         'michal-h21/vim-zettel',
-        --init = function()
-        -- for all options > :help vim-zettel
-        --    vim.g.vimwiki_list = { { path = '~/documents/notes/', ext = 'md', syntax = 'markdown' } }
-        --end,
+        init = function()
+            -- for all options > :help vim-zettel
+            vim.g.nv_search_paths = { '~/documents/notes' }
+        end,
         -- more shortcuts on note: https://github.com/chipsenkbeil/org-roam.nvim/blob/main/DOCS.org#coming-from-emacs
         keys = {
             { '<C-c>nn', ':ZettelNew<space>', desc = 'New note' },
