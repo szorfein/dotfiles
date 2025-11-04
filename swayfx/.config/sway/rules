@@ -6,6 +6,8 @@ for_window {
     [app_id="floating"] floating enable
     [app_id="mpv"] floating enable, resize set 840 500, move position center
     [app_id="imv"] floating enable, resize set 840 500, move position center
+    [app_id="org.bleachbit.BleachBit"] floating enable, resize set 840 500, move position center
+    [app_id="otter-launcher$"] border none, floating enable, resize set 500 430, move position center
 }
 
 # >> Dialog

@@ -1,0 +1,44 @@
+cursor = "█"
+terminal_launcher = "footclient -e"
+# Don't wrap around at list ends (false = wrap around)
+hard_stop = false
+rounded_borders = true
+# Highlight color for selected items and cursor
+highlight_color = "#ffb3ae"      # Primary
+# Border colors for each panel
+main_border_color = "Black"      # Border color for the main info panel (top)
+apps_border_color = "Black"      # Border color for the apps list panel (middle)
+input_border_color = "Black"     # Border color for the input panel (bottom)
+# Text Colors (non-highlighted text in each panel)
+main_text_color = "White"        # Text color for the main info panel
+apps_text_color = "White"        # Text color for the apps list
+input_text_color = "White"       # Text color for the input field
+pin_color = "#FFB688"            # Color for pin icon (tertiary)
+pin_icon = "📌"                  # Icon for pinned apps (use Ctrl+Space to pin/unpin)
+header_title_color = "Magenta"   # Panel title color (Anything...)
+fancy_mode = false # Show selected app name in titles (instead of "Apps"/"Fsel")
+title_panel_height_percent = 30
+input_panel_height = 3
+title_panel_position = "top"
+
+[app_launcher]
+filter_desktop = true
+list_executables_in_path = false
+hide_before_typing = false
+match_mode = "fuzzy"
+confirm_first_launch = false
+
+[dmenu]
+delimiter = " "                  # Column delimiter (override with --delimiter)
+show_line_numbers = true         # Show line numbers in content
+wrap_long_lines = true           # Wrap long lines
+password_character = "*"         # Character for --password mode
+exit_if_empty = false            # Exit if stdin is empty
+
+[cclip]
+show_line_numbers = true         # Show cclip rowid
+wrap_long_lines = true           # Wrap long lines
+# Images (requires chafa + Kitty/Sixel terminal)
+image_preview = true             # Show inline image previews
+hide_inline_image_message = false # Hide "[Inline Image Preview]" text
+

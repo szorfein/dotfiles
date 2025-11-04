@@ -35,6 +35,9 @@
   [Starship](https://starship.rs),
   ([plugins](https://github.com/szorfein/dotfiles/blob/main/zsh/.config/reaver/zsh.yml))
 - **Widgets:** [Eww](https://elkowar.github.io/eww/eww.html)
+- **App Launcher:** [Otter](https://github.com/kuokuo123/otter-launcher),
+  [fsel](https://github.com/Mjoyufull/fsel) and last
+  [fzf](https://github.com/junegunn/fzf)
 - **Notification:** [Dunst](https://github.com/dunst-project/dunst) with
   `dunstify`
 - **Term:** [Foot](https://codeberg.org/dnkl/foot) or
