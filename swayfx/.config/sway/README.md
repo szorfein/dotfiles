@@ -34,7 +34,7 @@ The whole (or many) stack has changed because Wayland instead of X.
     libxkbcommon pango pcre2 wlroots0.19 seatd \
     libdrm libglvnd pixman glslang meson ninja \
     cargo libdbusmenu-gtk3 gtk3 gtk-layer-shell \
-    iwd thunar dunst
+    iwd thunar dunst chafa
 
 From AUR:
 
@@ -62,7 +62,7 @@ first. e.g for intel:
 SwayFX dependencies
 
     sudo xbps-install -S swayfx imv light jq wl-clipboard \
-    inotify-tools mpd mpc foot curl \
+    inotify-tools mpd mpc foot curl chafa \
     stow playerctl mpv-mpris mpDris2 eww ruby swaybg grim \
     wmenu iwd Thunar seatd turnstile dunst ImageMagick
 
@@ -83,7 +83,7 @@ You will need to activate [GURU](https://github.com/gentoo/guru)
 And install packages:
 
     sudo emerge -av light net-misc/curl stow
-    xfce-base/thunar \
+    xfce-base/thunar media-gfx/chafa \
     inotify-tools swaybg imv app-misc/jq \
     app-misc/jq media-sound/mpd media-sound/mpc \
     dev-lang/ruby playerctl wl-clipboard gui-apps/foot \

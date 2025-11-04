@@ -4,11 +4,11 @@
 
 # ===== NAVIGATION =====
 
-# Move down in list (also: Ctrl+N for vim-style navigation)
-down = ["down", { key = "n", modifiers = "ctrl" }]
+# Move down in list (also: Ctrl+J for vim-style navigation)
+down = ["down", { key = "j", modifiers = "ctrl" }]
 
-# Move up in list (also: Ctrl+P for vim-style navigation)
-up = ["up", { key = "p", modifiers = "ctrl" }]
+# Move up in list (also: Ctrl+K for vim-style navigation)
+up = ["up", { key = "k", modifiers = "ctrl" }]
 
 # Jump to first item in list
 left = ["left"]

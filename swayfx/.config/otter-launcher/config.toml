@@ -1,0 +1,138 @@
+
+
+#   ██████╗ ████████╗████████╗███████╗██████╗                         
+#  ██╔═══██╗╚══██╔══╝╚══██╔══╝██╔════╝██╔══██╗                        
+#  ██║   ██║   ██║      ██║   █████╗  ██████╔╝█████╗                  
+#  ██║   ██║   ██║      ██║   ██╔══╝  ██╔══██╗╚════╝                  
+#  ╚██████╔╝   ██║      ██║   ███████╗██║  ██║                        
+#   ╚═════╝    ╚═╝      ╚═╝   ╚══════╝╚═╝  ╚═╝                        
+#  ██╗      █████╗ ██╗   ██╗███╗   ██╗ ██████╗██╗  ██╗███████╗██████╗ 
+#  ██║     ██╔══██╗██║   ██║████╗  ██║██╔════╝██║  ██║██╔════╝██╔══██╗
+#  ██║     ███████║██║   ██║██╔██╗ ██║██║     ███████║█████╗  ██████╔╝
+#  ██║     ██╔══██║██║   ██║██║╚██╗██║██║     ██╔══██║██╔══╝  ██╔══██╗
+#  ███████╗██║  ██║╚██████╔╝██║ ╚████║╚██████╗██║  ██║███████╗██║  ██║
+#  ╚══════╝╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═══╝ ╚═════╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝
+
+# Terminal shell script launcher, written in rust
+# Source Code: https://github.com/kuokuo123/otter-launcher
+
+# Recommended to be used in companion with sway-launcher-desktop to launch desktop applications
+# https://github.com/Biont/sway-launcher-desktop
+
+[general]
+default_module = "dd" # module to run when no prefix is matched
+empty_module = "app" # run with an empty prompt
+exec_cmd = "sh -c" # exec command of your shell
+# for example: "bach -c" for bash; "zsh -c" for zsh; also accept wm commands like "hyprctl dispatch exec"
+vi_mode = true # set true to use vi keybinds, false emacs keybinds
+esc_to_abort = true # useful for vi users
+cheatsheet_entry = "?" # when prompted, will show a list of configured modules
+cheatsheet_viewer = "less -R; clear" # command to show cheatsheet; through piping stdout
+clear_screen_after_execution = false
+loop_mode = false # don't quit after executing a module, useful with scratchpads
+external_editor = "nvim" # if set, press ctrl+x ctrl+ee (or v in vi normal mode) to edit prompt in the specified program
+delay_startup = 0 # sometimes the otter runs too fast even before the terminal window is ready; this slows it down by milliseconds; useful when chafa image is skewed
+#callback = "" # if set, will run after module execution; for example, calling swaymsg to adjust window size
+
+# ANSI color codes are allowed. However, \x1b should be replaced with \u001B, because the rust toml crate cannot read \x as an escaped character
+[interface]
+header_cmd = """
+img=$(grep theme-bg ~/.config/sway/theme | awk '{print $3}' | sed s:~/images/::)
+chafa --align center -O 9 -f symbols --fit-width /tmp/$img 2>/dev/null &
+wait
+"""
+header_cmd_trimmed_lines = 1
+#header = """  \u001B[34;1m  >\u001B[0m $USER@$(echo $HOSTNAME)              \u001B[31m\u001B[0m $(cat /proc/loadavg | cut -d ' ' -f 1)  \u001B[33m󰍛\u001B[0m $(free -h | awk 'FNR == 2 {print $3}' | sed 's/i//')\n     \u001B[34;1m>\u001B[0;1m """
+header = """  \u001B[34;1m  󱎘 \u001B[0m $USER@$(echo $HOSTNAME)          \u001B[31m\u001B[0m $(cat /proc/loadavg | cut -d ' ' -f 1)  \u001B[33m󰍛\u001B[0m $(free -h | awk 'FNR == 2 {print $3}')\n    \u001B[34;1m󱎘 \u001B[0;1m """
+list_prefix = "       "
+selection_prefix = "     \u001B[31;1m> "
+place_holder = "type and search..."
+default_module_message = """
+       \u001B[35msearch\u001B[0m on the internet"""
+suggestion_mode = "list"
+suggestion_lines = 3
+prefix_padding = 3
+prefix_color = "\u001B[33m"
+description_color = "\u001B[39m"
+place_holder_color = "\u001B[90m"
+hint_color = "\u001B[90m"
+
+[overlay]
+overlay_cmd = ""
+overlay_trimmed_lines = 0 # remove trailing lines from overlay_cmd output
+overlay_height = 0 # set overlay size; 0 to be auto; 1 is one line, 2 two lines, etc; kitty & sixel image size can be determined automatically; others should be set mannually; try modify this whenever you meet issues releated to image height
+move_overlay_right = 2 # move the overlay layer around for theming
+move_overlay_down = 2
+# modules are defined as followed
+
+[[modules]]
+description = "Search on duckduckgo"
+prefix = "dd"
+cmd = "xdg-open https://duckduckgo.com/?q='{}'"
+with_argument = true # if true, {} in cmd will be replaced with user input. if not explicitly set, taken as false.
+url_encode = true # should be true when calling webpages; this ensures special characters in url being readable to browsers; taken as false if not explicitly set
+#unbind_proc = true # run cmd in a forked shell as opposed to as a child process (simply by prepending setsid -f to the configured cmd); useful for launching gui programs; taken as false if not explicitly set
+
+# fzf is needed to run below functions, no argument needed
+[[modules]]
+description = "check programs with fsel"
+prefix = "app"
+cmd = "fsel -vv -d -r"
+
+[[modules]]
+description = "power menu (fzf)"
+prefix = "po"
+cmd = """
+function power {
+if [[ -n $1 ]]; then
+case $1 in
+"logout") session=`loginctl session-status | head -n 1 | awk '{print $1}'`; loginctl terminate-session $session ;;
+"suspend") systemctl suspend ;;
+"hibernate") systemctl hibernate ;;
+"reboot") systemctl reboot ;;
+"shutdown") systemctl poweroff ;;
+esac fi }
+power $(echo -e 'reboot\nshutdown\nlogout\nsuspend\nhibernate' | fzf --padding 1,2 --info-command 'printf " power menu ($FZF_POS/$FZF_TOTAL_COUNT)"' --cycle --pointer " ▌" --color "bg+:-1,pointer:1,info:8,separator:8,scrollbar:0" --prompt '  ' | tail -1)
+"""
+
+# https://github.com/Mjoyufull/fsel/blob/main/USAGE.md#otter-launcher-integration
+[[modules]]
+description = "run commands"
+prefix = "sh"
+cmd = """
+fsel -vv -d -r -p {}
+"""
+with_argument = true
+#unbind_proc = true 
+
+[[modules]]
+description = "search invidious (youtube fork)"
+prefix = "iv"
+cmd = "xdg-open https://inv.nadeko.net/search?q='{}'"
+with_argument = true
+url_encode = true
+#unbind_proc = true
+
+[[modules]]
+description = "translate text in english"
+prefix = "te"
+cmd = "xdg-open 'https://lingva.ml/auto/en/{}'"
+with_argument = true
+url_encode = true
+#unbind_proc = true
+
+[[modules]]
+description = "open files (fzf)"
+prefix = "fo"
+cmd = """
+find $HOME -type f -not -path '*/.cache/*' 2>/dev/null | fzf --padding 1,3 --info-command 'printf " files ($FZF_POS/$FZF_TOTAL_COUNT)"' --cycle --gutter ' ' --pointer ' ▌' --color 'bg+:-1,pointer:1,info:8,separator:8,scrollbar:0' --prompt '  ' | setsid -f xargs -r -I [] xdg-open '[]'
+"""
+
+[[modules]]
+description = "open dirs (yazi)"
+prefix = "yz"
+cmd = """
+#find $HOME -type d -not \\( -name .cache -prune -o -name .bundle -prune -o -name node_modules -prune -o -name .npm -prune -o -name .git -prune -o -name BraveSoftware -prune -o -name .cargo -prune -o -name .gem -prune \\) -print 2>/dev/null | fzf --padding 1,3 --info-command 'printf " directories ($FZF_POS/$FZF_TOTAL_COUNT)"' --cycle --pointer ' ▌' --color 'bg+:-1,pointer:1,info:8,separator:8,scrollbar:0' --prompt '  ' | xargs -r -I [] setsid -f footclient -e yazi '[]'
+find $HOME -type d -not \\( -name .cache -prune -o -name .bundle -prune -o -name node_modules -prune -o -name .npm -prune -o -name .git -prune -o -name BraveSoftware -prune -o -name .cargo -prune -o -name .gem -prune \\) -print 2>/dev/null | fsel -s --dmenu | xargs -r -I [] setsid -f footclient -e yazi '[]'
+"""
+#unbind_proc = true
