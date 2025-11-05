@@ -4,6 +4,7 @@
 
 - Replace [NNN](https://github.com/jarun/nnn) by
   [Yazi](https://github.com/sxyazi/yazi)
+- Change terminal WezTerm by Foot
 
 #### Sway - EWW
 

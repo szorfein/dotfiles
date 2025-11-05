@@ -142,8 +142,6 @@ exec playerctl --follow metadata --format $':{{status}}\t:{{position}}\t:{{mpris
         if [ "$playing" = "Playing" ]; then
             mpv=true
             #echo "we enable mpv $mpv"
-        else
-            mpv=false
         fi
     fi
 
