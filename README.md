@@ -35,17 +35,19 @@
   [Starship](https://starship.rs),
   ([plugins](https://github.com/szorfein/dotfiles/blob/main/zsh/.config/reaver/zsh.yml))
 - **Widgets:** [Eww](https://elkowar.github.io/eww/eww.html)
+- **App Launcher:** [Otter](https://github.com/kuokuo123/otter-launcher),
+  [fsel](https://github.com/Mjoyufull/fsel) and last
+  [fzf](https://github.com/junegunn/fzf)
 - **Notification:** [Dunst](https://github.com/dunst-project/dunst) with
   `dunstify`
-- **Term:** [Foot](https://codeberg.org/dnkl/foot) or
-  [WezTerm](https://github.com/wez/wezterm)
+- **Term:** [Foot](https://codeberg.org/dnkl/foot)
 - **Editor:** [Neovim](https://neovim.io) with
   [Lazy.nvim](https://lazy.folke.io/),
   ([plugins](https://github.com/szorfein/dotfiles/tree/main/neovim/.config/nvim/lua/plugins))
   and [Tmux](https://github.com/tmux/tmux/wiki)
   ([plugins](https://github.com/szorfein/dotfiles/blob/main/tmux/.config/reaver/tmux.yml))
 - **Sound:** [ALSA](https://www.alsa-project.org)
-- **File Manager:** [NNN](https://github.com/jarun/nnn) +
+- **File Manager:** [Yazi](https://github.com/sxyazi/yazi) +
   [Thunar](https://docs.xfce.org/xfce/thunar/start).
 - **Fonts:** [Iosevka](https://www.nerdfonts.com/) +
   [Material Icons Outlined](https://github.com/google/material-design-icons) +
@@ -77,11 +79,14 @@ Linux, Gentoo, Void Linux).
 
 More screenshots of previous themes are available at
 [portfolio](https://github.com/szorfein/unix-portfolio) or
-[reddit.com](https://reddit.com/user/szorfein).
+[reddit.com](https://redlib.perennialte.ch/user/szorfein).
 
 > [!NOTE] My Reddit account was totally blocked and no way to recover it
-> (access/email/password problem). Access on reddit.com with TOR is a true
-> nightmare so I just can't login/post anymore on the platform...
+> (access/email/password problem). Accessing reddit.com with TOR start to be too
+> annoying so I just can't login/post anymore on the platform...
+
+If people are motivated, they are free to post my screenshots everywhere on all
+the web.
 
 #### Support
 

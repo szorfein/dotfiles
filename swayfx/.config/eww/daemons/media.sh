@@ -102,10 +102,10 @@ exec playerctl --follow metadata --format $':{{status}}\t:{{position}}\t:{{mpris
         arturl="$(mpd_cover)"
     fi
 
-    DEFAULT_IMG=$(grep theme-bg ~/.config/sway/theme | awk '{print $3}' | sed s/~//)
+    DEFAULT_IMG=$(grep theme-bg ~/.config/sway/theme | awk '{print $3}' | sed s:~/images/::)
 
     # default
-    [ -z "$arturl" ] && arturl="$HOME$DEFAULT_IMG"
+    [ -z "$arturl" ] && arturl="/tmp/$DEFAULT_IMG"
     [ -z "$title" ] && title="N/A"
     [ -z "$artist" ] && artist="N/A"
 
@@ -142,8 +142,6 @@ exec playerctl --follow metadata --format $':{{status}}\t:{{position}}\t:{{mpris
         if [ "$playing" = "Playing" ]; then
             mpv=true
             #echo "we enable mpv $mpv"
-        else
-            mpv=false
         fi
     fi
 

@@ -19,13 +19,14 @@ you have nothing to do.
 - rubocop
 - stylua
 - shfmt
+- the_silver_searcher
 
 ## Installation by Linux distribution
 
 - Arch Linux:
-  `sudo pacman -S neovim fd fzf tmux git prettier rubocop stylua shfmt bash-language-server lua-language-server ansible-lint`
+  `sudo pacman -S neovim fd fzf tmux git prettier rubocop stylua shfmt bash-language-server lua-language-server ansible-lint the_silver_searcher`
 - Void Linux:
-  `sudo xbps-install -S neovim fd fzf tmux nodejs StyLua shfmt bash-language-server lua-language-server python3-ansible-lint`
+  `sudo xbps-install -S neovim fd fzf tmux nodejs StyLua shfmt bash-language-server lua-language-server python3-ansible-lint the_silver_searcher`
 
 ## Plugins selection
 
@@ -86,7 +87,7 @@ Command abbreviations:
     s- -> Super (not Shift)
     SPC -> Space
 
-Move:
+#### Move (vim style)
 
 - C-a: move begin line
 - C-e: move end line
@@ -97,7 +98,7 @@ Move:
 - C-j: move line down
 - C-k: move line up
 
-Search file, buffer, session:
+#### Search file, buffer, session
 
 - `C-x C-f`: find (open) a file
 - `C-x b`: switch buffer
@@ -105,9 +106,22 @@ Search file, buffer, session:
 - `C-x s`: save all buffers
 - `C-x k`: kill (close) buffer
 
-`C-h` to display help:
+#### Help with `C-h`
 
 - `C-h b`: display all keyboard shortcuts (with Whichkey)
+
+#### Debug, Diagnostic, Messages 
+
+- `:messages`: all error message [Doc](https://neovim.io/doc/user/message.html#:messages)
+- `<leader>tt`: all LSP diagnostic in file
+- `<leader>tT`: all LSP diagnostic recursivly
+
+#### Notes with `C-c` [Vim Zettel](https://github.com/michal-h21/vim-zettel)
+
+- `C-c nn TITLENAME`: New note (:ZettelNew)
+- `C-c nf`: Find notes (:ZettelSearch)
+- `C-c nq`: Backlink (:ZettelBackLinks)
+- `C-c nc`: Capture (:ZettelCapture) 
 
 ## Troubleshooting
 
@@ -119,7 +133,7 @@ reinstall the plugin.
 
 #### No highlight color on your programming language
 
-You probably need to install manually one from Treesitter, for example for
+You probably need to install manually one from [Treesitter](https://github.com/nvim-treesitter/nvim-treesitter#supported-languages), for example for
 installing Bash in Neovim, type:
 
     :TSInstall bash

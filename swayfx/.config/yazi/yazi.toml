@@ -1,0 +1,9 @@
+[mgr]
+show_hidden = true
+mouse_event = []
+
+[preview]
+image_filter = "nearest"
+
+[input]
+cursor_blink = false

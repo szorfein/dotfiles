@@ -24,7 +24,8 @@ set $term footclient
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
-set $menu wmenu-run | xargs swaymsg exec --
+#set $menu wmenu-run | xargs swaymsg exec --
+set $menu $HOME/bin/run-otter.sh
 
 set $eww $HOME/.config/eww
 
