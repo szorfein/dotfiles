@@ -9,6 +9,8 @@ set -o errexit
 LINK_MUSIC="$1"
 WORKDIR="$HOME/mps"
 OLDPATH="$(pwd)"
+ICON=""
+
 # https://www.useragents.me/
 agentsList=(
   "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.6 Safari/605.1.1	31.36"
@@ -23,8 +25,12 @@ agent="${agentsList[$rand]}"
 
 [ -d "$WORKDIR" ] || mkdir -p "$WORKDIR"
 
+noti() {
+    dunstify -u low -i "$ICON" -a "music" "Music" "$1" -r 989
+}
+
 cd "$WORKDIR"
-echo "Downloading $LINK_MUSIC..."
+noti "Downloading $LINK_MUSIC..."
 
 # TOR_PORT=$(grep -i socksport /etc/tor/torrc | head -n 1 | awk '{print $2}')
 
@@ -46,6 +52,7 @@ fi
   -x --audio-format best \
   --audio-quality 0 "$LINK_MUSIC"
 
-echo "$LINK_MUSIC success"
-
 cd "$OLDPATH"
+
+noti "$LINK_MUSIC success"
+exit 0
