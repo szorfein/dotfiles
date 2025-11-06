@@ -111,6 +111,7 @@ while [ "$#" -gt 0 ]; do
         mkdir -p "$HOME/.config/foot"
         mkdir -p "$HOME/.config/dunst/dunstrc.d"
         mkdir -p "$HOME/.config/yazi"
+        mkdir -p "$HOME/.config/fsel"
         add_stow "$DOTFILES" "swayfx"
         add_stow "$DOTFILES/swayfx-themes" "$2"
         shift
