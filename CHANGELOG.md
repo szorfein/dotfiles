@@ -1,4 +1,4 @@
-## 4.7.3
+## 4.7.4
 
 #### Global change
 
@@ -36,6 +36,7 @@
   performance impact on EWW.
 - Correct all eww/daemons,scripts (thanks shellcheck). Make them compatible with
   Dash (for Void Linux) when possible or specify the use of /usr/bin/env bash.
+- Downgrade fsel version (1.1.0) to be able to compile for Voidlinux.
 
 ## v4.0.0 - Jinx - Oct 17 2025
 

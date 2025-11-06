@@ -26,7 +26,7 @@ you have nothing to do.
 - Arch Linux:
   `sudo pacman -S neovim fd fzf tmux git prettier rubocop stylua shfmt bash-language-server lua-language-server ansible-lint the_silver_searcher`
 - Void Linux:
-  `sudo xbps-install -S neovim fd fzf tmux nodejs StyLua shfmt bash-language-server lua-language-server python3-ansible-lint the_silver_searcher`
+  `sudo xbps-install -S neovim fd fzf tmux nodejs-lts StyLua shfmt bash-language-server lua-language-server python3-ansible-lint the_silver_searcher`
 
 ## Plugins selection
 
@@ -110,9 +110,10 @@ Command abbreviations:
 
 - `C-h b`: display all keyboard shortcuts (with Whichkey)
 
-#### Debug, Diagnostic, Messages 
+#### Debug, Diagnostic, Messages
 
-- `:messages`: all error message [Doc](https://neovim.io/doc/user/message.html#:messages)
+- `:messages`: all error message
+  [Doc](https://neovim.io/doc/user/message.html#:messages)
 - `<leader>tt`: all LSP diagnostic in file
 - `<leader>tT`: all LSP diagnostic recursivly
 
@@ -121,7 +122,7 @@ Command abbreviations:
 - `C-c nn TITLENAME`: New note (:ZettelNew)
 - `C-c nf`: Find notes (:ZettelSearch)
 - `C-c nq`: Backlink (:ZettelBackLinks)
-- `C-c nc`: Capture (:ZettelCapture) 
+- `C-c nc`: Capture (:ZettelCapture)
 
 ## Troubleshooting
 
@@ -133,8 +134,9 @@ reinstall the plugin.
 
 #### No highlight color on your programming language
 
-You probably need to install manually one from [Treesitter](https://github.com/nvim-treesitter/nvim-treesitter#supported-languages), for example for
-installing Bash in Neovim, type:
+You probably need to install manually one from
+[Treesitter](https://github.com/nvim-treesitter/nvim-treesitter#supported-languages),
+for example for installing Bash in Neovim, type:
 
     :TSInstall bash
 

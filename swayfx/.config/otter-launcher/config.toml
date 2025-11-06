@@ -73,11 +73,12 @@ with_argument = true # if true, {} in cmd will be replaced with user input. if n
 url_encode = true # should be true when calling webpages; this ensures special characters in url being readable to browsers; taken as false if not explicitly set
 #unbind_proc = true # run cmd in a forked shell as opposed to as a child process (simply by prepending setsid -f to the configured cmd); useful for launching gui programs; taken as false if not explicitly set
 
-# fzf is needed to run below functions, no argument needed
+# https://github.com/Mjoyufull/fsel/blob/main/USAGE.md#otter-launcher-integration
 [[modules]]
 description = "check programs with fsel"
 prefix = "app"
-cmd = "fsel -vv -d -r"
+#cmd = "fsel -vv -d -r" # The -d option not available in fsel 1.1.0
+cmd = "~/bin/fsel -vv -r"
 
 [[modules]]
 description = "power menu (fzf)"
@@ -95,15 +96,6 @@ esac fi }
 power $(echo -e 'reboot\nshutdown\nlogout\nsuspend\nhibernate' | fzf --padding 1,2 --info-command 'printf " power menu ($FZF_POS/$FZF_TOTAL_COUNT)"' --cycle --pointer " ▌" --color "bg+:-1,pointer:1,info:8,separator:8,scrollbar:0" --prompt '  ' | tail -1)
 """
 
-# https://github.com/Mjoyufull/fsel/blob/main/USAGE.md#otter-launcher-integration
-[[modules]]
-description = "run commands"
-prefix = "sh"
-cmd = """
-fsel -vv -d -r -p {}
-"""
-with_argument = true
-#unbind_proc = true 
 
 [[modules]]
 description = "search invidious (youtube fork)"
@@ -133,6 +125,6 @@ description = "open dirs (yazi)"
 prefix = "yz"
 cmd = """
 #find $HOME -type d -not \\( -name .cache -prune -o -name .bundle -prune -o -name node_modules -prune -o -name .npm -prune -o -name .git -prune -o -name BraveSoftware -prune -o -name .cargo -prune -o -name .gem -prune \\) -print 2>/dev/null | fzf --padding 1,3 --info-command 'printf " directories ($FZF_POS/$FZF_TOTAL_COUNT)"' --cycle --pointer ' ▌' --color 'bg+:-1,pointer:1,info:8,separator:8,scrollbar:0' --prompt '  ' | xargs -r -I [] setsid -f footclient -e yazi '[]'
-find $HOME -type d -not \\( -name .cache -prune -o -name .bundle -prune -o -name node_modules -prune -o -name .npm -prune -o -name .git -prune -o -name BraveSoftware -prune -o -name .cargo -prune -o -name .gem -prune \\) -print 2>/dev/null | fsel -s --dmenu | xargs -r -I [] setsid -f footclient -e yazi '[]'
+find $HOME -type d -not \\( -name .cache -prune -o -name .bundle -prune -o -name node_modules -prune -o -name .npm -prune -o -name .git -prune -o -name BraveSoftware -prune -o -name .cargo -prune -o -name .gem -prune \\) -print 2>/dev/null | ~/bin/fsel -s --dmenu | xargs -r -I [] setsid -f footclient -e yazi '[]'
 """
 #unbind_proc = true
