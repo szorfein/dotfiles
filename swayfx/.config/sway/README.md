@@ -62,7 +62,7 @@ first. e.g for intel:
 SwayFX dependencies
 
     sudo xbps-install -S swayfx imv light jq wl-clipboard \
-    inotify-tools mpd mpc foot curl chafa \
+    inotify-tools mpd mpc foot curl chafa cargo \
     stow playerctl mpv-mpris mpDris2 eww ruby swaybg grim \
     wmenu iwd Thunar seatd turnstile dunst ImageMagick
 

@@ -79,14 +79,13 @@ Linux, Gentoo, Void Linux).
 
 More screenshots of previous themes are available at
 [portfolio](https://github.com/szorfein/unix-portfolio) or
-[reddit.com](https://redlib.perennialte.ch/user/szorfein).
+[reddit.com](https://redlib.perennialte.ch/user/szorfein/submitted).
 
 > [!NOTE] My Reddit account was totally blocked and no way to recover it
 > (access/email/password problem). Accessing reddit.com with TOR start to be too
 > annoying so I just can't login/post anymore on the platform...
 
-If people are motivated, they are free to post my screenshots everywhere on all
-the web.
+If people are motivated, they are free to post my screenshots everywhere.
 
 #### Support
 
