@@ -2,42 +2,44 @@
 
 set -o errexit
 
-hide_menu() {
-    eww close sidebar &
-    wait
-    eww update sidebar-visible=false
-}
+trap 'rm /tmp/inwork' EXIT
+[ -f /tmp/inwork ] && exit 1
 
-show_menu() {
-    eww open sidebar &
-    wait
+touch /tmp/inwork
+
+# Return monitors, for me return only eDP-1
+# Can't test myself if it's really work's...
+MONS=$(swaymsg -t get_outputs | jq ".[].name" | tr -d '"')
+
+open_widget() {
+    echo "Opening sidebar..."
+    count=0
+    for mon in $MONS; do
+        eww open sidebar --id "sb-$mon" --arg monitor="$mon" --screen "$count"
+        count=$((count + 1))
+    done
     eww update sidebar-visible=true
 }
 
-test_sidebar() {
-    if eww active-windows | grep -q -x "^sidebar: sidebar$"; then
-        return 0
+hide_widget() {
+    echo "Hidding sidebar..."
+    for mon in $MONS; do
+        eww close "sb-$mon"
+    done
+    eww update sidebar-visible=false
+}
+
+toggle_widget() {
+    IS_VISIBLE=$(eww get sidebar-visible)
+    if $IS_VISIBLE; then
+        hide_widget
     else
-        return 1
+        open_widget
     fi
 }
 
-if [ "$1" = "toggle" ]; then
-    if test_sidebar; then
-        hide_menu
-    else
-        show_menu
-    fi
-fi
-
-if [ "$1" = "show" ]; then
-    if ! test_sidebar; then
-        show_menu
-    fi
-fi
-
-if [ "$1" = "hide" ]; then
-    if test_sidebar; then
-        hide_menu
-    fi
-fi
+case "$1" in
+-h | --hide) hide_widget ;;
+-o | --open) open_widget ;;
+-t | --toggle) toggle_widget ;;
+esac

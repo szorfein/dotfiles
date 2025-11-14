@@ -2,42 +2,44 @@
 
 set -o errexit
 
-hide_menu() {
-    eww close bar &
-    wait
-    eww update navbar-visible=false
-}
+# Return monitors, for me return only eDP-1
+# Can't test myself if it's really work's...
+MONS=$(swaymsg -t get_outputs | jq ".[].name" | tr -d '"')
+#swaymsg -t get_outputs | jq -c '.[] | pick(.name, .focused)' | tr -d '"'
 
-show_menu() {
-    eww open bar &
-    wait
+# Best? e.g return eDP-1 focused
+#MONS=$(swaymsg -t get_outputs -p | grep "^Output" | awk '{print $2,$8}' | tr -d '()')
+
+open_widget() {
+    echo "Opening railbar..."
+    count=0
+    for mon in $MONS; do
+        eww open bar --id "rb-$mon" --arg monitor="$mon" --screen "$count"
+        count=$((count + 1))
+    done
     eww update navbar-visible=true
 }
 
-test_bar() {
-    if eww active-windows | grep -q -x "^bar: bar$"; then
-        return 0
+# TODO: Close only on screen focus ?
+hide_widget() {
+    echo "Hidding railbar..."
+    for mon in $MONS; do
+        eww close "rb-$mon"
+    done
+    eww update navbar-visible=false
+}
+
+toggle_widget() {
+    IS_VISIBLE=$(eww get navbar-visible)
+    if $IS_VISIBLE; then
+        hide_widget
     else
-        return 1
+        open_widget
     fi
 }
 
-if [ "$1" = "toggle" ]; then
-    if test_bar; then
-        hide_menu
-    else
-        show_menu
-    fi
-fi
-
-if [ "$1" = "show" ]; then
-    if ! test_bar; then
-        show_menu
-    fi
-fi
-
-if [ "$1" = "hide" ]; then
-    if test_bar; then
-        hide_menu
-    fi
-fi
+case "$1" in
+-h | --hide) hide_widget ;;
+-o | --open) open_widget ;;
+-t | --toggle) toggle_widget ;;
+esac

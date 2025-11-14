@@ -124,7 +124,8 @@ find $HOME -type f -not -path '*/.cache/*' 2>/dev/null | fzf --padding 1,3 --inf
 description = "open dirs (yazi)"
 prefix = "yz"
 cmd = """
-#find $HOME -type d -not \\( -name .cache -prune -o -name .bundle -prune -o -name node_modules -prune -o -name .npm -prune -o -name .git -prune -o -name BraveSoftware -prune -o -name .cargo -prune -o -name .gem -prune \\) -print 2>/dev/null | fzf --padding 1,3 --info-command 'printf " directories ($FZF_POS/$FZF_TOTAL_COUNT)"' --cycle --pointer ' ▌' --color 'bg+:-1,pointer:1,info:8,separator:8,scrollbar:0' --prompt '  ' | xargs -r -I [] setsid -f footclient -e yazi '[]'
-find $HOME -type d -not \\( -name .cache -prune -o -name .bundle -prune -o -name node_modules -prune -o -name .npm -prune -o -name .git -prune -o -name BraveSoftware -prune -o -name .cargo -prune -o -name .gem -prune \\) -print 2>/dev/null | ~/bin/fsel -s --dmenu | xargs -r -I [] setsid -f footclient -e yazi '[]'
+find $HOME -type d -not \\( -name .cache -prune -o -name .bundle -prune -o -name node_modules -prune -o -name .npm -prune -o -name .git -prune -o -name BraveSoftware -prune -o -name .cargo -prune -o -name .gem -prune \\) -print 2>/dev/null | fzf --padding 1,3 --info-command 'printf " directories ($FZF_POS/$FZF_TOTAL_COUNT)"' --cycle --pointer ' ▌' --color 'bg+:-1,pointer:1,info:8,separator:8,scrollbar:0' --prompt '  ' | xargs -r -I [] setsid -f footclient -e yazi '[]'
+# Fsel v1.0.1 is very slow to load
+#find $HOME -type d -not \\( -name .cache -prune -o -name .bundle -prune -o -name node_modules -prune -o -name .npm -prune -o -name .git -prune -o -name BraveSoftware -prune -o -name .cargo -prune -o -name .gem -prune \\) -print 2>/dev/null | ~/bin/fsel -s --dmenu | xargs -r -I [] setsid -f footclient -e yazi '[]'
 """
 #unbind_proc = true

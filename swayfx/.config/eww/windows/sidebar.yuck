@@ -1,5 +1,5 @@
-(defwindow sidebar
-    :monitor 0
+(defwindow sidebar [monitor]
+    :monitor monitor
     :geometry (geometry :x "0%"
                         :y "0%"
                         :width "${round(290 * get_env('EWW_SCALE'), 0)}px"
@@ -12,7 +12,12 @@
         ; Would prefer a slideleft animation here but it does not work
         ; https://github.com/elkowar/eww/issues/1107
         :transition "slideright"
-        :duration "300ms"
+        ;:transition "slideleft"
+        ;:transition "slideup"
+        ;:transition "slidedown"
+        ;:transition "crossfade"
+        :duration "500ms"
+        :orientation "horizontal"
         :reveal "${sidebar-visible}"
 
         (box :orientation "vertical"
@@ -143,7 +148,7 @@
     :exclusive false
     (box :halign "fill" :valign "fill" 
         ;:style "background-color: #f00"
-        (eventbox :onhover "${eww_scripts}/toggle-sidebar.sh show &")
+        (eventbox :onhover "${eww_scripts}/toggle-sidebar.sh --open &")
     )
 )
 
@@ -180,7 +185,7 @@
             :valign "center"
             (button
                 :onclick "eww update sidebar-page-index=${index} &"
-                :onrightclick "${eww_scripts}/dialog.sh close sidebar &"
+                :onrightclick "${eww_scripts}/toggle-sidebar.sh --hide &"
                 (box
                     icon
                 )
