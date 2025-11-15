@@ -34,7 +34,7 @@ The whole (or many) stack has changed because Wayland instead of X.
     libxkbcommon pango pcre2 wlroots0.19 seatd \
     libdrm libglvnd pixman glslang meson ninja \
     cargo libdbusmenu-gtk3 gtk3 gtk-layer-shell \
-    iwd thunar dunst chafa
+    iwd thunar dunst chafa swayidle swaylock wlr-randr
 
 From AUR:
 
@@ -64,7 +64,8 @@ SwayFX dependencies
     sudo xbps-install -S swayfx imv light jq wl-clipboard \
     inotify-tools mpd mpc foot curl chafa cargo \
     stow playerctl mpv-mpris mpDris2 eww ruby swaybg grim \
-    wmenu iwd Thunar seatd turnstile dunst ImageMagick
+    wmenu iwd Thunar seatd turnstile dunst ImageMagick \
+    swayidle swaylock wlr-randr
 
 Required step as root
 
@@ -89,7 +90,8 @@ And install packages:
     dev-lang/ruby playerctl wl-clipboard gui-apps/foot \
     gui-apps/grim gui-apps/wmenu net-wireless/iwd \
     gui-apps/eww gui-wm/swayfx mpv-mpris mpd-mpris \
-    acct-group/seat seatd media-gfx/imagemagick
+    acct-group/seat seatd media-gfx/imagemagick \
+    gui-apps/swaylock gui-apps/swayidle gui-apps/wlr-randr
 
 > [!NOTE] seatd should be compiled with the `server` use flag
 
@@ -116,9 +118,9 @@ See on Gentoo [wiki](https://wiki.gentoo.org/wiki/Sway#Starting_Sway_manually)
 ### From Ruby
 
 After the installation of the dependencies, for all Linux distribution, Install
-`i3ipc` locally:
+`i3ipc` and `reaver` locally:
 
-    gem install --user-install i3ipc
+    gem install --user-install i3ipc reaver
 
 ## Cloning this repo
 
@@ -217,10 +219,9 @@ reinstall, e.g for Zsh:
 ## Download other dependencies
 
 After installing dotfiles with `stow.sh`, last step is to downloads all the
-required files (wallpapers, fonts, GTK themes, icons, etc...) in two commands,
+required files (wallpapers, fonts, GTK themes, icons, etc...) in one command,
 thanks ([Reaver](https://geeksrepos.com/szorfein/reaver)):
 
-    gem install --user-install reaver
     reaver
 
 ## Menu launcher

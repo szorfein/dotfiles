@@ -121,5 +121,5 @@
 (defvar ws9 "empty")
 (defvar ws10 "empty")
 
-(defvar navbar-visible true)
+(defvar navbar-visible false)
 (defvar navbar-fab-active false)

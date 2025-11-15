@@ -22,11 +22,11 @@
                       (card-icon :icon "power_off" :title "Poweroff" :onclick "")
                       (card-icon :icon "bedtime" :title "Hibernate" :onclick "")
                       (card-icon :icon "logout" :title "Quit Sway" :onclick "sway exit")
-                      (card-icon :icon "lock" :title "Lock" :onclick "")
+                      (card-icon :icon "lock" :title "Lock" :onclick "${eww_scripts}/dialog.sh close powermenu && ~/bin/swaylock-fancy -f Iosevka-NFM &")
                  )
                  (box :halign "end"
                       :space-evenly false
-                      (button-text :text "Ok" :onclick "${eww_scripts}/dialog.sh close powermenu &")
+                      (button-text :text "Close" :onclick "${eww_scripts}/dialog.sh close powermenu &")
                  )
             )
         )

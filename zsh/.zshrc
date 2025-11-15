@@ -21,7 +21,7 @@
 # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/pass
 # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/copyfile
 # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/keychain
-plugins=(git-prompt gpg-agent transfer zsh-autosuggestions starship zsh-syntax-highlighting keychain)
+plugins=(git-prompt gpg-agent zsh-autosuggestions starship zsh-syntax-highlighting keychain zsh-history-substring-search)
 
 # Disable oh-my-zsh update (before load ohmyzsh)
 # https://github.com/ohmyzsh/ohmyzsh#getting-updates
@@ -37,13 +37,19 @@ source "$ZSH/oh-my-zsh.sh"
 [ -f ~/.zprofile ] && source ~/.zprofile
 [ -f ~/.zshenv ] && source ~/.zshenv
 
+# -----------
 # History
+# -----------
 HISTSIZE=666
 SAVEHIST=666
 HISTFILE=~/.history
-
+HISTDUP=erase
 setopt hist_ignore_all_dups # remove older duplicate entries from history
+setopt hist_ignore_dups
+setopt hist_ignore_space
+setopt hist_find_no_dups
 setopt hist_reduce_blanks # remove superfluous blanks from history items
+setopt hist_save_no_dups
 
 # Completion
 autoload -Uz compinit
@@ -75,11 +81,12 @@ man() {
 [ -f "$HOME/.zsh/aliases.zsh" ] && source "$HOME/.zsh/aliases.zsh"
 
 # --------------
+# Bindkeys
+# --------------
+
+# --------------
 # OTHER
 # --------------
 
 test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || \
   eval "$(dircolors -b)"
-
-# If Turso
-[ -d "$HOME/.turso" ] && export PATH="$PATH:/home/user/.turso"

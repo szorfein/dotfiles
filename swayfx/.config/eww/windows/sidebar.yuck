@@ -195,4 +195,4 @@
 )
 
 (defvar sidebar-page-index "1")
-(defvar sidebar-visible true)
+(defvar sidebar-visible false)

@@ -17,6 +17,9 @@ if [ -d $HOME/.config/emacs/bin ] ; then
    MY_PATH="$MY_PATH:$HOME/.config/emacs/bin"
 fi
 
+# if Turso
+[ -d "$HOME/.turso" ] && MY_PATH="$MY_PATH:$HOME/.turso"
+
 export PATH="$PATH:$MY_PATH"
 
 # XDG
@@ -24,6 +27,9 @@ export XDG_CONFIG_HOME="$HOME"/.config
 
 # Locale
 export LANG=en_US.UTF-8
+
+# History
+export HISTORY_IGNORE="(ls|cd|pwd|exit|sudo reboot|history|cd -|cd ..)"
 
 # Load environment by WM
 [ -f ~/.env ] && . ~/.env

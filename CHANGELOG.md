@@ -1,4 +1,4 @@
-## 4.7.4
+## 4.8.4
 
 #### Global change
 
@@ -13,6 +13,8 @@
 - Change app launcher wmenu by
   [otter-launcher](https://github.com/kuokuo123/otter-launcher) +
   [fsel](https://github.com/Mjoyufull/fsel)
+- Add lock screen with Swaylock and
+  [Swaylock-fancy](https://github.com/Big-B/swaylock-fancy/tree/main)
 
 #### Neovim
 

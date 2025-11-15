@@ -8,10 +8,14 @@ trap 'rm /tmp/inwork' EXIT
 touch /tmp/inwork
 
 # Return monitors, for me return only eDP-1
-# Can't test myself if it's really work's...
+# Can't test myself if it's really return all the monitors...
 MONS=$(swaymsg -t get_outputs | jq ".[].name" | tr -d '"')
 
+IS_VISIBLE=$(eww get sidebar-visible)
+
 open_widget() {
+    if $IS_VISIBLE; then return 0; fi
+
     echo "Opening sidebar..."
     count=0
     for mon in $MONS; do
@@ -30,7 +34,6 @@ hide_widget() {
 }
 
 toggle_widget() {
-    IS_VISIBLE=$(eww get sidebar-visible)
     if $IS_VISIBLE; then
         hide_widget
     else

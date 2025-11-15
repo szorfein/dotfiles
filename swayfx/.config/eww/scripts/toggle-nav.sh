@@ -10,7 +10,11 @@ MONS=$(swaymsg -t get_outputs | jq ".[].name" | tr -d '"')
 # Best? e.g return eDP-1 focused
 #MONS=$(swaymsg -t get_outputs -p | grep "^Output" | awk '{print $2,$8}' | tr -d '()')
 
+IS_VISIBLE=$(eww get navbar-visible)
+
 open_widget() {
+    if $IS_VISIBLE; then return 0; fi
+
     echo "Opening railbar..."
     count=0
     for mon in $MONS; do
@@ -30,7 +34,6 @@ hide_widget() {
 }
 
 toggle_widget() {
-    IS_VISIBLE=$(eww get navbar-visible)
     if $IS_VISIBLE; then
         hide_widget
     else
