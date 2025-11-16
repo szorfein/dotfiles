@@ -6,6 +6,8 @@ ICON=""
 DOTFILES="$HOME/.dotfiles"
 THEMES="$DOTFILES/swayfx-themes"
 FOUND=false
+#DUNST_CONFIG="$HOME/.config/dunst/dunstrc"
+EWW_CONFIG="$HOME/.config/eww"
 
 die() {
     dunstify -u critical -a themes -i "$ICON" "Change theme" "$1" -r 988
@@ -51,12 +53,27 @@ done
 
 install_theme "$SELECTED"
 
-notify "$SELECTED installed."
+notify "$SELECTED installed, reloading...."
 
 sway reload &
 wait
 
-~/.config/eww/scripts/start.sh &
-wait
+eww close changetheme
+if eww ping -c "$EWW_CONFIG" > /dev/null; then
+    eww reload -c "$EWW_CONFIG"
+fi
+
+#~/.config/eww/scripts/start.sh &
+#wait
+
+#dunstctl reload "$DUNST_CONFIG" 2> /dev/null || true
+pidof dunst | xargs kill
+dunst &
+
+tmux source-file ~/.tmux.conf 2> /dev/null || true
+
+# unfortunately, this kill all open terminals, hopefully we use tmux
+pidof foot | xargs kill
+foot -s
 
 exit 0

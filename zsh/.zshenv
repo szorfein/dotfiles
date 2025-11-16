@@ -1,21 +1,26 @@
 # PATH
-PATH="$HOME/bin:$PATH"
+MY_PATH="$HOME/bin"
 
 # https://wiki.archlinux.org/title/Ruby#Setup
 if hash ruby 2>/dev/null ; then
   export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
-  PATH="$PATH:$GEM_HOME/bin"
+  MY_PATH="$MY_PATH:$GEM_HOME/bin"
 fi
 
 if hash yarn 2>/dev/null ; then
-  PATH="$PATH:${HOME}/.yarn/bin"
+  MY_PATH="$MY_PATH:$HOME/.yarn/bin"
 fi
 
-# doomemacs
+# Doom Emacs
 # https://github.com/doomemacs/doomemacs#install
-[ -d $HOME/.config/emacs/bin ] && PATH="$HOME/.config/emacs/bin:$PATH"
+if [ -d $HOME/.config/emacs/bin ] ; then 
+   MY_PATH="$MY_PATH:$HOME/.config/emacs/bin"
+fi
 
-export PATH
+# if Turso
+[ -d "$HOME/.turso" ] && MY_PATH="$MY_PATH:$HOME/.turso"
+
+export PATH="$PATH:$MY_PATH"
 
 # XDG
 export XDG_CONFIG_HOME="$HOME"/.config
@@ -23,34 +28,15 @@ export XDG_CONFIG_HOME="$HOME"/.config
 # Locale
 export LANG=en_US.UTF-8
 
-# Terminal
-if command -v foot &>/dev/null; then
-  export TERMINAL=foot
-  #export TERM=foot-direct (set by foot)
-elif command -v wezterm &>/dev/null; then
-  export TERMINAL=wezterm
-  #export TERM=tmux-256color
-elif command -v xst &>/dev/null; then
-  export TERMINAL=xst
-  export TERM=xst-256color
-fi
+# History
+export HISTORY_IGNORE="(ls|cd|pwd|exit|sudo reboot|history|cd -|cd ..)"
 
-if [ -f "$HOME/.eww_scale" ] ; then
-    source "$HOME/.eww_scale"
-fi
+# Load environment by WM
+[ -f ~/.env ] && . ~/.env
 
 # GPG (using plugin from ohmyzsh instead)
 # export GPG_TTY=$(tty)
 # export GPG_AGENT_INFO=""
-
-# Editor
-if command -v nvim &>/dev/null; then
-    export VISUAL=nvim
-elif command -v vim &>/dev/null; then
-    export VISUAL=vim
-fi
-export EDITOR="$VISUAL"
-export SUDO_EDITOR="$VISUAL"
 
 # MPD Dir
 export MPD_MUSIC_DIR="$HOME/musics"
@@ -62,10 +48,6 @@ export ZSH="$HOME"/.oh-my-zsh
 
 # Ansible
 export ANSIBLE_CONFIG="$HOME"/.config/ansible/ansible.cfg
-
-# nnn
-# TODO: config later...
-NNN_OPTS="cEnrx"
 
 # Proxy
 #export http_proxy="http://127.0.0.1:45411"
