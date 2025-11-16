@@ -22,8 +22,6 @@ kill_pid "pgrep -f sway-workspaces.rb"
 # see with (ps aux |  grep eww)
 # which produce bug, etc... the only process visible should be 'eww daemon'
 pidof -q eww || { eww daemon & }
-sleep 1
-eww open-many navbar-activator sidebar-activator
 
 # Other daemons
 ~/.config/eww/scripts/daemons/sway-workspaces.rb > /dev/null 2>&1 &
@@ -37,7 +35,20 @@ eww open-many navbar-activator sidebar-activator
 # Used to convert default images used by EWW
 ~/.config/eww/daemons/convert-imgs.sh > /dev/null 2>&1 &
 
-# Open bar
+# Open bar for multiscreen or not
 sleep 3
-~/.config/eww/scripts/toggle-nav.sh --open &
-~/.config/eww/scripts/toggle-sidebar.sh --open &
+
+poutputs=$(wlr-randr --json | jq -r '.[] | select(.enabled == true) | .name')
+
+screen=0
+for mon in $poutputs; do
+    echo "$mon"
+    # config with open-many is weird... https://elkowar.github.io/eww/configuration.html#window-arguments
+    eww open-many \
+        navbar-activator:na-"$mon" --arg na-"$mon":monitor="$mon" --arg na-"$mon":screen="$screen" \
+        sidebar-activator:sa-"$mon" --arg sa-"$mon":monitor="$mon" --arg sa-"$mon":screen="$screen" \
+        sidebar:sb-"$mon" --arg sb-"$mon":monitor="$mon" --arg sb-"$mon":screen="$screen" \
+        bar:rb-"$mon" --arg rb-"$mon":monitor="$mon" --arg rb-"$mon":screen="$screen"
+
+    screen=$((screen + 1))
+done

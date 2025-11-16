@@ -9,40 +9,56 @@ touch /tmp/inwork
 
 # Return monitors, for me return only eDP-1
 # Can't test myself if it's really return all the monitors...
-MONS=$(swaymsg -t get_outputs | jq ".[].name" | tr -d '"')
+# MONS=$(swaymsg -t get_outputs | jq ".[].name" | tr -d '"')
 
 IS_VISIBLE=$(eww get sidebar-visible)
 
 open_widget() {
     if $IS_VISIBLE; then return 0; fi
 
-    echo "Opening sidebar..."
-    count=0
-    for mon in $MONS; do
-        eww open sidebar --id "sb-$mon" --arg monitor="$mon" --screen "$count"
-        count=$((count + 1))
-    done
-    eww update sidebar-visible=true
+    mon="$1"
+    count="$2"
+    eww open sidebar --id "sb-$mon" --arg monitor="$mon" --arg screen="$count" --screen "$count" &
+    wait
+    eww update sidebar-visible=true &
+    wait
 }
 
 hide_widget() {
-    echo "Hidding sidebar..."
-    for mon in $MONS; do
-        eww close "sb-$mon"
-    done
-    eww update sidebar-visible=false
+    mon="$1"
+    echo "Hidding sidebar for $mon..."
+    eww close "sb-$mon" &
+    wait
+    eww update sidebar-visible=false &
+    wait
 }
 
 toggle_widget() {
     if $IS_VISIBLE; then
-        hide_widget
+        hide_widget "$1"
     else
-        open_widget
+        open_widget "$1" "$2"
     fi
 }
 
-case "$1" in
--h | --hide) hide_widget ;;
--o | --open) open_widget ;;
--t | --toggle) toggle_widget ;;
-esac
+while [ $# -gt 0 ]; do
+    case "$1" in
+    -h | --hide)
+        hide_widget "$2"
+        shift
+        shift
+        ;;
+    -o | --open)
+        open_widget "$2" "$3"
+        shift
+        shift
+        shift
+        ;;
+    -t | --toggle)
+        toggle_widget "$2" "$3"
+        shift
+        shift
+        shift
+        ;;
+    esac
+done

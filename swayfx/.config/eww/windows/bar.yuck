@@ -1,4 +1,4 @@
-(defwindow bar [monitor]
+(defwindow bar [monitor screen]
     :monitor monitor
     :geometry (geometry :x "0%"
                         :y "0%"
@@ -14,7 +14,7 @@
                 :space-evenly false
                 (icon-fab
                     :onclick "${navbar-fab-active ? "eww update navbar-fab-active=false" : "eww update navbar-fab-active=true"}"
-                    :onrightclick "${eww_scripts}/toggle-nav.sh --hide &"
+                    :onrightclick "${eww_scripts}/toggle-nav.sh --hide ${monitor} &"
                     :icon ""
                 )
                 (revealer :reveal "${navbar-fab-active}"
@@ -23,7 +23,7 @@
                         :halign "center"
                         :space-evenly false
                         (icon-small-fab
-                            :onclick "${eww_scripts}/toggle-sidebar.sh --toggle &"
+                            :onclick "${eww_scripts}/toggle-sidebar.sh --toggle ${monitor} ${screen} &"
                             :icon ""
                         )
                         (icon-small-fab
@@ -60,11 +60,11 @@
 )
 
 ; invisible widget for activating navbar
-(defwindow navbar-activator
-    :monitor 0
+(defwindow navbar-activator [monitor screen]
+    :monitor monitor
     :geometry (geometry :x "0%"
                         :y "0%"
-                        :width "1px"
+                        :width "0px"
                         :height "100%"
                         :anchor "left bottom")
 
@@ -73,7 +73,7 @@
     (box :halign "fill"
         :valign "fill"
         ;:style "background-color: #f00"
-        (eventbox :onhover "${eww_scripts}/toggle-nav.sh --open &")
+        (eventbox :onhover "${eww_scripts}/toggle-nav.sh --open ${monitor} ${screen} &")
     )
 )
 
@@ -121,5 +121,5 @@
 (defvar ws9 "empty")
 (defvar ws10 "empty")
 
-(defvar navbar-visible false)
+(defvar navbar-visible true)
 (defvar navbar-fab-active false)

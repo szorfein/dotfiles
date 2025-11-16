@@ -1,4 +1,4 @@
-(defwindow sidebar [monitor]
+(defwindow sidebar [monitor screen]
     :monitor monitor
     :geometry (geometry :x "0%"
                         :y "0%"
@@ -24,7 +24,7 @@
             ;:style "border: 1px solid #f00"
             :class "sidebar"
             :space-evenly false
-            (header)
+            (header :monitor monitor)
             ; home
             (box :visible "${sidebar-page-index == '1'}"
                 ;:class "sidebar"
@@ -137,8 +137,8 @@
 )
 
 ; invisible widget for activating sidebar
-(defwindow sidebar-activator
-    :monitor 0
+(defwindow sidebar-activator [monitor screen]
+    :monitor monitor
     :geometry (geometry :x 0
                         :y 0
                         :width "1px"
@@ -148,36 +148,36 @@
     :exclusive false
     (box :halign "fill" :valign "fill" 
         ;:style "background-color: #f00"
-        (eventbox :onhover "${eww_scripts}/toggle-sidebar.sh --open &")
+        (eventbox :onhover "${eww_scripts}/toggle-sidebar.sh --open ${monitor} ${screen} &")
     )
 )
 
-(defwidget header []
+(defwidget header [monitor]
     ;(icon-button :icon "" :onclick "~/.config/eww/scripts/toggle-powermenu.sh &")
     (box :orientation "horizontal"
         :valign "start"
         :class "header"
         ;:hexpand false
         ;:style "border: 1px solid #f00"
-        (tabs-indicators)
+        (tabs-indicators :monitor monitor)
 
         ;(icon-button :icon "" :onclick "imv ~/images &")
         ;(icon-button :icon "" :onclick "~/.config/eww/scripts/toggle-sidebar.sh toggle &")
     )
 )
 
-(defwidget tabs-indicators []
+(defwidget tabs-indicators [monitor]
     (box :orientation "horizontal"
         :hexpand true
         :class "tabs"
         :space-evenly true
-        (tab-indicator :index 1 :icon "")
-        (tab-indicator :index 2 :icon "")
-        (tab-indicator :index 3 :icon "")
+        (tab-indicator :index 1 :icon "" :monitor monitor)
+        (tab-indicator :index 2 :icon "" :monitor monitor)
+        (tab-indicator :index 3 :icon "" :monitor monitor)
     )
 )
 
-(defwidget tab-indicator [index ?icon]
+(defwidget tab-indicator [index ?icon monitor]
     (eventbox
         
         :cursor "hand2"
@@ -185,7 +185,7 @@
             :valign "center"
             (button
                 :onclick "eww update sidebar-page-index=${index} &"
-                :onrightclick "${eww_scripts}/toggle-sidebar.sh --hide &"
+                :onrightclick "${eww_scripts}/toggle-sidebar.sh --hide ${monitor} &"
                 (box
                     icon
                 )
@@ -195,4 +195,4 @@
 )
 
 (defvar sidebar-page-index "1")
-(defvar sidebar-visible false)
+(defvar sidebar-visible true)

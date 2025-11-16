@@ -1,4 +1,4 @@
-## 4.8.4
+## 4.9.4
 
 #### Global change
 
@@ -15,6 +15,7 @@
   [fsel](https://github.com/Mjoyufull/fsel)
 - Add lock screen with Swaylock and
   [Swaylock-fancy](https://github.com/Big-B/swaylock-fancy/tree/main)
+- EWW multiscreen
 
 #### Neovim
 

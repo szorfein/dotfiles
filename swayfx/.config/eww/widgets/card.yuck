@@ -14,13 +14,11 @@
     (box :class "card-image"
         (button :onclick "${onclick}"
             (box :orientation "vertical"
-             :space-evenly false
-                (image :path "${path_image}"
-                       :image-width "${300 * round(get_env('EWW_SCALE'), 0)}"
-                       :image-height 200
-                       :preserve-aspect-ratio false
-                       :vexpand true
-                       :valign "fill"
+                 :space-evenly false
+                 :spacing 8
+                (box :style "background-image: url('${path_image}');"
+                     :halign "center"
+                     :class "wall"
                 )
                 (box :halign "start" :class "title-small" title)
             )

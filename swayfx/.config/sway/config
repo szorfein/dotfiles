@@ -109,8 +109,8 @@ output * bg $theme-bg fill
 
 exec swayidle -w \
           timeout 300 '~/bin/swaylock-fancy' \
-          timeout 600 'swaymsg "output * power off"' \
-          resume 'swaymsg "output * power on"' \
+          timeout 600 'swaymsg "output * dpms off"' \
+          resume 'swaymsg "output * dpms on"' \
           before-sleep '~/bin/swaylock-fancy'
 
 # This will lock your screen after 300 seconds of inactivity, then turn off
@@ -229,6 +229,7 @@ include ~/.config/sway/rules
 
     # eww
     bindsym $mod+F1 exec "$eww/scripts/dialog.sh open powermenu"
+    bindsym $mod+F2 exec "$eww/scripts/dialog.sh open changetheme"
 #
 # Scratchpad:
 #

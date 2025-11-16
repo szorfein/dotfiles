@@ -117,8 +117,9 @@ See on Gentoo [wiki](https://wiki.gentoo.org/wiki/Sway#Starting_Sway_manually)
 
 ### From Ruby
 
-After the installation of the dependencies, for all Linux distribution, Install
-`i3ipc` and `reaver` locally:
+After the installation of the dependencies, you need to install 2 ruby gems
+called [i3ipc](https://rubygems.org/gems/i3ipc) and
+[reaver](https://rubygems.org/gems/reaver):
 
     gem install --user-install i3ipc reaver
 
