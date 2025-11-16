@@ -89,7 +89,7 @@ client.background         "$bg"
 
 # Gaps
 gaps outer 0
-gaps inner 8
+gaps inner 16
 
 # Misc
 show_marks no
