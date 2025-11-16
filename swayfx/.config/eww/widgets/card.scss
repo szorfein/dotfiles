@@ -52,5 +52,13 @@
     .title-small {
       padding: dpi(16px);
     }
+    .wall {
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      border-radius: dpi(18px);
+      min-width: dpi(200px);
+      min-height: dpi(200px);
+    }
   }
 }

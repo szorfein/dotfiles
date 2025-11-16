@@ -106,14 +106,13 @@ output * bg $theme-bg fill
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
 ### Idle configuration
-#
-# Example configuration:
-#
-# exec swayidle -w \
-#          timeout 300 'swaylock -f -c 000000' \
-#          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-#          before-sleep 'swaylock -f -c 000000'
-#
+
+exec swayidle -w \
+          timeout 300 '~/bin/swaylock-fancy' \
+          timeout 600 'swaymsg "output * dpms off"' \
+          resume 'swaymsg "output * dpms on"' \
+          before-sleep '~/bin/swaylock-fancy'
+
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
@@ -230,18 +229,19 @@ include ~/.config/sway/rules
 
     # eww
     bindsym $mod+F1 exec "$eww/scripts/dialog.sh open powermenu"
+    bindsym $mod+F2 exec "$eww/scripts/dialog.sh open changetheme"
 #
 # Scratchpad:
 #
     # Sway has a "scratchpad", which is a bag of holding for windows.
     # You can send windows there and get them back later.
 
-    # Move the currently focused window to the scratchpad
-    #bindsym $mod+Shift+minus move scratchpad
+    # Move the currently focused window to the scratchpad (minimize)
+    bindsym $mod+Shift+m move scratchpad
 
     # Show the next scratchpad window or hide the focused scratchpad window.
     # If there are multiple scratchpad windows, this command cycles through them.
-    #bindsym $mod+minus scratchpad show
+    bindsym $mod+m scratchpad show
 
 include ~/.config/sway/modes
 
