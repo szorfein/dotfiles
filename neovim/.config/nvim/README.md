@@ -25,7 +25,8 @@ you have nothing to do.
 
 - Arch Linux:
   `sudo pacman -S neovim fd fzf tmux git prettier rubocop stylua shfmt bash-language-server lua-language-server ansible-lint the_silver_searcher`
-- Gentoo: `sudo emerge -av neovim sys-apps/fd ripgrep fzf tmux app-admin/ansible-lint sys-apps/the_silver_searcher net-libs/nodejs`
+- Gentoo:
+  `sudo emerge -av neovim sys-apps/fd ripgrep fzf tmux app-admin/ansible-lint sys-apps/the_silver_searcher net-libs/nodejs`
 - Void Linux:
   `sudo xbps-install -S neovim fd fzf tmux nodejs-lts StyLua shfmt bash-language-server lua-language-server python3-ansible-lint the_silver_searcher`
 
@@ -147,7 +148,7 @@ After the installation, relaunch nvim to have the highlight enabled.
 
 - https://github.com/AstroNvim/AstroNvim
 - https://github.com/NvChad/NvChad
-- https://github.com/LazyVim/starter/tree/main
+- https://github.com/brainfucksec/neovim-lua
 - https://code.x-e.ro/dotfiles
 
 Also from books:
