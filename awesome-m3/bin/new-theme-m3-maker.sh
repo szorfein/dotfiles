@@ -2,40 +2,63 @@
 
 set -o errexit
 
-die() { echo "$1"; exit 1; }
-
-usage() {
-  printf "  %s\\t%s\\n" "-n, --name NAME" "A name for the new theme."
-  printf "  %s\\t%s\\n" "-f, --file PATH" "A JSON file from a material theme."
-  printf "  %s\\t%s\\n" "-t, --tmux THEME" "try: 'bubble' or 'nord' without tilde."
-  printf "  %s\\t%s\\n" "-g, --green COLOR" "custom color for green e.g #50FA7B."
-  printf "  %s\\t%s\\n" "-c, --cyan COLOR" "custom color for cyan e.g #8BE9FD."
-  printf "\\n"
+die() {
+    echo "$1"
+    exit 1
 }
 
-if [ "$#" -eq 0 ] ; then
-  echo "$0: Argument required"
-  echo
-  usage
-  exit 1
+usage() {
+    printf "  %s\\t%s\\n" "-n, --name NAME" "A name for the new theme."
+    printf "  %s\\t%s\\n" "-f, --file PATH" "A JSON file from a material theme."
+    printf "  %s\\t%s\\n" "-t, --tmux THEME" "try: 'bubble' or 'nord' without tilde."
+    printf "  %s\\t%s\\n" "-g, --green COLOR" "custom color for green e.g #50FA7B."
+    printf "  %s\\t%s\\n" "-c, --cyan COLOR" "custom color for cyan e.g #8BE9FD."
+    printf "\\n"
+}
+
+if [ "$#" -eq 0 ]; then
+    echo "$0: Argument required"
+    echo
+    usage
+    exit 1
 fi
 
-while [ "$#" -gt 0 ] ; do
-  case "$1" in
-    -n | --name) name="$2" ; shift; shift;;
-    -f | --file) filename="$2" ; shift; shift;;
-    -t | --tmux) tmuxtheme="$2" ; shift; shift;;
-    -g | --green) greencolor="$2" ; shift; shift;;
-    -c | --cyan) cyancolor="$2" ; shift; shift;;
+while [ "$#" -gt 0 ]; do
+    case "$1" in
+    -n | --name)
+        name="$2"
+        shift
+        shift
+        ;;
+    -f | --file)
+        filename="$2"
+        shift
+        shift
+        ;;
+    -t | --tmux)
+        tmuxtheme="$2"
+        shift
+        shift
+        ;;
+    -g | --green)
+        greencolor="$2"
+        shift
+        shift
+        ;;
+    -c | --cyan)
+        cyancolor="$2"
+        shift
+        shift
+        ;;
     -h | --help)
-      usage
-      exit
-      ;;
+        usage
+        exit
+        ;;
     *)
-      printf "\\n%s\\n" "$0: Invalid argument $1"
-      exit 1
-      ;;
-  esac
+        printf "\\n%s\\n" "$0: Invalid argument $1"
+        exit 1
+        ;;
+    esac
 done
 
 [ -z "$name" ] && die "No theme name, see -h | --help..."
@@ -44,20 +67,19 @@ done
 [ -f "$filename" ] || die "File $filename do not exist."
 
 case "$tmuxtheme" in
-  'bubble')
+'bubble')
     iconleft=""
     iconright=""
     ;;
-  'nord')
+'nord')
     iconleft=""
     iconright=""
     ;;
-  *)
+*)
     echo "bad theme for tmux, only bubble or nord"
     exit 1
     ;;
 esac
-
 
 echo "name $name"
 CAPNAME=$(echo "$name" | awk '{$1=toupper(substr($1,0,1))substr($1,2)}1')
@@ -65,8 +87,8 @@ echo "cap name $CAPNAME"
 echo "filename $filename"
 
 getjq() {
-  color=$(cat < "$filename" | jq ".schemes.dark.$1" | tr -d '"')
-  echo "$color" | tr -d '"'
+    color=$(cat < "$filename" | jq ".schemes.dark.$1" | tr -d '"')
+    echo "$color" | tr -d '"'
 }
 
 # all variables...
@@ -127,8 +149,8 @@ surfaceContainerHighest=$(getjq 'surfaceContainerHighest')
 
 # EXTRA colors
 getjq_palette() {
-  color=$(cat < "$filename" | jq "$1" | tr -d '"')
-  echo "$color" | tr -d '"'
+    color=$(cat < "$filename" | jq "$1" | tr -d '"')
+    echo "$color" | tr -d '"'
 }
 
 primaryLow=$(getjq_palette '.palettes.primary["70"]')
@@ -157,11 +179,12 @@ sed "s/dracula/$name/g" -i "$VIMCOLOR/$name.vim"
 sed "s/Dracula/$CAPNAME/g" -i "$VIMCOLOR/$name.vim"
 
 echo "Generating Xresource..."
-cat <<EOF > "$WORKDIR/.Xresources.d/fonts"
-st.font: Iosevka Term:pixelsize=14:autohint=true;
+cat << EOF > "$WORKDIR/.Xresources.d/fonts"
+st.font: IosevkaTerm Nerd Font:style=Regular:pixelsize=14:antialias=true:autohint=true;
+st.font_fallback: Iosevka Nerd Font:style=Regular:pixelsize=14:antialias=true:autohint=true;
 EOF
 
-cat <<EOF > "$WORKDIR/.Xresources.d/colors"
+cat << EOF > "$WORKDIR/.Xresources.d/colors"
 ! Theme - background
 *background: $background
 *foreground: $onBackground
@@ -194,7 +217,7 @@ cat <<EOF > "$WORKDIR/.Xresources.d/colors"
 EOF
 
 echo "Generation awesome m3..."
-cat <<EOF > "$WORKDIR/.config/awesome/theme/material.lua"
+cat << EOF > "$WORKDIR/.config/awesome/theme/material.lua"
 local fonts = require('lib.fonts')
 
 local theme = {
@@ -244,8 +267,8 @@ EOF
 # Base file:
 # https://github.com/dracula/zathura/blob/master/zathurarc
 echo "Generating zathura..."
-cat <<EOF > "$WORKDIR/.config/zathura/zathurarc"
-set font "Iosevka Term 10"
+cat << EOF > "$WORKDIR/.config/zathura/zathurarc"
+set font "IosevkaTerm Nerd Font 10"
 set default-bg "$background"
 set default-fg "$onBackground"
 
@@ -277,8 +300,8 @@ set adjust-open width
 EOF
 
 echo "Generating tmux..."
-if [ "$tmuxtheme" = 'nord' ] ; then
-cat <<EOF > "$WORKDIR/.tmux/status"
+if [ "$tmuxtheme" = 'nord' ]; then
+    cat << EOF > "$WORKDIR/.tmux/status"
 # Customized from https://github.com/arcticicestudio/nord-tmux
 TMUX_STATUS_TIME_FORMAT="%I:%M.%p"
 COLOR_PRIMARY_CONTAINER="$primaryContainer"
@@ -321,8 +344,8 @@ set -g window-status-separator ""
 EOF
 fi
 
-if [ "$tmuxtheme" = 'bubble' ] ; then
-cat <<EOF > "$WORKDIR/.tmux/status"
+if [ "$tmuxtheme" = 'bubble' ]; then
+    cat << EOF > "$WORKDIR/.tmux/status"
 COLOUR_BG="$background"
 COLOR_PRIMARY="$primary"
 COLOR_PRIMARY_CONTAINER="$primaryContainer"
@@ -356,7 +379,7 @@ EOF
 fi
 
 echo "Generation vim..."
-cat <<EOF > "$WORKDIR/.vim/colorscheme"
+cat << EOF > "$WORKDIR/.vim/colorscheme"
 " Color
 colorscheme $name
 
@@ -367,7 +390,7 @@ EOF
 # Original file:
 # https://raw.githubusercontent.com/dracula/vim/master/autoload/dracula.vim
 # https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit
-cat <<EOF > "$VIMLOAD/$name.vim"
+cat << EOF > "$VIMLOAD/$name.vim"
 " Palette: {{{
 let g:$name#palette           = {}
 " Foreground
@@ -425,7 +448,7 @@ let g:$name#palette.color_15 = '$onPrimaryContainer'
 " vim: fdm=marker ts=2 sts=2 sw=2 fdl=0:
 EOF
 
-cat <<EOF > "$VIMLOAD/lightline/colorscheme/$name.vim"
+cat << EOF > "$VIMLOAD/lightline/colorscheme/$name.vim"
 " =============================================================================
 " Filename: autoload/lightline/colorscheme/$name.vim
 " Author: szorfein based on adamalbrecht
@@ -471,7 +494,7 @@ endif
 " vim: fdm=marker ts=2 sts=2 sw=2 fdl=0:
 EOF
 
-cat <<EOF > "$WORKDIR/.vim/lightline-theme.vim"
+cat << EOF > "$WORKDIR/.vim/lightline-theme.vim"
 let g:lightline.colorscheme = '$name'
 let g:lightline.tabline = {'left': [['buffers']], 'right': [['close']] }
 

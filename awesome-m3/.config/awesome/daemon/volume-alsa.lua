@@ -5,23 +5,30 @@ local timer = require('gears.timer')
 local string = { match = string.match }
 
 local function volume_status()
-  spawn.easy_async('amixer get Master', function(stdout)
-    local volume, state = string.match(stdout, "%[([%d]+)%%%].*%[([%l]*)%]")
+    spawn.easy_async('amixer get Master', function(stdout)
+        if not stdout or stdout == '' then
+            awesome.emit_signal('daemon::volume', 0, true)
+            return
+        end
 
-    --snackbar.debug({ title = 'get volume '..volume })
-    --snackbar.debug({ title = 'state volume '..state })
+        local volume, state = string.match(stdout, '%[([%d]+)%%%].*%[([%l]*)%]')
 
-    if state == "" and volume == "0" or state == "off" then
-      awesome.emit_signal('daemon::volume', 0, true)
-    else
-      awesome.emit_signal('daemon::volume', tonumber(volume), false)
-    end
-  end)
+        --snackbar.debug({ title = 'get volume '..volume })
+        --snackbar.debug({ title = 'state volume '..state })
+
+        if state == '' and volume == '0' or state == 'off' then
+            awesome.emit_signal('daemon::volume', 0, true)
+        else
+            awesome.emit_signal('daemon::volume', tonumber(volume), false)
+        end
+    end)
 end
 
-timer {
-  timeout = 10,
-  autostart = true,
-  call_now = true,
-  callback = function() volume_status() end
-}
+timer({
+    timeout = 10,
+    autostart = true,
+    call_now = true,
+    callback = function()
+        volume_status()
+    end,
+})

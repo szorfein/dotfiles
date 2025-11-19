@@ -1,0 +1,15 @@
+---
+things:
+  - name: ohmyzsh.tar.gz
+    url: https://github.com/ohmyzsh/ohmyzsh/archive/refs/heads/master.tar.gz
+    dest_dir: .oh-my-zsh
+  - name: zsh-autosuggestions.tar.gz
+    url: https://github.com/zsh-users/zsh-autosuggestions/archive/refs/heads/master.tar.gz
+    dest_dir: .oh-my-zsh/custom/plugins/zsh-autosuggestions
+  - name: zsh-syntax-highlighting.tar.gz
+    url: https://github.com/zsh-users/zsh-syntax-highlighting/archive/refs/heads/master.tar.gz
+    dest_dir: .oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+  - name: zsh-history-substring-search.zip
+    url: https://github.com/zsh-users/zsh-history-substring-search/archive/refs/heads/master.zip
+    dest_dir: .oh-my-zsh/custom/plugins/zsh-history-substring-search
+time: 86000

@@ -45,11 +45,15 @@ search_theme "$1"
 
 change_theme "$old_theme" "$1"
 
-hash xst 2>/dev/null && {
-  xrdb merge ~/.Xresources
-  kill -USR1 $(pidof xst)
+hash xst 2> /dev/null && {
+    xrdb merge ~/.Xresources
+    if pid=$(pidof xst); then
+        kill -s USR1 $pid
+    fi
 }
 
 # if tmux
 # https://stackoverflow.com/questions/18012930/how-can-i-redirect-all-output-to-dev-null
-hash tmux 2>/dev/null && 2>/dev/null 1>&2 tmux source ~/.tmux.conf 2>/dev/null &
+if command -v tmux 2> /dev/null; then
+    tmux source ~/.tmux.conf 2> /dev/null &
+fi
