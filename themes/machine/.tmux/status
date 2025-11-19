@@ -1,8 +1,0 @@
-# Erase default options
-
-set-option -g status-position bottom
-setw -g window-status-format "#[fg=colour0,bg=black]#[fg=colour10,bg=colour0] #I #[fg=colour10,bg=colour0] #W #[fg=colour0,bg=black]"
-setw -g window-status-current-format "#[fg=colour8,bg=black]#[bg=colour8]#[fg=black,bg=colour8] #I #[fg=black,bg=colour8] #{pane_current_path} #[fg=black,bg=colour8] #W #[fg=colour8,bg=black]"
-set -g status-left "#[fg=colour0,bg=default]#[fg=colour15,bg=colour0] #S #[fg=colour14,bg=colour0,nobold,nounderscore,noitalics]>> #[fg=colour0,bg=default]"
-set -g status-right '#[fg=yellow,bg=default]#[fg=yellow,bg=colour0] ﮊ #[fg=yellow,bg=default]'
-set -g status-justify left

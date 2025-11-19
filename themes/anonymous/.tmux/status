@@ -1,9 +1,0 @@
-# Erase default options
-
-set-option -g status-position bottom
-setw -g window-status-format "#[bg=colour0,fg=colour4,noreverse]█▓░ #W "
-setw -g window-status-current-format "#[bg=colour14,fg=colour0,noreverse]█▓░ #W "
-set -g status-left ''
-set -g status-right ''
-set -g status-justify right
-set -g status-bg default

@@ -1,8 +1,0 @@
-background = ${xrdb:background}
-background-alt = ${xrdb:color0}
-foreground = ${xrdb:color15}
-foreground-alt = ${xrdb:color7}
-primary = ${xrdb:color6}
-secondary = ${xrdb:color13}
-alert = ${xrdb:color9}
-desktop = #402a4e
