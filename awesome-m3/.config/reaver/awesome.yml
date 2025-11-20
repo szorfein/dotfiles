@@ -17,4 +17,8 @@ things:
     strip_components: 0
     dest_dir: .local/share/fonts
     keep_name: true
+  - name: awesome-m3-gtk-themes.tar.gz
+    url https://github.com/szorfein/gtk-themes/archive/refs/heads/awesome-m3.tar.gz
+    strip_components: 1
+    dest_dir: ".themes"
 time: 86000

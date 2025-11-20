@@ -36,11 +36,13 @@
 - **Editor:** [Vim](https://github.com/vim/vim) and
   [Doomemacs](https://github.com/doomemacs/doomemacs)
 - **Compositor:** [Picom](https://github.com/yshui/picom)
-- **File Manager:** [NNN](https://github.com/jarun/nnn),
-  [Vifm](https://github.com/vifm/vifm)
+- **File Manager:** [NNN](https://github.com/jarun/nnn) +
+  [Thunar](https://docs.xfce.org/xfce/thunar/start).
 - **Fonts:** [Nerd Font](https://www.nerdfonts.com/) Iosevka, SpaceMono +
   [Material Icons](https://github.com/Templarian/MaterialDesign-Font) +
   [Papirus](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme)
+- **Screen Locker:**
+  [betterlockscreen](https://github.com/betterlockscreen/betterlockscreen)
 - **Dotfiles manager and theme switcher:**
   [GNU/Stow](https://www.gnu.org/software/stow/)
 - **Dotfiles dependencies manager:**

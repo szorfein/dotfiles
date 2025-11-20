@@ -1,7 +1,12 @@
-## 2.1.5
+## 2.2.6
 
+- Dropped vifm configuration, use nnn + thunar...
 - Add [Reaver](https://github.com/szorfein/reaver) to downloads all stuff icons,
   fonts, wallpapers, plugins and more...
+
+### Fixes
+
+- picom glx errors on awesome startup
 
 ## v2.0.5 - December 2024
 

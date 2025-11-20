@@ -1,0 +1,7 @@
+---
+things:
+  - name: tmux-mode-indicator.tar.gz
+    url: https://github.com/MunifTanjim/tmux-mode-indicator/archive/refs/heads/master.tar.gz
+    dest_dir: .config/tmux/plugins/tmux-mode-indicator
+    strip_components: 1
+time: 259200 # all the 3 days
