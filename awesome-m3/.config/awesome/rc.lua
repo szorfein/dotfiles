@@ -3,20 +3,20 @@
 pcall(require, 'luarocks.loader')
 
 -- Standard awesome library
-local gears = require('gears')
-local awful = require('awful')
-require('awful.autofocus')
+local gears = require 'gears'
+local awful = require 'awful'
+require 'awful.autofocus'
 -- Widget and layout library
-local wibox = require('wibox')
+local wibox = require 'wibox'
 -- Theme handling library
-local beautiful = require('beautiful')
+local beautiful = require 'beautiful'
 -- Notification library
-local naughty = require('naughty')
-local menubar = require('menubar')
-local hotkeys_popup = require('awful.hotkeys_popup')
+local naughty = require 'naughty'
+local menubar = require 'menubar'
+local hotkeys_popup = require 'awful.hotkeys_popup'
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
-require('awful.hotkeys_popup.keys')
+require 'awful.hotkeys_popup.keys'
 
 -- Function to create object in lua - used globally
 local function new(self, ...)
@@ -31,22 +31,22 @@ end
 
 -- Globally
 dpi = beautiful.xresources.apply_dpi
-md = require('material') -- md for Material Design
+md = require 'material' -- md for Material Design
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init(os.getenv('HOME') .. '/.config/awesome/theme/beautiful.lua')
+beautiful.init(os.getenv 'HOME' .. '/.config/awesome/theme/beautiful.lua')
 
-local snackbar = require('lib.snackbar')
+local snackbar = require 'lib.snackbar'
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
 if awesome.startup_errors then
-    snackbar.critical({
+    snackbar.critical {
         title = 'Oops, there were errors during startup!',
         text = awesome.startup_errors,
-    })
+    }
     --naughty.notify({ preset = naughty.config.presets.critical,
     -- title = "Oops, there were errors during startup!",
     -- text = awesome.startup_errors })
@@ -62,27 +62,27 @@ do
         end
         in_error = true
 
-        naughty.notify({
+        naughty.notify {
             preset = naughty.config.presets.critical,
             title = 'Oops, an error happened!',
             text = tostring(err),
-        })
+        }
         in_error = false
     end)
 end
 -- }}}
 
 -- load xrdb, compositor
-require('autostart')
+require 'autostart'
 
-local helpers = require('lib.helpers')
-local button_text = require('lib.button-text')
+local helpers = require 'lib.helpers'
+local button_text = require 'lib.button-text'
 
 -- This is used later as the default terminal and editor to run.
-local user = require('config.user')
+local user = require 'config.user'
 
 -- check if the system use PulseAudio or Alsa
-is_pulse = helpers:file_exist('/usr/bin/pacmd')
+is_pulse = helpers:file_exist '/usr/bin/pacmd'
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
 -- If you do not like this or do not have such a key,
@@ -135,14 +135,14 @@ myawesomemenu = {
     },
 }
 
-mymainmenu = awful.menu({
+mymainmenu = awful.menu {
     items = {
         { 'awesome', myawesomemenu, beautiful.awesome_icon },
         { 'open terminal', user.terminal },
     },
-})
+}
 
-mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon, menu = mymainmenu })
+mylauncher = awful.widget.launcher { image = beautiful.awesome_icon, menu = mymainmenu }
 
 -- Menubar configuration
 menubar.utils.terminal = user.terminal -- Set the terminal for applications that require it
@@ -150,7 +150,7 @@ menubar.utils.terminal = user.terminal -- Set the terminal for applications that
 
 -- {{{ Wibar
 -- Create a textclock widget
-mytextclock = wibox.widget.textclock('%H:%M ')
+mytextclock = wibox.widget.textclock '%H:%M '
 
 local function set_wallpaper(s)
     -- Wallpaper
@@ -177,13 +177,13 @@ awful.screen.connect_for_each_screen(function(s)
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
 
-    require('layout.navigation-rail')({
+    require 'layout.navigation-rail' {
         screen = s,
         menubar = menubar,
-    })
+    }
 
     -- all other layouts
-    require('layout')(s)
+    require 'layout'(s)
 end)
 -- }}}
 
@@ -279,12 +279,12 @@ globalkeys = gears.table.join(
     end, { description = 'run prompt', group = 'launcher' }),
 
     awful.key({ modkey }, 'x', function()
-        awful.prompt.run({
+        awful.prompt.run {
             prompt = 'Run Lua code: ',
             textbox = awful.screen.focused().mypromptbox.widget,
             exe_callback = awful.util.eval,
             history_path = awful.util.get_cache_dir() .. '/history_eval',
-        })
+        }
     end, { description = 'lua execute prompt', group = 'awesome' }),
     awful.key({ modkey }, 'p', function()
         local s = awful.screen.focused()
@@ -589,7 +589,7 @@ client.connect_signal('request::titlebars', function(c)
         end,
     }).widget
 
-    awful.titlebar(c):setup({
+    awful.titlebar(c):setup {
         {
             { -- Left
                 nil,
@@ -612,7 +612,7 @@ client.connect_signal('request::titlebars', function(c)
         },
         bg = md.sys.color.surface,
         widget = wibox.container.background,
-    })
+    }
 end)
 
 -- Enable sloppy focus, so that focus follows mouse.
@@ -634,23 +634,23 @@ end)
 sf = awful.screen.focused()
 sf.dashboard.visible = true
 
-require('daemon')
+require 'daemon'
 
 local script = "sh -c 'echo " .. md.name .. " >/tmp/awm-m3'"
 awful.spawn.easy_async_with_shell(script, function(_, stderr, _, exit)
     if exit ~= 0 then
-        snackbar.debug({ title = 'theme ' .. md.name .. ' failed with: ' .. stderr })
+        snackbar.debug { title = 'theme ' .. md.name .. ' failed with: ' .. stderr }
     else
-        snackbar.debug({ title = 'theme ' .. md.name .. ' loaded.' })
+        snackbar.debug { title = 'theme ' .. md.name .. ' loaded.' }
     end
 end)
 
 -- Run garbage collector regularly to prevent memory leaks
 -- https://wiki.archlinux.org/title/Awesome#Memory_leaks
-gears.timer({
+gears.timer {
     timeout = 30,
     autostart = true,
     callback = function()
         collectgarbage()
     end,
-})
+}

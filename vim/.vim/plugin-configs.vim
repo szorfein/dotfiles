@@ -169,7 +169,7 @@ let g:lightline#bufferline#number_map = {
   \ 0: '⓿ ', 1: '❶ ', 2: '❷ ', 3: '❸ ', 4: '❹ ',
   \ 5: '❺ ', 6: '❻ ', 7: '❼ ', 8: '❽ ', 9: '❾ '}
 
-" Leader is , 
+" Leader is ,
 nmap <Leader>1 <Plug>lightline#bufferline#go(1)
 nmap <Leader>2 <Plug>lightline#bufferline#go(2)
 nmap <Leader>3 <Plug>lightline#bufferline#go(3)
@@ -187,4 +187,3 @@ augroup alestatus
   autocmd User ALELintPost call lightline#update()
   autocmd User ALEFixPost call lightline#update()
 augroup END
-
