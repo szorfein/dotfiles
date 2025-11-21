@@ -1,4 +1,4 @@
-## 2.2.6
+## 2.2.7
 
 - Dropped vifm configuration, use nnn + thunar...
 - Add [Reaver](https://github.com/szorfein/reaver) to downloads all stuff icons,
@@ -6,7 +6,9 @@
 
 ### Fixes
 
-- picom glx errors on awesome startup
+- Keep Vim until NeoVim is ready.
+- picom glx errors on awesome startup.
+- Install for [chezmoi][https://github.com/szorfein/dots]
 
 ## v2.0.5 - December 2024
 

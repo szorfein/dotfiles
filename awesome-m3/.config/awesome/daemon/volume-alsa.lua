@@ -1,5 +1,5 @@
-local spawn = require('awful.spawn')
-local timer = require('gears.timer')
+local spawn = require 'awful.spawn'
+local timer = require 'gears.timer'
 --local snackbar = require('lib.snackbar')
 
 local string = { match = string.match }
@@ -24,11 +24,11 @@ local function volume_status()
     end)
 end
 
-timer({
+timer {
     timeout = 10,
     autostart = true,
     call_now = true,
     callback = function()
         volume_status()
     end,
-})
+}

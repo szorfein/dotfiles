@@ -38,7 +38,7 @@ basename() {
 purge_stow() {
     echo "Uninstalling all dots from $DOTFILES..."
 
-    for dir in .x awesome-m2 awesome-m3 doomemacs foot mpd ncmpcpp neovim swayfx tmux wezterm zsh; do
+    for dir in .x awesome-m2 awesome-m3 doomemacs foot mpd ncmpcpp neovim swayfx tmux wezterm zsh vim; do
         [ -d "$DOTFILES/$dir" ] || continue
         del_stow "$DOTFILES" "$dir"
     done
@@ -89,9 +89,10 @@ usage() {
     printf "\t%s\t\t\t%s\n" "-f | --foot" "Add dots for the terminal foot"
     printf "\t%s\t\t\t%s\n" "-w | --wezterm" "Add dots for the terminal wezterm"
     printf "\t%s\t\t\t%s\n" "-z | --zsh" "Add dots for zsh"
+    printf "\t%s\t\t\t%s\n" "-v | --vim" "Add dots for Vim"
     printf "\nExamples:\n"
     echo 'stow.sh --purge --swayfx holy --tmux --neovim'
-    echo 'stow.sh -p -s holy -t -nv'
+    echo 'stow.sh -p -t -nv -s holy'
 }
 
 # Argument are called in order of the command line
@@ -120,6 +121,7 @@ while [ "$#" -gt 0 ]; do
     -a3 | --awesome-m3)
         mkdir -p "$HOME/.config/awesome/theme"
         mkdir -p "$HOME/.tmux"
+        mkdir -p "$HOME/.vim"
         add_stow "$DOTFILES" ".x"
         add_stow "$DOTFILES" "awesome-m3"
         add_stow "$DOTFILES/awesome-m3-themes" "$2"
@@ -132,6 +134,7 @@ while [ "$#" -gt 0 ]; do
         mkdir -p "$HOME/.config/awesome/themes"
         mkdir -p "$HOME/.config/awesome/bar"
         mkdir -p "$HOME/.tmux"
+        mkdir -p "$HOME/.vim"
         add_stow "$DOTFILES" ".x"
         add_stow "$DOTFILES" "awesome-m2"
         add_stow "$DOTFILES/awesome-m2-themes" "$2"
@@ -167,6 +170,11 @@ while [ "$#" -gt 0 ]; do
         [ -f ~/.inputrc ] && rm ~/.inputrc
         mkdir -p "$HOME/bin"
         add_stow "$DOTFILES" "zsh"
+        shift
+        ;;
+    -v | --vim)
+        mkdir -p "$HOME/.vim"
+        add_stow "$DOTFILES" "vim"
         shift
         ;;
     -p | --purge)

@@ -26,6 +26,6 @@ things:
     url: 'https://github.com/szorfein/ombre.vim/archive/refs/heads/main.zip'
   - name: 'vamp.vim.zip'
     url: 'https://github.com/szorfein/vamp.vim/archive/refs/heads/master.zip'
-all_into_dir: .vim/pack/dotfiles/start
+all_to_dest_dir: .vim/pack/dotfiles/start
 time: 604800 # 1 week
 keep_name: true
