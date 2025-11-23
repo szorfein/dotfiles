@@ -1,13 +1,15 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 set -o errexit -o nounset
 
 # Usage:
-# gen-theme.sh ~/Downloads/magic.json magic
+# gen-theme.sh ~/.material/theme.json magic
 # Theme are generated on
 # https://material-foundation.github.io/material-theme-builder/
 # And exported in JSON format
 # See my post https://szorfein.vercel.app/post/your-own-swayfx-theme
+# Terminal colors can be generated from Aether:
+# https://github.com/bjarneo/aether
 
 filename="$1"
 workdir="/tmp/$2"
@@ -45,6 +47,8 @@ mkdir -p "$workdir/.tmux"
 mkdir -p "$workdir/.config/nvim/lua"
 mkdir -p "$workdir/.config/zathura"
 mkdir -p "$workdir/.config/dunst/dunstrc.d"
+mkdir -p "$workdir/.config/gtk-3.0"
+mkdir -p "$workdir/.config/gtk-4.0"
 
 # colours to extract
 primary=$(ext_dark 'primary')
@@ -83,10 +87,6 @@ surface_container=$(ext_dark 'surfaceContainer')
 surface_container_high=$(ext_dark 'surfaceContainerHigh')
 surface_container_highest=$(ext_dark 'surfaceContainerHighest')
 surface_bright=$(ext_dark 'surfaceBright')
-# not include in dark theme
-dark_primary=$(ext_palette 'primary.["60"]')
-dark_secondary=$(ext_palette 'secondary.["60"]')
-dark_tertiary=$(ext_palette 'tertiary.["60"]')
 # extract terminal color
 t_magenta_bright=$(ext_terminal 'magentaBright')
 t_magenta=$(ext_terminal 'magenta')
@@ -102,6 +102,7 @@ t_blue=$(ext_terminal 'blue')
 t_blue_bright=$(ext_terminal 'blueBright')
 t_white=$(ext_terminal 'white')
 t_white_bright=$(ext_terminal 'whiteBright')
+t_black_bright=$(ext_terminal 'blackBright')
 
 echo "primary $primary"
 echo "secondary $secondary"
@@ -416,6 +417,8 @@ cat <<EOF > "$workdir/.config/nvim/lua/colors.lua"
 -- base colors: https://github.com/catppuccin/nvim/blob/main/lua/catppuccin/palettes/mocha.lua
 -- WGAG AAA need a contrast of 7:1 for normal text
 return {
+    rosewater = '$t_white_bright', -- white light
+    flamingo = '$t_white', -- white
     pink = "$t_magenta_bright", -- magenta light
     mauve = "$t_magenta", -- magenta
     red = "$t_red", -- red
@@ -429,8 +432,9 @@ return {
     blue = "$t_blue", -- blue
     lavender = "$t_blue_bright", -- blue light
     text = '$on_surface',
-    subtext1 = '$t_white_bright',
-    subtext0 = '$t_white',
+    --subtext1 = '#',
+    --subtext0 = '#',
+    overlay2 = '$t_black_bright',
     -- ...
     --surface2 = '$surface_container_high'
     --surface1 = '$surface_container',
@@ -585,6 +589,182 @@ rules = [
     { name = "*/", fg = "$secondary" }
 ]
 EOF
+
+cat <<EOF > "$workdir/.config/gtk-3.0/gtk.css"
+/*
+  Stolen on Aether
+*/
+@define-color background $surface;
+@define-color foreground $on_surface;
+@define-color black $surface;
+@define-color red $t_red;
+@define-color green $t_green;
+@define-color yellow $t_yellow;
+@define-color blue $t_blue;
+@define-color magenta $t_magenta;
+@define-color cyan $t_cyan;
+@define-color white $t_white;
+@define-color bright_black $t_black_bright;
+@define-color bright_red $t_red_bright;
+@define-color bright_green $t_green_bright;
+@define-color bright_yellow $t_yellow_bright;
+@define-color bright_blue $t_blue_bright;
+@define-color bright_magenta $t_magenta_bright;
+@define-color bright_cyan $t_cyan_bright;
+@define-color bright_white $t_white_bright;
+
+/* Adwaita Color Overrides */
+@define-color accent_bg_color @blue;
+@define-color accent_fg_color @background;
+@define-color accent_color @cyan;
+@define-color window_bg_color @background;
+@define-color window_fg_color @foreground;
+
+/* Sidebar background and content */
+@define-color view_bg_color @black;
+@define-color view_fg_color @foreground;
+@define-color sidebar_bg_color @black;
+@define-color sidebar_fg_color @foreground;
+@define-color sidebar_backdrop_color @black;
+@define-color sidebar_shade_color @black;
+@define-color headerbar_bg_color alpha(@foreground, 0.1);
+@define-color headerbar_fg_color @foreground;
+@define-color headerbar_backdrop_color @black;
+@define-color headerbar_shade_color @black;
+@define-color card_bg_color alpha(@foreground, 0.1);
+@define-color card_fg_color @foreground;
+@define-color popover_bg_color @black;
+@define-color popover_fg_color @foreground;
+@define-color destructive_bg_color @red;
+@define-color destructive_fg_color @background;
+@define-color success_bg_color @green;
+@define-color success_fg_color @background;
+@define-color warning_bg_color @yellow;
+@define-color warning_fg_color @background;
+@define-color error_bg_color @red;
+@define-color error_fg_color @background;
+@define-color dialog_bg_color @background;
+@define-color dialog_fg_color @foreground;
+@define-color borders alpha(@foreground, 0.1);
+
+/* GTK3 Adwaita Legacy Color Variables */
+@define-color theme_fg_color @foreground;
+@define-color theme_text_color @foreground;
+@define-color theme_bg_color @background;
+@define-color theme_base_color @black;
+@define-color theme_selected_bg_color @blue;
+@define-color theme_selected_fg_color @background;
+@define-color insensitive_bg_color @background;
+@define-color insensitive_fg_color @bright_black;
+@define-color insensitive_base_color @black;
+@define-color theme_unfocused_fg_color @foreground;
+@define-color theme_unfocused_text_color @foreground;
+@define-color theme_unfocused_bg_color @background;
+@define-color theme_unfocused_base_color @black;
+@define-color theme_unfocused_selected_bg_color @blue;
+@define-color theme_unfocused_selected_fg_color @background;
+@define-color unfocused_insensitive_color @bright_black;
+@define-color unfocused_borders alpha(@foreground, 0.1);
+@define-color warning_color @yellow;
+@define-color error_color @red;
+@define-color success_color @green;
+@define-color destructive_color @red;
+
+/* Content View Colors */
+@define-color content_view_bg @black;
+@define-color text_view_bg @black;
+
+/* GtkMessageDialog styling */
+/* Target the entire dialog's background */
+messagedialog {
+    background-color: @dialog_bg_color;
+}
+
+/* Target the main message label inside the dialog */
+messagedialog label {
+    color: @dialog_fg_color;
+    font-size: 14pt;
+    font-weight: bold;
+}
+
+/* Target the secondary, more detailed text (if any) */
+messagedialog .secondary-text {
+    font-size: 10pt;
+    font-style: italic;
+}
+
+/* Target the buttons in the dialog's action area */
+messagedialog button {
+    background-color: @black;
+    color: @foreground;
+    border: 1px solid @bright_black;
+    padding: 10px;
+}
+
+messagedialog button:hover {
+    background-color: @blue;
+}
+
+banner revealer widget {
+    background: @bright_black;
+    padding: 5px;
+    color: @foreground;
+}
+
+/* GtkAlertDialog styling */
+alertdialog.background {
+    background-color: @dialog_bg_color;
+    color: @dialog_fg_color;
+}
+
+alertdialog .titlebar {
+    background-color: @headerbar_bg_color;
+    color: @headerbar_fg_color;
+}
+
+alertdialog box {
+    background-color: @dialog_bg_color;
+}
+
+alertdialog label {
+    color: @dialog_fg_color;
+}
+
+filechooser .dialog-action-box {
+    border-top: 1px solid @bright_black;
+}
+
+filechooser .dialog-action-box:backdrop {
+    border-top-color: @black;
+}
+
+filechooser #pathbarbox {
+    border-bottom: 1px solid @bright_black;
+}
+
+filechooserbutton:drop(active) {
+    box-shadow: none;
+    border-color: transparent;
+}
+
+toast {
+    background-color: @black;
+    color: @foreground;
+}
+
+toast button.circular.flat.image-button:hover {
+    color: @background;
+    background-color: @red;
+}
+
+/* Sharp corners, Hyprland-inspired */
+* {
+    border-radius: 0;
+}
+EOF
+
+# Copy the same config for gtk-4
+cp "$workdir/.config/gtk-3.0/gtk.css" "$workdir/.config/gtk-4.0/gtk.css"
 
 # Generate a gtk theme under ~/.themes
 # need to remove '#' with ${MYVAR:1}

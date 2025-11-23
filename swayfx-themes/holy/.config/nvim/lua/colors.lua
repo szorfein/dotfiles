@@ -2,10 +2,8 @@
 -- base colors: https://github.com/catppuccin/nvim/blob/main/lua/catppuccin/palettes/mocha.lua
 -- WGAG AAA need a contrast of 7:1 for normal text
 return {
-    --crust = '#0E0E13',
-    --surface1 = '#201F25',
-    --surface2 = '#2A292F'
-
+    rosewater = '#ffffff', -- white light
+    flamingo = '#fbfafb', -- white
     pink = "#C590FF", -- magenta light
     mauve = "#C781F8", -- magenta
     red = "#F059B7", -- red
@@ -19,9 +17,15 @@ return {
     blue = "#7F93FF", -- blue
     lavender = "#84B4F3", -- blue light
     text = '#E5E1E9',
-
-    --crust = '#0E0E13',
-    mantle = '#1C1B20',
-    base = '#131318',
+    --subtext1 = '#',
+    --subtext0 = '#',
+    overlay2 = '#8b8999',
+    -- ...
+    --surface2 = '#2A292F'
+    --surface1 = '#201F25',
     surface0 = '#35343A',
+    base = '#131318',
+    mantle = '#1C1B20',
+    --crust = '#0E0E13',
+    --crust = '#0E0E13', -- deep dark
 }

@@ -7,6 +7,8 @@ return {
     opts = {
         color_overrides = {
             all = {
+                rosewater = mycolors.rosewater,
+                flamingo = mycolors.flamingo,
                 pink = mycolors.pink,
                 mauve = mycolors.mauve,
                 red = mycolors.red,
@@ -20,12 +22,13 @@ return {
                 blue = mycolors.blue,
                 lavender = mycolors.lavender,
                 text = mycolors.text,
-                --crust = mycolors.crust,
-                mantle = mycolors.mantle,
-                base = mycolors.base,
-                surface0 = mycolors.surface0, --comment
-                --surface1 = mycolors.surface1,
+                overlay2 = mycolors.overlay2,
                 --surface2 = mycolors.surface2,
+                --surface1 = mycolors.surface1,
+                surface0 = mycolors.surface0, --comment
+                base = mycolors.base,
+                mantle = mycolors.mantle,
+                --crust = mycolors.crust,
             },
         },
         integrations = {
