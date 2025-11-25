@@ -16,7 +16,7 @@
                 (box :orientation "horizontal"
                     ;:space-evenly false
                     :halign "center"
-                    (icon-button 
+                    (icon-button
                         :height "${round(48 * get_env("EWW_SCALE"), 0)}"
                         :icon ""
                         :onclick "${eww_scripts}/dialog.sh open playlists &"
@@ -28,12 +28,9 @@
                         :icon ""
                     )
                 )
-                (image :path "${media.arturl}"
-                    ; 110 don't move the UI !
-                    :image-height 110
-                    :image-width 206
-                    ;:style "border: 1px solid #f00"
-                    ;:preserve-aspect-ratio true
+                (box :style "background-image: url('${media.arturl}');"
+                     :halign "center"
+                     :class "music-cover"
                 )
             )
             (box :orientation "vertical"
@@ -84,7 +81,7 @@
 (defwidget music-playlist []
     (box :orientation "vertical"
         :space-evenly false
-        (box 
+        (box
             :class "label-large"
             :halign "start"
             "MPD Playlists"
@@ -94,7 +91,7 @@
             :class "music-playlist"
             (box :orientation "vertical"
                 (for pl in mpd-playlists
-                    (box 
+                    (box
                         :hexpand true
                         :halign "fill"
                         :space-evenly false
@@ -117,7 +114,7 @@
 (defwidget music-playlist-horizontal []
     (box :orientation "vertical"
         :spacing "${round(16 * get_env("EWW_SCALE"), 0)}"
-        (box 
+        (box
             :class "label-large"
             :halign "start"
             "MPD Playlists"
@@ -146,7 +143,7 @@
     )
 )
 
-; all vars 
+; all vars
 (defvar playlist-name "")
 (defvar mpd-playlists "[]")
 (defvar playlist-focus "")

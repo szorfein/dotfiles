@@ -73,6 +73,8 @@ for_window [app_id=".*"] border normal $border_width
 ## Disabling titlebar
 for_window {
     [app_id="^brave-browser$"] border pixel 0
+    [app_id="librewolf"] border pixel 0
+    [title="nvim"] border pixel 0
 }
 
 set $transparency_hex C0

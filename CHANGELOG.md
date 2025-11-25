@@ -2,8 +2,11 @@
 
 #### Global change
 
+- Move awesome-m3 dots on separate branch
+  https://github.com/szorfein/dotfiles/tree/focus-2.0.0
 - Replace [NNN](https://github.com/jarun/nnn) by
   [Yazi](https://github.com/sxyazi/yazi)
+- Use IosevkaTermSlab on Foot instead of IosevkaTerm
 - Change terminal WezTerm by Foot
 
 #### Sway - EWW

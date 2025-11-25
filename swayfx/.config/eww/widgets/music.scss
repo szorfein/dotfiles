@@ -23,3 +23,13 @@
   min-height: dpi(120px);
   margin-top: dpi(16px);
 }
+
+.music-cover {
+  margin-top: dpi(6px);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  border-radius: dpi(18px);
+  min-width: dpi(220px);
+  min-height: dpi(130px);
+}

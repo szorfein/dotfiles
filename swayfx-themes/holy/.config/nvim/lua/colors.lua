@@ -4,18 +4,18 @@
 return {
     rosewater = '#ffffff', -- white light
     flamingo = '#fbfafb', -- white
-    pink = "#C590FF", -- magenta light
-    mauve = "#C781F8", -- magenta
-    red = "#F059B7", -- red
-    maroon = "#F97AA5", -- red light
-    peach = "#FFBFA5", -- yellow
-    yellow = "#f9e2af", -- yellow light
-    green = "#55e7f9", -- green
-    teal = "#53f3e1", -- green light
-    sky = "#5DC7E7", -- cyan light
-    sapphire = "#7DD9FF", -- cyan
-    blue = "#7F93FF", -- blue
-    lavender = "#84B4F3", -- blue light
+    pink = '#C590FF', -- magenta light
+    mauve = '#C781F8', -- magenta
+    red = '#F059B7', -- red
+    maroon = '#F97AA5', -- red light
+    peach = '#FFBFA5', -- yellow
+    yellow = '#f9e2af', -- yellow light
+    green = '#55e7f9', -- green
+    teal = '#53f3e1', -- green light
+    sky = '#5DC7E7', -- cyan light
+    sapphire = '#7DD9FF', -- cyan
+    blue = '#7F93FF', -- blue
+    lavender = '#84B4F3', -- blue light
     text = '#E5E1E9',
     --subtext1 = '#',
     --subtext0 = '#',
@@ -23,7 +23,7 @@ return {
     -- ...
     --surface2 = '#2A292F'
     --surface1 = '#201F25',
-    surface0 = '#35343A',
+    surface0 = '#2A292F',
     base = '#131318',
     mantle = '#1C1B20',
     --crust = '#0E0E13',

@@ -21,7 +21,7 @@ return {
     -- ...
     --surface2 = '#322827'
     --surface1 = '#271D1D',
-    surface0 = '#3D3231',
+    surface0 = '#322827',
     base = '#1A1111',
     mantle = '#231919',
     --crust = '#140C0C',

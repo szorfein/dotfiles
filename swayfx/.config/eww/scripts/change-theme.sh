@@ -55,22 +55,26 @@ install_theme "$SELECTED"
 
 notify "$SELECTED installed, reloading...."
 
-sway reload &
-wait
+#eww close changetheme
+#eww active-windows | grep changetheme$ | xargs eww close
 
-eww close changetheme
 if eww ping -c "$EWW_CONFIG" > /dev/null; then
-    eww reload -c "$EWW_CONFIG"
+    echo "reloading eww..."
+    eww reload -c "$EWW_CONFIG" &
+    wait
 fi
 
 #~/.config/eww/scripts/start.sh &
 #wait
 
+echo "dunst ?"
 #dunstctl reload "$DUNST_CONFIG" 2> /dev/null || true
 pidof dunst | xargs kill
 dunst &
 
 tmux source-file ~/.tmux.conf 2> /dev/null || true
+
+sway reload &
 
 # unfortunately, this kill all open terminals, hopefully we use tmux
 pidof foot | xargs kill

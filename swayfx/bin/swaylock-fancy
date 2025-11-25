@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+
 # Author: Brandon Mittman <brandonmittman@gmail.com>
 # Dependencies: imagemagick, wlr-randr, grim (optional)
 set -o errexit -o noclobber -o nounset -o pipefail

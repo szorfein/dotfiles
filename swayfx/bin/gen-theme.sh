@@ -39,7 +39,6 @@ mkdir -p "$workdir"
 mkdir -p "$workdir/.Xdefaults.d"
 mkdir -p "$workdir/.config/sway"
 mkdir -p "$workdir/.config/eww/styles"
-mkdir -p "$workdir/.config/wezterm"
 mkdir -p "$workdir/.config/foot"
 mkdir -p "$workdir/.config/fsel"
 mkdir -p "$workdir/.config/yazi"
@@ -263,47 +262,6 @@ cat <<EOF > "$workdir/.Xdefaults"
 *color15: $t_white_bright
 EOF
 
-cat <<EOF > "$workdir/.config/wezterm/colors.lua"
-return {
-  foreground = '$on_surface',
-  background = '$surface',
-  cursor_bg = '$primary',
-  cursor_fg = '$on_primary',
-  cursor_border = '#a5b6cf',
-  selection_fg = '#a5b6cf',
-  selection_bg = '#151720',
-  scrollbar_thumb = '#11131c',
-  split = '#0f111a',
-
-  ansi = {
-    '$surface_container_high', -- black
-    '$t_red', -- red
-    '$t_green', -- green
-    '$t_yellow', -- yellow
-    '$t_blue', -- blue
-    '$t_magenta', -- magenta
-    '$t_cyan', -- teal
-    '$t_white', -- white
-  },
-  brights = {
-    '$surface_variant', -- black
-    '$t_red_bright', -- red
-    '$t_green_bright', -- green
-    '$t_yellow_bright', -- yellow
-    '$t_blue_bright', -- blue
-    '$t_magenta_bright', -- magenta
-    '$t_cyan_bright', -- teal
-    '$t_white_bright', -- white
-  },
-
-  -- Since: 20220319-142410-0fcdea07
-  -- When the IME, a dead key or a leader key are being processed and are effectively
-  -- holding input pending the result of input composition, change the cursor
-  -- to this color to give a visual cue about the compose state.
-  compose_cursor = '#c296eb'
-}
-EOF
-
 # need to remove '#' with ${MYVAR:1}
 cat <<EOF > "$workdir/.config/foot/colors"
 # -*- conf -*-
@@ -436,9 +394,9 @@ return {
     --subtext0 = '#',
     overlay2 = '$t_black_bright',
     -- ...
-    --surface2 = '$surface_container_high'
-    --surface1 = '$surface_container',
-    surface0 = '$surface_container_highest',
+    --surface2 = '$surface_bright',
+    --surface1 = '$surface_container_highest',
+    surface0 = '$surface_container_high',
     base = '$surface',
     mantle = '$surface_container_low',
     --crust = '$surface_container_lowest',
@@ -755,11 +713,6 @@ toast {
 toast button.circular.flat.image-button:hover {
     color: @background;
     background-color: @red;
-}
-
-/* Sharp corners, Hyprland-inspired */
-* {
-    border-radius: 0;
 }
 EOF
 

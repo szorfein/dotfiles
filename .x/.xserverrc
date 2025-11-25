@@ -1,3 +1,0 @@
-#!/usr/bin/env sh
-
-exec /usr/bin/X -nolisten tcp "$@" vt$XDG_VTNR

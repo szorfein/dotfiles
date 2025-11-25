@@ -24,7 +24,7 @@
 ![Jinx screenshot](https://github.com/szorfein/unix-portfolio/raw/master/Jinx/jinx-dialog.jpg)
 ![Jinx screenshot](https://github.com/szorfein/unix-portfolio/raw/master/Jinx/full.jpg)
 
-###
+## Setup
 
 - **WM:** [SwayFX](https://github.com/WillPower3309/swayfx)
 - **OS:** [Void](https://voidlinux.org/) or [Gentoo](https://www.gentoo.org/)
@@ -59,9 +59,7 @@
 - **Dotfiles dependencies manager:**
   [Reaver](https://github.com/szorfein/reaver)
 
-## Setup
-
-### Installation
+## Installation
 
 Follow the guide
 [here](https://github.com/szorfein/dotfiles/tree/main/swayfx/.config/sway)
@@ -70,6 +68,9 @@ Automatic installation available with `chezmoi`
 [dots](https://github.com/szorfein/dots) or
 [chezmoi-ansible](https://github.com/szorfein/dots/tree/ansible) (only Arch
 Linux, Gentoo, Void Linux).
+
+Look for awesomewm? see the
+[focus](https://github.com/szorfein/dotfiles/tree/focus-2.0.0) branch.
 
 ## Previous setup
 

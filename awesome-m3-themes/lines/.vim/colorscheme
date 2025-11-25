@@ -1,5 +1,0 @@
-" Color
-colorscheme lines
-
-" Reload colorscheme
-map <F8> :update<CR>:colorscheme lines<CR>

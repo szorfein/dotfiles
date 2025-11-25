@@ -1,4 +1,0 @@
-xrdb merge ~/.Xresources
-
-picom --config ~/.config/picom/picom.conf &
-

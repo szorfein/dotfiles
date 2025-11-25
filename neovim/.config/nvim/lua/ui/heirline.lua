@@ -11,7 +11,7 @@ return {
         local colors = {
             fg = utils.get_highlight('Folded').fg,
             bg = utils.get_highlight('EndOfBuffer').fg,
-            black = utils.get_highlight('TabLineFill').bg,
+            black = utils.get_highlight('PMenuSel').bg,
             --black =  utils.get_highlight("ColorColumn").bg,
             red = utils.get_highlight('DiagnosticError').fg,
             green = utils.get_highlight('String').fg,
@@ -22,12 +22,12 @@ return {
         }
 
         local leftSeparator = {
-            provider = '',
+            provider = ' ',
             hl = { fg = 'black' },
         }
 
         local rightSeparator = {
-            provider = '',
+            provider = ' ',
             hl = { fg = 'black' },
         }
 
@@ -178,28 +178,28 @@ return {
                 viMode,
                 rightSeparator,
                 {
-                    provider = '%=', -- align right
-                },
-                leftSeparator,
-                FileType,
-                rightSeparator,
-                {
-                    provider = '  ',
+                    provider = '%=', -- align center
                 },
                 leftSeparator,
                 Git,
                 rightSeparator,
                 {
-                    provider = '  ',
+                    provider = ' ',
                 },
                 leftSeparator,
                 Ruler_1,
                 rightSeparator,
                 {
-                    provider = '  ',
+                    provider = ' ',
                 },
                 leftSeparator,
                 Ruler_2,
+                rightSeparator,
+                {
+                    provider = '%=', -- align end
+                },
+                leftSeparator,
+                FileType,
                 rightSeparator,
             },
         }
