@@ -1,29 +1,28 @@
-! Theme - background
 *background: #111412
 *foreground: #E2E3DF
 *cursorColor: #A1D1B4
-*fadeColor: #1A1C1A
+*fadeColor: #1B1B1B
 ! Black - surfaceContainer
 *color0: #1E201E
-*color8: #282B28
+*color8: #373A37
 ! Red - error
-*color1: #FFB4AB
-*color9: #FFB4AB
-! Green - not include in Material, may be custom
-*color2: #afdf99
-*color10: #c0e8ae
-! Yellow - tertiary
-*color3: #9CAEB6
-*color11: #B7C6F0
-! Blue - secondary
-*color4: #A3AEA5
-*color12: #B8CBBD
-! Magenta - primary
-*color5: #86B699
-*color13: #A1D1B4
+*color1: #ec897a
+*color9: #f49d90
+! Green
+*color2: #87eea5
+*color10: #9df6bc
+! Yellow
+*color3: #f2e7a7
+*color11: #f7f0c6
+! Blue
+*color4: #6ceabf
+*color12: #b9f8e3
+! Magenta
+*color5: #ec7998
+*color13: #fac7d5
 ! Cyan - not include in Material, may be custom
-*color6: #77caab
-*color14: #9ef0d1
+*color6: #87eeff
+*color14: #d6fbff
 ! White
-*color7: #E2E3DF
-*color15: #FFFFFF
+*color7: #f4f2f1
+*color15: #f4f1f1

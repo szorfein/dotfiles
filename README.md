@@ -33,10 +33,10 @@
 - **SH:** ZSH with [ohmyzsh](https://github.com/ohmyzsh/ohmyzsh) and
   [starship](https://starship.rs)
 - **Term:** [xSt](https://github.com/gnotclub/xst)
-- **Editor:** [Vim](https://github.com/vim/vim) and
+- **Editor:** [Neovim](https://neovim.io/) or
   [Doomemacs](https://github.com/doomemacs/doomemacs)
 - **Compositor:** [Picom](https://github.com/yshui/picom)
-- **File Manager:** [NNN](https://github.com/jarun/nnn) +
+- **File Manager:** [Yazi](https://github.com/sxyazi/yazi) +
   [Thunar](https://docs.xfce.org/xfce/thunar/start).
 - **Fonts:** [Nerd Font](https://www.nerdfonts.com/) Iosevka, SpaceMono +
   [Material Icons](https://github.com/Templarian/MaterialDesign-Font) +
@@ -68,7 +68,7 @@ More screenshots of previous themes are available at
 > (access/email/password problem). Accessing reddit.com with TOR start to be too
 > annoying so I just can't login/post anymore on the platform...
 
-If people are motivated, they are free to post my screenshots everywhere.
+If people want to help, they are free to share my screenshots everywhere.
 
 #### Support
 

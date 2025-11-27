@@ -38,17 +38,9 @@ basename() {
 purge_stow() {
     echo "Uninstalling all dots from $DOTFILES..."
 
-    for dir in .x awesome-m2 awesome-m3 doomemacs foot mpd ncmpcpp neovim swayfx tmux wezterm zsh vim; do
+    for dir in .x awesome-m3 doomemacs foot mpd ncmpcpp neovim tmux zsh vim; do
         [ -d "$DOTFILES/$dir" ] || continue
         del_stow "$DOTFILES" "$dir"
-    done
-
-    # swayfx material 3
-    THEMES_DIR="$DOTFILES/swayfx-themes"
-    for dir in $THEMES_DIR/*; do
-        [ -d "$dir" ] || continue
-        theme_dir=$(basename "$dir")
-        del_stow "$THEMES_DIR" "$theme_dir"
     done
 
     # awesome material 3
@@ -70,11 +62,9 @@ purge_stow() {
 
 #
 # ncmpcpp
-# swayfx-themes/holy
-# swayfx
 # tmux
 # zsh
-# neovim (soon)
+# neovim
 #
 usage() {
     echo "Arguments:"
@@ -86,8 +76,6 @@ usage() {
     printf "\t%s\t\t\t%s\n" "-nv | --neovim" "Add dots for neovim"
     printf "\t%s\t\t\t%s\n" "-n | --ncmpcpp" "Add dots for ncmpcpp"
     printf "\t%s\t\t\t%s\n" "-t | --tmux" "Add dots for tmux"
-    printf "\t%s\t\t\t%s\n" "-f | --foot" "Add dots for the terminal foot"
-    printf "\t%s\t\t\t%s\n" "-w | --wezterm" "Add dots for the terminal wezterm"
     printf "\t%s\t\t\t%s\n" "-z | --zsh" "Add dots for zsh"
     printf "\t%s\t\t\t%s\n" "-v | --vim" "Add dots for Vim"
     printf "\nExamples:\n"
@@ -105,21 +93,9 @@ while [ "$#" -gt 0 ]; do
         add_stow "$DOTFILES" "ncmpcpp"
         shift
         ;;
-    -s | --swayfx)
-        mkdir -p "$HOME/.config/sway"
-        mkdir -p "$HOME/.config/eww/styles"
-        mkdir -p "$HOME/.tmux"
-        mkdir -p "$HOME/.config/foot"
-        mkdir -p "$HOME/.config/dunst/dunstrc.d"
-        mkdir -p "$HOME/.config/yazi"
-        mkdir -p "$HOME/.config/fsel"
-        add_stow "$DOTFILES" "swayfx"
-        add_stow "$DOTFILES/swayfx-themes" "$2"
-        shift
-        shift
-        ;;
     -a3 | --awesome-m3)
         mkdir -p "$HOME/.config/awesome/theme"
+        mkdir -p "$HOME/.config/yazi"
         mkdir -p "$HOME/.tmux"
         mkdir -p "$HOME/.vim"
         add_stow "$DOTFILES" ".x"
@@ -128,26 +104,8 @@ while [ "$#" -gt 0 ]; do
         shift
         shift
         ;;
-    -a2 | --awesome-m2)
-        # Probably not working...
-        # Also need to add themes/<theme-name> here
-        mkdir -p "$HOME/.config/awesome/themes"
-        mkdir -p "$HOME/.config/awesome/bar"
-        mkdir -p "$HOME/.tmux"
-        mkdir -p "$HOME/.vim"
-        add_stow "$DOTFILES" ".x"
-        add_stow "$DOTFILES" "awesome-m2"
-        add_stow "$DOTFILES/awesome-m2-themes" "$2"
-        shift
-        shift
-        ;;
     -d | --doomemacs)
         add_stow "$DOTFILES" "doomemacs"
-        shift
-        ;;
-    -f | --foot)
-        mkdir -p "$HOME/.config/foot"
-        add_stow "$DOTFILES" "foot"
         shift
         ;;
     -nv | --neovim)
@@ -158,11 +116,6 @@ while [ "$#" -gt 0 ]; do
         ;;
     -t | --tmux)
         add_stow "$DOTFILES" "tmux"
-        shift
-        ;;
-    -w | --wezterm)
-        mkdir -p "$HOME/.config/wezterm"
-        add_stow "$DOTFILES" "wezterm"
         shift
         ;;
     -z | --zsh)

@@ -79,7 +79,7 @@ Last theme is 'focus'.
 Always use `--purge` as first argument, your theme in last
 `--awesome-m3 themename`. More complete command, adapt with your need:
 
-    ./stow.sh --purge --doom --zsh --ncmpcpp --vim --awesome-m3 focus
+    ./stow.sh --purge --doom --zsh --ncmpcpp --neovim --awesome-m3 focus
 
 ## Install the fonts, wallpapers required
 

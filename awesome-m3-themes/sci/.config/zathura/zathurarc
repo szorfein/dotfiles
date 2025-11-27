@@ -1,29 +1,40 @@
-set font "IosevkaTerm Nerd Font 10"
-set default-bg "#0F1416"
-set default-fg "#DFE3E5"
+set font "Iosevka Nerd Font Medium 10"
 
-set index-bg         "#0F1416"         # Background
-set index-fg         "#DFE3E5"       # Foreground
-set index-active-bg  "#008095"   # Current Line
-set index-active-fg  "#FFFFFF" # Foreground
+set default-fg                    "#DFE3E5"
+set default-bg 			  "#0F1416"
 
-set statusbar-fg "#DFE3E5"
-set statusbar-bg "#0F1416"
-set inputbar-fg "#DFE3E5"
-set inputbar-bg "#0F1416"
+set completion-bg		  "#262B2C"
+set completion-fg		  "#DFE3E5"
+set completion-highlight-bg	  "#008095"
+set completion-highlight-fg	  "#FFFFFF"
+set completion-group-bg		  "#262B2C"
+set completion-group-fg		  "#A8CCD7"
 
-set notification-error-bg "#E6B4FE"
-set notification-error-fg "#461E5D"
-set notification-warning-bg "#FFB4AB"
-set notification-warning-fg "#690005"
-set notification-bg "#1C2022"
-set notification-fg "#DFE3E5"
+set statusbar-fg		  "#DFE3E5"
+set statusbar-bg		  "#262B2C"
 
-set completion-highlight-bg "#21444D"   # Selection
-set completion-highlight-fg "#B6DAE4" # Fg
+set notification-bg		  "#262B2C"
+set notification-fg		  "#DFE3E5"
+set notification-error-bg	  "#262B2C"
+set notification-error-fg	  "#FFB4AB"
+set notification-warning-bg	  "#262B2C"
+set notification-warning-fg	  "#E6B4FE"
 
-set recolor-lightcolor "#0F1416"  # bg
-set recolor-darkcolor "#DFE3E5" # fg
+set inputbar-fg			  "#DFE3E5"
+set inputbar-bg 		  "#262B2C"
 
-set recolor "true"
-set adjust-open width
+set recolor                       "true"
+set recolor-lightcolor		  "#0F1416"
+set recolor-darkcolor		  "#DFE3E5"
+
+set index-fg		          "#DFE3E5"
+set index-bg		          "#0F1416"
+set index-active-fg	          "#DFE3E5"
+set index-active-bg	          "#262B2C"
+
+set render-loading-bg	          "#0F1416"
+set render-loading-fg	          "#DFE3E5"
+
+set highlight-color		  rgba(87,82,104,0.5)
+set highlight-fg                  rgba(245,194,231,0.5)
+set highlight-active-color	  rgba(245,194,231,0.5)

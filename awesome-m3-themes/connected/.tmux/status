@@ -37,3 +37,6 @@ set -g status-right "#[fg=#282B28,bg=#1E201E,nobold,noitalics,nounderscore]#[
 set -g window-status-format "#[fg=black,bg=brightblack,nobold,noitalics,nounderscore] #[fg=white,bg=brightblack]#I #[fg=white,bg=brightblack,nobold,noitalics,nounderscore] #[fg=white,bg=brightblack]#W #F #[fg=brightblack,bg=black,nobold,noitalics,nounderscore]"
 set -g window-status-current-format "#[fg=black,bg=$COLOR_PRIMARY_CONTAINER,nobold,noitalics,nounderscore] #[fg=$COLOR_ON_PRIMARY_CONTAINER,bg=$COLOR_PRIMARY_CONTAINER]#I #[fg=$COLOR_ON_PRIMARY_CONTAINER,bg=$COLOR_PRIMARY_CONTAINER,nobold,noitalics,nounderscore] #[fg=$COLOR_ON_PRIMARY_CONTAINER,bg=$COLOR_PRIMARY_CONTAINER]#W #F #[fg=$COLOR_PRIMARY_CONTAINER,bg=black,nobold,noitalics,nounderscore]"
 set -g window-status-separator ""
+
+# status line
+set-option -g status-style fg='black',bg='default'

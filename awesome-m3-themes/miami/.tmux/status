@@ -27,3 +27,6 @@ setw -g window-status-separator " "
 setw -g window-status-style "fg=colour39,bg=colour234,none"
 set -g pane-active-border-style "fg=$COLOUR_BG" # hide border
 set -g pane-border-style "fg=$COLOUR_BG" # hide border
+
+# status line
+set-option -g status-style fg='black',bg='default'

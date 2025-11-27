@@ -1,3 +1,14 @@
+## 2.7.7
+
+#### Global change
+
+- Update dependencies, install scripts.
+- Add Gtk-3, Gtk-4 colorscheme.
+- Add Neovim configs with [lazy.nvim](https://lazy.folke.io/),
+- Add Neovim colorscheme on the all 6 themes.
+- Replace [NNN](https://github.com/jarun/nnn) by
+  [Yazi](https://github.com/sxyazi/yazi)
+
 ## 2.2.7
 
 - Dropped vifm configuration, use nnn + thunar...
@@ -8,7 +19,7 @@
 
 - Keep Vim until NeoVim is ready.
 - picom glx errors on awesome startup.
-- Install for [chezmoi][https://github.com/szorfein/dots]
+- Install with [chezmoi](https://github.com/szorfein/dots)
 
 ## v2.0.5 - December 2024
 

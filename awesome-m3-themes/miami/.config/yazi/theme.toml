@@ -1,0 +1,18 @@
+[mgr]
+hovered = { fg = "#571D1E", bg = "#FFB3B0" }
+border_style = { fg = "black" }
+
+# Mode are bottom left - right side
+[mode]
+normal_main = { bg = "#733332", fg = "#FFDAD8" }
+normal_alt = { bg = "#5D3F3E", fg = "#FFDAD8" }
+
+# Status bar
+[status]
+overall = { bg = "#231919", fg = "#F0DEDD" }
+
+[filetype]
+rules = [
+# fallback - Dir
+    { name = "*/", fg = "#f17675" }
+]
