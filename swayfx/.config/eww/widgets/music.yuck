@@ -72,9 +72,9 @@
         :halign "center"
         :hexpand false
         :spacing "${6 * round(get_env("EWW_SCALE"), 0)}"
-        (button-groups-icon :class {media.web-active ? "enabled" : ""} :icon "live_tv" :onclick "${eww_scripts}/media.sh web-toggle &")
+        (button-groups-icon-tertiary :class {media.web-active ? "enabled" : ""} :icon "live_tv" :onclick "${eww_scripts}/media.sh web-toggle &")
         (button-groups-icon :class {media.mpd-active ? "enabled" : "disabled"} :icon "skull" :onclick "${eww_scripts}/media.sh mpd-toggle &")
-        (button-groups-icon :class {media.mpv-active ? "enabled" : "disabled"} :icon "movie" :onclick "${eww_scripts}/media.sh mpv-toggle &")
+        (button-groups-icon-secondary :class {media.mpv-active ? "enabled" : "disabled"} :icon "movie" :onclick "${eww_scripts}/media.sh mpv-toggle &")
     )
 )
 

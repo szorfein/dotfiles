@@ -21,8 +21,7 @@
 
 ##
 
-![Jinx screenshot](https://github.com/szorfein/unix-portfolio/raw/master/Jinx/jinx-dialog.jpg)
-![Jinx screenshot](https://github.com/szorfein/unix-portfolio/raw/master/Jinx/full.jpg)
+![Abyss screenshot](https://github.com/szorfein/unix-portfolio/raw/master/Abyss/clean.jpg)
 
 ## Setup
 
@@ -74,8 +73,8 @@ Look for awesomewm? see the
 
 ## Previous setup
 
-![holy screenshot](https://github.com/szorfein/unix-portfolio/raw/master/holy/clean.jpg)
-![holy screenshot](https://github.com/szorfein/unix-portfolio/raw/master/holy/full.jpg)
+![Jinx screenshot](https://github.com/szorfein/unix-portfolio/raw/master/Jinx/jinx-dialog.jpg)
+![Jinx screenshot](https://github.com/szorfein/unix-portfolio/raw/master/Jinx/full.jpg)
 
 ### Other screenshots
 

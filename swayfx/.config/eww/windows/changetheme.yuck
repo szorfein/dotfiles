@@ -17,8 +17,10 @@
             (dialog :icon "palette" :title "SwayFX themes"
                 (box :orientation "horizontal"
                      :spacing 8
-                    (card-image :path_image "/tmp/holy.jpg" :title "Holy" :onclick "${eww_scripts}/dialog.sh close changetheme && ${eww_scripts}/change-theme.sh holy &")
+                     ; Order: recent first
+                    (card-image :path_image "/tmp/wallhaven-od68om.png" :title "Skull" :onclick "${eww_scripts}/dialog.sh close changetheme && ${eww_scripts}/change-theme.sh skull &")
                     (card-image :path_image "/tmp/jinx.png" :title "Jinx" :onclick "${eww_scripts}/dialog.sh close changetheme && ${eww_scripts}/change-theme.sh jinx &")
+                    (card-image :path_image "/tmp/holy.jpg" :title "Holy" :onclick "${eww_scripts}/dialog.sh close changetheme && ${eww_scripts}/change-theme.sh holy &")
                 )
                 (box :halign "end"
                      :space-evenly false

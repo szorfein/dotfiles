@@ -42,7 +42,7 @@
          :spacing "${round(8 * get_env("EWW_SCALE"), 0)}"
          :halign "center"
          :hexpand false
-        (button-groups-icon :icon wifi-killed-icon :onclick "${eww_scripts}/network.sh wifi-toggle &" :class { wifi-killed ? "enabled" : ""})
+        (button-groups-icon-secondary :icon wifi-killed-icon :onclick "${eww_scripts}/network.sh wifi-toggle &" :class { wifi-killed ? "enabled" : ""})
         (button-groups-icon :icon "system_update_alt" :onclick "")
     )
 )
@@ -53,8 +53,8 @@
          :spacing "${round(6 * get_env("EWW_SCALE"), 0)}"
          :halign "center"
          :hexpand false
-        (button-groups-icon-text :icon "invert_colors" :text "Tor" :onclick "" :class { tor-enabled ? "enabled" : ""})
-        (button-groups-icon-text :icon "wifi" :text "openwrt" :onclick "")
+        (button-groups-icon-text-tertiary :icon "invert_colors" :text "Tor" :onclick "" :class { tor-enabled ? "enabled" : ""})
+        (button-groups-icon-text-secondary :icon "wifi" :text "openwrt" :onclick "")
     )
 )
 
@@ -63,9 +63,9 @@
     (box :space-evenly false
          :spacing "${round(8 * get_env("EWW_SCALE"), 0)}"
          :halign "center"
-        (button-groups-icon :icon "videocam" :onclick "")
+        (button-groups-icon-tertiary :icon "videocam" :onclick "")
         (button-groups-icon :icon "${audio["muted-icon"]}" :onclick "${eww_scripts}/alsa-audio.sh toggle &" :class { audio["muted"] ? "" : "enabled"})
-        (button-groups-icon :icon "mic_off" :onclick "")
+        (button-groups-icon-secondary :icon "mic_off" :onclick "")
     )
 )
 

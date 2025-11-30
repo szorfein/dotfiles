@@ -1,0 +1,8 @@
+set $bg #0E1416
+set $fg #DEE3E5
+set $shadow #000000
+set $outline #3F484A
+set $bglight #0E1416
+set $error #FFB4AB
+set $theme skull
+set $theme-bg ~/images/wallhaven-od68om.png

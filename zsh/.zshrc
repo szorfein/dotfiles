@@ -1,13 +1,13 @@
-#    ▒███████▒  ██████  ██░ ██  ██▀███   ▄████▄  
-#    ▒ ▒ ▒ ▄▀░▒██    ▒ ▓██░ ██▒▓██ ▒ ██▒▒██▀ ▀█  
-#    ░ ▒ ▄▀▒░ ░ ▓██▄   ▒██▀▀██░▓██ ░▄█ ▒▒▓█    ▄ 
+#    ▒███████▒  ██████  ██░ ██  ██▀███   ▄████▄
+#    ▒ ▒ ▒ ▄▀░▒██    ▒ ▓██░ ██▒▓██ ▒ ██▒▒██▀ ▀█
+#    ░ ▒ ▄▀▒░ ░ ▓██▄   ▒██▀▀██░▓██ ░▄█ ▒▒▓█    ▄
 #      ▄▀▒   ░  ▒   ██▒░▓█ ░██ ▒██▀▀█▄  ▒▓▓▄ ▄██▒
 #    ▒███████▒▒██████▒▒░▓█▒░██▓░██▓ ▒██▒▒ ▓███▀ ░
 #    ░▒▒ ▓░▒░▒▒ ▒▓▒ ▒ ░ ▒ ░░▒░▒░ ▒▓ ░▒▓░░ ░▒ ▒  ░
-#    ░░▒ ▒ ░ ▒░ ░▒  ░ ░ ▒ ░▒░ ░  ░▒ ░ ▒░  ░  ▒   
-#    ░ ░ ░ ░ ░░  ░  ░   ░  ░░ ░  ░░   ░ ░        
-#      ░ ░          ░   ░  ░  ░   ░     ░ ░      
-#    ░                                  ░        
+#    ░░▒ ▒ ░ ▒░ ░▒  ░ ░ ▒ ░▒░ ░  ░▒ ░ ▒░  ░  ▒
+#    ░ ░ ░ ░ ░░  ░  ░   ░  ░░ ░  ░░   ░ ░
+#      ░ ░          ░   ░  ░  ░   ░     ░ ░
+#    ░                                  ░
 
 # Plugin list in ~/.oh-my-zsh/plugins
 # https://github.com/ohmyzsh/ohmyzsh/wiki/plugins
@@ -37,9 +37,21 @@ source "$ZSH/oh-my-zsh.sh"
 [ -f ~/.zprofile ] && source ~/.zprofile
 [ -f ~/.zshenv ] && source ~/.zshenv
 
+# --------
+# Options
+# --------
+
+setopt AUTOCD              # change directory just by typing its name
+setopt PROMPT_SUBST        # enable command substitution in prompt
+setopt MENU_COMPLETE       # Automatically highlight first element of completion menu
+setopt LIST_PACKED	   # The completion menu takes less space.
+setopt AUTO_LIST           # Automatically list choices on ambiguous completion.
+setopt COMPLETE_IN_WORD    # Complete from both ends of a word.
+
 # -----------
 # History
 # -----------
+
 HISTSIZE=666
 SAVEHIST=666
 HISTFILE=~/.history
@@ -83,6 +95,13 @@ man() {
 # --------------
 # Bindkeys
 # --------------
+
+#source ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+#source ~/.oh-my-zsh/custom/plugins/zsh-history-substring-search/zsh-history-substring-search.plugin.zsh
+#bindkey '^[[A' history-substring-search-up
+#bindkey '^[[B' history-substring-search-down
+bindkey "$terminfo[kcuu1]" history-substring-search-up
+bindkey "$terminfo[kcud1]" history-substring-search-down
 
 # --------------
 # OTHER

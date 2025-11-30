@@ -2,6 +2,7 @@
 
 #### Global change
 
+- Add Gtk-3, Gtk-4 colorscheme
 - Move awesome-m3 dots on separate branch
   https://github.com/szorfein/dotfiles/tree/focus-2.0.0
 - Replace [NNN](https://github.com/jarun/nnn) by
@@ -11,14 +12,16 @@
 
 #### Sway - EWW
 
+- New Blue/Cyan theme - Abyss
+- Different colors for button-groups
 - Convert all images used by EWW at start (help for default image cover album,
   changetheme)
 - Change app launcher wmenu by
   [otter-launcher](https://github.com/kuokuo123/otter-launcher) +
   [fsel](https://github.com/Mjoyufull/fsel)
-- Add lock screen with Swaylock and
+- Add lock screen with Swaylock and a custom version of
   [Swaylock-fancy](https://github.com/Big-B/swaylock-fancy/tree/main)
-- EWW multiscreen
+- EWW multi screens
 
 #### Neovim
 
@@ -42,7 +45,7 @@
   performance impact on EWW.
 - Correct all eww/daemons,scripts (thanks shellcheck). Make them compatible with
   Dash (for Void Linux) when possible or specify the use of /usr/bin/env bash.
-- Downgrade fsel version (1.1.0) to be able to compile for Voidlinux.
+- Downgrade fsel version (1.1.0) to be able to compile on voidlinux.
 
 ## v4.0.0 - Jinx - Oct 17 2025
 
