@@ -200,22 +200,22 @@ Before using stow, make sure to backups all your personal files and move them in
 a backup directory.
 
 Using my script `stow.sh`, you'll need to install at least: `swayfx` and a
-`swayfx-themes` (last is `jinx`).
+`swayfx-themes` (last is `abyss`).
 
-    ~/.dotfiles/stow.sh --swayfx jinx
+    ~/.dotfiles/stow.sh --swayfx abyss
 
 If you want a more complete command, you can also add `foot`, `zsh`, `neovim`,
 `tmux`.
 
-    ~/.dotfiles/stow.sh --purge --foot --neovim --tmux --zsh --swayfx jinx
+    ~/.dotfiles/stow.sh --purge --foot --neovim --tmux --zsh --swayfx abyss
 
-Use `--purge` if need to reinstall files as first argument.  
-The theme you want as last argument `--swayfx jinx`.
+Use `--purge` if need to reinstall files as first argument. The theme you want
+as last argument `--swayfx abyss`.
 
 I recommend you to create an alias or function (for Fish) here for easy
 reinstall, e.g for Zsh:
 
-    alias reinstall_jinx="~/.dotfiles/stow.sh --purge --foot --neovim --tmux --zsh --swayfx jinx"
+    alias reinstall_dots="~/.dotfiles/stow.sh --purge --foot --neovim --tmux --zsh --swayfx abyss"
 
 ## Download other dependencies
 
@@ -250,7 +250,7 @@ Reinstall files with `stow.sh --purge` to reinstall new dotfiles.
 
 ### Create your own theme
 
-Follow the guide to create your own theme.  
+Follow the guide to create your own theme.
 https://szorfein.vercel.app/post/your-own-swayfx-theme
 
 ### Thanks lighten library using Material 3 with CSS

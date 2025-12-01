@@ -1,4 +1,4 @@
-## 4.9.4
+## v5.0.0 - Abyss - Dec. 1 2025
 
 #### Global change
 
@@ -13,7 +13,8 @@
 #### Sway - EWW
 
 - New Blue/Cyan theme - Abyss
-- Different colors for button-groups
+- Different colors for button-groups and icon-button
+- More buttons on music player
 - Convert all images used by EWW at start (help for default image cover album,
   changetheme)
 - Change app launcher wmenu by

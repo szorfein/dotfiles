@@ -8,7 +8,7 @@ DEBUG=false
 [ -d "$HOME/.dotfiles" ] && DOTFILES="$HOME/.dotfiles"
 
 if [ -z "$DOTFILES" ]; then
-    [ -z "$DOTFILES_DIR"] && dagger "Dotfiles directory no found, use export DOTFILES_DIR=\"your_path\""
+    [ -z "$DOTFILES_DIR" ] && dagger "Dotfiles directory no found, use export DOTFILES_DIR=\"your_path\""
     DOTFILES="$DOTFILES_DIR"
 fi
 
@@ -87,7 +87,6 @@ usage() {
     printf "\t%s\t\t\t%s\n" "-n | --ncmpcpp" "Add dots for ncmpcpp"
     printf "\t%s\t\t\t%s\n" "-t | --tmux" "Add dots for tmux"
     printf "\t%s\t\t\t%s\n" "-f | --foot" "Add dots for the terminal foot"
-    printf "\t%s\t\t\t%s\n" "-w | --wezterm" "Add dots for the terminal wezterm"
     printf "\t%s\t\t\t%s\n" "-z | --zsh" "Add dots for zsh"
     printf "\nExamples:\n"
     echo 'stow.sh --purge --swayfx holy --tmux --neovim'
@@ -95,9 +94,6 @@ usage() {
 }
 
 # Argument are called in order of the command line
-# so for example --wezterm
-# should be colled before --swayfx holy
-# --wezterm --swayfx holy
 while [ "$#" -gt 0 ]; do
     case "$1" in
     -n | --ncmpcpp)
@@ -155,11 +151,6 @@ while [ "$#" -gt 0 ]; do
         ;;
     -t | --tmux)
         add_stow "$DOTFILES" "tmux"
-        shift
-        ;;
-    -w | --wezterm)
-        mkdir -p "$HOME/.config/wezterm"
-        add_stow "$DOTFILES" "wezterm"
         shift
         ;;
     -z | --zsh)
