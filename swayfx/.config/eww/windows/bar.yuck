@@ -58,9 +58,9 @@
                  :halign "center"
                  :valign "end"
                  :style "margin-bottom: 1rem;"
-                (icon-button :height "${round(48 * get_env("EWW_SCALE"), 0)}"
+                (icon-button :icon "refresh"
                              :onclick "${eww_scripts}/start.sh &"
-                             :icon "refresh"
+                             :class "primary"
                 )
             )
         )

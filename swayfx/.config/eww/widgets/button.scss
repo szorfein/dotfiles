@@ -1,17 +1,70 @@
-.m3-icon {
-  .icon-button {
-    font-family: 'Material Symbols Outlined';
-    font-size: dpi(24px);
-    color: $on-surface-variant;
-    min-width: dpi(40px);
-    min-height: dpi(40px);
-    border-radius: 50%;
-    &:hover {
-      color: $on-surface-variant;
-      background-color: rgba($primary, 0.08);
-    }
+/*
+* Button icon standard
+*/
+
+.icon-button-standard {
+  font-family: 'Material Symbols Outlined';
+  font-size: dpi(28px);
+  font-style: normal;
+  color: $on-surface-variant;
+  min-width: dpi(40px);
+  min-height: dpi(40px);
+  border-radius: 50%;
+  font-weight: 500;
+  transition:
+    border-radius $easing-fast-spatial,
+    box-shadow $easing-fast,
+    background-color $easing-fast,
+    color $easing-fast,
+    margin $easing-fast,
+    padding $easing-fast-spatial;
+  & button:hover {
+    background-size: 22500%;
+    //transition: background-size 0.2s linear;
   }
 }
+
+.icon-button-standard-primary {
+  @extend .icon-button-standard;
+  & button:hover {
+    color: $on-surface-variant;
+    background-color: rgba($primary, 0.08);
+    border-radius: 50%;
+  }
+}
+
+.icon-button-standard-secondary {
+  @extend .icon-button-standard;
+  & button:hover {
+    color: $on-surface-variant;
+    background-color: rgba($secondary, 0.08);
+    border-radius: 50%;
+  }
+}
+
+.icon-button-standard-tertiary {
+  @extend .icon-button-standard;
+  & button:hover {
+    color: $on-surface-variant;
+    background-color: rgba($tertiary, 0.08);
+    border-radius: 50%;
+  }
+}
+
+// change color for error, this is custom rule
+.icon-button-standard-error {
+  @extend .icon-button-standard;
+  color: $error;
+  & button:hover {
+    color: $error;
+    background-color: rgba($error, 0.08);
+    border-radius: 50%;
+  }
+}
+
+/*
+* End of Button icon standard
+*/
 
 .icon-filled-primary {
   @extend .icon-filled;
