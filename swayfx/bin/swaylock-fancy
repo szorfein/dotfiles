@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 # Author: Brandon Mittman <brandonmittman@gmail.com>
 # Dependencies: imagemagick, wlr-randr, grim (optional)
 set -o errexit -o noclobber -o nounset -o pipefail
@@ -114,7 +113,6 @@ swaylock_cmd+=("--indicator-radius" "85")
 arraylen=${#outputs[@]}
 for (( i=0; i < arraylen; i++ ));
 do
-    echo "i is $i"
     echo "output > ${outputs[$i]}"
     # Hide/Restore windows for the screenshot
     swaymsg 'move scratchpad'
@@ -123,12 +121,12 @@ do
     swaymsg 'floating toggle'
 
     if (( i == 0 )); then
-        value="55" # brightness value to compare to
+        value="65" #brightness value to compare to
 
         color=$(magick "${images[$i]}" -gravity center -crop 100x100+0+0 +repage -resize 1x1 \
             -colorspace hsb txt:- | awk -F '[%$]' 'NR==2{gsub(",",""); printf "%.0f\n", $(NF-1)}');
 
-        echo "myco $color"
+        echo "color is $color"
         if [ "$color" -gt "$value" ]; then #white background image and black text
             echo "condition true"
             bw="black"
