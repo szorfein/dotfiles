@@ -1,5 +1,0 @@
-" Color
-colorscheme focus
-
-" Reload colorscheme
-map <F8> :update<CR>:colorscheme focus<CR>

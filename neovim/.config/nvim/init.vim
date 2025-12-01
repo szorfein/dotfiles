@@ -78,11 +78,13 @@ set shell=/bin/zsh
 "   execute 'source' '~/.config/nvim/theme.vim'
 "endif
 
-lua require('configs.commands')
 lua require('configs.lazy')
+lua require('configs.autocmds')
+lua require('configs.commands')
 
 " Colours
 syntax enable
 " lightline before
 "let g:lightline = {'colorscheme': 'catppuccin'}
 colorscheme catppuccin
+

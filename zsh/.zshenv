@@ -13,7 +13,7 @@ fi
 
 # Doom Emacs
 # https://github.com/doomemacs/doomemacs#install
-if [ -d $HOME/.config/emacs/bin ] ; then 
+if [ -d $HOME/.config/emacs/bin ] ; then
    MY_PATH="$MY_PATH:$HOME/.config/emacs/bin"
 fi
 
@@ -31,8 +31,15 @@ export LANG=en_US.UTF-8
 # History
 export HISTORY_IGNORE="(ls|cd|pwd|exit|sudo reboot|history|cd -|cd ..)"
 
-# Load environment by WM
-[ -f ~/.env ] && . ~/.env
+# Terminal
+export TERMINAL=footclient
+
+# Editor
+export EDITOR=nvim
+export SUDO_EDITOR=nvim
+export VISUAL=nvim
+
+[ -f "$HOME/.eww_scale" ] && source "$HOME/.eww_scale"
 
 # GPG (using plugin from ohmyzsh instead)
 # export GPG_TTY=$(tty)

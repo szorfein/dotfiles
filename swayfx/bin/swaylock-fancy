@@ -121,12 +121,14 @@ do
     swaymsg 'floating toggle'
 
     if (( i == 0 )); then
-        value="60" #brightness value to compare to
+        value="65" #brightness value to compare to
 
         color=$(magick "${images[$i]}" -gravity center -crop 100x100+0+0 +repage -resize 1x1 \
             -colorspace hsb txt:- | awk -F '[%$]' 'NR==2{gsub(",",""); printf "%.0f\n", $(NF-1)}');
 
-        if [[ $color -gt $value ]]; then #white background image and black text
+        echo "color is $color"
+        if [ "$color" -gt "$value" ]; then #white background image and black text
+            echo "condition true"
             bw="black"
             icon="$PREFIX/icons/black.svg"
             param=("--inside-color=0000001c" "--ring-color=0000003e" \
@@ -137,6 +139,7 @@ do
                 "--text-wrong-color=00000000" "--text-caps-lock-color=00000000" "--text-clear-color=00000000" \
                 "--line-clear-color=00000000" "--line-wrong-color=00000000" "--line-ver-color=00000000" "--text-color=DB3300FF")
         else #black
+            echo "condition false"
             bw="white"
             icon="$PREFIX/icons/white.svg"
             param=("--inside-color=ffffff1c" "--ring-color=ffffff3e" \

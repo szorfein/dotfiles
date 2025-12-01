@@ -4,6 +4,9 @@ things:
     url: https://github.com/catppuccin/tmux
     git: true
     dest_dir: .config/tmux/plugins/catppuccin/tmux
+  - name: tmux-rose-pine.tar.gz
+    url: https://github.com/rose-pine/tmux/archive/refs/heads/main.tar.gz
+    dest_dir: .config/tmux/plugins/rose-pine
   - name: tmux-mode-indicator
     url: https://github.com/MunifTanjim/tmux-mode-indicator.git
     git: true

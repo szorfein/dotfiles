@@ -16,24 +16,32 @@
                 (box :orientation "horizontal"
                     ;:space-evenly false
                     :halign "center"
-                    (icon-button 
-                        :height "${round(48 * get_env("EWW_SCALE"), 0)}"
+                    :spacing "${round(8 * get_env("EWW_SCALE"), 0)}"
+                    :style "margin-top: 8px; margin-bottom: 8px;"
+                    (icon-button
                         :icon ""
                         :onclick "${eww_scripts}/dialog.sh open playlists &"
+                        :class "primary"
                     )
-                    ""
-                    ""
                     (icon-button
-                        :onclick ""
+                        :icon "shuffle"
+                        :onclick "${eww_scripts}/plyctl.sh shuffle"
+                        :class "secondary"
+                    )
+                    (icon-button
+                        :icon "repeat"
+                        :onclick "${eww_scripts}/plyctl.sh loop"
+                        :class "tertiary"
+                    )
+                    (icon-button
                         :icon ""
+                        :onclick ""
+                        :class "error"
                     )
                 )
-                (image :path "${media.arturl}"
-                    ; 110 don't move the UI !
-                    :image-height 110
-                    :image-width 206
-                    ;:style "border: 1px solid #f00"
-                    ;:preserve-aspect-ratio true
+                (box :style "background-image: url('${media.arturl}');"
+                     :halign "center"
+                     :class "music-cover"
                 )
             )
             (box :orientation "vertical"
@@ -56,13 +64,14 @@
                 :class "container"
                 (box :orientation "horizontal"
                     :halign "center"
-                    (icon-button :icon "" :onclick "playerctl previous &")
+                    :spacing "${round(8 * get_env("EWW_SCALE"), 0)}"
+                    (icon-button :icon "skip_previous" :onclick "playerctl previous &" :class "primary")
                     (icon-outlined
                         :icon {media.playing == "Playing" ? "" : "" }
                         :class {media.playing == "Playing" ? "enabled" : "disabled" }
                         :onclick "playerctl play-pause"
                     )
-                    (icon-button :icon "" :onclick "${eww_scripts}/media.sh next &")
+                    (icon-button :icon "skip_next" :onclick "${eww_scripts}/media.sh next &" :class "primary")
                 )
             )
         )
@@ -75,16 +84,16 @@
         :halign "center"
         :hexpand false
         :spacing "${6 * round(get_env("EWW_SCALE"), 0)}"
-        (button-groups-icon :class {media.web-active ? "enabled" : ""} :icon "live_tv" :onclick "${eww_scripts}/media.sh web-toggle &")
+        (button-groups-icon-tertiary :class {media.web-active ? "enabled" : ""} :icon "live_tv" :onclick "${eww_scripts}/media.sh web-toggle &")
         (button-groups-icon :class {media.mpd-active ? "enabled" : "disabled"} :icon "skull" :onclick "${eww_scripts}/media.sh mpd-toggle &")
-        (button-groups-icon :class {media.mpv-active ? "enabled" : "disabled"} :icon "movie" :onclick "${eww_scripts}/media.sh mpv-toggle &")
+        (button-groups-icon-secondary :class {media.mpv-active ? "enabled" : "disabled"} :icon "movie" :onclick "${eww_scripts}/media.sh mpv-toggle &")
     )
 )
 
 (defwidget music-playlist []
     (box :orientation "vertical"
         :space-evenly false
-        (box 
+        (box
             :class "label-large"
             :halign "start"
             "MPD Playlists"
@@ -94,7 +103,7 @@
             :class "music-playlist"
             (box :orientation "vertical"
                 (for pl in mpd-playlists
-                    (box 
+                    (box
                         :hexpand true
                         :halign "fill"
                         :space-evenly false
@@ -117,7 +126,7 @@
 (defwidget music-playlist-horizontal []
     (box :orientation "vertical"
         :spacing "${round(16 * get_env("EWW_SCALE"), 0)}"
-        (box 
+        (box
             :class "label-large"
             :halign "start"
             "MPD Playlists"
@@ -146,7 +155,7 @@
     )
 )
 
-; all vars 
+; all vars
 (defvar playlist-name "")
 (defvar mpd-playlists "[]")
 (defvar playlist-focus "")

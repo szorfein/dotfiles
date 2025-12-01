@@ -21,10 +21,10 @@
 
 ##
 
-![Jinx screenshot](https://github.com/szorfein/unix-portfolio/raw/master/Jinx/jinx-dialog.jpg)
-![Jinx screenshot](https://github.com/szorfein/unix-portfolio/raw/master/Jinx/full.jpg)
+![Abyss screenshot 1](https://github.com/szorfein/unix-portfolio/raw/master/Abyss/clean.jpg)
+![Abyss screenshot 2](https://github.com/szorfein/unix-portfolio/raw/master/Abyss/full.jpg)
 
-###
+## Setup
 
 - **WM:** [SwayFX](https://github.com/WillPower3309/swayfx)
 - **OS:** [Void](https://voidlinux.org/) or [Gentoo](https://www.gentoo.org/)
@@ -52,16 +52,14 @@
   [Thunar](https://docs.xfce.org/xfce/thunar/start).
 - **Fonts:** [Iosevka](https://www.nerdfonts.com/) +
   [Material Icons Outlined](https://github.com/google/material-design-icons) +
-  [Tagliner](https://www.dafont.com/fr/tagliner.font) +
+  [Skull and Void](https://www.dafont.com/fr/skull-and-void.font) +
   [IcoMoon](https://icomoon.io/)
 - **Dotfiles manager and theme switcher:**
   [GNU/Stow](https://www.gnu.org/software/stow/)
 - **Dotfiles dependencies manager:**
   [Reaver](https://github.com/szorfein/reaver)
 
-## Setup
-
-### Installation
+## Installation
 
 Follow the guide
 [here](https://github.com/szorfein/dotfiles/tree/main/swayfx/.config/sway)
@@ -71,10 +69,13 @@ Automatic installation available with `chezmoi`
 [chezmoi-ansible](https://github.com/szorfein/dots/tree/ansible) (only Arch
 Linux, Gentoo, Void Linux).
 
+Look for Awesome wm? see the
+[focus](https://github.com/szorfein/dotfiles/tree/focus-2.0.0) branch.
+
 ## Previous setup
 
-![holy screenshot](https://github.com/szorfein/unix-portfolio/raw/master/holy/clean.jpg)
-![holy screenshot](https://github.com/szorfein/unix-portfolio/raw/master/holy/full.jpg)
+![Jinx screenshot](https://github.com/szorfein/unix-portfolio/raw/master/Jinx/jinx-dialog.jpg)
+![Jinx screenshot](https://github.com/szorfein/unix-portfolio/raw/master/Jinx/full.jpg)
 
 ### Other screenshots
 
@@ -86,12 +87,10 @@ More screenshots of previous themes are available at
 > (access/email/password problem). Accessing reddit.com with TOR start to be too
 > annoying so I just can't login/post anymore on the platform...
 
-If people are motivated, they are free to post my screenshots everywhere.
-
 #### Support
 
-Any support will be greatly appreciated, star the repo, a coffee, donation,
-thanks you!
+Any support will be greatly appreciated, star the repo, share my screenshots,
+coffee, donation, thanks you!
 
 [![Donate](https://img.shields.io/badge/don-liberapay-1ba9a4)](https://liberapay.com/szorfein)
 [![Donate](https://img.shields.io/badge/don-patreon-ab69f4)](https://www.patreon.com/szorfein)

@@ -54,7 +54,15 @@
                     (workspace-indicator :i 10 :class "${ws10}")
                 )
             )
-            ""
+            (box :space-evenly true
+                 :halign "center"
+                 :valign "end"
+                 :style "margin-bottom: 1rem;"
+                (icon-button :icon "refresh"
+                             :onclick "${eww_scripts}/start.sh &"
+                             :class "primary"
+                )
+            )
         )
     )
 )

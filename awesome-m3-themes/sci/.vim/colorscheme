@@ -1,5 +1,0 @@
-" Color
-colorscheme sci
-
-" Reload colorscheme
-map <F8> :update<CR>:colorscheme sci<CR>

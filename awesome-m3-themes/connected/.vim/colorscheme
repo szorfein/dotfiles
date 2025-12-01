@@ -1,5 +1,0 @@
-" Color
-colorscheme connected
-
-" Reload colorscheme
-map <F8> :update<CR>:colorscheme connected<CR>

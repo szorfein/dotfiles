@@ -1,9 +1,11 @@
 ; https://m3.material.io/components/icon-buttons/specs
-(defwidget icon-button [?icon onclick]
-    (box :class "m3-icon"
-        :height 48 :width 48
-        (button :class "icon-button" :onclick onclick
-            (box icon)
+; default use 'Standard' rules
+(defwidget icon-button [icon ?onclick ?class]
+    (box :class "icon-button-standard-${class}"
+        (button :onclick onclick
+            (box :height "${round(48 * get_env("EWW_SCALE"), 0)}"
+                 :width "${round(48 * get_env("EWW_SCALE"), 0)}"
+                 icon)
         )
     )
 )
