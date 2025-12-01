@@ -1,0 +1,38 @@
+# -*- conf -*-
+[cursor]
+
+[colors]
+# alpha=1.0
+background=0E1416
+foreground=DEE3E5
+# flash=7f7f00
+# flash-alpha=0.5
+
+## Normal/regular colors (color palette 0-7)
+regular0=252B2C # black
+regular1=fb6c77 # red
+regular2=3eeef9 # green
+regular3=c7a574 # yellow
+regular4=958dc8 # blue
+regular5=ec799c # magenta
+regular6=6cf1e8 # cyan
+regular7=f1f4f4 # white
+
+## Bright colors (color palette 8-15)
+bright0=3F484A # bright black
+bright1=fe7388 # bright red
+bright2=94f9ff # bright green
+bright3=ecbd79 # bright yellow
+bright4=c2b9f8 # bright blue
+bright5=daa4b4 # bright magenta
+bright6=d1fcff # bright cyan
+bright7=f7f9f9 # bright white
+
+## Misc colors
+# selection-foreground=<inverse foreground/background>
+# selection-background=<inverse foreground/background>
+# jump-labels=<regular0> <regular3>          # black-on-yellow
+# scrollback-indicator=<regular0> <bright4>  # black-on-bright-blue
+search-box-no-match=FFB4AB 690005  # black-on-red
+# search-box-match=<regular0> <regular3>     # black-on-yellow
+# urls=<regular3>

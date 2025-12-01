@@ -34,6 +34,22 @@
   }
 }
 
+.button-groups-icon-secondary {
+  @extend .button-groups-icon;
+  & button.enabled {
+    background-color: $secondary;
+    color: $on-secondary;
+  }
+}
+
+.button-groups-icon-tertiary {
+  @extend .button-groups-icon;
+  & button.enabled {
+    background-color: $tertiary;
+    color: $on-tertiary;
+  }
+}
+
 .button-groups-icon-text {
   color: $on-surface-variant;
   border-radius: 25%;
@@ -79,6 +95,28 @@
         //padding: 0 1rem;
         padding: 0 dpi(16px);
       }
+    }
+  }
+}
+
+.button-groups-icon-text-secondary {
+  @extend .button-groups-icon-text;
+  & button.enabled {
+    background-color: $secondary;
+    color: $on-secondary;
+    .label-large {
+      color: $on-secondary;
+    }
+  }
+}
+
+.button-groups-icon-text-tertiary {
+  @extend .button-groups-icon-text;
+  & button.enabled {
+    background-color: $tertiary;
+    color: $on-tertiary;
+    .label-large {
+      color: $on-tertiary;
     }
   }
 }

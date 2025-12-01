@@ -16,16 +16,27 @@
                 (box :orientation "horizontal"
                     ;:space-evenly false
                     :halign "center"
+                    :spacing "${round(8 * get_env("EWW_SCALE"), 0)}"
+                    :style "margin-top: 8px; margin-bottom: 8px;"
                     (icon-button
-                        :height "${round(48 * get_env("EWW_SCALE"), 0)}"
                         :icon ""
                         :onclick "${eww_scripts}/dialog.sh open playlists &"
+                        :class "primary"
                     )
-                    ""
-                    ""
                     (icon-button
-                        :onclick ""
+                        :icon "shuffle"
+                        :onclick "${eww_scripts}/plyctl.sh shuffle"
+                        :class "secondary"
+                    )
+                    (icon-button
+                        :icon "repeat"
+                        :onclick "${eww_scripts}/plyctl.sh loop"
+                        :class "tertiary"
+                    )
+                    (icon-button
                         :icon ""
+                        :onclick ""
+                        :class "error"
                     )
                 )
                 (box :style "background-image: url('${media.arturl}');"
@@ -53,13 +64,14 @@
                 :class "container"
                 (box :orientation "horizontal"
                     :halign "center"
-                    (icon-button :icon "" :onclick "playerctl previous &")
+                    :spacing "${round(8 * get_env("EWW_SCALE"), 0)}"
+                    (icon-button :icon "skip_previous" :onclick "playerctl previous &" :class "primary")
                     (icon-outlined
                         :icon {media.playing == "Playing" ? "" : "" }
                         :class {media.playing == "Playing" ? "enabled" : "disabled" }
                         :onclick "playerctl play-pause"
                     )
-                    (icon-button :icon "" :onclick "${eww_scripts}/media.sh next &")
+                    (icon-button :icon "skip_next" :onclick "${eww_scripts}/media.sh next &" :class "primary")
                 )
             )
         )
@@ -72,9 +84,9 @@
         :halign "center"
         :hexpand false
         :spacing "${6 * round(get_env("EWW_SCALE"), 0)}"
-        (button-groups-icon :class {media.web-active ? "enabled" : ""} :icon "live_tv" :onclick "${eww_scripts}/media.sh web-toggle &")
+        (button-groups-icon-tertiary :class {media.web-active ? "enabled" : ""} :icon "live_tv" :onclick "${eww_scripts}/media.sh web-toggle &")
         (button-groups-icon :class {media.mpd-active ? "enabled" : "disabled"} :icon "skull" :onclick "${eww_scripts}/media.sh mpd-toggle &")
-        (button-groups-icon :class {media.mpv-active ? "enabled" : "disabled"} :icon "movie" :onclick "${eww_scripts}/media.sh mpv-toggle &")
+        (button-groups-icon-secondary :class {media.mpv-active ? "enabled" : "disabled"} :icon "movie" :onclick "${eww_scripts}/media.sh mpv-toggle &")
     )
 )
 

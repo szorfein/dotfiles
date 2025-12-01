@@ -1,42 +1,36 @@
 // material(3) use 2 fonts mainly and name it:
 // md.ref.typeface.brand
 // md.ref.typeface.plain
-//@import "brand-yotags.scss";
-//@import "plain-iosevka.scss";
-
-//$brand: 'Y-Yo Tags';
-// weird $brand: "FUNNY CHAOS";
-// no change on Number $brand: "Tagster";
-// challenger $brand: "TAGLINER";
-$brand: 'TAGLINER';
+//$brand: 'Skull Night';
+//$brand: 'VTKS SKULLS';
+$brand: 'Skull And Void';
 $plain: 'Iosevka Nerd Font';
 
 .display-large {
   font-family: $brand;
-  //font-size: dpi(60pt);
-  font-size: dpi(52pt);
-  letter-spacing: dpi(-4pt);
-  font-weight: 500;
+  font-size: dpi(50pt);
+  letter-spacing: dpi(-0.25pt);
+  font-weight: 400;
 }
 
 .display-small {
   font-family: $brand;
-  //font-size: dpi(56pt);
-  //font-size: dpi(55pt);
-  font-size: dpi(44pt);
+  font-size: dpi(48pt);
   letter-spacing: 0;
-  //letter-spacing: dpi(-4pt);
-  //font-weight: 400;
-  font-weight: 600;
+  font-weight: 400;
+  margin-top: dpi(16px);
+  margin-bottom: dpi(16px);
 }
 
 .headline-small {
-  font-family: $plain;
-  font-size: dpi(24pt);
+  font-family: $brand;
+  font-size: dpi(54pt);
   font-weight: 400;
   letter-spacing: 0;
   color: $on-surface;
 }
+
+// https://m3.material.io/styles/typography/type-scale-tokens
 
 .title-small {
   font-family: $plain;

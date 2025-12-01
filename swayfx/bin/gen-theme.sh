@@ -36,7 +36,6 @@ ext_terminal() {
 [ -d "$workdir" ] && rm -r "$workdir"
 
 mkdir -p "$workdir"
-mkdir -p "$workdir/.Xdefaults.d"
 mkdir -p "$workdir/.config/sway"
 mkdir -p "$workdir/.config/eww/styles"
 mkdir -p "$workdir/.config/foot"
@@ -405,6 +404,8 @@ return {
 EOF
 
 cat <<EOF > "$workdir/.config/zathura/zathurarc"
+set font "Iosevka Nerd Font Medium 10"
+
 set default-fg                    "$on_surface"
 set default-bg 			  "$surface"
 
@@ -534,8 +535,8 @@ border_style = { fg = "black" }
 
 # Mode are bottom left - right side
 [mode]
-normal_main = { bg = "$primary", fg = "$on_primary" }
-normal_alt = { bg = "$tertiary", fg = "$on_tertiary" }
+normal_main = { bg = "$primary_container", fg = "$on_primary_container" }
+normal_alt = { bg = "$secondary_container", fg = "$on_secondary_container" }
 
 # Status bar
 [status]
