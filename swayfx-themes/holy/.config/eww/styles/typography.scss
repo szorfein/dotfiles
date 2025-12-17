@@ -19,10 +19,12 @@ $brand: 'Demova';
 
 .headline-small {
   font-family: $brand;
-  font-size: dpi(54pt);
+  font-size: dpi(38pt);
   font-weight: 400;
-  letter-spacing: 0;
+  letter-spacing: dpi(-3pt);
   color: $on-surface;
+  margin-top: dpi(16px);
+  margin-bottom: dpi(16px);
 }
 
 // https://m3.material.io/styles/typography/type-scale-tokens

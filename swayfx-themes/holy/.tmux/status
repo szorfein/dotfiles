@@ -13,32 +13,33 @@ set -g @catppuccin_flavor "mocha"
 set -g @catppuccin_window_status_style "rounded"
 
 # status line
-set -gF status-style "bg=#131318,fg=#E5E1E9"
+#set -gF status-style "bg=default,fg=#E5E1E9"
+set -g status-bg 'default'
 
 # Customize plugins colors
 #
 # App
-set -gF @catppuccin_status_application_icon_bg "#1C1B20"
+set -gF @catppuccin_status_application_icon_bg "black"
 set -g @catppuccin_status_application_icon_fg "#FFB4AB"
-set -gF @catppuccin_status_application_text_bg "#1C1B20"
+set -gF @catppuccin_status_application_text_bg "black"
 set -g @catppuccin_status_application_text_fg "#FFB4AB"
 
 # Session
-set -gF @catppuccin_status_session_icon_bg "#1C1B20"
+set -gF @catppuccin_status_session_icon_bg "black"
 set -gF @catppuccin_status_session_icon_fg "#E8B6F0"
-set -gF @catppuccin_status_session_text_bg "#1C1B20"
+set -gF @catppuccin_status_session_text_bg "black"
 set -gF @catppuccin_status_session_text_fg "#E8B6F0"
 
 # Uptime
-set -gF @catppuccin_status_uptime_text_bg "#1C1B20"
+set -gF @catppuccin_status_uptime_text_bg "black"
 set -gF @catppuccin_status_uptime_text_fg "#D1BCFD"
-set -g @catppuccin_status_uptime_icon_bg "#1C1B20"
+set -g @catppuccin_status_uptime_icon_bg "black"
 set -g @catppuccin_status_uptime_icon_fg "#D1BCFD"
 
 # Directory
-set -gF @catppuccin_status_directory_text_bg "#1C1B20"
+set -gF @catppuccin_status_directory_text_bg "black"
 set -gF @catppuccin_status_directory_text_fg "#C6C0FF"
-set -g @catppuccin_status_directory_icon_bg "#1C1B20"
+set -g @catppuccin_status_directory_icon_bg "black"
 set -g @catppuccin_status_directory_icon_fg "#C6C0FF"
 
 # Load catppuccin

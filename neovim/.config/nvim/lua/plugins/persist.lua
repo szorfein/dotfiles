@@ -5,4 +5,20 @@ return {
     config = function()
         require('persistence').setup()
     end,
+    keys = {
+        {
+            '<leader>ss',
+            function()
+                require('persistence').select()
+            end,
+            desc = 'Session, Select one.',
+        },
+        {
+            '<leader>sl',
+            function()
+                require('persistence').load()
+            end,
+            desc = 'Session, load the last in this directory.',
+        },
+    },
 }
