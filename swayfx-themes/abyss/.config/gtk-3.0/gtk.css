@@ -84,82 +84,82 @@
 /* GtkMessageDialog styling */
 /* Target the entire dialog's background */
 messagedialog {
-    background-color: @dialog_bg_color;
+  background-color: @dialog_bg_color;
 }
 
 /* Target the main message label inside the dialog */
 messagedialog label {
-    color: @dialog_fg_color;
-    font-size: 14pt;
-    font-weight: bold;
+  color: @dialog_fg_color;
+  font-size: 14pt;
+  font-weight: bold;
 }
 
 /* Target the secondary, more detailed text (if any) */
 messagedialog .secondary-text {
-    font-size: 10pt;
-    font-style: italic;
+  font-size: 10pt;
+  font-style: italic;
 }
 
 /* Target the buttons in the dialog's action area */
 messagedialog button {
-    background-color: @black;
-    color: @foreground;
-    border: 1px solid @bright_black;
-    padding: 10px;
+  background-color: @black;
+  color: @foreground;
+  border: 1px solid @bright_black;
+  padding: 10px;
 }
 
 messagedialog button:hover {
-    background-color: @blue;
+  background-color: @blue;
 }
 
 banner revealer widget {
-    background: @bright_black;
-    padding: 5px;
-    color: @foreground;
+  background: @bright_black;
+  padding: 5px;
+  color: @foreground;
 }
 
 /* GtkAlertDialog styling */
 alertdialog.background {
-    background-color: @dialog_bg_color;
-    color: @dialog_fg_color;
+  background-color: @dialog_bg_color;
+  color: @dialog_fg_color;
 }
 
 alertdialog .titlebar {
-    background-color: @headerbar_bg_color;
-    color: @headerbar_fg_color;
+  background-color: @headerbar_bg_color;
+  color: @headerbar_fg_color;
 }
 
 alertdialog box {
-    background-color: @dialog_bg_color;
+  background-color: @dialog_bg_color;
 }
 
 alertdialog label {
-    color: @dialog_fg_color;
+  color: @dialog_fg_color;
 }
 
 filechooser .dialog-action-box {
-    border-top: 1px solid @bright_black;
+  border-top: 1px solid @bright_black;
 }
 
 filechooser .dialog-action-box:backdrop {
-    border-top-color: @black;
+  border-top-color: @black;
 }
 
 filechooser #pathbarbox {
-    border-bottom: 1px solid @bright_black;
+  border-bottom: 1px solid @bright_black;
 }
 
 filechooserbutton:drop(active) {
-    box-shadow: none;
-    border-color: transparent;
+  box-shadow: none;
+  border-color: transparent;
 }
 
 toast {
-    background-color: @black;
-    color: @foreground;
+  background-color: @black;
+  color: @foreground;
 }
 
 toast button.circular.flat.image-button:hover {
-    color: @background;
-    background-color: @red;
+  color: @background;
+  background-color: @red;
 }

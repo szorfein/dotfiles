@@ -64,20 +64,15 @@ set cindent
 " Shell
 set shell=/bin/zsh
 
-" Shortcuts
+" Mardown - enable folding (also called 'accordeon')
+" https://elderlybeginner.github.io/vim_folding/
+" https://bitcrowd.dev/folding-sections-of-markdown-in-vim/
+" To open fold: zo
+" To close fold: zc
+let g:markdown_folding = 1
+au FileType markdown setlocal foldlevel=1 "Start 0, this skip first level '# '
 
-" Few Emacs shorcuts
-" https://caiorss.github.io/Emacs-Elisp-Programming/Keybindings.html
-"nmap <C-x>s :w<cr>
-"nmap <C-x><C-f> :FzfLua files<cr>
-"nmap <C-x>c :wq<cr> " should be <C-x><C-c> but not works
-
-" Load custom theme when installed
-" (colorscheme + lightline)
-" if filereadable(glob("~/.config/nvim/theme.vim"))
-"   execute 'source' '~/.config/nvim/theme.vim'
-"endif
-
+" Load lazy stuff
 lua require('configs.lazy')
 lua require('configs.autocmds')
 lua require('configs.commands')

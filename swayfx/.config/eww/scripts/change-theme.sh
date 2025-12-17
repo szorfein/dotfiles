@@ -72,12 +72,15 @@ echo "dunst ?"
 pidof dunst | xargs kill
 dunst &
 
-tmux source-file ~/.tmux.conf 2> /dev/null || true
-
 sway reload &
 
 # unfortunately, this kill all open terminals, hopefully we use tmux
+# tmux attach -t 0
 pidof foot | xargs kill
-foot -s
+foot -s &
+#kill -s SIGUSR1 $(pidof footclient)
+
+# reload tmux conf
+tmux source-file ~/.tmux.conf 2> /dev/null || true
 
 exit 0

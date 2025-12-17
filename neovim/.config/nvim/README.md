@@ -24,7 +24,7 @@ you have nothing to do.
 ## Installation by Linux distribution
 
 - Arch Linux:
-  `sudo pacman -S neovim fd fzf tmux git prettier rubocop stylua shfmt bash-language-server lua-language-server ansible-lint the_silver_searcher`
+  `sudo pacman -S neovim fd fzf tmux git prettier rubocop stylua shfmt bash-language-server lua-language-server ansible-lint the_silver_searcher vscode-css-languageserver typescript-language-server`
 - Gentoo:
   `sudo emerge -av neovim sys-apps/fd ripgrep fzf tmux app-admin/ansible-lint sys-apps/the_silver_searcher net-libs/nodejs`
 - Void Linux:
@@ -50,11 +50,12 @@ Look under lua/ui and lua/plugins to see all plugins activated.
 
 ## Combo Conform/LSP
 
-| language | format | lsp                     | notes                                                                                                                                                                                                       |
-| -------- | ------ | ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Lua      | stylua | lua_language_server     |                                                                                                                                                                                                             |
-| Ruby     | rufo   | rubocop (or standardrb) | rubyfmt (error install) sorbet, ruby-lsp don't install correctly. solargraph, stimulus report nothing?, steep is with ast_grep (config) are annoying, syntax_tree (or stree?), ttags not available on Mason |
-| Shell    | shfmt  | bash_language_server    |                                                                                                                                                                                                             |
+| language   | format   | lsp                        | notes                                                                                                                                                                                                            |
+| ---------- | -------- | -------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| JavaScript | prettier | typescript-language-server | standardjs would be a nice choose for LSP but currently not available, eslint don't work last time i've tried (DEC2025)                                                                                          |
+| Lua        | stylua   | lua_language_server        |                                                                                                                                                                                                                  |
+| Ruby       | rufo     | rubocop (or standardrb)    | rubyfmt (error install). sorbet, ruby-lsp don't install correctly. solargraph, stimulus report nothing?, steep with ast_grep are 'configuration annoying'. syntax_tree (or stree?), ttags not available on Mason |
+| Shell      | shfmt    | bash_language_server       |                                                                                                                                                                                                                  |
 
 ## Basic commands
 
@@ -100,7 +101,7 @@ Command abbreviations:
 - C-j: move line down
 - C-k: move line up
 
-#### Search file, buffer, session
+#### Search file, buffer, like Emacs
 
 - `C-x C-f`: find (open) a file
 - `C-x b`: switch buffer
