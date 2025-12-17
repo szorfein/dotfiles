@@ -33,10 +33,13 @@ return {
 
             local ensure_installed = {
                 'ansible-lint',
+                'css-lsp',
                 'stylua',
                 'prettier',
                 'shfmt',
                 'rufo',
+                'typescript-language-server',
+                --'standardjs',
             }
             local missing_tools = filter_missing_tools(ensure_installed)
             if #missing_tools > 0 then

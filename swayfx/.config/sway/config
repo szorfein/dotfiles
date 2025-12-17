@@ -77,6 +77,7 @@ for_window {
     [app_id="footclient"] border pixel 0
     [app_id="mpv"] border pixel 0
     [app_id="imv"] border pixel 0
+    [app_id="org.pwmt.zathura"] border pixel 0
 }
 
 set $transparency_hex C0

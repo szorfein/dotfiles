@@ -7,9 +7,13 @@ if hash ruby 2>/dev/null ; then
   MY_PATH="$MY_PATH:$GEM_HOME/bin"
 fi
 
-if hash yarn 2>/dev/null ; then
-  MY_PATH="$MY_PATH:$HOME/.yarn/bin"
-fi
+# Javascript - Npm - Yarn
+# 'npm -g install packagename' should install here
+# 'npm -g uninstall packagename'
+# 'npm -g list'
+# 'npm update -g'
+MY_PATH="$MY_PATH:$HOME/.npm/bin"
+export npm_config_prefix="$HOME/.npm"
 
 # Doom Emacs
 # https://github.com/doomemacs/doomemacs#install

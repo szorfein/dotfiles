@@ -163,9 +163,3 @@ toast button.circular.flat.image-button:hover {
   color: @background;
   background-color: @red;
 }
-
-/* Sharp corners, Hyprland-inspired
-* {
-    border-radius: 0;
-}
-*/

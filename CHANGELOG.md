@@ -1,3 +1,23 @@
+# Changelog
+
+## v5.3.2
+
+### Zsh
+
+- Install npm package `npm -g install <package_name>` under ~/.npm.
+
+### Neovim
+
+- Conform, Neovim-lsp: add javascript/typescript with prettier and
+  typescript-language-server.
+- Enable fold on Markdown files, use zc (close), zo (open).
+- Load last session (per directory) with `<leader>ss` or `<leader>sl`.
+
+### Fixes
+
+- Correct on Holy: gtk-3 buttons, tmux colors.
+- Correct typography display-small on all themes.
+
 ## v5.0.0 - Abyss - Dec. 1 2025
 
 #### Global change

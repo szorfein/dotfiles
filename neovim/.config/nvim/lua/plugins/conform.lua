@@ -14,6 +14,7 @@ return {
                 scss = { 'prettier' },
                 graphql = { 'prettier' },
                 html = prettier,
+                --javascript = { 'standardjs' },
                 javascript = prettier,
                 json = prettier,
                 lua = { 'stylua' },
