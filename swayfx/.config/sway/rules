@@ -7,6 +7,7 @@ for_window {
 #[app_id="mpv"] floating enable, resize set 840 500, move position center
     [app_id="mpv"] floating enable, move position center
     [app_id="imv"] floating enable, resize set 840 500, move position center
+    [title="^Enter name of file"] floating enable, resize set 640 500, move position center
     [app_id="org.bleachbit.BleachBit"] floating enable, resize set 840 500, move position center
     [app_id="otter-launcher$"] border none, floating enable, resize set 500 430, move position center
     [app_id="ydl"] floating enable, resize set 500 430, move position center
@@ -26,4 +27,14 @@ for_window {
     [window_type="popup_menu"] $handle_dialog
     [window_type="tooltip"] $handle_dialog
     [window_type="notification"] $handle_dialog
+}
+
+# >> Assign apps to workspaces
+assign {
+    [app_id="org.pwmt.zathura"] 3
+}
+
+# >> Focus when launched
+for_window {
+    [app_id="org.pwmt.zathura"] focus
 }

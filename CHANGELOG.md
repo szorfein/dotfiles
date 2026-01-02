@@ -1,10 +1,11 @@
 # Changelog
 
-## v5.3.2
+## v5.4.2
 
 ### Zsh
 
 - Install npm package `npm -g install <package_name>` under ~/.npm.
+- Finally add a Starship config.
 
 ### Neovim
 
