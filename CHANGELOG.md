@@ -1,6 +1,10 @@
 # Changelog
 
-## v5.4.2
+## v5.7.3
+
+### SwayFX
+
+- Add a little blur effect on foot and eww dialog windows and shadows.
 
 ### Zsh
 
@@ -13,11 +17,17 @@
   typescript-language-server.
 - Enable fold on Markdown files, use zc (close), zo (open).
 - Load last session (per directory) with `<leader>ss` or `<leader>sl`.
+- Use mini-autopairs and disable windwp/nvim-autopairs.
+- Add mfussenegger/nvim-lint, which add more linter combined with neovim-lsp.
+- Disable some providers (node,python,perl,ruby) and disable the search of
+  updates from Lazy.nvim to start fast, thinks to run a `:Lazy sync` time to
+  time.
 
 ### Fixes
 
 - Correct on Holy: gtk-3 buttons, tmux colors.
 - Correct typography display-small on all themes.
+- Eww dialog windows close/open fine now.
 
 ## v5.0.0 - Abyss - Dec. 1 2025
 

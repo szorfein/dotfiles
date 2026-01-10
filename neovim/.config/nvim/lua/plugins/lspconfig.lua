@@ -79,7 +79,7 @@ return {
             --harper_ls = require('lsp.harper_ls')(on_attach),
             rubocop = require('lsp.rubocop')(on_attach),
             --eslint = {},
-            ts_ls = require('lsp.tsls')(on_attach),
+            --ts_ls = require('lsp.tsls')(on_attach),
             --standardrb = require('lsp.standardrb')(on_attach),
         }
         local server_names = {}

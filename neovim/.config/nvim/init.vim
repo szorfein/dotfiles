@@ -64,6 +64,12 @@ set cindent
 " Shell
 set shell=/bin/zsh
 
+" Disable some default providers
+let g:loaded_node_provider = 0
+let g:loaded_python3_provider = 0
+let g:loaded_perl_provider = 0
+let g:loaded_ruby_provider = 0
+
 " Mardown - enable folding (also called 'accordeon')
 " https://elderlybeginner.github.io/vim_folding/
 " https://bitcrowd.dev/folding-sections-of-markdown-in-vim/

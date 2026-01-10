@@ -108,6 +108,8 @@
 )
 (defvar wifi-killed false)
 (defvar wifi-killed-icon "airplanemode_inactive")
+; (defpoll tor-icon :interval "15m" :run-while {sidebar-page-index == "3"} "tor icon")
+; (defpoll tor-state :interval "15m" :run-while {sidebar-page-index == "3"} "tor state")
 (defvar tor-enabled false)
 (defvar wifi-on false)
 (defvar wifi-ssids "[]")

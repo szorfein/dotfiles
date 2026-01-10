@@ -29,7 +29,7 @@ disabled = true
 [directory]
 home_symbol = " "
 read_only = "  "
-style = "fg:primary"
+style = "fg:secondary"
 truncation_length = 2
 truncation_symbol = "󰜥 /"
 format = '[$path ]($style)'
@@ -45,7 +45,7 @@ format = '[$path ]($style)'
 
 [git_branch]
 symbol = ""
-style = "fg:secondary bg:surface_container_high"
+style = "fg:tertiary bg:surface_container_high"
 format = '[on](fg:white) [](fg:surface_container_high)[ $symbol $branch ]($style)[](fg:surface_container_high) '
 
 [git_metrics]
