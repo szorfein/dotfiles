@@ -53,7 +53,20 @@ dim_inactive_colors.unfocused $shadowFF
 dim_inactive_colors.urgent $errorFF
 
 # Move minimized windows into Scratchpad (enable|disable)
+# Swayfx recommend this disable
 scratchpad_minimize disable
+
+# Clients
+for_window [app_id="footclient"] blur enable
+
+# On eww windows
+layer_effects "gtk-layer-shell" {
+    blur enable;
+#   blur_xray enable; this make client bellow dialog window invisible
+    blur_ignore_transparent enable;
+    shadows enable;
+    corner_radius 20;
+}
 
 # Titlebar and border configuration
 # SwayFX BUG: https://github.com/WillPower3309/swayfx/issues/201
@@ -74,6 +87,7 @@ for_window [app_id=".*"] border normal $border_width
 for_window {
     [app_id="^brave-browser$"] border pixel 0
     [app_id="librewolf"] border pixel 0
+    [app_id="foot"] border pixel 0
     [app_id="footclient"] border pixel 0
     [app_id="mpv"] border pixel 0
     [app_id="imv"] border pixel 0
@@ -89,11 +103,10 @@ client.focused_inactive   "$fg"   "$bg"   "$fg"   "$outline" "$fg"$transparency_
 client.unfocused          "$outline" "$bg" "$fg" "$outline" "$outline"$transparency_hex
 client.urgent             "$error" "$bg" "$fg" "$error" "$error"$transparency_hex
 client.placeholder        "$bg" "$outline" "$fg" "$bg" "$outline"$transparency_hex
-
 client.background         "$bg"
 
 # Gaps
-gaps outer 0
+gaps outer 2
 gaps inner 16
 
 # Misc
@@ -162,6 +175,8 @@ include ~/.config/sway/rules
 
     # Start your launcher
     bindsym $mod+d exec $menu
+    # When all fail, wmenu is here
+    bindsym $mod+p exec wmenu-run
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.

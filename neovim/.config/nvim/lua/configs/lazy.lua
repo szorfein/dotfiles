@@ -34,8 +34,8 @@ require('lazy').setup({
     install = {
         colorscheme = { 'catppuccin' },
     },
-    -- automatically check for plugin updates
-    checker = { enabled = true },
+    -- automatically check for plugin updates, no thanks
+    checker = { enabled = false },
 
     -- https://github.com/NvChad/starter/blob/main/lua/configs/lazy.lua
     performance = {

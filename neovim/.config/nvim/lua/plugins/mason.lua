@@ -33,6 +33,7 @@ return {
 
             local ensure_installed = {
                 'ansible-lint',
+                'eslint_d',
                 'css-lsp',
                 'stylua',
                 'prettier',

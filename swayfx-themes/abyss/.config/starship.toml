@@ -1,0 +1,141 @@
+palette = "custom"
+
+right_format = """\
+$cmd_duration
+"""
+
+format = """\
+          [](fg:primary)\
+          $os\
+          [](fg:primary) \
+          $directory\
+          $git_branch\
+          $git_commit\
+          $git_state\
+          $git_status\
+          $git_metrics\
+          $all
+"""
+
+# Replace the "❯" symbol in the prompt with "➜"
+[character] # The name of the module we are configuring is "character"
+success_symbol = "[ ➜](bold fg:white)"
+error_symbol = "[  ](bold fg:bright-red)"
+
+# Disable the package module, hiding it from the prompt completely
+[package]
+disabled = true
+
+[directory]
+home_symbol = " "
+read_only = "  "
+style = "fg:secondary"
+truncation_length = 2
+truncation_symbol = "󰜥 /"
+format = '[$path ]($style)'
+
+# This should match with your own directory
+[directory.substitutions]
+"/" = "  "
+"Documents" = " "
+"Downloads" = " "
+"musics" = " "
+"images" = " "
+".dotfiles" = " "
+
+[git_branch]
+symbol = ""
+style = "fg:tertiary bg:surface_container_high"
+format = '[on](fg:white) [](fg:surface_container_high)[ $symbol $branch ]($style)[](fg:surface_container_high) '
+
+[git_metrics]
+format = '([ $added]($added_style))([-$deleted]($deleted_style)) '
+added_style = 'italic dimmed bright-green'
+deleted_style = 'italic dimmed bright-red'
+ignore_submodules = true
+disabled = false
+
+[git_status]
+format = '[$all_status$ahead_behind]($style) '
+style = "fg:red"
+conflicted = "🏳"
+up_to_date = " "
+untracked = " "
+ahead = "⇡${count}"
+diverged = "⇕⇡${ahead_count}⇣${behind_count}"
+behind = "⇣${count}"
+stashed = ""
+modified = " "
+staged = '[++\($count\)](fg:tertiary)'
+renamed = "襁"
+deleted = ""
+
+[os]
+style = "fg:on_primary bg:primary"
+disabled = false # Disabled by default
+
+[os.symbols]
+Alpaquita = " "
+Alpine = " "
+AlmaLinux = " "
+Amazon = " "
+Android = " "
+AOSC = " "
+Arch = " "
+Artix = " "
+CachyOS = " "
+CentOS = " "
+Debian = " "
+DragonFly = " "
+Elementary = " "
+Emscripten = " "
+EndeavourOS = " "
+Fedora = " "
+FreeBSD = " "
+Garuda = "󰛓 "
+Gentoo = " "
+HardenedBSD = "󰞌 "
+Illumos = "󰈸 "
+Ios = "󰀷 "
+Kali = " "
+Linux = " "
+Mabox = " "
+Macos = " "
+Manjaro = " "
+Mariner = " "
+MidnightBSD = " "
+Mint = " "
+NetBSD = " "
+NixOS = " "
+Nobara = " "
+OpenBSD = "󰈺 "
+openSUSE = " "
+OracleLinux = "󰌷 "
+Pop = " "
+Raspbian = " "
+Redhat = " "
+RedHatEnterprise = " "
+RockyLinux = " "
+Redox = "󰀘 "
+Solus = "󰠳 "
+SUSE = " "
+Ubuntu = " "
+Unknown = " "
+Void = " "
+Windows = "󰍲 "
+Zorin = " "
+
+[lua]
+symbol = " "
+
+[nodejs]
+symbol = "󰎙 "
+
+[palettes.custom]
+primary = "#83D2E3"
+on_primary = "#00363E"
+secondary = "#B1CBD1"
+on_secondary = "#1C3439"
+tertiary = "#BCC5EB"
+on_tertiary = "#262F4D"
+surface_container_high = "#252B2C"

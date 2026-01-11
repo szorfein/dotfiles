@@ -42,11 +42,15 @@ return {
                 lsp_format = 'fallback',
             },
             -- Set up format-on-save
-            format_on_save = {
-                lsp_format = 'fallback',
+            format_after_save = {
+                --lsp_format = 'fallback',
                 --async = false,
-                timeout_ms = 2900,
+                timeout_ms = 500,
             },
+            -- https://github.com/stevearc/conform.nvim/issues/401
+            --format_on_save = {
+            --timeout_ms = 5000, -- up to 5 secs
+            --}
         },
         keys = {
             {
@@ -54,6 +58,7 @@ return {
                 function()
                     require('conform').format({ async = true })
                 end,
+                mode = '',
                 desc = 'format buffer',
             },
         },

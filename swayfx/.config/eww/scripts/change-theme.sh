@@ -69,18 +69,26 @@ fi
 
 echo "dunst ?"
 #dunstctl reload "$DUNST_CONFIG" 2> /dev/null || true
-pidof dunst | xargs kill
-dunst &
+#pidof dunst | xargs kill
+#dunst &
+# Reload dunst
+dunstctl reload
 
-sway reload &
+# Reload sway
+swaymsg reload
+
+# reload tmux conf
+#tmux source-file ~/.tmux.conf 2> /dev/null || true
+tmux source-file ~/.tmux.conf
+
+# Neovim, complicated to reload plugin with lazy.nvim
+#pkill -SIGUSR1 nvim
 
 # unfortunately, this kill all open terminals, hopefully we use tmux
+# Solution is to replace 'foot' by 'kitty' here
 # tmux attach -t 0
 pidof foot | xargs kill
 foot -s &
 #kill -s SIGUSR1 $(pidof footclient)
-
-# reload tmux conf
-tmux source-file ~/.tmux.conf 2> /dev/null || true
 
 exit 0
