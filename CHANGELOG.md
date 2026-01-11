@@ -19,9 +19,9 @@
 - Load last session (per directory) with `<leader>ss` or `<leader>sl`.
 - Use mini-autopairs and disable windwp/nvim-autopairs.
 - Add mfussenegger/nvim-lint, which add more linter combined with neovim-lsp.
-- Disable some providers (node,python,perl,ruby) and disable the search of
-  updates from Lazy.nvim to start fast, thinks to run a `:Lazy sync` time to
-  time.
+- Start fast: disable some providers (node,python,perl,ruby) and disable the
+  search of updates from Lazy.nvim at start. Things to run a `:Lazy sync` time
+  to time.
 
 ### Fixes
 
