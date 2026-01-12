@@ -1,5 +1,7 @@
 # Changelog
 
+- Add configs for the terminal kitty
+
 ## v5.7.3
 
 ### SwayFX
