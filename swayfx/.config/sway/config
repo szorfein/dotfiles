@@ -19,8 +19,10 @@ set $left h
 set $down j
 set $up k
 set $right l
-# Your preferred terminal emulator
-set $term footclient
+
+# terminal configs
+include ~/.config/sway/globals
+
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
@@ -58,6 +60,7 @@ scratchpad_minimize disable
 
 # Clients
 for_window [app_id="footclient"] blur enable
+for_window [app_id="kitty"] blur enable
 
 # On eww windows
 layer_effects "gtk-layer-shell" {
@@ -89,6 +92,7 @@ for_window {
     [app_id="librewolf"] border pixel 0
     [app_id="foot"] border pixel 0
     [app_id="footclient"] border pixel 0
+    [app_id="kitty"] border pixel 0
     [app_id="mpv"] border pixel 0
     [app_id="imv"] border pixel 0
     [app_id="org.pwmt.zathura"] border pixel 0
@@ -106,7 +110,7 @@ client.placeholder        "$bg" "$outline" "$fg" "$bg" "$outline"$transparency_h
 client.background         "$bg"
 
 # Gaps
-gaps outer 2
+gaps outer 0
 gaps inner 16
 
 # Misc

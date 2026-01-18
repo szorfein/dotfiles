@@ -47,6 +47,7 @@ mkdir -p "$workdir/.config/zathura"
 mkdir -p "$workdir/.config/dunst/dunstrc.d"
 mkdir -p "$workdir/.config/gtk-3.0"
 mkdir -p "$workdir/.config/gtk-4.0"
+mkdir -p "$workdir/.config/kitty"
 
 # colours to extract
 primary=$(ext_dark 'primary')
@@ -719,6 +720,71 @@ EOF
 
 # Copy the same config for gtk-4
 cp "$workdir/.config/gtk-3.0/gtk.css" "$workdir/.config/gtk-4.0/gtk.css"
+
+# Kitty
+cat <<EOF > "$workdir/.config/kitty/colors.conf"
+background $surface
+foreground $on_surface
+cursor $on_surface
+
+color0 $surface
+color1 $t_red
+color2 $t_green
+color3 $t_yellow
+color4 $t_blue
+color5 $t_magenta
+color6 $t_cyan
+color7 $t_white
+
+color8 $t_black_bright
+color9 $t_red_bright
+color10 $t_green_bright
+color11 $t_yellow_bright
+color12 $t_blue_bright
+color13 $t_magenta_bright
+color14 $t_cyan_bright
+color15 $t_white_bright
+
+# The foreground for selections
+selection_foreground $on_primary
+# The background for selections
+selection_background $primary_container
+
+# Emacs background :backgroud
+color17    $surface
+
+# Emacs modeline
+color23 $t_black_bright
+# Color 66 is set to the value of color0 even when bold.
+# color66 $t_black_bright
+
+# The color for the border of the active window
+active_border_color $t_yellow
+
+# The color for the border of inactive windows
+inactive_border_color $t_black_bright
+
+# bright blue 12
+url_color $t_blue_bright
+
+# on-primary
+active_tab_foreground $on_primary
+# primary
+active_tab_background $primary
+# foreground
+inactive_tab_foreground $on_secondary
+# black
+inactive_tab_background $secondary
+tab_bar_background none
+
+# Marks
+mark1_foreground black
+mark1_background #5599E2
+mark2_foreground black
+mark2_background #DDDBCF
+mark3_foreground black
+mark3_background #956dca
+EOF
 
 # Generate a gtk theme under ~/.themes
 # need to remove '#' with ${MYVAR:1}

@@ -31,8 +31,8 @@ exec {
 # Notifications
     dunst
 
-# Fast terminal 
-    foot -s
+# Run terminal daemon if any
+    ~/bin/reload-terminal.sh
 
 # if Thunar
     if command -v thunar &>/dev/null ; then

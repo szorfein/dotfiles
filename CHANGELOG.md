@@ -1,6 +1,20 @@
 # Changelog
 
-## v5.7.3
+## v5.9.3
+
+### Kitty
+
+Add configs for the terminal kitty, user should choose between Foot or Kitty.
+The both can't works together. Kitty has few advantage compared to foot:
+
+- Reload colors when changing themes, on Foot we should kill the server which
+  kill all the terminals open...
+- Font symbols display better.
+
+So install one:
+
+    stow -D foot && stow kitty
+    stow -D kitty && stow foot
 
 ### SwayFX
 
@@ -13,6 +27,7 @@
 
 ### Neovim
 
+- Better works with Astro.js/Vue.js, (eslint_d, prettier, astro-ls, tailwind)
 - Conform, Neovim-lsp: add javascript/typescript with prettier and
   typescript-language-server.
 - Enable fold on Markdown files, use zc (close), zo (open).

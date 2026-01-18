@@ -41,7 +41,7 @@
   [fzf](https://github.com/junegunn/fzf)
 - **Notification:** [Dunst](https://github.com/dunst-project/dunst) with
   `dunstify`
-- **Term:** [Foot](https://codeberg.org/dnkl/foot)
+- **Term:** Kitty or [Foot](https://codeberg.org/dnkl/foot)
 - **Editor:** [Neovim](https://neovim.io) with
   [Lazy.nvim](https://lazy.folke.io/),
   ([plugins](https://github.com/szorfein/dotfiles/tree/main/neovim/.config/nvim/lua/plugins))
