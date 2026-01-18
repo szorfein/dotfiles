@@ -15,6 +15,7 @@ return {
             javascriptreact = { 'eslint_d' },
             typescriptreact = { 'eslint_d' },
             svelte = { 'eslint_d' },
+            astro = { 'eslint_d' },
             ansible = { 'ansible_lint' },
         }
 

@@ -10,6 +10,8 @@ return {
         cmd = { 'ConformInfo' },
         opts = {
             formatters_by_ft = {
+                --astro = { 'biome' },
+                astro = prettier,
                 css = prettier,
                 scss = { 'prettier' },
                 graphql = { 'prettier' },
@@ -35,6 +37,10 @@ return {
                 shfmt = {
                     command = 'shfmt',
                     prepend_args = { '-p', '-i', '0', '-sr', '-bn' },
+                },
+                biome = {
+                    command = 'biome',
+                    prepend_args = { 'check', '--write' },
                 },
             },
             -- Set default options

@@ -131,6 +131,9 @@ symbol = " "
 [nodejs]
 symbol = "󰎙 "
 
+[python]
+symbol = " "
+
 [palettes.custom]
 primary = "#83D2E3"
 on_primary = "#00363E"
