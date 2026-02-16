@@ -11,7 +11,7 @@ if PIDS=$(pgrep -f "sh .*playlists.sh"); then
     fi
 fi
 
-while :; do
-    ~/.config/eww/scripts/mpc.sh update
-    sleep 99
-done
+#while :; do;
+#~/.config/eww/scripts/mpc.sh update
+#sleep 99
+#done

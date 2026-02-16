@@ -1,0 +1,8 @@
+set $bg #15121a
+set $fg #e8e0eb
+set $shadow #000000
+set $outline #4b4453
+set $bglight #15121a
+set $error #ffb4ab
+set $theme vibe
+set $theme-bg ~/images/vibes.png

@@ -28,7 +28,7 @@ pidof -q eww || { eww daemon & }
 ~/.config/eww/daemons/media.sh > /dev/null 2>&1 &
 ~/.config/eww/daemons/light.sh > /dev/null 2>&1 &
 #~/.config/eww/daemons/volume.sh > /dev/null 2>&1 &
-~/.config/eww/daemons/playlists.sh > /dev/null 2>&1 &
+#~/.config/eww/daemons/playlists.sh > /dev/null 2>&1 &
 ~/.config/eww/daemons/iwd.sh > /dev/null 2>&1 &
 ~/.config/eww/daemons/tor.sh > /dev/null 2>&1 &
 
