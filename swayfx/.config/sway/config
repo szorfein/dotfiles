@@ -110,8 +110,8 @@ client.placeholder        "$bg" "$outline" "$fg" "$bg" "$outline"$transparency_h
 client.background         "$bg"
 
 # Gaps
-gaps outer 10
-gaps inner 16
+gaps outer 0
+gaps inner 26
 
 # Misc
 show_marks no

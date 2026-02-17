@@ -1,62 +1,59 @@
-# Configure plugin mode_indicator
-set -g @mode_indicator_prefix_prompt "WAIT"
-set -g @mode_indicator_prefix_mode_style fg=#d5bcf7,bold
-set -g @mode_indicator_copy_prompt "COPY"
-set -g @mode_indicator_copy_mode_style fg=green,bold
-set -g @mode_indicator_sync_prompt "SYNC"
-set -g @mode_indicator_sync_mode_style fg=#ffb4ab,bold
-set -g @mode_indicator_empty_prompt "TMUX"
-set -g @mode_indicator_empty_mode_style fg=purple,bold
+# --------------
+# Global settings
+# --------------
 
-# Configure the catppuccin plugin
-set -g @catppuccin_flavor "mocha"
-set -g @catppuccin_window_status_style "rounded"
+set -g status-fg '#d7baff' # primary
+set -g status-bg 'default'
 
-# status line
-set -gF status-style "bg=#15121a,fg=#e8e0eb"
-
-# Customize plugins colors
-#
-# App
-set -gF @catppuccin_status_application_icon_bg "#1e1a22"
-set -g @catppuccin_status_application_icon_fg "#ffb4ab"
-set -gF @catppuccin_status_application_text_bg "#1e1a22"
-set -g @catppuccin_status_application_text_fg "#ffb4ab"
-
-# Session
-set -gF @catppuccin_status_session_icon_bg "#1e1a22"
-set -gF @catppuccin_status_session_icon_fg "#ffb695"
-set -gF @catppuccin_status_session_text_bg "#1e1a22"
-set -gF @catppuccin_status_session_text_fg "#ffb695"
-
-# Uptime
-set -gF @catppuccin_status_uptime_text_bg "#1e1a22"
-set -gF @catppuccin_status_uptime_text_fg "#d5bcf7"
-set -g @catppuccin_status_uptime_icon_bg "#1e1a22"
-set -g @catppuccin_status_uptime_icon_fg "#d5bcf7"
-
-# Directory
-set -gF @catppuccin_status_directory_text_bg "#1e1a22"
-set -gF @catppuccin_status_directory_text_fg "#d7baff"
-set -g @catppuccin_status_directory_icon_bg "#1e1a22"
-set -g @catppuccin_status_directory_icon_fg "#d7baff"
-
-# Load catppuccin
-run ~/.config/tmux/plugins/catppuccin/tmux/catppuccin.tmux
-
-# Current
-set -g status-justify centre
-set -gF window-status-format "#[bg=#1e1a22,fg=#513d6f]#[bg=#513d6f,fg=#c3abe4]##I ##T#[bg=#1e1a22,fg=#513d6f]"
-set -gF window-status-current-format "#[bg=#1e1a22,fg=#d7baff]#[bg=#d7baff,fg=#430088,bold]##I #[fg=#430088,bold]##T#[bg=#1e1a22,fg=#d7baff]"
-
-# Make the status line pretty and add some modules
-set -g status-right-length 100
-set -g status-left-length 100
+#set -g status-left "#{tmux_mode_indicator}"
 set -g status-right ""
-set -g status-left "#{tmux_mode_indicator} "
-set -ag status-left "#{E:@catppuccin_status_application}"
-set -ag status-left "#{E:@catppuccin_status_directory}"
-set -ag status-right "#{E:@catppuccin_status_session}"
-set -ag status-right "#{E:@catppuccin_status_uptime}"
+set -g status-justify centre
 
+# --------------
+# mode_indicator settings
+# --------------
+
+# Configure plugin mode_indicator
+set -g @mode_indicator_prefix_prompt "   "
+set -g @mode_indicator_prefix_mode_style fg=#ffb695
+set -g @mode_indicator_copy_prompt "   "
+set -g @mode_indicator_copy_mode_style fg=green
+set -g @mode_indicator_sync_prompt "   "
+set -g @mode_indicator_sync_mode_style fg=#ffb4ab
+set -g @mode_indicator_empty_prompt "   "
+set -g @mode_indicator_empty_mode_style fg=#e8e0eb
+
+# --------------
+# rose-pine settings
+# --------------
+
+set -g @rose_pine_variant 'moon' # Options are 'main', 'moon' or 'dawn'
+
+set -g @rose_pine_host 'off' # Enables hostname in the status bar
+set -g @rose_pine_hostname_short 'off' # Makes the hostname shorter by using tmux's '#h' format
+set -g @rose_pine_date_time '' # It accepts the date UNIX command format (man date for info)
+set -g @rose_pine_user 'off' # Turn on the username component in the statusbar
+set -g @rose_pine_directory 'off' # Turn on the current folder component in the status bar
+set -g @rose_pine_session 'off' # Option not exist... but it could
+
+# Configure tmux rose
+set -g @rose_pine_bar_bg_disable 'on' # Disables background color, for transparent terminal emulators
+set -g @rose_pine_bar_bg_disabled_color_option 'default'
+set -g @rose_pine_disable_active_window_menu 'on' # Disables the menu that shows the active window on the left
+#set -g @rose_pine_only_windows 'on' # Leaves only the window module, for max focus and space
+set -g @rose_pine_show_current_program 'off' # Forces tmux to show the current running program as window name
+set -g @rose_pine_window_status_separator "   "
+set -g @rose_pine_prioritize_windows 'off' # Disables the right side functionality in a certain window count / terminal width
+
+set -g @rose_pine_session_icon '󱚥 ' # Changes the default icon to the left of the session name
+set -g @rose_pine_window_separator ' ' # Replaces the default `:` between the window number and name
+
+set -g @rose_pine_status_right_prepend_section '#{tmux_mode_indicator}'
+# Make the status line pretty and add some modules
+
+# --------------
+# Load plugins
+# --------------
+
+run ~/.config/tmux/plugins/rose-pine/rose-pine.tmux
 run-shell ~/.config/tmux/plugins/tmux-mode-indicator/mode_indicator.tmux

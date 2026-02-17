@@ -21,8 +21,7 @@
 
 ##
 
-![Abyss screenshot 1](https://github.com/szorfein/unix-portfolio/raw/master/Abyss/clean.jpg)
-![Abyss screenshot 2](https://github.com/szorfein/unix-portfolio/raw/master/Abyss/full.jpg)
+![Vibe screenshot 1](https://github.com/szorfein/unix-portfolio/raw/master/Vibe/clean.jpg)
 
 ## Setup
 
@@ -74,8 +73,8 @@ Look for Awesome wm? see the
 
 ## Previous setup
 
-![Jinx screenshot](https://github.com/szorfein/unix-portfolio/raw/master/Jinx/jinx-dialog.jpg)
-![Jinx screenshot](https://github.com/szorfein/unix-portfolio/raw/master/Jinx/full.jpg)
+![Abyss screenshot 1](https://github.com/szorfein/unix-portfolio/raw/master/Abyss/clean.jpg)
+![Abyss screenshot 2](https://github.com/szorfein/unix-portfolio/raw/master/Abyss/full.jpg)
 
 ### Other screenshots
 

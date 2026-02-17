@@ -1,11 +1,22 @@
+[app]
+overall = { bg = "#1e1a22" } # surface
+
 [mgr]
 hovered = { fg = "#430088", bg = "#d7baff" }
 border_style = { fg = "black" }
 
 # Mode are bottom left - right side
 [mode]
-normal_main = { bg = "#8a55d7", fg = "#fef6ff" }
+normal_main = { bg = "#8a55d7", fg = "#fff6ff" }
 normal_alt = { bg = "#513d6f", fg = "#c3abe4" }
+
+[indicator]
+#parent  = { bg = "#8a55d7", fg = "#fff6ff" } # primaryContainer, onPrimaryContainer
+parent  = { bg = "#513d6f", fg = "#c3abe4" } # secondaryContainer, onSecondaryContainer
+#current = { bg = "#513d6f", fg = "#c3abe4" } #tertiaryContainer, onTertiaryContainer
+current = { bg = "#c14e03", fg = "#fff7f4" } #tertiaryContainer, onTertiaryContainer
+#preview = { bg = "#8a55d7", fg = "#fff6ff" }
+padding = { open = "", close = "" }
 
 # Status bar
 [status]
