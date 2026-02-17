@@ -44,6 +44,7 @@ set -g @rose_pine_disable_active_window_menu 'on' # Disables the menu that shows
 set -g @rose_pine_show_current_program 'off' # Forces tmux to show the current running program as window name
 set -g @rose_pine_window_status_separator "   "
 set -g @rose_pine_prioritize_windows 'off' # Disables the right side functionality in a certain window count / terminal width
+set -g @rose_pine_show_pane_directory 'on' # Forces tmux to show the current directory as window name
 
 set -g @rose_pine_session_icon '󱚥 ' # Changes the default icon to the left of the session name
 set -g @rose_pine_window_separator ' ' # Replaces the default `:` between the window number and name

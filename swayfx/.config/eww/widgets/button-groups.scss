@@ -50,6 +50,14 @@
   }
 }
 
+.button-groups-icon-error {
+  @extend .button-groups-icon;
+  & button.enabled {
+    background-color: $error;
+    color: $on-error;
+  }
+}
+
 .button-groups-icon-text {
   color: $on-surface-variant;
   border-radius: 25%;
