@@ -22,6 +22,10 @@ things:
     url: https://dl.dafont.com/dl/?f=skull_and_void
     dest_dir: '.local/share/fonts'
     keep_name: true
+  - name: lovely-bubbles.zip
+    url: https://dl.dafont.com/dl/?f=lovely_bubbles
+    dest_dir: '.local/share/fonts'
+    keep_name: true
   - name: iosevka.tar.xz
     url: https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Iosevka.tar.xz
     strip_components: 0

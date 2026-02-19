@@ -22,12 +22,12 @@ return {
         }
 
         local leftSeparator = {
-            provider = ' ',
+            provider = '',
             hl = { fg = 'black' },
         }
 
         local rightSeparator = {
-            provider = ' ',
+            provider = '',
             hl = { fg = 'black' },
         }
 
@@ -178,28 +178,28 @@ return {
                 viMode,
                 rightSeparator,
                 {
-                    provider = '%=', -- align center
+                    provider = '%=', -- align right
+                },
+                leftSeparator,
+                FileType,
+                rightSeparator,
+                {
+                    provider = '  ',
                 },
                 leftSeparator,
                 Git,
                 rightSeparator,
                 {
-                    provider = ' ',
+                    provider = '  ',
                 },
                 leftSeparator,
                 Ruler_1,
                 rightSeparator,
                 {
-                    provider = ' ',
+                    provider = '  ',
                 },
                 leftSeparator,
                 Ruler_2,
-                rightSeparator,
-                {
-                    provider = '%=', -- align end
-                },
-                leftSeparator,
-                FileType,
                 rightSeparator,
             },
         }

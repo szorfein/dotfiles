@@ -24,7 +24,7 @@
 ![Vibe screenshot 1](https://github.com/szorfein/unix-portfolio/raw/master/Vibe/clean.jpg)
 ![Vibe screenshot 2](https://github.com/szorfein/unix-portfolio/raw/master/Vibe/full.jpg)
 
-## Setup
+## Setup of the "Vibe" theme
 
 All configs follow (or try) the last [material 3](https://m3.material.io/)
 recommendations on colors contrast (WGAG AAA), widgets, font, buttons, etc...
@@ -99,9 +99,9 @@ More screenshots of previous themes are available at
 > [#2](https://pixelscan.net/blog/how-to-get-around-a-reddit-permanent-ban/)
 > [#3](https://dicloak.com/blog-detail/reddit-ip-ban-explained-2025-why-reddit-blocked-your-ip-and-how-to-fix-it).
 
-Already joined [Lemmy](https://lemmy.ml/u/Szorfein) as alternative, if you know
-another (cool/privacy) social network or site where share dotfiles, please, post
-an [issue](https://github.com/szorfein/dotfiles/issues).
+Already joined [Lemmy](https://lemmy.ml/u/Szorfein) as alternative, if people
+know another (cool/privacy) social network or site where share dotfiles, please,
+report an [issue](https://github.com/szorfein/dotfiles/issues).
 
 #### Support
 

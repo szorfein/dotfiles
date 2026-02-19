@@ -138,7 +138,7 @@
                 (for pl in mpd-playlists
                     (chip-filter
                         :text "${pl}"
-                        :onclick "~/player.sh \"${pl}\" &"
+                        :onclick "${eww_scripts}/player.sh \"${pl}\" &"
                         :class { playlist-focus == "${pl}" ? "enabled" : "disabled" }
                     )
                 )
@@ -156,6 +156,7 @@
 
 ; all vars
 (defvar playlist-name "")
+; Add your favorite directory here (from ~/musics)
 (defvar mpd-playlists '["Lofi-Rock", "LoFi", "Clubbing"]')
 (defvar playlist-focus "")
 
