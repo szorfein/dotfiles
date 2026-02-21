@@ -13,6 +13,36 @@
     )
 )
 
+(defwidget group-daemons []
+ (box
+  :orientation "vertical"
+  :spacing "${round(16 * get_env("EWW_SCALE"), 0)}"
+  :space-evenly false
+  (box :class "label-large"
+   :halign "start"
+   "Group Daemons"
+  )
+  (button-groups-multimedia)
+  (button-groups-networks)
+ )
+)
+
+; space available? only two lines - 9 apps max (3-3-3)
+(defwidget group-apps []
+ (box
+  :orientation "vertical"
+  :spacing "${round(16 * get_env("EWW_SCALE"), 0)}"
+  :space-evenly false
+  (box :class "label-large"
+   :halign "start"
+   "Group Apps"
+  )
+  (button-groups-musics)
+  (button-groups-system)
+  ;(button-groups-qemu)
+ )
+)
+
 (defwidget network-ssids []
     (box :orientation "vertical"
         :space-evenly false
@@ -42,8 +72,68 @@
          :spacing "${round(8 * get_env("EWW_SCALE"), 0)}"
          :halign "center"
          :hexpand false
-        (button-groups-icon-secondary :icon wifi-killed-icon :onclick "${eww_scripts}/network.sh wifi-toggle &" :class { wifi-killed ? "enabled" : ""})
+        (button-groups-icon-secondary
+            :icon wifi-killed-icon
+            :onclick "${eww_scripts}/network.sh wifi-toggle &"
+            :class { wifi-killed ? "enabled" : ""}
+        )
         (button-groups-icon :icon "system_update_alt" :onclick "")
+    )
+)
+
+; TODO: buttons app for go into musics, wallpapers and books - next release
+(defwidget button-groups-musics []
+    (box :space-evenly false
+         :spacing "${round(8 * get_env("EWW_SCALE"), 0)}"
+         :halign "center"
+         :hexpand false
+        (button-groups-icon-secondary
+            :icon "library_music"
+            :onclick "${eww_scripts}/network.sh wifi-toggle &"
+            :class { wifi-killed ? "enabled" : ""}
+        )
+        (button-groups-icon-tertiary
+            :icon "wallpaper" :onclick "kitty -1 --class wallpaper -e yazi ~/images &" :class "enabled"
+        )
+        (button-groups-icon-error
+            :icon "library_books" :onclick "" :class "enabled"
+        )
+    )
+)
+
+; TODO: buttons app for manage system (update, ansible-playbook, run scan for rootkit? virus?) - next release
+; We can also run some games, go on the web and more...
+(defwidget button-groups-system []
+    (box :space-evenly false
+         :spacing "${round(8 * get_env("EWW_SCALE"), 0)}"
+         :halign "center"
+         :hexpand false
+        (button-groups-icon
+            :icon "update"
+            :onclick "${eww_scripts}/network.sh wifi-toggle &"
+            :class "enabled"
+        )
+        (button-groups-icon-error
+            :icon "location_searching" :onclick "kitty -1 --class wallpaper -e yazi ~/images &"
+        )
+        (button-groups-icon-secondary
+            :icon "build" :onclick ""
+        )
+    )
+)
+
+; TODO: buttons app for Quickemu - next release
+(defwidget button-groups-qemu []
+    (box :space-evenly false
+         :spacing "${round(8 * get_env("EWW_SCALE"), 0)}"
+         :halign "center"
+         :hexpand false
+        (button-groups-icon-tertiary
+            :icon "circle"
+            :onclick "${eww_scripts}/network.sh wifi-toggle &"
+            :class { wifi-killed ? "enabled" : ""}
+        )
+        (button-groups-icon :icon "cyclone" :onclick "" :class "enabled")
     )
 )
 

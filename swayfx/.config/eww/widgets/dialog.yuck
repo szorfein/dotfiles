@@ -11,7 +11,7 @@
                  :space-evenly false
                  :spacing 8
                  (sicon :icon icon)
-                 (box :class "headline-small"
+                 (box :class "headline-small dialog-title"
                       :style "line-height: 32pt"
                       title
                 )
@@ -23,7 +23,7 @@
 
 ; sicon: simple icon
 (defwidget sicon [icon]
-    (box :halign "center" 
+    (box :halign "center"
          :class "sicon"
          icon
     )

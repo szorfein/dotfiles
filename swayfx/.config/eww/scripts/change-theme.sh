@@ -52,14 +52,19 @@ install_theme "$SELECTED"
 
 notify "$SELECTED installed, reloading...."
 
-if eww ping -c "$EWW_CONFIG" > /dev/null; then
-    echo "reloading eww..."
-    eww reload -c "$EWW_CONFIG" &
-    wait
-fi
+while :; do
+    if eww ping -c "$EWW_CONFIG" > /dev/null; then
+        echo "Reloading eww..."
+        eww reload -c "$EWW_CONFIG" &
+        wait
+        break
+    fi
+    sleep 1
+done
 
 # Reload dunst
-dunstctl reload "$HOME/.config/dunst/dunstrc" 2> /dev/null || true
+#dunstctl reload "$HOME/.config/dunst/dunstrc" 2> /dev/null || true
+dunstctl reload
 
 # Reload sway
 swaymsg reload

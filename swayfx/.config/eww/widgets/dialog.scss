@@ -12,6 +12,10 @@
   //max-width: dpi(560px);
 }
 
+.dialog-title {
+  padding: 0 dpi(32px);
+}
+
 .dialog-tint {
   background-color: rgba($surface-tint, 0.06);
   background-size: 100% 100%;

@@ -21,10 +21,13 @@
 
 ##
 
-![Abyss screenshot 1](https://github.com/szorfein/unix-portfolio/raw/master/Abyss/clean.jpg)
-![Abyss screenshot 2](https://github.com/szorfein/unix-portfolio/raw/master/Abyss/full.jpg)
+![Vibe screenshot 1](https://github.com/szorfein/unix-portfolio/raw/master/Vibe/clean.jpg)
+![Vibe screenshot 2](https://github.com/szorfein/unix-portfolio/raw/master/Vibe/full.jpg)
 
-## Setup
+## Setup of the "Vibe" theme
+
+All configs follow (or try) the last [material 3](https://m3.material.io/)
+recommendations on colors contrast (WGAG AAA), widgets, font, buttons, etc...
 
 - **WM:** [SwayFX](https://github.com/WillPower3309/swayfx)
 - **OS:** [Void](https://voidlinux.org/) or [Gentoo](https://www.gentoo.org/)
@@ -34,26 +37,32 @@
   [Oh My Zsh](https://github.com/ohmyzsh/ohmyzsh),
   [Starship](https://starship.rs),
   ([plugins](https://github.com/szorfein/dotfiles/blob/main/zsh/.config/reaver/zsh.yml))
-- **Widgets:** [Eww](https://elkowar.github.io/eww/eww.html)
+- **Widgets:** [Eww](https://elkowar.github.io/eww/eww.html).
 - **App Launcher:**
-  [otter-launcher](https://github.com/kuokuo123/otter-launcher),
-  [fsel](https://github.com/Mjoyufull/fsel) and last
-  [fzf](https://github.com/junegunn/fzf)
+  [otter-launcher](https://github.com/kuokuo123/otter-launcher) which use
+  [fsel](https://github.com/Mjoyufull/fsel) and
+  [fzf](https://github.com/junegunn/fzf).
 - **Notification:** [Dunst](https://github.com/dunst-project/dunst) with
   `dunstify`
-- **Term:** Kitty or [Foot](https://codeberg.org/dnkl/foot)
-- **Editor:** [Neovim](https://neovim.io) with
-  [Lazy.nvim](https://lazy.folke.io/),
-  ([plugins](https://github.com/szorfein/dotfiles/tree/main/neovim/.config/nvim/lua/plugins))
-  and [Tmux](https://github.com/tmux/tmux/wiki)
-  ([plugins](https://github.com/szorfein/dotfiles/blob/main/tmux/.config/reaver/tmux.yml))
-- **Sound:** [ALSA](https://www.alsa-project.org)
+- **Terminal:** [Kitty](https://sw.kovidgoyal.net/kitty/) (better ally on theme
+  change) or [Foot](https://codeberg.org/dnkl/foot)
+- **Editor:**
+  [Neovim](https://github.com/szorfein/dotfiles/tree/main/neovim/.config/nvim)
+  with [Lazy.nvim](https://lazy.folke.io/), few
+  [Emacs shortcuts](https://github.com/szorfein/dotfiles/blob/vibe/neovim/.config/nvim/lua/configs/commands.lua)
+  :) and
+  [Tmux](https://github.com/szorfein/dotfiles/blob/main/tmux/.config/reaver/tmux.yml)
+- **Music/Sound:** [ALSA](https://www.alsa-project.org),
+  [Playerctl](https://github.com/altdesktop/playerctl) with just
+  [MPV](https://mpv.io/) as music, videos player (very light in CPU consumption
+  compared to mpd), maybe add [Kew](https://codeberg.org/ravachol/kew) in a next
+  release...
 - **File Manager:** [Yazi](https://github.com/sxyazi/yazi) +
   [Thunar](https://docs.xfce.org/xfce/thunar/start).
 - **Fonts:** [Iosevka](https://www.nerdfonts.com/) +
   [Material Icons Outlined](https://github.com/google/material-design-icons) +
-  [Skull and Void](https://www.dafont.com/fr/skull-and-void.font) +
-  [IcoMoon](https://icomoon.io/)
+  [IcoMoon](https://icomoon.io/) +
+  [Lovely Bubbles](https://www.dafont.com/lovely-bubbles.font)
 - **Dotfiles manager and theme switcher:**
   [GNU/Stow](https://www.gnu.org/software/stow/)
 - **Dotfiles dependencies manager:**
@@ -74,8 +83,8 @@ Look for Awesome wm? see the
 
 ## Previous setup
 
-![Jinx screenshot](https://github.com/szorfein/unix-portfolio/raw/master/Jinx/jinx-dialog.jpg)
-![Jinx screenshot](https://github.com/szorfein/unix-portfolio/raw/master/Jinx/full.jpg)
+![Abyss screenshot 1](https://github.com/szorfein/unix-portfolio/raw/master/Abyss/clean.jpg)
+![Abyss screenshot 2](https://github.com/szorfein/unix-portfolio/raw/master/Abyss/full.jpg)
 
 ### Other screenshots
 
@@ -83,9 +92,16 @@ More screenshots of previous themes are available at
 [portfolio](https://github.com/szorfein/unix-portfolio) or
 [reddit.com](https://redlib.perennialte.ch/user/szorfein/submitted).
 
-> [!NOTE] My Reddit account was totally blocked and no way to recover it
-> (access/email/password problem). Accessing reddit.com with TOR start to be too
-> annoying so I just can't login/post anymore on the platform...
+> [!NOTE] My Reddit account was totally blocked and no way to recover it. Also
+> experiment banned with no message, no excuse just for use TOR and/or some VPN
+> so yes, Reddit is death for me...
+> [#1](https://www.reddit.com/r/TheoryOfReddit/comments/15t1oeh/using_a_vpn_andor_having_an_alt_results_in/)
+> [#2](https://pixelscan.net/blog/how-to-get-around-a-reddit-permanent-ban/)
+> [#3](https://dicloak.com/blog-detail/reddit-ip-ban-explained-2025-why-reddit-blocked-your-ip-and-how-to-fix-it).
+
+Already joined [Lemmy](https://lemmy.ml/u/Szorfein) as alternative, if people
+know another (cool/privacy) social network or site where share dotfiles, please,
+report an [issue](https://github.com/szorfein/dotfiles/issues).
 
 #### Support
 

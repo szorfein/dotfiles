@@ -38,7 +38,7 @@ basename() {
 purge_stow() {
     echo "Uninstalling all dots from $DOTFILES..."
 
-    for dir in .x awesome-m2 awesome-m3 doomemacs foot mpd ncmpcpp neovim swayfx tmux wezterm zsh; do
+    for dir in .x awesome-m2 awesome-m3 doomemacs foot kitty mpd ncmpcpp neovim swayfx tmux wezterm zsh; do
         [ -d "$DOTFILES/$dir" ] || continue
         del_stow "$DOTFILES" "$dir"
     done
@@ -79,17 +79,18 @@ purge_stow() {
 usage() {
     echo "Arguments:"
     printf "\t%s\t\t\t\t%s\n" "--purge" "Remove all older stow links, use it after each updates as first argument"
-    printf "\t%s\t%s\n" "-s | --swayfx theme-name" "Add swayfx with a theme-name (only 'holy' for now)"
-    printf "\t%s\t%s\n" "-a3 | --awesome-m3 theme-name" "Add awesome-wm with a theme-name ('focus', 'connected', 'lines', 'miami', 'morpho', 'sci')"
     printf "\t%s\t%s\n" "-a2 | --awesome-m2 theme-name" "Add awesome-wm with old theme-name ('anonymous', 'astronaut', 'lines', 'machine', 'miami', 'morpho', 'worker') (! not sure all themes works !)"
+    printf "\t%s\t%s\n" "-a3 | --awesome-m3 theme-name" "Add awesome-wm with a theme-name ('focus', 'connected', 'lines', 'miami', 'morpho', 'sci')"
     printf "\t%s\t\t%s\n" "-d | --doomemacs" "Add dots for doomemacs"
-    printf "\t%s\t\t\t%s\n" "-nv | --neovim" "Add dots for neovim"
-    printf "\t%s\t\t\t%s\n" "-n | --ncmpcpp" "Add dots for ncmpcpp"
-    printf "\t%s\t\t\t%s\n" "-t | --tmux" "Add dots for tmux"
     printf "\t%s\t\t\t%s\n" "-f | --foot" "Add dots for the terminal foot"
+    printf "\t%s\t\t\t%s\n" "-k | --kitty" "Add dots for the terminal kitty"
+    printf "\t%s\t\t\t%s\n" "-n | --ncmpcpp" "Add dots for ncmpcpp"
+    printf "\t%s\t\t\t%s\n" "-nv | --neovim" "Add dots for neovim"
+    printf "\t%s\t%s\n" "-s | --swayfx theme-name" "Add swayfx with a theme-name ('holy', 'jinx,', 'abyss', 'vibe')"
+    printf "\t%s\t\t\t%s\n" "-t | --tmux" "Add dots for tmux"
     printf "\t%s\t\t\t%s\n" "-z | --zsh" "Add dots for zsh"
     printf "\nExamples:\n"
-    echo 'stow.sh --purge --swayfx holy --tmux --neovim'
+    echo 'stow.sh --purge --tmux --neovim --swayfx holy'
     echo 'stow.sh -p -s holy -t -nv'
 }
 
@@ -103,8 +104,6 @@ while [ "$#" -gt 0 ]; do
     -s | --swayfx)
         mkdir -p "$HOME/.config/sway"
         mkdir -p "$HOME/.config/eww/styles"
-        mkdir -p "$HOME/.tmux"
-        mkdir -p "$HOME/.config/foot"
         mkdir -p "$HOME/.config/dunst/dunstrc.d"
         mkdir -p "$HOME/.config/yazi"
         mkdir -p "$HOME/.config/fsel"
@@ -143,13 +142,20 @@ while [ "$#" -gt 0 ]; do
         add_stow "$DOTFILES" "foot"
         shift
         ;;
+    -k | --kitty)
+        mkdir -p "$HOME/.config/kitty"
+        mkdir -p "$HOME/.config/fontconfig"
+        add_stow "$DOTFILES" "kitty"
+        shift
+        ;;
     -nv | --neovim)
-        mkdir -p "$HOME/.config/nvim/lua"
+        mkdir -p "$HOME/.config/nvim/lua/ui"
         mkdir -p "$HOME/documents/notes"
         add_stow "$DOTFILES" "neovim"
         shift
         ;;
     -t | --tmux)
+        mkdir -p "$HOME/.tmux"
         add_stow "$DOTFILES" "tmux"
         shift
         ;;

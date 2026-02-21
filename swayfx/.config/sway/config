@@ -33,7 +33,7 @@ set $eww $HOME/.config/eww
 
 # window corner radius in px,
 # material use 12 on card (outlined)
-corner_radius 12
+corner_radius 16
 
 # Window background blur
 blur off
@@ -111,7 +111,7 @@ client.background         "$bg"
 
 # Gaps
 gaps outer 0
-gaps inner 16
+gaps inner 26
 
 # Misc
 show_marks no

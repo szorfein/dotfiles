@@ -51,12 +51,14 @@ trim_sed() {
 
 convert_img() {
     IMGNAME="${1##*/}"
+
     if [ ! -f "/tmp/$IMGNAME" ]; then
         #echo "creating image..."
         touch "/tmp/$IMGNAME"
         # Run in background
         magick "$1" -resize 840x480^ -gravity Center -extent 840x480 "/tmp/$IMGNAME" > /dev/null 2>&1 &
     fi
+
     printf '%s\n' "/tmp/$IMGNAME"
 }
 
@@ -102,10 +104,22 @@ exec playerctl --follow metadata --format $':{{status}}\t:{{position}}\t:{{mpris
         arturl="$(mpd_cover)"
     fi
 
+    if [ "$name" = "mpv" ]; then
+        music_path=$(ps x | grep mpris.so | grep -o '[^ ]\+$' | head -1)
+        cover=$(find "$music_path" -regex ".*\.\(jpg\|png\|jpeg\)")
+        arturl="$cover"
+        #echo "$arturl"
+    fi
+
     DEFAULT_IMG=$(grep theme-bg ~/.config/sway/theme | awk '{print $3}' | sed s:~/images/::)
 
     # default
-    [ -z "$arturl" ] && arturl="/tmp/$DEFAULT_IMG"
+    if [ -z "$arturl" ]; then
+        arturl="/tmp/$DEFAULT_IMG"
+    elif [ ! -f "$arturl" ]; then
+        arturl="/tmp/$DEFAULT_IMG"
+    fi
+
     [ -z "$title" ] && title="N/A"
     [ -z "$artist" ] && artist="N/A"
 
@@ -120,34 +134,31 @@ exec playerctl --follow metadata --format $':{{status}}\t:{{position}}\t:{{mpris
     if expr "$name" : '.*[brave]' > /dev/null; then
         if [ "$playing" = "Playing" ]; then
             web=true
-            #echo "we enable web (brave) $web"
         fi
     fi
 
-    if expr "$name" : '.*[firefox]' > /dev/null; then
-        if [ "$playing" = "Playing" ]; then
-            web=true
-            #echo "we enable web $web"
-        fi
+    if [ "$name" = "firefox" ] && [ "$playing" = "Playing" ]; then
+        web=true
+    else
+        web=false
     fi
 
     if expr "$name" : '.*[mpd]$' > /dev/null; then
         if [ "$playing" = "Playing" ]; then
             mpd=true
-            #echo "we enable mpd $mpd"
         fi
     fi
 
-    if expr "$name" : '.*[mpv]$' > /dev/null; then
-        if [ "$playing" = "Playing" ]; then
-            mpv=true
-            #echo "we enable mpv $mpv"
-        fi
+    if [ "$name" = "mpv" ] && [ "$playing" = "Playing" ]; then
+        mpv=true
+    else
+        mpv=false
     fi
 
     #    cat << EOF
     JSON="{\"playing\":\"$playing\",\"position\":\"$position\",\"length\":\"$length\",\"name\":\"$name\",\"artist\":\"$artist\",\"title\":\"$title\",\"arturl\":\"$arturl\",\"hpos\":\"$hpos\",\"hlen\":\"$hlen\",\"web-active\":$web,\"mpd-active\":$mpd,\"mpv-active\":$mpv}"
     #EOF
-    echo "$JSON"
+    #echo "$name"
+    #echo "$JSON"
     eww update media="$JSON"
 done
