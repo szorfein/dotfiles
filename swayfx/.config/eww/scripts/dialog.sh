@@ -17,21 +17,29 @@ search_screen() {
     done
 }
 
+close_all_dialogs() {
+    poutputs=$(wlr-randr --json | jq -r '.[] | select(.enabled == true) | .name')
+    s=0
+    eww update "$1"-visible=false # better to call this before the loop
+    for mon in $poutputs; do
+        eww close "dl-$1-$mon" || true
+        s=$((s + 1))
+    done
+}
+
 open() {
     search_screen
-    eww open "$1" --id dl-"$1-$focus" --arg monitor="$screen" &
+    eww open "$1" --id "dl-$1-$focus" --arg monitor="$screen" &
     wait
     eww update "$1"-visible=true
 }
 
 close() {
-    eww close dl-"$1-$focus" &
-    wait
-    eww update "$1"-visible=false
+    close_all_dialogs "$1"
 }
 
 test_dialog() {
-    is_visible=$(eww get "$1"-visible)
+    is_visible=$(eww get "$1-visible")
     if $is_visible; then
         return 0
     else

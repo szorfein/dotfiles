@@ -19,8 +19,10 @@ set $left h
 set $down j
 set $up k
 set $right l
-# Your preferred terminal emulator
-set $term footclient
+
+# terminal configs
+include ~/.config/sway/globals
+
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
@@ -31,7 +33,7 @@ set $eww $HOME/.config/eww
 
 # window corner radius in px,
 # material use 12 on card (outlined)
-corner_radius 12
+corner_radius 16
 
 # Window background blur
 blur off
@@ -53,7 +55,21 @@ dim_inactive_colors.unfocused $shadowFF
 dim_inactive_colors.urgent $errorFF
 
 # Move minimized windows into Scratchpad (enable|disable)
+# Swayfx recommend this disable
 scratchpad_minimize disable
+
+# Clients
+for_window [app_id="footclient"] blur enable
+for_window [app_id="kitty"] blur enable
+
+# On eww windows
+layer_effects "gtk-layer-shell" {
+    blur enable;
+#   blur_xray enable; this make client bellow dialog window invisible
+    blur_ignore_transparent enable;
+    shadows enable;
+    corner_radius 20;
+}
 
 # Titlebar and border configuration
 # SwayFX BUG: https://github.com/WillPower3309/swayfx/issues/201
@@ -74,7 +90,9 @@ for_window [app_id=".*"] border normal $border_width
 for_window {
     [app_id="^brave-browser$"] border pixel 0
     [app_id="librewolf"] border pixel 0
+    [app_id="foot"] border pixel 0
     [app_id="footclient"] border pixel 0
+    [app_id="kitty"] border pixel 0
     [app_id="mpv"] border pixel 0
     [app_id="imv"] border pixel 0
     [app_id="org.pwmt.zathura"] border pixel 0
@@ -89,12 +107,11 @@ client.focused_inactive   "$fg"   "$bg"   "$fg"   "$outline" "$fg"$transparency_
 client.unfocused          "$outline" "$bg" "$fg" "$outline" "$outline"$transparency_hex
 client.urgent             "$error" "$bg" "$fg" "$error" "$error"$transparency_hex
 client.placeholder        "$bg" "$outline" "$fg" "$bg" "$outline"$transparency_hex
-
 client.background         "$bg"
 
 # Gaps
 gaps outer 0
-gaps inner 16
+gaps inner 26
 
 # Misc
 show_marks no
@@ -162,6 +179,8 @@ include ~/.config/sway/rules
 
     # Start your launcher
     bindsym $mod+d exec $menu
+    # When all fail, wmenu is here
+    bindsym $mod+p exec wmenu-run
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.

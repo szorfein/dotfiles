@@ -72,14 +72,16 @@ return {
 
         -- servers
         local servers = {
+            --astro = require('lsp.astro')(on_attach),
             bashls = require('lsp.bashls')(on_attach),
+            biome = require('lsp.biome')(on_attach),
             codebook = require('lsp.codebook')(on_attach),
             cssls = require('lsp.cssls')(on_attach),
             lua_ls = require('lsp.luals')(on_attach),
             --harper_ls = require('lsp.harper_ls')(on_attach),
             rubocop = require('lsp.rubocop')(on_attach),
-            --eslint = {},
-            ts_ls = require('lsp.tsls')(on_attach),
+            tailwindcss = require('lsp.tailwindcss')(on_attach),
+            --ts_ls = require('lsp.tsls')(on_attach),
             --standardrb = require('lsp.standardrb')(on_attach),
         }
         local server_names = {}

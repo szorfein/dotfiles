@@ -23,6 +23,14 @@
     )
 )
 
+(defwidget button-groups-icon-error [icon onclick ?class]
+    (box :class "button-groups-icon-error"
+     :height "${56 * round(get_env("EWW_SCALE"), 0)}"
+     :width "${56 * round(get_env("EWW_SCALE"), 0)}"
+        (button :onclick "${onclick}" :class "${class}" icon)
+    )
+)
+
 (defwidget button-groups-icon-text [icon text onclick ?class]
     (box :class "button-groups-icon-text"
          :height "${56 * round(get_env("EWW_SCALE"), 0)}"

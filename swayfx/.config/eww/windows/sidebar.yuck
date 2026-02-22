@@ -122,14 +122,14 @@
             (box :visible "${sidebar-page-index == '3'}"
                 :class "container"
                 (box :orientation "vertical"
-                    :spacing "${round(16 * get_env("EWW_SCALE"), 0)}"
+                    :spacing "${round(26 * get_env("EWW_SCALE"), 0)}"
                     :space-evenly false
-                    (button-groups-wifi)
-                    (button-groups-networks)
                     (network-stats)
+                    (group-daemons)
+                    (group-apps)
+                    (box "")
+                    ;(last-events)
                     (network-ssids)
-                    (button-groups-multimedia)
-                    (last-events)
                 )
             )
         )
@@ -146,7 +146,7 @@
                         :anchor "right bottom")
     :stacking "bg"
     :exclusive false
-    (box :halign "fill" :valign "fill" 
+    (box :halign "fill" :valign "fill"
         ;:style "background-color: #f00"
         (eventbox :onhover "${eww_scripts}/toggle-sidebar.sh --open ${monitor} ${screen} &")
     )
@@ -179,7 +179,7 @@
 
 (defwidget tab-indicator [index ?icon monitor]
     (eventbox
-        
+
         :cursor "hand2"
         (box :class "my-super-tab-icon ${sidebar-page-index == index ? "active" : "inactive"}"
             :valign "center"

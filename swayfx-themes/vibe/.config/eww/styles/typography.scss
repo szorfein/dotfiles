@@ -1,0 +1,92 @@
+// material(3) use 2 fonts mainly and name it:
+// md.ref.typeface.brand
+// md.ref.typeface.plain
+
+$brand: 'Lovely Bubbles';
+//$brand: 'Meow in Love Demo';
+//$brand: 'Valentine';
+//$brand: 'Starborn';
+//$brand: 'Cheerful Holiday';
+//$brand: 'Lovely Cute';
+//$brand: 'Tropical Love';
+//$brand: 'Lovey Doveys';
+//$brand: 'Starbim';
+//$brand: 'Cosmic Love';
+$plain: 'Iosevka Nerd Font';
+
+// Time
+.display-large {
+  font-family: $brand;
+  font-size: dpi(38pt);
+  letter-spacing: dpi(-0.25pt);
+  font-weight: 400;
+}
+
+// Day
+.display-small {
+  font-family: $brand;
+  font-size: dpi(40pt);
+  letter-spacing: 0;
+  font-weight: 400;
+}
+
+// Logout
+.headline-small {
+  font-family: $brand;
+  font-size: dpi(36pt);
+  font-weight: 400;
+  letter-spacing: 0;
+  color: $on-surface;
+}
+
+// https://m3.material.io/styles/typography/type-scale-tokens
+
+.title-small {
+  font-family: $plain;
+  font-size: dpi(14pt);
+  font-weight: 500;
+  min-height: dpi(20pt);
+  letter-spacing: dpi(0.1pt);
+}
+
+.body-large {
+  font-family: $plain;
+  font-weight: 400;
+  font-size: dpi(16pt);
+  letter-spacing: dpi(0.5pt);
+}
+
+.body-medium {
+  font-family: $plain;
+  font-weight: 400;
+  font-size: dpi(14pt);
+  min-height: dpi(20pt);
+  // also named font-tracking
+  letter-spacing: dpi(0.25pt);
+  color: $on-surface-variant;
+}
+
+.body-small {
+  font-family: $plain;
+  font-weight: 400;
+  font-size: dpi(12pt);
+  min-height: dpi(16pt);
+  // also named font-tracking
+  letter-spacing: dpi(0.4pt);
+}
+
+.label-large {
+  font-family: $plain;
+  font-size: dpi(14pt);
+  font-weight: 500;
+  letter-spacing: dpi(0.1pt);
+  min-height: dpi(20px);
+}
+
+.label-medium {
+  font-family: $plain;
+  font-size: dpi(12pt);
+  font-weight: 500;
+  letter-spacing: dpi(0.5pt);
+  min-height: dpi(16px);
+}

@@ -129,7 +129,7 @@
         (box
             :class "label-large"
             :halign "start"
-            "MPD Playlists"
+            "MPV Playlists"
         )
         (scroll :vscroll false :hscroll true
             (box :orientation "horizontal"
@@ -138,8 +138,7 @@
                 (for pl in mpd-playlists
                     (chip-filter
                         :text "${pl}"
-                        :onclick "${eww_scripts}/mpc.sh load ${pl} &"
-                ;eww update playlist-focus=${pl} && mpc clear && mpc load ${pl} && mpc play"
+                        :onclick "${eww_scripts}/player.sh \"${pl}\" &"
                         :class { playlist-focus == "${pl}" ? "enabled" : "disabled" }
                     )
                 )
@@ -157,7 +156,8 @@
 
 ; all vars
 (defvar playlist-name "")
-(defvar mpd-playlists "[]")
+; Add your favorite directory here (from ~/musics)
+(defvar mpd-playlists '["Lofi-Rock", "LoFi", "Clubbing"]')
 (defvar playlist-focus "")
 
 ; it look the best way to start media.sh (in perf)

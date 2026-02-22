@@ -3,7 +3,7 @@
 set -o errexit
 
 IMGS_DIR="$HOME/images/"
-IMGS="holy.jpg jinx.png abyss.png"
+IMGS="holy.jpg jinx.png abyss.png vibe.png"
 
 convert_img() {
     img="$1"
