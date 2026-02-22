@@ -1,4 +1,4 @@
-<h2 align="center">x Custom Dotfiles x</h2>
+<h2 align="center">x Dotfiles of my last WM x</h2>
 <p align="center">
 <a href="https://github.com/szorfein/dotfiles/stargazers">
   <img src="https://img.shields.io/github/stars/szorfein/dotfiles?color=%23BB9AF7&labelColor=%231A1B26&style=for-the-badge">
@@ -24,10 +24,7 @@
 ![Vibe screenshot 1](https://github.com/szorfein/unix-portfolio/raw/master/Vibe/clean.jpg)
 ![Vibe screenshot 2](https://github.com/szorfein/unix-portfolio/raw/master/Vibe/full.jpg)
 
-## Setup of the "Vibe" theme
-
-All configs follow (or try) the last [material 3](https://m3.material.io/)
-recommendations on colors contrast (WGAG AAA), widgets, font, buttons, etc...
+## Setup of SwayFX: "Vibe"
 
 - **WM:** [SwayFX](https://github.com/WillPower3309/swayfx)
 - **OS:** [Void](https://voidlinux.org/) or [Gentoo](https://www.gentoo.org/)
@@ -44,14 +41,16 @@ recommendations on colors contrast (WGAG AAA), widgets, font, buttons, etc...
   [fzf](https://github.com/junegunn/fzf).
 - **Notification:** [Dunst](https://github.com/dunst-project/dunst) with
   `dunstify`
-- **Terminal:** [Kitty](https://sw.kovidgoyal.net/kitty/) (better ally on theme
-  change) or [Foot](https://codeberg.org/dnkl/foot)
+- **Terminal:** [Kitty](https://sw.kovidgoyal.net/kitty/) (best ally to reload
+  the color theme)
 - **Editor:**
   [Neovim](https://github.com/szorfein/dotfiles/tree/main/neovim/.config/nvim)
   with [Lazy.nvim](https://lazy.folke.io/), few
   [Emacs shortcuts](https://github.com/szorfein/dotfiles/blob/vibe/neovim/.config/nvim/lua/configs/commands.lua)
   :) and
   [Tmux](https://github.com/szorfein/dotfiles/blob/main/tmux/.config/reaver/tmux.yml)
+- **Lock Screen:** Custom version of the
+  [Swaylock fancy](https://github.com/Big-B/swaylock-fancy) script
 - **Music/Sound:** [ALSA](https://www.alsa-project.org),
   [Playerctl](https://github.com/altdesktop/playerctl) with just
   [MPV](https://mpv.io/) as music, videos player (very light in CPU consumption
@@ -92,16 +91,23 @@ More screenshots of previous themes are available at
 [portfolio](https://github.com/szorfein/unix-portfolio) or
 [reddit.com](https://redlib.perennialte.ch/user/szorfein/submitted).
 
-> [!NOTE] My Reddit account was totally blocked and no way to recover it. Also
-> experiment banned with no message, no excuse just for use TOR and/or some VPN
-> so yes, Reddit is death for me...
+> [!NOTE] My Reddit account was totally blocked and no way to recover it.
 > [#1](https://www.reddit.com/r/TheoryOfReddit/comments/15t1oeh/using_a_vpn_andor_having_an_alt_results_in/)
 > [#2](https://pixelscan.net/blog/how-to-get-around-a-reddit-permanent-ban/)
 > [#3](https://dicloak.com/blog-detail/reddit-ip-ban-explained-2025-why-reddit-blocked-your-ip-and-how-to-fix-it).
 
-Already joined [Lemmy](https://lemmy.ml/u/Szorfein) as alternative, if people
-know another (cool/privacy) social network or site where share dotfiles, please,
-report an [issue](https://github.com/szorfein/dotfiles/issues).
+Already joined [Lemmy](https://lemmy.ml/u/Szorfein) as alternative. if people
+know another (cool/privacy) social network or site where share dotfiles, please
+share the information.
+
+### Contributing
+
+- **Bugs**: This desktop has only one consistent user (me) and there could be
+  bugs I haven't run into yet. If you have the time to report a bug, please do
+  so in the repository's [issues](https://github.com/szorfein/dotfiles/issues).
+- **Pull requests**: Pull requests for bug fixes or README improvements are
+  welcome. However, before starting work on a pull request for a new feature,
+  please open an issue so we can discuss about it first.
 
 #### Support
 
