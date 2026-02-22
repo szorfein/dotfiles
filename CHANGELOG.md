@@ -1,10 +1,13 @@
 # Changelog
 
-## v5.9.3
+## v5.20.0 - Vibe - Feb. 22 2026
 
-### Kitty
+New Purple colorscheme. Add the terminal Kitty, enhance Neovim capability and
+few bugs fixes.
 
-Add configs for the terminal kitty, user should choose between Foot or Kitty.
+### New Terminal Kitty
+
+Add configs for the terminal Kitty, user should choose between Foot or Kitty.
 The both can't works together. Kitty has few advantage compared to foot:
 
 - Reload colors when changing themes, on Foot we should kill the server which
@@ -13,12 +16,18 @@ The both can't works together. Kitty has few advantage compared to foot:
 
 So install one:
 
-    stow -D foot && stow kitty
-    stow -D kitty && stow foot
+    stow -D foot -t ~ && stow kitty -t ~
+    stow -D kitty -t ~ && stow foot -t ~
 
 ### SwayFX
 
 - Add a little blur effect on foot and eww dialog windows and shadows.
+- The change theme dialog window use Eww scroll.
+- Rewrite of the Network sidebar (the last), I work on the new 11 buttons on the
+  next release...
+- The playlist use mpv now instead of mpd/mpc. Add your favorite musics in
+  ~/.config/eww/widgets/music.yuck (at the bottom)
+- Better changetheme with Kitty
 
 ### Zsh
 
@@ -27,16 +36,19 @@ So install one:
 
 ### Neovim
 
-- Better works with Astro.js/Vue.js, (eslint_d, prettier, astro-ls, tailwind)
+- Each theme now use their own Heirline config bar.
+- Better works with Astro.js/Vue.js, (eslint_d, prettier, astro-ls, tailwind,
+  biome)
 - Conform, Neovim-lsp: add javascript/typescript with prettier and
   typescript-language-server.
 - Enable fold on Markdown files, use zc (close), zo (open).
-- Load last session (per directory) with `<leader>ss` or `<leader>sl`.
+- Load last session (per directory) with `<leader>ss` (Session Select) or
+  `<leader>sl` (Session Last).
 - Use mini-autopairs and disable windwp/nvim-autopairs.
 - Add mfussenegger/nvim-lint, which add more linter combined with neovim-lsp.
-- Start fast: disable some providers (node,python,perl,ruby) and disable the
-  search of updates from Lazy.nvim at start. Things to run a `:Lazy sync` time
-  to time.
+- Start speed improved: disable some providers (node,python,perl,ruby) and
+  disable the search of updates from Lazy.nvim at start. Things to run a
+  `:Lazy sync` time to time.
 
 ### Fixes
 
