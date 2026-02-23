@@ -1,12 +1,12 @@
 
 
-#   ██████╗ ████████╗████████╗███████╗██████╗                         
-#  ██╔═══██╗╚══██╔══╝╚══██╔══╝██╔════╝██╔══██╗                        
-#  ██║   ██║   ██║      ██║   █████╗  ██████╔╝█████╗                  
-#  ██║   ██║   ██║      ██║   ██╔══╝  ██╔══██╗╚════╝                  
-#  ╚██████╔╝   ██║      ██║   ███████╗██║  ██║                        
-#   ╚═════╝    ╚═╝      ╚═╝   ╚══════╝╚═╝  ╚═╝                        
-#  ██╗      █████╗ ██╗   ██╗███╗   ██╗ ██████╗██╗  ██╗███████╗██████╗ 
+#   ██████╗ ████████╗████████╗███████╗██████╗
+#  ██╔═══██╗╚══██╔══╝╚══██╔══╝██╔════╝██╔══██╗
+#  ██║   ██║   ██║      ██║   █████╗  ██████╔╝█████╗
+#  ██║   ██║   ██║      ██║   ██╔══╝  ██╔══██╗╚════╝
+#  ╚██████╔╝   ██║      ██║   ███████╗██║  ██║
+#   ╚═════╝    ╚═╝      ╚═╝   ╚══════╝╚═╝  ╚═╝
+#  ██╗      █████╗ ██╗   ██╗███╗   ██╗ ██████╗██╗  ██╗███████╗██████╗
 #  ██║     ██╔══██╗██║   ██║████╗  ██║██╔════╝██║  ██║██╔════╝██╔══██╗
 #  ██║     ███████║██║   ██║██╔██╗ ██║██║     ███████║█████╗  ██████╔╝
 #  ██║     ██╔══██║██║   ██║██║╚██╗██║██║     ██╔══██║██╔══╝  ██╔══██╗
@@ -60,7 +60,7 @@ hint_color = "\u001B[90m"
 [overlay]
 overlay_cmd = ""
 overlay_trimmed_lines = 0 # remove trailing lines from overlay_cmd output
-overlay_height = 0 # set overlay size; 0 to be auto; 1 is one line, 2 two lines, etc; kitty & sixel image size can be determined automatically; others should be set mannually; try modify this whenever you meet issues releated to image height
+overlay_height = 0 # set overlay size; 0 to be auto; 1 is one line, 2 two lines, etc; kitty & sixel image size can be determined automatically; others should be set manually; try modify this whenever you meet issues related to image height
 move_overlay_right = 2 # move the overlay layer around for theming
 move_overlay_down = 2
 # modules are defined as followed
@@ -77,9 +77,9 @@ url_encode = true # should be true when calling webpages; this ensures special c
 [[modules]]
 description = "check programs with fsel"
 prefix = "app"
-#cmd = "fsel -vv -d -r" # The -d option not available in fsel 1.1.0
-cmd = "~/bin/fsel -vv -r"
+cmd = "fsel -vv -d -r"
 
+# TODO: add the lock screen
 [[modules]]
 description = "power menu (fzf)"
 prefix = "po"
@@ -96,7 +96,8 @@ esac fi }
 power $(echo -e 'reboot\nshutdown\nlogout\nsuspend\nhibernate' | fzf --padding 1,2 --info-command 'printf " power menu ($FZF_POS/$FZF_TOTAL_COUNT)"' --cycle --pointer " ▌" --color "bg+:-1,pointer:1,info:8,separator:8,scrollbar:0" --prompt '  ' | tail -1)
 """
 
-
+# Search music/video from invidious, e.g:
+# iv nana soul vibe
 [[modules]]
 description = "search invidious (youtube fork)"
 prefix = "iv"
@@ -105,27 +106,37 @@ with_argument = true
 url_encode = true
 #unbind_proc = true
 
+# Translate a text
+# te Salut tout le monde
 [[modules]]
-description = "translate text in english"
+description = "Translate a text to english"
 prefix = "te"
 cmd = "xdg-open 'https://lingva.ml/auto/en/{}'"
 with_argument = true
 url_encode = true
 #unbind_proc = true
 
+# Search a file to edit (with Neovim) by extension, you can type:
+# fe md
+# fe astro
+# fe txt
 [[modules]]
-description = "open files (fzf)"
-prefix = "fo"
+description = "find files by extension (fsel)"
+prefix = "fe"
 cmd = """
-find $HOME -type f -not -path '*/.cache/*' 2>/dev/null | fzf --padding 1,3 --info-command 'printf " files ($FZF_POS/$FZF_TOTAL_COUNT)"' --cycle --gutter ' ' --pointer ' ▌' --color 'bg+:-1,pointer:1,info:8,separator:8,scrollbar:0' --prompt '  ' | setsid -f xargs -r -I [] xdg-open '[]'
+find $HOME -type f -name "*.{}" -not -path '*/.cache/*' -print 2>/dev/null | ~/bin/fsel --dmenu -d | setsid -f xargs -r -I [] kitty -1 -e nvim '[]'
 """
+with_argument = true
+unbind_proc = false
 
+# Search a directory to open with yazi, e.g:
+# yz [Enter] images
+# yz [Enter] .dotfiles
 [[modules]]
 description = "open dirs (yazi)"
 prefix = "yz"
 cmd = """
-find $HOME -type d -not \\( -name .cache -prune -o -name .bundle -prune -o -name node_modules -prune -o -name .npm -prune -o -name .git -prune -o -name BraveSoftware -prune -o -name .cargo -prune -o -name .gem -prune \\) -print 2>/dev/null | fzf --padding 1,3 --info-command 'printf " directories ($FZF_POS/$FZF_TOTAL_COUNT)"' --cycle --pointer ' ▌' --color 'bg+:-1,pointer:1,info:8,separator:8,scrollbar:0' --prompt '  ' | xargs -r -I [] setsid -f footclient -e yazi '[]'
-# Fsel v1.0.1 is very slow to load
-#find $HOME -type d -not \\( -name .cache -prune -o -name .bundle -prune -o -name node_modules -prune -o -name .npm -prune -o -name .git -prune -o -name BraveSoftware -prune -o -name .cargo -prune -o -name .gem -prune \\) -print 2>/dev/null | ~/bin/fsel -s --dmenu | xargs -r -I [] setsid -f footclient -e yazi '[]'
+# With fsel
+find $HOME -type d -not \\( -name .cache -prune -o -name .bundle -prune -o -name node_modules -prune -o -name .npm -prune -o -name .git -prune -o -name BraveSoftware -prune -o -name .cargo -prune -o -name .gem -prune \\) -print 2>/dev/null | ~/bin/fsel --dmenu | setsid -f xargs -r -I [] kitty -1 -e yazi '[]'
 """
-#unbind_proc = true
+unbind_proc = false

@@ -8,9 +8,8 @@ set -o errexit
 REPOS="fsel otter-launcher"
 WORKDIR="$HOME/tmp/rust"
 
-# Void linux don't compile yet the 2.0 because rustc version < 1.90
-# https://voidlinux.org/packages/?arch=x86_64&q=rust (1.88.0 today)
-FSEL_V="1.1.0"
+# Void linux finally compile the 3.0.0, rustc v1.93.0
+FSEL_V="3.0.0"
 FSEL_ZIP="https://github.com/Mjoyufull/fsel/archive/refs/tags/$FSEL_V.zip"
 OTTE_V="main"
 OTTE_ZIP="https://github.com/kuokuo123/otter-launcher/archive/refs/heads/$OTTE_V.zip"
@@ -26,6 +25,7 @@ compile_it() {
     cd "$1"-"$2"
     cargo build --release
     cp target/release/"$1" "$HOME/bin/"
+    echo "Success with $1"
 }
 
 build_fsel() {
