@@ -538,6 +538,9 @@ hide_inline_image_message = false # Hide "[Inline Image Preview]" text
 EOF
 
 cat <<EOF > "$workdir/.config/yazi/theme.toml"
+[app]
+overall = { bg = "$surface_container_low" }
+
 [mgr]
 hovered = { fg = "$on_primary", bg = "$primary" }
 border_style = { fg = "black" }
@@ -546,6 +549,11 @@ border_style = { fg = "black" }
 [mode]
 normal_main = { bg = "$primary_container", fg = "$on_primary_container" }
 normal_alt = { bg = "$secondary_container", fg = "$on_secondary_container" }
+
+[indicator]
+parent  = { bg = "$secondary_container", fg = "$on_secondary_container" }
+current = { bg = "$tertiary_container", fg = "$on_tertiary_container" }
+padding = { open = "", close = "" }
 
 # Status bar
 [status]

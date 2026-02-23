@@ -46,8 +46,8 @@
 - **Editor:**
   [Neovim](https://github.com/szorfein/dotfiles/tree/main/neovim/.config/nvim)
   with [Lazy.nvim](https://lazy.folke.io/), few
-  [Emacs shortcuts](https://github.com/szorfein/dotfiles/blob/vibe/neovim/.config/nvim/lua/configs/commands.lua)
-  :) and
+  [Emacs shortcuts](https://github.com/szorfein/dotfiles/blob/main/neovim/.config/nvim/lua/configs/commands.lua)
+  and
   [Tmux](https://github.com/szorfein/dotfiles/blob/main/tmux/.config/reaver/tmux.yml)
 - **Lock Screen:** Custom version of the
   [Swaylock fancy](https://github.com/Big-B/swaylock-fancy) script
@@ -100,7 +100,7 @@ Already joined [Lemmy](https://lemmy.ml/u/Szorfein) as alternative. if people
 know another (cool/privacy) social network or site where share dotfiles, please
 share the information.
 
-### Contributing
+## Contributing
 
 - **Bugs**: This desktop has only one consistent user (me) and there could be
   bugs I haven't run into yet. If you have the time to report a bug, please do

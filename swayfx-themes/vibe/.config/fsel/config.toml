@@ -1,5 +1,5 @@
 cursor = "█"
-terminal_launcher = "footclient -e"
+terminal_launcher = "kitty -e"
 # Don't wrap around at list ends (false = wrap around)
 hard_stop = false
 rounded_borders = true
