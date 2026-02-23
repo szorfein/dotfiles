@@ -1,5 +1,10 @@
 # Changelog
 
+### otter-launcher
+
+- Update fsel to the version 3.0.0.
+- Make config for foot and kitty.
+
 ## v5.20.0 - Vibe - Feb. 22 2026
 
 New Purple colorscheme. Add the terminal Kitty, enhance Neovim capability and
