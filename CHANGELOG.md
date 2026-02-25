@@ -1,9 +1,13 @@
 # Changelog
 
-### otter-launcher
+### Otter-launcher
 
 - Update fsel to the version 3.0.0.
 - Make config for foot and kitty.
+
+### Neovim
+
+- Move Neovim configurations at https://github.com/szorfein/neow
 
 ## v5.20.0 - Vibe - Feb. 22 2026
 
