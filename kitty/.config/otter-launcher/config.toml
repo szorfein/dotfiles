@@ -77,7 +77,7 @@ url_encode = true # should be true when calling webpages; this ensures special c
 [[modules]]
 description = "check programs with fsel"
 prefix = "app"
-cmd = "fsel -vv -d -r"
+cmd = "~/bin/fsel -vv -d -r"
 
 # TODO: add the lock screen
 [[modules]]
@@ -121,10 +121,12 @@ url_encode = true
 # fe astro
 # fe txt
 [[modules]]
-description = "find files by extension (fsel)"
+description = "find files by extension to edit"
 prefix = "fe"
 cmd = """
-find $HOME -type f -name "*.{}" -not -path '*/.cache/*' -print 2>/dev/null | ~/bin/fsel --dmenu -d | setsid -f xargs -r -I [] kitty -1 -e nvim '[]'
+#find $HOME -name "*.{}" -not -path '*/.cache/*' 2>/dev/null | ~/bin/fsel --dmenu | setsid -f xargs -r -I [] kitty -1 -e nvim '[]'
+# fzf load faster on very very large list
+find $HOME -type f -name "*.{}" -not -path '*/.cache/*' -not -path '*/.python/*' 2>/dev/null | fzf --padding 1,3 --info-command 'printf " files ($FZF_POS/$FZF_TOTAL_COUNT)"' --cycle --gutter ' ' --pointer ' ▌' --color 'bg+:-1,pointer:1,info:8,separator:8,scrollbar:0' --prompt '  ' | setsid -f xargs -r -I [] kitty -1 -e nvim '[]'
 """
 with_argument = true
 unbind_proc = false

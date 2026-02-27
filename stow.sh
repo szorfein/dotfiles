@@ -80,18 +80,15 @@ usage() {
     echo "Arguments:"
     printf "\t%s\t\t\t\t%s\n" "--purge" "Remove all older stow links, use it after each updates as first argument"
     printf "\t%s\t%s\n" "-a2 | --awesome-m2 theme-name" "Add awesome-wm with old theme-name ('anonymous', 'astronaut', 'lines', 'machine', 'miami', 'morpho', 'worker') (! not sure all themes works !)"
-    printf "\t%s\t%s\n" "-a3 | --awesome-m3 theme-name" "Add awesome-wm with a theme-name ('focus', 'connected', 'lines', 'miami', 'morpho', 'sci')"
-    printf "\t%s\t\t%s\n" "-d | --doomemacs" "Add dots for doomemacs"
     printf "\t%s\t\t\t%s\n" "-f | --foot" "Add dots for the terminal foot"
     printf "\t%s\t\t\t%s\n" "-k | --kitty" "Add dots for the terminal kitty"
-    printf "\t%s\t\t\t%s\n" "-n | --ncmpcpp" "Add dots for ncmpcpp"
     printf "\t%s\t\t\t%s\n" "-nv | --neovim" "Add dots for neovim"
     printf "\t%s\t%s\n" "-s | --swayfx theme-name" "Add swayfx with a theme-name ('holy', 'jinx,', 'abyss', 'vibe')"
     printf "\t%s\t\t\t%s\n" "-t | --tmux" "Add dots for tmux"
     printf "\t%s\t\t\t%s\n" "-z | --zsh" "Add dots for zsh"
     printf "\nExamples:\n"
     echo 'stow.sh --purge --tmux --neovim --swayfx holy'
-    echo 'stow.sh -p -s holy -t -nv'
+    echo 'stow.sh -p -t -nv -s holy'
 }
 
 # Argument are called in order of the command line
@@ -110,15 +107,6 @@ while [ "$#" -gt 0 ]; do
         mkdir -p "$HOME/.config/foot"
         add_stow "$DOTFILES" "swayfx"
         add_stow "$DOTFILES/swayfx-themes" "$2"
-        shift
-        shift
-        ;;
-    -a3 | --awesome-m3)
-        mkdir -p "$HOME/.config/awesome/theme"
-        mkdir -p "$HOME/.tmux"
-        add_stow "$DOTFILES" ".x"
-        add_stow "$DOTFILES" "awesome-m3"
-        add_stow "$DOTFILES/awesome-m3-themes" "$2"
         shift
         shift
         ;;
