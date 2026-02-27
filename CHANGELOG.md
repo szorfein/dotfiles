@@ -1,5 +1,7 @@
 # Changelog
 
+## 5.22.1
+
 ### Otter-launcher
 
 - Update fsel to the version 3.0.0.
@@ -8,6 +10,10 @@
 ### Neovim
 
 - Move Neovim configurations at https://github.com/szorfein/neow
+
+### Fix
+
+- Use fzf instead of fsel to search file (load faster)
 
 ## v5.20.0 - Vibe - Feb. 22 2026
 
