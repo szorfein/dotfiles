@@ -1,4 +1,4 @@
-<h1 align="center">x Dotfiles of my last WM x</h1>
+<h1 align="center">x Dotfiles x</h1>
 
 <div align="center">
 
@@ -31,9 +31,9 @@
 ## ✨ Features
 
 - **WM:** [SwayFX](https://github.com/WillPower3309/swayfx)
-- **OS:** [Void](https://voidlinux.org/) or [Gentoo](https://www.gentoo.org/)
-  with [Musl](https://musl.libc.org/), installed with
-  [Getch](https://github.com/szorfein/getch)
+- **OS:** [Void](https://voidlinux.org/) | [Gentoo](https://www.gentoo.org/)
+  with [Musl](https://musl.libc.org/) installed with
+  [Getch](https://github.com/szorfein/getch) else [Arch](https://archlinux.org/)
 - **Shell:** [Zsh](https://www.zsh.org/) with
   [Oh My Zsh](https://github.com/ohmyzsh/ohmyzsh),
   [Starship](https://starship.rs),
@@ -45,8 +45,8 @@
   [fzf](https://github.com/junegunn/fzf).
 - **Notification:** [Dunst](https://github.com/dunst-project/dunst) with
   `dunstify`
-- **Terminal:** [Kitty](https://sw.kovidgoyal.net/kitty/) (best ally to reload
-  the color theme)
+- **Terminal:** [Kitty](https://sw.kovidgoyal.net/kitty/) (best ally on
+  change-theme)
 - **Editor:** [Neow](https://github.com/szorfein/neow) and
   [Tmux](https://github.com/szorfein/dotfiles/blob/main/tmux/.config/reaver/tmux.yml)
 - **Lock Screen:** Custom version of the
@@ -77,15 +77,15 @@ Automatic installation available with `chezmoi`
 [chezmoi-ansible](https://github.com/szorfein/dots/tree/ansible) (only Arch
 Linux, Gentoo, Void Linux).
 
-Look for Awesome wm? see the
-[focus](https://github.com/szorfein/dotfiles/tree/focus-2.0.0) branch.
+Look for Awesome wm? see the last
+[Focus](https://github.com/szorfein/dotfiles-awesome-m3) theme.
 
 ## ⚡Previous theme
 
 ![Abyss screenshot 1](https://github.com/szorfein/unix-portfolio/raw/master/Abyss/clean.jpg)
 ![Abyss screenshot 2](https://github.com/szorfein/unix-portfolio/raw/master/Abyss/full.jpg)
 
-### Other screenshots
+## 📦 Other screenshots
 
 More screenshots of previous themes are available at
 [portfolio](https://github.com/szorfein/unix-portfolio) or
@@ -100,7 +100,7 @@ Already joined [Lemmy](https://lemmy.ml/u/Szorfein) as alternative. if people
 know another (cool/privacy) social network or site where share dotfiles, please
 share the information.
 
-## 📦 Contributing
+## 🙌 Contributing
 
 - **Bugs**: This desktop has only one consistent user (me) and there could be
   bugs I haven't run into yet. If you have the time to report a bug, please do
