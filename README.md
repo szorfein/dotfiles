@@ -1,5 +1,7 @@
-<h2 align="center">x Dotfiles of my last WM x</h2>
-<p align="center">
+<h1 align="center">x Dotfiles x</h1>
+
+<div align="center">
+
 <a href="https://github.com/szorfein/dotfiles/stargazers">
   <img src="https://img.shields.io/github/stars/szorfein/dotfiles?color=%23BB9AF7&labelColor=%231A1B26&style=for-the-badge">
 </a>
@@ -8,28 +10,30 @@
 </a>
 <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/szorfein/dotfiles?color=73daca&labelColor=%231A1B26&style=for-the-badge" />
 <img alt="" src="https://img.shields.io/github/repo-size/szorfein/dotfiles?color=%230969da&labelColor=%231A1B26&style=for-the-badge&label=Repo" />
-</p>
+
+</div>
 
 ###
 
 <p align="center">
-<a href="https://github.com/szorfein/dotfiles#setup">Setup</a>
-| <a href="https://github.com/szorfein/dotfiles/wiki">Wiki</a>
-| <a href="https://github.com/szorfein/dotfiles/wiki/Keybinds">Keybinds</a>
-| <a href="https://github.com/szorfein/dotfiles/wiki/Gallery">Gallery</a>
+  <a href="https://github.com/szorfein/dotfiles#features">Setup</a>
+| <a href="https://github.com/szorfein/dotfiles#installation">Install</a>
+| <a href="https://github.com/szorfein/dotfiles/wiki/Keybinds" target="_blank">Keybinds</a>
+| <a href="https://github.com/szorfein/unix-portfolio#unix-portfolio" target="_blank">Gallery</a>
+| <a href="https://github.com/szorfein/dotfiles#support">Support</a>
 </p>
 
-##
+###
 
 ![Vibe screenshot 1](https://github.com/szorfein/unix-portfolio/raw/master/Vibe/clean.jpg)
 ![Vibe screenshot 2](https://github.com/szorfein/unix-portfolio/raw/master/Vibe/full.jpg)
 
-## Setup of SwayFX: "Vibe"
+## ✨ Features
 
 - **WM:** [SwayFX](https://github.com/WillPower3309/swayfx)
-- **OS:** [Void](https://voidlinux.org/) or [Gentoo](https://www.gentoo.org/)
-  with [Musl](https://musl.libc.org/), installed with
-  [Getch](https://github.com/szorfein/getch)
+- **OS:** [Void](https://voidlinux.org/) | [Gentoo](https://www.gentoo.org/)
+  with [Musl](https://musl.libc.org/) installed with
+  [Getch](https://github.com/szorfein/getch) else [Arch](https://archlinux.org/)
 - **Shell:** [Zsh](https://www.zsh.org/) with
   [Oh My Zsh](https://github.com/ohmyzsh/ohmyzsh),
   [Starship](https://starship.rs),
@@ -41,13 +45,9 @@
   [fzf](https://github.com/junegunn/fzf).
 - **Notification:** [Dunst](https://github.com/dunst-project/dunst) with
   `dunstify`
-- **Terminal:** [Kitty](https://sw.kovidgoyal.net/kitty/) (best ally to reload
-  the color theme)
-- **Editor:**
-  [Neovim](https://github.com/szorfein/dotfiles/tree/main/neovim/.config/nvim)
-  with [Lazy.nvim](https://lazy.folke.io/), few
-  [Emacs shortcuts](https://github.com/szorfein/dotfiles/blob/main/neovim/.config/nvim/lua/configs/commands.lua)
-  and
+- **Terminal:** [Kitty](https://sw.kovidgoyal.net/kitty/) (best ally on
+  change-theme)
+- **Editor:** [Neow](https://github.com/szorfein/neow) and
   [Tmux](https://github.com/szorfein/dotfiles/blob/main/tmux/.config/reaver/tmux.yml)
 - **Lock Screen:** Custom version of the
   [Swaylock fancy](https://github.com/Big-B/swaylock-fancy) script
@@ -67,7 +67,7 @@
 - **Dotfiles dependencies manager:**
   [Reaver](https://github.com/szorfein/reaver)
 
-## Installation
+## 🧰 Installation
 
 Follow the guide
 [here](https://github.com/szorfein/dotfiles/tree/main/swayfx/.config/sway)
@@ -77,15 +77,15 @@ Automatic installation available with `chezmoi`
 [chezmoi-ansible](https://github.com/szorfein/dots/tree/ansible) (only Arch
 Linux, Gentoo, Void Linux).
 
-Look for Awesome wm? see the
-[focus](https://github.com/szorfein/dotfiles/tree/focus-2.0.0) branch.
+Look for Awesome wm? see the last
+[Focus](https://github.com/szorfein/dotfiles-awesome-m3) theme.
 
-## Previous setup
+## ⚡Previous theme
 
 ![Abyss screenshot 1](https://github.com/szorfein/unix-portfolio/raw/master/Abyss/clean.jpg)
 ![Abyss screenshot 2](https://github.com/szorfein/unix-portfolio/raw/master/Abyss/full.jpg)
 
-### Other screenshots
+## 📦 Other screenshots
 
 More screenshots of previous themes are available at
 [portfolio](https://github.com/szorfein/unix-portfolio) or
@@ -100,7 +100,7 @@ Already joined [Lemmy](https://lemmy.ml/u/Szorfein) as alternative. if people
 know another (cool/privacy) social network or site where share dotfiles, please
 share the information.
 
-## Contributing
+## 🙌 Contributing
 
 - **Bugs**: This desktop has only one consistent user (me) and there could be
   bugs I haven't run into yet. If you have the time to report a bug, please do
@@ -109,10 +109,10 @@ share the information.
   welcome. However, before starting work on a pull request for a new feature,
   please open an issue so we can discuss about it first.
 
-#### Support
+## 💝 Support
 
 Any support will be greatly appreciated, star the repo, share my screenshots,
 coffee, donation, thanks you!
 
-[![Donate](https://img.shields.io/badge/don-liberapay-1ba9a4)](https://liberapay.com/szorfein)
-[![Donate](https://img.shields.io/badge/don-patreon-ab69f4)](https://www.patreon.com/szorfein)
+[![liberapay](https://img.shields.io/badge/Liberapay-f6c915?style=for-the-badge&logo=liberapay&logoColor=black)](https://liberapay.com/szorfein)
+[![patreon](https://img.shields.io/badge/Patreon-F96854?style=for-the-badge&logo=patreon&logoColor=white)](https://www.patreon.com/szorfein)

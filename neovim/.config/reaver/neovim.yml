@@ -1,0 +1,8 @@
+---
+# All the 3 days
+things:
+  - name: neow
+    url: https://github.com/szorfein/neow
+    git: true
+    dest_dir: .config/nvim
+time: 259200
