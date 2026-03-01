@@ -1,10 +1,11 @@
 # Changelog
 
-## 5.22.1
+## 5.23.1
 
 ### Otter-launcher
 
-- Update fsel to the version 3.0.0.
+- Fsel is finally useful and super fast by using pre generate list with 'find'.
+- Update Fsel to the version 3.0.0.
 - Make config for foot and kitty.
 
 ### Neovim
