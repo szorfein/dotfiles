@@ -35,6 +35,9 @@ pidof -q eww || { eww daemon & }
 # Used to convert default images used by EWW
 ~/.config/eww/daemons/convert-imgs.sh > /dev/null 2>&1 &
 
+# Pre-generated list
+~/.config/eww/daemons/generate-list.sh > /dev/null 2>&1 &
+
 # Open bar for multiscreen or not
 sleep 3
 

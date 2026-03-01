@@ -111,27 +111,20 @@ with_argument = true
 url_encode = true
 #unbind_proc = true
 
-# Search a file to edit (with Neovim) by extension, you can type:
-# fe md
-# fe astro
-# fe txt
+# Find File to edit (with Neovim)
+# ff
 [[modules]]
-description = "find files by extension (fsel)"
-prefix = "fe"
+description = "find files to edit"
+prefix = "ff"
 cmd = """
-#find $HOME -type f -name "*.{}" -not -path '*/.cache/*' -print 2>/dev/null | ~/bin/fsel --dmenu -d | setsid -f xargs -r -I [] footclient -e nvim '[]'
-# fzf load faster on very very large list
-find $HOME -type f -name "*.{}" -not -path '*/.cache/*' -not -path '*/.python/*' 2>/dev/null | fzf --padding 1,3 --info-command 'printf " files ($FZF_POS/$FZF_TOTAL_COUNT)"' --cycle --gutter ' ' --pointer ' ▌' --color 'bg+:-1,pointer:1,info:8,separator:8,scrollbar:0' --prompt '  ' | setsid -f xargs -r -I [] footclient -e nvim '[]'
-
+cat /tmp/list-files | ~/bin/fsel --dmenu | setsid -f xargs -r -I [] footclient -e nvim '[]'
 """
-with_argument = true
 unbind_proc = false
 
 [[modules]]
 description = "open dirs (yazi)"
 prefix = "yz"
 cmd = """
-# With Fsel
-find $HOME -type d -not \\( -name .cache -prune -o -name .bundle -prune -o -name node_modules -prune -o -name .npm -prune -o -name .git -prune -o -name BraveSoftware -prune -o -name .cargo -prune -o -name .gem -prune \\) -print 2>/dev/null | ~/bin/fsel -s --dmenu | xargs -r -I [] setsid -f footclient -e yazi '[]'
+cat /tmp/list-directory | ~/bin/fsel --dmenu | setsid -f xargs -r -I [] footclient -e yazi '[]'
 """
-#unbind_proc = true
+unbind_proc = false
