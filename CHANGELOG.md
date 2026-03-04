@@ -10,7 +10,7 @@
 
 ### Neovim
 
-- Move Neovim configurations at https://github.com/szorfein/neow
+- Move Neovim configurations at [VIe](https://github.com/szorfein/vie)
 
 ### Fix
 

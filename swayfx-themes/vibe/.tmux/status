@@ -14,13 +14,13 @@ set -g status-justify centre
 # --------------
 
 # Configure plugin mode_indicator
-set -g @mode_indicator_prefix_prompt "   "
+set -g @mode_indicator_prefix_prompt "  "
 set -g @mode_indicator_prefix_mode_style fg=#ffb695
-set -g @mode_indicator_copy_prompt "   "
+set -g @mode_indicator_copy_prompt "  "
 set -g @mode_indicator_copy_mode_style fg=green
-set -g @mode_indicator_sync_prompt "   "
+set -g @mode_indicator_sync_prompt "  "
 set -g @mode_indicator_sync_mode_style fg=#ffb4ab
-set -g @mode_indicator_empty_prompt "   "
+set -g @mode_indicator_empty_prompt "  "
 set -g @mode_indicator_empty_mode_style fg=#e8e0eb
 
 # --------------
@@ -41,16 +41,18 @@ set -g @rose_pine_bar_bg_disable 'on' # Disables background color, for transpare
 set -g @rose_pine_bar_bg_disabled_color_option 'default'
 set -g @rose_pine_disable_active_window_menu 'on' # Disables the menu that shows the active window on the left
 #set -g @rose_pine_only_windows 'on' # Leaves only the window module, for max focus and space
+
 set -g @rose_pine_show_current_program 'off' # Forces tmux to show the current running program as window name
-set -g @rose_pine_window_status_separator "   "
-set -g @rose_pine_prioritize_windows 'off' # Disables the right side functionality in a certain window count / terminal width
 set -g @rose_pine_show_pane_directory 'on' # Forces tmux to show the current directory as window name
 
-set -g @rose_pine_session_icon '󱚥 ' # Changes the default icon to the left of the session name
-set -g @rose_pine_window_separator ' ' # Replaces the default `:` between the window number and name
+#set -g @rose_pine_window_separator ' ' # Replaces the default `:` between the window number and name
+#set -g @rose_pine_window_separator ' ' # This impact on show_pane_directory if change...
 
+set -g @rose_pine_window_status_separator "   "
+set -g @rose_pine_session_icon ' 󱚥 ' # Changes the default icon to the left of the session name
+
+set -g @rose_pine_prioritize_windows 'off' # Disables the right side functionality in a certain window count / terminal width
 set -g @rose_pine_status_right_prepend_section '#{tmux_mode_indicator}'
-# Make the status line pretty and add some modules
 
 # --------------
 # Load plugins

@@ -47,7 +47,7 @@
   `dunstify`
 - **Terminal:** [Kitty](https://sw.kovidgoyal.net/kitty/) (best ally on
   change-theme)
-- **Editor:** [Neow](https://github.com/szorfein/neow) and
+- **Editor:** [VIe](https://github.com/szorfein/vie) and
   [Tmux](https://github.com/szorfein/dotfiles/blob/main/tmux/.config/reaver/tmux.yml)
 - **Lock Screen:** Custom version of the
   [Swaylock fancy](https://github.com/Big-B/swaylock-fancy) script
