@@ -26,7 +26,6 @@ pidof -q eww || { eww daemon & }
 # Other daemons
 ~/.config/eww/scripts/daemons/sway-workspaces.rb > /dev/null 2>&1 &
 ~/.config/eww/daemons/media.sh > /dev/null 2>&1 &
-~/.config/eww/daemons/light.sh > /dev/null 2>&1 &
 #~/.config/eww/daemons/volume.sh > /dev/null 2>&1 &
 #~/.config/eww/daemons/playlists.sh > /dev/null 2>&1 &
 ~/.config/eww/daemons/iwd.sh > /dev/null 2>&1 &

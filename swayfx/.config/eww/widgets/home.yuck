@@ -195,11 +195,15 @@
 
 (defwidget home-slides []
     (box :orientation "vertical"
-        ;:style "border: 1px solid #f00"
         :class "home-slide"
         :valign "center"
-        ;:space-evenly false
-        (slider-horizontal-m3 :min 1 :max 100 :value "${brightness}" :icon "brightness_2" :label "Brightness" :onchange "light -S {}")
+        (slider-horizontal-m3 :min 1
+                              :max 100
+                              :value "${brightness}"
+                              :icon "brightness_2"
+                              :label "Brightness"
+                              :onchange "~/.config/eww/scripts/brightness.sh {}"
+        )
     )
 )
 
@@ -223,7 +227,7 @@
      :run-while { sidebar-page-index == 1 }
      `~/.config/eww/scripts/date-json.sh day`
 )
-(defpoll month :interval "60m" 
+(defpoll month :interval "60m"
      :run-while { sidebar-page-index == 1 }
      :initial "{}"
      `~/.config/eww/scripts/date-json.sh month`
@@ -233,4 +237,4 @@
      :initial "{}"
      `~/.config/eww/scripts/geoloc.sh`
 )
-(defvar brightness "0")
+(deflisten brightness `~/brightness.sh`)

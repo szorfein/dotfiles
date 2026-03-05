@@ -1,6 +1,8 @@
 # Changelog
 
-## 5.23.1
+## 5.24.1
+
+Change dependency "light" with [brightnessctl](https://github.com/Hummer12007/brightnessctl)
 
 ### Otter-launcher
 
