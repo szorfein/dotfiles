@@ -6,7 +6,7 @@ The whole (or many) stack has changed because Wayland instead of X.
 [migration_guide](https://github.com/swaywm/sway/wiki/i3-Migration-Guide)
 
 - SwayFX - wm and compositor
-- Foot - replace xSt
+- Kitty - replace xSt
 - Imv - images viewer, replace Feh
 - Eww - widgets (instead of the Awesome WM API)
 - Swaybg
@@ -16,7 +16,7 @@ The whole (or many) stack has changed because Wayland instead of X.
 - Playerctl, mpd-mpris or mpdris2, mpv-mpris, mpc (needed to manage mpd
   playlists)
 - ruby
-- Light, inotify-tools
+- Brightnessctl, inotify-tools
 - Thunar (optional)
 - Neovim (optional) - replace Doom Emacs and vim
 - Pinta (optional), replace Gimp.
@@ -28,17 +28,17 @@ The whole (or many) stack has changed because Wayland instead of X.
     sudo pacman -Syy \
     inotify-tools imv jq mpd mpc wl-clipboard curl stow \
     bc imagemagick rubygems grim swaybg wmenu rust \
-    playerctl mpd-mpris mpv-mpris foot foot-terminfo \
+    playerctl mpd-mpris mpv-mpris kitty \
     git meson scdoc wayland-protocols cairo gdk-pixbuf2 \
     libevdev libinput json-c libgudev wayland libxcb \
-    libxkbcommon pango pcre2 wlroots0.19 seatd \
+    libxkbcommon pango pcre2 wlroots0.19 seatd brightnessctl \
     libdrm libglvnd pixman glslang meson ninja \
     cargo libdbusmenu-gtk3 gtk3 gtk-layer-shell \
     iwd thunar dunst chafa swayidle swaylock wlr-randr
 
 From AUR:
 
-    scenefx swayfx eww light
+    scenefx swayfx eww
 
 Before installing `eww` from AUR, you need to import GPG key:
 
@@ -61,11 +61,11 @@ first. e.g for intel:
 
 SwayFX dependencies
 
-    sudo xbps-install -S swayfx imv light jq wl-clipboard \
-    inotify-tools mpd mpc foot curl chafa cargo \
-    stow playerctl mpv-mpris mpDris2 eww ruby swaybg grim \
+    sudo xbps-install -S swayfx imv jq wl-clipboard \
+    inotify-tools mpd mpc kitty curl chafa cargo \
+    stow playerctl mpv-mpris eww ruby swaybg grim \
     wmenu iwd Thunar seatd turnstile dunst ImageMagick \
-    swayidle swaylock wlr-randr
+    swayidle swaylock wlr-randr brightnessctl
 
 Required step as root
 
@@ -83,13 +83,13 @@ You will need to activate [GURU](https://github.com/gentoo/guru)
 
 And install packages:
 
-    sudo emerge -av light net-misc/curl stow
-    xfce-base/thunar media-gfx/chafa \
-    inotify-tools swaybg imv app-misc/jq \
+    sudo emerge -av net-misc/curl stow
+    xfce-base/thunar media-gfx/chafa app-misc/brightnessctl \
+    inotify-tools swaybg imv \
     app-misc/jq media-sound/mpd media-sound/mpc \
-    dev-lang/ruby playerctl wl-clipboard gui-apps/foot \
+    dev-lang/ruby playerctl wl-clipboard x11-terms/kitty \
     gui-apps/grim gui-apps/wmenu net-wireless/iwd \
-    gui-apps/eww gui-wm/swayfx mpv-mpris mpd-mpris \
+    gui-apps/eww gui-wm/swayfx mpv-mpris \
     acct-group/seat seatd media-gfx/imagemagick \
     gui-apps/swaylock gui-apps/swayidle gui-apps/wlr-randr
 
@@ -207,7 +207,7 @@ Using my script `stow.sh`, you'll need to install at least: `swayfx` and a
 If you want a more complete command, you can also add `foot`, `zsh`, `neovim`,
 `tmux`.
 
-    ~/.dotfiles/stow.sh --purge --foot --neovim --tmux --zsh --swayfx abyss
+    ~/.dotfiles/stow.sh --purge --kitty --neovim --tmux --zsh --swayfx abyss
 
 Use `--purge` if need to reinstall files as first argument. The theme you want
 as last argument `--swayfx abyss`.
@@ -215,7 +215,7 @@ as last argument `--swayfx abyss`.
 I recommend you to create an alias or function (for Fish) here for easy
 reinstall, e.g for Zsh:
 
-    alias reinstall_dots="~/.dotfiles/stow.sh --purge --foot --neovim --tmux --zsh --swayfx abyss"
+    alias reinstall_dots="~/.dotfiles/stow.sh --purge --kitty --neovim --tmux --zsh --swayfx abyss"
 
 ## Download other dependencies
 
@@ -245,7 +245,7 @@ Update the repo using `git pull`
 
 Reinstall files with `stow.sh --purge` to reinstall new dotfiles.
 
-    ~/.dotfiles/stow.sh --purge --foot --swayfx holy
+    ~/.dotfiles/stow.sh --purge --kitty --swayfx holy
     reaver
 
 ### Create your own theme
