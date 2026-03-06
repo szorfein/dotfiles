@@ -237,4 +237,4 @@
      :initial "{}"
      `~/.config/eww/scripts/geoloc.sh`
 )
-(deflisten brightness `~/brightness.sh`)
+(deflisten brightness `~/.config/eww/daemons/brightness.sh`)

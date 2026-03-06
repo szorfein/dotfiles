@@ -159,16 +159,6 @@
     )
 )
 
-(defwidget music-volume []
-    (slider-horizontal-m3
-        :value "${audio["volume"]}"
-        :max 100
-        :icon ""
-        :label "Volume"
-        :onchange "${eww_scripts}/alsa-audio.sh set {} &"
-    )
-)
-
 (defwidget last-events []
     (box :orientation "vertical"
          :space-evenly false
@@ -192,10 +182,6 @@
 )
 
 ; all vars
-(defpoll audio :interval "5m"
-               :initial "{}"
-               `~/.config/eww/scripts/alsa-audio.sh`
-)
 (defvar wifi-killed false)
 (defvar wifi-killed-icon "airplanemode_inactive")
 ; (defpoll tor-icon :interval "15m" :run-while {sidebar-page-index == "3"} "tor icon")

@@ -1,8 +1,11 @@
 # Changelog
 
-## 5.24.1
+## 5.25.1
 
-Change dependency "light" with [brightnessctl](https://github.com/Hummer12007/brightnessctl)
+- Change dependency "light" with
+  [brightnessctl](https://github.com/Hummer12007/brightnessctl).
+- Upgrade sound server to Pipewire + ALSA and all scripts related, add
+  [wiremix](https://github.com/tsowell/wiremix).
 
 ### Otter-launcher
 

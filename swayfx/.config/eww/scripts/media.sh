@@ -11,7 +11,7 @@ set -o errexit
 WEB="brave"
 if command -v librewolf >/dev/null ; then
     WEB="firefox"
-elif command -v firefox >/dev/null ; then 
+elif command -v firefox >/dev/null ; then
     WEB="firefox"
 fi
 
