@@ -106,9 +106,10 @@ exec playerctl --follow metadata --format $':{{status}}\t:{{position}}\t:{{mpris
 
     if [ "$name" = "mpv" ]; then
         music_path=$(ps x | grep mpris.so | grep -o '[^ ]\+$' | head -1)
-        cover=$(find "$music_path" -regex ".*\.\(jpg\|png\|jpeg\)")
-        arturl="$cover"
-        #echo "$arturl"
+        # sometime inaccurate...
+        if find=$(find "$music_path" -type f -regex ".*\.\(jpg\|png\|jpeg\)" -print | fzf -f "$title" | head -1); then
+            arturl="$find"
+        fi
     fi
 
     DEFAULT_IMG=$(grep theme-bg ~/.config/sway/theme | awk '{print $3}' | sed s:~/images/::)

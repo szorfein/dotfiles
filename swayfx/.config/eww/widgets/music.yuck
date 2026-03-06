@@ -154,7 +154,22 @@
     )
 )
 
+(defwidget music-volume []
+    (slider-horizontal-m3
+        :value "${audio["volume"]}"
+        :max 100
+        :icon ""
+        :label "Volume"
+        :onchange "${eww_scripts}/alsa-audio.sh set {} &"
+    )
+)
+
 ; all vars
+(defpoll audio :interval "5m"
+               :initial "{}"
+               `~/.config/eww/scripts/alsa-audio.sh`
+)
+
 (defvar playlist-name "")
 ; Add your favorite directory here (from ~/musics)
 (defvar mpd-playlists '["Lofi-Rock", "LoFi", "Clubbing"]')
