@@ -6,12 +6,12 @@
     :width "${56 * round(get_env("EWW_SCALE"), 0)}"
     (button :onclick "${onclick}" :class "${class}" :tooltip "${tooltip}" icon)))
 
-(defwidget button-groups-icon-secondary [icon onclick ?class]
+(defwidget button-groups-icon-secondary [icon onclick ?class ?onrightclick ?tooltip]
   (box
     :class "button-groups-icon-secondary"
     :height "${56 * round(get_env("EWW_SCALE"), 0)}"
     :width "${56 * round(get_env("EWW_SCALE"), 0)}"
-    (button :onclick "${onclick}" :class "${class}" icon)))
+    (button :tooltip "${tooltip}" :onclick "${onclick}" :class "${class}" :onrightclick "${onrightclick}" icon)))
 
 (defwidget button-groups-icon-tertiary [icon onclick ?class ?onrightclick]
   (box

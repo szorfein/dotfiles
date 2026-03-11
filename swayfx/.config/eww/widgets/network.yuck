@@ -71,18 +71,6 @@
           (list-item-normal :text {ssid.connected ? "[A] ${ssid.name}" : "${ssid.name}"}))))))
 ;(box :class "label-medium" "${ssid.name}")
 
-(defwidget button-groups-wifi []
-  (box
-    :space-evenly false
-    :spacing "${round(8 * get_env("EWW_SCALE"), 0)}"
-    :halign "center"
-    :hexpand false
-    (button-groups-icon-secondary
-      :icon wifi-killed-icon
-      :onclick "${eww_scripts}/network.sh wifi-toggle &"
-      :class { wifi-killed ? "enabled" : ""}
-      (button-groups-icon :icon "system_update_alt" :onclick "" :tooltip "update system"))))
-
 
 ; TODO: buttons app for go into musics, wallpapers and books - next release
 (defwidget button-groups-musics []
@@ -93,11 +81,15 @@
     :hexpand false
     (button-groups-icon-secondary
       :icon "library_music"
-      :onclick "${eww_scripts}/network.sh wifi-toggle &"
-      :class { wifi-killed ? "enabled" : ""})
+      :onclick "${eww_scripts}/go-musics.sh just_go"
+      :onrightclick "${eww_scripts}/go-musics.sh kill_it"
+      :class { go_musics == "true" ? "enabled" : ""})
 
     (button-groups-icon-tertiary
-      :icon "wallpaper" :onclick "kitty -1 --class wallpaper -e yazi ~/images &" :class "enabled")
+      :icon "wallpaper"
+      :onclick "${eww_scripts}/go-walls.sh just_go"
+      :onrightclick "${eww_scripts}/go-walls.sh kill_it"
+      :class { go_wall == "true" ? "enabled" : ""})
 
     (button-groups-icon-error
       :icon "library_books" :onclick "" :class "enabled")))
@@ -133,7 +125,7 @@
     (button-groups-icon-tertiary
       :icon "circle"
       :onclick "${eww_scripts}/network.sh wifi-toggle &"
-      :class { wifi-killed ? "enabled" : ""})
+      :class "enabled")
 
     (button-groups-icon :icon "cyclone" :onclick "" :class "enabled")))
 
@@ -147,8 +139,8 @@
     (button-groups-icon-text-tertiary
       :icon "${tor.icon}"
       :text "Tor"
-      :onclick "${eww_scripts}/../daemons/tor.sh toggle &"
-      :onrightclick "${eww_scripts}/../daemons/tor.sh stop &"
+      :onclick "${eww_daemons}/tor.sh toggle &"
+      :onrightclick "${eww_daemons}/tor.sh stop &"
       :class { tor.status == "true" ? "enabled" : ""})
     (button-groups-icon-text-secondary :icon "wifi" :text "openwrt" :onclick "")))
 
@@ -159,7 +151,11 @@
     :space-evenly false
     :spacing "${round(8 * get_env("EWW_SCALE"), 0)}"
     :halign "center"
-    (button-groups-icon-tertiary :icon "videocam" :onclick "")
+    (button-groups-icon-secondary
+      :icon "${rfkill.icon}"
+      ;:tooltip "Airplane mode ${rfkill.card}"
+      :class { rfkill.status == "blocked" ? "enabled" : ""}
+      :onclick "${eww_daemons}/rfkill.sh toggle &")
     (button-groups-icon :icon "${audio["muted-icon"]}" :onclick "${eww_scripts}/alsa-audio.sh toggle &" :class { audio["muted"] ? "" : "enabled"})
     (button-groups-icon-secondary :icon "mic_off" :onclick "")))
 
@@ -187,8 +183,23 @@
 
 
 ; all vars
-(defvar wifi-killed false)
-(defvar wifi-killed-icon "airplanemode_inactive")
+(defpoll go_musics
+  :run-while { sidebar-page-index == 3}
+  :initial false
+  :interval "10m"
+  `~/.config/eww/scripts/go-musics.sh status`)
+
+(defpoll go_wall
+  :run-while { sidebar-page-index == 3}
+  :initial false
+  :interval "10m"
+  `~/.config/eww/scripts/go-walls.sh status`)
+
+(defpoll rfkill
+  :interval "5m"
+  :run-while { sidebar-page-index == 3}
+  :initial "{}"
+  `~/.config/eww/daemons/rfkill.sh status`)
 
 (defpoll tor
   :interval "2m"
