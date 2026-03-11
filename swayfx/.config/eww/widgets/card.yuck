@@ -1,27 +1,22 @@
 (defwidget card-icon [icon title onclick]
-    (box :class "card-icon"
-        (button ;:class "icon-button"
-                :onclick "${onclick}"
-            (box :orientation "vertical"
-                (box :class "icon" icon)
-                (box :class "title-small" title)
-            )
-        )
-    )
-)
+  (box :class "card-icon"
+    (button
+      ;:class "icon-button"
+      :onclick "${onclick}"
+      (box :orientation "vertical"
+        (box :class "icon" icon)
+        (box :class "title-small" title)))))
 
 (defwidget card-image [path_image title onclick]
-    (box :class "card-image"
-        (button :onclick "${onclick}"
-            (box :orientation "vertical"
-                 :space-evenly false
-                 :spacing 8
-                (box :style "background-image: url('${path_image}');"
-                     :halign "center"
-                     :class "wall"
-                )
-                (box :halign "start" :class "title-small" title)
-            )
-        )
-    )
-)
+  (box :class "card-image"
+    (button :onclick "${onclick}"
+      (box
+        :orientation "vertical"
+        :space-evenly false
+        :spacing 8
+        (box
+          :style "background-image: url('${path_image}');"
+          :halign "center"
+          :class "wall")
+        (box :halign "start" :class "title-small" title)))))
+

@@ -16,3 +16,16 @@ $rounding-extra-large: dpi(28px);
 .mb-16 {
   margin-bottom: dpi(16px);
 }
+
+.text-primary {
+  color: $primary;
+}
+.text-secondary {
+  color: $secondary;
+}
+.text-onSurface {
+  color: $on-surface;
+}
+.text-error {
+  color: $error;
+}
