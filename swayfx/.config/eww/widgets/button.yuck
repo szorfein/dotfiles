@@ -1,69 +1,49 @@
 ; https://m3.material.io/components/icon-buttons/specs
 ; default use 'Standard' rules
 (defwidget icon-button [icon ?onclick ?class]
-    (box :class "icon-button-standard-${class}"
-        (button :onclick onclick
-            (box :height "${round(48 * get_env("EWW_SCALE"), 0)}"
-                 :width "${round(48 * get_env("EWW_SCALE"), 0)}"
-                 icon)
-        )
-    )
-)
+  (box :class "icon-button-standard-${class}"
+    (button :onclick onclick
+      (box
+        :height "${round(48 * get_env("EWW_SCALE"), 0)}"
+        :width "${round(48 * get_env("EWW_SCALE"), 0)}"
+        icon))))
 
 (defwidget icon-filled [?icon onclick ?class ?onrightclick]
-    (box :class "icon-filled-${class} enabled"
-        (button :onclick onclick
-            :onrightclick onrightclick
-            (box :valign "center" :halign "center"
-                :height 40 :width 40
-                icon
-            )
-        )
-    )
-)
+  (box :class "icon-filled-${class} enabled"
+    (button
+      :onclick onclick
+      :onrightclick onrightclick
+      (box :valign "center" :halign "center" :height 40 :width 40
+        icon))))
 
 (defwidget icon-outlined [?icon onclick ?class]
-    (box :class "icon-outlined ${class}"
-        (button :onclick onclick
-            (box :valign "center" :halign "center"
-                :height 48 :width 48
-                icon
-            )
-        )
-    )
-)
+  (box :class "icon-outlined ${class}"
+    (button :onclick onclick
+      (box :valign "center" :halign "center" :height 48 :width 48
+        icon))))
 
 (defwidget button-tonal-vert [?icon ?class text ?onclick]
-    (button :class "button-tonal ${class}"
-        :onclick onclick
-        (box :orientation "vertical"
-            (box :class "text" text)
-            (box :class "icon" icon)
-        )
-    )
-)
+  (button
+    :class "button-tonal ${class}"
+    :onclick onclick
+    (box :orientation "vertical"
+      (box :class "text" text)
+      (box :class "icon" icon))))
 
 (defwidget icon-fab [?onclick ?icon ?onrightclick]
-    (box :class "fab"
-        (button
-            ;:style "border: 1px solid #f00"
-            :onclick "${onclick}"
-            :onrightclick "${onrightclick}"
-            (box :class "fab-icon"
-                icon
-            )
-        )
-    )
-)
+  (box :class "fab"
+    (button
+      ;:style "border: 1px solid #f00"
+      :onclick "${onclick}"
+      :onrightclick "${onrightclick}"
+      (box :class "fab-icon"
+        icon))))
 
 (defwidget icon-small-fab [?onclick ?icon]
-    (box :class "small-fab"
-        (button
-            ;:style "border: 1px solid #f00"
-            :onclick "${onclick}"
-            (box :class "small-fab-icon"
-                icon
-            )
-        )
-    )
-)
+  (box :class "small-fab"
+    (button
+      ;:style "border: 1px solid #f00"
+      :onclick "${onclick}"
+      (box :class "small-fab-icon"
+        icon))))
+

@@ -77,8 +77,12 @@ Automatic installation available with `chezmoi`
 [chezmoi-ansible](https://github.com/szorfein/dots/tree/ansible) (only Arch
 Linux, Gentoo, Void Linux).
 
-Look for Awesome wm? see the last
-[Focus](https://github.com/szorfein/dotfiles-awesome-m3) theme.
+Look for previous dotfiles?
+
+- Awesome with Material 3:
+  [Focus](https://github.com/szorfein/dotfiles-awesome-m3) theme.
+- Awesome with Material 2: [Lines](https://github.com/szorfein/dotfiles-awesome)
+  theme.
 
 ## ⚡Previous theme
 
@@ -96,9 +100,9 @@ More screenshots of previous themes are available at
 > [#2](https://pixelscan.net/blog/how-to-get-around-a-reddit-permanent-ban/)
 > [#3](https://dicloak.com/blog-detail/reddit-ip-ban-explained-2025-why-reddit-blocked-your-ip-and-how-to-fix-it).
 
-Already joined [Lemmy](https://lemmy.ml/u/Szorfein) as alternative. if people
-know another (cool/privacy) social network or site where share dotfiles, please
-share the information.
+Already joined [Lemmy](https://lemmy.ml/u/Szorfein?page=1&sort=New&view=Posts)
+as alternative. if people know another (cool/privacy) social network or site
+where share dotfiles, please share the information.
 
 ## 🙌 Contributing
 

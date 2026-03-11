@@ -12,4 +12,4 @@ eww update playlist-focus="$1"
 
 dunstify -a mpv -u low -i "$ICON" Playing "$1" -r 324
 
-mpv --no-video --shuffle --profile=fast --script=/etc/mpv/scripts/mpris.so "$HOME/musics/$1"
+mpv -ao=pipewire --no-video --shuffle --profile=fast --script=/etc/mpv/scripts/mpris.so "$HOME/musics/$1"
