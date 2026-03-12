@@ -51,11 +51,11 @@
   [Tmux](https://github.com/szorfein/dotfiles/blob/main/tmux/.config/reaver/tmux.yml)
 - **Lock Screen:** Custom version of the
   [Swaylock fancy](https://github.com/Big-B/swaylock-fancy) script
-- **Music/Sound:** [ALSA](https://www.alsa-project.org),
-  [Playerctl](https://github.com/altdesktop/playerctl) with just
-  [MPV](https://mpv.io/) as music, videos player (very light in CPU consumption
-  compared to mpd), maybe add [Kew](https://codeberg.org/ravachol/kew) in a next
-  release...
+- **Music/Sound:** [Pipewire](https://www.pipewire.org/) +
+  [ALSA](https://www.alsa-project.org),
+  [Playerctl](https://github.com/altdesktop/playerctl) with
+  [MPV](https://mpv.io/) and [Kew](https://codeberg.org/ravachol/kew). Very
+  light in CPU consumption compared to MPD.
 - **File Manager:** [Yazi](https://github.com/sxyazi/yazi) +
   [Thunar](https://docs.xfce.org/xfce/thunar/start).
 - **Fonts:** [Iosevka](https://www.nerdfonts.com/) +

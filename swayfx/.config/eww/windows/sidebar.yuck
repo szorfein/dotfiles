@@ -2,25 +2,21 @@
   :monitor monitor
   :geometry (geometry :x "0%"
                       :y "0%"
-                      :width "${round(290 * get_env('EWW_SCALE'), 0)}px"
+                      ; adding width break the animation here... same on the left bar
+                      ;:width "${round(290 * get_env('EWW_SCALE'), 0)}px"
                       :height "100%"
                       :anchor "right center")
   :stacking "fg"
   :exclusive true
   (revealer
-    ; Would prefer a slideleft animation here but it does not work
-    ; https://github.com/elkowar/eww/issues/1107
-    :transition "slideright"
-    ;:transition "slideleft"
-    ;:transition "slideup"
-    ;:transition "slidedown"
-    ;:transition "crossfade"
-    :duration "500ms"
-    :orientation "horizontal"
+    :transition "slideleft"
+    ;:duration "500ms"
+    :duration "800ms"
     :reveal "${sidebar-visible}"
     (box
       :orientation "vertical"
-      ;:style "border: 1px solid #f00"
+      ; adding px at the end bug ?
+      :width "${round(290 * get_env('EWW_SCALE'), 0)}"
       :class "sidebar"
       :space-evenly false
       (header :monitor monitor)

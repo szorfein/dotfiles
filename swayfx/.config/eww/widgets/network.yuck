@@ -17,7 +17,7 @@
     :spacing "${round(16 * get_env("EWW_SCALE"), 0)}"
     :space-evenly false
     (box
-      :class "label-large"
+      :class "label-large mb-8"
       :halign "start"
       :space-evenly false
       :spacing 8
@@ -34,7 +34,7 @@
     :spacing "${round(16 * get_env("EWW_SCALE"), 0)}"
     :space-evenly false
     (box
-      :class "label-large"
+      :class "label-large mb-8"
       :halign "start"
       :space-evenly false
       :spacing 8
@@ -72,30 +72,36 @@
 ;(box :class "label-medium" "${ssid.name}")
 
 
-; TODO: buttons app for go into musics, wallpapers and books - next release
+; One line of "Group Apps"
 (defwidget button-groups-musics []
   (box
     :space-evenly false
     :spacing "${round(8 * get_env("EWW_SCALE"), 0)}"
     :halign "center"
     :hexpand false
-    (button-groups-icon-secondary
+    (button-groups-icon
       :icon "library_music"
       :onclick "${eww_scripts}/go-musics.sh just_go"
       :onrightclick "${eww_scripts}/go-musics.sh kill_it"
       :class { go_musics == "true" ? "enabled" : ""})
 
-    (button-groups-icon-tertiary
+    (button-groups-icon-color
       :icon "wallpaper"
+      :color "secondary"
       :onclick "${eww_scripts}/go-walls.sh just_go"
       :onrightclick "${eww_scripts}/go-walls.sh kill_it"
       :class { go_wall == "true" ? "enabled" : ""})
 
-    (button-groups-icon-error
-      :icon "library_books" :onclick "" :class "enabled")))
+    (button-groups-icon-color
+      :icon "library_books"
+      :color "tertiary"
+      :onclick "${eww_scripts}/go-news.sh just_go"
+      :onrightclick "${eww_scripts}/go-news.sh kill_it"
+      :class { go_news == "true" ? "enabled" : ""})))
 
 ; TODO: buttons app for manage system (update, ansible-playbook, run scan for rootkit? virus?) - next release
 ; We can also run some games, go on the web and more...
+; Another line of "Group Apps"
 (defwidget button-groups-system []
   (box
     :space-evenly false
@@ -103,17 +109,24 @@
     :halign "center"
     :hexpand false
 
-    (button-groups-icon
+    (button-groups-icon-color
       :icon "update"
+      :color "error"
       :onclick "${eww_scripts}/network.sh wifi-toggle &"
       :class "enabled"
       :tooltip "update system")
 
-    (button-groups-icon-error
-      :icon "location_searching" :onclick "kitty -1 --class wallpaper -e yazi ~/images &")
+    (button-groups-icon-color
+      :icon "location_searching"
+      :color "yellow"
+      :class "enabled"
+      :onclick "kitty -1 --class wallpaper -e yazi ~/images &")
 
-    (button-groups-icon-secondary
-      :icon "build" :onclick "")))
+    (button-groups-icon-color
+      :icon "build"
+      :color "blue"
+      :class "enabled"
+      :onclick "")))
 
 ; TODO: buttons app for Quickemu - next release
 (defwidget button-groups-qemu []
@@ -122,8 +135,9 @@
     :spacing "${round(8 * get_env("EWW_SCALE"), 0)}"
     :halign "center"
     :hexpand false
-    (button-groups-icon-tertiary
+    (button-groups-icon-color
       :icon "circle"
+      :color "tertiary"
       :onclick "${eww_scripts}/network.sh wifi-toggle &"
       :class "enabled")
 
@@ -151,13 +165,14 @@
     :space-evenly false
     :spacing "${round(8 * get_env("EWW_SCALE"), 0)}"
     :halign "center"
-    (button-groups-icon-secondary
+    (button-groups-icon-color
       :icon "${rfkill.icon}"
       ;:tooltip "Airplane mode ${rfkill.card}"
+      :color "secondary"
       :class { rfkill.status == "blocked" ? "enabled" : ""}
       :onclick "${eww_daemons}/rfkill.sh toggle &")
     (button-groups-icon :icon "${audio["muted-icon"]}" :onclick "${eww_scripts}/alsa-audio.sh toggle &" :class { audio["muted"] ? "" : "enabled"})
-    (button-groups-icon-secondary :icon "mic_off" :onclick "")))
+    (button-groups-icon-color :icon "mic_off" :color "secondary" :onclick "")))
 
 
 (defwidget last-events []
@@ -194,6 +209,12 @@
   :initial false
   :interval "10m"
   `~/.config/eww/scripts/go-walls.sh status`)
+
+(defpoll go_news
+  :run-while { sidebar-page-index == 3}
+  :initial false
+  :interval "10m"
+  `~/.config/eww/scripts/go-news.sh status`)
 
 (defpoll rfkill
   :interval "5m"

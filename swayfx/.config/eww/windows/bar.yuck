@@ -1,12 +1,16 @@
 (defwindow bar [monitor screen]
   :monitor monitor
-  :stacking "fg"
+  :stacking "overlay"
   :exclusive true
-  :geometry (geometry :x "0%" :y "0%" :width "${round(80 * get_env("EWW_SCALE"), 0)}px" :height "100%" :anchor "left center")
+  :focusable false
+  ; note: setting width in geometry causes certain
+  ; animations to not display properly.
+  :geometry (geometry :x "0%" :y "0%" :height "100%" :anchor "left center")
   (revealer :transition "slideleft" :reveal "${navbar-visible}"
     (centerbox :orientation "vertical"
       (box
         :orientation "vertical"
+        :width "${round(80 * get_env("EWW_SCALE"), 0)}"
         :space-evenly false
         (icon-fab
           :onclick "${navbar-fab-active ? "eww update navbar-fab-active=false" : "eww update navbar-fab-active=true"}"
@@ -95,10 +99,10 @@
   \"\",
   \"\",
   \"\",
-  \"\",
+  \"\",
   \"\",
   \"\",
-  \"\",
+  \"\",
   \"\",
   \"\",
   \"\"]")

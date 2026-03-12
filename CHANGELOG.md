@@ -1,25 +1,41 @@
 # Changelog
 
-## 5.25.1
+## 5.30.1
 
+- Update the 6 buttons on the last panel ("Group Apps"), can open (left click)
+  and close (right click) Kew, Yazi, Bulletty, Wiremix.
+- Add [Kew](https://codeberg.org/ravachol/kew) to replace the stack MPD, NCMPCPP
+  and MPC.
 - Change dependency "light" with
-  [brightnessctl](https://github.com/Hummer12007/brightnessctl).
+  [brightnessctl](https://github.com/Hummer12007/brightnessctl), TODO: desktop
+  need ddutils....
+  [#c16633c](https://github.com/szorfein/dotfiles/commit/c16633c4013a9c5eddb4e857468191715240c8fe)
 - Upgrade sound server to Pipewire + ALSA and all scripts related, add
   [wiremix](https://github.com/tsowell/wiremix).
+  [#6a6be22](https://github.com/szorfein/dotfiles/commit/6a6be22ea3d6b5cd0f9653a8fa719ae70d95f1c8)
 
 ### Otter-launcher
 
-- Fsel is finally useful and super fast by using pre generate list with 'find'.
+- Fsel is now SUPER useful and fast by using pre-generated list with 'find'.
 - Update Fsel to the version 3.0.0.
+  [#0930b1e](https://github.com/szorfein/dotfiles/commit/0930b1ee5a0ebd5070cbcf15130737019a000e41)
 - Make config for foot and kitty.
 
 ### Neovim
 
-- Move Neovim configurations at [VIe](https://github.com/szorfein/vie)
+- Move Neovim configurations at [VIe](https://github.com/szorfein/vie). Should
+  be used by all my dotfiles.
+  [#5981707](https://github.com/szorfein/dotfiles/commit/598170781e800ee9d31d6f0db0f57de301d45400)
+
+### Dunst
+
+Hunt applications displaying ugly notification:
+
+- correct Kew
 
 ### Fix
 
-- Use fzf instead of fsel to search file (load faster)
+- Fixes animations on the left and the right bar.
 
 ## v5.20.0 - Vibe - Feb. 22 2026
 
