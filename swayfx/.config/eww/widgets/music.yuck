@@ -74,7 +74,7 @@
             :onclick "playerctl previous &"
             :class "primary")
           (icon-outlined
-            :icon {media.playing == "Playing" ? "" : ""}
+            :icon {media.playing == "playing" ? "" : ""}
             :class {media.playing == "Playing" ? "enabled" : "disabled"}
             :onclick "playerctl play-pause")
           (icon-button
@@ -93,16 +93,16 @@
       :class {media.web-active ? "enabled" : ""}
       :icon "live_tv"
       :color "tertiary"
-      :onclick "${eww_scripts}/media.sh web-toggle &")
+      :onclick "${eww_scripts}/media.sh web-toggle")
     (button-groups-icon
-      :class {media.mpd-active ? "enabled" : "disabled"}
+      :class {media.kew-active == true ? "enabled" : "disabled"}
       :icon "skull"
-      :onclick "${eww_scripts}/media.sh mpd-toggle &")
+      :onclick "${eww_scripts}/media.sh kew-toggle")
     (button-groups-icon-color
       :class {media.mpv-active ? "enabled" : "disabled"}
       :icon "movie"
       :color "secondary"
-      :onclick "${eww_scripts}/media.sh mpv-toggle &")))
+      :onclick "${eww_scripts}/media.sh mpv-toggle")))
 
 
 (defwidget music-playlist []

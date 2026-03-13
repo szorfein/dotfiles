@@ -20,8 +20,8 @@ just_go() {
 }
 
 kill_it() {
-    if pgrep -f "kew"; then
-        pgrep -f "kew" | xargs kill
+    if pgrep -a kew; then
+        pgrep -f kew | xargs kill
         eww update go_musics="false"
     fi
 }

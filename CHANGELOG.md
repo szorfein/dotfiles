@@ -1,11 +1,11 @@
 # Changelog
 
-## 5.30.1
+## 5.30.2
 
 - Update the 6 buttons on the last panel ("Group Apps"), can open (left click)
   and close (right click) Kew, Yazi, Bulletty, Wiremix.
 - Add [Kew](https://codeberg.org/ravachol/kew) to replace the stack MPD, NCMPCPP
-  and MPC.
+  and MPC, CAVA.
 - Change dependency "light" with
   [brightnessctl](https://github.com/Hummer12007/brightnessctl), TODO: desktop
   need ddutils....
@@ -36,6 +36,7 @@ Hunt applications displaying ugly notification:
 ### Fix
 
 - Fixes animations on the left and the right bar.
+- Fixes media.sh (playerctl), robust solution to filter all the parameters.
 
 ## v5.20.0 - Vibe - Feb. 22 2026
 

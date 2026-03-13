@@ -51,12 +51,12 @@ pause_no_web() {
     list_all=$(playerctl --list-all)
     while read -r line; do
         echo "$line"
-        [ "$line" = "mpd" ] && pause_ply mpd
+        [ "$line" = "kew" ] && pause_ply kew
         [ "$line" = "mpv" ] && pause_ply mpv
     done <<< "$list_all"
 }
 
-pause_no_mpd() {
+pause_no_kew() {
     list_all=$(playerctl --list-all)
     while read -r line; do
         echo "$line"
@@ -82,12 +82,12 @@ if [ "$1" = "web-toggle" ] ; then
     playerctl -p "$WEB" play-pause || echo "$WEB can fail"
 fi
 
-if [ "$1" = "mpd-toggle" ] ; then
+if [ "$1" = "kew-toggle" ] ; then
     #playerctl -p "$WEB" pause || echo "$WEB pause"
     #playerctl -p mpv pause || echo "mpv pause"
     #playerctl -p "$WEB" pause || echo "$WEB pause"
     #playerctl -p mpv pause || echo "mpv pause"
-    playerctl -p mpd play-pause || echo "mpd can fail"
+    playerctl -p kew play-pause || echo "kew can fail"
 fi
 
 if [ "$1" = "mpv-toggle" ] ; then

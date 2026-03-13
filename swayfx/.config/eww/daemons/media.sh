@@ -31,17 +31,6 @@ if PIDS=$(pgrep -f "playerctl --follow"); then
     fi
 fi
 
-mpd_cover() {
-    [ -n "$MPD_MUSIC_DIR" ] || return
-    [ -d "$MPD_MUSIC_DIR" ] || return
-
-    file=$(mpc -f %file% | head -1)
-    file_dir="$MPD_MUSIC_DIR/${file%/*}"
-    if find=$(find "$file_dir" -regex ".*\.\(jpg\|png\|jpeg\)" | head -1); then
-        echo "$find"
-    fi
-}
-
 trim_sed() {
     if [ -z "$1" ]; then return 1; fi
 
@@ -62,49 +51,38 @@ convert_img() {
     printf '%s\n' "/tmp/$IMGNAME"
 }
 
-#while :; do
-# always prefer inotify or any mechanism to check change over sleep
-#sleep 5
-#done
-# requires playerctl>=2.0
-# Add non-space character ":" before each parameter to prevent 'read' from skipping over them
-# artist should be placed before title
-# artist name and title should not contain any space...
-exec playerctl --follow metadata --format $':{{status}}\t:{{position}}\t:{{mpris:length}}\t:{{playerName}}\t:{{mpris:artUrl}}\t:{{duration(position)}}\t:{{duration(mpris:length)}}\t:{{trunc(artist,18)}}@@{{trunc(title, 18)}}' | while read -r playing position length name arturl hpos hlen artist_title; do
+# Honestly, no better solution, enclose each params in form of: @@name@@xXXXx@@name@@
+playerctl --follow metadata --format '@@playerName@@{{playerName}}@@playerName@@ @@hpos@@{{position}}@@hpos@@ @@hlen@@{{mpris:length}}@@hlen@@ @@status@@{{lc(status)}}@@status@@ @@position@@{{duration(position)}}@@position@@ @@length@@{{duration(mpris:length)}}@@length@@ @@artUrl@@{{mpris:artUrl}}@@artUrl@@ @@artist@@{{artist}}@@artist@@ @@title@@{{title}}@@title@@ @@url@@{{url}}@@url@@' | while read -r line; do
 
-    # All vars are prefixed with ':'
-    # in Bash, simply use playing=${playing:1}
-    playing=$(expr " $playing" : " .\\(.*\\)")
-    position=$(expr " $position" : " .\\(.*\\)")
-    length=$(expr " $length" : " .\\(.*\\)")
-    name=$(expr " $name" : " .\\(.*\\)")
-    arturl=$(expr " $arturl" : " .\\(.*\\)")
-    hpos=$(expr " $hpos" : " .\\(.*\\)")
-    hlen=$(expr " $hlen" : " .\\(.*\\)")
-    artist=$(expr " ${artist_title%@@*}" : " .\\(.*\\)" | tr -d '"')
-    title=$(echo "${artist_title#*@@}" | tr -d '"')
+    player_name="$(sed 's/.*@@playerName@@\(.*\)@@playerName@@.*/\1/' <<< "$line")"
+    #volume="$(sed 's/.*@@volume@@\(.*\)@@volume@@.*/\1/' <<< "$line")"
+    status="$(sed 's/.*@@status@@\(.*\)@@status@@.*/\1/' <<< "$line")"
+    #url="$(sed 's/.*@@url@@\(.*\)@@url@@.*/\1/' <<< "$line")"
+    position="$(sed 's/.*@@position@@\(.*\)@@position@@.*/\1/' <<< "$line")"
+    length="$(sed 's/.*@@length@@\(.*\)@@length@@.*/\1/' <<< "$line")"
+    hpos="$(sed 's/.*@@hpos@@\(.*\)@@hpos@@.*/\1/' <<< "$line")"
+    hlen="$(sed 's/.*@@hlen@@\(.*\)@@hlen@@.*/\1/' <<< "$line")"
+    arturl="$(sed 's/.*@@artUrl@@\(.*\)@@artUrl@@.*/\1/' <<< "$line")"
 
-    # Remove undesirable symbols...
-    artist=$(trim_sed "$artist")
-    title=$(trim_sed "$title")
+    artist="$(sed 's/.*@@artist@@\(.*\)@@artist@@.*/\1/' <<< "$line")"
+    title="$(sed 's/.*@@title@@\(.*\)@@title@@.*/\1/' <<< "$line")"
 
-    # artist and title can contain a lot of characters...
-    #artist=$(playerctl metadata --format '{{ trunc(artist, 16) }}')
-    #title=$(playerctl metadata --format '{{ trunc(title, 16) }}')
-
-    if [ "$name" = "brave" ]; then
+    if [ "$player_name" = "brave" ]; then
         arturl="${arturl#file://}"
     fi
 
-    if [ "$name" = "firefox" ]; then
+    if [ "$player_name" = "firefox" ]; then
         arturl="${arturl#file://}"
     fi
 
-    if [ "$name" = "mpd" ]; then
-        arturl="$(mpd_cover)"
+    if [ "$player_name" = "kew" ]; then
+        #arturl="$(mpd_cover)"
+        if find=$(find "$HOME/musics" -type f -regex ".*\.\(jpg\|png\|jpeg\)" -print | fzf -f "$title" | head -1); then
+            arturl="$find"
+        fi
     fi
 
-    if [ "$name" = "mpv" ]; then
+    if [ "$player_name" = "mpv" ]; then
         music_path=$(ps x | grep mpris.so | grep -o '[^ ]\+$' | head -1)
         # sometime inaccurate...
         if find=$(find "$music_path" -type f -regex ".*\.\(jpg\|png\|jpeg\)" -print | fzf -f "$title" | head -1); then
@@ -125,39 +103,33 @@ exec playerctl --follow metadata --format $':{{status}}\t:{{position}}\t:{{mpris
     [ -z "$artist" ] && artist="N/A"
 
     web=false
-    mpd=false
+    kew=false
     mpv=false
 
     # The image size has a HUGE impact on eww performance !
     # use imagemagick to convert the image
     arturl=$(convert_img "$arturl")
 
-    if expr "$name" : '.*[brave]' > /dev/null; then
-        if [ "$playing" = "Playing" ]; then
+    if expr "$player_name" : '.*[brave]' > /dev/null; then
+        if [ "$status" = "playing" ]; then
             web=true
         fi
     fi
 
-    if [ "$name" = "firefox" ] && [ "$playing" = "Playing" ]; then
+    if [ "$player_name" = "firefox" ] && [ "$status" = "playing" ]; then
         web=true
-    else
-        web=false
     fi
 
-    if expr "$name" : '.*[mpd]$' > /dev/null; then
-        if [ "$playing" = "Playing" ]; then
-            mpd=true
-        fi
+    if [ "$player_name" = "kew" ] && [ "$status" = "playing" ]; then
+        kew=true
     fi
 
-    if [ "$name" = "mpv" ] && [ "$playing" = "Playing" ]; then
+    if [ "$player_name" = "mpv" ] && [ "$status" = "playing" ]; then
         mpv=true
-    else
-        mpv=false
     fi
 
     #    cat << EOF
-    JSON="{\"playing\":\"$playing\",\"position\":\"$position\",\"length\":\"$length\",\"name\":\"$name\",\"artist\":\"$artist\",\"title\":\"$title\",\"arturl\":\"$arturl\",\"hpos\":\"$hpos\",\"hlen\":\"$hlen\",\"web-active\":$web,\"mpd-active\":$mpd,\"mpv-active\":$mpv}"
+    JSON="{\"playing\":\"$status\",\"position\":\"$hpos\",\"length\":\"$hlen\",\"name\":\"$player_name\",\"artist\":\"${artist:0:20}\",\"title\":\"${title:0:18}\",\"arturl\":\"$arturl\",\"hpos\":\"$position\",\"hlen\":\"$length\",\"web-active\":$web,\"kew-active\":$kew,\"mpv-active\":$mpv}"
     #EOF
     #echo "$name"
     #echo "$JSON"
