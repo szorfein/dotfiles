@@ -16,7 +16,8 @@
 
 ### Otter-launcher
 
-- Fsel is now SUPER useful and fast by using pre-generated list with 'find'.
+- Fsel is now SUPER useful and fast by using pre-generated list with
+  [fd](https://github.com/sharkdp/fd) (better than 'find').
 - Update Fsel to the version 3.0.0.
   [#0930b1e](https://github.com/szorfein/dotfiles/commit/0930b1ee5a0ebd5070cbcf15130737019a000e41)
 - Make config for foot and kitty.
@@ -37,6 +38,7 @@ Hunt applications displaying ugly notification:
 
 - Fixes animations on the left and the right bar.
 - Fixes media.sh (playerctl), robust solution to filter all the parameters.
+  [#0613f7c](https://github.com/szorfein/dotfiles/commit/0613f7c031a03b54e2753fb6e71032b022ffafde)
 
 ## v5.20.0 - Vibe - Feb. 22 2026
 

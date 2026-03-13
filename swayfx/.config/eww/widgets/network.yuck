@@ -117,10 +117,11 @@
       :tooltip "update system")
 
     (button-groups-icon-color
-      :icon "location_searching"
+      :icon "travel_explore"
       :color "yellow"
-      :class "enabled"
-      :onclick "kitty -1 --class wallpaper -e yazi ~/images &")
+      :onclick "${eww_scripts}/go-web.sh just_go"
+      :onrightclick "${eww_scripts}/go-web.sh kill_it"
+      :class { go_web == "true" ? "enabled" : ""})
 
     (button-groups-icon-color
       :icon "build"
@@ -215,6 +216,12 @@
   :initial false
   :interval "10m"
   `~/.config/eww/scripts/go-news.sh status`)
+
+(defpoll go_web
+  :run-while { sidebar-page-index == 3}
+  :initial false
+  :interval "10m"
+  `~/.config/eww/scripts/go-web.sh status`)
 
 (defpoll rfkill
   :interval "5m"

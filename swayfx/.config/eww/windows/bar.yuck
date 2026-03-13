@@ -10,7 +10,7 @@
     (centerbox :orientation "vertical"
       (box
         :orientation "vertical"
-        :width "${round(80 * get_env("EWW_SCALE"), 0)}"
+        :width "${round(96 * get_env("EWW_SCALE"), 0)}"
         :space-evenly false
         (icon-fab
           :onclick "${navbar-fab-active ? "eww update navbar-fab-active=false" : "eww update navbar-fab-active=true"}"
@@ -87,8 +87,6 @@
         (box
           :halign "center"
           :valign "center"
-          :width "${round(56 * get_env("EWW_SCALE"), 0)}"
-          :height "${round(56 * get_env("EWW_SCALE"), 0)}"
           "${ws[i]}")))))
 
 

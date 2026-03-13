@@ -1,17 +1,17 @@
 .nav-item {
-  min-height: dpi(56px);
+  min-height: dpi(64px);
   margin-bottom: dpi(12px);
 }
 
 .workspace {
   background-color: $bg;
-  color: rgba($on-secondary-container, .86);
-  font-family: "icomoon";
+  color: rgba($on-secondary-container, 0.86);
+  font-family: 'icomoon';
   font-size: dpi(24pt);
   transition: font-size 0.4s;
   .empty {
-    color: rgba($on-surface-variant, .38);
-    min-height: dpi(56px);
+    color: rgba($on-surface-variant, 0.38);
+    min-height: dpi(64px);
     & button:hover {
       color: $on-surface-variant;
     }
@@ -21,7 +21,7 @@
     color: $on-secondary-container;
     border-radius: 50%;
     min-width: dpi(56px);
-    min-height: dpi(56px);
+    min-height: dpi(64px);
     margin-left: dpi(12px);
     margin-right: dpi(12px);
     & button:hover {
@@ -29,10 +29,10 @@
     }
   }
   & button:hover {
-      color: $on-secondary-container;
+    color: $on-secondary-container;
   }
 }
 
 .nav-scroll {
-  min-height: dpi(400px);
+  min-height: dpi(380px);
 }

@@ -75,6 +75,7 @@
             :class "primary")
           (icon-outlined
             :icon {media.playing == "playing" ? "" : ""}
+            ; keep disabled for now
             :class {media.playing == "Playing" ? "enabled" : "disabled"}
             :onclick "playerctl play-pause")
           (icon-button
