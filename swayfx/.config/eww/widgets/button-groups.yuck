@@ -1,31 +1,17 @@
 ; https://m3.material.io/components/button-groups/specs
-(defwidget button-groups-icon [icon onclick ?class ?tooltip]
+(defwidget button-groups-icon [icon onclick ?class ?onrightclick ?tooltip]
   (box
     :class "button-groups-icon"
     :height "${56 * round(get_env("EWW_SCALE"), 0)}"
     :width "${56 * round(get_env("EWW_SCALE"), 0)}"
-    (button :onclick "${onclick}" :class "${class}" :tooltip "${tooltip}" icon)))
+    (button :onclick "${onclick}" :class "${class}" :tooltip "${tooltip}" :onrightclick "${onrightclick}" icon)))
 
-(defwidget button-groups-icon-secondary [icon onclick ?class]
+(defwidget button-groups-icon-color [icon onclick color ?class ?onrightclick ?tooltip]
   (box
-    :class "button-groups-icon-secondary"
+    :class "button-groups-icon-${color}"
     :height "${56 * round(get_env("EWW_SCALE"), 0)}"
     :width "${56 * round(get_env("EWW_SCALE"), 0)}"
-    (button :onclick "${onclick}" :class "${class}" icon)))
-
-(defwidget button-groups-icon-tertiary [icon onclick ?class ?onrightclick]
-  (box
-    :class "button-groups-icon-tertiary"
-    :height "${56 * round(get_env("EWW_SCALE"), 0)}"
-    :width "${56 * round(get_env("EWW_SCALE"), 0)}"
-    (button :onclick "${onclick}" :class "${class}" :onrightclick "${onrightclick}" icon)))
-
-(defwidget button-groups-icon-error [icon onclick ?class]
-  (box
-    :class "button-groups-icon-error"
-    :height "${56 * round(get_env("EWW_SCALE"), 0)}"
-    :width "${56 * round(get_env("EWW_SCALE"), 0)}"
-    (button :onclick "${onclick}" :class "${class}" icon)))
+    (button :tooltip "${tooltip}" :onclick "${onclick}" :class "${class}" :onrightclick "${onrightclick}" icon)))
 
 (defwidget button-groups-icon-text [icon text onclick ?class]
   (box

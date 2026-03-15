@@ -13,7 +13,7 @@
   }
   .icon {
     font-size: dpi(21px);
-    font-family: "Material Symbols Outlined";
+    font-family: 'Material Symbols Outlined';
     color: $on-surface-variant;
   }
 }
@@ -23,12 +23,15 @@
   min-width: dpi(40px);
   transition: color 0.2s;
   color: $primary;
-  .backdrop {
-    color: $secondary-container;
+  circular-progress {
+    transition: color 0.2s;
+    &.backdrop {
+      color: $secondary-container;
+    }
   }
   .icon {
-    font-size: dpi(21px);
-    font-family: "Material Symbols Outlined";
+    font-size: dpi(20px);
+    font-family: 'Material Symbols Outlined';
     color: $on-surface-variant;
   }
 }

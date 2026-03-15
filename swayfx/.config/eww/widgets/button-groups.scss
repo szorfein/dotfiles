@@ -58,6 +58,38 @@
   }
 }
 
+.button-groups-icon-error {
+  @extend .button-groups-icon;
+  & button.enabled {
+    background-color: $error;
+    color: $on-error;
+  }
+}
+
+.button-groups-icon-green {
+  @extend .button-groups-icon;
+  & button.enabled {
+    background-color: $green;
+    color: $on-green;
+  }
+}
+
+.button-groups-icon-yellow {
+  @extend .button-groups-icon;
+  & button.enabled {
+    background-color: $yellow;
+    color: $on-yellow;
+  }
+}
+
+.button-groups-icon-blue {
+  @extend .button-groups-icon;
+  & button.enabled {
+    background-color: $blue;
+    color: $on-blue;
+  }
+}
+
 .button-groups-icon-text {
   color: $on-surface-variant;
   border-radius: 25%;

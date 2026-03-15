@@ -94,7 +94,7 @@ do_stop() {
     fi
 }
 
-[ -z "$1" ] && die "no arg"
+[ -z "$1" ] && exit
 
 case "$1" in
 status) get_status ;;

@@ -10,7 +10,9 @@
 </a>
 <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/szorfein/dotfiles?color=73daca&labelColor=%231A1B26&style=for-the-badge" />
 <img alt="" src="https://img.shields.io/github/repo-size/szorfein/dotfiles?color=%230969da&labelColor=%231A1B26&style=for-the-badge&label=Repo" />
-
+<a href="https://github.com/szorfein/dotfiles/network/members/">
+  <img src="">
+</a>
 </div>
 
 ###
@@ -51,11 +53,11 @@
   [Tmux](https://github.com/szorfein/dotfiles/blob/main/tmux/.config/reaver/tmux.yml)
 - **Lock Screen:** Custom version of the
   [Swaylock fancy](https://github.com/Big-B/swaylock-fancy) script
-- **Music/Sound:** [ALSA](https://www.alsa-project.org),
-  [Playerctl](https://github.com/altdesktop/playerctl) with just
-  [MPV](https://mpv.io/) as music, videos player (very light in CPU consumption
-  compared to mpd), maybe add [Kew](https://codeberg.org/ravachol/kew) in a next
-  release...
+- **Music/Sound:** [Pipewire](https://www.pipewire.org/) +
+  [ALSA](https://www.alsa-project.org),
+  [Playerctl](https://github.com/altdesktop/playerctl) with
+  [MPV](https://mpv.io/) and [Kew](https://codeberg.org/ravachol/kew). Very
+  light in CPU consumption compared to MPD.
 - **File Manager:** [Yazi](https://github.com/sxyazi/yazi) +
   [Thunar](https://docs.xfce.org/xfce/thunar/start).
 - **Fonts:** [Iosevka](https://www.nerdfonts.com/) +
