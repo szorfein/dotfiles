@@ -12,9 +12,12 @@ LIST_FILES="/tmp/list-files"
 list_dirs() {
     # List directory for Yazi (images, videos, musics, etc...)
     echo "Generate list for directory..."
-    fd --hidden --type d -E .npm -E .gem -E .cache -E .git -E .cargo -E node_modules -E .oh-my-zsh --full-path "$HOME" > "$LIST_DIR"
+    _pwd=$(pwd)
+    cd "$HOME"
+    fd --hidden --type d -E .npm -E .gem -E .cache -E .git -E .cargo -E node_modules -E .oh-my-zsh --full-path > "$LIST_DIR"
     #    find "$HOME" -type d -not \( -name .cache -prune -o -name .bundle -prune -o -name node_modules -prune -o -name .npm -prune -o -name .git -prune -o -name BraveSoftware -prune -o -name .cargo -prune -o -name .gem -prune -o -name build -prune \) -print 2> /dev/null > "$LIST_DIR"
     echo "done with $LIST_DIR"
+    cd "$_pwd"
 }
 
 list_files() {

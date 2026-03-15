@@ -43,7 +43,6 @@
 
     (button-groups-musics)
     (button-groups-system)))
-;(button-groups-qemu)
 
 (defwidget network-ssids []
   (box
@@ -100,7 +99,7 @@
       :class { go_news == "true" ? "enabled" : ""})))
 
 ; TODO: buttons app for manage system (update, ansible-playbook, run scan for rootkit? virus?) - next release
-; We can also run some games, go on the web and more...
+; We can also run some games, go on any site on the web and more...
 ; Another line of "Group Apps"
 (defwidget button-groups-system []
   (box
@@ -110,11 +109,11 @@
     :hexpand false
 
     (button-groups-icon-color
-      :icon "update"
+      :icon "forum"
       :color "error"
-      :onclick "${eww_scripts}/network.sh wifi-toggle &"
-      :class "enabled"
-      :tooltip "update system")
+      :onclick "${eww_scripts}/go-msg.sh just_go"
+      :onrightclick "${eww_scripts}/go-msg.sh kill_it"
+      :class { go_msg == "true" ? "enabled" : ""})
 
     (button-groups-icon-color
       :icon "travel_explore"
@@ -124,25 +123,11 @@
       :class { go_web == "true" ? "enabled" : ""})
 
     (button-groups-icon-color
-      :icon "build"
+      :icon "monitor_heart"
       :color "blue"
-      :class "enabled"
-      :onclick "")))
-
-; TODO: buttons app for Quickemu - next release
-(defwidget button-groups-qemu []
-  (box
-    :space-evenly false
-    :spacing "${round(8 * get_env("EWW_SCALE"), 0)}"
-    :halign "center"
-    :hexpand false
-    (button-groups-icon-color
-      :icon "circle"
-      :color "tertiary"
-      :onclick "${eww_scripts}/network.sh wifi-toggle &"
-      :class "enabled")
-
-    (button-groups-icon :icon "cyclone" :onclick "" :class "enabled")))
+      :onclick "${eww_scripts}/go-mon.sh just_go"
+      :onrightclick "${eww_scripts}/go-mon.sh kill_it"
+      :class { go_mon == "true" ? "enabled" : ""})))
 
 ; one line of buttons
 (defwidget button-groups-networks []
@@ -176,28 +161,6 @@
     (button-groups-icon-color :icon "mic_off" :color "secondary" :onclick "")))
 
 
-(defwidget last-events []
-  (box
-    :orientation "vertical"
-    :space-evenly false
-    :spacing "${round(16 * get_env("EWW_SCALE"), 0)}"
-    (box
-      :class "label-large"
-      :halign "start"
-      "Last events")
-
-    (scroll
-      :hscroll false
-      :vscroll true
-      :class "last-events"
-      (for event in events
-        (list-with-icon :icon "${event.icon}"
-                        :title "${event.title}"
-                        :text "${event.msg}"
-                        :time "${event.time}"
-                        :action "${event.action}")))))
-
-
 ; all vars
 (defpoll go_musics
   :run-while { sidebar-page-index == 3}
@@ -223,6 +186,18 @@
   :interval "10m"
   `~/.config/eww/scripts/go-web.sh status`)
 
+(defpoll go_mon
+  :run-while { sidebar-page-index == 3}
+  :initial false
+  :interval "10m"
+  `~/.config/eww/scripts/go-mon.sh status`)
+
+(defpoll go_msg
+  :run-while { sidebar-page-index == 3}
+  :initial false
+  :interval "10m"
+  `~/.config/eww/scripts/go-msg.sh status`)
+
 (defpoll rfkill
   :interval "5m"
   :run-while { sidebar-page-index == 3}
@@ -237,4 +212,3 @@
 
 (defvar wifi-on false)
 (defvar wifi-ssids "[]")
-(defvar events "[{\"icon\":\"pause\",\"title\":\"system\",\"msg\":\"updated\",\"time\":\"11:50\",\"action\":\"footclient\"},{\"icon\":\"play\",\"title\":\"music\",\"msg\":\"Playing MasterbootRecord\",\"time\":\"11:56\",\"action\":\"footclient\"}]")

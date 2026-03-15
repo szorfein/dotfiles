@@ -22,8 +22,8 @@ if [ -n "$1" ]; then
     elif [ "$1" = "set" ]; then
         if [ -n "$2" ]; then
             CHANGE_VOLUME=true
-            wpctl set-volume @DEFAULT_SINK@ "0.$2"
-            noti "0.$2"
+            wpctl set-volume @DEFAULT_SINK@ "$2%"
+            noti "$2%"
         fi
     fi
 fi

@@ -3,7 +3,9 @@
 ## 5.30.2
 
 - Update the 6 buttons on the last panel ("Group Apps"), can open (left click)
-  and close (right click) Kew, Yazi, Bulletty, Wiremix.
+  and close (right click): Kew (music), Yazi, Bulletty (rss), Glances
+  (monitoring), Web browser (librewolf for now) and last Element-desktop (matrix
+  chat).
 - Add [Kew](https://codeberg.org/ravachol/kew) to replace the stack MPD, NCMPCPP
   and MPC, CAVA.
 - Change dependency "light" with
@@ -18,6 +20,7 @@
 
 - Fsel is now SUPER useful and fast by using pre-generated list with
   [fd](https://github.com/sharkdp/fd) (better than 'find').
+  [#0ab7b3f](https://github.com/szorfein/dotfiles/commit/0ab7b3f711dd11a26405fc429fd87da64fcaf4a3)
 - Update Fsel to the version 3.0.0.
   [#0930b1e](https://github.com/szorfein/dotfiles/commit/0930b1ee5a0ebd5070cbcf15130737019a000e41)
 - Make config for foot and kitty.
@@ -36,6 +39,7 @@ Hunt applications displaying ugly notification:
 
 ### Fix
 
+- Remove Blue effect from SwayFX, slow down too munch my netbook's performance.
 - Fixes animations on the left and the right bar.
 - Fixes media.sh (playerctl), robust solution to filter all the parameters.
   [#0613f7c](https://github.com/szorfein/dotfiles/commit/0613f7c031a03b54e2753fb6e71032b022ffafde)

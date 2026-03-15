@@ -226,6 +226,13 @@ cat <<EOF > "$workdir/.config/eww/styles/colors.scss"
 \$surface-tint: $surface_tint;
 \$inverse-surface: $inverse_surface;
 \$inverse-on-surface: $inverse_on_surface;
+// can be any colors match with the theme...
+\$green: $t_green_bright;
+\$on-green: #000000;
+\$yellow: $t_yellow_bright;
+\$on-yellow: #000000;
+\$blue: $t_blue_bright;
+\$on-blue: #000000;
 EOF
 
 cat <<EOF > "$workdir/.config/sway/theme"

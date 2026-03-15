@@ -118,14 +118,20 @@ playerctl --follow metadata --format '@@playerName@@{{playerName}}@@playerName@@
 
     if [ "$player_name" = "firefox" ] && [ "$status" = "playing" ]; then
         web=true
+    else
+        web=false
     fi
 
     if [ "$player_name" = "kew" ] && [ "$status" = "playing" ]; then
         kew=true
+    else
+        kew=false
     fi
 
     if [ "$player_name" = "mpv" ] && [ "$status" = "playing" ]; then
         mpv=true
+    else
+        mpv=false
     fi
 
     #    cat << EOF
