@@ -22,7 +22,9 @@ kill_pid "pgrep -f sway-workspaces.rb"
 # see with (ps aux |  grep eww)
 # which produce bug, etc... the only process visible should be 'eww daemon'
 pidof -q eww || {
-    eww daemon &
+    if eww ping; then
+        eww daemon &
+    fi
 }
 
 # Other daemons

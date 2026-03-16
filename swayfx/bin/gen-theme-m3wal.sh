@@ -3,7 +3,7 @@
 #git clone https://github.com/MDiaznf23/m3wal
 #python -m venv ~/.python
 #~/.python/bin/pip install -e .
-#~/.python/bin/m3wal ~/images/vibes.png --generator-only --mode dark --variant AUTO
+#~/.python/bin/m3wal ~/images/vibes.png --generator-only --mode dark --variant AUTO # or VIBRANT, EXPRESSIVE, FIDELITY
 #~/.dotfiles/swayfx/bin/gen-theme-m3wal.sh ~/.config/m3-colors/output/vibes_FIDELITY_scheme.json vibe
 
 set -o errexit -o nounset

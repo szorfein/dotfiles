@@ -95,6 +95,8 @@ for_window {
     [app_id="kitty"] border pixel 0
     [app_id="mpv"] border pixel 0
     [app_id="imv"] border pixel 0
+    [app_id="musics"] border pixel 0
+    [app_id="wallpapers"] border pixel 0
     [app_id="org.pwmt.zathura"] border pixel 0
 }
 

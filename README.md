@@ -27,8 +27,8 @@
 
 ###
 
-![Vibe screenshot 1](https://github.com/szorfein/unix-portfolio/raw/master/Vibe/clean.jpg)
-![Vibe screenshot 2](https://github.com/szorfein/unix-portfolio/raw/master/Vibe/full.jpg)
+![Valyria screenshot 1](https://github.com/szorfein/unix-portfolio/raw/master/SwayFX/Valyria/clean.jpg)
+![Valyria screenshot 2](https://github.com/szorfein/unix-portfolio/raw/master/SwayFX/Valyria/full.jpg)
 
 ## ✨ Features
 
@@ -63,7 +63,7 @@
 - **Fonts:** [Iosevka](https://www.nerdfonts.com/) +
   [Material Icons Outlined](https://github.com/google/material-design-icons) +
   [IcoMoon](https://icomoon.io/) +
-  [Lovely Bubbles](https://www.dafont.com/lovely-bubbles.font)
+  [Dragon4](https://www.dafont.com/dragon-4.font)
 - **Dotfiles manager and theme switcher:**
   [GNU/Stow](https://www.gnu.org/software/stow/)
 - **Dotfiles dependencies manager:**
@@ -88,8 +88,8 @@ Look for previous dotfiles?
 
 ## ⚡Previous theme
 
-![Abyss screenshot 1](https://github.com/szorfein/unix-portfolio/raw/master/Abyss/clean.jpg)
-![Abyss screenshot 2](https://github.com/szorfein/unix-portfolio/raw/master/Abyss/full.jpg)
+![Vibe screenshot 1](https://github.com/szorfein/unix-portfolio/raw/master/Vibe/clean.jpg)
+![Vibe screenshot 2](https://github.com/szorfein/unix-portfolio/raw/master/Vibe/full.jpg)
 
 ## 📦 Other screenshots
 
