@@ -1,6 +1,6 @@
 # Changelog
 
-## 5.30.2
+## 5.32.0
 
 ### New dependencies
 
