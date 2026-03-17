@@ -1,6 +1,6 @@
 # Changelog
 
-## 5.32.0
+## 5.32.2
 
 ### New dependencies
 
@@ -49,6 +49,7 @@ Hunt applications displaying non conform (ugly) notification:
 
 ### Fixes
 
+- Auto start pipewire on Voidlinux with sway/autostart.
 - Remove Blur effect from SwayFX, slow down too munch my netbook's performance
   and EWW.
 - Animations on the left and the right bar.
