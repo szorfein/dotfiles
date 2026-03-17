@@ -26,11 +26,10 @@ things:
     url: https://dl.dafont.com/dl/?f=lovely_bubbles
     dest_dir: '.local/share/fonts'
     keep_name: true
-  - name: dragon.zip
+  - name: dragon_4.zip
     url: https://dl.dafont.com/dl/?f=dragon_4
     dest_dir: '.local/share/fonts'
     keep_name: true
-  - name: iosevka.tar.xz
   - name: iosevka.tar.xz
     url: https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Iosevka.tar.xz
     strip_components: 0
