@@ -26,15 +26,17 @@ The whole (or many) stack has changed because Wayland instead of X.
 ### Arch Linux
 
     sudo pacman -Syy \
-    inotify-tools imv jq mpd mpc wl-clipboard curl stow \
+    inotify-tools imv jq wl-clipboard curl stow \
     bc imagemagick rubygems grim swaybg wmenu rust \
-    playerctl mpd-mpris mpv-mpris kitty \
+    playerctl mpv-mpris kitty \
     git meson scdoc wayland-protocols cairo gdk-pixbuf2 \
     libevdev libinput json-c libgudev wayland libxcb \
-    libxkbcommon pango pcre2 wlroots0.19 seatd brightnessctl \
+    libxkbcommon pango pcre2 wlroots0.19 brightnessctl \
     libdrm libglvnd pixman glslang meson ninja \
     cargo libdbusmenu-gtk3 gtk3 gtk-layer-shell \
-    iwd thunar dunst chafa swayidle swaylock wlr-randr
+    iwd thunar dunst chafa swayidle swaylock wlr-randr \
+    kew glances bulletty element-desktop wiremix \
+    pipewire pipewire-alsa wireplumber
 
 From AUR:
 
@@ -45,11 +47,12 @@ Before installing `eww` from AUR, you need to import GPG key:
     curl -sS https://github.com/elkowar.gpg | gpg --import
     curl -sS https://github.com/web-flow.gpg | gpg --import
 
-Required step as root
+Enable some user services for pipewire:
 
-    usermod -aG seat username
-    systemctl enable seatd
-    systemctl start seatd
+    systemctl --user enable pipewire
+    systemctl --user enable wireplumber
+    systemctl --user start pipewire
+    systemctl --user start wireplumber
 
 ### Void Linux
 
@@ -62,16 +65,29 @@ first. e.g for intel:
 SwayFX dependencies
 
     sudo xbps-install -S swayfx imv jq wl-clipboard \
-    inotify-tools mpd mpc kitty curl chafa cargo \
+    inotify-tools kitty curl chafa cargo \
     stow playerctl mpv-mpris eww ruby swaybg grim \
-    wmenu iwd Thunar seatd turnstile dunst ImageMagick \
-    swayidle swaylock wlr-randr brightnessctl
+    wmenu iwd Thunar elogind dunst ImageMagick \
+    swayidle swaylock wlr-randr brightnessctl \
+    kew glances element-desktop \
+    pipewire alsa-pipewire wireplumber wireplumber-elogind
 
 Required step as root
 
-    usermod -aG _seatd username
-    ln -s /etc/sv/seatd /var/service
-    ln -s /etc/sv/turnstiled /var/service
+    ln -s /etc/sv/dbus /var/service
+    ln -s /etc/sv/elogind /var/service
+
+And the ALSA integration:
+
+    mkdir -p /etc/alsa/conf.d
+    ln -s /usr/share/alsa/alsa.conf.d/50-pipewire.conf /etc/alsa/conf.d
+    ln -s /usr/share/alsa/alsa.conf.d/99-pipewire-default.conf /etc/alsa/conf.d
+
+And enable pipewire per-user
+[doc](https://docs.voidlinux.org/config/media/pipewire.html?highlight=pipewi#pipewire):
+
+    $ mkdir -p "${XDG_CONFIG_HOME}/pipewire/pipewire.conf.d"
+    $ ln -s /usr/share/examples/wireplumber/10-wireplumber.conf "${XDG_CONFIG_HOME}/pipewire/pipewire.conf.d/"
 
 ### Gentoo
 
@@ -83,35 +99,33 @@ You will need to activate [GURU](https://github.com/gentoo/guru)
 
 And install packages:
 
-    sudo emerge -av net-misc/curl stow
+    sudo emerge -av net-misc/curl stow app-text/zathura \
     xfce-base/thunar media-gfx/chafa app-misc/brightnessctl \
-    inotify-tools swaybg imv \
-    app-misc/jq media-sound/mpd media-sound/mpc \
+    inotify-tools swaybg imv app-misc/jq sys-apps/fd \
     dev-lang/ruby playerctl wl-clipboard x11-terms/kitty \
-    gui-apps/grim gui-apps/wmenu net-wireless/iwd \
-    gui-apps/eww gui-wm/swayfx mpv-mpris \
-    acct-group/seat seatd media-gfx/imagemagick \
-    gui-apps/swaylock gui-apps/swayidle gui-apps/wlr-randr
+    gui-apps/grim gui-apps/wmenu net-wireless/iwd app-misc/yazi \
+    gui-apps/eww gui-wm/swayfx mpv-mpris media-gfx/imagemagick \
+    gui-apps/swaylock gui-apps/swayidle gui-apps/wlr-randr \
+    media-sound/kew sys-process/glances net-im/element-desktop-bin \
+    media-video/pipewire media-video/wireplumber sys-auth/rtkit
 
-> [!NOTE] seatd should be compiled with the `server` use flag
+For non-systemd, ensure enabling the USE flag elogind before installing
+packages:
+
+    euse -E elogind
+    euse -D systemd
 
 Required step as root
 
-    usermod -aG seat username
-    usermod -aG video username
+    usermod -aG pipewire username
+    usermod -rG audio username
 
-And enable the `seatd` service, for `musl` you have to manually create
-XDG_RUNTIME_DIR; add this into your `.zprofile` (or equivalent).
+For systemd, enable service for user like on Archlinux:
 
-```sh
-if test -z "${XDG_RUNTIME_DIR}"; then
-  export XDG_RUNTIME_DIR=/tmp/"${UID}"-runtime-dir
-    if ! test -d "${XDG_RUNTIME_DIR}"; then
-        mkdir "${XDG_RUNTIME_DIR}"
-        chmod 0700 "${XDG_RUNTIME_DIR}"
-    fi
-fi
-```
+    systemctl --user enable pipewire
+    systemctl --user enable wireplumber
+    systemctl --user start pipewire
+    systemctl --user start wireplumber
 
 See on Gentoo [wiki](https://wiki.gentoo.org/wiki/Sway#Starting_Sway_manually)
 

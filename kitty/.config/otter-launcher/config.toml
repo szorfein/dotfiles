@@ -136,3 +136,25 @@ cmd = """
 cat /tmp/list-directory | ~/bin/fsel --dmenu | setsid -f xargs -r -I [] kitty -1 -e yazi '[]'
 """
 unbind_proc = false
+
+# Search a book to open with zathura, e.g:
+# b [Enter] Emacs
+# b [Enter] Podman
+[[modules]]
+description = "read books"
+prefix = "b"
+cmd = """
+cat /tmp/list-books | ~/bin/fsel --dmenu | setsid -f xargs -r -I [] zathura '[]'
+"""
+unbind_proc = false
+
+# Search a directory and open Kitty with Tmux, e.g:
+# v [Enter] .dotfiles
+# v [Enter] unix-portfolio
+[[modules]]
+description = "Open Tmux in a project"
+prefix = "v"
+cmd = """
+cat /tmp/list-directory | ~/bin/fsel --dmenu | setsid -f xargs -r -I [] kitty -1 -e tmux new-session -c "[]"
+"""
+unbind_proc = false

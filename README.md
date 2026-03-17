@@ -43,8 +43,9 @@
 - **Widgets:** [Eww](https://elkowar.github.io/eww/eww.html).
 - **App Launcher:**
   [otter-launcher](https://github.com/kuokuo123/otter-launcher) which use
-  [fsel](https://github.com/Mjoyufull/fsel) and
-  [fzf](https://github.com/junegunn/fzf).
+  [fsel](https://github.com/Mjoyufull/fsel),
+  [fzf](https://github.com/junegunn/fzf) and
+  [fd](https://github.com/sharkdp/fd).
 - **Notification:** [Dunst](https://github.com/dunst-project/dunst) with
   `dunstify`
 - **Terminal:** [Kitty](https://sw.kovidgoyal.net/kitty/) (best ally on
