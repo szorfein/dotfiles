@@ -4,13 +4,14 @@ set -o errexit
 
 ICON_LOOP=""
 ICON_SHUF=""
+DID=666
 
 noti_loop() {
-    dunstify -u low -i "$ICON_LOOP" -a "loop" "Loop" "$1" -r 989
+    dunstify -u low -i "$ICON_LOOP" -a "loop" "Loop" "$1" -r "$DID"
 }
 
 noti_shuffle() {
-    dunstify -u low -i "$ICON_SHUF" -a "shuffle" "Shuffle" "$1" -r 988
+    dunstify -u low -i "$ICON_SHUF" -a "shuffle" "Shuffle" "$1" -r "$DID"
 }
 
 toggle_loop() {

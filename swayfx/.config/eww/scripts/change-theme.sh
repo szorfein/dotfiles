@@ -7,14 +7,15 @@ DOTFILES="$HOME/.dotfiles"
 THEMES="$DOTFILES/swayfx-themes"
 FOUND=false
 EWW_CONFIG="$HOME/.config/eww"
+DID=666
 
 die() {
-    dunstify -u critical -a themes -i "$ICON" "Change theme" "$1" -r 988
+    dunstify -u critical -a themes -i "$ICON" "Change theme" "$1" -r "$DID"
     exit 1
 }
 
 notify() {
-    dunstify -u normal -a themes -i "$ICON" "Change theme" "$1" -r 988
+    dunstify -u normal -a themes -i "$ICON" "Change theme" "$1" -r "$DID"
 }
 
 uninstall_theme() {

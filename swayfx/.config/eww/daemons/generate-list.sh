@@ -8,6 +8,7 @@ set -o errexit
 # Files pre-generated for FZF, FSEL
 LIST_DIR="/tmp/list-directory"
 LIST_FILES="/tmp/list-files"
+LIST_BOOKS="/tmp/list-books"
 
 list_dirs() {
     # List directory for Yazi (images, videos, musics, etc...)
@@ -31,9 +32,20 @@ list_files() {
     cd "$_pwd"
 }
 
+list_books() {
+    # List of book pdf/epub for Zathura
+    echo "Generate list of books to read..."
+    _pwd=$(pwd)
+    cd "$HOME"
+    fd --hidden --type f -E .npm -E .gem -E .cache -E .git -E .cargo -E node_modules -E .python -E .local --full-path '.*.(pdf|epub)' > "$LIST_BOOKS"
+    echo "done with $LIST_BOOKS"
+    cd "$_pwd"
+}
+
 # Run every hour
 while :; do
     list_dirs
     list_files
+    list_books
     sleep $((60 * 60))
 done

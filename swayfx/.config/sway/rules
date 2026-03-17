@@ -31,7 +31,7 @@ for_window {
 
 # >> Assign apps to workspaces
 assign {
-    [app_id="org.pwmt.zathura"] 3
+    [app_id="org.pwmt.zathura"] 4
 }
 
 # >> Focus when launched
