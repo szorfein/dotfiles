@@ -21,12 +21,15 @@ kill_pid "pgrep -f sway-workspaces.rb"
 # Without sleep, the 'eww open-many x' keep in the process
 # see with (ps aux |  grep eww)
 # which produce bug, etc... the only process visible should be 'eww daemon'
-pidof -q eww || { eww daemon & }
+pidof -q eww || {
+    if eww ping; then
+        eww daemon &
+    fi
+}
 
 # Other daemons
 ~/.config/eww/scripts/daemons/sway-workspaces.rb > /dev/null 2>&1 &
 ~/.config/eww/daemons/media.sh > /dev/null 2>&1 &
-~/.config/eww/daemons/light.sh > /dev/null 2>&1 &
 #~/.config/eww/daemons/volume.sh > /dev/null 2>&1 &
 #~/.config/eww/daemons/playlists.sh > /dev/null 2>&1 &
 ~/.config/eww/daemons/iwd.sh > /dev/null 2>&1 &
@@ -34,6 +37,9 @@ pidof -q eww || { eww daemon & }
 
 # Used to convert default images used by EWW
 ~/.config/eww/daemons/convert-imgs.sh > /dev/null 2>&1 &
+
+# Pre-generated list
+~/.config/eww/daemons/generate-list.sh > /dev/null 2>&1 &
 
 # Open bar for multiscreen or not
 sleep 3

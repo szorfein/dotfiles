@@ -1,0 +1,26 @@
+[app]
+overall = { bg = "#171c25" }
+
+[mgr]
+hovered = { fg = "#002f67", bg = "#acc7ff" }
+border_style = { fg = "black" }
+
+# Mode are bottom left - right side
+[mode]
+normal_main = { bg = "#004491", fg = "#d7e2ff" }
+normal_alt = { bg = "#404565", fg = "#dfe0ff" }
+
+[indicator]
+parent  = { bg = "#404565", fg = "#dfe0ff" }
+current = { bg = "#494070", fg = "#e6deff" }
+padding = { open = "", close = "" }
+
+# Status bar
+[status]
+overall = { bg = "#171c25", fg = "#dfe2ef" }
+
+[filetype]
+rules = [
+# fallback - Dir
+    { name = "*/", fg = "#c0c4eb" }
+]

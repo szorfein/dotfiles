@@ -1,206 +1,214 @@
 (defwidget network-stats []
-    (box :orientation "horizontal"
-         :class "network-stats"
-         :space-evenly false
-        (box :space-evenly false
-            (box :class "icon-primary" "download_2")
-            (box :class "label-small" "${round(EWW_NET.lo.NET_DOWN / 1000000, 2)}MB/s")
-        )
-        (box :space-evenly false
-            (box :class "icon-tertiary" "upload_2")
-            (box :class "label-small" "${round(EWW_NET.lo.NET_UP / 1000000, 2)}MB/s")
-        )
-    )
-)
+  (box
+    :orientation "horizontal"
+    :class "network-stats"
+    :space-evenly false
+    (box :space-evenly false
+      (box :class "icon-primary" "download_2")
+      (box :class "label-small" "${round(EWW_NET.lo.NET_DOWN / 1000000, 2)}MB/s"))
+
+    (box :space-evenly false
+      (box :class "icon-tertiary" "upload_2")
+      (box :class "label-small" "${round(EWW_NET.lo.NET_UP / 1000000, 2)}MB/s"))))
 
 (defwidget group-daemons []
- (box
-  :orientation "vertical"
-  :spacing "${round(16 * get_env("EWW_SCALE"), 0)}"
-  :space-evenly false
-  (box :class "label-large"
-   :halign "start"
-   "Group Daemons"
-  )
-  (button-groups-multimedia)
-  (button-groups-networks)
- )
-)
+  (box
+    :orientation "vertical"
+    :spacing "${round(16 * get_env("EWW_SCALE"), 0)}"
+    :space-evenly false
+    (box
+      :class "label-large mb-8"
+      :halign "start"
+      :space-evenly false
+      :spacing 8
+      (box :class "simple-icon text-primary" "skull_list")
+      "Group Daemons")
 
-; space available? only two lines - 9 apps max (3-3-3)
+    (button-groups-multimedia)
+    (button-groups-networks)))
+
+
 (defwidget group-apps []
- (box
-  :orientation "vertical"
-  :spacing "${round(16 * get_env("EWW_SCALE"), 0)}"
-  :space-evenly false
-  (box :class "label-large"
-   :halign "start"
-   "Group Apps"
-  )
-  (button-groups-musics)
-  (button-groups-system)
-  ;(button-groups-qemu)
- )
-)
+  (box
+    :orientation "vertical"
+    :spacing "${round(16 * get_env("EWW_SCALE"), 0)}"
+    :space-evenly false
+    (box
+      :class "label-large mb-8"
+      :halign "start"
+      :space-evenly false
+      :spacing 8
+      (box :class "simple-icon text-primary" "apps")
+      "Group Apps")
+
+    (button-groups-musics)
+    (button-groups-system)))
 
 (defwidget network-ssids []
-    (box :orientation "vertical"
+  (box
+    :orientation "vertical"
+    :space-evenly false
+    :spacing "${round(8 * get_env("EWW_SCALE"), 0)}"
+    (box
+      :class "label-large"
+      :halign "start"
+      :space-evenly false
+      :spacing 8
+      (box :class "simple-icon text-primary" "network_check")
+      "Nearby ssids")
+
+    (scroll
+      :hscroll false
+      :vscroll true
+      :class "network-scroll"
+      :valign "start"
+      (box
+        :orientation "vertical"
         :space-evenly false
-        :spacing "${round(8 * get_env("EWW_SCALE"), 0)}"
-        (box :class "label-large"
-            :halign "start"
-            "Nearby ssids"
-        )
-        (scroll :hscroll false :vscroll true
-            :class "network-scroll"
-            :valign "start"
-            (box
-                :orientation "vertical"
-                :space-evenly false
-                (for ssid in wifi-ssids
-                    ;(list-item :class "body-large" :text {ssid.connected ? "[A] ${ssid.name}" : "${ssid.name}"})
-                    (list-item-normal :text {ssid.connected ? "[A] ${ssid.name}" : "${ssid.name}"})
-                    ;(box :class "label-medium" "${ssid.name}")
-                )
-            )
-        )
-    )
-)
+        (for ssid in wifi-ssids
+          ;(list-item :class "body-large" :text {ssid.connected ? "[A] ${ssid.name}" : "${ssid.name}"})
+          (list-item-normal :text {ssid.connected ? "[A] ${ssid.name}" : "${ssid.name}"}))))))
+;(box :class "label-medium" "${ssid.name}")
 
-(defwidget button-groups-wifi []
-    (box :space-evenly false
-         :spacing "${round(8 * get_env("EWW_SCALE"), 0)}"
-         :halign "center"
-         :hexpand false
-        (button-groups-icon-secondary
-            :icon wifi-killed-icon
-            :onclick "${eww_scripts}/network.sh wifi-toggle &"
-            :class { wifi-killed ? "enabled" : ""}
-        )
-        (button-groups-icon :icon "system_update_alt" :onclick "")
-    )
-)
 
-; TODO: buttons app for go into musics, wallpapers and books - next release
+; One line of "Group Apps"
 (defwidget button-groups-musics []
-    (box :space-evenly false
-         :spacing "${round(8 * get_env("EWW_SCALE"), 0)}"
-         :halign "center"
-         :hexpand false
-        (button-groups-icon-secondary
-            :icon "library_music"
-            :onclick "${eww_scripts}/network.sh wifi-toggle &"
-            :class { wifi-killed ? "enabled" : ""}
-        )
-        (button-groups-icon-tertiary
-            :icon "wallpaper" :onclick "kitty -1 --class wallpaper -e yazi ~/images &" :class "enabled"
-        )
-        (button-groups-icon-error
-            :icon "library_books" :onclick "" :class "enabled"
-        )
-    )
-)
+  (box
+    :space-evenly false
+    :spacing "${round(8 * get_env("EWW_SCALE"), 0)}"
+    :halign "center"
+    :hexpand false
+    (button-groups-icon
+      :icon "library_music"
+      :onclick "${eww_scripts}/go-musics.sh just_go"
+      :onrightclick "${eww_scripts}/go-musics.sh kill_it"
+      :class { go_musics == "true" ? "enabled" : ""})
+
+    (button-groups-icon-color
+      :icon "wallpaper"
+      :color "secondary"
+      :onclick "${eww_scripts}/go-walls.sh just_go"
+      :onrightclick "${eww_scripts}/go-walls.sh kill_it"
+      :class { go_wall == "true" ? "enabled" : ""})
+
+    (button-groups-icon-color
+      :icon "library_books"
+      :color "tertiary"
+      :onclick "${eww_scripts}/go-news.sh just_go"
+      :onrightclick "${eww_scripts}/go-news.sh kill_it"
+      :class { go_news == "true" ? "enabled" : ""})))
 
 ; TODO: buttons app for manage system (update, ansible-playbook, run scan for rootkit? virus?) - next release
-; We can also run some games, go on the web and more...
+; We can also run some games, go on any site on the web and more...
+; Another line of "Group Apps"
 (defwidget button-groups-system []
-    (box :space-evenly false
-         :spacing "${round(8 * get_env("EWW_SCALE"), 0)}"
-         :halign "center"
-         :hexpand false
-        (button-groups-icon
-            :icon "update"
-            :onclick "${eww_scripts}/network.sh wifi-toggle &"
-            :class "enabled"
-        )
-        (button-groups-icon-error
-            :icon "location_searching" :onclick "kitty -1 --class wallpaper -e yazi ~/images &"
-        )
-        (button-groups-icon-secondary
-            :icon "build" :onclick ""
-        )
-    )
-)
+  (box
+    :space-evenly false
+    :spacing "${round(8 * get_env("EWW_SCALE"), 0)}"
+    :halign "center"
+    :hexpand false
 
-; TODO: buttons app for Quickemu - next release
-(defwidget button-groups-qemu []
-    (box :space-evenly false
-         :spacing "${round(8 * get_env("EWW_SCALE"), 0)}"
-         :halign "center"
-         :hexpand false
-        (button-groups-icon-tertiary
-            :icon "circle"
-            :onclick "${eww_scripts}/network.sh wifi-toggle &"
-            :class { wifi-killed ? "enabled" : ""}
-        )
-        (button-groups-icon :icon "cyclone" :onclick "" :class "enabled")
-    )
-)
+    (button-groups-icon-color
+      :icon "forum"
+      :color "error"
+      :onclick "${eww_scripts}/go-msg.sh just_go"
+      :onrightclick "${eww_scripts}/go-msg.sh kill_it"
+      :class { go_msg == "true" ? "enabled" : ""})
+
+    (button-groups-icon-color
+      :icon "travel_explore"
+      :color "yellow"
+      :onclick "${eww_scripts}/go-web.sh just_go"
+      :onrightclick "${eww_scripts}/go-web.sh kill_it"
+      :class { go_web == "true" ? "enabled" : ""})
+
+    (button-groups-icon-color
+      :icon "monitor_heart"
+      :color "blue"
+      :onclick "${eww_scripts}/go-mon.sh just_go"
+      :onrightclick "${eww_scripts}/go-mon.sh kill_it"
+      :class { go_mon == "true" ? "enabled" : ""})))
 
 ; one line of buttons
 (defwidget button-groups-networks []
-    (box :space-evenly false
-         :spacing "${round(6 * get_env("EWW_SCALE"), 0)}"
-         :halign "center"
-         :hexpand false
-        (button-groups-icon-text-tertiary :icon "invert_colors" :text "Tor" :onclick "" :class { tor-enabled ? "enabled" : ""})
-        (button-groups-icon-text-secondary :icon "wifi" :text "openwrt" :onclick "")
-    )
-)
+  (box
+    :space-evenly false
+    :spacing "${round(6 * get_env("EWW_SCALE"), 0)}"
+    :halign "center"
+    :hexpand false
+    (button-groups-icon-text-tertiary
+      :icon "${tor.icon}"
+      :text "Tor"
+      :onclick "${eww_daemons}/tor.sh toggle &"
+      :onrightclick "${eww_daemons}/tor.sh stop &"
+      :class { tor.status == "true" ? "enabled" : ""})
+    (button-groups-icon-text-secondary :icon "wifi" :text "openwrt" :onclick "")))
+
 
 ; one line of buttons
 (defwidget button-groups-multimedia []
-    (box :space-evenly false
-         :spacing "${round(8 * get_env("EWW_SCALE"), 0)}"
-         :halign "center"
-        (button-groups-icon-tertiary :icon "videocam" :onclick "")
-        (button-groups-icon :icon "${audio["muted-icon"]}" :onclick "${eww_scripts}/alsa-audio.sh toggle &" :class { audio["muted"] ? "" : "enabled"})
-        (button-groups-icon-secondary :icon "mic_off" :onclick "")
-    )
-)
+  (box
+    :space-evenly false
+    :spacing "${round(8 * get_env("EWW_SCALE"), 0)}"
+    :halign "center"
+    (button-groups-icon-color
+      :icon "${rfkill.icon}"
+      ;:tooltip "Airplane mode ${rfkill.card}"
+      :color "secondary"
+      :class { rfkill.status == "blocked" ? "enabled" : ""}
+      :onclick "${eww_daemons}/rfkill.sh toggle &")
+    (button-groups-icon :icon "${audio["muted-icon"]}" :onclick "${eww_scripts}/alsa-audio.sh toggle &" :class { audio["muted"] ? "" : "enabled"})
+    (button-groups-icon-color :icon "mic_off" :color "secondary" :onclick "")))
 
-(defwidget music-volume []
-    (slider-horizontal-m3
-        :value "${audio["volume"]}"
-        :max 100
-        :icon ""
-        :label "Volume"
-        :onchange "${eww_scripts}/alsa-audio.sh set {} &"
-    )
-)
-
-(defwidget last-events []
-    (box :orientation "vertical"
-         :space-evenly false
-         :spacing "${round(16 * get_env("EWW_SCALE"), 0)}"
-        (box :class "label-large"
-            :halign "start"
-            "Last events"
-        )
-        (scroll :hscroll false :vscroll true
-                :class "last-events"
-            (for event in events
-                (list-with-icon :icon "${event.icon}"
-                                :title "${event.title}"
-                                :text "${event.msg}"
-                                :time "${event.time}"
-                                :action "${event.action}"
-                )
-            )
-        )
-    )
-)
 
 ; all vars
-(defpoll audio :interval "5m"
-               :initial "{}"
-               `~/.config/eww/scripts/alsa-audio.sh`
-)
-(defvar wifi-killed false)
-(defvar wifi-killed-icon "airplanemode_inactive")
-; (defpoll tor-icon :interval "15m" :run-while {sidebar-page-index == "3"} "tor icon")
-; (defpoll tor-state :interval "15m" :run-while {sidebar-page-index == "3"} "tor state")
-(defvar tor-enabled false)
+(defpoll go_musics
+  :run-while { sidebar-page-index == 3}
+  :initial false
+  :interval "10m"
+  `~/.config/eww/scripts/go-musics.sh status`)
+
+(defpoll go_wall
+  :run-while { sidebar-page-index == 3}
+  :initial false
+  :interval "10m"
+  `~/.config/eww/scripts/go-walls.sh status`)
+
+(defpoll go_news
+  :run-while { sidebar-page-index == 3}
+  :initial false
+  :interval "10m"
+  `~/.config/eww/scripts/go-news.sh status`)
+
+(defpoll go_web
+  :run-while { sidebar-page-index == 3}
+  :initial false
+  :interval "10m"
+  `~/.config/eww/scripts/go-web.sh status`)
+
+(defpoll go_mon
+  :run-while { sidebar-page-index == 3}
+  :initial false
+  :interval "10m"
+  `~/.config/eww/scripts/go-mon.sh status`)
+
+(defpoll go_msg
+  :run-while { sidebar-page-index == 3}
+  :initial false
+  :interval "10m"
+  `~/.config/eww/scripts/go-msg.sh status`)
+
+(defpoll rfkill
+  :interval "5m"
+  :run-while { sidebar-page-index == 3}
+  :initial "{}"
+  `~/.config/eww/daemons/rfkill.sh status`)
+
+(defpoll tor
+  :interval "2m"
+  :run-while { sidebar-page-index == 3}
+  :initial "{}"
+  `~/.config/eww/daemons/tor.sh status`)
+
 (defvar wifi-on false)
 (defvar wifi-ssids "[]")
-(defvar events "[{\"icon\":\"pause\",\"title\":\"system\",\"msg\":\"updated\",\"time\":\"11:50\",\"action\":\"footclient\"},{\"icon\":\"play\",\"title\":\"music\",\"msg\":\"Playing MasterbootRecord\",\"time\":\"11:56\",\"action\":\"footclient\"}]")

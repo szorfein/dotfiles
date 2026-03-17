@@ -10,7 +10,9 @@
 </a>
 <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/szorfein/dotfiles?color=73daca&labelColor=%231A1B26&style=for-the-badge" />
 <img alt="" src="https://img.shields.io/github/repo-size/szorfein/dotfiles?color=%230969da&labelColor=%231A1B26&style=for-the-badge&label=Repo" />
-
+<a href="https://github.com/szorfein/dotfiles/network/members/">
+  <img src="">
+</a>
 </div>
 
 ###
@@ -25,8 +27,8 @@
 
 ###
 
-![Vibe screenshot 1](https://github.com/szorfein/unix-portfolio/raw/master/Vibe/clean.jpg)
-![Vibe screenshot 2](https://github.com/szorfein/unix-portfolio/raw/master/Vibe/full.jpg)
+![Valyria screenshot 1](https://github.com/szorfein/unix-portfolio/raw/master/SwayFX/Valyria/clean.jpg)
+![Valyria screenshot 2](https://github.com/szorfein/unix-portfolio/raw/master/SwayFX/Valyria/full.jpg)
 
 ## ✨ Features
 
@@ -41,27 +43,28 @@
 - **Widgets:** [Eww](https://elkowar.github.io/eww/eww.html).
 - **App Launcher:**
   [otter-launcher](https://github.com/kuokuo123/otter-launcher) which use
-  [fsel](https://github.com/Mjoyufull/fsel) and
-  [fzf](https://github.com/junegunn/fzf).
+  [fsel](https://github.com/Mjoyufull/fsel),
+  [fzf](https://github.com/junegunn/fzf) and
+  [fd](https://github.com/sharkdp/fd).
 - **Notification:** [Dunst](https://github.com/dunst-project/dunst) with
   `dunstify`
 - **Terminal:** [Kitty](https://sw.kovidgoyal.net/kitty/) (best ally on
   change-theme)
-- **Editor:** [Neow](https://github.com/szorfein/neow) and
+- **Editor:** [VIe](https://github.com/szorfein/vie) and
   [Tmux](https://github.com/szorfein/dotfiles/blob/main/tmux/.config/reaver/tmux.yml)
 - **Lock Screen:** Custom version of the
   [Swaylock fancy](https://github.com/Big-B/swaylock-fancy) script
-- **Music/Sound:** [ALSA](https://www.alsa-project.org),
-  [Playerctl](https://github.com/altdesktop/playerctl) with just
-  [MPV](https://mpv.io/) as music, videos player (very light in CPU consumption
-  compared to mpd), maybe add [Kew](https://codeberg.org/ravachol/kew) in a next
-  release...
+- **Music/Sound:** [Pipewire](https://www.pipewire.org/) +
+  [ALSA](https://www.alsa-project.org),
+  [Playerctl](https://github.com/altdesktop/playerctl) with
+  [MPV](https://mpv.io/) and [Kew](https://codeberg.org/ravachol/kew). Very
+  light in CPU consumption compared to MPD.
 - **File Manager:** [Yazi](https://github.com/sxyazi/yazi) +
   [Thunar](https://docs.xfce.org/xfce/thunar/start).
 - **Fonts:** [Iosevka](https://www.nerdfonts.com/) +
   [Material Icons Outlined](https://github.com/google/material-design-icons) +
   [IcoMoon](https://icomoon.io/) +
-  [Lovely Bubbles](https://www.dafont.com/lovely-bubbles.font)
+  [Dragon4](https://www.dafont.com/dragon-4.font)
 - **Dotfiles manager and theme switcher:**
   [GNU/Stow](https://www.gnu.org/software/stow/)
 - **Dotfiles dependencies manager:**
@@ -77,13 +80,17 @@ Automatic installation available with `chezmoi`
 [chezmoi-ansible](https://github.com/szorfein/dots/tree/ansible) (only Arch
 Linux, Gentoo, Void Linux).
 
-Look for Awesome wm? see the last
-[Focus](https://github.com/szorfein/dotfiles-awesome-m3) theme.
+Look for previous dotfiles?
+
+- Awesome with Material 3:
+  [Focus](https://github.com/szorfein/dotfiles-awesome-m3) theme.
+- Awesome with Material 2: [Lines](https://github.com/szorfein/dotfiles-awesome)
+  theme.
 
 ## ⚡Previous theme
 
-![Abyss screenshot 1](https://github.com/szorfein/unix-portfolio/raw/master/Abyss/clean.jpg)
-![Abyss screenshot 2](https://github.com/szorfein/unix-portfolio/raw/master/Abyss/full.jpg)
+![Vibe screenshot 1](https://github.com/szorfein/unix-portfolio/raw/master/Vibe/clean.jpg)
+![Vibe screenshot 2](https://github.com/szorfein/unix-portfolio/raw/master/Vibe/full.jpg)
 
 ## 📦 Other screenshots
 
@@ -96,9 +103,9 @@ More screenshots of previous themes are available at
 > [#2](https://pixelscan.net/blog/how-to-get-around-a-reddit-permanent-ban/)
 > [#3](https://dicloak.com/blog-detail/reddit-ip-ban-explained-2025-why-reddit-blocked-your-ip-and-how-to-fix-it).
 
-Already joined [Lemmy](https://lemmy.ml/u/Szorfein) as alternative. if people
-know another (cool/privacy) social network or site where share dotfiles, please
-share the information.
+Already joined [Lemmy](https://lemmy.ml/u/Szorfein?page=1&sort=New&view=Posts)
+as alternative. if people know another (cool/privacy) social network or site
+where share dotfiles, please share the information.
 
 ## 🙌 Contributing
 

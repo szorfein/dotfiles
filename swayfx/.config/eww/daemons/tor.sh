@@ -2,29 +2,102 @@
 
 set -o errexit
 
-# https://gist.github.com/foxyfocus/4388f34059af56e179fb4aa00ca0a913
+STATUS=false
+DAEMON=false
+ICON_OFF="invert_colors_off"
+ICON_ON="invert_colors"
+ICON="$ICON_OFF"
 
-if PIDS=$(pgrep -f "sh .*tor.sh"); then
-    MYPID=$$
-    PIDS_CLEAN=$(echo "$PIDS" | sed s/"$MYPID"//)
-    if [ -n "$PIDS_CLEAN" ]; then
-        echo "clean $PIDS_CLEAN"
-        echo "$PIDS_CLEAN" | xargs kill
-    fi
-fi
+noti() {
+    dunstify -a tor -u low -i "$ICON_ON" tor "$1" -r 666
+}
 
-test_tor() {
-    if curl -s https://check.torproject.org/api/ip | grep -q true; then
-        eww update tor-enabled=true
+die() {
+    noti "$1"
+    exit 1
+}
+
+is_systemd() {
+    if readlink /sbin/init | grep -q systemd; then
+        return 0
     else
-        eww update tor-enabled=false
+        return 1
     fi
 }
 
-i=1
-while :; do
-    echo "daemons/tor.sh run $i"
+test_tor() {
+    if ! $DAEMON; then
+        return 0
+    fi
+
+    if curl -s https://check.torproject.org/api/ip | grep -q true; then
+        STATUS=true
+        ICON="$ICON_ON"
+    fi
+}
+
+display() {
+    cat << EOF
+{"status":"$STATUS","icon":"$ICON"}
+EOF
+}
+
+test_systemd() {
+    #echo "test systemd"
+    if systemctl is-active tor > /dev/null; then
+        DAEMON=true
+    fi
+}
+
+reload_tor() {
+    is_systemd && {
+        noti "reloading with systemd..."
+        if sudo systemctl restart tor; then noti "is reloaded"; else noti "fail to reload"; fi
+    }
+}
+
+start_tor() {
+    is_systemd && {
+        noti "starting with systemd..."
+        if sudo systemctl start tor; then noti "has started"; else noti "fail to start"; fi
+    }
+}
+
+stop_tor() {
+    is_systemd && {
+        noti "stopping with systemd..."
+        if sudo systemctl stop tor; then noti "is stopped"; else noti "fail to stop"; fi
+    }
+}
+
+get_status() {
+    is_systemd && test_systemd
     test_tor
-    sleep 60
-    i=$((i + 1))
-done
+    display
+}
+
+do_toggle() {
+    tor=$(eww get tor)
+    _status=$(echo "$tor" | jq .status)
+    if [ "$_status" = \""true\"" ]; then
+        reload_tor
+    elif [ "$_status" = \""false\"" ]; then
+        start_tor
+    fi
+}
+
+do_stop() {
+    tor=$(eww get tor)
+    _status=$(echo "$tor" | jq .status)
+    if [ "$_status" = \""true\"" ]; then
+        stop_tor
+    fi
+}
+
+[ -z "$1" ] && exit
+
+case "$1" in
+status) get_status ;;
+toggle) do_toggle ;;
+stop) do_stop ;;
+esac

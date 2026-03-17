@@ -3,7 +3,7 @@
 #git clone https://github.com/MDiaznf23/m3wal
 #python -m venv ~/.python
 #~/.python/bin/pip install -e .
-#~/.python/bin/m3wal ~/images/vibes.png --generator-only --mode dark --variant AUTO
+#~/.python/bin/m3wal ~/images/vibes.png --generator-only --mode dark --variant AUTO # or VIBRANT, EXPRESSIVE, FIDELITY
 #~/.dotfiles/swayfx/bin/gen-theme-m3wal.sh ~/.config/m3-colors/output/vibes_FIDELITY_scheme.json vibe
 
 set -o errexit -o nounset
@@ -226,6 +226,13 @@ cat <<EOF > "$workdir/.config/eww/styles/colors.scss"
 \$surface-tint: $surface_tint;
 \$inverse-surface: $inverse_surface;
 \$inverse-on-surface: $inverse_on_surface;
+// can be any colors match with the theme...
+\$green: $t_green_bright;
+\$on-green: #000000;
+\$yellow: $t_yellow_bright;
+\$on-yellow: #000000;
+\$blue: $t_blue_bright;
+\$on-blue: #000000;
 EOF
 
 cat <<EOF > "$workdir/.config/sway/theme"
@@ -489,6 +496,11 @@ cat <<EOF > "$workdir/.config/dunst/dunstrc.d/10-bytheme.conf"
     # Icon for notifications with critical urgency
     default_icon = dialog-warning
 
+[kew_display]
+    appname = kew
+    urgency = low
+    format = "<span rise='-5000' font_desc='Material Symbols Outlined Regular 20'>music_note_2</span><span foreground='$inverse_on_surface'> Kew</span> &gt; <span font_desc='Iosevka Nerd Font Regular 14' foreground='$inverse_on_surface'>%b</span>"
+    history_ignore = yes
 EOF
 
 cat <<EOF > "$workdir/.config/fsel/config.toml"

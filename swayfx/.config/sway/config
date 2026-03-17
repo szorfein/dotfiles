@@ -64,8 +64,8 @@ for_window [app_id="kitty"] blur enable
 
 # On eww windows
 layer_effects "gtk-layer-shell" {
-    blur enable;
-#   blur_xray enable; this make client bellow dialog window invisible
+    # blur enable; this option slow down too munch eww on my netbook
+    # blur_xray enable; this make client bellow dialog window invisible
     blur_ignore_transparent enable;
     shadows enable;
     corner_radius 20;
@@ -95,6 +95,8 @@ for_window {
     [app_id="kitty"] border pixel 0
     [app_id="mpv"] border pixel 0
     [app_id="imv"] border pixel 0
+    [app_id="musics"] border pixel 0
+    [app_id="wallpapers"] border pixel 0
     [app_id="org.pwmt.zathura"] border pixel 0
 }
 

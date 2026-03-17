@@ -1,19 +1,59 @@
 # Changelog
 
-## 5.22.1
+## 5.32.0
+
+### New dependencies
+
+- Use elogind as session management instead of seatd/turnstile/etc...
+- Update the 6 buttons on the last panel ("Group Apps"), can open (left click)
+  and close (right click): Kew (music), Yazi,
+  [Bulletty](http://bulletty.croci.dev/) (rss),
+  [Glances](https://github.com/nicolargo/glances) (monitoring), Web browser
+  (librewolf for now) and last [Element-desktop](https://element.io/en) (matrix
+  chat).
+- Add [Kew](https://codeberg.org/ravachol/kew) to replace the all the stack MPD,
+  NCMPCPP and MPC, CAVA.
+- Change dependency "light" with
+  [brightnessctl](https://github.com/Hummer12007/brightnessctl), TODO: desktop
+  need ddutils....
+  [#c16633c](https://github.com/szorfein/dotfiles/commit/c16633c4013a9c5eddb4e857468191715240c8fe)
+- Upgrade sound server from ALSA to Pipewire + ALSA and all scripts related, add
+  [wiremix](https://github.com/tsowell/wiremix).
+  [#6a6be22](https://github.com/szorfein/dotfiles/commit/6a6be22ea3d6b5cd0f9653a8fa719ae70d95f1c8)
 
 ### Otter-launcher
 
-- Update fsel to the version 3.0.0.
+- List and open a project with Kitty/Tmux with [v]
+- List and open any books (pdf|epub) on your computer with [b]
+- Fsel is now SUPER useful and fast by using pre-generated list with
+  [fd](https://github.com/sharkdp/fd) (better than 'find').
+  [#0ab7b3f](https://github.com/szorfein/dotfiles/commit/0ab7b3f711dd11a26405fc429fd87da64fcaf4a3)
+- Update Fsel to the version 3.0.0.
+  [#0930b1e](https://github.com/szorfein/dotfiles/commit/0930b1ee5a0ebd5070cbcf15130737019a000e41)
 - Make config for foot and kitty.
 
 ### Neovim
 
-- Move Neovim configurations at https://github.com/szorfein/neow
+- Move Neovim configurations at [VIe](https://github.com/szorfein/vie). Should
+  be used by all my dotfiles.
+  [#5981707](https://github.com/szorfein/dotfiles/commit/598170781e800ee9d31d6f0db0f57de301d45400)
 
-### Fix
+### Dunst
 
-- Use fzf instead of fsel to search file (load faster)
+- Single dunst PID on all my dots (-r 666), this make pop all notifications on
+  one line.
+
+Hunt applications displaying non conform (ugly) notification:
+
+- Correct Kew
+
+### Fixes
+
+- Remove Blur effect from SwayFX, slow down too munch my netbook's performance
+  and EWW.
+- Animations on the left and the right bar.
+- media.sh (playerctl), robust solution to filter all the parameters.
+  [#0613f7c](https://github.com/szorfein/dotfiles/commit/0613f7c031a03b54e2753fb6e71032b022ffafde)
 
 ## v5.20.0 - Vibe - Feb. 22 2026
 

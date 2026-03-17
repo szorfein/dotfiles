@@ -1,0 +1,8 @@
+set $bg #0f131c
+set $fg #dfe2ef
+set $shadow #000000
+set $outline #414753
+set $bglight #0f131c
+set $error #ffb4ab
+set $theme valyria
+set $theme-bg ~/images/valyria.jpg

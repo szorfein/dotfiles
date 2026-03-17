@@ -6,12 +6,13 @@ ISMUTE=false
 ICON_ON=""
 ICON_OFF=""
 ICON="$ICON_OFF"
+DID="666"
 
 TOGGLE=false
 CHANGE_VOLUME=false
 
 noti() {
-    dunstify -u low -i "$ICON_ON" -a "volume" "Volume" "$1" -r 999
+    dunstify -u low -i "$ICON_ON" -r "$DID" -a "volume" "Volume" "$1"
 }
 
 ## PARAMS
@@ -21,25 +22,28 @@ if [ -n "$1" ]; then
     elif [ "$1" = "set" ]; then
         if [ -n "$2" ]; then
             CHANGE_VOLUME=true
-            amixer set Master "$2"%
-            noti "$2"
+            wpctl set-volume @DEFAULT_SINK@ "$2%"
+            noti "$2%"
         fi
     fi
 fi
 
-AMIXER=$(amixer sget Master | grep "\[")
-IS_VOL_ON=$(echo "$AMIXER" | awk '{print $6}' | tr -d "\[[\]")
+if wpctl status | grep -i muted; then
+    IS_VOL_ON="off"
+else
+    IS_VOL_ON="on"
+fi
 
 mute_alsa_card() {
     ISMUTE=true
     ICON="$ICON_OFF"
-    amixer sset Master mute > /dev/null
+    wpctl set-mute @DEFAULT_SINK@ toggle
 }
 
 unmute_alsa_card() {
     ISMUTE=false
     ICON="$ICON_ON"
-    amixer sset Master unmute > /dev/null
+    wpctl set-mute @DEFAULT_SINK@ toggle
 }
 
 if [ "$IS_VOL_ON" = "on" ]; then
@@ -54,7 +58,7 @@ else
     echo "??"
 fi
 
-VOL=$(echo "$AMIXER" | awk '{print $4}' | tr -d "\[%\]")
+VOL=$(wpctl get-volume @DEFAULT_SINK@ | awk '{print $2}' | tr -d '0.')
 
 JSON="{"
 JSON="$JSON\"volume\":$VOL,"
