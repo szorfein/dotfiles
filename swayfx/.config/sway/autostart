@@ -31,6 +31,10 @@ exec {
 # Notifications
     dunst
 
+    if grep -qi "void linux" /etc/os-release; then
+        pidof pipewire || pipewire
+    fi
+
 # Run terminal daemon if any
     ~/bin/reload-terminal.sh
 
