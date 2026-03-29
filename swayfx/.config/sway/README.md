@@ -28,7 +28,7 @@ The whole (or many) stack has changed because Wayland instead of X.
     sudo pacman -Syy \
     inotify-tools imv jq wl-clipboard curl stow \
     bc imagemagick rubygems grim swaybg wmenu rust \
-    playerctl mpv-mpris kitty \
+    playerctl mpv-mpris kitty fd \
     git meson scdoc wayland-protocols cairo gdk-pixbuf2 \
     libevdev libinput json-c libgudev wayland libxcb \
     libxkbcommon pango pcre2 wlroots0.19 brightnessctl \

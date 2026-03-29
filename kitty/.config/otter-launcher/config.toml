@@ -158,3 +158,14 @@ cmd = """
 cat /tmp/list-directory | ~/bin/fsel --dmenu | setsid -f xargs -r -I [] kitty -1 -e tmux new-session -c "[]"
 """
 unbind_proc = false
+
+# Play a directory with MPV (videos, images...), e.g:
+# p [Enter] sci
+# p [Enter] horror
+[[modules]]
+description = "Play a directory"
+prefix = "p"
+cmd = """
+cat /tmp/list-directory | ~/bin/fsel --dmenu | setsid -f xargs -r -I [] mpv --shuffle --auto-window-resize=no "[]"
+"""
+unbind_proc = false

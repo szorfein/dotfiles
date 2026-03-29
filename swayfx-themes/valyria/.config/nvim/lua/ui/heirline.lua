@@ -3,6 +3,10 @@ local vim = vim
 return {
     'rebelot/heirline.nvim',
     event = 'BufEnter',
+    dependencies = {
+        { 'lewis6991/gitsigns.nvim' },
+        --{ 'nvim-tree/nvim-web-devicons' },
+    },
     opts = function()
         local conditions = require('heirline.conditions')
         local utils = require('heirline.utils')
@@ -102,10 +106,17 @@ return {
 
         local FileType = {
             init = function(self)
-                local filename = self.filename
+                local filename = vim.api.nvim_buf_get_name(0)
+                --local filename = self.filename
+                --local filename = vim.fn.expand('%:t')
                 local extension = vim.fn.fnamemodify(filename, ':e')
                 self.icon, self.icon_color =
                     require('nvim-web-devicons').get_icon_color(filename, extension, { default = true })
+
+                --require('snacks').notify(self.icon)
+                --require('snacks').notify(filename or 'filenil')
+                --require('snacks').notify(extension or 'extnil')
+                --require('snacks').notify(self.icon_color or 'nocolor')
             end,
             provider = function(self)
                 local _icon = self.icon and (self.icon .. ' ')
@@ -140,12 +151,12 @@ return {
             -- %P = percentage through file of displayed window
             {
                 provider = '%l',
-                hl = { fg = 'red', bg = 'black' },
+                hl = { fg = 'red', bg = 'black', bold = true },
             },
             { provider = ' ', hl = { fg = 'cyan', bg = 'black' } },
             {
                 provider = '%2c',
-                hl = { fg = 'blue', bg = 'black' },
+                hl = { fg = 'blue', bg = 'black', bold = true },
             },
         }
 
@@ -156,12 +167,12 @@ return {
             -- %P = percentage through file of displayed window
             {
                 provider = '%P',
-                hl = { fg = 'magenta', bg = 'black' },
+                hl = { fg = 'magenta', bg = 'black', bold = true },
             },
             { provider = '  ', hl = { fg = 'cyan', bg = 'black' } },
             {
                 provider = '%2L',
-                hl = { fg = 'blue', bg = 'black' },
+                hl = { fg = 'blue', bg = 'black', bold = true },
             },
         }
 
