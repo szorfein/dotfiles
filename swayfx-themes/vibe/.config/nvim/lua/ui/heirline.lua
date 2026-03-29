@@ -3,6 +3,9 @@ local vim = vim
 return {
     'rebelot/heirline.nvim',
     event = 'BufEnter',
+    dependencies = {
+        { 'lewis6991/gitsigns.nvim' },
+    },
     opts = function()
         local conditions = require('heirline.conditions')
         local utils = require('heirline.utils')
