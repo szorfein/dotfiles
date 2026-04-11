@@ -1,9 +1,10 @@
 # Changelog
 
-## 5.34.2
+## 5.34.3
 
 ### Fixes
 
+- kitty run otter-launcher with -1 (run faster)
 - nvim top bar (heirline, gitsigns) for themes Valyria and Vibe.
 - Auto start pipewire on Voidlinux with sway/autostart.
 
