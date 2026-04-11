@@ -42,9 +42,9 @@ display() {
 EOF
 }
 
-test_systemd() {
+test_daemon() {
     #echo "test systemd"
-    if systemctl is-active tor > /dev/null; then
+    if pidof tor > /dev/null; then
         DAEMON=true
     fi
 }
@@ -71,7 +71,7 @@ stop_tor() {
 }
 
 get_status() {
-    is_systemd && test_systemd
+    test_daemon
     test_tor
     display
 }
