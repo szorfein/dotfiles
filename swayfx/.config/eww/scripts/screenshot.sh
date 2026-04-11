@@ -5,8 +5,11 @@ set -o errexit
 ICON=""
 DATE=$(date '+%Y%m%d-%H%M%S')
 NAME="screenshot-$DATE.jpg"
+DIR="$HOME/documents/rices"
 DID=666
 
-grim "$HOME/$NAME"
+[ -d "$DIR" ] || mkdir -p "$DIR"
 
-dunstify -u low -i "$ICON" "Screenshot" "Saved at ~/$NAME" -r "$DID"
+grim "$DIR/$NAME"
+
+dunstify -u low -i "$ICON" "Screenshot" "Saved into $DIR" -r "$DID"
