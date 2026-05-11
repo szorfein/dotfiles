@@ -1,6 +1,14 @@
 # Changelog
 
-## 5.34.3
+## 5.35.3
+
+### Otter-launcher
+
+- Add prefix 'vol' which open wiremix
+
+### Eww
+
+- Better slider look
 
 ### Fixes
 
