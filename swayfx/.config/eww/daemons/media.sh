@@ -77,15 +77,16 @@ playerctl --follow metadata --format '@@playerName@@{{playerName}}@@playerName@@
 
     if [ "$player_name" = "kew" ]; then
         #arturl="$(mpd_cover)"
-        if find=$(find "$HOME/musics" -type f -regex ".*\.\(jpg\|png\|jpeg\)" -print | fzf -f "$title" | head -1); then
+        if find=$(find "$MUSIC_DIR" -type f -regex ".*\.\(jpg\|png\|jpeg\)" -print | fzf -f "$title" | head -1); then
             arturl="$find"
         fi
     fi
 
     if [ "$player_name" = "mpv" ]; then
-        music_path=$(ps x | grep mpris.so | grep -o '[^ ]\+$' | head -1)
+        #music_path=$(ps x | grep mpris.so | grep -o '[^ ]\+$' | head -1)
+        #_title=$(playerctl -p mpv metadata xesam:title)
         # sometime inaccurate...
-        if find=$(find "$music_path" -type f -regex ".*\.\(jpg\|png\|jpeg\)" -print | fzf -f "$title" | head -1); then
+        if find=$(find "$MUSIC_DIR" -type f -regex ".*\.\(jpg\|png\|jpeg\)" -print | fzf -f "${title%.*}" | head -1); then
             arturl="$find"
         fi
     fi

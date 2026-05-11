@@ -50,7 +50,7 @@ export VISUAL=nvim
 # export GPG_AGENT_INFO=""
 
 # MPD Dir
-export MPD_MUSIC_DIR="$HOME/musics"
+export MUSIC_DIR="$HOME/musics"
 # If mpd port is different than default 6600
 # export MPD_PORT="6600"
 
