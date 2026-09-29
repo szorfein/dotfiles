@@ -25,6 +25,15 @@ is_systemd() {
     fi
 }
 
+# sv on Voidlinux
+has_sv() {
+    if [ -f /bin/sv ] || [ -f /sbin/sv ]; then
+        return 0
+    else
+        return 1
+    fi
+}
+
 test_tor() {
     if ! $DAEMON; then
         return 0
@@ -49,25 +58,49 @@ test_daemon() {
     fi
 }
 
+# TODO: Should write for 'sudo' or 'doas'
 reload_tor() {
-    is_systemd && {
+    if is_systemd; then
         noti "reloading with systemd..."
         if sudo systemctl restart tor; then noti "is reloaded"; else noti "fail to reload"; fi
-    }
+    elif has_sv; then
+        noti "reloading with sv..."
+        if sudo sv restart tor; then
+            noti "is reloaded"
+        else
+            noti "fail to reload"
+        fi
+    else
+        noti "Can't restart tor, no systemd or sv found..."
+    fi
+}
+
+get_status() {
+    test_daemon
 }
 
 start_tor() {
-    is_systemd && {
+    if is_systemd; then
         noti "starting with systemd..."
         if sudo systemctl start tor; then noti "has started"; else noti "fail to start"; fi
-    }
+    elif has_sv; then
+        noti "starting with sv..."
+        if sudo sv start tor; then noti "has started"; else noti "fail to start"; fi
+    else
+        noti "Cannot stop tor, no systemd or sv found..."
+    fi
 }
 
 stop_tor() {
-    is_systemd && {
-        noti "stopping with systemd..."
+    if is_systemd; then
+        noti "Stopping with systemd..."
         if sudo systemctl stop tor; then noti "is stopped"; else noti "fail to stop"; fi
-    }
+    elif has_sv; then
+        noti "Stopping with sv..."
+        if sudo sv stop tor; then noti "is stopped"; else noti "fail to stop"; fi
+    else
+        noti "Cannot stop tor (no systemd or sv)..."
+    fi
 }
 
 get_status() {

@@ -2,9 +2,10 @@ local vim = vim
 
 return {
     'rebelot/heirline.nvim',
-    event = 'BufEnter',
+    --event = 'BufEnter', this add +10ms to startup
+    event = "UiEnter",
     dependencies = {
-        { 'lewis6991/gitsigns.nvim' },
+        --{ 'lewis6991/gitsigns.nvim' },
         --{ 'nvim-tree/nvim-web-devicons' },
     },
     opts = function()

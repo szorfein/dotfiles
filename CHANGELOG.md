@@ -2,6 +2,11 @@
 
 ## 5.35.3
 
+### Shell
+
+- Add [zoxide](https://github.com/ajeetdsouza/zoxide), super useful
+- Support for Go lang
+
 ### Otter-launcher
 
 - Add prefix 'vol' which open wiremix

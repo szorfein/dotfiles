@@ -21,7 +21,7 @@
 # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/pass
 # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/copyfile
 # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/keychain
-plugins=(git-prompt gpg-agent zsh-autosuggestions starship zsh-syntax-highlighting keychain zsh-history-substring-search)
+plugins=(git-prompt gpg-agent zsh-autosuggestions starship zsh-syntax-highlighting keychain zsh-history-substring-search zoxide)
 
 # Disable oh-my-zsh update (before load ohmyzsh)
 # https://github.com/ohmyzsh/ohmyzsh#getting-updates
@@ -99,7 +99,7 @@ man() {
 # --------------
 
 #source ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-#source ~/.oh-my-zsh/custom/plugins/zsh-history-substring-search/zsh-history-substring-search.plugin.zsh
+source ~/.oh-my-zsh/custom/plugins/zsh-history-substring-search/zsh-history-substring-search.plugin.zsh
 #bindkey '^[[A' history-substring-search-up
 #bindkey '^[[B' history-substring-search-down
 bindkey "$terminfo[kcuu1]" history-substring-search-up

@@ -24,6 +24,12 @@ fi
 # if Turso
 [ -d "$HOME/.turso" ] && MY_PATH="$MY_PATH:$HOME/.turso"
 
+# if Go
+if command -v go >/dev/null 2>&1; then
+    export GOBIN=$(go env GOPATH)/bin
+    MY_PATH="$MY_PATH:$(go env GOBIN):$(go env GOPATH)/bin"
+fi
+
 export PATH="$PATH:$MY_PATH"
 
 # XDG
