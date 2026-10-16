@@ -15,6 +15,12 @@ fi
 MY_PATH="$MY_PATH:$HOME/.npm/bin"
 export npm_config_prefix="$HOME/.npm"
 
+# pnpm configuration
+if command -v pnpm >/dev/null 2>&1; then
+    export PNPM_HOME="$HOME/.local/share/pnpm"
+    MY_PATH="$MY_PATH:$HOME/.local/share/pnpm/bin"
+fi
+
 # Doom Emacs
 # https://github.com/doomemacs/doomemacs#install
 if [ -d $HOME/.config/emacs/bin ] ; then
