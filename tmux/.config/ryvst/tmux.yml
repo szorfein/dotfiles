@@ -1,0 +1,12 @@
+---
+every_time: 5m
+tasks:
+  - name: catppuccin-tmux.zip
+    url: https://github.com/catppuccin/tmux/archive/refs/heads/main.zip
+    to_dest: .config/tmux/plugins/catppuccin/tmux
+  - name: tmux-rose-pine.zip
+    url: https://github.com/rose-pine/tmux/archive/refs/heads/main.zip
+    to_dest: .config/tmux/plugins/rose-pine
+  - name: tmux-mode-indicator.zip
+    url: https://github.com/MunifTanjim/tmux-mode-indicator/archive/refs/heads/master.zip
+    to_dest: .config/tmux/plugins/tmux-mode-indicator

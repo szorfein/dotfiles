@@ -1,0 +1,31 @@
+---
+every_time: 168h
+execute: fc-cache -f
+tasks:
+  - name: szorfein-fonts.zip
+    url: https://github.com/szorfein/fonts/archive/refs/heads/main.zip
+    to_dest: .local/share/fonts/swayfx
+  - name: material-design-icons.ttf
+    url: https://github.com/google/material-design-icons/raw/refs/heads/master/variablefont/MaterialSymbolsOutlined%5BFILL,GRAD,opsz,wght%5D.ttf
+    to_dest: .local/share/fonts/swayfx
+  - name: tagliner.zip
+    url: https://dl.dafont.com/dl/?f=tagliner
+    to_dest: .local/share/fonts/swayfx
+  - name: demova.zip
+    url: https://dl.dafont.com/dl/?f=demova
+    to_dest: .local/share/fonts/swayfx
+  - name: skull_and_void.zip
+    url: https://dl.dafont.com/dl/?f=skull_and_void
+    to_dest: .local/share/fonts/swayfx
+  - name: lovely-bubbles.zip
+    url: https://dl.dafont.com/dl/?f=lovely_bubbles
+    to_dest: .local/share/fonts/swayfx
+  - name: dragon_4.zip
+    url: https://dl.dafont.com/dl/?f=dragon_4
+    to_dest: .local/share/fonts/swayfx
+  - name: iosevka.tar.xz
+    url: https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Iosevka.tar.xz
+    to_dest: .local/share/fonts/swayfx
+  - name: iosevka-term-slab.tar.xz
+    url: https://github.com/ryanoasis/nerd-fonts/releases/latest/download/IosevkaTermSlab.tar.xz
+    to_dest: .local/share/fonts/swayfx

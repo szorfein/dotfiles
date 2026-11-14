@@ -1,0 +1,15 @@
+---
+every_time: 168h
+tasks:
+  - name: swayfx-wallpapers.zip
+    url: https://github.com/szorfein/walls/archive/refs/heads/swayfx.zip
+    to_dest: images
+  - name: swayfx-gtk-themes.zip
+    url: https://github.com/szorfein/gtk-themes/archive/refs/heads/swayfx.zip
+    to_dest: .themes
+  - name: black.svg
+    url: https://github.com/Big-B/swaylock-fancy/raw/refs/heads/main/icons/black.svg
+    to_dest: .local/share/icons
+  - name: white.svg
+    url: https://github.com/Big-B/swaylock-fancy/raw/refs/heads/main/icons/white.svg
+    to_dest: .local/share/icons

@@ -1,0 +1,4 @@
+every_time: 4m
+tasks:
+  - url: https://github.com/szorfein/vie.git
+    to_dest: tmp/nvim
