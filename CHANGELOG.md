@@ -1,6 +1,6 @@
 # Changelog
 
-## Nov.2026 - 5.41.0
+## Nov.2026 - 5.41.1
 
 - Add [Zoxide](https://github.com/ajeetdsouza/zoxide) for ZSH, work's like the
   [z](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/z) plugin
@@ -12,6 +12,7 @@
 
 #### Bugs fixes
 
+- Use strip_comp on ryvst/swayfx
 - Yazi has changed "name" by "url" in the configuration...
 
 ## 5.35.3
