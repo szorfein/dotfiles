@@ -1,6 +1,33 @@
 # Changelog
 
-## 5.34.3
+## Nov.2026 - 5.41.0
+
+- Add [Zoxide](https://github.com/ajeetdsouza/zoxide) for ZSH, work's like the
+  [z](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/z) plugin
+- Change Reaver by the new faster [Ryvst](https://github.com/szorfein/ryvst)
+- Update slider look on EWW, more like defined by material 3.
+- Config for fastfetch
+- Support pnpm when installed (faster than npm)
+- Support for the language Go
+
+#### Bugs fixes
+
+- Yazi has changed "name" by "url" in the configuration...
+
+## 5.35.3
+
+### Shell
+
+- Add [zoxide](https://github.com/ajeetdsouza/zoxide), super useful
+- Support for Go lang
+
+### Otter-launcher
+
+- Add prefix 'vol' which open wiremix
+
+### Eww
+
+- Better slider look
 
 ### Fixes
 

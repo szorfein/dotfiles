@@ -1,3 +1,5 @@
+#!/usr/bin/env zsh
+
 #    ▒███████▒  ██████  ██░ ██  ██▀███   ▄████▄
 #    ▒ ▒ ▒ ▄▀░▒██    ▒ ▓██░ ██▒▓██ ▒ ██▒▒██▀ ▀█
 #    ░ ▒ ▄▀▒░ ░ ▓██▄   ▒██▀▀██░▓██ ░▄█ ▒▒▓█    ▄
@@ -21,7 +23,7 @@
 # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/pass
 # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/copyfile
 # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/keychain
-plugins=(git-prompt gpg-agent zsh-autosuggestions starship zsh-syntax-highlighting keychain zsh-history-substring-search)
+plugins=(git-prompt gpg-agent zsh-autosuggestions starship zsh-syntax-highlighting keychain zsh-history-substring-search zoxide)
 
 # Disable oh-my-zsh update (before load ohmyzsh)
 # https://github.com/ohmyzsh/ohmyzsh#getting-updates
@@ -46,7 +48,7 @@ source "$ZSH/oh-my-zsh.sh"
 setopt AUTOCD              # change directory just by typing its name
 setopt PROMPT_SUBST        # enable command substitution in prompt
 setopt MENU_COMPLETE       # Automatically highlight first element of completion menu
-setopt LIST_PACKED	   # The completion menu takes less space.
+setopt LIST_PACKED    # The completion menu takes less space.
 setopt AUTO_LIST           # Automatically list choices on ambiguous completion.
 setopt COMPLETE_IN_WORD    # Complete from both ends of a word.
 
@@ -77,14 +79,14 @@ compinit -i
 
 # man page with less
 man() {
-  LESS_TERMCAP_mb=$'\e[0;31m' \
-    LESS_TERMCAP_md=$'\e[01;35m' \
-    LESS_TERMCAP_me=$'\e[0m' \
-    LESS_TERMCAP_se=$'\e[0m' \
-    LESS_TERMCAP_so=$'\e[01;31;31m' \
-    LESS_TERMCAP_ue=$'\e[0m' \
-    LESS_TERMCAP_us=$'\e[0;36m' \
-    command man "$@"
+    LESS_TERMCAP_mb=$'\e[0;31m' \
+        LESS_TERMCAP_md=$'\e[01;35m' \
+        LESS_TERMCAP_me=$'\e[0m' \
+        LESS_TERMCAP_se=$'\e[0m' \
+        LESS_TERMCAP_so=$'\e[01;31;31m' \
+        LESS_TERMCAP_ue=$'\e[0m' \
+        LESS_TERMCAP_us=$'\e[0;36m' \
+        command man "$@"
 }
 
 # --------------
@@ -99,15 +101,18 @@ man() {
 # --------------
 
 #source ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-#source ~/.oh-my-zsh/custom/plugins/zsh-history-substring-search/zsh-history-substring-search.plugin.zsh
+source ~/.oh-my-zsh/custom/plugins/zsh-history-substring-search/zsh-history-substring-search.plugin.zsh
 #bindkey '^[[A' history-substring-search-up
 #bindkey '^[[B' history-substring-search-down
-bindkey "$terminfo[kcuu1]" history-substring-search-up
-bindkey "$terminfo[kcud1]" history-substring-search-down
+bindkey "${terminfo[kcuu1]}" history-substring-search-up
+bindkey "${terminfo[kcud1]}" history-substring-search-down
 
 # --------------
 # OTHER
 # --------------
 
-test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || \
-  eval "$(dircolors -b)"
+if [ -d  ~/.dircolors ]; then
+    eval "$(dircolors -b ~/.dircolors)"
+else
+    eval "$(dircolors -b)"
+fi

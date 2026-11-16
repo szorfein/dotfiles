@@ -15,6 +15,12 @@ fi
 MY_PATH="$MY_PATH:$HOME/.npm/bin"
 export npm_config_prefix="$HOME/.npm"
 
+# pnpm configuration
+if command -v pnpm >/dev/null 2>&1; then
+    export PNPM_HOME="$HOME/.local/share/pnpm"
+    MY_PATH="$MY_PATH:$HOME/.local/share/pnpm/bin"
+fi
+
 # Doom Emacs
 # https://github.com/doomemacs/doomemacs#install
 if [ -d $HOME/.config/emacs/bin ] ; then
@@ -23,6 +29,12 @@ fi
 
 # if Turso
 [ -d "$HOME/.turso" ] && MY_PATH="$MY_PATH:$HOME/.turso"
+
+# if Go
+if command -v go >/dev/null 2>&1; then
+    export GOBIN=$(go env GOPATH)/bin
+    MY_PATH="$MY_PATH:$(go env GOBIN):$(go env GOPATH)/bin"
+fi
 
 export PATH="$PATH:$MY_PATH"
 
@@ -50,7 +62,7 @@ export VISUAL=nvim
 # export GPG_AGENT_INFO=""
 
 # MPD Dir
-export MPD_MUSIC_DIR="$HOME/musics"
+export MUSIC_DIR="$HOME/musics"
 # If mpd port is different than default 6600
 # export MPD_PORT="6600"
 

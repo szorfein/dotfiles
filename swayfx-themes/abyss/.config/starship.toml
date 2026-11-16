@@ -50,8 +50,8 @@ format = '[on](fg:white) [](fg:surface_container_high)[ $symbol $branch ]($st
 
 [git_metrics]
 format = '([ $added]($added_style))([-$deleted]($deleted_style)) '
-added_style = 'italic dimmed bright-green'
-deleted_style = 'italic dimmed bright-red'
+added_style = 'italic dimmed bg:green fg:background'
+deleted_style = 'italic dimmed bg:red fg:background'
 ignore_submodules = true
 disabled = false
 

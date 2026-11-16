@@ -1,5 +1,4 @@
 
-
 #   ██████╗ ████████╗████████╗███████╗██████╗
 #  ██╔═══██╗╚══██╔══╝╚══██╔══╝██╔════╝██╔══██╗
 #  ██║   ██║   ██║      ██║   █████╗  ██████╔╝█████╗
@@ -166,6 +165,11 @@ unbind_proc = false
 description = "Play a directory"
 prefix = "p"
 cmd = """
-cat /tmp/list-directory | ~/bin/fsel --dmenu | setsid -f xargs -r -I [] mpv --shuffle --auto-window-resize=no "[]"
+cat /tmp/list-directory | ~/bin/fsel --dmenu | setsid -f xargs -r -I [] mpv --shuffle --auto-window-resize=no --config-dir=$HOME/.config/mpv --geometry=50%:50% "[]"
 """
 unbind_proc = false
+
+[[modules]]
+description = "wiremix for audio control"
+prefix = "vol"
+cmd = "swaymsg [app_id=otter-launcher] resize set width 600 px height 300 px; wiremix; swaymsg [app_id=otter-launcher] resize set width 600 px height 60 px"

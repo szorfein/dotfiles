@@ -160,7 +160,7 @@ export GEM_HOME="$(gem env user_gemhome)"
 export PATH="$PATH:$GEM_HOME/bin"
 
 # Mpd music dir, you also have to configure mpd...
-export MPD_MUSIC_DIR="$HOME/where-musics-are"
+export MUSIC_DIR="$HOME/where-musics-are"
 
 # Where Dotfiles are, if not ~/.dotfiles
 export DOTFILES_DIR="$HOME/.dotfiles"

@@ -38,7 +38,7 @@
   [Getch](https://github.com/szorfein/getch) else [Arch](https://archlinux.org/)
 - **Shell:** [Zsh](https://www.zsh.org/) with
   [Oh My Zsh](https://github.com/ohmyzsh/ohmyzsh),
-  [Starship](https://starship.rs),
+  [Starship](https://starship.rs), [Zoxide](https://zoxide.org/),
   ([plugins](https://github.com/szorfein/dotfiles/blob/main/zsh/.config/reaver/zsh.yml))
 - **Widgets:** [Eww](https://elkowar.github.io/eww/eww.html).
 - **App Launcher:**

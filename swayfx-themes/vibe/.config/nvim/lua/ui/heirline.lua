@@ -2,7 +2,7 @@ local vim = vim
 
 return {
     'rebelot/heirline.nvim',
-    event = 'BufEnter',
+    event = 'BufReadPost',
     dependencies = {
         { 'lewis6991/gitsigns.nvim' },
     },

@@ -22,5 +22,5 @@ overall = { bg = "#171c25", fg = "#dfe2ef" }
 [filetype]
 rules = [
 # fallback - Dir
-    { name = "*/", fg = "#c0c4eb" }
+    { url = "*/", fg = "#c0c4eb" }
 ]

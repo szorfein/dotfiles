@@ -2,7 +2,7 @@ local vim = vim
 
 return {
     'rebelot/heirline.nvim',
-    event = 'BufEnter',
+    event = 'BufReadPost',
     opts = function()
         local conditions = require('heirline.conditions')
         local utils = require('heirline.utils')
