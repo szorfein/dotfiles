@@ -4,8 +4,10 @@ tasks:
   - name: swayfx-wallpapers.zip
     url: https://github.com/szorfein/walls/archive/refs/heads/swayfx.zip
     to_dest: images
+    strip_comp: true
   - name: swayfx-gtk-themes.zip
     url: https://github.com/szorfein/gtk-themes/archive/refs/heads/swayfx.zip
+    strip_comp: true
     to_dest: .themes
   - name: black.svg
     url: https://github.com/Big-B/swaylock-fancy/raw/refs/heads/main/icons/black.svg

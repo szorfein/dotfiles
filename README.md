@@ -67,8 +67,7 @@
   [Dragon4](https://www.dafont.com/dragon-4.font)
 - **Dotfiles manager and theme switcher:**
   [GNU/Stow](https://www.gnu.org/software/stow/)
-- **Dotfiles dependencies manager:**
-  [Reaver](https://github.com/szorfein/reaver)
+- **Dotfiles dependencies manager:** [Ryvst](https://github.com/szorfein/ryvst)
 
 ## 🧰 Installation
 
