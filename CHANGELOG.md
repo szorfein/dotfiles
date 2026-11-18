@@ -1,25 +1,18 @@
 # Changelog
 
-## Nov.2026 - 5.41.1
+## v5.42.0 - Familiar - Nov. 18 2026
 
-- Add [Zoxide](https://github.com/ajeetdsouza/zoxide) for ZSH, work's like the
-  [z](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/z) plugin
+- New theme
 - Change Reaver by the new faster [Ryvst](https://github.com/szorfein/ryvst)
 - Update slider look on EWW, more like defined by material 3.
 - Config for fastfetch
-- Support pnpm when installed (faster than npm)
 - Support for the language Go
-
-#### Bugs fixes
-
-- Use strip_comp on ryvst/swayfx
-- Yazi has changed "name" by "url" in the configuration...
-
-## 5.35.3
 
 ### Shell
 
-- Add [zoxide](https://github.com/ajeetdsouza/zoxide), super useful
+- Support pnpm when installed (faster than npm)
+- Add [Zoxide](https://github.com/ajeetdsouza/zoxide) for ZSH, work's like the
+  [z](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/z) plugin
 - Support for Go lang
 
 ### Otter-launcher
@@ -32,11 +25,13 @@
 
 ### Fixes
 
+- Use strip_comp on ryvst/swayfx
+- Yazi has changed "name" by "url" in the configuration...
 - kitty run otter-launcher with -1 (run faster)
 - nvim top bar (heirline, gitsigns) for themes Valyria and Vibe.
 - Auto start pipewire on Voidlinux with sway/autostart.
 
-## 5.32.2
+## v5.32.2 - Valyria
 
 ### New dependencies
 

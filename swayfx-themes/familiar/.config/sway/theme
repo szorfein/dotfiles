@@ -1,0 +1,8 @@
+set $bg #0e1513
+set $fg #dee4e0
+set $shadow #000000
+set $outline #3f4945
+set $bglight #0e1513
+set $error #ffb4ab
+set $theme familiar
+set $theme-bg /home/user/images/cat.png

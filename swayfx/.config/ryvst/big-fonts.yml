@@ -1,0 +1,9 @@
+every_time: 168h
+execute: fc-cache -f
+tasks:
+  - name: iosevka.tar.xz
+    url: https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Iosevka.tar.xz
+    to_dest: .local/share/fonts/Iosevka
+  - name: iosevka-term-slab.tar.xz
+    url: https://github.com/ryanoasis/nerd-fonts/releases/latest/download/IosevkaTermSlab.tar.xz
+    to_dest: .local/share/fonts/Iosevka

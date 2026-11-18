@@ -27,15 +27,16 @@
 
 ###
 
-![Valyria screenshot 1](https://github.com/szorfein/unix-portfolio/raw/master/SwayFX/Valyria/clean.jpg)
-![Valyria screenshot 2](https://github.com/szorfein/unix-portfolio/raw/master/SwayFX/Valyria/full.jpg)
+![Familiar screenshot 1](https://github.com/szorfein/unix-portfolio/raw/master/SwayFX/Familiar/clean.jpg)
+![Familiar screenshot 2](https://github.com/szorfein/unix-portfolio/raw/master/SwayFX/Familiar/full.jpg)
 
-## ✨ Features
+## ✨ Features of "Familiar"
 
 - **WM:** [SwayFX](https://github.com/WillPower3309/swayfx)
+- **Resolution:** 1366x768
 - **OS:** [Void](https://voidlinux.org/) | [Gentoo](https://www.gentoo.org/)
-  with [Musl](https://musl.libc.org/) installed with
-  [Getch](https://github.com/szorfein/getch) else [Arch](https://archlinux.org/)
+  with [Musl](https://musl.libc.org/) and encryption installed with
+  [Getch](https://github.com/szorfein/getch)
 - **Shell:** [Zsh](https://www.zsh.org/) with
   [Oh My Zsh](https://github.com/ohmyzsh/ohmyzsh),
   [Starship](https://starship.rs), [Zoxide](https://zoxide.org/),
@@ -67,7 +68,10 @@
   [Dragon4](https://www.dafont.com/dragon-4.font)
 - **Dotfiles manager and theme switcher:**
   [GNU/Stow](https://www.gnu.org/software/stow/)
-- **Dotfiles dependencies manager:** [Ryvst](https://github.com/szorfein/ryvst)
+- **Dotfiles dependencies manager:** new
+  [Ryvst](https://github.com/szorfein/ryvst) in Go
+- **Modular:** Build your own theme -
+  [guide](https://lolthway.vercel.app/posts/create-your-own-swayfx-eww-theme/)
 
 ## 🧰 Installation
 
@@ -88,8 +92,8 @@ Look for previous dotfiles?
 
 ## ⚡Previous theme
 
-![Vibe screenshot 1](https://github.com/szorfein/unix-portfolio/raw/master/Vibe/clean.jpg)
-![Vibe screenshot 2](https://github.com/szorfein/unix-portfolio/raw/master/Vibe/full.jpg)
+![Valyria screenshot 1](https://github.com/szorfein/unix-portfolio/raw/master/SwayFX/Valyria/clean.jpg)
+![Valyria screenshot 2](https://github.com/szorfein/unix-portfolio/raw/master/SwayFX/Valyria/full.jpg)
 
 ## 📦 Other screenshots
 
