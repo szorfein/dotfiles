@@ -6,7 +6,7 @@
 #~/.python/bin/m3wal ~/images/vibes.png --generator-only --mode dark --variant AUTO # or VIBRANT, EXPRESSIVE, FIDELITY
 #~/.dotfiles/swayfx/bin/gen-theme-m3wal.sh ~/.config/m3-colors/output/vibes_FIDELITY_scheme.json vibe
 
-set -o errexit -o nounset
+set -o errexit
 
 # Usage:
 # gen-theme.sh ~/.material/theme.json magic
@@ -17,13 +17,27 @@ set -o errexit -o nounset
 # Terminal colors can be generated from Aether:
 # https://github.com/bjarneo/aether
 
+echo "start"
+
+die() {
+  echo "$1"
+  exit 1
+}
+
 filename="$1"
-workdir="/tmp/$2"
+_wk="$HOME/.dotfiles/swayfx-themes"
+
+[ -d "$_wk" ] || die "directory $_wk is no found"
+
+workdir="$_wk/$2"
 
 # Clone this
 # https://github.com/themix-project/oomox-gtk-theme
 GTK_DIR="$HOME/labs/oomox-gtk-theme"
 
+[ -d "$GTK_DIR" ] || die "oomox-gtk-theme is no found at $GTK_DIR"
+
+echo "hi"
 ext_wall() {
   color=$(cat < "$filename" | jq ".wallpaper" | tr -d '"')
   echo "$color" | tr -d '"'
@@ -49,6 +63,7 @@ mkdir -p "$workdir/.config/fsel"
 mkdir -p "$workdir/.config/yazi"
 mkdir -p "$workdir/.tmux"
 mkdir -p "$workdir/.config/nvim/lua"
+mkdir -p "$workdir/.config/nvim/lua/ui"
 mkdir -p "$workdir/.config/zathura"
 mkdir -p "$workdir/.config/dunst/dunstrc.d"
 mkdir -p "$workdir/.config/gtk-3.0"
@@ -114,13 +129,14 @@ t_white_bright=$(ext_terminal 'term15')
 echo "primary $primary"
 echo "secondary $secondary"
 
-cat <<EOF > "$workdir/.config/eww/styles/typography.scss"
+cat << EOF > "$workdir/.config/eww/styles/typography.scss"
 // material(3) use 2 fonts mainly and name it:
 // md.ref.typeface.brand
 // md.ref.typeface.plain
 \$brand: 'Demova';
 \$plain: 'Iosevka Nerd Font';
 
+// Hour, first panel
 .display-large {
   font-family: \$brand;
   font-size: dpi(50pt);
@@ -128,6 +144,7 @@ cat <<EOF > "$workdir/.config/eww/styles/typography.scss"
   font-weight: 400;
 }
 
+// Day, Month, first panel
 .display-small {
   font-family: \$brand;
   font-size: dpi(46pt);
@@ -135,6 +152,7 @@ cat <<EOF > "$workdir/.config/eww/styles/typography.scss"
   font-weight: 400;
 }
 
+// title on change theme, exit and popup
 .headline-small {
   font-family: \$brand;
   font-size: dpi(54pt);
@@ -196,7 +214,7 @@ cat <<EOF > "$workdir/.config/eww/styles/typography.scss"
 }
 EOF
 
-cat <<EOF > "$workdir/.config/eww/styles/colors.scss"
+cat << EOF > "$workdir/.config/eww/styles/colors.scss"
 \$primary: $primary;
 \$on-primary: $on_primary;
 \$primary-container: $primary_container;
@@ -235,7 +253,7 @@ cat <<EOF > "$workdir/.config/eww/styles/colors.scss"
 \$on-blue: #000000;
 EOF
 
-cat <<EOF > "$workdir/.config/sway/theme"
+cat << EOF > "$workdir/.config/sway/theme"
 set \$bg $surface
 set \$fg $on_surface
 set \$shadow $shadow
@@ -246,7 +264,7 @@ set \$theme $2
 set \$theme-bg $wallpaper
 EOF
 
-cat <<EOF > "$workdir/.Xdefaults"
+cat << EOF > "$workdir/.Xdefaults"
 *background: $surface
 *foreground: $on_surface
 *cursorColor: $primary
@@ -278,7 +296,7 @@ cat <<EOF > "$workdir/.Xdefaults"
 EOF
 
 # need to remove '#' with ${MYVAR:1}
-cat <<EOF > "$workdir/.config/foot/colors"
+cat << EOF > "$workdir/.config/foot/colors"
 # -*- conf -*-
 [cursor]
 
@@ -319,73 +337,73 @@ search-box-no-match=${error:1} ${on_error:1}  # black-on-red
 # urls=<regular3>
 EOF
 
-cat <<EOF > "$workdir/.tmux/status"
-# Configure plugin mode_indicator
-set -g @mode_indicator_prefix_prompt "WAIT"
-set -g @mode_indicator_prefix_mode_style fg=$secondary,bold
-set -g @mode_indicator_copy_prompt "COPY"
-set -g @mode_indicator_copy_mode_style fg=green,bold
-set -g @mode_indicator_sync_prompt "SYNC"
-set -g @mode_indicator_sync_mode_style fg=$error,bold
-set -g @mode_indicator_empty_prompt "TMUX"
-set -g @mode_indicator_empty_mode_style fg=purple,bold
+cat << EOF > "$workdir/.tmux/status"
+# --------------
+# Global settings
+# --------------
 
-# Configure the catppuccin plugin
-set -g @catppuccin_flavor "mocha"
-set -g @catppuccin_window_status_style "rounded"
+set -g status-fg '${primary}' # primary
+set -g status-bg 'default'
 
-# status line
-set -gF status-style "bg=$surface,fg=$on_surface"
-
-# Customize plugins colors
-#
-# App
-set -gF @catppuccin_status_application_icon_bg "$surface_container_low"
-set -g @catppuccin_status_application_icon_fg "$error"
-set -gF @catppuccin_status_application_text_bg "$surface_container_low"
-set -g @catppuccin_status_application_text_fg "$error"
-
-# Session
-set -gF @catppuccin_status_session_icon_bg "$surface_container_low"
-set -gF @catppuccin_status_session_icon_fg "$tertiary"
-set -gF @catppuccin_status_session_text_bg "$surface_container_low"
-set -gF @catppuccin_status_session_text_fg "$tertiary"
-
-# Uptime
-set -gF @catppuccin_status_uptime_text_bg "$surface_container_low"
-set -gF @catppuccin_status_uptime_text_fg "$secondary"
-set -g @catppuccin_status_uptime_icon_bg "$surface_container_low"
-set -g @catppuccin_status_uptime_icon_fg "$secondary"
-
-# Directory
-set -gF @catppuccin_status_directory_text_bg "$surface_container_low"
-set -gF @catppuccin_status_directory_text_fg "$primary"
-set -g @catppuccin_status_directory_icon_bg "$surface_container_low"
-set -g @catppuccin_status_directory_icon_fg "$primary"
-
-# Load catppuccin
-run ~/.config/tmux/plugins/catppuccin/tmux/catppuccin.tmux
-
-# Current
-set -g status-justify centre
-set -gF window-status-format "#[bg=$surface_container_low,fg=$secondary_container]#[bg=$secondary_container,fg=$on_secondary_container]##I ##T#[bg=$surface_container_low,fg=$secondary_container]"
-set -gF window-status-current-format "#[bg=$surface_container_low,fg=$primary]#[bg=$primary,fg=$on_primary,bold]##I #[fg=$on_primary,bold]##T#[bg=$surface_container_low,fg=$primary]"
-
-# Make the status line pretty and add some modules
-set -g status-right-length 100
-set -g status-left-length 100
+#set -g status-left "#{tmux_mode_indicator}"
 set -g status-right ""
-set -g status-left "#{tmux_mode_indicator} "
-set -ag status-left "#{E:@catppuccin_status_application}"
-set -ag status-left "#{E:@catppuccin_status_directory}"
-set -ag status-right "#{E:@catppuccin_status_session}"
-set -ag status-right "#{E:@catppuccin_status_uptime}"
+set -g status-justify centre
 
+# --------------
+# mode_indicator settings
+# --------------
+
+# Configure plugin mode_indicator
+set -g @mode_indicator_prefix_prompt "  "
+set -g @mode_indicator_prefix_mode_style fg=#ffb695
+set -g @mode_indicator_copy_prompt  "  "
+set -g @mode_indicator_copy_mode_style fg=green
+set -g @mode_indicator_sync_prompt  "  "
+set -g @mode_indicator_sync_mode_style fg=#ffb4ab
+set -g @mode_indicator_empty_prompt  "  "
+set -g @mode_indicator_empty_mode_style fg=white
+
+# --------------
+# rose-pine settings
+# --------------
+
+set -g @rose_pine_variant 'moon' # Options are 'main', 'moon' or 'dawn'
+
+set -g @rose_pine_host 'off' # Enables hostname in the status bar
+set -g @rose_pine_hostname_short 'off' # Makes the hostname shorter by using tmux's '#h' format
+set -g @rose_pine_date_time '' # It accepts the date UNIX command format (man date for info)
+set -g @rose_pine_user 'off' # Turn on the username component in the statusbar
+set -g @rose_pine_directory 'off' # Turn on the current folder component in the status bar
+set -g @rose_pine_session 'off' # Option not exist... but it could
+
+# Configure tmux rose
+set -g @rose_pine_bar_bg_disable 'on' # Disables background color, for transparent terminal emulators
+set -g @rose_pine_bar_bg_disabled_color_option 'default'
+set -g @rose_pine_disable_active_window_menu 'on' # Disables the menu that shows the active window on the left
+#set -g @rose_pine_only_windows 'on' # Leaves only the window module, for max focus and space
+
+set -g @rose_pine_show_current_program 'off' # Forces tmux to show the current running program as window name
+set -g @rose_pine_show_pane_directory 'on' # Forces tmux to show the current directory as window name
+
+#set -g @rose_pine_window_separator ' ' # Replaces the default $(:) between the window number and name
+#set -g @rose_pine_window_separator ' ' # This impact on show_pane_directory if change...
+
+set -g @rose_pine_window_status_separator "   "
+set -g @rose_pine_session_icon ' 󱚥 ' # Changes the default icon to the left of the session name
+
+set -g @rose_pine_prioritize_windows 'off' # Disables the right side functionality in a certain window count / terminal width
+set -g @rose_pine_status_right_prepend_section '#{tmux_mode_indicator}'
+
+# --------------
+# Load plugins
+# --------------
+
+run ~/.config/tmux/plugins/rose-pine/rose-pine.tmux
 run-shell ~/.config/tmux/plugins/tmux-mode-indicator/mode_indicator.tmux
 EOF
 
 # neovim
-cat <<EOF > "$workdir/.config/nvim/lua/colors.lua"
+cat << EOF > "$workdir/.config/nvim/lua/colors.lua"
 -- theme $2
 -- base colors: https://github.com/catppuccin/nvim/blob/main/lua/catppuccin/palettes/mocha.lua
 -- WGAG AAA need a contrast of 7:1 for normal text
@@ -419,7 +437,7 @@ return {
 }
 EOF
 
-cat <<EOF > "$workdir/.config/zathura/zathurarc"
+cat << EOF > "$workdir/.config/zathura/zathurarc"
 set font "Iosevka Nerd Font Medium 10"
 
 set default-fg                    "$on_surface"
@@ -463,7 +481,7 @@ set highlight-active-color	  rgba(245,194,231,0.5)
 EOF
 
 # dunst
-cat <<EOF > "$workdir/.config/dunst/dunstrc.d/10-bytheme.conf"
+cat << EOF > "$workdir/.config/dunst/dunstrc.d/10-bytheme.conf"
 # To display terminal icon: (nerd-font, icomoon)
 # echo "\u<code>", e.g: echo "\uf09c2"
 [global]
@@ -501,9 +519,15 @@ cat <<EOF > "$workdir/.config/dunst/dunstrc.d/10-bytheme.conf"
     urgency = low
     format = "<span rise='-5000' font_desc='Material Symbols Outlined Regular 20'>music_note_2</span><span foreground='$inverse_on_surface'> Kew</span> &gt; <span font_desc='Iosevka Nerd Font Regular 14' foreground='$inverse_on_surface'>%b</span>"
     history_ignore = yes
+
+[bleachbit_display]
+    appname = BleachBit
+    urgency = normal
+    format = "<span rise='-5000' font_desc='Material Symbols Outlined Regular 20'>pending_actions</span><span foreground='$inverse_on_surface'> BleachBit</span> &gt; <span font_desc='Iosevka Nerd Font Regular 14' foreground='$inverse_on_surface'>%b</span>"
+    history_ignore = yes
 EOF
 
-cat <<EOF > "$workdir/.config/fsel/config.toml"
+cat << EOF > "$workdir/.config/fsel/config.toml"
 cursor = "█"
 terminal_launcher = "footclient -e"
 # Don't wrap around at list ends (false = wrap around)
@@ -549,7 +573,7 @@ image_preview = true             # Show inline image previews
 hide_inline_image_message = false # Hide "[Inline Image Preview]" text
 EOF
 
-cat <<EOF > "$workdir/.config/yazi/theme.toml"
+cat << EOF > "$workdir/.config/yazi/theme.toml"
 [app]
 overall = { bg = "$surface_container_low" }
 
@@ -574,11 +598,11 @@ overall = { bg = "$surface_container_low", fg = "$on_surface" }
 [filetype]
 rules = [
 # fallback - Dir
-    { name = "*/", fg = "$secondary" }
+    { url = "*/", fg = "$secondary" }
 ]
 EOF
 
-cat <<EOF > "$workdir/.config/gtk-3.0/gtk.css"
+cat << EOF > "$workdir/.config/gtk-3.0/gtk.css"
 /*
   Stolen on Aether
 */
@@ -750,7 +774,7 @@ EOF
 cp "$workdir/.config/gtk-3.0/gtk.css" "$workdir/.config/gtk-4.0/gtk.css"
 
 # Kitty
-cat <<EOF > "$workdir/.config/kitty/colors.conf"
+cat << EOF > "$workdir/.config/kitty/colors.conf"
 background $surface
 foreground $on_surface
 cursor $on_surface

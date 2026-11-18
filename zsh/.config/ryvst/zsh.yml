@@ -1,4 +1,4 @@
-every_time: 4m
+every_time: 24h
 tasks:
   - name: ohmyzsh.zip
     url: https://github.com/ohmyzsh/ohmyzsh/archive/refs/heads/master.zip
