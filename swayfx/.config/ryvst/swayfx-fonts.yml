@@ -1,5 +1,4 @@
----
-every_time: 168h
+every_time: 72h
 execute: fc-cache -f
 tasks:
   - name: szorfein-fonts.zip
@@ -22,10 +21,4 @@ tasks:
     to_dest: .local/share/fonts/swayfx
   - name: dragon_4.zip
     url: https://dl.dafont.com/dl/?f=dragon_4
-    to_dest: .local/share/fonts/swayfx
-  - name: iosevka.tar.xz
-    url: https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Iosevka.tar.xz
-    to_dest: .local/share/fonts/swayfx
-  - name: iosevka-term-slab.tar.xz
-    url: https://github.com/ryanoasis/nerd-fonts/releases/latest/download/IosevkaTermSlab.tar.xz
     to_dest: .local/share/fonts/swayfx
