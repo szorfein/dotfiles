@@ -19,7 +19,7 @@ The whole (or many) stack has changed because Wayland instead of X.
 - Brightnessctl, inotify-tools
 - Thunar (optional)
 - Neovim (optional) - replace Doom Emacs and vim
-- Pinta (optional), replace Gimp.
+- Gimp or Pinta, depend of the Linux distribution
 - Dunst - Notification.
 - imagemagick - Convert all images used by Eww
 
@@ -28,7 +28,7 @@ The whole (or many) stack has changed because Wayland instead of X.
     sudo pacman -Syy \
     inotify-tools imv jq wl-clipboard curl stow \
     bc imagemagick rubygems grim swaybg wmenu rust \
-    playerctl mpv-mpris kitty fd \
+    playerctl mpv-mpris kitty fd go zoxide \
     git meson scdoc wayland-protocols cairo gdk-pixbuf2 \
     libevdev libinput json-c libgudev wayland libxcb \
     libxkbcommon pango pcre2 wlroots0.19 brightnessctl \
@@ -69,7 +69,7 @@ SwayFX dependencies
     stow playerctl mpv-mpris eww ruby swaybg grim \
     wmenu iwd Thunar elogind dunst ImageMagick \
     swayidle swaylock wlr-randr brightnessctl \
-    kew glances element-desktop \
+    kew glances element-desktop go zoxide \
     pipewire alsa-pipewire wireplumber wireplumber-elogind
 
 Required step as root
@@ -101,13 +101,14 @@ And install packages:
 
     sudo emerge -av net-misc/curl stow app-text/zathura \
     xfce-base/thunar media-gfx/chafa app-misc/brightnessctl \
-    inotify-tools swaybg imv app-misc/jq sys-apps/fd \
+    inotify-tools swaybg imv app-misc/jq sys-apps/fd dev-lang/go \
     dev-lang/ruby playerctl wl-clipboard x11-terms/kitty \
     gui-apps/grim gui-apps/wmenu net-wireless/iwd app-misc/yazi \
     gui-apps/eww gui-wm/swayfx mpv-mpris media-gfx/imagemagick \
     gui-apps/swaylock gui-apps/swayidle gui-apps/wlr-randr \
     media-sound/kew sys-process/glances net-im/element-desktop-bin \
-    media-video/pipewire media-video/wireplumber sys-auth/rtkit
+    media-video/pipewire media-video/wireplumber sys-auth/rtkit \
+    app-shells/zoxide
 
 For non-systemd, ensure enabling the USE flag elogind before installing
 packages:
@@ -131,11 +132,10 @@ See on Gentoo [wiki](https://wiki.gentoo.org/wiki/Sway#Starting_Sway_manually)
 
 ### From Ruby
 
-After the installation of the dependencies, you need to install 2 ruby gems
-called [i3ipc](https://rubygems.org/gems/i3ipc) and
-[reaver](https://rubygems.org/gems/reaver):
+After the installation of the dependencies, you need to install one ruby gem
+called [i3ipc](https://rubygems.org/gems/i3ipc):
 
-    gem install --user-install i3ipc reaver
+    gem install --user-install i3ipc
 
 ## Cloning this repo
 
@@ -170,22 +170,16 @@ And reload your shell after that.
 
 ### Keyboard
 
-Copy the keyboard layout example, modify the default 'us' if need.
+Copy the keyboard layout example for your language, for the base english:
 
     mkdir -p ~/.config/sway
     cp ~/.dotfiles/swayfx/.config/sway/kdb.example ~/.config/sway/keyboard
 
-For a french keyboard for example, you need to change the default
-`xkb_layout us`
+Or the french
 
-```sh
-# https://github.com/swaywm/sway/wiki#keyboard-layout
-input type:keyboard {
-  xkb_layout fr
-}
-```
+    cp ~/.dotfiles/swayfx/.config/sway/kdb-fr.example ~/.config/sway/keyboard
 
-And follow configurations for remap keyboard keys on the
+You can see more about i3/sway keyboard configuration
 [sway-wiki](https://github.com/swaywm/sway/wiki#locale-specific-configuration-tricks)
 
 ### Run test-dpi.sh
@@ -235,9 +229,15 @@ reinstall, e.g for Zsh:
 
 After installing dotfiles with `stow.sh`, last step is to downloads all the
 required files (wallpapers, fonts, GTK themes, icons, etc...) in one command,
-thanks ([Reaver](https://geeksrepos.com/szorfein/reaver)):
+thanks ([Ryvst](https://github.com/szorfein/ryvst)):
 
-    reaver
+```sh
+git clone https://github.com/szorfein/ryvst ~/.ryvst
+cd ~/ryvst
+make install
+```
+
+And execute it: `~/bin/ryvst`
 
 ## Menu launcher
 
@@ -249,7 +249,17 @@ my script:
 
 ## Start
 
-On Void Linux, you need to start SwayFX with: `exec dbus-run-session -- sway`
+#### On Void Linux
+
+You need to start SwayFX with: `exec dbus-run-session -- sway`, the simple way I
+found is to update `/usr/share/wayland-sessions/sway.desktop` and edit the field
+on `Exec=`
+
+```desktop
+Exec=dbus-run-session -- sway
+```
+
+And of course, you need to do this on each package update :)
 
 ## Updates
 
@@ -260,12 +270,11 @@ Update the repo using `git pull`
 Reinstall files with `stow.sh --purge` to reinstall new dotfiles.
 
     ~/.dotfiles/stow.sh --purge --kitty --swayfx holy
-    reaver
 
 ### Create your own theme
 
 Follow the guide to create your own theme.
-https://szorfein.vercel.app/post/your-own-swayfx-theme
+https://lolthway.vercel.app/posts/create-your-own-swayfx-eww-theme/
 
 ### Thanks lighten library using Material 3 with CSS
 

@@ -71,6 +71,7 @@ mkdir -p "$workdir/.config/gtk-4.0"
 mkdir -p "$workdir/.config/kitty"
 
 wallpaper=$(ext_wall)
+wallpaper_basename=$(basename "$wallpaper")
 # colours to extract
 primary=$(ext_dark 'primary')
 on_primary=$(ext_dark 'onPrimary')
@@ -261,7 +262,7 @@ set \$outline $outline_variant
 set \$bglight $background
 set \$error $error
 set \$theme $2
-set \$theme-bg $wallpaper
+set \$theme-bg ~/images/$wallpaper_basename
 EOF
 
 cat << EOF > "$workdir/.Xdefaults"

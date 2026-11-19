@@ -5,4 +5,4 @@ set $outline #3f4945
 set $bglight #0e1513
 set $error #ffb4ab
 set $theme familiar
-set $theme-bg /home/user/images/cat.png
+set $theme-bg ~/images/cat.png
