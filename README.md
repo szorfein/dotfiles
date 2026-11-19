@@ -35,7 +35,7 @@
 - **WM:** [SwayFX](https://github.com/WillPower3309/swayfx)
 - **Resolution:** 1366x768
 - **OS:** [Void](https://voidlinux.org/) | [Gentoo](https://www.gentoo.org/)
-  with [Musl](https://musl.libc.org/) and encryption installed with
+  with [Musl](https://musl.libc.org/) | encryption installed with
   [Getch](https://github.com/szorfein/getch)
 - **Shell:** [Zsh](https://www.zsh.org/) with
   [Oh My Zsh](https://github.com/ohmyzsh/ohmyzsh),
@@ -65,11 +65,11 @@
 - **Fonts:** [Iosevka](https://www.nerdfonts.com/) +
   [Material Icons Outlined](https://github.com/google/material-design-icons) +
   [IcoMoon](https://icomoon.io/) +
-  [Dragon4](https://www.dafont.com/dragon-4.font)
+  [Graphic Cat](https://www.dafont.com/graphic_cat.font)
 - **Dotfiles manager and theme switcher:**
   [GNU/Stow](https://www.gnu.org/software/stow/)
-- **Dotfiles dependencies manager:** new
-  [Ryvst](https://github.com/szorfein/ryvst) in Go
+- **Dotfiles dependencies manager:** [Ryvst](https://github.com/szorfein/ryvst)
+  in Go
 - **Modular:** Build your own theme -
   [guide](https://lolthway.vercel.app/posts/create-your-own-swayfx-eww-theme/)
 
